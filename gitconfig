@@ -1,0 +1,84 @@
+## Author: stardiviner [ numbchild AT gmail DOT com ]
+
+[user]
+    name = stardiviner
+    email = numbchild@gmail.com
+	signingkey = 47C32433 # GPG key ID.
+
+[github]
+	user = numbchild
+	token = TOKEN
+
+[core]
+    editor = vim
+    pager = less
+    excludesfile = $HOME/.gitignore
+    ; autocrlf = true ## enable this when you are on Windows. for line break.
+	autocrlf = input
+    whitespace=fix,trailing-space,indent-with-non-tab,cr-at-eol
+        ## trailing-space: space at the end of line.
+        ## space-before-tab: space before Tab.
+        ## indent-with-non-tab: indent with non-Tab. like 8 spaces.
+        ## cr-at-eol: Carry Return at the End-Of-Line.
+
+[help]
+    ; autocorrect = 1 # when only one command matchs, this command will be executed.
+
+[color]
+    ui = true # [true|always|false] let git color all terminal's output.
+    branch = true
+    diff = true
+    interactive = true
+    status = true
+## syntax: foreground background style
+## available colors: normal, black, red, green, yellow, blue, magenta, cyan, white.
+## available style: bold, dim, ul, blink, reverse.
+;[color "branch"]
+    ;current = blue
+    ;local = yellow
+    ;remote = cyan
+;[color "diff"]
+    ;meta = yellow bold
+    ;frag = magenta bold
+    ;old = red
+    ;new = green
+    ;whitespace = red reverse
+;[color "status"]
+    ;added = yellow
+    ;changed = green
+    ;untracked = cyan bold
+
+[commit]
+    ; template = $HOME/.gitmessage.txt
+[push]
+    default = matching
+[diff]
+    tool = vimdiff
+    cmd = vimdiff
+    prompt = true
+[merge]
+    #tool = vimdiff
+	#conflictstyle = diff3
+    tool = splice
+
+[mergetool "splice"]
+    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+    trustExitCode = true
+
+[alias]
+	s  = status
+	a  = add
+	b  = branch
+	c  = commit
+	co = checkout
+    d  = difftool
+	l  = log --graph
+	m  = mergetool
+	t  = tag
+	ut = rm -r --cached
+	unstage = reset HEAD
+	visual = !gitk
+    last = log -1 HEAD
+
+    gl  = log -10 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+    gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'

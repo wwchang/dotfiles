@@ -1,0 +1,29 @@
+# syntax
+# glob matching: * ? . [0-9] [abc]
+# *.[oa]
+# except libcur.a when *.[oa]
+# !libcur.a
+# *~
+# dir/
+# !dir/
+# /dir
+# mail/
+# mail/*.txt
+# double astri * to mean all dirs
+# tmp/**/*
+# touch log/.gitignore
+# touch tmp/.gitignore
+# =============================
+
+# ignore chinese filename
+# .ncmpcpp/artists/*
+# !.ncmpcpp/artists/[a-zA-Z0-9]*
+
+*~
+*.bak
+*swp
+log/
+*.log
+*.[oa]
+*.pyo
+tags
