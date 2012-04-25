@@ -1,0 +1,607 @@
+!
+! __  __   _       __             _ _
+! \ \/ /__| | ___ / _| __ _ _   _| | |_ ___
+!  \  // _` |/ _ \ |_ / _` | | | | | __/ __|
+!  /  \ (_| |  __/  _| (_| | |_| | | |_\__ \
+! /_/\_\__,_|\___|_|  \__,_|\__,_|_|\__|___/
+!
+
+! F O N T S ==============================================================
+
+Xft.autohint:   true
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting:    true
+Xft.antialias:  true
+Xft.dpi: 96
+Xft.rgba: rgb
+
+! X T E R M ==============================================================
+
+! general settings
+xterm*termName: xterm-256color
+xterm*geometry: 80x24
+xterm*saveLines: 1024
+! allow windows resize (from vim help)
+Xterm*allowWindowOps: true
+xterm*loginshell: false
+xterm*dynamicColors: true
+xterm*toolBar: false
+xterm*transparent: true
+! xterm*shading: 20
+xterm*background: #F0F0F0
+xterm*foreground: #333333
+
+! Cursor
+xterm*cursorBlink: true
+xterm*alwaysHighlight: true
+xterm*cursorColor: #FF5787
+xterm*cursorUnderLine: true
+
+! selection
+xterm*highlightSelection: false
+xterm*highlightTextColor: #000000
+
+! bar & border
+xterm*scrollBar: false
+xterm*borderColor: #161616
+xterm*borderWidth: 0
+xterm*borderless: true
+xterm*internalBorder: 0
+xterm*externalBorder: 0
+
+! bell
+xterm*bellIsUrgent: true
+xterm*visualBell: false
+
+! FIXME xterm*depth: 32
+
+! encoding
+! xterm*utf8: 2
+xterm*utf8: true
+xterm*locale: true
+xterm*utf8Title: true
+
+! fonts
+xterm*allowBoldFonts: true
+xterm*renderFont: true
+xterm*scaleHeight: 1
+xterm*preeditType: Root
+xterm*xftAntialias: true
+xterm*faceName: DejaVu Sans Mono:pixelsize=13.5
+xterm*faceNameDoublesize: WenQuanYi Zen Hei Mono:pixelsize=13.5
+xterm*italicULMode: false
+! underline
+xterm*colorULMode: true
+xterm*colorUL: #31658C
+xterm*underLine: true
+
+! trim trailing spaces
+xterm*trimSelection: true
+
+! fix alt-key inputting
+xterm*eightBitInput: false
+xterm*metaSendsEscape: true
+
+! copy and paste with clipboard
+!xterm*translations: #override \
+!	Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
+!	Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
+
+! allow selecting email/url by double-click
+xterm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+
+! tango color scheme
+xterm*color0: #1e1e1e
+xterm*color1: #cc0000
+xterm*color2: #4e9a06
+xterm*color3: #c4a000
+xterm*color4: #3465a4
+xterm*color5: #75507b
+xterm*color6: #0b939b
+xterm*color7: #d3d7cf
+xterm*color8: #555753
+xterm*color9: #ef2929
+xterm*color10: #8ae234
+xterm*color11: #fce94f
+xterm*color12: #729fcf
+xterm*color13: #ad7fa8
+xterm*color14: #00f5e9
+xterm*color15: #eeeeec
+
+
+! D M E N U ==============================================================
+
+dmenu.font:		Monospace:size=12
+dmenu.foreground:	#FF5787
+dmenu.background:	#FFFFFF
+dmenu.selforeground:	#151515
+dmenu.selbackground:	#ee3b3b
+
+
+! Y E A H C O N S O L E ==================================================
+
+yeahconsole*term: xterm
+yeahconsole*consoleHeight: 14
+yeahconsole*toggleKey: none+F12
+yeahconsole*aniDelay: 0
+yeahconsole*stepSize: 14
+yeahconsole*screenWidth: 1280
+yeahconsole*borderWidth: 0
+yeahconsole*borderless: true
+yeahconsole*dynamicColors:      true
+yeahconsole*faceName:           xft:Pragmata:pixelsize=8.5
+yeahconsole*colorUL: #31658C
+yeahconsole*background: #161616
+yeahconsole*foreground: #999993
+yeahconsole*cursorColor: #ff8939
+yeahconsole*borderColor: #161616
+yeahconsole*cursorBlink: true
+yeahconsole*internalBorder: 3
+yeahconsole*externalBorder: 3
+yeahconsole*utf8: 2
+yeahconsole*transparent: true
+yeahconsole*shading: 4
+yeahcolsole*depth: 32
+
+
+! X I M ==============================================================
+*.international: True
+*.inputMethod: ibus
+!*.imLocale: zh_CN.UTF-8
+! *.preeditType: your_input_style
+
+
+! Xcursor ==============================================================
+! man Xcursor
+!  Available themes reside in /usr/share/icons and local themes can be installed to ~/.icons
+! Xcursor*theme: redglass
+Xcursor*theme: Buuf-cursor
+! Xcursor*size:  20
+
+
+! U R X V T ==============================================================
+
+! for real transparency:
+! A "real" transparency, using the composite manager currently running
+! (xcompmgr, dcompmgr, compiz...)
+!urxvt*depth: 32
+!urxvt*background: rgba:1111/1111/1111/dddd
+
+! for fake transparency:
+! A "fake" transparency, that copies the wallpaper to the background of the terminal.
+! (more exactly, the contents of Xorgs root window)
+urxvt*transparent: true
+! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
+urxvt*shading: 7
+! NOTE: comment URxvt.tintColor and URxvt.inheritPixmap when fake transparency.
+!URxvt.tintColor: #000000
+!URxvt.inheritPixmap: False
+
+URxvt.fading: 30%
+
+URxvt.termName: rxvt-256color
+URxvt.imLocale: en_US.UTF-8
+URxvt.scrollBar: false
+URxvt.saveLines: 5000
+URxvt.perl-lib:        /usr/lib/urxvt/perl
+URxvt.perl-ext-common: default,matcher
+! URL Alt-U: Enter selection mode. j/k:select URL. Return:Open selected URL. o: open selected URL
+! without quitting selection mode. y:Yank selected URL and quit select mode. Esc: Cancel URL select
+! mode.
+!URxvt.perl-ext:      default,url-select
+!URxvt.keysym.M-u:    perl:url-select:select_next
+URxvt.underlineURLs: true
+URxvt.urlLauncher: firefox
+
+URxvt.matcher.button: 1
+URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+URxvt.geometry: 90x10
+
+!URxvt*font:                 xft:Monaco for Powerline:regular:size=10
+!URxvt*imFont:               xft:Monaco for Powerline:regular:size=10
+!URxvt*boldFont:             xft:Monaco for Powerline:bold:size=10
+!URxvt*italicFont:           xft:Monaco for Powerline:italic:size=10
+!URxvt*boldItalicFont:       xft:Monaco for Powerline:bold:italic:size=10
+
+URxvt.font:           xft:DejaVu Sans Mono for Powerline:regular:pixelsize=13.5
+URxvt.imFont:         xft:DejaVu Sans Mono for Powerline:regular:pixelsize=13.5
+URxvt.boldFont:       xft:DejaVu Sans Mono for Powerline:bold:pixelsize=13.5
+URxvt.italicFont:     xft:DejaVu Sans Mono for Powerline:italic:pixelsize=13.5
+URxvt.bolditalicFont: xft:DejaVu Sans Mono for Powerline:bold:italic:pixelsize=13.5
+
+! bell
+URxvt*urgentOnBell:     true
+! true will lead weechat flash when youre highlighted
+URxvt*visualBell:       false
+
+URxvt*dynamicColors: on
+!URxvt*background: #202428
+URxvt*foreground: #FFFFFF
+! cursor
+URxvt*cursorColor:  cyan
+URxvt*cursorColor2: cyan
+URxvt*cursorBlink: true
+URxvt*cursorUnderline: false
+! border
+URxvt*borderWidth: 0
+URxvt*borderColor: #151515
+URxvt*borderless: true
+URxvt*internalBorder: 0
+URxvt*externalBorder: 0
+
+URxvt*colorBD: #ff5f00
+URxvt*colorIT: #afaf00
+URxvt*colorUL: #60a2d1
+URxvt*underlineColor: #484848
+URxvt*highlightColor: #afff00
+URxvt*highlightTextColor: #151515
+
+! C O L O R S E T S ====================================================
+
+! inspired/based on Railscasts Textmate theme
+! http://railscasts.coM
+
+!! Lighter COLORSET
+!*foreground: #dddddd
+!*background: #151515
+!!black
+!*color0:     #393939
+!*color8:     #474747
+!!red
+!*color1:     #FF9F95
+!*color9:     #FF8D80
+!!green
+!*color2:     #E2FFC7
+!*color10:    #DBFFB3
+!!yellow
+!*color3:     #FFFFB9
+!*color11:    #FFBE64
+!!blue
+!*color4:     #A8CEEA
+!*color12:    #7EB6FF
+!!magenta
+!*color5:     #E2B5CC
+!*color13:    #E296FF
+!!cyan
+!*color6:     #C2EFFF
+!*color14:    #9CE9FF
+!!white
+!*color7:     #dddddd
+!*color15:    #dddddd
+
+!!black
+!*color0:    #444444
+!*color8:    #4E4E4E
+!!red
+!*color1:    #D70000
+!*color9:    #FF005F
+!! *color9:    #FF5F5F
+!!green
+!*color2:     #A5E12E
+!*color10:    #87FF00
+!!yellow
+!*color3:     #FF5F00
+!*color11:    #FFFF5F
+!!blue
+!*color4:     #0087D7
+!*color12:    #00AFFF
+!!magenta
+!*color5:     #9D6FFD
+!*color13:    #C467C8
+!!cyan
+!*color6:     #68D3E7
+!*color14:    #00EDFF
+!!white
+!*color7:     #8A8A8A
+!*color15:    #BCBCBC
+
+
+!! darkgreen colorsets {{{
+
+!color0       (black)            = Black
+!color1       (red)              = Red3
+!color2       (green)            = Green3
+!color3       (yellow)           = Yellow3
+!color4       (blue)             = Blue3
+!color5       (magenta)          = Magenta3
+!color6       (cyan)             = Cyan3
+!color7       (white)            = AntiqueWhite
+!color8       (bright black)     = Grey25
+!color9       (bright red)       = Red
+!color10      (bright green)     = Green
+!color11      (bright yellow)    = Yellow
+!color12      (bright blue)      = Blue
+!color13      (bright magenta)   = Magenta
+!color14      (bright cyan)      = Cyan
+!color15      (bright white)     = White
+!foreground                      = Black
+!background                      = Whit
+
+!foreground, background, cursorColor, cursorColor2, colorBD, colorUL as a number 0-15, as a convenient shorthand to reference the colour name of color0-color15.
+
+! ALPHA VALUE !!!
+
+!*foreground: #D2D6D1
+!*background: #202428
+
+!black
+*color0:     #424242
+!bright black
+*color8:     #0E0E0E
+!red
+*color1:     #A76B67
+!bright red
+*color9:     #BF3835
+!green
+*color2:    #486830
+!bright green
+*color10:     #A5D65B
+!yellow
+*color3:    #C7BB8F
+!bright yellow
+*color11:     #C5B131
+!blue
+*color4:    #588490
+!bright blue
+*color12:     #3590A7
+!magenta
+*color5:    #9D89C8
+!bright magenta
+*color13:     #8455C3
+!cyan
+*color6:    #5FA6A8
+!bright cyan
+*color14:     #5BC7CA
+!white
+*color7:    #C1C1C1
+!bright white
+*color15:     #D6DADA
+
+*cursorColor: #8EFFFF
+*cursorColor2: #FF5B5B
+*colorBD:    #FF2929
+*colorUL:    #EAA200
+!! }}}
+
+! 2 5 6 - C O L O R S =====================================================
+
+!URxvt.color17: #00005f
+!URxvt.color18: #000087
+!URxvt.color19: #0000af
+!URxvt.color20: #0000d7
+!URxvt.color21: #0000ff
+!URxvt.color22: #005f00
+!URxvt.color23: #005f5f
+!URxvt.color24: #005f87
+!URxvt.color25: #005faf
+!URxvt.color26: #005fd7
+!URxvt.color27: #005fff
+!URxvt.color28: #008700
+!URxvt.color29: #00875f
+!URxvt.color30: #008787
+!URxvt.color31: #0087af
+!URxvt.color32: #0087d7
+!URxvt.color33: #0087ff
+!URxvt.color34: #00af00
+!URxvt.color35: #00af5f
+!URxvt.color36: #00af87
+!URxvt.color37: #00afaf
+!URxvt.color38: #00afd7
+!URxvt.color39: #00afff
+!URxvt.color40: #00d700
+!URxvt.color41: #00d75f
+!URxvt.color42: #00d787
+!URxvt.color43: #00d7af
+!URxvt.color44: #00d7d7
+!URxvt.color45: #00d7ff
+!URxvt.color46: #00ff00
+!URxvt.color47: #00ff5f
+!URxvt.color48: #00ff87
+!URxvt.color49: #00ffaf
+!URxvt.color50: #00ffd7
+!URxvt.color51: #00ffff
+!URxvt.color52: #5f0000
+!URxvt.color53: #5f005f
+!URxvt.color54: #5f0087
+!URxvt.color55: #5f00af
+!URxvt.color56: #5f00d7
+!URxvt.color57: #5f00ff
+!URxvt.color58: #5f5f00
+!URxvt.color59: #5f5f5f
+!URxvt.color60: #5f5f87
+!URxvt.color61: #5f5faf
+!URxvt.color62: #5f5fd7
+!URxvt.color63: #5f5fff
+!URxvt.color64: #5f8700
+!URxvt.color65: #5f875f
+!URxvt.color66: #5f8787
+!URxvt.color67: #5f87af
+!URxvt.color68: #5f87d7
+!URxvt.color69: #5f87ff
+!URxvt.color70: #5faf00
+!URxvt.color71: #5faf5f
+!URxvt.color72: #5faf87
+!URxvt.color73: #5fafaf
+!URxvt.color74: #5fafd7
+!URxvt.color75: #5fafff
+!URxvt.color76: #5fd700
+!URxvt.color77: #5fd75f
+!URxvt.color78: #5fd787
+!URxvt.color79: #5fd7af
+!URxvt.color80: #5fd7d7
+!URxvt.color81: #5fd7ff
+!URxvt.color82: #5fff00
+!URxvt.color83: #5fff5f
+!URxvt.color84: #5fff87
+!URxvt.color85: #5fffaf
+!URxvt.color86: #5fffd7
+!URxvt.color87: #5fffff
+!URxvt.color88: #870000
+!URxvt.color89: #87005f
+!URxvt.color90: #870087
+!URxvt.color91: #8700af
+!URxvt.color92: #8700d7
+!URxvt.color93: #8700ff
+!URxvt.color94: #875f00
+!URxvt.color95: #875f5f
+!URxvt.color96: #875f87
+!URxvt.color97: #875faf
+!URxvt.color98: #875fd7
+!URxvt.color99: #875fff
+!URxvt.color100: #878700
+!URxvt.color101: #87875f
+!URxvt.color102: #878787
+!URxvt.color103: #8787af
+!URxvt.color104: #8787d7
+!URxvt.color105: #8787ff
+!URxvt.color106: #87af00
+!URxvt.color107: #87af5f
+!URxvt.color108: #87af87
+!URxvt.color109: #87afaf
+!URxvt.color110: #87afd7
+!URxvt.color111: #87afff
+!URxvt.color112: #87d700
+!URxvt.color113: #87d75f
+!URxvt.color114: #87d787
+!URxvt.color115: #87d7af
+!URxvt.color116: #87d7d7
+!URxvt.color117: #87d7ff
+!URxvt.color118: #87ff00
+!URxvt.color119: #87ff5f
+!URxvt.color120: #87ff87
+!URxvt.color121: #87ffaf
+!URxvt.color122: #87ffd7
+!URxvt.color123: #87ffff
+!URxvt.color124: #af0000
+!URxvt.color125: #af005f
+!URxvt.color126: #af0087
+!URxvt.color127: #af00af
+!URxvt.color128: #af00d7
+!URxvt.color129: #af00ff
+!URxvt.color130: #af5f00
+!URxvt.color131: #af5f5f
+!URxvt.color132: #af5f87
+!URxvt.color133: #af5faf
+!URxvt.color134: #af5fd7
+!URxvt.color135: #af5fff
+!URxvt.color136: #af8700
+!URxvt.color137: #af875f
+!URxvt.color138: #af8787
+!URxvt.color139: #af87af
+!URxvt.color140: #af87d7
+!URxvt.color141: #af87ff
+!URxvt.color142: #afaf00
+!URxvt.color143: #afaf5f
+!URxvt.color144: #afaf87
+!URxvt.color145: #afafaf
+!URxvt.color146: #afafd7
+!URxvt.color147: #afafff
+!URxvt.color148: #afd700
+!URxvt.color149: #afd75f
+!URxvt.color150: #afd787
+!URxvt.color151: #afd7af
+!URxvt.color152: #afd7d7
+!URxvt.color153: #afd7ff
+!URxvt.color154: #afff00
+!URxvt.color155: #afff5f
+!URxvt.color156: #afff87
+!URxvt.color157: #afffaf
+!URxvt.color158: #afffd7
+!URxvt.color159: #afffff
+!URxvt.color160: #d70000
+!URxvt.color161: #d7005f
+!URxvt.color162: #d70087
+!URxvt.color163: #d700af
+!URxvt.color164: #d700d7
+!URxvt.color165: #d700ff
+!URxvt.color166: #d75f00
+!URxvt.color167: #d75f5f
+!URxvt.color168: #d75f87
+!URxvt.color169: #d75faf
+!URxvt.color170: #d75fd7
+!URxvt.color171: #d75fff
+!URxvt.color172: #d78700
+!URxvt.color173: #d7875f
+!URxvt.color174: #d78787
+!URxvt.color175: #d787af
+!URxvt.color176: #d787d7
+!URxvt.color177: #d787ff
+!URxvt.color178: #d7af00
+!URxvt.color179: #d7af5f
+!URxvt.color180: #d7af87
+!URxvt.color181: #d7afaf
+!URxvt.color182: #d7afd7
+!URxvt.color183: #d7afff
+!URxvt.color184: #d7d700
+!URxvt.color185: #d7d75f
+!URxvt.color186: #d7d787
+!URxvt.color187: #d7d7af
+!URxvt.color188: #d7d7d7
+!URxvt.color189: #d7d7ff
+!URxvt.color190: #d7ff00
+!URxvt.color191: #d7ff5f
+!URxvt.color192: #d7ff87
+!URxvt.color193: #d7ffaf
+!URxvt.color194: #d7ffd7
+!URxvt.color195: #d7ffff
+!URxvt.color196: #ff0000
+!URxvt.color197: #ff005f
+!URxvt.color198: #ff0087
+!URxvt.color199: #ff00af
+!URxvt.color200: #ff00d7
+!URxvt.color201: #ff00ff
+!URxvt.color202: #ff5f00
+!URxvt.color203: #ff5f5f
+!URxvt.color204: #ff5f87
+!URxvt.color205: #ff5faf
+!URxvt.color206: #ff5fd7
+!URxvt.color207: #ff5fff
+!URxvt.color208: #ff8700
+!URxvt.color209: #ff875f
+!URxvt.color210: #ff8787
+!URxvt.color211: #ff87af
+!URxvt.color212: #ff87d7
+!URxvt.color213: #ff87ff
+!URxvt.color214: #ffaf00
+!URxvt.color215: #ffaf5f
+!URxvt.color216: #ffaf87
+!URxvt.color217: #ffafaf
+!URxvt.color218: #ffafd7
+!URxvt.color219: #ffafff
+!URxvt.color220: #ffd700
+!URxvt.color221: #ffd75f
+!URxvt.color222: #ffd787
+!URxvt.color223: #ffd7af
+!URxvt.color224: #ffd7d7
+!URxvt.color225: #ffd7ff
+!URxvt.color226: #ffff00
+!URxvt.color227: #ffff5f
+!URxvt.color228: #ffff87
+!URxvt.color229: #ffffaf
+!URxvt.color230: #ffffd7
+!URxvt.color231: #ffffff
+!URxvt.color232: #080808
+!URxvt.color233: #121212
+!URxvt.color234: #1c1c1c
+!URxvt.color235: #262626
+!URxvt.color236: #303030
+!URxvt.color237: #3a3a3a
+!URxvt.color238: #444444
+!URxvt.color239: #4e4e4e
+!URxvt.color240: #585858
+!URxvt.color241: #626262
+!URxvt.color242: #6c6c6c
+!URxvt.color243: #767676
+!URxvt.color244: #808080
+!URxvt.color245: #8a8a8a
+!URxvt.color246: #949494
+!URxvt.color247: #9e9e9e
+!URxvt.color248: #a8a8a8
+!URxvt.color249: #b2b2b2
+!URxvt.color250: #bcbcbc
+!URxvt.color251: #c6c6c6
+!URxvt.color252: #d0d0d0
+!URxvt.color253: #dadada
+!URxvt.color254: #e4e4e4
+!URxvt.color255: #eeeeee
