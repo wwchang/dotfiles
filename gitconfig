@@ -7,7 +7,8 @@
 
 [github]
 	user = numbchild
-	token = TOKEN
+    password = PASSWORD
+	;token = TOKEN
 
 [core]
     editor = vim

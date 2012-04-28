@@ -1,0 +1,439 @@
+#!/usr/bin/perl -w
+# cleanscore - Remove expired entrys from slrn's Scorefile.
+
+# Copyright (c) 1999 - 2002 Felix Schueller <fschueller@netcologne.de>
+# 
+# This program is free software; you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the Free
+# Software Foundation; either Version 2 of the License, or (at your option)
+# any later Version.
+#     
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+# more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program; if not, write to the Free Software Foundation, Inc.,
+# 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.   
+
+use warnings;
+use strict;
+
+use Fcntl qw(:DEFAULT :flock);
+use Getopt::Std;
+
+# Functions
+
+sub help();
+sub reset_vars(%);
+sub insert_comment(%%);
+sub end_of_score(%$);
+sub clean_file($);
+
+# globals variables.
+
+our $Version="0.9.8.1";
+our $Debug = 0;
+our $Remove_Comments = 0;
+our $Max_Empty_Lines = -1;
+our $Verbose = 0;
+our $Backup_Extension = ".bak";
+our $Ignore_File_Pattern = "";
+our $Test_Mode = 0;
+our $Keep_Days = 0;
+our $Save_File = "";
+
+# # #  Phrase commandline-options.
+
+my $target;
+my %option;
+
+getopts('b:de:f:hi:k:hrs:tVv', \%option);
+if (defined($option{b})) {$Backup_Extension = $option{b};}
+if (defined($option{d})) {$Debug = $option{d};}
+if (defined($option{e})) {$Max_Empty_Lines = $option{e};}
+if (defined($option{h})) {help(); exit(0);}
+if (defined($option{i})) {$Ignore_File_Pattern = $option{i};}
+if (defined($option{r})) {$Remove_Comments = $option{r};}
+if (defined($option{s})) {$Save_File = $option{s};}
+if (defined($option{t})) {$Test_Mode = $option{t};}
+if (defined($option{k})) {$Keep_Days = $option{k};}
+if (defined($option{v})) {$Verbose = $option{v};}
+if (defined($option{V})) {print ("cleanscore - Version: $Version (bugreports to: fschueller\@netcologne.de)\n"); exit(0);}
+
+if (defined($option{f}))
+  {
+    ($target = $option{f}) =~ s#/$##g;
+  }
+else
+  {
+    print("You must specify a scorefile with the '-f scorefile' option.\n");
+    print("Try 'cleanscore -h' for a more detailed help\n");
+    exit 1;
+  }
+
+# # # # # Start the show  
+
+if ($Debug)
+  {
+    print ("Version: $Version\n");
+    if ($Keep_Days) {print ("Keep: $Keep_Days\n");}
+    print ("\n");
+  }
+
+if (-f $target) # $target is a file -> clean it.
+  {
+    clean_file($target);
+  }
+elsif (-d $target) # $target is a directory -> clean some files in it.
+  {
+    my $backup_pattern=$Backup_Extension;
+    
+    opendir(SCOREDIR, $target) || die ("Can't open $target: $!");
+    # escape characters with special meaning.
+    $backup_pattern=~ s/\./\\./g;
+    foreach (readdir(SCOREDIR))
+      {
+        if (/^\.\.?$/) {next;} # skip '.' and '..' 
+	if (/$backup_pattern$/o) {next;} # skip $Backup_Extension
+	if ($Ignore_File_Pattern) { if (/$Ignore_File_Pattern$/o) {next;} };
+	unless ( -f "$target/$_") {next;} # skip everything that is not a normal file.
+	clean_file("$target/$_");
+      }
+  }
+
+############################ END OF MAIN ###############################
+
+sub clean_file($)
+{
+  my $score_file = shift;
+  my $prev_empty_lines=0;
+  my $group_line= -1;
+  my $file_is_changed=0;
+  my %today;
+  my %this_entry;
+  my %comment;
+  
+  if ($Debug)
+    {
+       print ("\nScorefile: $score_file\n");
+       print ("Dates: Entry / System");
+       if ($Keep_Days) {print (" - $Keep_Days Days");}
+       print ("\n\n");
+    }
+  
+  if ($Test_Mode)
+    {
+       print ("\nFollowing lines would removed from Scorefile \"$score_file\":\n\n");
+    }
+    
+  @{$today{raw}} = localtime (time - ($Keep_Days * 86400));
+  $today{year} = ($today{raw}[5] + 1900);
+  $today{month} = ($today{raw}[4] + 1);
+  $today{day} = $today{raw}[3];
+
+  unless ($Test_Mode)
+    {  
+      sysopen (SCORE, "$score_file", O_RDWR) || die ("Can't open $score_file: $!");
+      flock (SCORE, LOCK_EX | LOCK_NB) || die ("Can't lock $score_file: $!");
+      sysopen (OUT, "$score_file.cs", O_RDWR | O_CREAT) || die ("Can't open $score_file.cs: $!");
+      $file_is_changed=0;
+    }
+  else
+    {
+      open (SCORE, "$score_file") || die ("Can't read $score_file: $!");
+    }
+
+  reset_vars(\%this_entry);
+  $comment{lines} = 0;
+  @{$comment{data}} = "";
+    
+  #Magic starts here
+  while (<SCORE>)
+    {
+      # Removing empty lines is a problem, we don't know to whitch entrie they belong.
+      # So we provide the an option to cut multiple empty lines down to $Max_Empty_Lines 
+      if ($Max_Empty_Lines >= 0) 
+        {
+          if (/^\s*$/)
+            {
+	      if ($prev_empty_lines==$Max_Empty_Lines)
+	        {
+	          $file_is_changed=1;
+		  next;
+	        }
+	      else
+	        { $prev_empty_lines++; }
+	    }
+          else
+            {
+	      if ($prev_empty_lines)
+	        { $prev_empty_lines=0; }
+	    }
+        }
+	
+      if ($Remove_Comments) # Remove '%' comments
+        {
+          if (/^\s*\%/)
+            {
+              if ($Verbose || $Debug || $Test_Mode) {print ($_);}
+              $file_is_changed=1;
+	      next;
+            }
+        }
+  
+      if (/\%EOS/ || /#EOS/)
+        {
+          $comment{data}[$comment{lines}] = $_;
+          $comment{lines}++;
+          insert_comment(\%comment, \%this_entry);	    
+          end_of_score(\%this_entry, \$file_is_changed);
+          next;
+        }
+  
+      if (/\%BOS/ || /#BOS/)
+        {
+          insert_comment(\%comment, \%this_entry);
+          end_of_score(\%this_entry, \$file_is_changed);
+          $this_entry{seen_bos} = 1;
+        }
+  
+      if (/^\s*\%/ || /^\s*#/ || /^\s*$/)  # put comments in an extra array
+        {
+          $comment{data}[$comment{lines}] = $_;
+          $comment{lines}++;
+          next;
+        }
+
+      if (/^\S*\[.*\]\S*$/)  # Found a new groupexpression - entry ends here
+        {
+          unless ($this_entry{seen_bos})
+            {
+	      end_of_score(\%this_entry, \$file_is_changed);
+              insert_comment(\%comment, \%this_entry);
+	    }
+          $group_line=$this_entry{line};
+        }
+  
+      if (/Score:/i)
+        {
+          if ($this_entry{seen_score}) #there was a 'Score:' before entry ends here
+            {
+              if ($this_entry{is_expired} && $group_line >= 0) # Save Groupexp if necessary
+                {
+	          unless ($Test_Mode) {print (OUT $this_entry{data}[$group_line]);}
+                }
+              end_of_score(\%this_entry, \$file_is_changed);
+              insert_comment(\%comment, \%this_entry);
+              $group_line = -1;
+            }
+          $this_entry{seen_score} = 1;
+        }
+
+      if (/Expires:/i)
+        {
+          if (/\d{1,2}-\d{1,2}-\d{4}/)
+            {
+              ($this_entry{day}, $this_entry{month}, $this_entry{year}) = /(\d{1,2})-(\d{1,2})-(\d{4})/;
+            }
+          else
+            {
+              ($this_entry{month}, $this_entry{day}, $this_entry{year}) = m#(\d{1,2})/(\d{1,2})/(\d{4})#;
+            }
+          if ($Debug)
+            {
+              print ("Year: $this_entry{year} / $today{year}\n");
+              print ("Month: $this_entry{month} / $today{month}\n");
+              print ("Day: $this_entry{day} / $today{day}\n");
+            }
+          if ($this_entry{year} < $today{year})
+            {
+              $this_entry{is_expired} = 1;
+            }
+          elsif ($this_entry{year} == $today{year})
+            {
+              if ($this_entry{month} < $today{month})
+	        {
+                  $this_entry{is_expired} = 1;
+                }
+  	      elsif ($this_entry{month} == $today{month})
+  	        {
+                  if ($this_entry{day} <= $today{day}) {$this_entry{is_expired} = 1;}
+                }
+            }
+          if ($Debug && $this_entry{is_expired}) {print ("Entry is expired\n");}
+        }
+
+      insert_comment(\%comment, \%this_entry);
+      $this_entry{data}[$this_entry{line}] = $_;
+      $this_entry{line}++;
+    } #while (<SCORE>)
+
+  end_of_score(\%this_entry, \$file_is_changed);
+  insert_comment(\%comment, \%this_entry);
+  end_of_score(\%this_entry, \$file_is_changed);
+
+  unless ($Test_Mode)
+    {
+      if ($file_is_changed)
+        {
+          # $score_file.cs contains the new scorefile $score_file the old.
+          
+	  # copy $score_file to $score_file$Backup_Extension
+          seek (SCORE, 0, 0) || die ("Can't rewind $score_file: $!");
+          open (DEST, ">$score_file$Backup_Extension") || die ("Can't write $score_file$Backup_Extension: $!");
+          while (<SCORE>) {print (DEST $_);}
+          close (DEST);
+          
+	  # copy $score_file.cs to $score_file
+          seek (SCORE, 0, 0) || die ("Can't rewind $score_file: $!");
+          truncate (SCORE, 0);
+          seek (OUT, 0, 0) || die ("Can't rewind $score_file.cs: $!");
+          while (<OUT>)
+	    {
+	       # Removing empty lines is a problem, we don't know to whitch entrie they belong.
+               # So we provide the an option to cut multiple empty lines down to $Max_Empty_Lines 
+               if ($Max_Empty_Lines >= 0) 
+                 {
+		    if (/^\s*$/)
+		      {
+			 if ($prev_empty_lines==$Max_Empty_Lines)
+			   { next; }
+			 else
+			   { $prev_empty_lines++; }
+	    
+		       }
+          
+		     else
+		       {
+			 if ($prev_empty_lines)
+			   { $prev_empty_lines=0; }
+		       }
+        
+		  }
+	      print (SCORE $_);
+	    }
+	}
+      close (OUT);
+      if (-e "$score_file.cs") { unlink("$score_file.cs")};
+    }
+  close (SCORE);
+} #sub clean_file($)
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+sub end_of_score(%$)
+{
+  my $entry = shift;
+  my $file_is_changed = shift;
+  
+  unless ($$entry{is_expired})
+    { # entry is not expired
+       unless ($Test_Mode)
+         {
+	   print (OUT @{$$entry{data}});
+         }
+    }
+  else
+    { # entry is expired
+      $$file_is_changed=1;
+      if ($Save_File && $$entry{is_expired})
+        {
+	  open (SAVE, ">>$Save_File") || die ("Can't append to $Save_File: $!");
+	  print (SAVE @{$$entry{data}});
+	  close (SAVE);
+	}
+      if ($Verbose || $Debug || $Test_Mode)
+        {
+          print (@{$$entry{data}});
+          print ("\nNext Entry:\n\n");
+        }
+    }
+  reset_vars($entry);
+} #sub end_of_score()
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+sub insert_comment(%%)
+{
+  my $comment=shift;
+  my $entry=shift;
+  my $i; 
+
+  if ($$comment{lines})
+    {
+      for ($i=0; $i < $$comment{lines}; $i++)
+        {
+          $$entry{data}[$$entry{line}] = $$comment{data}[$i];
+          $$entry{line}++;
+        }
+    }
+  $$comment{lines} = 0;
+  @{$$comment{data}} = "";
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+sub reset_vars(%)
+{
+  my $entry=shift;
+  
+  @{$$entry{data}} ="";
+  $$entry{is_expired} = 0;
+  $$entry{seen_bos} = 0;
+  $$entry{seen_score} = 0;
+  $$entry{line} = 0;
+}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+sub help()
+{
+  print <<EOF;
+cleanscore - Remove expired entries from slrn's Scorefile.
+
+Required Options:
+
+-f <filename>   "File".   Chose "filename" for cleaning.
+                          If "filename" is a directory, clean
+                          all files in it.
+
+
+Standard Options for "help" and "version":
+
+-V              "Version".  Print Version and exit.
+-h              "Help".     Prints a help message.
+
+
+Other Options:
+
+-b <extension>  "Backup extension".   Overwrites the default backup-
+                extension ('.bak').
+
+-d              "Debug".    Prints dates and status for each entry.
+
+-e N            "Empty lines". Cut multiple empty lines down to N.
+
+-i <pattern>    "Ignore pattern".   When scanning through a directory,
+                ignore files with names matching "pattern".
+                The "backup extension" is matched automaticly.
+
+-k N            "Keep for N days".
+                Do not remove expired entries immediately; instead, hold them
+                for N more days.  This allows to keep expired entries so you
+                can still edit them, eg. change the expire date.
+
+-r              "Remove".  Removes comment lines, i.e. lines beginning
+                with '%'. (i.e. remove slrn generated comments
+                if you use '#' for your own comments)
+
+-s <filename>   "Save to". Save removed entries to "filename".
+
+-t              "Test".  Just check for expired entries,
+                but do not change the scorefile.
+                Prints "removed" entries to stdout.
+
+-v              "Verbose".  Prints all expired entries to stdout.
+EOF
+}
