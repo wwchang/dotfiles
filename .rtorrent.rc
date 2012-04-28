@@ -1,0 +1,551 @@
+# Generic {
+    upload_rate = 30
+    download_rate = 100
+    max_uploads = 50
+    max_uploads_global = 200
+    # max_open_files = 512
+    # max_open_sockets = 384
+    min_peers = 50
+    max_peers = 200
+    min_peers_seed = -1
+    max_peers_seed = -1
+    directory = /media/download/rtorrent
+    session = /media/download/rtorrent/.session
+    encryption = allow_incoming,enable_retry,prefer_plaintext
+    dht = auto
+    peer_exchange = yes
+    use_udp_trackers = yes
+    # umask = 0027
+    key_layout = qwertz
+    check_hash = yes
+    hash_interval = 100
+    hash_max_tries = 2
+    port_range = 64000-64042
+    port_random = no
+    # max_memory_usage = 100M
+    # xmlrpc_size_limit = 2M
+    # http_capath = /etc/ssl/certs
+    encoding_list = utf8
+
+# }
+
+# schedule {
+    schedule = throttle_1,22:30:00,07:30:00,download_rate=0
+    schedule = throttle_2,08:30:00,22:00:00,download_rate=100
+    schedule = low_diskspace,5,60,close_low_diskspace=500M
+    # watch_directory {
+    # {
+    schedule = watch_start_directory,15,20,load_start=/media/download/rtorrent/watch/start/*.torrent
+    schedule = watch_load_directory,40,40,load=/media/download/rtorrent/watch/load/*.torrent
+        schedule = tied_directory,10,10,close_untied=
+        schedule = untied_directory,5,5,stop_untied=
+        # #Perform maintenance on watched files periodically
+        # schedule = tied_directory,10,10,start_tied=
+        # schedule = untied_directory,10,10,stop_untied=
+    # }
+    # Move .torrent file after loading it manually {
+    # 0.8.4+ Linux
+    # system.method.set_key = event.download.inserted_new,move_tor,"execute=mv,-u,$d.get_loaded_file=,/path/to/trash_bin"
+    # }
+
+    # watch torrent and set directory separately
+    # Move completed torrents
+    # # 1) triggers 10 seconds after rtorrent starts
+    # # 2) triggers at 10 second intervals thereafter
+    # {
+    system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,/media/download/;d.set_directory=/media/download/"
+
+        # Anime {
+        schedule = watch_directory_1,15,15,"load_start=/media/download/rtorrent/Anime/torrents/*.torrent,d.set_custom1=/media/download/rtorrent/Anime/"
+        system.method.set_key =event.download.finished,move_complete,"d.set_directory=$d.get_custom1= ;execute=mv,-u,$d.get_base_path=,$d.get_custom1="
+        # }
+
+        # H {
+        schedule = watch_directory_2,15,15,"load_start=/media/download/rtorrent/H/torrents/*.torrent,d.set_custom2=/media/download/rtorrent/H/"
+        system.method.set_key =event.download.finished,move_complete,"d.set_directory=$d.get_custom2= ;execute=mv,-u,$d.get_base_path=,$d.get_custom2="
+        # }
+
+        # Musics {
+        schedule = watch_directory_3,15,15,"load_start=/media/download/rtorrent/Musics/torrents/*.torrent,d.set_custom3=/media/download/rtorrent/Musics/"
+        system.method.set_key =event.download.finished,move_complete,"d.set_directory=$d.get_custom3= ;execute=mv,-u,$d.get_base_path=,$d.get_custom3="
+        # }
+
+        # Videos {
+        schedule = watch_directory_4,15,15,"load_start=/media/download/rtorrent/Videos/torrents/*.torrent,d.set_custom4=/media/download/rtorrent/Videos/"
+        system.method.set_key =event.download.finished,move_complete,"d.set_directory=$d.get_custom4= ;execute=mv,-u,$d.get_base_path=,$d.get_custom4="
+        # }
+
+        # Others {
+        schedule = watch_directory_5,15,15,"load_start=/media/download/rtorrent/Others/torrents/*.torrent,d.set_custom5=/media/download/rtorrent/Others/"
+        system.method.set_key =event.download.finished,move_complete,"d.set_directory=$d.get_custom5= ;execute=mv,-u,$d.get_base_path=,$d.get_custom5="
+        # }
+    # }
+
+    # On completion, move the torrent to the directory from custom1.
+    # system.method.set_key =event.download.finished,move_complete,"d.set_directory=$d.get_custom1= ;execute=mv,-u,$d.get_base_path=,$d.get_custom1="
+
+
+    # EVENTS: Logging (don't log "opened", or you get swamped at startup)
+    # {
+        system.method.set_key = event.download.inserted_new,log,"print=\"LOADED \",$d.get_name=,\" [\",$to_date=$system.time=,\"]\""
+        system.method.set_key = event.download.finished,log,"print=\"COMPLETED \",$d.get_name=,\" [\",$to_date=$system.time=,\"]\""
+        system.method.set_key = event.download.closed,log,"print=\"CLOSED \",$d.get_name=,\" [\",$to_date=$system.time=,\"]\""
+    # }
+# }
+
+# throttle {
+# # Using custom throttles {
+# # Since rtorrent 0.8.5, you can define different throttle rates for (groups of) downloads or IP ranges. These throttles borrow bandwidth from the
+# # global throttle and thus are limited by it too.
+# # The "slowupload" throttle limits the upload to 10 kb/s. The "slowdownload" throttle limits download to 50 kb/s. The "sloweverything"
+# # throttle limits both.
+# # You can assign throttles to a stopped download with Ctrl-T. The NULL throttle is a special unlimited throttle that bypasses the global throttle.
+# # }
+    throttle_up=slowupload,10
+    throttle_down=slowdownload,50
+    throttle_up=sloweverything,10
+    throttle_down=sloweverything,50
+    throttle_ip=NULL,192.168.0.0/16
+# }
+
+# Custom Views {
+    # Show downloads currently uploading or downloading in active view. Update every 30 seconds.
+    schedule = filter_active,30,30,"view_filter = active,\"or={d.get_up_rate=,d.get_down_rate=}\""
+    # Show downloads currently downloading in active view. Update every 30 seconds.
+    schedule = filter_active,30,30,"view_filter = active,d.get_down_rate="
+    # Show downloads currently uploading in active view. Update every 30 seconds.
+    schedule = filter_active,30,30,"view_filter = active,d.get_up_rate="
+    # Switch to a custom view with
+    # ui.current_view.set = viewname
+# }
+
+# =======================================================
+
+# # Delete data files when removing incomplete downloads {
+# # If you often add older torrents and find that they never complete due to lack of seeds, these commands will automatically delete the data
+# # files when removing an incomplete download (either manually or with remove_untied by removing the tied file). Note that all files will be
+# # removed on incomplete or partially complete downloads, even those files from it which are in fact completely downloaded.
+# # WARNING: Do not use this setup if you ever change a download's base_path to something like /home/bob/ or similar, or you could lose a lot of files!
+# # Enable removal for all downloads added from this watch directory.
+# schedule = watch_directory,10,10,"load_start=~/Download/watch_stuff/*.torrent,d.set_custom2=1"
+# # Clear custom2 when download completes.
+# on_finished = set_done_var,d.set_custom2=
+# # Erase data files when a download is removed that still has custom2 set.
+# on_erase = rm_files,"branch=d.get_custom2=,\"execute={rm,-rf,--,$d.get_base_path=}\""
+# # To make an incomplete download exempt from the automated deletion on removal, select the download then press Ctrl-X and enter
+# # "d.set_custom2=".
+# # }
+#
+# # Using a different configuration file {
+# $ rtorrent -n -o import=~/foo.rc
+# # }
+#
+# # Start or stop all torrents {
+# # In the userinterface :
+# ^x d.multicall=,d.start=
+# # Replace d.start= with d.stop= to stop all torrents
+# # }
+#
+#
+# # View Bind {
+# # Add a keyboard shortcut for a new view, or replace an existing view key binding (1-9) with your new one.
+# # }
+#
+# # delete torrent {
+# # This shows how to delete .torrent files after loading them into rTorrent.
+# # watch a directory for torrents and delete them after loading
+# # Simply append d.delete_tied= to any watch command to delete the associated metafile after loading.
+# schedule = watch_dir,10,10,"load_start=/path/to/watch_dir,d.delete_tied="
+# # }
+#
+# # }
+#
+# # continue seeding {
+# # Watch a folder and move when done. Whether you continue seeding depends on your seed settings.
+# #Method for watching multiple folders
+# schedule = watch_directory_1,10,10,"load_start=~/torrentqueue/*.torrent,d.set_custom1=/media/download/finished/"
+# # }
+#
+# # Scheduling download rate {
+# # Change the speeds to reflect what works on your connection.
+# # Smaller speeds during the day
+# # Larger speeds at night
+# schedule = throttle_1d,23:00:00,24:00:00,download_rate=300
+# schedule = throttle_1u,23:00:00,24:00:00,upload_rate=50
+# schedule = throttle_2d,06:00:00,24:00:00,download_rate=50
+# schedule = throttle_2u,06:00:00,24:00:00,upload_rate=50
+# # }
+#
+# # Send email for completed downloads {
+# # You can send an email (or text, or whatever) to notify when a download is completed.
+# system.method.set_key = event.download.finished,notify_me,"execute=~/bin/rtorrent_mail.sh,$d.get_name="
+# # My rtorrent_mail.sh script looks (almost) like this:
+# echo "$(date) : $1 - Download completed." | mail -s "[rtorrent] - Download completed : $1" email@mydomain.com
+# # }
+#
+# # Sort 'incomplete' view by date added {
+# # This sorts the list of incomplete items by the date they were loaded into the client. The additional field that is set here can also help with
+# # other solutions that need this value.
+# # Store time when torrent is loaded into rTorrent in a custome field
+# system.method.set_key = event.download.inserted_new, loaded_time, "d.set_custom=tm_loaded,$cat=$system.time= ;d.save_session="
+# # Sort view by loaded time
+# view_sort_new = incomplete,less=d.get_custom=tm_loaded
+# view_sort_current = incomplete,less=d.get_custom=tm_loaded
+# # }
+#
+# # Stop all torrents when bandwidth cap is exhausted {
+# # When your ISP forces bandwidth limits on you, this should taste pretty sweet and prevent you from paying for any additional traffic.
+# # Define limit value and external bandwidth checker call
+# system.method.insert = bw.limit, value
+# system.method.insert = limit.crossed, simple, "equal={cat=1,\"execute_capture={~/bin/scripts/checkbwlimit,$bw.limit=}\"}"
+# # Set limit and check every 5 seconds
+# bw.limit.set = 175G
+# schedule = check_limits, 5, 5, "branch=$limit.crossed=,\"d.multicall=main,,d.stop=\""
+#
+#
+# # Make "active" tab show only active torrents
+# # The rtorrent doesn't list the active tab properly by default, add this line to your .rtorrent.rc to show only active torrents
+# schedule = filter_active,30,30,"view_filter = active,\"or={d.get_up_rate=,d.get_down_rate=}\""
+#
+# # patch {
+#     # Color / Canvas patch {
+#     # 0 = black; 1 = red; 2 = green; 3 = yellow; 4 = blue; 5= magenta; 6 = cyan; 7 = white
+#     # done_fg_color = 2
+#     #done_bg_color = 2
+#     # active_fg_color = 4
+#     # active_bg_color = 4
+#     # inactive_fg_color = 7
+#     # }
+# # }
+#
+#
+# # symbolic {
+#     # Create symbolic links to indicate the download state
+#     # Create symlinks in the watch directory with a suffix indicating the
+#     # download state.
+#     #
+# #     on_start    = link1,"create_link=tied,,.started"
+# #     on_stop     = link1,"delete_link=tied,,.started"
+# #     on_finished = link1,"create_link=tied,,.finished"
+# #     on_erase    = link1,"delete_link=tied,,.finished"
+#     #
+#     # Create symlinks in the same directory as the download.
+#     #
+# #     on_start    = link2,"create_link=base_path,,.started"
+# #     on_stop     = link2,"delete_link=base_path,,.started"
+# #     on_finished = link2,"create_link=base_path,,.finished"
+# #     on_erase    = link2,"delete_link=base_path,,.finished"
+#     #
+#     # Create a symlink in another directory without a suffix.
+#     # You need to quote the command in this case.
+#     #
+# #     on_finished = link3,"create_link=base_filename,/files,"
+# # }
+#
+#
+# # Do not modify the following parameters unless you know what you're doing.
+# # {
+#
+# # Hash read-ahead controls how many MB to request the kernel to read
+# # ahead. If the value is too low the disk may not be fully utilized,
+# # while if too high the kernel might not be able to keep the read
+# # pages in memory thus end up trashing.
+# #hash_read_ahead = 10
+#
+# # Interval between attempts to check the hash, in milliseconds.
+# #hash_interval = 100
+#
+# # Number of attempts to check the hash while using the mincore status,
+# # before forcing. Overworked systems might need lower values to get a
+# # decent hash checking rate.
+# #hash_max_tries = 10
+# # }
+#
+# # Auto-Management {
+#     # Move completed torrents
+#     # system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,/media/download/;d.set_directory=/media/download/"
+#     # On MacOSX and *BSD.
+#     # system.method.set_key = event.download.finished,move_complete,"execute=mv,-n,$d.get_base_path=,/media/download/;d.set_directory=/media/download/"
+#     # For versions 0.7.7 to 0.8.3 use this:
+#     # on_finished = move_complete,"execute=mv,-u,$d.get_base_path=,/media/download/ ;d.set_directory=/media/download/"
+#     # On MacOSX and *BSD.
+#     # on_finished = move_complete,"execute=mv,-n,$d.get_base_path=,/media/download/ ;d.set_directory=/media/download/"
+#
+#     # Send email for completed downloads
+#     # First and only argument to rtorrent_mail.sh is completed file's name (d.get_name)
+#     # system.method.set_key = event.download.finished,notify_me,"execute=~/rtorrent_mail.sh,$d.get_name="
+#     # rtorrent_mail.sh :
+#     # #!/bin/sh
+#     # echo "$(date) : $1 - Download completed." | mail -s "[rtorrent] - Download completed : $1" alerts@example.com
+# # }
+#
+#
+# # auto move completed {
+# # NOTE: Currently, this part requires either the svn version of rtorrent/libtorrent or having applied the patch to 0.8.6 that adds 'equal'.
+# # location where new torrent data is placed, and where you should place your
+# # 'complete' data before you place your *.torrent file into the watch folder
+# # directory = /home/chris/Downloads/rTorrent/incomplete
+#
+# # schedule a timer event named 'watch_directory_1':
+# # 1) triggers 10 seconds after rtorrent starts
+# # 2) triggers at 10 second intervals thereafter
+# # 3) Upon trigger, attempt to load (and start) new *.torrent files found in /home/chris/Downloads/rTorrent/watch/
+# # 4) set a variable named 'custom1' with the value "/home/chris/Downloads/rTorrent/complete"
+# # NOTE: if you don't want it to automatically start the torrent, change 'load_start' to 'load'
+# # schedule = watch_directory_1,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/*.torrent,d.set_custom1=/home/chris/Downloads/rTorrent/complete"
+#
+# # insert a method with the alias 'checkdirs1'
+# # 1) returns true if the current path of the torrent data is not equal to the value of custom1
+# # 2) otherwise, returns false
+# # system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+#
+# # insert a method with the alias 'movecheck1'
+# # 1) returns true if all 3 commands return true ('result of checkdirs1' && 'torrent is 100% done', 'custom1 variable is set')
+# # 2) otherwise, returns false
+# # system.method.insert=movecheck1,simple,"and={checkdirs1=,d.get_complete=,d.get_custom1=}"
+#
+# # insert a method with the alias 'movedir1'
+# # (a series of commands, separated by ';')
+# # 1) "set path of torrent to equal the value of custom1";
+# # 2) "mv -u <current data path> <custom1 path>";
+# # 3) "clear custom1", "stop the torrent","resume the torrent"
+# # 4) stop the torrent
+# # 5) start the torrent (to get the torrent to update the 'base path')
+# # system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+#
+# # set a key with the name 'move_hashed1' that is triggered by the hash_done event.
+# # 1) When hashing of a torrent completes, this custom key will be triggered.
+# # 2) when triggered, execute the 'movecheck1' method and check the return value.
+# # 3) if the 'movecheck' method returns 'true', execute the 'movedir1' method we inserted above.
+# # NOTE: 'branch' is an 'if' conditional statement: if(movecheck1){movedir1}
+# # system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+# # }
+#
+# # schedule {
+#     # watch a directory for torrents
+#     # rtorrent will auto monitor "directory"'s torrent file
+#     # so that you just need to put it in directory
+#     schedule = watch_directory,5,5,load_start=/media/download/rTorrent/*.torrent
+#     # stop download if remove torrent file
+#     schedule = untied_directory,5,5,stop_untied=
+#     # stop download when disk is lower then 100M
+#     schedule = low_diskspace,5,60,close_low_diskspace=150M
+#     # Stop torrents when reaching upload ratio in percent,
+#     # when also reaching total upload in bytes, or when
+#     # reaching final upload ratio in percent.
+#     # example: stop at ratio 2.0 with at least 200 MB uploaded, or else ratio 20.0
+#     # schedule = ratio,60,60,"stop_on_ratio=200,200M,2000"
+#     # move finished
+#     # schedule = on_finished,100,60,move_complete,"execute=mv,-u,$d.get_base_path=,/media/download/ ;d.set_directory=/media/download/"
+#     # system.method.set_key = event.download.finished,move_complete,"execute=mv,-u,$d.get_base_path=,/media/download/;d.set_directory=/media/download/"
+#     # Alternative calls to bind and ip that should handle dynamic ip's.
+#     #schedule = ip_tick,0,1800,ip=rakshasa
+#     #schedule = bind_tick,0,1800,bind=rakshasa
+# # }
+#
+#
+# # catagories manage {
+# # You can add additional watch folders and rules should you like to sort your torrents into special folders.
+# # For example, if you would like the torrents to download in: /home/user/torrents/incomplete and then sort the torrent data based on which folder
+# # you dropped the *.torrent into: /home/user/torrents/watch => /home/user/torrents/complete /home/user/torrents/watch/iso =>
+# # /home/user/torrents/complete/iso /home/user/torrents/watch/music => /home/user/torrents/complete/music You can have the following in your
+# # .rtorrent.rc:
+# # # [ incomplete ]
+# # directory = /home/chris/Downloads/rTorrent/incomplete
+# # schedule = watch_directory_1,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/*.torrent,d.set_custom1=/home/chris/Downloads/rTorrent/complete"
+# # system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+# # system.method.insert=movecheck1,simple,"and={checkdirs1=,d.get_complete=,d.get_custom1=}"
+# # system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+# # system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+# #
+# # # [ Anime ]
+# # schedule = watch_directory_2,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/Anime/*.torrent,d.set_custom2=/home/chris/Downloads/rTorrent/complete/Anime"
+# # system.method.insert=checkdirs2,simple,"not=\"$equal={d.get_custom2=,d.get_base_path=}\""
+# # system.method.insert=movecheck2,simple,"and={checkdirs2=,d.get_complete=,d.get_custom2=}"
+# # system.method.insert=movedir2,simple,"d.set_directory=$d.get_custom2=;execute=mv,-u,$d.get_base_path=,$d.get_custom2=;d.set_custom2=;d.stop=;d.start="
+# # system.method.set_key=event.download.hash_done,move_hashed2,"branch={$movecheck2=,movedir2=}"
+# #
+# # # [ Music ]
+# # schedule = watch_directory_3,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/music/*.torrent,d.set_custom3=/home/chris/Downloads/rTorrent/complete/music"
+# # system.method.insert=checkdirs3,simple,"not=\"$equal={d.get_custom3=,d.get_base_path=}\""
+# # system.method.insert=movecheck3,simple,"and={checkdirs3=,d.get_complete=,d.get_custom3=}"
+# # system.method.insert=movedir3,simple,"d.set_directory=$d.get_custom3=;execute=mv,-u,$d.get_base_path=,$d.get_custom3=;d.set_custom3=;d.stop=;d.start="
+# # system.method.set_key=event.download.hash_done,move_hashed3,"branch={$movecheck3=,movedir3=}"
+# #
+# # # [ H ]
+# # schedule = watch_directory_4,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/H/*.torrent,d.set_custom4=/home/chris/Downloads/rTorrent/complete/H"
+# # system.method.insert=checkdirs4,simple,"not=\"$equal={d.get_custom4=,d.get_base_path=}\""
+# # system.method.insert=movecheck4,simple,"and={checkdirs4=,d.get_complete=,d.get_custom4=}"
+# # system.method.insert=movedir4,simple,"d.set_directory=$d.get_custom4=;execute=mv,-u,$d.get_base_path=,$d.get_custom4=;d.set_custom4=;d.stop=;d.start="
+# # system.method.set_key=event.download.hash_done,move_hashed4,"branch={$movecheck4=,movedir4=}"
+# #
+# # # [ video ]
+# # schedule = watch_directory_5,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/video/*.torrent,d.set_custom5=/home/chris/Downloads/rTorrent/complete/video"
+# # system.method.insert=checkdirs5,simple,"not=\"$equal={d.get_custom5=,d.get_base_path=}\""
+# # system.method.insert=movecheck5,simple,"and={checkdirs5=,d.get_complete=,d.get_custom5=}"
+# # system.method.insert=movedir5,simple,"d.set_directory=$d.get_custom5=;execute=mv,-u,$d.get_base_path=,$d.get_custom5=;d.set_custom5=;d.stop=;d.start="
+# # system.method.set_key=event.download.hash_done,move_hashed5,"branch={$movecheck5=,movedir5=}"
+# # }
+#
+#
+#
+# # vim: ft=config
+# # TODO: color patch, trackers, buffer, symbolic
+#
+# # Download {
+#     # directory
+#     # directory = /media/download/rTorrent/
+#     session = /media/download/rTorrent/session
+#     # Enable peer exchange (for torrents not marked private)
+#     peer_exchange = yes
+#     # peers
+#     min_peers = 80
+#     max_peers = 500
+#     max_uploads = 15
+#     # Same as above but for seeding completed torrents (-1 = same as downloading)
+#     min_peers_seed = 10
+#     max_peers_seed = 50
+#
+#     # max download rate k/s , "0" for unlimited
+#     download_rate = 80
+#     upload_rate = 50
+#
+#     # tracker
+#     # enable_trackers = yes
+#     # tracker_numwant = 50
+#     # use_udp_trackers = yes
+#
+#     # port
+#     port_range = 49164-49164
+#     #port_range = 6890-6999
+#     port_random = yes
+#
+#     # DHT {
+#     # Enable DHT support for trackerless torrents or when all trackers are down.
+#     # May be set to "disable" (completely disable DHT), "off" (do not start DHT),
+#     # "auto" (start and stop DHT as needed), or "on" (start DHT immediately).
+#     # The default is "off". For DHT to work, a session directory must be defined.
+#     dht = auto
+#     dht_port = 6881
+#     # dht_add_node =
+#     # }
+#
+#     # buffer
+#     # send_buffer_size = 10M
+#     # receive_buffer_size = 20M
+#
+#     # The ip address reported to the tracker.
+#     #ip = 127.0.0.1
+#     #ip = rakshasa.no
+#     # The ip address the listening socket and outgoing connections is
+#     # bound to.
+#     #bind = 127.0.0.1
+#     #bind = rakshasa.no
+# # }
+#
+# # rTorrent Setting {
+#     # for zh-cn
+#     encoding_list=UTF-8
+#
+#     # hash
+#     check_hash = yes
+#
+#     # encryption
+#     # allow_incoming, try_outgoing, require, require_RC4, enable_retry,prefer_plaintext
+#     # The example value allows incoming encrypted connections, starts unencrypted
+#     # outgoing connections but retries with encryption if they fail, preferring
+#     # plaintext to RC4 encryption after the encrypted handshake
+#     encryption = allow_incoming,enable_retry,prefer_plaintext
+#
+#     # allocation
+#     # Preallocate files; reduces defragmentation on filesystems.
+#     system.file_allocate.set = yes
+# # }
+#
+# # Make "active" tab show only active torrents
+# # The rtorrent doesn't list the active tab properly by default, add this line to your .rtorrent.rc to show only active torrents
+# schedule = filter_active,30,30,"view_filter = active,\"or={d.get_up_rate=,d.get_down_rate=}\""
+#
+#
+# # Do not modify the following parameters unless you know what you're doing.
+# # {
+#
+# # Hash read-ahead controls how many MB to request the kernel to read
+# # ahead. If the value is too low the disk may not be fully utilized,
+# # while if too high the kernel might not be able to keep the read
+# # pages in memory thus end up trashing.
+# #hash_read_ahead = 10
+#
+# # Interval between attempts to check the hash, in milliseconds.
+# #hash_interval = 100
+#
+# # Number of attempts to check the hash while using the mincore status,
+# # before forcing. Overworked systems might need lower values to get a
+# # decent hash checking rate.
+# #hash_max_tries = 10
+# # }
+#
+#
+#     # Send email for completed downloads
+#     # First and only argument to rtorrent_mail.sh is completed file's name (d.get_name)
+#     # system.method.set_key = event.download.finished,notify_me,"execute=~/rtorrent_mail.sh,$d.get_name="
+#     # rtorrent_mail.sh :
+#     # #!/bin/sh
+#     # echo "$(date) : $1 - Download completed." | mail -s "[rtorrent] - Download completed : $1" alerts@example.com
+# # }
+#
+#
+# # insert a method with the alias 'checkdirs1'
+# # 1) returns true if the current path of the torrent data is not equal to the value of custom1
+# # 2) otherwise, returns false
+# # system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+#
+# # insert a method with the alias 'movedir1'
+# # (a series of commands, separated by ';')
+# # 1) "set path of torrent to equal the value of custom1";
+# # 2) "mv -u <current data path> <custom1 path>";
+# # 3) "clear custom1", "stop the torrent","resume the torrent"
+# # 4) stop the torrent
+# # 5) start the torrent (to get the torrent to update the 'base path')
+# # system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+#
+# # set a key with the name 'move_hashed1' that is triggered by the hash_done event.
+# # 1) When hashing of a torrent completes, this custom key will be triggered.
+# # 2) when triggered, execute the 'movecheck1' method and check the return value.
+# # 3) if the 'movecheck' method returns 'true', execute the 'movedir1' method we inserted above.
+# # NOTE: 'branch' is an 'if' conditional statement: if(movecheck1){movedir1}
+# # system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+# # }
+#
+#
+# # catagories manage {
+# # You can add additional watch folders and rules should you like to sort your torrents into special folders.
+# # For example, if you would like the torrents to download in: /home/user/torrents/incomplete and then sort the torrent data based on which folder
+# # you dropped the *.torrent into: /home/user/torrents/watch => /home/user/torrents/complete /home/user/torrents/watch/iso =>
+# # /home/user/torrents/complete/iso /home/user/torrents/watch/music => /home/user/torrents/complete/music You can have the following in your
+# # .rtorrent.rc:
+# # [ incomplete ]
+# directory = /home/chris/Downloads/rTorrent/incomplete
+# schedule = watch_directory_1,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/*.torrent,d.set_custom1=/home/chris/Downloads/rTorrent/complete"
+# system.method.insert=checkdirs1,simple,"not=\"$equal={d.get_custom1=,d.get_base_path=}\""
+# system.method.insert=movecheck1,simple,"and={checkdirs1=,d.get_complete=,d.get_custom1=}"
+# system.method.insert=movedir1,simple,"d.set_directory=$d.get_custom1=;execute=mv,-u,$d.get_base_path=,$d.get_custom1=;d.set_custom1=;d.stop=;d.start="
+# system.method.set_key=event.download.hash_done,move_hashed1,"branch={$movecheck1=,movedir1=}"
+#
+# # [ Anime ]
+# schedule = watch_directory_2,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/Anime/*.torrent,d.set_custom2=/home/chris/Downloads/rTorrent/complete/Anime"
+# system.method.insert=checkdirs2,simple,"not=\"$equal={d.get_custom2=,d.get_base_path=}\""
+# system.method.insert=movecheck2,simple,"and={checkdirs2=,d.get_complete=,d.get_custom2=}"
+# system.method.insert=movedir2,simple,"d.set_directory=$d.get_custom2=;execute=mv,-u,$d.get_base_path=,$d.get_custom2=;d.set_custom2=;d.stop=;d.start="
+# system.method.set_key=event.download.hash_done,move_hashed2,"branch={$movecheck2=,movedir2=}"
+#
+# # [ Music ]
+# schedule = watch_directory_3,10,10,"load_start=/home/chris/Downloads/rTorrent/watch/music/*.torrent,d.set_custom3=/home/chris/Downloads/rTorrent/complete/music"
+# system.method.insert=checkdirs3,simple,"not=\"$equal={d.get_custom3=,d.get_base_path=}\""
+# system.method.insert=movecheck3,simple,"and={checkdirs3=,d.get_complete=,d.get_custom3=}"
+# system.method.insert=movedir3,simple,"d.set_directory=$d.get_custom3=;execute=mv,-u,$d.get_base_path=,$d.get_custom3=;d.set_custom3=;d.stop=;d.start="
+# system.method.set_key=event.download.hash_done,move_hashed3,"branch={$movecheck3=,movedir3=}"
+#
+
+
+# vim: ft=config
