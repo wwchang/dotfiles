@@ -1,0 +1,90 @@
+[default]
+# MPlayer preferences
+# -------------------
+
+# general prefs
+#really-quiet=1          # silence console output
+ontop=1                 # always keep mplayer on top
+stop-xscreensaver=yes   # disable xscreensaver
+geometry=50%:50%        # position window (50%:50%: center of screen)
+# fs=yes                    # fullscreen playback 
+# fstype=above            # fullscreen type OR =fullscreen
+# flip=yes              # rotate/flip video
+
+# cache=5000
+
+vf=screenshot           # enable screenshot with "s"
+
+# sets postprocessing into overdrive using all 
+autoq=100               # possible spare cpu cycles to make the movie look better
+vf=pp=hb/vb/dr/al/fd # =pp=hb/vb/dr/al/fd (default) OR =pp=de,hqdn3d
+osdlevel=1              # start with all osd elements enabled (time/remaining)
+
+# audio prefs
+#volstep=5               # step size of mixer volume changes in %
+# FIXME where comment those lines for ncmpcpp
+# ao=alsa                 # audio out
+ao=pulse                  # for crontab play sound not conflict with other sound card.
+# mixer=/dev/mixer        # for ALSA mixer
+# mixer-channel="Master"  # OR =Master
+channels=2              # 2:stereo 3: surround
+srate=48000             # select output sample rate to be used
+stereo=0                # stereo: type of MP2/MP3 stereo output
+
+# video prefs
+vo=xv                   # video out method with X11
+zoom=yes                # ="1" sofware scaling
+# FIXME
+double=yes              # double buffering (recommended for subtitles)
+monitoraspect=16:9      # 16:9 or or 4:3 I'm on a widescreen laptop so keeps 4:3 content from stretching
+framedrop=1             # for slower machines
+hardframedrop=0         # toggle hard frame drop
+
+# subtitle prefs
+# sub=
+sid=0                   # ="0" subtitle set
+subpos=98               # by default subtitles are too low (100 is lowest)
+subalign=2              # alignment (2 is bottom)
+sub-fuzziness=2         # find subtitle files (1: load all subs containing movie name) 0: exactly 2: all subtitles
+# overlapsub=1            # enable load next subtitle when current sub is displaying
+slang=en,eng,english,zh,chi,Chinese # language priorities (format varies by standard)
+subcp=gb2312
+# unicode=yes             # subtitle file encoding
+utf8=yes                # subtitle file encoding
+spuaa=4                 # vobsub antialias subs (4: best and slowest)
+#spualign=-1             # vobsub align subs. (-1: as they want to align themselves)
+ffactor=1               # sub outline size (1: narrow black outline) OR 10
+subfont-blur=1          # font blur radius. (default: 2)
+subfont-outline=2       # font outline thickness. (default: 2)
+subfont-text-scale=2    # ttf scaling autoscale coefficient. (default: 5)
+subfont-osd-scale=2.7   # osd autoscale coefficient. (default: 6)
+# you can use command tool "iconv" to convert file encode.
+subfont-encoding=utf8   # font encoding
+# subfont-encoding="ISO-8859-1"
+subfont-autoscale=3     # set the autoscale mode (default)
+sub-bg-alpha=0          # background color ala closed captions
+sub-bg-color=0          # black to white
+
+# [ font ]
+# font='Monospace:style=Bold'
+font='DejaVu Sans Mono'
+# font='WenQuanYi Micro Hei'
+
+# Fix A/V sync problems. 
+mc=0.2
+autosync=30
+delay=0.5               # positive value delay the video, negative value delay the audio.
+# fps=1                 # [FIXME]: slowdown video !!! override original video framrate, useful if original value is wrong or missing
+idx=1                   # rebuild index of files if not found. allow seeking. useful with broken/incomplete downlads.
+# saveidx=
+
+# [cd]
+cdrom-device=/dev/cdrom
+
+# output msg
+msglevel=all=5
+msgmodule=1
+msgcolor=1              # enable output with color
+
+# skin 
+# skin=Ater
