@@ -1,0 +1,20 @@
+include '/usr/share/themes/Clearlooks/gtk-2.0/gtkrc'
+
+# icons
+gtk-icon-theme-name = "Tango"
+
+# fonts
+style "schrift"
+{
+    font_name = "DejaVu Sans Mono 10"
+}
+widget_class "*" style "schrift"
+gtk-font-name = "DejaVu Sans Mono 10"
+
+# toolbars
+gtk-toolbar-style   = GTK_TOOLBAR_ICONS              #Only icons
+gtk-toolbar-style   = GTK_TOOLBAR_TEXT	             #Only text
+gtk-toolbar-style   = GTK_TOOLBAR_BOTH	             #Both icons and text
+gtk-toolbar-style   = GTK_TOOLBAR_BOTH_HORIZ	     #Icons and text next to the icons
+# toolbars size
+gtk-toolbar-icon-size = 16,16

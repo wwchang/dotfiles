@@ -1,0 +1,11 @@
+include '/home/chris/.gtkrc.mine'
+
+gtk-icon-theme-name = "Buuf-Deuce"
+# gtk-theme-name = "[name-of-theme]"
+# gtk-font-name = "[font-name] [size]"
+
+# If you are used to GNOME, you might want to learn how to change your theme without using the
+# GNOME Theme Manager, as it relies on a constantly running process called
+# gnome-settings-daemon which wastes resources. You can theme GTK apps manually without this
+# process, however.
+
