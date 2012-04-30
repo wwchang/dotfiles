@@ -1,0 +1,8 @@
+bitlbee.LiBin
+bitlbee.Tristan
+bitlbee.adam8157
+freenode.XiaoQing
+freenode.archl
+freenode.jiero
+freenode.maya
+freenode.roylez
