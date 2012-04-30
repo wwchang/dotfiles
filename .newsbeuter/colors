@@ -1,0 +1,18 @@
+# color <element> <fgcolor> <bgcolor> [<attr> ...] 
+# highlight <target> <regex> <fgcolor> [<bgcolor> [<attribute> ...]] 
+# example: highlight all "newsbeuter" red 
+# highlight-article <filterexpr> <fgcolor> <bgcolor> [<attribute> ...] 
+# example: highlight-article "author =~ \\"Andreas Krennmair\\"" white red bold 
+# search-highlight-colors <fgcolor> <bgcolor> [<attribute> ...] 
+
+# == colors ==
+# color background green default bold
+color background cyan default
+
+# == highlight ==
+# highlight all "linux" black red
+highlight all "hack" black red 
+highlight all "Podcast" black red 
+# highlight-article "author" white red bold
+
+search-highlight-colors black red bold 

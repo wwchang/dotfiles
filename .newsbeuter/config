@@ -1,0 +1,159 @@
+# use quotes (") around the whole argument when argument contain spaces.
+# integrate the output of external commands into the configuration.. the text between two backticks ("`") is evaluated as shell
+# command . and its output is put on its place instead. 
+# Search article is possible. "/" key. 
+
+# === appearence ===
+always-display-description   true
+article-sort-order  date
+feed-sort-order none
+# feedlist-format default: "%4i %n %11u %t"
+# feedlist-format "%4i %n - %11u -%> %t"
+feedlist-format "-%4i. . %n . [ %t ] %> - %11u"
+show-keymap-hint yes 
+show-read-feeds no 
+show-read-articles no 
+# use terminal width 
+text-width 0 
+confirm-exit yes 
+# datetime-format "%D, %R"
+datetime-format "%r, %d"
+# pager internal or "less %f" , or less
+#pager less
+goto-first-unread yes 
+# whether let pre-unread and next-unread search in next feed
+goto-next-feed no
+cleanup-on-quit     no
+history-limit 1000
+# html-renderer "internal" or "w3m -dump -T text/html" 
+html-renderer "w3m -dump -T text/html"
+bookmark-cmd "~/.newsbeuter/scripts/bookmark-delicious.sh"
+# bookmark-cmd "~/.newsbeuter/scripts/bookmark-scuttle.sh"
+bookmark-interactive    yes 
+# urls source "local" 
+urls-source "local"
+# opml-url "http://host.domain.tld/blogroll.opml" "http://example.com/anotheropmlfile.opml"
+mark-as-read-on-hover  no 
+
+# browser
+# browser             sensible-browser
+# browser             "elinks %u"
+# browser             "chromium-browser %u"
+# browser             "luakit %u"
+browser             "firefox %u"
+
+# === colors ===
+# color scheme 
+include "~/.newsbeuter/colors"
+# === keys ===
+# Vim like key bindings 
+include             "~/.newsbeuter/keys"
+# === macro ===
+include "~/.newsbeuter/macros"
+# === tags === 
+# "t" to select tag to show only this tag seeds,
+# ^T to clear tag to show all seeds
+include "~/.newsbeuter/tags_assigne"
+# === filter ===
+# define-filter <name> <filter> 
+# example: define-filter "all feeds with fun tag" "tags # \\"fun\\"" 
+# define-filter "Linux tag" "tags # \\"linux\\""
+
+cookie-cache "~/.newsbeuter/cookies.txt" 
+error-log "~/.newsbeuter/error.log" 
+save-path "~/.newsbeuter/saved_articles/" 
+
+# === download ===
+display-article-progress yes 
+download-retries 2
+download-timeout 60
+# if set podcast-auto-enqueue to no, you can press "e" to enqueue download
+podcast-auto-enqueue yes 
+max-download-speed 100
+# == cache ==
+keep-articles-days 10 
+max-items 0 
+
+# Google Reader
+# urls-source "googlereader"
+#googlereader-flag-share "share" 
+#googlereader-flag-star "star"
+#googlereader-login "numbchild@gmail.com" 
+#googlereader-min-items 100 
+#googlereader-password "PASSWORD"
+#googlereader-show-special-feeds "yes" 
+
+# === ignore ===
+# ignore-article <feed> <filterexpr>
+# example: ignore-article "*" "title =~ \\"Windows\\"" 
+ignore-mode "download" # or "display" 
+
+# === notify ===
+# notify-format "%d new articles (%n unread articles, %f unread feeds)" 
+notify-format "%n unread articles, %f unread feeds"
+# "" or "~/bin/my-notifier" 
+# notify-program "~/bin/notify_" 
+notify-program "/usr/bin/notify-send"
+notify-always yes 
+# send a privacy message to the terminal 
+notify-screen yes 
+notify-xterm yes 
+notify-beep yes 
+
+# === proxy & agent ===
+use-proxy no
+proxy localhost:4444
+# proxy-auth user:password 
+# proxy-auth-method "any" or "basic", "digest" "gssnegotiate" 
+# proxy-type: http, socks4, socks5, socks4a, 
+# proxy-type http
+# "ntlm" "anysafe" 
+# use-agent "" or "Lynx/2.8.5rel.1 libwww-FM/2.14"
+# use-agent ""
+
+# == reload ==
+refresh-on-startup yes 
+reload-only-visible-feeds yes 
+reload-time 180 
+auto-reload yes
+# the number of parallel reload threads 
+reload-threads 3 
+# reset-unread-on-update 
+prepopulate-query-feeds yes 
+
+# == scripts ==
+# execurl & filter
+# [ example ] {{{
+# ----------------------------
+# add to "~/.newsbeuter/urls"
+# ----------------------------
+# exec:~/bin/execurl-script
+# filter:~/bin/filter-script:http://some.test/url
+# If script needs argument 
+# "exec:~/bin/execurl-script param1 param2"
+# "filter:~/bin/filter-script param1 param2:http://url/foobar"
+# the tagging feature as described above is still available 
+# exec:~/bin/execurl-script tag1 tag2 "quoted tag" 
+# filter:~/bin/filter-script:http://some.test/url tag3 tag4 tag5 
+# A collection of such extension scripts can be found on this
+# website:
+# http://kiza.kcore.de/software/snownews/snowscripts/extensions
+# If you want to write your own extensions, refer to this website
+# for further instructions:
+# http://kiza.kcore.de/software/snownews/snowscripts/writing
+# }}}
+
+# atom2rss
+# xsltproc ~/.newsbeuter/extensions/atom2rss.xml
+# csszengarden2rss
+
+# FOR podbeuter ( $ man podbeuter )
+# download queue inf ~/.newsbeuter/queue
+
+# Specifies the directory where podbeuter shall download the files to. Optionally, the placeholders
+# "%n" (for the podcast feed´s name) and "%h" (for the podcast feed´s hostname) can be used to place
+# downloads in a directory structure. (example: download-path "~/Downloads/%h/%n")
+download-path "~/Downloads/podcasts/%h/%n"
+max-downloads 2
+# player "mp3blaster"
+player "mplayer"

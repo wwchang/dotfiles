@@ -1,0 +1,3 @@
+# macro <macro key> <command list> 
+# example: macro k open ; reload ; quit 
+
