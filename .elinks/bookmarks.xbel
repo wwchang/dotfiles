@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xbel PUBLIC "+//IDN python.org//DTD XML Bookmark Exchange Language 1.0//EN//XML"
+		       "http://www.python.org/topics/xml/dtds/xbel-1.0.dtd">
+
+<xbel>
+
+
+    <separator/>
+
+    <folder folded="yes">
+        <title>Web Develop</title>
+            <folder folded="yes">
+                <title>PHP</title>
+            </folder>
+
+            <folder folded="yes">
+                <title>HTML</title>
+            </folder>
+
+            <folder folded="yes">
+                <title>MySQL</title>
+            </folder>
+
+            <folder folded="yes">
+                <title>Javascript</title>
+            </folder>
+
+    </folder>
+
+    <separator/>
+
+    <folder folded="no">
+        <title>Python</title>
+            <bookmark href="http://www.python.org/">
+                <title>Python Programming Language – Official Website</title>
+            </bookmark>
+
+    </folder>
+
+    <folder folded="no">
+        <title>Lua</title>
+            <bookmark href="http://www.lua.org/">
+                <title>The Programming Language Lua</title>
+            </bookmark>
+
+    </folder>
+
+    <folder folded="yes">
+        <title>Perl</title>
+    </folder>
+
+    <folder folded="yes">
+        <title>Haskell</title>
+    </folder>
+
+    <folder folded="yes">
+        <title>Java</title>
+    </folder>
+
+    <separator/>
+
+    <folder folded="yes">
+        <title>C</title>
+    </folder>
+
+    <folder folded="yes">
+        <title>Hack</title>
+    </folder>
+
+    <folder folded="yes">
+        <title>Crack</title>
+    </folder>
+
+    <separator/>
+
+    <folder folded="yes">
+        <title>Ubuntu</title>
+    </folder>
+
+    <bookmark href="https://help.ubuntu.com/">
+        <title>ubuntu help</title>
+    </bookmark>
+
+    <folder folded="yes">
+        <title>Archlinux</title>
+    </folder>
+
+    <bookmark href="http://www.archlinux.org/">
+        <title>Arch Linux</title>
+    </bookmark>
+
+    <folder folded="yes">
+        <title>Maemo</title>
+    </folder>
+
+    <folder folded="yes">
+        <title>HELP</title>
+    </folder>
+
+    <bookmark href="http://www.latex-project.org/">
+        <title>LaTeX – A document preparation system</title>
+    </bookmark>
+
+    <separator/>
+
+    <folder folded="yes">
+        <title>Mine</title>
+    </folder>
+
+    <bookmark href="http://stardiviner.tumblr.com/">
+        <title>Tumblr Blog</title>
+    </bookmark>
+
+    <bookmark href="http://stardiviner.dyndns-blog.com/">
+        <title>stardiviner Homepage</title>
+    </bookmark>
+
+    <separator/>
+
+    <folder folded="yes">
+        <title>Session snapshot - Jun 9 16:09</title>
+            <bookmark href="file:///home/chris/Downloads/Hacking_Elinks.html">
+                <title>Hacking ELinks</title>
+            </bookmark>
+
+    </folder>
+
+    <bookmark href="http://linux.die.net/">
+        <title>Linux Documentation</title>
+    </bookmark>
+
+    <folder folded="yes">
+        <title>Auto saved session</title>
+            <bookmark href="http://www.google.com/">
+                <title>Google</title>
+            </bookmark>
+
+    </folder>
+
+
+</xbel>
