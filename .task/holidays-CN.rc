@@ -1,0 +1,136 @@
+################################################################################
+# Sample calendar for the CN (China)
+#
+# taskwarrior - a command line task list manager.
+#
+# Copyright 2011 - 2012, Christopher Miles.
+# All rights reserved.
+#
+# This program is free software; you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation; either version 2 of the License, or (at your option) any later
+# version.
+#
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+# details.
+#
+# You should have received a copy of the GNU General Public License along with
+# this program; if not, write to the
+#
+#       [ numbchild AT gmail DOT com ]
+#
+################################################################################
+
+calendar.holidays=sparse
+
+## syntax
+# 2011
+# holiday.newyearsday.name=New Year's Day
+# holiday.newyearsday.date=20110101
+
+
+# Reference: http://www.365jieri.cn/
+# http://news.iciba.com/200808/10227.html China holidays's English name.
+
+holiday.newyearsday.name=元旦 New Year's Day
+holiday.newyearsday.date=20110101
+
+农历正月十五: 元宵节
+
+农历十二月13日: 小寒 
+之后的天气会非常冷
+
+农历1月28日: 雨水
+降水量逐渐增多
+
+农历二月二日: 惊蛰
+
+2.14 Valentine's Day
+
+3.8 妇女节 International Women's Day
+
+3.12 植树节
+
+3.14 White Day 白色情人节
+
+农历3月18日: 谷雨
+天气暖和, 雨水明显增多.
+
+4.1 April Fool's Day
+
+农历四月四日: 立夏
+
+4.5 清明节 Tomb-sweeping Day
+
+4.7 World Health Day 世界卫生日
+
+4.22 World Earth Day 世界地球日
+
+清明节前一天: 寒食
+
+5.1 劳动节 International Labour Day
+
+5.8 World Red-Cross Day 世界红十字日
+
+5.12 International Nurse Day 国际护士节
+
+5.15 International Family Day 国际家庭日
+
+农历五月初五: 端午节
+
+6.1 儿童节
+
+农历六月七日: 小暑
+
+农历六月二十三: 大暑
+
+7.1 建党节
+
+7.7 七夕情人节
+
+7.11 World Population Day 世界人口日
+
+农历七月二十六日: 处暑
+
+8.1 建军节
+
+农历八月十五: 中秋节
+
+农历8月26日: 立秋,秋分
+进入凉爽的秋季,一场秋雨一场寒.
+
+农历九月初九: 重阳节
+
+9.10 教师节
+
+农历九月二十八日: 霜降
+天气逐渐变冷,露水凝结成霜.
+
+10.1 国庆节
+
+11.11 光棍节
+
+农历11月13日: 大雪
+天气寒冷,由于此时为阴气最盛时期,正所谓盛极而衰,阳气已有所萌动.
+
+11.17 国际大学生节
+
+11月最后一个星期四 美国感恩节 Thanksgiving Day
+
+12.1 世界艾滋病日 World AIDS Day
+
+12.25 Christmas Day 圣诞节
+
+农历十一月二十八日: 冬至
+
+农历腊月初八: 腊八节
+
+农历十二月十三日: 小寒
+
+农历十二月大年三十: 除夕
+
+农历正月初一: 春节
+
+
