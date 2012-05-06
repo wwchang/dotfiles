@@ -1,0 +1,313 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+# don't put duplicate lines in the history. See bash(1) for more options
+# ... or force ignoredups and ignorespace
+HISTCONTROL=ignoredups:ignorespace
+# append to the history file, don't overwrite it
+shopt -s histappend
+# set history time format 
+export HISTTIMEFORMAT='%F %T '
+export HISTFILE=~/.bash/history
+export HISTFILESIZE=1000 
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+# set a fancy prompt (non-color, unless we know we "want" color)
+case "$TERM" in
+    xterm-color) color_prompt=yes;;
+esac
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+#force_color_prompt=yes
+
+if [ -n "$force_color_prompt" ]; then
+    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+	# We have color support; assume it's compliant with Ecma-48
+	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+	# a case would tend to support setf rather than setaf.)
+	color_prompt=yes
+    else
+	color_prompt=
+    fi
+fi
+
+# if [ "$color_prompt" = yes ]; then
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+# else
+#     # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#     PS1='${debian_chroot:+($debian_chroot)}\[\033[31;1m\][\u]\[\033[34m\][\W]\[\033[01;34m\]\$ \[\033[31;5m\] >  \[\e[0m\]'
+# fi
+# unset color_prompt force_color_prompt
+
+# If this is an xterm set the title to user@host:dir
+# case "$TERM" in
+# xterm*|rxvt*)
+#     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#     ;;
+# *)
+#     ;;
+# esac
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# Git bash completion.
+source ~/.bash/git-completion.bash
+
+#set default EDITOR into vim
+EDITOR=vim
+export EDITOR
+#export VISUAL=vim
+
+# ingnore same command history
+export HISTCONTROL=ignoredups:ignorespace
+export HISTIGNORE="$:[ ]*:exit:ls:bg:fg:cd:cp"
+HISTSIZE=1500
+HISTFILESIZE=3000
+# export history as a format that will record the time when you type into
+# .bash_history
+export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S"
+
+# foreground background color
+# —————————————
+# 30      40      black
+# 
+# 31       41      red
+# 32       42     green
+# 33       43     yellow
+# 34       44     blue
+# 35       45     magenta
+# 36       46     cyan
+# 37       47    white
+# 
+# code meaning
+# ————————-
+# 0      OFF
+# 1       hilight
+# 4       underline
+# 5       blink                 
+# 7      inverse
+# 8      invisible
+#
+# colorful man page
+export PAGER="`which less` -s"
+export BROWSER="$PAGER"
+export LESS_TERMCAP_mb=$'\E[01;43m'
+export LESS_TERMCAP_md=$'\E[04;01;36m' # section like NAME DESCRIPTION export LESS_TERMCAP_me=$'\E[0;37m' # [ export LESS_TERMCAP_se=$'\E[0;37m' # down export LESS_TERMCAP_so=$'\E[0;40;36m' # bottom status
+export LESS_TERMCAP_ue=$'\E[0;37m' # ]
+export LESS_TERMCAP_us=$'\E[01;33m' # options
+
+# echo some welcome message
+# -------------------
+# directly in echo command 
+# echo -e 'It is \033[31mnot\033[39m intelligent to use \033[32mhardcoded ANSI\033[39m codes!'
+# ---------------------
+# with preset variable 
+# COL_NORM=$'\033[39m'
+# COL_RED=$'\033[31m'
+# echo "Beware, ${COL_RED}not all terminals${COL_NORM} support ANSI"
+# --------------------
+# tput setaf 5; echo lol;  # echo purple lol .
+# red=$(tput setaf 1)
+# green=$(tput setaf 2)
+# yellow=$(tput setaf 3)
+# blue=$(tput setaf 4)
+# magenta=$(tput setaf 5)
+# cyan=$(tput setaf 6)
+# white=$(tput setaf 7)
+# brightgreen=$(tput setaf 9)
+# end=$(tput sgr0)
+# PS1='\[$red\]\u\[$reset\]@\[$green\]\h\[$reset\]:\[$blue\]\w\[$reset\]\$ '
+# ---------------------
+
+# foreground background color
+# —————————————
+# 30      40      black
+# 31       41      red
+# 32       42     green
+# 33       43     yellow
+# 34       44     blue
+# 35       45     magenta
+# 36       46     cyan
+# 37       47    white
+# code meaning
+# ————————-
+# 0      OFF
+# 1       hilight
+# 4       underline
+# 5       blink                 
+# 7      inverse 
+# col_white=$'\033[37m'
+# col_Bwhite=$'\033[1;37m'
+# col_black=$'\033[30m'
+# col_Bblack=$'\033[1;30m'
+# col_red=$'\033[31m'
+# col_Bred=$'\033[1;31m'
+# col_green=$'\033[32m'
+# col_Bgreen=$'\033[1;32m'
+# col_blackWhite=$'\033[30;47m'
+# col_end=$'\033[0m'
+# echo ${col_white}"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+# echo ${col_white}"-"${col_Bred}"     unslaked female are sucking my vitality dry !" ${col_end}
+# echo ${col_white}"-"${col_blackWhite}"    [ Simplicity is the ultimate sophistication ] - Leonardo Da Vinci" ${col_end}
+# # date '+-        Current Date: %m/%d/%y %B - %A%n-            Current Time: %H:%M:%S'  
+# echo ${col_white}"-"${col_Bgreen}"   `uptime`" ${col_end}
+# echo ${col_white}"- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"
+
+# add a home/bin path into variable $PATH
+if [ -d $HOME/bin ] ; then
+    PATH=$HOME/bin:$HOME/scripts:$PATH
+    export PATH 
+
+# umask
+# umask 002
+
+# Don't make useless coredump files.  If you want a coredump,
+# say "ulimit -c unlimited" and then cause a segmentation fault.
+ulimit -c 0
+
+# Set ignoreeof if you don't want EOF as the sole input to the shell to
+# immediately signal a quit condition.  This only happens at the start
+# of a line if the line is empty, and you haven't just deleted a character
+# with C-d.  I turn this on in ~/.bash_profile so that only login shells
+# have the right to be obnoxious.
+# ignoreeof=
+
+# Set auto_resume if you want TWENEX style behaviour for command names.
+auto_resume=
+
+# Set notify if you want to be asynchronously notified about background
+# job completion.
+notify=
+
+# Make it so that failed `exec' commands don't flush this shell.
+no_exit_on_failed_exec=
+
+# if [ ! "$LOGIN_SHELL" ]; then
+#   PS1="\u@\h\$ "
+# fi
+
+MAILCHECK=180
+
+fi
+
+# auto open the task list file
+# vim ~/Tasks/task.txt
+
+# this is for command "cd" to quickly goto a directary for Admin 
+# export CDPATH=.:~:/media
+
+# Blog site
+# export blog=http://numbchild.gicp.net/wordpress
+# you can visit your blog with 
+# $ lynx $blog
+
+# vim like key bind
+# set -o vi 
+
+# set mailbox spool 
+MAIL=/var/spool/mail/chris && export MAIL 
+
+if [ -f ~/.bash/alias ]; then
+    source ~/.bash/alias
+fi
+if [ -f ~/.bash/functions ]; then
+    source ~/.bash/functions
+fi
+
+# set stinking 256 colors TERM 
+if [ -e /usr/share/terminfo/r/rxvt-256color ]; then
+    export TERM="rxvt-unicode-256color"
+elif [ -e /usr/share/terminfo/x/xterm+256color ]; then
+    export TERM='xterm-256color'
+    # FIXME, does this "-e rxvt-color" for urxvt.
+elif [ -e /usr/share/terminfo/r/rxvt-color ]; then
+    export TERM='rxvt-unicode'
+else
+    export TERM='xterm-color'
+fi
+
+
+# PS1 
+set_prompt_style () {
+    PS1="\e[34m┌─[\[\e[04;01;32m\]\u\[\e[0m\]\e[34m] \e[01;36m hack \e[0m\e[34m[ \[\e[33;1m\]\w\[\e[0m \]\e[34m]\e[34m\n└─╼ \e[0m \$ "
+    # PS1="\e[34m┌─[\[\e[04;32m\]\u\[\e[0m\]\e[34m] \$! '\$? \e[01;36m⌨   ☆ ☢ ☠ ♀ \e[05;37;40m fuck ! \e[0m\e[34m[ \[\e[33;1m\]\w\[\e[0m \]\e[34m]\e[34m\n└─╼ \e[0m \$ "
+}
+# \! last command statue 
+# \$? 
+set_prompt_style
+# PS2 
+# default is ">" for continue multi line command  when you use "\".
+# export PS2="continue-> " 
+# PS3 
+# character for SELECTION , default is "#?" , 
+# so that you can set PS3 in shell script .
+# for example: 
+# PS3="select a day (1-4): "
+# PS4 
+# use "set -x" to change prefix in debug mode .change track prompt into "++"
+# so add "set -x" in script .
+# export PS4="$0 $LINENO : "
+
+# export PROMPT_COMMAND="" # set as first cpu take useage process .
+# export PROMPT_COMMAND="echo -e '\n      hacker will hacking .\n'" 
+# OR set and random display word in script .
+# Tips: PROMPT_COMMAND is different line with PS1 
+
+
+# PROMPT_COMMAND='history -a;echo -en "\033[m\033[38;5;2m"$(( `sed -nu "s/MemFree:[\t ]\+\([0-9]\+\) kB/\1/p" /proc/meminfo`/1024))"\033[38;5;22m/"$((`sed -nu "s/MemTotal:[\t ]\+\([0-9]\+\) kB/\1/Ip" /proc/meminfo`/1024 ))MB"\t\033[m\033[38;5;55m$(< /proc/loadavg)\033[m"'
+# PS1='\[\e[m\n\e[1;30m\][$$:$PPID \j:\!\[\e[1;30m\]]\[\e[0;36m\] \T \d \[\e[1;30m\][\[\e[1;34m\]\u@\H\[\e[1;30m\]:\[\e[0;37m\]${SSH_TTY} \[\e[0;32m\]+${SHLVL}\[\e[1;30m\]] \[\e[1;37m\]\w\[\e[0;37m\] \n($SHLVL:\!)\$ '
+ 
+
+# set encode 
+# export LANG=utf-8
+
+# cd spell 
+shopt -s cdspell 
+
+# startup : auto play a hacking video when you open a terminal. ( short or long)
+# mplayer ~/Videos/hacking.avi
+# bash ~/scripts/colortable16.sh
+# colortable16.sh
+
+# FIXME
+# for not Gnome/KDE Env chromium extension: proxy switchy
+# export DESKTOP_SESSION=gnome
+
+# eval( dircolors -b $HOME/.dircolors )
+
+# TODO
+# https://wiki.archlinux.org/index.php/Color_Bash_Prompt

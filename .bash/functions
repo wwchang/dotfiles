@@ -1,0 +1,127 @@
+# --------------------  functions -------------------------
+# Extract Files
+extract () {
+  if [ -f $1 ] ; then
+      case $1 in
+          *.tar.bz2)   tar xvjf $1    ;;
+          *.tar.gz)    tar xvzf $1    ;;
+          *.tar.xz)    tar xvJf $1    ;;
+          *.bz2)       bunzip2 $1     ;;
+          *.rar)       unrar x $1     ;;
+          *.gz)        gunzip $1      ;;
+          *.tar)       tar xvf $1     ;;
+          *.tbz2)      tar xvjf $1    ;;
+          *.tgz)       tar xvzf $1    ;;
+          *.zip)       unzip $1       ;;
+          *.Z)         uncompress $1  ;;
+          *.7z)        7z x $1        ;;
+          *.xz)        unxz $1        ;;
+          *.exe)       cabextract $1  ;;
+          *)           echo "\`$1': unrecognized file compression" ;;
+      esac
+  else
+      echo "\`$1' is not a valid file"
+  fi
+}
+
+# Creates an archive from given directory
+mktar() { tar cvf  "${1%%/}.tar"     "${1%%/}/"; }
+mktgz() { tar cvzf "${1%%/}.tar.gz"  "${1%%/}/"; }
+mktbz() { tar cvjf "${1%%/}.tar.bz2" "${1%%/}/"; }
+
+mkdircd() { mkdir -p "$@" && eval cd "\"\$$#\"" ; }
+
+# backup all your commandlinefu.com favourites to a plaintext file
+# Usage: clfavs username password num_favourite_commands file_in_which_to_backup
+clfavs(){ URL="http://www.commandlinefu.com";wget -O - --save-cookies c --post-data "username=$1&password=$2&submit=Let+me+in" $URL/users/signin;for i in `seq 0 25 $3`;do wget -O - --load-cookies c $URL/commands/favourites/plaintext/$i >>$4;done;rm -f c;}
+
+# Function that outputs dots every second until command completes
+sleeper(){ while `ps -p $1 &>/dev/null`; do echo -n "${2:-.}"; sleep ${3:-1}; done; }; export -f sleeper
+# Very useful in shell scripts because you can run a task nicely in the background using job-control and output progress until it completes.
+# Here's an example of how I use it in backup scripts to run gpg in the background to encrypt an archive file (which I create in this same way). $! is the process ID of the
+# last run command, which is saved here as the variable PI, then sleeper is called with the process id of the gpg task (PI), and sleeper is also specified to output : instead
+# of the default . every 3 seconds instead of the default 1. So a shorter version would be sleeper $!;
+# The wait is also used here, though it may not be needed on your system.
+# echo ">>> ENCRYPTING SQL BACKUP" gpg --output archive.tgz.asc --encrypt archive.tgz 1>/dev/null & PI=$!; sleeper $PI ":" 3; wait $PI && rm archive.tgz &>/dev/null 
+# Previously to get around the $! not always being available, I would instead check for the existance of the process ID by checking if the directory /proc/$PID existed,
+# but not everyone uses proc anymore. That version is currently the one at http://www.askapache.com/linux-unix/bash_profile-functions-advanced-shell.html but I plan on
+# upgrading to this new version soon.
+
+# backup Gmail IMAP folder 
+# backuped in ~/Gmail/  and labels are stored as one text file .
+Gmail_backup () {
+mailutil transfer {imap.gmail.com/ssl/user=numbchild@gmail.com} Gmail/
+}
+
+# search engine ; so that you can start browser in terminal 
+# use $@ to replace %s in search engine link 
+google_lucky() {
+    url=$(echo "http://www.google.com/search?hl=en&q=$@&btnI=I%27m+Feeling+Lucky&aq=f&oq=" | sed 's/ /+/g'); jumanji $url; 
+}
+
+blekko() {
+    url=$(echo "http://www.blekko.com/ws/+$@" | sed 's/ /+/g' ); jumanji $url;
+}
+
+duck() {
+    url=$(echo "http://duckduckgo.com/?q=$@" | sed 's/ /+/g' ); jumanji $url;
+}
+
+digg() {
+    url=$(echo "http://digg.com/search?s=$@" | sed 's/ /+/g' ); jumanji $url;
+}
+
+github() {
+    url=$(echo "http://github.com/search?q=$@" | sed 's/ /+/g' ); jumanji $url;
+}
+
+google-code() {
+    url=$(echo "http://code.google.com/query/#q=$@" | sed 's/ /+/g' ); jumanji $url;
+}
+
+google(){
+    url=$(echo "http://www.google.com/search?q=$@" | sed 's/ /+/g' ); jumanji $url; 
+}
+
+wiki() {
+    url=$(echo "http://en.wikipedia.org/wiki/Special:Search?search=$@" | sed 's/ /+/g' ); jumanji $url;
+}
+
+wiki-sec() {
+    url=$(echo "https://secure.wikimedia.org/wikipedia/en/w/index.php?search=$@" | sed 's/ /+/g' ); jumanji $url; 
+}
+
+google_linux() {
+    url=$(echo "http://www.google.com/linux?hl=en&safe=off&q=$@" | sed 's/ /+/g' ); jumanji $url; 
+}
+baidu() {
+    url=$(echo "http://www.baidu.com/s?wd=$@" | sed 's/ /+/g' ); jumanji $url; 
+}
+
+# for ranger 
+function ranger-cd {
+  ranger --choosedir=/tmp/chosen
+  if [ -f /tmp/chosen -a "$(cat /tmp/chosen)" != "$(pwd | tr -d "\n")" ]; then
+    cd "$(cat /tmp/chosen)"
+  fi
+  rm -f /tmp/chosen
+}
+bind '"\C-o":"ranger-cd\C-m"'
+# this would make you change the directory of your parent shell after exiting ranger 
+ranger() { 
+    command ranger --fail-unless-cd $@ && 
+    cd "$(grep \^\' ~/.config/ranger/bookmarks | cut -b3-)" 
+}
+
+# Use VIm as man pager
+vman () {
+    export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+                     vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+                     -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+                     -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+    # invoke man page
+    man $1
+    # we muse unset the PAGER, so regular man pager is used afterwards
+    unset PAGER
+}
+

@@ -1,0 +1,1020 @@
+#1310008540
+ldconfig
+#1310008547
+sudo ldconfig
+#1310008553
+./autogen.sh 
+#1310008623
+vim /home/chris/.bashrc
+#1310008664
+./autogen.sh 
+#1310008760
+./configure 
+#1310008794
+make
+#1310009630
+sudo make install 
+#1310009666
+echo "include /usr/local/lib" | sudo tee -a /etc/ld.so.conf
+#1310009675
+cat /etc/ld.so.conf
+#1310009746
+sudo ldconfig
+#1310009765
+cd ..
+#1310009808
+cd ../
+#1310009810
+cd trunk/
+#1310009817
+cd rtorrent/doc/
+#1310009822
+vim rtorrent.rc 
+#1310009853
+wget http://libtorrent.rakshasa.no/browser/trunk/rtorrent/doc/rtorrent.rc#latest
+#1309963722
+elinks
+#1310028511
+pip
+#1310028522
+sudo apt-get install pip ; exit
+#1310084455
+elinks
+#1310111630
+./kk.sh 
+#1310181667
+mail
+#1310181678
+rm -rf dotfiles/.elinks/
+#1310181682
+cp -r .elinks/ dotfiles/
+#1310181686
+elinks
+#1310261474
+cd /media/9C6F-1ECD/
+#1310261868
+cp -r ~/.vim ./vim
+#1310262214
+sync
+#1310262226
+mkdir config
+#1310262230
+mv vim irssi/ config/
+#1310262238
+mv account.txt config/
+#1310262245
+sync
+#1310262256
+umount /media/9C6F-1ECD 
+#1310387730
+ls -l
+#1310469175
+sudo update-initframes -u
+#1310469182
+update-initframes
+#1310469191
+man -k initframes
+#1310469234
+sudo update-initramfs -u
+#1310474994
+less pv.sh 
+#1311134415
+root
+#1311134422
+sudo root
+#1311134424
+su root
+#1311251909
+ddclient
+#1311251917
+sudo ddclient
+#1311251930
+ps aux |grep ddclient
+#1311251940
+ddclient -daemon
+#1311251949
+sudo ddclient 
+#1311251955
+sudo ddclient -daemon
+#1311252027
+ddclient --help
+#1311252041
+sudo ddclient --help
+#1311252049
+man ddclient
+#1311252070
+sudo ddclient -daemon 20
+#1311252077
+ps aux | grep ddclient
+#1311252244
+sudo ddclient
+#1311252247
+ps aux | grep ddclient
+#1311252328
+sudo chsh 
+#1311410671
+any2epub
+#1311410705
+apt-cache search epub
+#1311410730
+sudo apt-get install fbreader 
+#1311411065
+sdcv tap
+#1311469958
+vimwiki
+#1312374244
+man jobs
+#1312374246
+man job
+#1312374249
+man -k jobs
+#1312374267
+atq
+#1312374278
+man at
+#1312938822
+cd /usr/share/awesome/lib/
+#1312938827
+cd awful/widget/
+#1312938831
+sudo vim tasklist.lua 
+#1312938739
+sudo apt-get install toilet figlet 
+#1312938779
+vim
+#1312938943
+rtorrent 
+#1312939065
+awesome_config 
+#1312939014
+weechat-curses 
+#1312939116
+sudo apt-get install weechat-curses weechat-core weechat-plugins weechat-scripts weechat-doc 
+#1312939186
+weechat-curses 
+#1312939492
+mv /media/oldHome/chris/.stardict/ .
+#1312939502
+mv /media/oldHome/chris/.stardict/* .stardict/
+#1312939708
+vim .newsbeuter/urls 
+#1312939386
+newsbeuter 
+#1312939978
+cd Downloads/
+#1312940017
+sudo shutdown -r now
+#1312940349
+vimwiki
+#1312940357
+vim
+#1312940307
+ncmpcpp 
+#1312940326
+sudo apt-get install mpd
+#1312940396
+ncmpcpp 
+#1312940415
+mv /media/oldHome/chris/.mpd/ .
+#1312940420
+ncmpcpp 
+#1312940434
+sudo killall mpd
+#1312940441
+mpd &
+#1312940478
+vimUrgent 
+#1312940171
+sudo apt-get remove rtorrent 
+#1312940206
+cd Git/
+#1312940211
+cd src/
+#1312940212
+cd rtorrent-extended/
+#1312940217
+./build.sh all
+#1312940644
+sudo apt-get -f install 
+#1312940657
+sudo apt-get install openssl
+#1312940662
+sudo apt-get install openssl-doc 
+#1312940782
+mv aircrack-ng_script/ Projects/scripts/
+#1312940792
+mv backupHome.sh Projects/scripts/
+#1312940795
+rm bookmarks_8_7_11.html 
+#1312940680
+upgrade.sh 
+#1312940812
+sudo apt-get install vrms 
+#1312940833
+vrms 
+#1312940849
+sudo apt-get upgrade 
+#1312940879
+sudo apt-get -f install 
+#1312940885
+sudo apt-get install rtorrent 
+#1312940915
+zsh
+#1312941107
+sudo apt-get install ant
+#1312940718
+vim
+#1312940941
+sudo chsh chris 
+#1312940958
+sudo chsh
+#1312940963
+vim
+#1312941127
+cd scripts/color/
+#1312941131
+./terminal_256colors_check.pl 
+#1312941143
+./term-256color.py 
+#1312942575
+cd .gnome2/
+#1312942577
+cd keyrings/
+#1312942605
+cd ..
+#1312942612
+cp keyrings/ keyrings.bak
+#1312942615
+cd keyrings
+#1312942622
+sudo rm -rf *
+#1312942857
+sudo nm-connection-editor 
+#1312941615
+vimUrgent 
+#1312941930
+vim
+#1312942139
+vim
+#1312943554
+cd Downloads/mldonkey_fin
+#1312941286
+alsamixer 
+#1312941302
+ncmpcpp 
+#1312943559
+sudo shutdown -r now
+#1314440088
+sudo apt-get install lame
+#1314440140
+for file in *.flac; do flac -cd "$file" | lame -q 0 --vbr-new -V 0 - "${file%.flac}.mp3"; done
+#1314440148
+sudo apt-get install flac
+#1314440169
+for file in *.flac; do flac -cd "$file" | lame -q 0 --vbr-new -V 0 - "${file%.flac}.mp3"; done
+#1314440216
+rm -f Bang.Gang.-.\[Something.Wrong\].专辑.\(FLAC\).*
+#1314504992
+i2p
+#1314505013
+apt-cache search i2p
+#1314505024
+apt-cache show tor
+#1314505040
+apt-cache search anonymous
+#1314505116
+sudo apt-get install vidalia 
+#1314687553
+rm -rf .zsh
+#1314687561
+rm -rf .zshrc 
+#1314687595
+git clone git@github.com:numbchild/oh-my-zsh.git .zsh
+#1314687624
+cd .zsh
+#1314687624
+lss
+#1314687631
+vim zshrc 
+#1314687645
+cd ..
+#1314687653
+ln -s .zsh/zshrc .zshrc
+#1314687656
+cd .zsh
+#1314687689
+git remote add upstream https://github.com/robbyrussell/oh-my-zsh.git
+#1314687701
+git fetch upstream 
+#1314687762
+cp ~/aliases.zsh ~/functions.zsh lib/
+#1314687770
+mv ~/aliases.zsh ~/functions.zsh lib/
+#1314687781
+mv aliases.zsh functions.zsh .zsh/lib/
+#1314687794
+diff aliases.zsh .zsh/lib/aliases.zsh 
+#1314687811
+diff functions.zsh .zsh/lib/functions.zsh 
+#1314687820
+rm aliases.zsh functions.zsh 
+#1314687828
+vim .zsh/lib/aliases.zsh 
+#1314687840
+cd .zsh/
+#1314687843
+git status 
+#1314689387
+rm -rf .zsh
+#1314689392
+rm -rf .zshrc 
+#1314689957
+git clone git@github.com:numbchild/oh-my-zsh.git .zsh
+#1314690031
+ln -s .zsh/zshrc .zshrc
+#1314711927
+ls -R
+#1314711936
+mkdir -p */{new,cur,tmp}
+#1314711943
+rm -rf *
+#1314712121
+mkdir -p Arch/{new,cur,tmp} 
+#1315105715
+hg
+#1315105760
+sub
+#1315105793
+sudo apt-get install subversion mercurial 
+#1315353477
+kernel-panic
+#1316134546
+autokey
+#1316134561
+sudo apt-get install autokey-gtk 
+#1316135244
+sudo apt-get purge autokey-gtk 
+#1316135439
+upgrade_
+#1316136375
+apt-cache search screencast
+#1316141231
+vim .bashrc 
+#1316141586
+man dircolors 
+#1316141634
+dircolors -p
+#1316141639
+bash
+#1316141648
+vim .bashrc 
+#1316498209
+cd /media/
+#1316498216
+cd video/
+#1316498227
+cd /media/anime/
+#1316498231
+vifm
+#1316498317
+vim .vifm/vifmrc
+#1316498342
+cd /media/anime/temp/
+#1316498344
+vifm
+#1316498360
+cd /media/
+#1316498365
+cd video/
+#1316498368
+mplayer.sh  watch\ earth\ in\ universe.mp4 
+#1316503255
+ifconfig 
+#1316503462
+sudo apt-get update ; sudo apt-get install aptitude
+#1316503733
+sudo aptitude
+#1316503830
+sudo aptitude install vim zsh
+#1316504159
+which zsh
+#1316504144
+chsh 
+#1316505068
+vimu
+#1316505073
+vim
+#1316504192
+vim Git/projects/scripts/install.sh 
+#1316506641
+vim lnotify.py 
+#1316506833
+cd Git/dotfiles/
+#1316506854
+sudo cp fonts/ /usr/share/fonts/myFonts
+#1316506864
+sudo cp -r fonts/ /usr/share/fonts/myFonts
+#1316506927
+man -k cache
+#1316506935
+fc-cache 
+#1316506941
+man fc-cache 
+#1316506949
+sudo fc-cache  -f
+#1316507110
+vim lnotify.py 
+#1316508554
+mv lnotify.py Git/projects/scripts/
+#1316508564
+cd Git/python/
+#1316508708
+vim .vimrc 
+#1316508567
+vim
+#1316509173
+vim IRC-bot/example.py 
+#1316510481
+cd /media/
+#1316510500
+sudo mkdir video tux fuck download linux H
+#1316510510
+sudo mkdir usb
+#1316510418
+sudo vim /etc/fstab 
+#1316510562
+sudo mount alll
+#1316510566
+sudo mount all
+#1316510615
+cd /media/
+#1316510619
+ls -R
+#1316510628
+cd b28eb644-b6a3-4a68-b7a9-14291e6506b8/
+#1316510632
+cd ..
+#1316510634
+df -l
+#1316510644
+sudo vim /etc/fstab 
+#1316510677
+cd /media/
+#1316510681
+sudo mkdir anime
+#1316510686
+sudo mount all
+#1316510733
+cd b28eb644-b6a3-4a68-b7a9-14291e6506b8/
+#1316510736
+cd ..
+#1316510747
+sudo umount /media/b28eb644-b6a3-4a68-b7a9-14291e6506b8/
+#1316510754
+sudo mount all
+#1316510763
+cd anime/
+#1316510766
+cd ..
+#1316510769
+cd H/
+#1316510772
+cd ..
+#1316510776
+sudo vim /etc/fstab 
+#1316510807
+sudo mkdir sex
+#1316510811
+sudo umount linux
+#1316510825
+sudo umount /media/linux
+#1316510833
+sudo mount all
+#1316510837
+ls -R
+#1316510842
+ls anime/
+#1316510845
+ls download/
+#1316510848
+ls fuck/
+#1316510850
+ls H/
+#1316510852
+ls linux/
+#1316510854
+ls sex/
+#1316510856
+ls tux/
+#1316510861
+ls usb/
+#1316510864
+ls video/
+#1316510873
+sudo vim /etc/fstab 
+#1316510894
+sudo mountall
+#1316510913
+sudo rmdir linux/
+#1316510918
+ls anime/
+#1316510921
+ls download/
+#1316510928
+cd download/BL/
+#1316510931
+cd ..
+#1316510942
+ls fuck/
+#1316510949
+ls H
+#1316510954
+ls tux/
+#1316510957
+ls usb/
+#1316510959
+ls video/
+#1316510962
+sudo vim /etc/fstab 
+#1316510976
+ls sex/
+#1316510983
+sudo vim /etc/fstab 
+#1316511003
+sudo mountall
+#1316511010
+ls fuck/
+#1316511019
+ls H/
+#1316511024
+ls fuck/
+#1316511028
+ls sex/
+#1316511041
+sudo umount *
+#1316511046
+sudo umount \*
+#1316511051
+sudo mountall
+#1316511059
+ls fuck/
+#1316511062
+ls sex/
+#1316511065
+sudo rmdir sex
+#1316511073
+ls anime/
+#1316511076
+ls download/
+#1316511081
+du -sh download/BL
+#1316511107
+cd tux/Private/LGBTQ/
+#1316511112
+cd BL/
+#1316511130
+mv \[BL动画\]狼爱上羊CD2.rmvb /media/download/BL/
+#1316511369
+vimwiki
+#1316511375
+vim
+#1316512191
+vim .bashrc 
+#1316512263
+cd Git/dotfiles/
+#1316512266
+cd fonts/
+#1316512271
+ls -l
+#1316512303
+chmod --reference Comic_Sans_MS.ttf Arial\ monospaced\ SAP.ttf Bitstream\ Vera\ Sans\ Mono.ttf 
+#1316512313
+cd /usr/share/fonts/
+#1316512316
+cd myFonts/
+#1316512321
+ls -l
+#1316512338
+sudo chmod --reference cmap myFonts/
+#1316512345
+cd myFonts/
+#1316512358
+sudo chmod --reference Comic_Sans_MS.ttf Arial\ monospaced\ SAP.ttf Bitstream\ Vera\ Sans\ Mono.ttf 
+#1316512362
+cd comic_MS/
+#1316512366
+ls -l
+#1316512378
+sudo chmod --reference ../cmap/ comic_MS/
+#1316512381
+cd comic_MS/
+#1316512388
+fc-cache -f
+#1316505222
+sudo aptitude install build-essential autoconf automake zenity exuberant-ctags cscope cmake vim-gtk ant pyflakes pylint python-markdown ; sudo update-alternatives --config editor ; sudo aptitude install emacs git-core git-doc git-gui mercurial subversion ssh gnupg2 openssl openssh-client openssh-server awesome awesome-extra feh sdcv xsel espeak mpc curl xserver-xephyr wicd-curses wicd-gtk libnotify-bin xscreensaver fvwm startupmanager zsh-doc zsh-lovers luakit chromium-browser chromium-browser-inspector w3m elinks lynx libwebkit-dev libsoup2.4-dev libunique-dev libglib2.0-dev libgtk2.0-dev rxvt-unicode tmux screen zathura evince chmsee impressive ncmpcpp mpd libfftw3-3 mplayer aria2 wget curl rtorrent  mldonkey-server tpp testdisk unetbootin weechat weechat-curses weechat-doc weechat-plugins weechat-core bitlbee instantbird mutt wv getmail4 procmail urlview mairix abook bogofilter ispell rss2email mc highlight atool source-highlight gtypist  newsbeuter recordmydesktop openmovieeditor ffmpeg mencoder imagemagick feh inkscape vrms deborphan nginx ddclient unrar p7zip-full p7zip-rar xscreensaver-gl prey pastebinit aircrack-ng ffmpeg2theora calibre markdown html2markdown figlet python3 python3-doc python-django-doc devhelp python-irclib tlf yacpi trafshow radio mysql-client mysql-server dict-jargon jargon jargon-text wireshark wireshark-doc  nethack-console slashem ; crontab -u chris Git/dotfiles/crontab ; sudo aptitude install dstat ifstat iotop ttyrec multitail iptraf siege ledger task ack ttytter linuxlogo 
+#1316513903
+sudo vim /etc/ddclient.conf 
+#1316513953
+sudo dpkg-reconfigure ddclient 
+#1316513974
+sudo vim /etc/ddclient.conf 
+#1316513996
+sudo service ddclient restart
+#1316513871
+sudo aptitude safe-upgrade 
+#1316514016
+sudo aptitude clean 
+#1316580078
+hwinfo
+#1316868202
+iostat
+#1316868214
+sudo aptitude install sysstat
+#1318255869
+ls [a-z]*
+#1318661163
+find . -iname '*.html' | xargs sed -i s/<big>/<em>/
+#1319345736
+texi2pdf
+#1319345779
+texi2html
+#1319345790
+texi2text
+#1319451625
+man type
+#1319511748
+sudo
+#1319511752
+sudo -
+#1319524319
+unix2dos
+#1319613453
+sudo apt-get purge unity-*
+#1319613529
+sudo aptitude -f install 
+#1319613549
+sudo apt-get -f autoremove 
+#1319613557
+sudo apt-get -f install 
+#1319613582
+sudo apt-get purge thunderbird* banshee* 
+#1319613619
+sudo apt-get purge evolution*
+#1319613639
+sudo apt-get purge filezilla*
+#1319613658
+sudo shutdown -r now
+#1319682105
+rvm-prompt
+#1319682119
+sudo aptitude install rvm-prompt
+#1319698418
+ps -l
+#1319698411
+ps -l
+#1319698413
+bash
+#1319707683
+rvm-prompt
+#1319707692
+sudo aptitude install ruby-rvm
+#1319707804
+pstree -U
+#1319707808
+pstree -A
+#1319711953
+vim .vimrc
+#1319711969
+cd .vim/bundle/CheckAttach/
+#1319711976
+vim README 
+#1319781649
+svn_prompt
+#1319781661
+aptitude search svn | grep prompt
+#1319781681
+aptitude search svn 
+#1321316651
+sdcv 大小写
+#1321316834
+sdcv 小写
+#1321353624
+小写
+#1321618347
+sudo aptitude install latex-cjk-chinese ttf-arphic-* hbf-*
+#1322188436
+man sh
+#1322188452
+vim /home/chris/.bashrc 
+#1322188472
+man sh
+#1323869472
+man mv
+#1323871497
+sudo apt-get install flashplugin-installer flashplugin-downloader flashplugin-nonfree-extrasound 
+#1323874994
+vi Git/projects/scripts/install.sh 
+#1323875715
+sudo aptitude install phonon-backend-gstreamer ; chsh
+#1323875832
+zsh
+#1323875853
+chsh
+#1323875870
+sudo aptitude full-upgrade 
+#1323876541
+sudo apt-get -f install 
+#1323876584
+which zsh
+#1323876575
+chsh chris 
+#1323876620
+which zsh
+#1323876601
+chsh
+#1323876923
+urxvt
+#1323877093
+killall conky
+#1323878969
+history | grep fg
+#1325090122
+source /etc/bash_completion
+#1328812535
+cd Git/dotfiles/.config/
+#1328813208
+cd Git/dotfiles/
+#1328813210
+cd .config/
+#1328813211
+git s
+#1328813223
+git add evince/
+#1328813233
+git c -m 'add evince configs'
+#1328813239
+git add fcitx/
+#1328813246
+git c -m 'add fcitx configs'
+#1328813250
+git s
+#1328813260
+git add gedit/
+#1328813267
+git c -m 'add gedit configs'
+#1328813273
+git add jumanji/
+#1328813279
+git c -m 'add jumanji configs'
+#1328813294
+git add ibus/
+#1328813300
+git c -m 'add IBus configs'
+#1328813320
+git rm -r ibus/bus/*
+#1328813334
+git c -m 'remove some temp files'
+#1328813341
+vim ../.gitignore 
+#1328813390
+git add leafpad/
+#1328813398
+git c -m 'add leafpad configs'
+#1328813406
+git add ranger/
+#1328813412
+git c -m 'add ranger configs'
+#1328813423
+git add vlc/
+#1328813429
+git c -m 'add VLC configs'
+#1328813438
+git add chmsee/
+#1328813445
+git c -m 'add chmsee configs'
+#1328813456
+ls autokey/
+#1328813466
+git add luakit/
+#1328813473
+git c -m 'add luakit configs'
+#1328813481
+git s
+#1328813492
+git add gwibber/
+#1328813499
+git c -m 'add gwibber configs'
+#1328813505
+git add feh/
+#1328813511
+git c -m 'add feh configs'
+#1328813516
+git s
+#1328813532
+git add calibre/
+#1328813538
+git c -m 'add calibre configs'
+#1328813546
+git s
+#1328813556
+git add gtk-*
+#1328813571
+git c -m 'add gtk-2.0 and gtk-3.0 configs'
+#1328813573
+git s
+#1328813590
+git add awesome/
+#1328813598
+git c -m 'add Awesome configs'
+#1328813602
+git s
+#1328813605
+cd awesome/
+#1328813609
+cd themes/
+#1328813612
+cd black/
+#1328826985
+vim .gitignore 
+#1328827234
+git add .config/chromium/
+#1328827259
+git c -m 'add chromium configs'
+#1328827277
+git rm -r .config/chromium/
+#1328827282
+vim .gitignore 
+#1328827314
+git status | grep chrom
+#1328827329
+git c -m 'delete chromium configs'
+#1328827343
+s | grep chromium
+#1328827350
+git s | less
+#1328827384
+git add .gtkrc-2.0 
+#1328827393
+git c -m 'add .gtkrc-2.0 config'
+#1328827397
+git s | less
+#1328827411
+git add .ssh/
+#1328827421
+git c -m 'add .ssh configs'
+#1328827431
+ls .mozilla/
+#1328827447
+ls .mozilla/extensions/
+#1328827463
+git s | less
+#1328827518
+vim .gitignore 
+#1329661473
+make
+#1330708093
+cd Git/dotfiles/
+#1330708102
+git s
+#1330708104
+help
+#1330708117
+visual 
+#1330936916
+KeyID=$(gpg --fingerprint | grep 'pub ' | cut -d ' ' -f 4 | cut -d '\' -f 2)
+#1330936920
+echo $KeyID 
+#1330936939
+KeyID=$(gpg --fingerprint | grep 'pub ' | cut -d ' ' -f 4 | cut -d '\' -f 2)
+#1330936941
+echo $KeyID 
+#1330936950
+KeyID=$(gpg --fingerprint | grep 'pub ')
+#1330936953
+echo $KeyID 
+#1330936965
+KeyID=$(gpg --fingerprint)
+#1330936967
+echo $KeyID 
+#1330936950
+KeyID=$(gpg --fingerprint | grep 'pub ')
+#1330936953
+echo $KeyID 
+#1330936965
+KeyID=$(gpg --fingerprint)
+#1330936967
+echo $KeyID 
+#1332848374
+set -o vi
+#1332848382
+
+#1332848392
+
+#1332848399
+echo "hi"
+#1332848410
+
+#1332848418
+
+#1333091368
+git clone https://code.google.com/p/fcitx/ 
+#1334306399
+python2.7 uploader.zip 
+#1335227581
+ls *
+#1335227602
+ls ?ut
+#1335227610
+ls ou?
+#1335227621
+ls 
+#1335227738
+egrep '[[:alpha:]]' examples.desktop 
+#1335227946
+egrep '[[:alnum:]]' examples.desktop 
+#1335227990
+egrep '[[:blank:]]' examples.desktop 
+#1335228000
+egrep '[[:digit:]]' examples.desktop 
+#1335228014
+egrep '[[:lower:]]' examples.desktop 
+#1335228133
+egrep '[[:graph:]]' examples.desktop 
+#1335228141
+egrep '[[:print:]]' examples.desktop 
+#1335228151
+egrep '[[:punct:]]' examples.desktop 
+#1335228176
+egrep '[[:space:]]' examples.desktop 
+#1335228185
+egrep '[[:xdigit:]]' examples.desktop 
+#1335228747
+grep '!ab' examples.desktop 
+#1335228760
+grep '!(abc)' examples.desktop 
+#1335228766
+egrep '!(abc)' examples.desktop 
+#1335228780
+egrep '+(a)' examples.desktop 
+#1335228793
+egrep '!(a)' examples.desktop 
+#1335228800
+egrep '!(w)' examples.desktop 
+#1335228901
+egrep '[[:xdigit:]]' examples.desktop 
+#1335228915
+egrep '[[=a=]]' examples.desktop 
+#1335228920
+egrep '[[=ab=]]' examples.desktop 
+#1335228925
+egrep '[[=ac=]]' examples.desktop 
+#1335228976
+egrep '[[=w=]]' examples.desktop 
+#1335228981
+egrep '[[=d=]]' examples.desktop 
+#1335229061
+egrep '[[=de=]]' examples.desktop 
+#1335229083
+egrep '[[.c.]]' examples.desktop 
+#1335247056
+ls ex?
+#1335247059
+ls ex*
+#1335247076
+ls [abcd]*
+#1335247110
+cd backup-vim/
+#1335247113
+du -sh .
+#1335247115
+cd ..
+#1335247810
+man lp
+#1335247814
+lp examples.desktop 
+#1335247819
+man lp
+#1335247826
+man pr
+#1335247842
+pr examples.desktop | lp
+#1336279714
+egrep '(a|b)' $(cat examples.desktop)
+#1336279730
+egrep '(a|b)' $((cat examples.desktop))
+#1336280590
+vim .zshrc 
+#1336281037
+ls <> output
+#1336281040
+cat output 
+#1336281051
+rm output 
+#1336281088
+echo "ls" > output
+#1336281093
+sh <> output 
+#1336281097
+cat output 
+#1336281101
+rm output 
