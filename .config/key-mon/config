@@ -1,0 +1,25 @@
+[buttons]
+ctrl = 1
+meta = 1
+alt = 1
+mouse = 1
+shift = 1
+old-keys = 0
+
+[devices]
+emulate_middle = 0
+map = us.kbd
+swap_buttons = 0
+
+[ui]
+scale = 0.8
+theme = modern
+visible-click = 0
+opacity = 1.0
+decorated = 0
+only_combo = 0
+
+[position]
+x = 1625
+y = 1015
+
