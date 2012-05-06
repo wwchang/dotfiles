@@ -1,0 +1,14 @@
+# readline(Bash)
+
+# for bash completion
+set completion-ignore-case on
+Control-j: menu-complete
+Control-k: menu-complete-backward
+
+# replace twice <Tab> with one <Tab>, this will save you key pressing and time. 
+# but it will use you more CPU.
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# treat _ and -  as same. when filename.
+set completion-map-case on
