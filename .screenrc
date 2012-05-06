@@ -1,0 +1,33 @@
+#vbell on
+#autodetach on
+#startup_message off
+##utf8 on
+#term screen-256color
+#terminfo rxvt-256color 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+#shell zsh
+#defscrollback 1000
+## add backtick printer functions
+## backtick 1 1 1 screen_path.sh
+#hardstatus alwayslastline "%{= d}%{r}screen%{k}%H %{r}>> %{k}${USER}%{k}@%{k}%H: %L>%1`%? %?%{.g}%u%? %-18=%?%{m} %{k}%-=%{k}%-w%{r}%n %t%{k}%+w %{k}|%C"
+
+hardstatus alwayslastline
+hardstatus string "%{= B}:%{= b}: %{= r}[ %{G}%H%{= r} ] %= %{=b b}%-w%{=rb db}%>%n %t%{-}%+w %=%{= r}[ %{G}%c %{M}%D %m-%d %{r}] %{= b}:%{B}:"
+terminfo xterm*|rxvt ti@:te@
+terminfo rxvt-unicode 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+terminfo xterm* 'XT:hs:ts=\E]2;:fs=\007:ds=\E]2;screen\007'
+autodetach on # default: on
+altscreen on
+defscrollback 1000
+msgwait 5
+msgminwait 2
+pow_detach_msg "Screen session of \$LOGNAME \$:cr:\$:nl:ended."
+startup_message on # default: on
+vbell off
+vbell_msg "   Wuff  ----  Wuff!!  "
+nethack on
+defutf8 on
+shell /bin/zsh
+bindkey -k F1 prev
+bindkey -k F2 next
+#screen
+#screen
