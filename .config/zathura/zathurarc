@@ -1,0 +1,18 @@
+# Genertics: {
+set smooth_scrolling true
+# set history=10
+set browser=/usr/bin/chromium-browser
+# }
+
+# Interface: {
+set font Monospace normal 9
+set transparency true
+set height 580
+set width 1024
+set adjust_open width
+# inverting colors
+# set recolor true 
+# set recolor_darkcolor #BDE090 
+# set recolor_lightcolor #000000
+set show_inputbar false
+# }
