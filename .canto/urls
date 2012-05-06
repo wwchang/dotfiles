@@ -1,0 +1,151 @@
+# Podcasts {{{
+# http://twit.tv/node/feed "~twit.tv Podcasts"
+# http://feeds.twit.tv/floss_video_large "~twit.tv Large Video Podcasts"
+# http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg "~Fosscasts Podcasts"
+# http://feeds.feedburner.com/tedtalks_video "~TED Talks"
+# http://feeds2.feedburner.com/ShowmedoBlog "~Show Me Do"
+# http://feed.feedsky.com/jiong "~fun videos CN"
+
+## Vim videos tutorials
+
+# ebooks
+
+# }}}
+
+# projects {{{
+#http://git.savannah.gnu.org/gitweb/?p=weechat.git;a=rss "~weechat git"
+# https://blog.torproject.org/crss "~Tor Blog"
+# }}}
+
+# Subscribes {{{
+# http://feeds.feedburner.com/thisdeveloperslife "~Developers' life"
+# http://yyets.com/rss.html "~YYeTs subtitle"
+# http://feeds.feedburner.com/YesodWebFramework "~YesodWebFramework"
+# http://code.google.com/feeds/p/ipv6-hosts/hgchanges/basic "~IPv6 host file"
+# http://pipes.yahoo.com/pipes/pipe.run?_id=5729836f3c71d2d91261feaa18d22b05&_render=rss "~ledger"
+# http://feeds2.feedburner.com/chinagfwblog "~GFW Blog"
+# http://vimcasts.org/feeds/ogg "~vimcasts.org ogg"
+# http://maemo.org/news/items.xml "~maemo news"
+# http://maemo.org/news/latest.xml "~maemo latest news"
+# http://www.ppurl.com/tag/python/feed "~PiPi Books Python"
+# https://github.com/numbchild.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f "~My Github"
+# http://www.servercircle.com/xrss.php "~server circle"
+# }}}
+
+# Program {{{
+# http://hacks.mozilla.org/feed/ "~hacks.mozilla"
+# http://rss.groups.yahoo.com/group/taglist/rss "~taglist vim plugin"
+# http://daringfireball.net/index.xml "~Daring Fire Ball (" Markdown "
+# }}}
+
+# Python {{{
+# }}}
+
+# Crack {{{
+# http://homepages.tu-darmstadt.de/~p_larbig/wlan/ "~wlan inject etc dev"
+# }}}
+
+# Linux {{{
+# http://feeds.feedburner.com/Command-line-fu?format=xml "~Command Line Fu"
+# http://feeds.feedburner.com/Command-line-fu "~Command-line-fu"
+# http://groups.google.com/group/vim_use/feeds "~vim google groups feed"
+# }}}
+
+# NEWS {{{
+# http://news.ycombinator.com/rss "~Hacker News"
+# http://rss.slashdot.org/Slashdot/slashdot 
+# http://www.voanews.com/templates/Articles.rss?sectionPath=/learningenglish/home "~English VOA NEWS"
+# http://slashdot.org/index.rss "~slashdot"
+# http://ubuntuweblogs.org/rss20.xml "~ubuntu weblogs"
+# http://planet.ubuntu.com/rss20.xml "~ubuntu Blog"
+# http://feeds.feedburner.com/Xubuntu "~Xubuntu"
+# http://www.thegeekstuff.com/feed "~The Geek Stuff"
+# http://blog.makezine.com/index.xml "~MAKE"
+# http://seclists.org/rss/nmap-hackers.rss "~Nmap hackers"
+# http://www.lgdb.org/rss.xml "~LGDB Linux Game Data Base"
+# }}}
+
+# Second NEWS {{{
+# http://fun4hi.com/?feed=rss2 "~Chinese Fun High"
+# http://feed.feedsky.com/kisshi "~Chinese Kiss High"
+# http://feed-all.google.org.cn/ "~Google NEWS -cn"
+# }}}
+
+
+# Blog {{{
+# http://feeds.feedburner.com/codinghorror # "~Coding Horror"
+# http://feeds.feedburner.com/html5rocks "~HTML5 Rocks"
+# http://luy.li/feed/ # "~Lazy Bones"
+# http://apt-blog.net/feed # "~apt-blog Blog cn"
+# http://feeds2.feedburner.com/stevelosh # "~stevelosh Blog"
+# http://feeds.feedburner.com/catswhocode # "~CatsWhoCode.com"
+# http://program-think.blogspot.com/feeds/posts/default # "~Program Think"
+# http://feeds.feedburner.com/ruanyifeng # "~RuanYiFeng Blog"
+# http://www.ruanyifeng.com/blog/atom.xml "~RuanYiFeng Blog Another" 
+# http://feed.tmdsb.com/ "~Goo Blog"
+# http://www.matrix67.com/blog/feed/atom "~Matric Math"
+# http://coolshell.cn/?feed=rss2 # "~Cool shell"
+# http://feed.williamlong.info/ "~Moonlight Blog"
+# http://www.eaglefantasy.com/feed # "~Physics Universe"
+# http://cdwillis.wordpress.com/feed/  "~cdwillis"
+# http://feeds.feedburner.com/softwaretechandmore # "~SKORKS Blog"
+# http://blog.nguyenvq.com/feed/ "~Super Nerdy Cool"
+# http://feed.feedsky.com/taoofsource # "~test-2"
+# https://www.hackbloc.org/rss.xml # "~hackbloc.org"
+# http://blog.sina.com.cn/rss/menglikeer.xml # "~Picture Sina Blog-1"
+# http://blog.sina.com.cn/rss/wings.xml # "~Picture Sina Blog-2"
+# http://blog.sina.com.cn/rss/1710887475.xml # "~Picture Sina Blog-3"
+# http://blog.chinaunix.net/u/rss.php?id=22178 # "~test-6"
+# http://www.linuxtutorialblog.com/feed # "~test-7"
+# http://feeds.feedsky.com/csdn.net/chinalinuxzend # "~test-9"
+# http://confusedfly.yo2.cn/feed # "~test-10"
+# http://LaTex.yo2.cn/feed # "~LaTex chinese Blog"
+# http://feeds.feedburner.com/lainme # "~lainme Blog"
+# http://feed.feedsky.com/lainme # "~lainme Blog"
+# http://blog.ibeini.com/feed # "ibeini Blog ("hack"
+# https://www.csslayer.info/wordpress/feed/ # "CSSlayer Blog"
+# }}}
+
+# Anime {{{
+# http://www.tokyotosho.info/rss.php?filter=1,7,4,12 "~Tokyo Toshokan ("Anime
+# }}}
+
+# famouse security list {{{
+# http://seclists.org/rss/nmap-hackers.rss "~Nmap hackers"
+# http://seclists.org/rss/basics.rss "~Security Basics"
+# http://seclists.org/rss/pen-test.rss "~Penetration Testing"
+# http://seclists.org/rss/isn.rss "~Info Security News"
+# http://seclists.org/rss/firewall-wizards.rss "~Firewall Wizards"
+# http://seclists.org/rss/focus-ids.rss "~IDS Focus"
+# http://seclists.org/rss/webappsec.rss "~Web App Security"
+# http://seclists.org/rss/pauldotcom.rss "~PaulDotCom"
+# http://seclists.org/rss/dailydave.rss "~Daily Dave"
+# http://seclists.org/rss/honeypots.rss "~Honeypots"
+# http://seclists.org/rss/oss-sec.rss "~Open Source Security"
+# http://seclists.org/rss/securecoding.rss "~Secure Coding"
+# http://seclists.org/rss/educause.rss "~Educause Security Discussion"
+# http://seclists.org/rss/interesting-people.rss "~Interesting People"
+# http://seclists.org/rss/metasploit.rss "~Metasploit"
+# http://seclists.org/rss/wireshark.rss "~Wireshark"
+# http://seclists.org/rss/snort.rss "~Snort"
+# http://seclists.org/rss/openvas.rss "~OpenVAS"
+# }}}
+
+# Security {{{
+# http://feeds.delicious.com/v2/rss/tag/Security+computer "~Security + computer"
+# http://feeds.ziffdavisenterprise.com/RSS/security_watch "~security watch"
+# http://ha.ckers.org/blog/feed/ "~ha.ckers.org"
+# http://www.hackinthebox.org/backend.php "~hacking the box.org"
+# http://www.hak5.org/feed "~hak5.org"
+# http://www.opensc.ws/external.php?type=RSS2 "~Open Security"
+# http://redkrieg.com/feed/ "~redkrieg"
+# http://www.rootsecure.net/?p=rss_xml_feed_ft&i=20 "~root secure"
+# http://www.securiteam.com/securiteam.rss "~securiteam"
+# http://www.okamalo.com/feeds/posts/default "~okamalo"
+# http://news.securitytracker.com/server/affiliate?61D319BD39309004 "~news.securitytracker"
+# http://www.security.nnov.ru/exploits/rss.asp
+# http://securosis.com/feeds/blog "~securosis"
+# http://www.skullsecurity.org/blog/?feed=rss2 "~skullsecurity"
+# http://sla.ckers.org/forum/rss.php "~sla.ckers.org"
+# http://blog.chinaunix.net/u/rss.php?id=72992 "~China Unix"
+# }}}
