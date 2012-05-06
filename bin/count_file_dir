@@ -1,0 +1,25 @@
+#!/bin/bash - 
+#===============================================================================
+#
+#          FILE:  count_DirFiles.sh
+# 
+#         USAGE:  ./count_DirFiles.sh 
+# 
+#   DESCRIPTION:  count files and dirs under current dir 
+# 
+#       OPTIONS:  ---
+#  REQUIREMENTS:  ---
+#          BUGS:  ---
+#         NOTES:  ---
+#        AUTHOR: Evanescence (chris), numbchild[A]gmail.com
+#       COMPANY: Home
+#       CREATED: 05/07/2011 11:26:39 AM CST
+#      REVISION:  ---
+#===============================================================================
+
+set -o nounset                              # Treat unset variables as an error
+
+echo " " # add one blank line to show a good format 
+# echo `ls -l * | grep "^-" | wc -l` files "||" `ls -l * | grep "^d" | wc -l` directorys # echo files and directorys in one line 
+echo -e "\033[01;31m`ls -l * | grep "^-" | wc -l` \033[1;30m files || \033[01;31m`ls -l * | grep "^d" | wc -l` \033[1;30m directorys" # echo files and directorys in one line 
+
