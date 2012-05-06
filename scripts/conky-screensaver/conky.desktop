@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Conky
+Comment=Displays Information as a Screensaver with Conky
+Exec=/usr/lib/xscreensaver/conky-ss -root
+TryExec=/usr/lib/xscreensaver/conky-ss
+StartupNotify=true
+Terminal=true
+Type=Application
+Categories=GNOME;Screensaver
+OnlyShowIn=GNOME;
+X-Ubuntu-Gettext-Domain=gnome-screensaver
