@@ -1,0 +1,110 @@
+# this snippet is used for snip-Mate
+
+snippet title
+	--title ${1:title}
+
+snippet author
+	--author ${1:stardiviner} -- ${2:numbchild@gmail.com}
+
+snippet date
+	--date ${1:today}
+
+snippet header
+	--header ${1:Header}
+
+snippet footer
+	--footer ${1:footer}
+
+snippet newpage
+	--newpage ${1:new page name}
+
+snippet heading
+	--heading ${1:Head in page}
+
+snippet center
+	--center ${1:center text}
+
+snippet right
+	--right ${1:oriented right text}
+
+snippet left
+	--left ${1:oriented left text}
+
+# font
+snippet bold
+	--boldon
+	${1:Bold text}
+	--boldoff
+
+snippet rev
+	--revon
+	${1:reverse text}
+	--revoff
+
+snippet ul
+	--ulon
+	${1:underline text}
+	--uloff
+
+snippet huge
+	${1:--sethugefont black}
+	--huge ${2:huge words}
+
+# color
+snippet color
+	--color ${1:#red,green,etc}
+	${2:insert colored text here}
+	${3:--color white}
+	--##back to normal white foreground color.
+
+snippet bgcolor
+	--bgcolor ${1:#black,white,etc}
+	${2:input text here}
+	--bgcolor ${3:#back to default background color}
+
+# slide effetc
+snippet output
+	--beginoutput
+	${1:input code or anything your want to output}
+	--endoutput
+
+snippet slideleft
+	--beginslideleft
+	${1:input slide here}
+	--endslideleft
+
+snippet slideright
+	--beginslideright
+	${1:input slide here}
+	--endslideright
+
+snippet slidetop
+	--beginslidetop
+	${1:input slide here}
+	--endslidetop
+
+snippet slidebottom
+	--beginslidebottom
+	${1:input slide here}
+	--endslidebottom
+
+snippet shellslide
+	--beginshelloutput
+	${1:insert shell commands here}
+	--endshelloutput
+
+snippet exec
+	--exec ${1:echo} ${2:text shown at bottom}
+
+snippet line
+	--horline
+
+snippet list
+	* ${1:List entry name}
+	---
+
+snippet border
+	--withborder
+
+snippet comment
+	--##${1:Insert Comment here}

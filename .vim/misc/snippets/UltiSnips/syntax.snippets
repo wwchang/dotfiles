@@ -1,0 +1,138 @@
+= write snippet for UltiSnips =
+    == Elements inside of default text ==
+Placeholders can contain other UltiSnips elements. This is totally cool and very useful. For
+example, the following snippet is defined for the html file type and ships with UltiSnips:
+
+{{{snippets
+snippet a
+<a href="$1"${2: class="${3:link}"}>
+    $0
+</a>
+endsnippet
+}}}
+
+It allows to either delete the complete tabstop 2 with one keystroke. Or you can jump to tabstop 3
+and replace the CSS class name.
+Another example:
+
+{{{snippets
+snippet date
+${2:${1:`date +%d`}.`date +%m`}.`date +%Y`
+endsnippet
+}}}
+
+This snippet will enter the current date in the format that is used in Germany: dd.mm.yyyy. Jumping
+forward will allow you to either overwrite the day or the day and the month. I use this in my todo
+files to enter due dates.
+
+== Complete Scripts in Shell Interpolation ==
+Shell interpolation is as powerful as the shell itself. Here is a silly example that basically a 
+complete Perl script:
+
+{{{snippets
+snippet random
+`#!/usr/bin/perl
+use LWP::Simple qw(get);
+my $page = get
+"http://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new";
+print $page`
+endsnippet
+}}}
+
+This snippet will insert a truly random number between 1 and 100 fetched from random.org. Useful?
+Maybe not, but a good example.
+
+== Transformations are more powerful than you might think ==
+This transformation shows the transformation option g which means global replace. It will uppercase
+every word in the first tabstop while mirroring its content.
+
+{{{snippets
+snippet title "Titelize in the Transformation"
+${1:a text}
+${1/\w+\s*/\u$0/g}
+endsnippet
+}}}
+
+In the replacement part of this transformation, the u means "uppercase the next character" and the
+$0 matches everything found. The complete transformation basically says: find a word \w+ and any
+number of whitespace \s* and replace them through what you found, but uppercase one char. The g at
+the end makes sure that not only the first but all words are uppercased.
+
+== Conditional replacements ==
+
+One feature that I didn't mention in the screencast are conditional replacements. When you capture a
+group in the search part of a replacement, you can check if it was matched in the replacement like
+so: (?<number>:yes text:no text). yes text will be inserted if the group was matched, otherwise no
+text will be inserted. A quick example:
+
+{{{snippets
+snippet cond
+${1:some_text}${1/(o)|(t)|..*/(?1:ne)(?2:wo)/}
+endsnippet
+}}}
+
+The transformation will match a o at the beginning into group 1 or a t at the beginning in group 2.
+The rest of the search string just matches everything of the first tabstop. The replacement will
+either be ne when a o was matched, wo when a t was matched or an empty string. That means that you
+can just type a t to quickly get two as the complete content of the snippet or a o to get one. If
+you type anything else, you only get the content of the place holder, i.e. the verbatim of what you
+typed.
+
+== Inword triggers ==
+
+The snippet option 'i' stands for inword trigger. Let's say for some coding project, I often want to
+get variables that end on izer: maperizer, vectorizer... I want to define a snippet with ri which
+should expand to izer. Triggers are always matched to full words though - except for when you use
+the i option for your snippet:
+
+{{{snippets
+snippet ri "rizer" i
+rizer
+endsnippet
+}}}
+
+This does what I want maperi<tab> -> maperizer
+
+== Regular Expression triggers ==
+Regular expression triggers can be used with the r option to a snippet. Note that you have to add
+delimiters around your trigger when using regular expression triggers. I use the following snippet
+because I can never remember on which exact trigger I set my LaTeX chapter snippet:
+
+{{{snippets
+snippet "chap?t?e?r?" "Latex chapter" rb
+\section{chapter}
+   $0
+\end{chapter}
+endsnippet
+}}}
+
+This will expand on either cha, chap, chapt, chapte or chapter. Regular Expression triggers are even
+more powerful because you can get access the to match object inside your python interpolation
+blocks. More on that in the next episode.
+
+Regular expression triggers also allow to define triggers with special characters, whitespace or
+multi word triggers.
+
+{{{snippets
+snippet " this is a trigger" "Multiword & Whitespace" r
+Hello World
+endsnippet
+}}}
+
+== Conclusion ==
+The features we discussed so far are enough to make crazy snippets and will suffice for most uses.
+If you ever feel lost or forget how to use one of the features, take a look into UltiSnips help
+document, either via
+
+`:help UltiSnips`
+
+or here online.
+
+Next time we will discuss python interpolation which brings even more power to snippets. With it,
+some of the features we discussed so far will become easier to read with and others will only then
+become possible. With python interpolation there is basically nothing that a snippet can't do.
+
+As always, leave comments and let me know what you think about the screencast and the tips. Also let
+me know what you are interested in and what you would like to see in future screencasts. I have no
+more topics for a fourth screencast, so if you want one, let me know what you want to see in it.
+# vim:ft=snippets:

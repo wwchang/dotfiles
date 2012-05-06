@@ -1,0 +1,36 @@
+snippet name
+	CODE
+
+# you can put $2 before $1
+snippet kkk
+	<object width="$2" height="$3" id="$1">www.google.com</object>
+
+# default value
+snippet fuck
+	<fuck id="${1:default value}">string</fuck>
+
+# quota $1 in $2
+snippet h1
+	<h1 id="${1:heading}">${2:$1}</h1> 
+
+# with close, usually before >
+snippet input
+	<input type="${1:text/submit/hidden/button}" name="${2:some_name}" value="${3}"`Close()`>${4}
+	
+# another [1:]
+snippet r
+	<br`Close()[1:]`>
+
+# substitute with vim variables.
+snippet title
+	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
+
+# with a preview window to select on same trigger. and add comment.
+snippet doctype XHTML 1.0 Transitional
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+snippet doctype XHTML 1.1
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+	"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+

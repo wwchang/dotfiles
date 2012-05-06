@@ -1,0 +1,52 @@
+# head
+snippet head
+	${1:head}
+	=============
+snippet head1
+	# ${1:head1} #
+snippet head2
+	## ${1:head2} ##
+snippet head3
+	### ${1:head3} ###
+# font style
+snippet bold
+	**${1:bold text}**
+snippet italic
+	*${1:italic text}*
+# emphasis
+snippet em
+	_${1:emphasis text}_
+# list 
+snippet list * 
+	* ${1:list item}
+snippet list +
+	+ ${1:list item}
+snippet list -
+	- ${1:list item}
+snippet list number
+	1. ${1:list item 1}
+# blockquote
+snippet quote
+	> ${1:blockquote}
+# code block
+snippet code Tab
+		${1:code block}
+# rule
+snippet rule ***
+	***
+snippet rule ---
+	---
+snippet rule - - -
+	- - -
+# link
+snippet link
+	[${2:link name}] (${1:URL} "${3:title}")
+# FIXME let reference id automatic put into END OF DOCUMENT.
+snippet linkid
+	[${3:link name}][${2:id}]
+	[${2}]: ${1:URL} "${4:title}"
+snippet image
+	![${2:link name}] (${1:URL} "${3:title}")
+snippet imageid
+	![${3:link name}][${2:id}]
+	[${2}]: ${1:URL} "${4:title}"
