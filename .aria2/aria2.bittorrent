@@ -1,0 +1,12 @@
+bt-seed-unverified=false
+# Do not check the hash of the file(s) before seeding. (Default: true)
+max-overall-upload-limit=1MK
+# Set maximum overall upload speed to 1MB/sec (Default: 0)
+max-upload-limit=128K
+# Set maximum upload speed per torrent to 128K/sec (Default: 0)
+seed-ratio=5.0
+# Seed completed torrents until share ratio reaches 5.0. (Default: 1.0)
+seed-time=240
+# Seed completed torrents for 240 minutes.
+
+# vim:ft=conf
