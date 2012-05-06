@@ -1,0 +1,8 @@
+# Generator: vim
+# Writer: chris M. sprite
+# License: You can not use my text without my permit.
+
+put kk.theme under ~/.irssi/
+them command:
+/set theme kk
+/save

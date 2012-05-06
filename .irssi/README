@@ -1,0 +1,4 @@
+[ switch windows ]
+Alt+[0-9]
+Alt+[q-p]
+(so that you need to set gnome-terminal into stwitch tab into Ctrl+[0-9] )

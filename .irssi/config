@@ -1,0 +1,336 @@
+servers = (
+  {
+    address = "irc.oftc.net";
+    chatnet = "oftc";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "no";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "8001";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+
+chatnets = {
+  freenode = {
+    type = "IRC";
+    max_kicks = "1";
+    max_msgs = "3";
+    max_whois = "30";
+    autosendcmd = "/^msg nickserv identify stardiviner@324 ;wait 1000";
+  };
+  oftc = {
+    type = "IRC";
+    max_kicks = "1";
+    max_msgs = "3";
+    max_whois = "30";
+  };
+};
+
+channels = (
+  { name = "#maemo"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#maemo-devel"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#python"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#ubuntu"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#ubuntu-cn"; chatnet = "freenode"; autojoin = "yes"; },
+  { name = "##linux"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#lisp"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#qt"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#asp"; chatnet = "Undernet"; autojoin = "no"; },
+  { name = "#javascript"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#perl"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#xml"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#html5"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#html"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#gentoo-python"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#python"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#c-base"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#bash"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#linux-coders"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#friendly-coders"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#code-hell"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#mysql"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#crack-lang"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#gentoo"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#gentoo-haskell"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#gentoo-cn"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#arch"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#archlinux-cn"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#arch-cn"; chatnet = "oftc"; autojoin = "no"; },
+  { name = "#gaygeeks"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#aircrack-ng"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#vim"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#vim-cn"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#rxvt-unicode"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#awesome"; chatnet = "oftc"; autojoin = "no"; },
+  { name = "#awesome-cn"; chatnet = "oftc"; autojoin = "no"; },
+  { name = "#backtrack-linux"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#kernel newbies"; chatnet = "oftc"; autojoin = "no"; },
+  { name = "#silc"; chatnet = "silc"; autojoin = "no"; },
+  { name = "##security"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#wicd"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#pwmt"; chatnet = "oftc"; autojoin = "no"; },
+  { name = "#linux110"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#remote-expoit"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#linuxoutlaws"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#softlayer"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#zerospace"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#cisecurity"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#ubuntu-uk"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#irssi"; chatnet = "IRCnet"; autojoin = "no"; },
+  { name = "#weechat"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#mutt"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#rxvt-unicode"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#git"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#github"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#tor"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#strangeblog"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#queers"; chatnet = "EFnet"; autojoin = "no"; },
+  { name = "#maemo-gsoc"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#meego"; chatnet = "freenode"; autojoin = "no"; },
+  { name = "#konachan"; chatnet = "Rizon"; autojoin = "no"; },
+  { name = "#bakabt-support"; chatnet = "Rizon"; autojoin = "no"; },
+  { name = "#bakabt"; chatnet = "Rizon"; autojoin = "no"; }
+);
+
+aliases = { J = "join"; };
+
+statusbar = {
+  # formats:
+  # when using {templates}, the template is shown only if it's argument isn't
+  # empty unless no argument is given. for example {sb} is printed always,
+  # but {sb $T} is printed only if $T isn't empty.
+
+  items = {
+    # start/end text in statusbars
+    barstart = "{sbstart}";
+    barend = "{sbend}";
+
+    topicbarstart = "{topicsbstart}";
+    topicbarend = "{topicsbend}";
+
+    # treated "normally", you could change the time/user name to whatever
+    time = "{sb $Z}";
+    # user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
+    user = "{sb {sbnickmode $cumode}$N{sbaway $A}}";
+
+    # treated specially .. window is printed with non-empty windows,
+    # window_empty is printed with empty windows
+    window = "{sb $winref:$tag/$itemname{sbmode $M}}";
+    window_empty = "{sb $winref{sbservertag $tag}}";
+    prompt = "{prompt $[.15]itemname}";
+    prompt_empty = "{prompt $winname}";
+    topic = " $topic";
+    topic_empty = " Irssi v$J - http://www.irssi.org";
+
+    # all of these treated specially, they're only displayed when needed
+    lag = "{sb Lag: $0-}";
+    act = "{sb Act: $0-}";
+    more = "-- more --";
+  };
+
+  # there's two type of statusbars. root statusbars are either at the top
+  # of the screen or at the bottom of the screen. window statusbars are at
+  # the top/bottom of each split window in screen.
+  default = {
+    # the "default statusbar" to be displayed at the bottom of the window.
+    # contains all the normal items.
+    window = {
+      disabled = "no";
+
+      # window, root
+      type = "root";
+      # top, bottom
+      placement = "bottom";
+      # number
+      position = "1";
+      # active, inactive, always
+      visible = "always";
+
+      # list of items in statusbar in the display order
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        more = { priority = "-1"; };
+        act = { priority = "10"; alignment = "right"; };
+        # from adv_windowlist.pl
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # statusbar to use in inactive split windows
+    window_inact = {
+      type = "window";
+      placement = "bottom";
+      position = "1";
+      visible = "inactive";
+      items = {
+        barstart = { priority = "100"; };
+        window = { };
+        window_empty = { };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+
+    # we treat input line as yet another statusbar :) It's possible to
+    # add other items before or after the input line item.
+    prompt = {
+      type = "root";
+      placement = "bottom";
+      # we want to be at the bottom always
+      position = "150";
+      visible = "always";
+      items = {
+        user = { };
+        prompt = { priority = "-1"; };
+        prompt_empty = { priority = "-1"; };
+        # treated specially, this is the real input line.
+        input = { priority = "10"; };
+        time = { alignment = "right"; };
+      };
+    };
+
+    # topicbar
+    topic = {
+    type = "root";
+    placement = "top";
+    position = "10";
+    visible = "always";
+    items = {
+    topicbarstart = { priority = "100"; };
+    topic = { };
+    topic_empty = { };
+    topicbarend = { priority = "100"; alignment = "right"; };
+    };
+    };
+
+    # adv_windowlist.pl
+  };
+};
+
+
+settings = {
+  core = {
+    real_name = "stardiviner";
+    user_name = "stardiviner";
+    nick = "stardiviner";
+    quit_message = "Byebye now . ";
+  };
+  "fe-text" = {
+    actlist_sort = "refnum";
+    term_force_colors = "yes";
+    autostick_split_windows = "no";
+    actlist_names = "yes";
+  };
+  "fe-common/core" = {
+    use_status_window = "yes";
+    autocreate_windows = "yes";
+    autoclose_windows = "no";
+    autofocus_new_items = "yes";
+    reuse_unused_windows = "yes";
+    print_active_channel = "yes";
+    autocreate_split_windows = "yes";
+    windows_auto_renumber = "yes";
+    bell_beeps = "yes";
+    beep_msg_level = "MSGS NOTICES DCC DCCMSGS HILIGHT";
+    beep_when_window_active = "yes";
+    use_msgs_window = "no";
+    timestamps = "no";
+    show_nickmode = "yes";
+    completion_auto = "yes";
+    completion_keep_privates = "20";
+    completion_keep_publics = "50";
+    theme = "miromiro";
+    # theme = "fear2";
+    # theme = "theirssithing";
+    # theme = "darkpoint";
+    autolog_path = "~/.irssi/logs/$tag/$0.log";
+    autolog = "yes";
+    hilight_nick_matches = "yes";
+  };
+  "irc/core" = { alternate_nick = "stardiviner2"; };
+};
+
+logs = {
+  level = "ALL";
+  items = ( { type = "window"; name = "2"; } );
+  red = {
+    level = "ALL";
+    colors = "yes";
+    items = ( { type = "target"; name = "freenode"; } );
+  };
+};
+
+ignores = (
+  { level = "JOINS PARTS QUITS NICKS"; },
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "##ubuntu-cn" );
+  },
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "##ubuntu" );
+  },
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "##python" );
+  },
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "##linux" );
+  },
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "#maemo-devel" );
+  },
+  {
+    level = "CRAP MSGS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC DCCMSGS CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+    channels = ( "#maemo" );
+  }
+);
+
+
+hilights = (
+  {
+    text = "stardiviner";
+    color = "%r";
+    act_color = "%B";
+    nick = "yes";
+    word = "yes";
+    regexp = "no";
+  },
+  {
+    text = "maemo";
+    color = "%r";
+    nick = "no";
+    word = "yes";
+    regexp = "no";
+  }
+);
+
+
+
+# vim: ft=conf
+windows = {
+  1 = { immortal = "yes"; name = "(status)"; level = "ALL"; };
+  2 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#ubuntu-cn";
+        tag = "freenode";
+      }
+    );
+  };
+};
+mainwindows = { 2 = { first_line = "1"; lines = "57"; }; };
