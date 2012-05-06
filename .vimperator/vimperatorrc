@@ -1,0 +1,95 @@
+"3.3 (created: 2011/11/13 17:32:12)
+
+source! /home/chris/.vimperatorrc.local
+
+" options {{{
+    " [ for Vimperator ] {{{
+    " set runtimepath=
+    " ISSUE set tabnumbers=true
+    " for useing customize stylesheet.
+    set usermode=true
+    set gui=noaddons,bookmarks,nomenu,navigation,tabs
+    set showstatuslinks=2
+    set status=input,tabcount,position
+    set verbose=9
+    let mapleader='\'
+    " }}}
+
+    " [ for about:config ] {{{
+    set! ui.key.generalAccesskey=0
+    "Next Page and Previous Page
+    set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+    set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+    " }}}
+" }}}
+
+" Set the filetype to mail when editing email at gmail:
+"autocmd LocationChange .* :set editor=gvim -f
+"autocmd LocationChange mail\\.google\\.com :set editor=gvim -f -c 'set ft=mail'
+
+" maps {{{
+map <leader>s :runtime _vimperatorrc<CR>
+nnoremap <Leader>a :addons<cr>
+nnoremap <Leader>d :downloads<cr>
+nnoremap <Leader>eu :set encoding=UTF-8<cr>
+nnoremap <Leader>eg :set encoding=GB2312<cr>
+
+command dict -nargs=* tabopen http://dict.cn/<args>
+map w :dict
+" }}}
+
+" Map for plugins or scripts
+map <silent> <F2> :js toggle_bar()<CR>
+map <silent> <F3> :js toggle_autoproxy()<CR>
+map <silent> <F1> :js openProfileDirectory()<CR>
+
+" Scripts {{{
+js << EOF
+// Toggle menubar and toolbar
+liberator.globalVariables['tt_gopt'] = 'T';
+toggle_bar = function() {
+    toggle_status = liberator.globalVariables['tt_gopt'];
+    liberator.globalVariables['tt_gopt'] = (toggle_status==''?'T':'');
+    liberator.execute('set guioptions='+toggle_status);
+}
+
+// Toggle autoproxy
+liberator.globalVariables['tt_autoproxy'] = false;
+toggle_autoproxy = function() {
+    toggle_status = liberator.globalVariables['tt_autoproxy'];
+    liberator.globalVariables['tt_autoproxy'] = toggle_status = !toggle_status;
+
+    if (toggle_status) {
+        liberator.execute('set! extensions.autoproxy.proxyMode='+'auto');
+        liberator.execute('echo "Autoproxy Enabled"');
+    } else {
+        liberator.execute('set! extensions.autoproxy.proxyMode='+'disabled');
+        liberator.execute('echo "Autoproxy Disabled"');
+    }
+}
+// Enable by default
+
+function openProfileDirectory() {
+    // Get the profile directory.
+    var file = Components.classes["@mozilla.org/file/directory_service;1"].  
+        getService(Components.interfaces.nsIProperties).  
+        get("ProfD", Components.interfaces.nsIFile);
+    let profileDir = file.path;
+
+    // Show the profile directory.
+    let nsLocalFile = Components.Constructor("@mozilla.org/file/local;1","nsILocalFile", "initWithPath");
+    new nsLocalFile(profileDir).reveal();
+}
+EOF
+" }}}
+
+" Theme {{{
+    "highlight! StatusLine color: black; background:transparent; font-weight:bold;
+    "highlight! CmdLine color:#d8d8d8; background:#2b2b2b;
+    "highlight! ModeMsg  color:darkgreen; background: white;font-weight:bold;
+    "highlight! ErrorMsg font-weight:normal; color:red; background:white;
+    "hi! Hint font-family: monospace; font-size: 9px; text-transform: uppercase; color: white; background-color: #1E90FF; padding:1px;
+    "hi! HintElem clear
+" }}}
+
+" vim: set foldmarker={{{,}}} ft=vimperator:
