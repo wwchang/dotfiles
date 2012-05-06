@@ -1,0 +1,12 @@
+# Usage: mbox-hook [!]pattern mailbox
+# 
+# This command is used to move read messages from a specified mailbox to a different mailbox
+# automatically when you quit or change folders. Pattern is a regular expression specifying the
+# mailbox to treat as a ``spool"" mailbox and mailbox specifies where mail should be saved when
+# read.
+# 
+# Unlike some of the other hook commands, only the first matching pattern is used (it is not
+# possible to save read mail in more than a single mailbox).
+
+
+# vim: ft=muttrc

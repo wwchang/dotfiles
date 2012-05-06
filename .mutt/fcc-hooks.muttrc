@@ -1,0 +1,28 @@
+# -*- muttrc -*-
+#
+# Fcc hooks, everything else goes to =outbox
+# Usage: fcc-hook [!]pattern mailbox
+# 
+# This command is used to save outgoing mail in a mailbox other than $record. Mutt searches the initial list of message recipients for the first matching regexp and uses mailbox as the default Fcc: mailbox. If no match is found the message will be saved to $record mailbox.
+# 
+# See Message Matching in Hooks for information on the exact format of pattern.
+# 
+# Example: fcc-hook aol.com$ +spammers
+# 
+# The above will save a copy of all messages going to the aol.com domain to the `+spammers' mailbox by default. Also see the fcc-save-hook command.
+#  fcc-hook ftp@demon\.net                                          =batchftp
+#  fcc-hook garble-.*@.*\.sourceforge\.net                          /dev/null
+
+# fcc-hook "fuhemeng.*@(qq|yahoo|gmail)\\.(com|cn)"       =Mama
+# fcc-hook "(numbchild|blackredwhore|348284894).*@(gmail|qq|hotmail)\\.(com|cn)"      =myself
+# fcc-hook "(184145190|243113196|shanyingqing).*@(qq|yeah)\\.(com|net)"  =BaoBao 
+# fcc-hook 397127551@qq\\.com =jiejie 
+# fcc-hook 1051899676@qq\\.com =sister
+
+# fcc-save-hook "fuhemeng.*@(qq|yahoo|gmail)\\.(com|cn)"       =Mama
+# fcc-save-hook "(numbchild|blackredwhore|348284894).*@(gmail|qq|hotmail)\\.(com|cn)"      =myself
+# fcc-save-hook "(184145190|243113196|shanyingqing).*@(qq|yeah)\\.(com|net)"  =BaoBao 
+# fcc-save-hook 397127551@qq\\.com =jiejie 
+# fcc-save-hook 1051899676@qq\\.com =sister
+
+# vim:ft=muttrc

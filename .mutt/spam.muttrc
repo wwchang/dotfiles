@@ -1,0 +1,17 @@
+# spam pattern format
+# nospam pattern
+# These  commands  define  spam-detection patterns from external spam filters, so that mutt can sort, limit, and search on ``spam
+# tags'' or ``spam attributes'', or display them in the index. See the Mutt manual for details.
+
+
+# spam pattern format
+#spam "python.*" "%H +[%2N] %-15L %s ->(%4c)"
+#~H EXPR     messages with spam tags matching EXPR
+#%H     spam attribute(s) of this message
+
+# allow mutt to sort by spamminess
+#spam "X-W3C-Hub-Spam-Status: (Yes|No), score=([0-9\.-]+)"	"%2"
+#spam "X-Spam-Status: (Yes|No), score=([0-9\.-]+)"		"%2"
+# unset spam_separator
+
+# vim:ft=muttrc

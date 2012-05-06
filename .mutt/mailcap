@@ -1,0 +1,41 @@
+# URL: http://www.mutt.org/doc/manual/manual-5.html
+
+# [ text ]
+text/plain; less %s
+# muttHtml command:
+# enconv|elinks -force-html -dump -dump-color-mode 1 -eval "set document.css.stylesheet='$HOME/etc/mail.css'" /dev/stdin
+# text/html; muttHtml; copiousoutput
+
+text/html; elinks %s; nametemplate=%s.html; copiousoutput
+# text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+# text/html; w3m -I %{charset} -T text/html; copiousoutput;
+# text/html; /usr/bin/elinks -force-html %s
+# text/html; w3m -v -F -T text/html %s; nametemplate=%s.html; needsterminal
+# text/html; mozilla %s; test=test -n "$DISPLAY"; nametemplate=%s.html
+text/diff; vimdiff %s
+
+# [ application ]
+application/x-sh; vim %s
+application/pdf; zathura %s
+# application/pdf; pdftotext -enc UTF-8 %s /dev/stdout; copiousoutput
+# application/pdf; evince %s
+application/chm; chmsee %s
+# Microsoft Word Doc
+application/msword; wvHtml --charset=gb2312 %s - | lynx --dump -stdin; nametemplate=%s.html; copiousoutput
+# application/msword; wvHtml --charset=gb2312 %s - | elinks -dump 1; nametemplate=%s.html; copiousoutput
+
+# [ image ]
+# image/*; feh %s >/dev/null
+image/*; sxiv %s >/dev/null
+
+# [ video ]
+video/*; mplayer %s >/dev/null
+
+# [ archive ]
+application/x-gunzip;   gzcat; copiousoutput
+application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
+application/postscript; ps2ascii %s; copiousoutput
+# like ranger to get archive's file list
+
+
+# vim: ft=mailcap

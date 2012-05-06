@@ -1,0 +1,70 @@
+# -*- muttrc -*-
+
+# http://wiki.mutt.org/  -- search inbox at the bottom of page
+
+
+source ~/.mutt/muttrc-common.muttrc          #  load common config
+source ~/.mutt/auto_views.muttrc             #  auto_view for attachment
+source ~/.mutt/aliases.muttrc
+source ~/.mutt/subscriptions.muttrc          #  define the list of subscribed mailing lists
+source ~/.mutt/key-bindings.muttrc               #  customize key bindings
+source ~/.mutt/headers.muttrc                #  define headers display
+source ~/.mutt/macros.muttrc                 #  define macros
+source ~/.mutt/scores.muttrc
+source ~/.mutt/mailboxes.muttrc              #  define the list of folders to receive mail
+source ~/.mutt/non-standard.muttrc           #  support for mutt patch
+source ~/.mutt/spam.muttrc
+ 
+# Hooks {{{
+source ~/.mutt/account-hooks.muttrc          #  define account-hooks
+source ~/.mutt/account_info.muttrc
+# source ~/.mutt/fcc-hooks.muttrc
+source ~/.mutt/fcc-save-hooks.muttrc         # 
+source ~/.mutt/send-hooks.muttrc             #  define send-hooks
+source ~/.mutt/folder-hooks.muttrc           #  define folder-hooks
+# source ~/.mutt/save-hooks.muttrc             #  define save-hooks
+source ~/.mutt/message-hooks.muttrc          #  define message-hooks
+# }}}
+
+source ~/.mutt/format.muttrc                #  define format
+
+# use shell to judge 
+# source ~/.mutt/colors/white.theme       #  define colours
+source ~/.mutt/colors/black256_transparent.theme       #  define colours
+# source ~/.mutt/colors/black256.theme       #  define colours
+# source ~/.mutt/colors/solarized-dark-256.theme # solarized theme
+# source ~/.mutt/colors/solarized-light-256.theme # solarized theme
+# source ~/.mutt/colors/chris.theme     #  define colours
+# source ~/.mutt/colors/white_bg.theme  #  define colours
+
+source ~/.mutt/gpg.muttrc
+# source ~/.mutt/crypt
+
+# source ~/.mutt/filter.muttrc                # set a sign index format.
+
+# fetchmail {{{
+# equivalent to !fetchmail
+# macro generic G "<shell-escape>'fetchmail'<enter>" "Run fetchmail"
+# }}}
+
+# sidebar patch
+source ~/.mutt/sidebar.muttrc
+
+# ========================================================
+# mutt load in order , so if you want to enable IMAP Gmail. 
+# You "must" to put source Gmail at hehinde
+# ========================================================
+# dynmatic load config . RTFM
+# Maildir 
+# POP3
+# SMTP 
+# IMAP 
+
+# Gmail {{{
+# source ~/.mutt/IMAP
+# source ~/.mutt/MultiGmail
+# }}}
+
+# source ~/.mutt/SMTP
+
+# vim: ft=muttrc

@@ -1,0 +1,94 @@
+# shamelessly copied from
+# http://www.lunar-linux.org/index.php?option=com_content&task=view&id=44
+
+# set up the sidebar, default not visible
+set sidebar_width=25
+set sidebar_visible=yes
+set sidebar_delim='│' 
+# set sidebar_delim='|'
+
+# which mailboxes to list in the sidebar
+# mailboxes =inbox =ml
+
+# color of folders with new mail
+# color sidebar_new color082 color233
+color sidebar_new color028 default
+
+# ctrl-n, ctrl-p to select next, prev folder
+# ctrl-o to open selected folder
+bind index \Cp sidebar-prev
+bind index \Cn sidebar-next
+bind index \Co sidebar-open
+bind pager \Cp sidebar-prev
+bind pager \Cn sidebar-next
+bind pager \Co sidebar-open
+
+# Alt-*
+#bind index \ek sidebar-prev
+#bind index \ej sidebar-next
+#bind index \eo sidebar-open
+#bind pager \ek sidebar-prev
+#bind pager \ej sidebar-next
+#bind pager \eo sidebar-open
+
+# I don't need these. just for documentation purposes. See below.
+# sidebar-scroll-up
+# sidebar-scroll-down
+
+# b toggles sidebar visibility
+macro index <F11> '<enter-command>toggle sidebar_visible<enter>'
+macro pager <F11> '<enter-command>toggle sidebar_visible<enter>'
+
+# Remap bounce-message function to "B"
+# bind index B bounce-message
+
+#
+# Mario Holbe suggests:
+# macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+# macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+# 
+
+set sidebar_shortpath=yes
+set sidebar_sort=no
+
+# Documentation
+# =============
+#
+# sidebar_width (number)
+# Width of the sidebar.
+# 
+# sidebar_visible (boolean)
+# Whether or not the sidebar is visible.
+# 
+# sidebar_delim (string)
+# Specifies the delimiter between the sidebar and other screens
+#
+# sidebar_shortpath (boolean)
+# When using IMAP, a '.' is often used as a separator. This option
+# allows to shorten the folder name to the part after the last dot.
+# 
+# sidebar_sort (boolean)
+# Sorts the folders in the sidebar alphabetically.
+#
+# color sidebar_new [fg] [bg]
+# The foreground (fg) and background (bg) color of folders that contain new
+# mail.
+# 
+# sidebar-prev
+# Mutt's name for the operation that selects the previous folder.
+# 
+# sidebar-next
+# Mutt's name for the operation that selects the next folder.
+# 
+# sidebar-open
+# Mutt's name for the operation that opens the currently selected folder.
+# 
+# sidebar-scroll-up
+# Only useful if you have more folders than lines in your terminal: scrolls one
+# page up through the list of folders.
+# 
+# sidebar-scroll-down
+# Only useful if you have more folders than lines in your terminal: scrolls one
+# page down through the list of folders. 
+#
+# vim:ft=muttrc

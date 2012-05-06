@@ -1,0 +1,155 @@
+# -*- muttrc -*-
+#
+# List of mailing lists I'm subscribed to.
+#
+
+
+#  subscribe mutt-user
+#  subscribe stormcock
+#  subscribe rxvt-announce
+#  subscribe lbc
+#  subscribe freshmeat-news
+#  subscribe redhat-announce
+#  subscribe redhat-watch
+#  subscribe sackheads
+#  subscribe lincs
+#  subscribe peterboro
+#  subscribe garble-users
+#  subscribe garble-devel
+#  subscribe clocc-list
+#  subscribe cclan-list
+#  subscribe debian-news
+#  subscribe debian-announce
+#  subscribe spamprobe-users
+#  subscribe ecls-list
+#  subscribe uk-lispers
+#  subscribe movitz-devel
+#  subscribe sbcl-help
+#  subscribe lispweb
+
+# group
+# ================================
+# this will lead color never work
+# ================================
+# subscribe -group Linux linux ubuntu gentoo archlinux Arch
+# subscribe -group program python perl java javascript lua c++
+# subscribe -group security security
+
+
+# =========================================================
+# -------  Python  ------------
+subscribe python Python <python-list@python.org>
+subscribe django Django <django-users@googlegroups.com>
+subscribe python.lang python.lang.G <comp.lang.python@googlegroups.com>
+subscribe python.linux python.linux.G <python_linux@googlegroups.com>
+subscribe python.tw python.tw <pythontw@googlegroups.com>
+subscribe webpy web.py <webpy@googlegroups.com>
+# Ruby
+subscribe rubyonrails Ruby On Rails <rubyonrails-talk@googlegroups.com>
+# Java
+subscribe java.lang java.lang.G <comp.lang.java.programmer@googlegroups.com>
+# C
+subscribe c.lang c.lang.G <comp.lang.c@googlegroups.com>
+# Perl
+subscribe perl.beginners.G perl.beginners.G <perl.beginners@googlegroups.com>
+subscribe perl.beginner perl.beginner <beginners@perl.org>
+# HTML5
+subscribe html5-zh HTML5-W3-zh <public-html-ig-zh@w3.org>
+subscribe whatwg whatwg <whatwg@whatwg.org>
+subscribe whatwg.help whatwg.help <help@whatwg.org>
+# Go
+subscribe golang-nuts golang-nuts <golang-nuts@googlegroups.com>
+subscribe golang-china golang-china <golang-china@googlegroups.com>
+
+
+# Drupal
+subscribe drupal-support Drupal-support <support-request@drupal.org>
+subscribe drupal-security Drupal-security <security-news@drupal.org>
+# Web
+subscribe jplayer jPlayer <jplayer@googlegroups.com>
+
+# Maemo
+subscribe maemo maemo-developers <maemo-developers@maemo.org>
+# Linux
+subscribe linuxuers LUG.G <linuxusersgroup@googlegroups.com>
+subscribe os.linux alt.os.linux.G <alt.os.linux@googlegroups.com>
+subscribe comp.os.linux.setup comp.os.linux.setup.G <comp.os.linux.setup@googlegroups.com>
+# Ubuntu
+subscribe ubuntu-users ubuntu-users <ubuntu-users@lists.ubuntu.com>
+subscribe ubuntu-mobile ubuntu-mobile <ubuntu-mobile@lists.ubuntu.com>
+subscribe ubuntu-security ubuntu-security <ubuntu-security-announce@lists.ubuntu.com>
+subscribe ubuntu-devel ubuntu-devel <ubuntu-devel@lists.ubuntu.com>
+subscribe ubutnu-server ubuntu-server <ubuntu-server@lists.ubuntu.com>
+# Arch
+subscribe arch-general arch-general <arch-general@archlinux.org>
+subscribe arch-announce arch-announce <arch-announce@archlinux.org>
+subscribe arch-projects arch-projects <arch-projects@archlinux.org>
+subscribe arch-events arch-events <arch-events@archlinux.org>
+subscribe arch-dev-public arch-dev-public <arch-dev-public@archlinux.org>
+subscribe arch-commits arch-commits <arch-commits@archlinux.org>
+subscribe pacman arch-pacman-dev <pacman-dev@archlinux.org>
+subscribe aur-general arch-aur-general <aur-general@archlinux.org>
+subscribe arch-releng arch-releng <arch-releng@archlinux.org>
+# Gentoo
+subscribe linux.gentoo.user linux.gentoo.user.G <linux.gentoo.user@googlegroups.com>
+
+# Hack
+subscribe alt.computer.security alt.computer.security.G <alt.computer.security@googlegroups.com>
+subscribe comp.security.unix comp.security.unix.G <comp.security.unix@googlegroups.com>
+subscribe comp.os.linux.security comp.os.linux.security.G <comp.os.linux.security@googlegroups.com>
+subscribe alt.security alt.security.G <alt.security@googlegroups.com>
+subscribe microsoft.public.security microsoft.public.security.G <microsoft.public.security@googlegroups.com>
+
+# ------- project ----------
+
+
+
+# ------- softwares -------------
+# Vim
+# Announcements only: new releases and important patches
+subscribe vim-an vim-announce <vim-announce@vim.org	>
+# Help on vim and vim usage
+subscribe vim vim-help <vim@vim.org>
+# Discussion on current vim development
+subscribe vim-dev vim-dev <vim-dev@vim.org>
+# Vim use and development discussion specific to mac
+subscribe vim-mac vim-mac <vim-mac@vim.org>
+# Vim use and development discussion specific to multibyte support
+subscribe vim-multibyte vim-multibyte <vim-multibyte@vim.org>
+# mutt
+subscribe mutt mutt-users <mutt-users@mutt.org>
+# mairix
+subscribe mairix mairix <mairix-users@lists.sourceforge.net>
+# weechat
+subscribe weechat weechat <weechat-support@nongnu.org>
+# procmail
+subscribe procmail procmail <procmail@informatik.RWTH-Aachen.de>
+# mldonkey
+subscribe mldonkey MLdonkey <mldonkey-users@nongnu.org>
+# ranger
+subscribe ranger ranger-users <ranger-users@nongnu.org>
+# git
+subscribe git git <git@vger.kernel.org>
+# getmail
+subscribe getmail getmail <getmail@lists.pyropus.ca>
+# pwmt.org ( jumanji, zathura )
+subscribe jumanji jumanji <jumanji@lists.pwmt.org>
+subscribe zathura zathura <zathura@lists.pwmt.org>
+# w3m text-based browser
+subscribe w3m w3m-dev-en <w3m-dev-en@sic.med.tohoku.ac.jp>
+# elinks text-based browser
+subscribe elinks elinks-users <elinks-users@linuxfromscratch.org>
+# urxvt rxvt-unicode
+subscribe urxvt rxvt-unicode <rxvt-unicode@lists.schmorp.de>
+# awesome
+subscribe awesome Awesome <awesome@naquadah.org>
+# FVWM
+subscribe fvwm FVWM <fvwm@fvwm.org>
+# tmux
+subscribe tmux tmux <tmux-users@lists.sourceforge.net>
+# screen
+subscribe screen screen <screen-users@gnu.org>
+# conky
+subscribe conky Conky <conky-users@lists.sourceforge.net>
+
+# vim:ft=muttrc

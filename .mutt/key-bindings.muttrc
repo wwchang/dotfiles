@@ -1,0 +1,80 @@
+# -*- muttrc -*-
+#
+# Keyboard bindings for mutt.
+#
+# set as Vim like key bindings
+
+# this is from davep config
+# Generic key bindings.
+
+# In addition, key may consist of:
+#  \t              tab
+# <tab>           tab
+# \r              carriage return
+# \n              newline
+# \e              escape
+# <esc>           escape
+# <up>            up arrow
+# <down>          down arrow
+# <left>          left arrow
+# <right>         right arrow
+# <pageup>        Page Up
+# <pagedown>      Page Down
+# <backspace>     Backspace
+# <delete>        Delete
+# <insert>        Insert
+# <enter>         Enter
+# <return>        Return
+# <home>          Home
+# <end>           End
+# <space>         Space bar
+# <f1>            function key 1
+# <f10>           function key 10
+
+
+# OLD
+# emacs-like bindings
+# bind editor    "\e<delete>"    kill-word
+# bind editor    "\e<backspace>" kill-word
+
+# map delete-char to a sane value
+bind editor <delete>  delete-char
+bind editor <space> noop
+
+# move marked delete mails into Trash when you press "d"
+# you only need to save save-message function into your Trash. like $HOME/Mails/Trash , mail will auto be marked with "D" , in order let "d"
+# to save mails to Trash, you can bind a macro for "d".
+# if you want to delete mails in Trash, this is a loop. so you need to recover delete-message function of "d" in Trash, and use "d" in other mailboxes.
+# folder-hook . 'macro index d "$HOME/Mails/trash\r"'
+# folder-hook $HOME/Mails/trash 'bind index d delete-message'
+
+# macro index d "<save-message>=.Trash\n"
+# macro pager d "<save-message>=.Trash\n"
+
+# vim like bindings
+# bind    index   *       flag-message
+bind    pager   q       exit
+bind    index   gg      first-entry
+bind    index   G       last-entry
+bind    index   \cf     next-page
+bind    index   \cb     previous-page
+# comment this index R because index R to recall postponed mail draft
+bind    pager   R       group-reply
+bind    pager   j       next-line
+bind    pager   k       previous-line
+bind    pager   <Up>    previous-line
+bind    pager   <Down>  next-line
+bind    pager   gg      top
+bind    pager   G       bottom
+bind    pager   /       search
+bind    pager   h       previous-entry
+bind    pager   l       next-entry
+bind    index,pager   <tab>   next-unread
+bind    index,pager   <esc><tab> previous-unread
+# bind    index,pager <tab> next-new-then-unread
+# bind    index,pager <esc><tab> previous-new-then-unread
+# bind    pager   <space>     next-page
+# bind    pager   <esc><space>    previous-page
+bind    index,pager   \cw       display-toggle-weed
+
+# vim:ft=muttrc

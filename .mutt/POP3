@@ -1,0 +1,44 @@
+
+# if you do not use fetchmail, and compile mutt with POP option, you can :
+# add this in muttrc to get mail directly with POP
+# set pop_user = "numbchild"
+# set pop_pass = "chrisM.sprite324"
+# set pop_host = "pops://pop.gmail.com:995"
+
+# how to deal with multi POP3 mailboxes
+# you can set some macros 
+#macro index ,shredder ":set pop_host = \
+#	\"pop://shredder:shredder的密码@smth.org\"\r\
+#	<fetch-mail>"
+#
+#macro index ,sk8er ":set pop_host=\
+#	\"pop://sk8er:sk8er的密码@smth.org\"\r\
+#	<fetch-mail>"
+#
+#macro index ,ts ":set pop_host=\
+#	\"pop://wang-y01:wang-y01的密码@mails.tsinghua.edu.cn\"\r\
+#	<fetch-mail>"
+#
+#macro index ,g ",shredder,sk8er,ts"
+# so that you can press ",g" to get all POP mails, and press ",ts" to get 
+# ts 's POP mails.
+
+# ------------------------  POP  --------------------------------
+# set pop_authenticators = ""
+# set pop_auth_try_all   = yes
+# set pop_checkinterval  = 60
+# set pop_delete         = ask-no
+# set pop_host           = [pop[s]://][username[:password]@]popserver[:port]
+# set pop_reconnect      = ask-yes
+# set pop_last           = no
+# set pop_user           = ""
+# set pop_pass           = "PASSWORD"
+
+# set pop_user           = "numbchild@gmail.com"
+# set pop_delete         = ask-no
+# set pop_pass           = "chrisM.sprite324"
+# set pop_host           = "pops://pop.gmail.com:995"
+# set pop_checkinterval  = 60
+
+
+# vim: ft=muttrc

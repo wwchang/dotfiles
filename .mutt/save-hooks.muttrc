@@ -1,0 +1,45 @@
+# -*- muttrc -*-
+#
+# Configure where things get saved to.
+# Usage: save-hook [!]pattern filename
+# 
+# This command is used to override the default filename used when saving messages. filename will be used as the default filename if the message is
+# From: an address matching regexp or if you are the author and the message is addressed to: something matching regexp.
+# 
+# See Message Matching in Hooks for information on the exact format of pattern.
+# 
+# Examples:
+# 
+#  save-hook me@(turing\\.)?cs\\.hmc\\.edu$ +elkins
+# save-hook aol\\.com$ +spam
+# Also see the fcc-save-hook command.
+
+
+
+#
+# == hooks ===
+# set default_hook = "~f %s !~P | (~P ~C %s)"
+# save-hook me@(turing\\.)?cs\\.hmc\\.edu$ +elkins
+
+save-hook "~f 'fuhemeng.*@(qq|yahoo|gmail)\\.(com|cn)'"       =Important
+save-hook "~f '(numbchild|blackredwhore|348284894).*@(gmail|qq|hotmail)\\.(com|cn)'"      =Important
+save-hook "~f '(184145190|243113196|shanyingqing.*)@(qq|yeah)\\.(com|net)'"  =Important 
+save-hook "~f '397127551@qq\.com'" =Important 
+save-hook "~f '1051899676@qq\.com'" =Important
+save-hook "~f 'zmnlb1106@gmail\.com'" =Important
+
+# mailing list ( ~C = to: cc: ) 
+# -------------------------------------------------
+#save-hook "~t '.*python-list@python\.org'" =Python
+#save-hook "~t '.*comp\.lang\.python@googlegroups\.com'" =Python
+# save-hook ubuntu.*          =ubuntu
+# save-hook arch.*             =Arch
+# save-hook maemo.*            =Maemo
+# save-hook awesome.*          =Awesome
+# save-hook "~C awesome@naquadah.org" =Awesome 
+# save-hook python.*           =Python
+# save-hook vim.*              =Vim
+# save-hook fvwm.*             =FVWM
+# save-hook .*                 =mbox
+
+# vim:ft=muttrc

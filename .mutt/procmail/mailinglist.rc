@@ -1,0 +1,126 @@
+# system {{{2
+    :0
+    * ^List-Id: .*\.archlinux\.(com|org)
+    Arch/
+    :0
+    * ^List-Id: .*\.maemo\.org
+    Maemo/
+    :0
+    * ^List-Id: .*linuxusersgroup\.googlegroups\.com
+    Linux/
+# }}}
+
+# security  {{{2
+    :0
+    * ^List-ID: .*comp\.os\.linux\.security\.googlegroups\.com
+    security/
+# }}}
+
+# program {{{2
+    :0
+    * ^List-Id: .*\.python\.org
+    # FIXME
+    #* ^Message-ID:
+    {
+        #:0
+        #* ^In-Reply-To:
+        #* ^References:
+        #INBOX/
+        :0
+        Python/
+    }
+    :0
+    * ^List-Id: .*python.*\.googlegroups\.com
+    Python/
+    :0
+    * ^List-Id: .*django-users\.googlegroups\.com
+    Django/
+    :0
+    * ^To: .*rubyonrails-talk@googlegroups\.com
+    Rails/
+    #:0
+    #Ruby/
+
+    :0
+    * ^List-Id: .*perl.*\.googlegroups\.com
+    Perl/
+    :0
+    * ^List-Id: .*\.perl\.org
+    Perl/
+# }}}
+
+# Web {{{2
+    :0
+    * List-Id: .*jplayer\.googlegroups\.com
+    Web/jplayer/
+    :0
+    * List-Id: .*help-whatwg\.org
+    Web/whatwg/
+    :0
+    * To: .*whatwg@lists.whatwg\.org
+    Web/whatwg/
+# }}}
+
+# softwares {{{2
+    :0
+    * ^List-Id: .*\.vim\.org
+    Vim/
+    :0
+    * ^List-Id: .*vim_use\.googlegroups\.com
+    Vim/
+    #:0
+    #* ^List-Id: .*vim_use\.googlegroups\.com
+    #{
+        #:0 c
+        #Vim/
+
+        #:0:
+        #* ^In-Reply-To: .*numbchild@gmail.com
+        #* ^References:  .*numbchild@gmail.com
+        #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox."
+    #}
+    :0
+    * ^List-Id: .*awesome\.naquadah\.org
+    Awesome/
+    :0
+    * ^List-Id: .*fvwm\.fvwm\.org
+    FVWM/
+# }}}
+
+# apps {{{2
+    :0
+    * ^List-Post: .*@mutt\.org
+    apps/Mutt/
+    :0
+    * List-Id: .*conky-users\.lists\.sourceforge\.net
+    apps/Conky/
+    :0
+    * List-Id: .*weechat-support\.nongnu\.org
+    apps/weechat/
+    :0
+    * List-Id: .*ranger-users\.nongnu\.org
+    apps/ranger/
+    :0
+    * List-Id: .*mldonkey-users@nongnu\.org
+    apps/MLDonkey/
+    :0
+    * To: .*mldonkey-users@nongnu\.org
+    apps/MLDonkey/
+    :0
+    * ^List-ID: .*prey-security\.googlegroups\.com
+    apps/prey/
+    :0
+    * ^List-Id: .*screen-users\.gnu\.org
+    apps/screen/
+    :0
+    * ^List-Id: .*tmux-users\.lists\.sourceforge\.net
+    apps/tmux/
+    :0
+    * ^From: .*rxvt-unicode.*@lists.schmorp.de
+    apps/urxvt/
+    :0
+    * ^From: .*elinks-users.*@linuxfromscratch\.org
+    apps/elinks/
+# }}}
+
+# vim:foldmethod=marker:ft=procmail

@@ -1,0 +1,225 @@
+# -*- muttrc -*-
+#
+# macros for mutt.
+
+# \e = Esc , \c = Ctrl
+
+# Macros for use in the index.
+# macro index "\Cx\Cb" "<change-folder>?"                                   # Folder list.
+# macro index "\Cx\Cs" "<pipe-message>cat > ~/"                             # Save message
+# macro index "\'"     "<clear-flag>r"                                      # Mark as un-replied
+# macro index "y"      "<sync-mailbox><change-folder>?<toggle-mailboxes>"   # "-y" screen
+# macro index "\ea"    "<change-folder>=archives/<tab><tab>"                # List archives
+# macro index "\eb"    "<pipe-message>lbdb-fetchaddr<enter>"                # Store address details in lbdb.
+# macro index "\eh"    "<pipe-message>mailhops<enter>"                      # View the path of the mail.
+# macro index "\ef"    "<pipe-message>view-x-face<enter>"                   # View the X-Face (if there is one).
+# macro index "\ev"    "<pipe-message>less<enter>"                          # View the message in less.
+# macro index "\Cs\Co" "<limit>~h \"X-SpamProbe: GOOD\"<enter><last-entry>" # View good emails.
+# macro index "\Cs\Cs" "<limit>~h \"X-SpamProbe: SPAM\"<enter><last-entry>" # View bad emails.
+#
+# # Macros for use in the pager.
+# macro pager "w"      "<enter-command>set invsmart_wrap invmarkers<enter>" # Toggle wrap stuff
+# macro pager "y"      "<sync-mailbox><change-folder>?<toggle-mailboxes>"   # "-y" screen
+# macro pager "\e1"    "<enter-command>set pager_index_lines=1<enter>"      # Change PIL size
+# macro pager "\e2"    "<enter-command>set pager_index_lines=2<enter>"      # Change PIL size
+# macro pager "\e3"    "<enter-command>set pager_index_lines=3<enter>"      # Change PIL size
+# macro pager "\e4"    "<enter-command>set pager_index_lines=4<enter>"      # Change PIL size
+# macro pager "\e5"    "<enter-command>set pager_index_lines=5<enter>"      # Change PIL size
+# macro pager "\e6"    "<enter-command>set pager_index_lines=6<enter>"      # Change PIL size
+# macro pager "\e7"    "<enter-command>set pager_index_lines=7<enter>"      # Change PIL size
+# macro pager "\e8"    "<enter-command>set pager_index_lines=8<enter>"      # Change PIL size
+# macro pager "\e9"    "<enter-command>set pager_index_lines=9<enter>"      # Change PIL size
+# macro pager "\e0"    "<enter-command>set pager_index_lines=0<enter>"      # Change PIL size
+# macro pager "\Cx\Cb" "<change-folder>?"                                   # Folder list.
+# macro pager "\Cx\Cs" "<pipe-message>cat > ~/"                             # Save message
+# macro pager "\eb"    "<pipe-message>lbdb-fetchaddr<enter>"                # Store address details in lbdb.
+# macro pager "\eh"    "<pipe-message>mailhops<enter>"                      # View the path of the mail.
+# macro pager "\ef"    "<pipe-message>view-x-face<enter>"                   # View the X-Face (if there is one).
+# macro pager "\ev"    "<pipe-message>less<enter>"                          # View the message in less.
+# macro pager "\el"    "<enter-command>set invpipe_decode<enter>\
+# <pipe-message>linkify|w3m -T text/html<enter><enter-command>\
+# set invpipe_decode<enter>"                                                # View the message in w3m.
+# macro pager "\Cs\Cs" "<pipe-message>spamprobe -T score<enter>"            # What's the score for this message?
+# macro pager "\Cs\Cj" "<pipe-message>spamprobe spam<enter>"                # This message is junk.
+# macro pager "\Cs\Cg" "<pipe-message>spamprobe good<enter>"                # This message is good.
+#
+# # Provide some "on-line" help.
+# macro generic "\e?" "<shell-escape>less /usr/local/doc/mutt/manual.txt<enter>"
+# macro index   "\e?" "<shell-escape>less /usr/local/doc/mutt/manual.txt<enter>"
+# macro pager   "\e?" "<shell-escape>less /usr/local/doc/mutt/manual.txt<enter>"
+
+# Show documentation when pressing F2
+#macro generic,pager <F2> "<shell-escape> zcat /usr/share/doc/mutt/manual.txt.gz | sensible-pager<enter>" "show Mutt documentation"
+
+folder-hook .      'macro index,pager d "<save-message>=Trash<enter>"'
+folder-hook =Trash 'macro index,pager d <delete-message>'
+
+# Add macros to make the folder browser usable by always using the mailboxes setup above:
+
+# you can switch to locale computer user mailbox
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different mailbox"
+# macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
+# show the incoming mailboxes list (just like "mutt -y") and back when pressing "y"
+bind browser i exit
+# To additionally get straight to the folder browser when copying, moving and attaching mail, add the following macros:
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
+
+# -------------------- alias --------------------
+# macro generic,index,pager a "<creat-alias>" "creat an alias from a message sender"
+# -------------------- abook --------------------
+#address book related
+#set query_command = "lbdbq '%s'"     #;$HOME/bin/mutt_ldap_query.py '%s'"
+# If <complete-query> is called instead, it will use as the search string what you have typed back to the last space or comma as for the alias completion.
+set query_command =  "abook --mutt-query '%s'"
+macro generic,index,pager \ca "<shell-escape>abook --config $HOME/.mutt/abook/abookrc --datafile $HOME/.mutt/abook/addressbook<return>" "launch abook"
+macro index,pager A "|abook --add-email --config $HOME/.mutt/abook/abookrc --datafile $HOME/.mutt/abook/addressbook<return>" "add sender to abook"
+# macro pager A "|abook --add-email-quiet\n" "Add sender to abook"
+# macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
+
+#bogofilter
+macro index S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -s\n<save-message>=spam/\n"  "Learn as spam and save to junk"
+macro pager S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -s\n<save-message>=spam/\n"  "Learn as spam and save to junk"
+macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -n\n<save-message>=INBOX/\n"          "Learn as ham and save"
+macro pager H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -n\n<save-message>=INBOX/\n"          "Learn as ham and save"
+#macro index S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -Ns"
+#macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -Sn"
+# To automatically mark for deletion everything in the spam folder when it is viewed, I placed this line at the bottom of the /etc/Muttrc file:
+folder-hook spam push 'D.\n'
+
+# see HTML attachments with lynx
+# macro pager l "<pipe-entry>lynx -stdin -force_html<enter>"
+# macro attach l "<pipe-entry>lynx -stdin -force_html<enter>"
+
+# imitate the old search-body function
+# macro index \eb "<search>~b " "search in message bodies"
+
+# urlview
+macro index \cb   "|urlview\n" "browse URLs"
+# macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+# macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m'
+# macro index,pager \cb |urlview\n
+
+# simulate the old url menu
+#macro index,pager,attach,compose \cb "\
+#<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
+#<pipe-message> urlview<Enter>\
+#<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
+#"call urlview to extract URLs out of a message"
+
+
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index gs "<change-folder>=Sent<enter>" "Go to Sent Mail"
+macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
+
+macro index <esc><tab> <next-unread-mailbox>
+
+# Encrypt a message with GPG key on the fly.
+# "p" to show PGP menu: encrypt/sign(as)/clear composing message.
+
+# Verifying a message signature on the fly.
+macro index \Cv \
+          "<enter-command> set my_crypt_verify_sig=\$crypt_verify_sig<enter> \
+          <enter-command> set crypt_verify_sig=yes<enter> \
+          <display-message><enter-command> set crypt_verify_sig=\$my_crypt_verify_sig<enter>" \
+          'Verify PGP signature and open the message'
+
+macro pager \Cv \
+          "<exit><enter-command> set my_crypt_verify_sig=\$crypt_verify_sig<enter> \
+          <enter-command> set crypt_verify_sig=yes<enter> \
+          <display-message><enter-command> set crypt_verify_sig=\$my_crypt_verify_sig<enter>" \
+          'Verify PGP signature'
+
+# macros for mairix
+# macro generic ,f "<shell-escape>mairix " "search via mairix"
+
+# Search Mails
+# macro index <f8> "<sync-mailbox><toggle-write><shell-escape>mairix \
+# \"$@\"<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+# macro pager <f8> "<sync-mailbox><toggle-write><shell-escape>mairix \
+# \"$@\"<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+# macro index ,f "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+######################
+# macro index ,f "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+#### macro index,pager,browser ,f "<toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter>"
+macro generic ,f "<enter-command>set my_cmd = \`/home/chris/.mutt/scripts/msearch\`<return><enter-command>push \$my_cmd<return>" "search messages"
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Useful searches
+#
+#    t:word                             Match word in the To: header.
+#
+#    c:word                             Match word in the Cc: header.
+#
+#    f:word                             Match word in the From: header.
+#
+#    s:word                             Match word in the Subject: header.
+#
+#    m:word                             Match word in the Message-ID:
+#
+#                                       header.
+#
+#    b:word                             Match word in the message body
+#                                       (text or html!)
+#
+#    d:[start-datespec]-[end-datespec]  Match messages with Date: headers
+#                                       lying in the specific range.
+#
+# Multiple body parts may be grouped together, if a match in any of them
+# is sought.
+#
+#    tc:word  Match word in either the To: or Cc: headers (or both).
+#
+#    bs:word  Match word in either the Subject: header or the message body
+#             (or both).
+#
+#    The a: search pattern is an abbreviation for tcf:; i.e. match the
+#    word in the To:, Cc: or From: headers.  ("a" stands for "address" in
+#    this case.)
+#
+# The "word" argument to the search strings can take various forms.
+#
+#    ~word        Match messages not containing the word.
+#
+#    word1,word2  This matches if both the words are matched in the
+#                 specified message part.
+#
+#    word1/word2  This matches if either of the words are matched in the
+#                 specified message part.
+#
+#    substring=   Match any word containing substring as a substring
+#
+#    substring=N  Match any word containing substring, allowing up to N
+#                 errors in the match.
+#
+#    ^substring=  Match any word containing substring as a substring, with
+#                 the requirement that substring occurs at the beginning
+#                 of the matched word.
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+########################
+# screen: prompt for mairix search parameters
+#macro index,pager,browser ,f "\
+#<enter-command> set my_wait_key=\$wait_key wait_key=no<enter>\
+#<shell-escape>screen -X screen -t 'mutt search' sh -c 'mairixquery && mutt -f =search'<enter>\
+#<enter-command>set wait_key=\$my_wait_key &my_wait_key<enter>" "mairix query"
+######################
+# Mairix
+# macro generic ,f "<shell-escape>mairix " "search via mairix"
+# Namazu/nmzmail
+# macro generic ,F "<shell-escape>nmzmail -r ~/.maildir/.Search<enter>" "search via nmzmail"
+# Load the results mailbox
+# macro generic ,,f "<change-folder><kill-line>=.Search<enter>" "load the search results mailbox"
+# Mu
+# first macro does the search according to user query, second macro jumps to result list
+macro index <F8> "<shell-escape>mu find --clearlinks --format=links --linksdir=~/Mails/Search " "mu find"
+macro index <F9> "<change-folder-readonly>=Search" "mu find results"
+
+# ##  combind them into one.
+# FIXME
+# macro index,pager <F7> "<shell-escape>[[ -d ~/.mu/results ]] && rm -r ~/.mu/results; mkdir -p ~/.mu/results/{cur,new,tmp}<change-folder-readonly>~/.mu/results<shell-escape>mu find --format=links --linksdir ~/.mu/results --clearlinks  " "mu-find"
+
+
+# macro generic \Cs "<shell-escape>'getmail -n -l'<enter>"
+
+# vim:ft=muttrc

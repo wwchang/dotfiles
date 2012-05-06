@@ -1,0 +1,80 @@
+# -*- muttrc -*-
+# --------------------------------------------------------
+# format
+# %>X    right justify the rest of the string and pad with character “X”
+# %|X    pad to the end of the line with character “X”
+# %*X    soft-fill with character “X” as pad
+
+set date_format         = "!%a, %b %d, %Y at %H:%M:%S %Z"
+# set index_format        = "%H %3C| +%2N [%Z] %-15L [ %e/%E|%M ] %s  %>  ->(%4c)"
+# set index_format        = "%3C| [%Z] %-15.25f  %s %>  %N-(%4c)"
+# set index_format        = " ♪ %2C|•%N [%4Z] | %-10L »%?H?[spam]? %10s %> %4c » %[%I:%M %P %b/%d]"
+# set index_format = " %?n?♪&? %?o?♩&? %?d?✖&? %2C|•%N [%4Z] | %-10L »%?H?[spam]? %s %> %4c %[%I:%M %P %b/%d]"
+set index_format        = " ♪ %2C|•%N [%4Z] | %-10L | %-15F » %?H?[spam]? %s %> %4c » %[%I:%M %P %b/%d]"
+# set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
+#### set status_format       = "-%r- %v   [ Folder: %f, Msgs: %m%?n? New: %n?%?d? Del: %d?%?t? Tag: %t?%?l? (%l)? ]%?p?---- .: %p waiting to send :. ?--%>- (%P) ---"
+set status_format       = " ⌘ %_h| » [%r] %?V?limit with (%V)? %?p?<%p postponed !>? %L | .:[%?n? %n new & %u unread & %o old? %?F?%F flagged? %?t?%t tagged? %?d?%d deleted?]/%m:. in %f=(%l) (%s/%S) %v %* (%P) ⌘ "
+# set status_format = "-%r- %v ──────┴────/ %f %m%?n? [+%n]?%?d?|[-%d]?%?t? [*%t]? /%?p?───/ %p waiting to send /?─%>─(%P)───"
+
+set status_chars        = "-*%A"
+set alias_format        = "%4n %2f %t %-10a     %r"
+set attach_format       = "%u%D%I %t%4n %T%.40d%> [%.7m/%.10M, %.6e%?C?, %C?, %s]"
+set compose_format      = "-- Mutt: Compose [Approx. msg size: %l  Atts: %a]%>-"
+set folder_format       = "%2C %t %N %F %2l %-8.8u %-8.8g %8s %d %f"
+set forward_format      = "[%a: %s]"
+set message_format      = "%s"
+# set mix_entry_format      = "%4n %c %-16s %a"
+set pager_format        = "-%Z- %C/%m: %-20.20n  %s%*  -- (%P)"
+# set pgp_entry_format      = "%4n %t%f %4l/0x%k %-4a %2c %u"
+# set query_format      = ""
+
+# Status Flags
+# 
+# In addition to who sent the message and the subject, a short summary of the disposition of each message is printed beside the message number. Zero or more of the following ``flags'' may appear, which mean:
+# 
+# D
+# message is deleted (is marked for deletion)
+# 
+# d
+# message have attachments marked for deletion
+# 
+# K
+# contains a PGP public key
+# 
+# N
+# message is new
+# 
+# O
+# message is old
+# 
+# P
+# message is PGP encrypted
+# 
+# r
+# message has been replied to
+# 
+# S
+# message is PGP signed, and the signature is succesfully verified
+# 
+# s
+# message is PGP signed
+# 
+# !
+# message is flagged
+# 
+# *
+# message is tagged
+# 
+# Some of the status flags can be turned on or off using
+# 
+# set-flag (default: w)
+# clear-flag (default: W)
+# Furthermore, the following flags reflect who the message is addressed to. They can be customized with the $to_chars variable.
+# 
+#  +       message is to you and you only
+# T       message is to you, but also to or cc'ed to others
+# C       message is cc'ed to you
+# F       message is from you
+# L       message is sent to a subscribed mailing list
+
+# vim: ft=muttrc

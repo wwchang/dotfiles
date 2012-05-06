@@ -1,0 +1,117 @@
+# === Reference ===
+# http://www.ii.com/internet/robots/procmail/qs/
+# http://pm-doc.sourceforge.net/doc/
+# man procmail procmailrc procmailex procmailsc
+
+
+# The procmail recipes are read and actions are performed in order. For any given message, when the first delivering recipe is matched, the
+# message is delivered and the rest of recipe are ignored. Delivering recipes are the recipes that have a mailbox or another delivery address
+# as the action. For this reason, for certain recipes, you should put them in the proper order. In particular, above default .procmailrc has a
+# catch-all recipe that is recipe with no rule at that will perform the default action, which, for most people, should
+# be putting the message in their inbox. If you want to add additional recipe, you should add them above the default rule if
+# not, it won't even be read!
+
+# ! Forwards to all the specified mail addresses.
+# | Pipes the mail to stdout, and into the specified program (the one that comes after the `|'). If you prepend var= to this pipe, procmail will dump
+
+
+# ************** Mails must match all regexes in the rule. *************************
+# == syntax ==
+# :0 [flags] [ : local lockfile ]
+# * <(optional) conditions (one per line)>
+# * <additionaly (optional) conditions>
+# <exactly one action line>
+#
+# The action is performed only when the message matches all the conditions.
+# * ^From | * ^To_ | * ^Subject:.*test | * ^Subject:.*\<test\> ( match a word ) | * ^TO_\/(procmail@lists.rwth-aachen.de|vim@vim.org) | *
+# ^TO_\/(procmail|vim)
+
+# proper use of lockfiles is highly recommended.
+
+# [ examples ] {{{
+# send spam to /dev/null
+# /dev/null
+
+# :0 fw
+# * ^From:.*mailing-list@lists.berkeley.edu
+# |sed -e 's/^Subject:[ ]*/Subject: [LIST] /'
+# 'f': the pipe will be considered as a filter. That means that the message will be passed down through the rest of recipe until it comes across a
+# delivering recipe that matches.
+# 'w': procmail will wait for the filter (in our case, sed) to finish and check its exitcode. If the filter exits with error (with possibly
+# garbled output), procmail will continue with the original unfiltered input.
+
+# Safety net!
+# :0 c
+# c means copy mail
+# mailbackup
+
+# # Create backup for de-HTML'd email
+# :0 c
+# * ^Content-type: text/html
+# de-html-backup
+# # de-HTML
+# :0 fbw
+# * ^Content-Type:[ ]*text/html
+# | lynx -dump -stdin -nolist \
+# && echo "" \
+# && echo "=================================================" \
+# && echo "This HTML message has been made into text by lynx" \
+# && echo "================================================="
+
+# spamassassin
+# {
+#     :0fw:spamassassin.lock
+#     * < 256000
+#     | spamassassin
+#
+#     :0e
+#     EXITCODE==$?
+#
+#     :0:
+#     * ^X-Spam-Flag: YES
+#     spam
+# }
+
+# :0 bc:   # archive things sent to junk mailing list
+# * ^To:.*junk
+# | gzip >> junk-archive.gz
+
+# notice that I don't have a colon after 'From' in that condition. This is a quirk of mail headers; there are header From lines with and
+# without colons, so leaving it off is the safest bet.
+
+# == nesting ==
+# {
+# :0 c
+# ! numbchild@gmail.com
+#
+# :0
+# | lpr -Pacsps
+# }
+
+# http://www.linuxdoc.org/HOWTO/Mutt-GnuPG-PGP-HOWTO-8.html#sec-procmail.2
+
+# mailing list
+# List-Id: Ubuntu in Australia <ubuntu-au.lists.ubuntu.com>
+# Sender: ubuntu-au-bounces@lists.ubuntu.com
+
+# delete duplicatas: {
+# :0 Whc: msgid.lock
+# | formail -D 8192 msgid.cache
+# :0 a:
+# $HOME/mail/zzzz-duplicatas
+# }
+
+# test new mail notify
+# Some filter rule
+#:0 
+#* ^From: .*numbchild@gmail\.com
+#{
+    #:0 c
+    #| ~/.mutt/newmail-notifier.py
+
+    #:0
+    #INBOX/
+#}
+# }}}
+
+# vim:foldmethod=marker:ft=procmail

@@ -1,0 +1,26 @@
+# use for test with ~/bin/procmail-test.sh
+
+SHELL=/bin/sh
+TESTDIR=${HOME}/.procmail/TEST
+MAILDIR=${TESTDIR}
+LOGFILE=${TESTDIR}/Proctest.log
+LOG="--- Logging for ${LOGNAME}, "
+
+#Troubleshooting:
+VERBOSE=yes
+LOGABSTRACT=all
+
+#Let's test stripping lines from the email message's header
+:0 fwh
+| egrep -vi "(^Content-|^MIME-Version:.)"
+
+#If it is from myself, store the email message
+:0:
+* $ ^From:.*${LOGNAME}
+${TESTDIR}/Proctest.mail
+
+#Otherwise, discard the email message
+:0
+/dev/null
+
+# vim:ft=procmail

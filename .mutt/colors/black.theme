@@ -1,0 +1,146 @@
+# -*- colors -*- 
+# define colors for mutt 
+
+# color range
+# brightred     - red       -- warning or notice
+# brightyellow  - yellow    -- event
+# brightgreen   - green     -- new 
+# brightcyan    - cyan      -- event
+# brightblue    - blue      -- code, program
+# brightwhite   - white     -- system 
+# brightmagenta - magenta   -- important
+# brightblack   - black     -- background, deleted, readed
+# default       - default   -- default
+
+color hdrdefault  brightblack   default
+color signature   brightcyan    default
+color indicator   black         white
+color attachment  magenta       default
+color error       black         brightred
+color message     white         default
+color search      black         red
+color status      white         black
+color tree        red           default
+color normal      white         default
+color tilde       red           default
+color bold        magenta       default
+color markers     red           default
+color quoted      blue          default
+color quoted1     green         default
+color quoted2     yellow        default
+color quoted3     red           default
+
+
+# Colours for items in the reader
+# color header brightyellow  default "^(From|To):"
+color header yellow        default "^Date:"
+color header brightred     default "^From:"
+color header blue          default "^(To|Cc|Bcc):"
+color header brightred     default "^Subject:"
+color header magenta       default "^(User-Agent|X-Mailer):"
+# color header red           default "^X-Virus-hagbard: .* FOUND"
+color header red           default "^(X-Virus-hagbard|X-SpamProbe|X-Junked-Because):"
+
+# highlight keywords 
+color body  black  red "chris"
+color body  black  red "Evanescence"
+color body  black  red "stardiviner"
+color body  black  red "$"
+color body  black  red "sex"
+color body  black  red "gay"
+
+# Colours for items in the index
+# === NEW ===
+color index white       default ~u # addressed to a subscribed mailing list
+color index white       default ~l # addressed to a know mailing list
+color index magenta     default ~V # part of a coollapsed thread
+color index green       default ~N # new
+color index green       default ~U # unreaded
+# PGP signed 
+color index black        cyan ~k  # contains PGP
+color index black        cyan ~g  # PGP signed 
+color index black        brightred  ~G  # PGP encrypted
+# big size mail
+color index black brightblue "~z >200K" # size tween 1M-100M
+# important mails
+color index black brightyellow "-r 24/3*3d"  # my birthday mail
+color index black brightmagenta "~N (~e fuhemeng | ~e 568734625 )" # Mama
+color index black brightmagenta "~N (~e 1051899676 )" # sister
+color index black brightmagenta "~N (~e 184145190 | ~e 243113196 | ~e shanyingqing )" # Baobao
+# color index brightgreen brightwhite "~N (~x hagbard\.davep\.org | ~h \"^In-[Rr]eply-[Tt]o: .*hagbard\.davep\.org\")"
+color index magenta default ~p  # message only to you
+color index magenta default ~P  # message from myself
+# === OLD ===
+color index white default ~O       # old
+color index white default ~R       # readed messages
+color index white default ~Q       # have beed replied to
+color index black     default ~D       # deleted
+
+color index black       cyan ~T       # tagged
+color index black     green ~F   # flagged
+
+# color index red default "Subject" 
+# color index green default "Re:"
+# color index green default "-list"
+# color index green default "Digest"
+
+# URLs
+# color body blue  black "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+color body blue  black "(http|https|ftp|news|telnet|finger|gopher)://[^ \">\t\r\n]*"
+color body blue  black "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body blue  black "news:[^ \">\t\r\n]*"
+color body blue  black "(www|web|w3)\.[^ \">\t\t\n]*\.[a-zA-Z0-9]"
+# color body brightyellow black "(http|ftp)://[\-\.\,/+=&%~_:?\#a-zA-Z0-9]+" 
+
+# email addresses
+color body blue   black "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+# color body red black "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" 
+
+# Various smilies and the like
+color body brightyellow default "<[Gg]>"           # <g>
+color body brightyellow default "<[Bb][Gg]>"       # <bg>
+color body brightyellow default "[;:]-*[)>(<|PD]"  # :-) etc...
+
+# Bold, Italic, Underline
+color body magenta   black "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)"     # *Bold* text.
+color body magenta   black  "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"         # _Underlined_ text.
+color body brightmagenta  black "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"         # /Italic/ text.
+# color body brightgreen black "(^| )[*_]+[-&[:alnum:]]+[*_]( |$)" # bold/underline
+
+
+color body brightred default "Subject" # highlight Subject
+color body brightred default "Topic"   # highlight Topic
+color body brightred default "(^-*\ [0-9]\ of\ [0-9]\ -*)" # highlight ---- 2 of 3 for Google Groups.
+
+
+color body brightyellow  black "(^| |[-.[:alnum:]]+:+)~?\(/[-_.'[:alnum:]]+\)+/?" # Unix file path
+color body brightyellow  black "(^| +)[[:alpha:]]:[-_.[:alnum:]\]+"               # DOS file path
+color body brightred black "(^|[ '\"]+)\\$[[:alpha:]][-_[:alpha:]]+"           # variable
+color body brightred     black "[!?]{3,}"                                         # exclamation
+color body black         blue "^ *[-+*o] +"                                     # list item
+color body brightcyan    black "[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?" # time
+# color body cyan black "(\(19|20\)?[0-9]{2}/[01]?[0-9]/[0123]?[0-9]|[0123]?[0-9][/.][01]?[0-9][/.]\(19|20\)?[0-9]{2})(( at)? +[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+# color body cyan black "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?(Jan(uary)?|Feb(rary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)[ .]+[0-9]{1,2}(st|nd|rd|th)?,?( +(19|20)[0-9]{2}(,?( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?)?"
+# color body cyan black "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?[0-9]{1,2}(st|nd|rd|th)?[ .]+(Jan(uary)?|Feb(rary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?),?( +(19|20)?[0-9]{2})?(( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+            
+# mono
+mono  index      bold       ~N
+mono  index      bold       ~F
+mono  index      bold       ~T
+mono  index      bold       ~D
+mono  body       bold       "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+mono  body       bold       "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono  body       bold       "news:[^ \">\t\r\n]*"
+mono  body       bold       "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+mono  bold       bold
+mono  underline  underline
+mono  indicator  reverse
+mono  body       underline  "(ftp|http|file)://[^ >)]+"
+mono  body       underline  [-a-z_0-9.]+@[-a-z_0-9.]+
+mono  header	 underline  ^Subject:
+mono  header	 bold       ^From:
+mono  header     bold       "^(From|Subject|X-Junked-Because|X-Virus-hagbard):"
+mono  quoted	 bold
+mono  attachment bold
+
+# vim: ft=muttrc

@@ -1,0 +1,38 @@
+#!/bin/sh
+#set -x
+
+# this scritp is used for mutt, 
+# press ",f" to search  with mairix options and automatic switch into result
+# folder.
+
+if test $# -eq 0 ; then
+    echo -n "> ( Input your mairix options ) : "
+    read FIRST REST
+else
+    FIRST=$1
+    shift
+    REST="$@"
+fi
+
+
+BIGNUM=500
+
+if test "${FIRST}" != "-Ffmm" ; then
+    MATCH="${FIRST} ${REST}"
+else
+    MATCH="${REST}"
+fi
+
+test "x${MATCH}x" = "xx" && exit 0
+test "x${MATCH}x" = "x x" && exit 0
+
+if test "x${FIRST}x" != "x-Ffmmx" ; then
+    MATCHES=$(mairix -r ${MATCH} | wc -l)
+    test ${MATCHES} -gt ${BIGNUM} && { echo "More than ${BIGNUM} matches. Force display with first Parameter -Ffmm." ; exit ; }
+    test ${MATCHES} -eq 0 && { echo "No hits.  Search something else." ; exit ; }
+fi
+
+mairix ${MATCH}
+
+
+exit 0

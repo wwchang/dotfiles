@@ -1,0 +1,94 @@
+# colors
+color normal	white default
+color attachment red black
+color hdrdefault white default
+color indicator brightblack brightwhite
+color markers	green default
+color quoted  green default
+color quoted1 white default
+color quoted2 green default
+color quoted3 white default
+color bold      brightgreen default
+color signature cyan default
+color status	brightblue black
+color error     red     default
+color search    brightred   default 
+color tilde	blue default
+color tree	brightred default
+
+#color header    blue default ^(From|To|Cc|Subject|X-Bogosity):
+color header	brightcyan  default ^From:
+color header	brightblack default ^To:
+color header	brightblack default ^Reply-To:
+color header	brightblack default ^Cc:
+color header	brightred default ^Subject:
+#color body	brightred black [\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+
+color body	brightyellow black (https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+
+# color header  default magenta .*
+
+# Colour definitions when on a mono screen
+mono bold      bold
+mono underline underline
+mono indicator reverse
+
+# --------------------------------------------------------------------
+# there is a sequence about load those color setting , so that replied and flagged or tagged should after unreaded and readed 
+# the previous color setting will be covered by next color setting
+# ---------------------------------------------------------------------
+# -----------------  new ------------
+# color index green default ~N  # new 
+color index brightgreen default ~U  # unreaded 
+color index yellow default "~z >200K" # size tween 1M-100M
+color index white default ~u  # addressed to a subscribe list
+# color index green default ~p  # send to me
+color index white default ~P  # myself send
+color index brightred default "-r 24/3"  # my birthday mail
+# from important person
+# color index brightyellow default "~f mama" 
+# color index brightyellow default "~f sister" 
+# color index brightyellow default "~f baobao" 
+# PGP signed 
+color index brightwhite default ~P  # contains PGP
+color index brightwhite default ~g  # PGP signed 
+color index brightwhite default ~G  # PGP encrypted
+# -----------------  old -------------
+# color index yellow default ~O # old 
+color index brightblack default ~R # readed 
+color index brightblack default ~Q # replied
+color index black default ~D    # deleted
+
+color index green default ~F   # flaged
+color index brightcyan default ~T # tagged
+
+# color index red default "Subject" 
+# color index green default "Re:"
+# color index green default "-list"
+# color index green default "Digest"
+
+color body brightwhite default "[;:]-*[)>(<|PD]"     # :-) etc...
+color body brightred default "Subject" # highlight Subject
+color body brightred default "Topic" # highlight Topic
+# color body red default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # email
+color body brightyellow default "(http|ftp)://[\-\.\,/+=&%~_:?\#a-zA-Z0-9]+" # URL
+color body yellow default "(^| |[-.[:alnum:]]+:+)~?\(/[-_.'[:alnum:]]+\)+/?" # Unix file path
+color body yellow default "(^| +)[[:alpha:]]:[-_.[:alnum:]\]+" # DOS file path
+color body magenta default "(^|[ '\"]+)\\$[[:alpha:]][-_[:alpha:]]+" # variable
+color body brightgreen default "(^| )[*_]+[-&[:alnum:]]+[*_]( |$)" # bold/underline
+color body blue default "[!?]{3,}" # exclamation
+color body brightyellow default "^ *[-+*o] +" # list item
+
+# time
+color body yellow default "[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?"
+# color body cyan default "(\(19|20\)?[0-9]{2}/[01]?[0-9]/[0123]?[0-9]|[0123]?[0-9][/.][01]?[0-9][/.]\(19|20\)?[0-9]{2})(( at)? +[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+# color body cyan default "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?(Jan(uary)?|Feb(rary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)[ .]+[0-9]{1,2}(st|nd|rd|th)?,?( +(19|20)[0-9]{2}(,?( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?)?"
+# color body cyan default "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?[0-9]{1,2}(st|nd|rd|th)?[ .]+(Jan(uary)?|Feb(rary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?),?( +(19|20)?[0-9]{2})?(( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+            
+# if terminal does not support color
+mono    body    underline       "(ftp|http|file)://[^ >)]+"
+mono    body    underline       [-a-z_0-9.]+@[-a-z_0-9.]+
+mono	header	underline       ^Subject:
+mono	header	bold            ^From:
+mono	quoted	bold
+mono    attachment underline
+
+# vim:ft=muttrc

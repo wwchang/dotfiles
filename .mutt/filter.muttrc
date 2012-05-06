@@ -1,0 +1,13 @@
+
+# » ♥ ✣ ☻ ☺ ✔ ✖ ✗ ✚ ♪ ♫ ♬ ☠ ☆ ✭ ⚡ ☢ ⌘ ♂ ♀ • ♦ ♣ ♠ ✇ ☭ ☮ ❀ ☉ ⍟
+
+message-hook "~N" "set index_format = ' ♪ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # new
+message-hook "~U" "set index_format = ' ♩ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # unreaded
+message-hook "~O" "set index_format = ' ♩ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # old
+message-hook "~g" "set index_format = ' ✔ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # signed
+message-hook "~G" "set index_format = ' ⌘ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # encrypted
+message-hook "~Q" "set index_format = ' ✚ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # replied
+message-hook "~D" "set index_format = ' ✖ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # deleted
+# message-hook "~H" "set index_format = ' ☠ %H %C| ✣%N [%4Z] %-13L » %s  %>  %4c'" # spam head
+
+# vim:ft=muttrc

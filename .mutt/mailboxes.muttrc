@@ -1,0 +1,150 @@
+# -*- muttrc -*-
+#
+# List of folders that are considered to be "mailboxes" (folders that
+# receive incoming mail).
+#
+
+# system mailboxes
+# mailboxes /var/spool/mail/$USER
+
+# fetched and local mailboxes
+# ! is your spoolfile, INBOX
+# mailboxes !
+# Search for mairix
+
+# you can also use + for =.
+
+# mailboxes =INBOX
+
+
+mailboxes /var/mail/chris
+mailboxes !
+mailboxes =Drafts
+mailboxes =Send
+mailboxes =Important
+mailboxes =unsure
+mailboxes =spam
+
+mailboxes =Vim
+
+mailboxes =Arch
+mailboxes =Arch/general
+mailboxes =Arch/announce
+mailboxes =Arch/projects
+mailboxes =Arch/events
+mailboxes =Arch/dev-public
+mailboxes =Arch/pacman-dev
+mailboxes =Arch/aur-general
+
+mailboxes =Python
+mailboxes =Python/python
+mailboxes =Python/comp-lang-py
+mailboxes =Python/Django
+mailboxes =Python/webpy
+
+mailboxes =Go
+mailboxes =Go/golang-nuts
+mailboxes =Go/golang-china
+
+mailboxes =Drupal
+mailboxes =Drupal/support
+mailboxes =Drupal/security
+
+mailboxes =Ruby
+mailboxes =Ruby/Rails
+
+mailboxes =Maemo
+mailboxes =Awesome
+mailboxes =FVWM
+
+mailboxes =Web
+mailboxes =Web/whatwg
+mailboxes =Web/jplayer
+
+mailboxes =Perl
+
+mailboxes =Linux
+mailboxes =ubuntu
+
+mailboxes =GNU
+mailboxes =GNU/parallel
+mailboxes =GNU/gnu
+
+mailboxes =apps
+mailboxes =apps/Mutt
+mailboxes =apps/tmux
+mailboxes =apps/screen
+mailboxes =apps/Conky
+mailboxes =apps/weechat
+mailboxes =apps/Canto
+mailboxes =apps/ranger
+mailboxes =apps/MLDonkey
+mailboxes =apps/prey
+mailboxes =apps/urxvt
+mailboxes =apps/elinks
+mailboxes =apps/bogofilter
+mailboxes =apps/pandoc
+mailboxes =apps/gitit
+mailboxes =apps/mosh
+
+mailboxes =censorship
+
+mailboxes =Hack
+mailboxes =Hack/Social-Engineer
+mailboxes =Hack/BlackHat
+mailboxes =Hack/EthicalHacking
+
+mailboxes =Newsletter
+mailboxes =Newsletter/Quora
+mailboxes =Newsletter/StackExchange
+mailboxes =Newsletter/StackExchange/Stack_Overflow
+mailboxes =Newsletter/StackExchange/Meta_Stack_Overflow
+mailboxes =Newsletter/StackExchange/Unix_Linux
+mailboxes =Newsletter/StackExchange/Database_Admin
+mailboxes =Newsletter/StackExchange/Programmers
+mailboxes =Newsletter/StackExchange/Ask_Ubuntu
+mailboxes =Newsletter/StackExchange/Code_Review
+mailboxes =Newsletter/StackExchange/Drupal
+mailboxes =Newsletter/StackExchange/Super_User
+mailboxes =Newsletter/StackExchange/Server_Fault
+mailboxes =Newsletter/StackExchange/Webmasters
+mailboxes =Newsletter/StackExchange/Web_Applications
+mailboxes =Newsletter/StackExchange/English_Language
+mailboxes =Newsletter/StackExchange/Electrical_Engineering
+mailboxes =Newsletter/StackExchange/TeX
+mailboxes =Newsletter/StackExchange/IT_Security
+mailboxes =Newsletter/StackExchange/HealthcareIT
+mailboxes =Newsletter/BlackHat
+mailboxes =Newsletter/LinkedIn
+
+mailboxes =others
+
+# bellowing two lines is for ubuntu/* "subfolders"
+# mailboxes `echo ~/Mails/ubuntu/*`
+mailboxes =Security
+mailboxes =RSS
+# Send Draft Junk Viruses Spam
+# mbox is for sended and received mails
+mailboxes =mbox
+mailboxes =Trash
+mailboxes $MAIL
+# mailboxes =Search
+# mailboxes =Draft
+# mailboxes =Junk
+# mailboxes =Viruses
+
+# set up mailboxes by scanning for all subfolders in $HOME/Mails/:
+# mailboxes `echo -n "+ "; find $HOME/Mails -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
+
+# show in change mail box list
+# The short example above will tell mutt to look for new mail; first in your system mailspool, then in $HOME/Mail/inbox, then in two other folders ~/Mail/lists/mutt-users and
+# mailboxes \
+# =Python \
+# $MAIL \
+# =vim \
+# this $MAIL is setted in ~/.bashrc as /var/spool/mail/chris
+# =list/mutt-users \
+# =list/mutt-newbie
+# $HOME/Mail/lists/mutt-newbie.
+
+# vim:ft=muttrc

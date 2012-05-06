@@ -1,0 +1,5 @@
+set realname = "chris"
+set hostname = stardiviner
+alternates '(numbchild|blackredwhore)@gmail.com|(450558573|348284894)@qq.com|numbchild@(hotmail|sina).com|EvanescenceBlack@hotmail.com'
+
+# vim:ft=muttrc

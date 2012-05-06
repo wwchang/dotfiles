@@ -1,0 +1,127 @@
+# http://www.faqs.org/docs/Linux-HOWTO/Mutt-GnuPG-PGP-HOWTO.html
+# http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto.txt
+# http://codesorcery.net/old/mutt/mutt-gnupg-howto
+# http://www.linuxdoc.org/HOWTO/Mutt-GnuPG-PGP-HOWTO.html
+#
+# Esc-k to mail a GPG key
+# ^K  to extract display key
+# NOTE: In the case that the pass phrase was mistyped when it was asked for, Mutt seems to be "hung", but that's not true, it is waiting for it
+# to be retyped. To do this, push the <Enter> key and delete the pass phrase from memory with <Ctrl>F. Next we repeat the message sending with
+# ("y") and retype the pass phrase.
+
+# ========================================================
+# unset pgp_autosign
+# if this variables is set, Mutt will ask to sign all the
+# outbound messages. (1)
+
+unset pgp_autoencrypt
+# if this variable is set, Mutt will ask to encrypt all the
+# outbound messages. (1)
+# set pgp_encryptself
+# save an encrypted copy of all sent messages that we want to encrypt
+# (need the general configuration variable set copy=yes).
+
+set pgp_replysign
+# when you answer a signed message, the response message will be
+# signed too.
+
+set pgp_replyencrypt
+# when you answer an encrypted message, the response message
+# will be encrypted too.
+
+set pgp_verify_sig=yes
+# Do you want to automatically verify incoming signed messages?
+# Of course!
+
+# set pgp_timeout=<n>
+# delete pass phrase from the memory cache <n> seconds
+# after typing it. (2)
+
+set pgp_sign_as="47C32433" # <key ID>
+# what key do you want to use to sign outgoing messages?
+# Note: it is posible to set it to the user id, but
+# this can be confuse if you have the same user id with different keys.
+
+# set pgp_strict_enc
+# use "quoted-printable" when PGP requires it.
+
+unset pgp_long_ids
+# Do not use 64 bits key ids, use 32 bits key ids.
+
+# set pgp_sign_micalg=<some>
+# message integrity check algorithm, where
+# <some> is something from the next: (3)
+# pgp-mda5
+# to RSA keys
+# pgp-sha1
+# to DSS (DSA) keys
+# pgp-rmd160
+
+
+# GnuPG configuration settings
+# set pgp_default_version=gpg
+# set pgp_key_version=default
+# set pgp_receive_version=default
+# set pgp_send_version=default
+# set pgp_sign_micalg=pgp-sha1
+# set pgp_gpg=/usr/bin/gpg
+# set pgp_gpg_pubring=~/.gnupg/pubring.gpg
+# set pgp_gpg_secring=~/.gnupg/secring.gpg
+
+# set pgp_gpg=/usr/bin/gpg        # where to find the GnuPG binary
+# set pgp_gpg_pubring=~/.gnupg/pubring.gpg        # public key file to GnuPG
+# set pgp_gpg_secring=~/.gnupg/secring.gpg        # secret key file to GnuPG
+#
+# set pgp_v2=/usr/bin/pgp2        # where to find the PGP2 binary
+# set pgp_v2_pubring=~/.pgp/pubring.pgp           # public key file to PGP2
+# set pgp_v2_secring=~/.pgp/secring.pgp           # secret key file to PGP2
+#
+# set pgp_v5=/usr/bin/pgp         # where to find the PGP5 binary
+# set pgp_v5_pubring=~/.pgp/pubring.pkr           # public key file to PGP5
+# set pgp_v5_secring=~/.pgp/secring.skr           # secret key file to PGP5
+
+
+set pgp_entry_format="%4n %t%f %4l/0x%k %-4a %2c %u"
+set pgp_decode_command="gpg %?p?--passphrase-fd 0? --no-verbose --batch --output - %f"
+set pgp_verify_command="gpg --no-verbose --batch --output - --verify %s %f"
+set pgp_decrypt_command="gpg --passphrase-fd 0 --no-verbose --batch --output - %f"
+set pgp_sign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --detach-sign --textmode %?a?-u %a? %f"
+set pgp_clearsign_command="gpg --no-verbose --batch --output - --passphrase-fd 0 --armor --textmode --clearsign %?a?-u %a? %f"
+# FIXME remove --always-trust parameter, replace with other trust model.
+set pgp_encrypt_only_command="pgpewrap gpg --batch --quiet --no-verbose --output - --encrypt --textmode --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
+set pgp_encrypt_sign_command="pgpewrap gpg --passphrase-fd 0 --batch --quiet --no-verbose --textmode --output - --encrypt --sign %?a?-u %a? --armor --always-trust --encrypt-to 0xC9C40C31 -- -r %r -- %f"
+set pgp_import_command="gpg --no-verbose --import -v %f"
+set pgp_export_command="gpg --no-verbose --export --armor %r"
+set pgp_verify_key_command="gpg --no-verbose --batch --fingerprint --check-sigs %r"
+set pgp_list_pubring_command="gpg --no-verbose --batch --with-colons --list-keys %r"
+set pgp_list_secring_command="gpg --no-verbose --batch --with-colons --list-secret-keys %r"
+set pgp_autosign=yes
+# set pgp_sign_as=47C32433 # <key ID>
+set pgp_replyencrypt=yes
+set pgp_timeout=1800 # time to keep key ID alive
+set pgp_good_sign="^gpg: Good signature from"
+set pgp_mime_signature_filename="signature.asc"
+set pgp_mime_signature_description="Digital signature"
+set pgp_strict_enc=yes
+# Aside from the basic commands necessary to inter-operate with GnuPG,
+# these directives also tell Mutt to automatically sign all outgoing
+# messages using key ID 0xC9C40C31 (my key), to encrypt all encrypted mail
+# to me as well (for storage in my 'sent' folder, and to cache my
+# passphrase for a half hour.
+
+# ======================================
+set pgp_auto_decode = yes
+set pgp_autoinline = no
+set pgp_check_exit = yes
+# # set pgp_encrypt_command = ""
+# # set pgp_getkeys_command = ""
+set pgp_ignore_subkeys = yes
+# set pgp_long_ids = no
+# set pgp_mime_auto = ask-yes
+set pgp_replyinline = no
+# set pgp_retainable_sigs = no
+set pgp_show_unusable = yes
+# set pgp_sort_keys = address
+# set pgp_use_gpg_agent = yes # GPG only, in zsh plugins. this will lead to error. (PGP only)
+
+# vim: ft=muttrc

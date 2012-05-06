@@ -1,0 +1,28 @@
+# === IMAP ===
+# ----- Gmail account -----------
+# set imap_user = "numbchild@gmail.com"
+# set imap_pass = "chrisM.sprite324"
+# set header_cache =$HOME/.mutt/cache/headers
+# set maildir_header_cache_verify=no
+# set message_cachedir =$HOME/.mutt/cache/bodies
+# set certificate_file =$HOME/.mutt/certificates
+# set smtp_url = "smtp://numbchild@smtp.gmail.com:587/"
+# set smtp_pass = "chrisM.sprite324"
+# set imap_keepalive = 900
+# 
+# ignore "Authentication-Results:"
+# ignore "DomainKey-Signature:"
+# ignore "DKIM-Signature:"
+#
+# set folder = "imaps://imap.gmail.com:993"
+# set spoolfile = "+INBOX"
+# set postponed ="+[Gmail]/Drafts"
+# set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
+
+bind editor <space> noop
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index ga "<change-folder>=[Gmail]/All Mail<enter>" "Go to all mail"
+macro index gs "<change-folder>=[Gmail]/Sent Mail<enter>" "Go to Sent Mail"
+macro index gd "<change-folder>=[Gmail]/Drafts<enter>" "Go to drafts"
+
+# vim: ft=muttrc

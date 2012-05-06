@@ -1,0 +1,348 @@
+# -*- muttrc-common -*-
+
+# http://wiki.mutt.org/  -- search inbox at the bottom of page
+
+#  http://www.mutt.org/doc/manual/manual-4.html
+# == regex ==
+# regexp are extended regular expressions like used with "sed, grep, awk" and the like ("bla.*fasel"
+# or "^bla$": string matches anywhere [wildcards surrounding assumed], begin/ end must be specified
+# with "^$"). See "man -s 5 regex" for details and the manuals section on "Regular Expressions".
+# mutt-pattern are regexp with mutt-specific modifiers preceeding them, like "~f eMail.*@.*adr$".
+
+
+set hidden_host    = yes
+set include        = ask-yes
+set mark_old       = yes  # mark new mails as old when leave Mutt.
+set copy           = no
+set beep           = yes
+set markers        = yes # show + at the begine of wrapped line
+set pager_context  = 3
+set fcc_clear      = yes
+set tilde          = yes
+set read_inc       = 10
+set write_inc      = 10
+set pager_stop     = yes
+set mailcap_path   = $HOME/.mutt/mailcap:/usr/local/etc/mailcap:/etc/mailcap
+
+set nomove                                                             # hold messages in $MAIL
+# set query_command = "lbdbq '%s'"   # Use the little brother database for doing queries.
+
+# enable mime lookup by extension
+mime_lookup application/octet-stream
+                           # What we consider to be a quote.
+                           # default: ^([ \t]*[|>:}             # ])+
+                           # %]| {0,4}[a-z0-9]+[>|]+)+"
+set quote_regexp = "^[ \t]*[a-zA-Z\.]*>"  # Default: "^([ \t]*[>|#:}])+"
+set to_chars     = " +TCFL "
+set mixmaster                = "mixmaster-filter" # default on Debian
+set ssl_ca_certificates_file = "/etc/ssl/certs/ca-certificates.crt" # System-wide CA file managed by the ca-certificates package
+
+set reverse_name     = yes
+set reverse_realname = no
+
+set history_file = "$HOME/.mutt/history_file"
+set history      = 15
+set save_history = 10
+set mail_check   = 5
+set quit         = ask-yes
+set askcc        = no # you can press "c" in edit to CC:
+set askbcc       = no
+set indent_str   = "> "
+set smart_wrap   = yes
+# set ispell       = "aspell -e -c"
+set ispell="aspell -c --mode=email"
+# set ispell="ispell --mode=email"
+set forw_format  = "Fwd: %a : %s"
+set wrap         = -3
+my_hdr From: stardiviner <numbchild@gmail.com>
+set use_from = yes
+# set up mailboxes by scanning for all subfolders in $HOME/Mails/:
+# Building a list of "mailboxes" on the fly
+# mailboxes `echo -n "+ "; find $HOME/Mails -maxdepth 1 -type d -name ".*" -printf "+'%f' "`
+# mailboxes `$SHELL -c "echo \`find ~/Mails -type d '(' -name 'cur' -o -name 'new' ')' -prune -print | sed -e '/[^/]*$' \`"`
+# mailboxes `$SHELL -c "echo \`find ~/Mails '(' -type d '(' -name 'cur' -o -name 'new' -o name 'tmp' ')' -prune ')' -o -type f -print \`"`
+set sig_on_top = no
+set signature   = $HOME/.mutt/signature
+# set signature = |shell-command
+# When set, mutt will weed headers when when displaying, forwarding, printing, or replying to messages.
+# set weed                    = yes
+set menu_scroll               = yes
+set strict_threads            = yes # indicate with "->" "-*>" "-?-"
+set sort                      = threads
+set sort_aux                  = reverse-date-received
+# set sort_aux                  = last-date-received
+set sort_re                   = yes # only when unset strict_threads
+# set sort                    = score
+# score will not display tree
+# set sort_aux                = date-received
+set sort_browser              = alpha # sort mailboxes
+set abort_unmodified          = ask-yes
+set abort_nosubject           = ask-yes
+
+# tree
+set ascii_chars  = yes
+set narrow_tree  = no
+
+set score                  = yes
+set score_threshold_delete = -10
+set score_threshold_flag   = 9999
+set score_threshold_read   = -1
+# auto_tag, default is No, is set, will auto apply on any
+set auto_tag = yes
+
+# -------   reply -----------------
+# fast_reply
+# if setted, mutt will not ask you reply address and subject directly go to edit mode when you pressed "r"
+set fast_reply  # =yes
+set reply_to = ask-yes
+# excludes you from list
+unset metoo
+unset reply_self
+# set reply_regexp = "^(re([\[0-9\]+])*|aw| Reply)(:[ \t]|：)"
+
+# resolve
+# whether move to next mail when you press "t" or "D" those marks.
+set resolve = no
+
+# -------- alias  ---------------
+# alias_file
+# set a file to store alias name when you press "a" to set an alias name
+# for a mail sender.
+set alias_file = $HOME/.mutt/aliases.muttrc
+# so that you can add sender into mutt.alias file when you press "a" in Index.
+# set alias_format = "%4n %2f %t %-10a %r"
+set sort_alias    = alias
+set reverse_alias = yes # display chris not numbchild@gmail.com
+# %a: alias name %f: flags, %n: index number, %r: address expanded, %t:
+# character which indicates if the alias is tagged for inclusion.
+# default is Default: "%4n %2f %t %-10a %r"
+# contacts addresses
+# use alias to archive this function. example:
+# alias wy Wang Yin <wang-y01@mail.com>
+# so that you press "m" in Index, in To: you type wy, mutt will auto send to wang-y01@mail.com
+# press "Tab" to display a list in To: then select item
+
+# urgent notifycation trigger
+set beep_new         = yes
+set bounce           = yes
+set bounce_delivered = yes
+# unset bounce_delivered # bounce : without putting you in "From"
+set check_new        = yes
+# set check_mbox_size  = yes # use file size attribute instead of access time when checking for new mails.
+set timeout          = 600
+#do not resume postponed mail
+set postpone  = ask-yes
+set recall    = ask-yes
+# recall = yes is meanless if postpone = no
+
+set collapse_unread = yes
+# unset collapse_unread
+# mutt not collapse a thread if it contains any unread messages.
+set uncollapse_jump = no
+# Default is No, When set, Mutt will jump to the next unread message, if any, when the current thread is uncollapsed.
+# auto next
+
+# printer when you press "p"
+set print           = ask-yes
+# set print_command = "Ipr -Pfloor4"
+
+# tell mutt set a copy you send for variable record
+set copy = ask-no
+
+
+# forward
+# set forward_format = "Fwd: [%a: %s]"
+# include message in forward.
+set forward_edit = yes
+set forward_quote = yes
+set forw_format = "[%a: %s]"
+#set forward_decrypt = yes
+
+# tell mutt delete after exit that you mark delete
+set delete       = ask-yes
+set delete_untag = yes
+# If this option is set, mutt will untag messages when marking them for deletion. This applies when you either explicitly delete a message, or when you save it to another
+# folder. Default is yes
+
+set digest_collapse = yes
+# If this option is set, mutt's revattach menu will not show the subparts of individual messages in a digest. To see these subparts, press 'v' on that menu. default is yes
+
+
+set imap_check_subscribed=yes
+# When set, mutt will fetch the set of subscribed folders from your server on connection, and add them  to  the
+# set of mailboxes it polls for new mail just as if you had issued individual “mailboxes” commands.
+set imap_list_subscribed=yes
+
+# set display_filter = ""
+# When set, specifies a command used to filter messages. When a message is viewed it is passed as standard input to $display_filter, and the filtered message is read from the
+# standard output. default is ""
+
+# charset
+# this must be same with your terminal supported character encoding.
+set charset = "utf-8"
+set locale  = "utf-8"
+
+# 8bit
+set allow_8bit = yes
+set allow_ansi = yes  # may override your own PGP color define
+set use_8bitmime = no
+# Warning: do not set this variable unless you are using a version of sendmail which supports  the -B8BITMIME flag (such as sendmail 8.8.x) or you may not be able to send mail.
+
+
+# send_charset
+# support one by one.
+set send_charset = "utf-8:us-ascii:iso-8859-1:gb2312:big5"
+set attach_charset = "utf-8:us-ascii:iso-8859-1:gb2312:big5"
+#use rfc2047 standard instead of rfc2231, solve the chinese attachment name issue
+set rfc2047_parameters = yes
+# if chinese mail display with ????
+# press "h" to see mail header, becase some sender without setting charset
+# Content-Type: text/plain , without charset = "GB2312"? , so mutt will use
+# charset us-ascii, if you want to displlay correctly, you need to alias
+# us-asicc with:   charset-hook ^us-ascii$ gb2312
+
+# wait_key
+# whether ask user to press a key to return when outside program quit.
+# this is important for shell , otherwise they will disappear at once.
+set wait_key = no
+
+# set arrow_cursor = yes # display "->", this will replace indicater
+
+# confirmappend
+# when you store a mail into another mailbox that this mail already exists.
+# notify you whether to append.
+# set noconfirmappend
+set confirmappend = yes
+# set confirmcreat = yes # default yes
+
+# edit_headers
+set duplicate_threads=yes
+set header = no
+# whether put mail header into editor to modify
+set edit_headers = no
+# show and User-agent in header
+set user_agent = yes
+
+# pager_index_lines
+# how many lines to leave to display mail list when you are reading a mail with pager.
+set pager_index_lines = 6
+
+# notice, press "L" to reply , "r" will reply to personal mail.
+set followup_to = yes
+set honor_followup_to = yes
+
+# ---------------------- sendmail ---------------------------------
+# sendmail default: check out with type in mutt: :set ?sendmail
+set sendmail = "/usr/sbin/sendmail -oem -oi"
+# >0 : number of seconds to wait for sendmail to finish before continuing.
+# 0  : wait forever for sendmail to finish
+# <0 : always put sendmail in the background without waiting.
+set sendmail_wait  = -1
+
+# ----------------------  folder  ---------------------------------
+set folder      = $HOME/Mails  # "+" or " = "
+# set read_only = no
+# If set, all folders are opened in read-only mode.
+# move
+# this is a notify variable, whether move mails from spool into $mbox file when you quit.
+set move = yes
+# set move = ask-yes
+# the file that contains you already read.
+# set mbox = "$HOME/Mails/mbox"
+
+# customize file browser
+set folder_format = "%2C %t %N %F %2l %f %>- [%8s] %-8.8u %-8.8g %d"
+
+# -------------------------  Maildir --------------------------------
+set mbox_type      = Maildir  # mbox, MMDF, MailDir
+# set header_cache = $HOME/.mutt/cache/headers
+set mask           = "!^\\.[^.]"
+set mbox           = +mbox
+set record         = "+Send"
+set postponed      = "+Drafts"
+# to view messages when use getmail to download mails , use 'c' to change-folder
+set spoolfile = $HOME/Mails/INBOX/
+# set maildir_trash as "no" to let mutt do not display the mails tagged as Deleted.
+set maildir_trash  = no
+set trash          = $HOME/Mails/Trash
+#set mbox         = "/var/spool/mail/chris"
+
+
+# ----------------------  MIME   --------------------------------
+set mime_forward = no
+# set mime_forward_rest
+# set mime_forward_decode = no
+
+# set attribution = "On %d, %n wrote:"
+set attribution   = "=> On [%{%Y-%m-%d %H:%M:%S %Z}]:\n %n Said: "
+
+# mutt deal with doc appendix
+# you can convert doc file into HTML and insert into mutt to view.
+# you can convert with wvware (http://www.wvware.com/) free
+# autoview application/msword
+#preferred file type order when viewing multipart/alternative emails
+unalternative_order *
+alternative_order text/plain text/enriched text/html
+
+set editor = "vim"
+# set editor = "vim +1 -c 'set cc=80'"
+# set editor = "vim -u ~/.mutt/vimrc"
+set autoedit
+
+# strip headers and eval mimes before searching.
+set thorough_search = yes
+
+# Upgrade the progress counter every 250ms, good for mutt over SSH
+# see http://bugs.debian.org/537746
+set time_inc        = 250
+set connect_timeout = 30
+set suspend         = yes
+# When unset, mutt won't stop when the user presses the terminal's susp key, usually ``control-Z''. This is useful if you run mutt inside an xterm using a command like xterm -e
+# mutt.
+set status_on_top = yes
+
+# spam
+set spam_separator = ","
+
+# PGP
+set pgp_auto_decode = yes
+
+# ---------------------- fetchmail -----------------------------------
+# call fetchmail from within mutt, macro bellowing:
+# equal with type command !fetchmail in mutt too.
+#| macro generic G \
+#| <shell-escape>'fetchmail'<enter> \
+#| 'Run fetchmail'
+
+# set fetchmail with $HOME/.fetchmailrc
+
+
+# ---------------------  procmail  -----------------------------
+
+
+# ---------------------  mutt patch -----------------------------
+# mutt patch list: [ http://wiki.mutt.org/index.cgi?PatchList ]
+# sidebar options
+# [ http://lunar-linux.org/index.php?page=mutt-sidebar ]
+# source `FILE=$HOME/.mutt/patch/sidebar.muttrc; mutt -v | grep -Fq sidebar || FILE=/dev/null; echo $FILE`
+
+# ------------ notify new mail -----------------
+# http://www.mutt.org/doc/devel/manual.html#formatstrings-filters
+# pipe to a script from status. use "|" to pipe when string changed.
+# set status_format="new-notify '-%r-Mutt: %f [Msgs:%?M?%M/?%m%?n? New:%n?%?o? Old:%o?%?d? Del:%d?%?F? Flag:%F?%?t? Tag:%t?%?p? Post:%p?%?b? Inc:%b?%?l? %l?]----%>-(%P)---'|"
+# ~~~~ new-notify ~~~~~~~ ( ~/.mutt/new-notify )
+# #!/bin/sh
+#
+# if [[ "$1" =~ "All Mail" && "$1" =~ "New:" ]];then
+#     notify-send "Get new mails"
+#     printf "\ekmutt: new\e\\" > /dev/tty
+# else
+#     printf "\ekmutt\e\\" > /dev/tty
+# fi
+#
+# echo "$1"
+# ~~~~~~~~~~~~~~~~~~~~~~~
+
+push <show-version> # show version on startup
+
+# vim:ft=muttrc

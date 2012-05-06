@@ -1,0 +1,92 @@
+# syntax : advance regex
+# URL: http://www.mutt.org/doc/manual/manual-4.html 
+
+
+\" '
+. ^ $
+[abc]
+[^abc]
+[1-9]
+
+[:  :] -> [:alnum:] [:alpha:] [:blank:] [:cntrl:] [:digit:] [:graph:] [:space:] 
+[[:digit:]] = [0-9] 
+
+[[.ch.]] 
+
+é -> [[=e=]]
+
+? * + {n} {n,} {n,m} {,m} 
+
+| 
+
+^~C \.de$ 
+~t mutt ~f elinks 
+
+! NOT 
+| OR 
+() Grouping operator 
+
+!(~t mutt |~c mutt) ~f elinks 
+'~s "^Junk +From +Me$" ~f ("Jim +Somebody"|"Ed +SomeoneElse")'  # notice whitespace 
+~f "me@(mutt\.org|cs\.hmc\.edu)" # | must be enclosed by ""
+
+
+# ======================================================
+# Mutt supports two types of dates, absolute and relative.
+# ======================================================
+# format DD/MM/YY  (month and year are optional, defaulting to the current month and year). 
+# Limit to messages matching: 
+~d 20/1/95-31/10
+# If you omit the minimum (first) date, and just specify ``-DD/MM/YY'', all messages before the given date will be selected. If you omit the maximum
+# (second) date, and specify ``DD/MM/YY-'', all messages after the given date will be selected. If you specify a single date with no dash (``-''),
+# only messages sent on the given date will be selected.
+
+# Error Margins. You can add error margins to absolute dates. An error margin is a sign (+ or -), followed by a digit, followed by one of the following units:
+# y       years
+# m       months
+# w       weeks
+# d       days
+# As a special case, you can replace the sign by a ``*'' character, which is equivalent to giving identical plus and minus error margins.
+# Example: To select any messages two weeks around January 15, 2001, you'd use the following pattern: 
+# Limit to messages matching: 
+~d 15/1/2001*2w
+
+# Relative. This type of date is relative to the current date, and may be specified as:
+>offset (messages older than offset units)
+<offset (messages newer than offset units)
+=offset (messages exactly offset units old)
+# Limit to messages matching: 
+~d <1m
+
+# Message Matching in Hooks
+# 
+# Hooks that act upon messages (send-hook, save-hook, fcc-hook, message-hook) are evaluated in a slightly different manner. For the other types
+# of hooks, a regular expression is sufficient. But in dealing with messages a finer grain of control is needed for matching since for
+# different purposes you want to match different criteria.
+# 
+# Mutt allows the use of the search pattern language for matching messages in hook commands. This works in exactly the same way as it would when
+# limiting or searching the mailbox, except that you are restricted to those operators which match information mutt extracts from
+# the header of the message (i.e. from, to, cc, date, subject, etc.).
+# 
+# For example, if you wanted to set your return address based upon sending mail to a specific address, you could do something like:
+# 
+send-hook '~t ^me@cs\.hmc\.edu$' 'my_hdr From: Mutt User <user@host>'
+# which would execute the given command when sending mail to me@cs.hmc.edu.
+# However, it is not required that you write the pattern to match using the full searching language. You can still specify a simple regular
+# expression like the other hooks, in which case Mutt will translate your pattern into the full language, using the translation
+# specified by the $default_hook variable. The pattern is translated at the time the hook is declared, so the value of $default_hook
+# that is in effect at that time will be used.
+
+4.7 Mailbox Shortcuts
+
+# There are a number of built in shortcuts which refer to specific mailboxes. These shortcuts can be used anywhere you are prompted for a file or mailbox path.
+
+! -- refers to your $spoolfile (incoming) mailbox
+> -- refers to your $mbox file
+< -- refers to your $record file
+- or !! -- refers to the file you've last visited
+~ -- refers to your home directory
+= or + -- refers to your $folder directory
+@alias -- refers to the default save folder as determined by the address of the alias
+
+# vim: t=muttrc

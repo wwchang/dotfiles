@@ -1,0 +1,278 @@
+# NOTE: if you want to create an alias for a group (by specifying more than one address), you must separate the addresses with a comma (``,'').
+
+# tools with email.
+alias wordpress WordpressPost <cera013qaja@post.wordpress.com>
+alias tumblr tumblr. <955flothauzb@tumblr.com>
+
+# myself
+alias stardiviner stardiviner <numbchild@gmail.com>
+# mama
+alias mama mama-yahoo, mama-qq, mama-gmail
+alias mama-yahoo Mama-yahoo <fuhemeng@yahoo.cn>
+alias mama-qq Mama-QQ <568734625@qq.com>
+alias mama-gmail Mama-Gmail <fuhemeng@gmail.com>
+# my dear
+alias baobao baobao-qq-1, baobao-qq-2, baobao-yeah
+alias baobao-qq-1 baobao-QQ-1 <184145190@qq.com>
+alias baobao-qq-2 baobao-QQ-2 <243113196@qq.com>
+alias baobao-yeah baobao-yeah <shanyingqing1990@yeah.net>
+alias jiejie LuoXiaoFang-QQ <397127551@qq.com>
+alias sister  sister-XiaoXin  <1051899676@qq.com>
+alias brother Brother-moon <1007464583@qq.com>
+alias libin  LiBin <zmnlb1106@gmail.com>
+
+# Gay
+alias mailuoluo Mai-LuoLuo <luoying.m@qq.com>
+alias alexpulo  Alexandre Paulo <alexpaulo.paulo@gmail.com>
+alias mikas Mycaellis Santis  <mycasantis@gmail.com>
+
+# relatives
+alias JinShuiFei RealSister <jinshuifei1986@qq.com>
+
+# e-pens
+alias leslie Leslie Yuan <slpsy@msn.com>
+
+
+# ifttt with trigger like #facebook, #twitter, #wordpress.
+# ( you can use multi at once )
+alias ifttt ifttt-trigger <trigger@ifttt.com>
+
+# Ezine
+# ---- dnfwah oof f0Rsaken --
+alias dnfwah dfnwah-Ezine <forsaken2046@gmail.com>
+
+# News
+alias linuxToy LinuxToy <shuge.lee@gmail.com>
+
+# Hacker
+alias fU9ANg network-libpcap <bb.newlife@gmail.com>
+alias zooboa zooboa <zooboa@gmail.com>
+
+# linuxer
+alias levin openfetion <levin108@gmail.com> # openfetion
+alias orion Orion <orion_val@163.com> # A byte of python
+alias roylez roylzuo <roylzuo@gmail.com>
+alias adam8157 Adam Lee <adam8157@gmail.com>
+alias tenzu tenzu <huangxin.cliff@gmail.com>
+alias MeaCulpa J.Y. Xu <infernoxu@gmail.com>
+alias lemonhall lemonhall <lemonhall@gmail.com>
+alias microcai microcai <microcai@fedoraproject.org> # RedHat
+alias grawity Mantas Mikulėnas <grawity@gmail.com> # system manager
+alias TVBeGone Simon Budig <simon@budig.de>
+alias vimwiki vimwiki-author <habamax@gmail.com> # vimwiki(script)
+alias steve Steve Losh <steve@stevelosh.com> # vim scripter
+alias TimPope Tim Pope <website@NOSPAMtpope.org> # vim scripter
+alias Scrooloose Scrooloose <martin.grenfell@gmail.com> # vim scripter
+alias lucas Lucas Westermann <lswest34@gmail.com> # command
+alias jiero jiero <lililjlj@gmail.com> # linux game
+alias lainme lainme <lainme993@gmail.com> # female: Ubuntu/Arch Vim
+alias Tristan Tristan <Tristan.J.Huang@gmail.com> # C / C++
+
+# Vimer
+alias marcweber MarcWeber <marco-oweber@gmx.de>
+
+# program
+alias qualityprogramming Quality Programming <qualityprogramming@googlegroups.com>
+# Python
+alias python Python.list <python-list@python.org>
+alias django.G django.user <django-users@googlegroups.com>
+alias python.lang.G comp.lang.Py <comp.lang.python@googlegroups.com>
+alias python_linux.G Py.linux <python_linux@googlegroups.com>
+alias python-cn Py-cn <python-chinese@lists.python.cn>
+alias python.tw Py.tw <pythontw@googlegroups.com>
+# Java
+alias java.G comp.lang.Java <comp.lang.java.programmer@googlegroups.com>
+# C
+alias c.G comp.lang.C <comp.lang.c@googlegroups.com>
+# C++
+alias c-c++.lang.G comp.lang.C-C++ <alt.comp.lang.learn.c-c++@googlegroups.com>
+# Perl
+alias perl.beginners.G Perl.beginners.G <perl.beginners@googlegroups.com>
+alias perl.beginner Perl.beginner <beginners@perl.org>
+# Web
+alias mdc-dev Mozilla.Developer.Center <dev-mdc@lists.mozilla.org>
+alias jplayer jPlayer <jplayer@googlegroups.com>
+alias html5-zh HTML5-W3-zh <public-html-ig-zh@w3.org>
+alias whatwg whatwg <whatwg@whatwg.org>
+alias whatwg.help whatwg.help <help@whatwg.org>
+alias webdesign_programming Web design & programming <webdesign-outsource@googlegroups.com>
+# Vim plugins scripts
+alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>
+
+# prey ( anti-thefe )
+alias prey Prey <prey-security@googlegroups.com>
+# TLF ( ncurses-based Ham Radio stuff )
+alias tlf TLF.devel <tlf-devel@nongnu.org>
+# Maemo
+alias maemo maemo.user <maemo-users@maemo.org>
+alias maemo-dev maemo.dev <maemo-developers@maemo.org>
+alias maemo-an maemo.an <maemo-announce@maemo.org>
+# linux
+alias linuxusersgroup LinuxUsersGroup <linuxusersgroup@googlegroups.com>
+alias linuxdevelopers Linux-Developers <linux-developers@googlegroups.com>
+# ubuntu
+alias ubuntu-users ubuntu.users <ubuntu-users@lists.ubuntu.com>
+alias ubuntu-mobile ubuntu.mobile <ubuntu-mobile@lists.ubuntu.com>
+alias ubuntu-security ubuntu.security <ubuntu-security-announce@lists.ubuntu.com>
+alias ubuntu-devel ubuntu.devel <ubuntu-devel@lists.ubuntu.com>
+alias ubutnu-server ubuntu.server <ubuntu-server@lists.ubuntu.com>
+alias ubuntu-zh ubuntu.zh <ubuntu-zh@lists.ubuntu.com>
+alias ubuntu-au ubuntu.au <ubuntu-au@lists.ubuntu.com>
+# Arch
+alias arch-general arch.general <arch-general@archlinux.org>
+alias arch-releng arch.releng <arch-releng@archlinux.org>
+# Gentoo
+alias gentoo.user.G Gentoo.user.G <linux.gentoo.user@googlegroups.com>
+alias gentoo.china.G Gentoo.china.G <gentoo-china@googlegroups.com>
+alias Gentoo.china.G.noreply Gentoo.china.G.noreply <gentoo-china+noreply@googlegroups.com>
+# Vim
+# Help on vim and vim usage
+alias vim_use.G Vim.use.G <vim_use@googlegroups.com>
+alias vim.org Vim <vim@vim.org>
+# Discussion on current vim development
+alias vim-dev Vim.dev <vim-dev@vim.org>
+# Vim use and development discussion specific to mac
+alias vim-mac Vim.mac <vim-mac@vim.org>
+# Announcements only: new releases and important patches
+alias vim-an Vim.an <vim-announce@vim.org>
+# parallel
+alias parallel parallel <parallel@gnu.org>
+# FVWM
+alias fvwm FVWM <fvwm@fvwm.org>
+alias fvwm-an FVWM-announce <fvwm-announce@fvwm.org>
+# awesome
+alias awesome Awesome <awesome@naquadah.org>
+# mutt
+alias mutt Mutt <mutt-users@mutt.org>
+alias mutt-dev Mutt-dev <mutt-dev@mutt.org>
+alias mairix mairix <mairix-users@lists.sourceforge.net>
+# procmail
+# alias procmail Procmail <procmail-users@procmail.org>
+alias procmail Procmail <procmail@informatik.rwth-aachen.de>
+alias procmail-an Procmail.an <procmail-announce@procmail.org>
+# bogofilter
+alias bogofilter bogofilter <bogofilter@bogofilter.org>
+# screen & tmux
+alias screen screen <screen-users@gnu.org>
+alias tmux tmux <tmux-users@lists.sourceforge.net>
+# mldonkey
+alias mldonkey MLDonkey <mldonkey-users@nongnu.org>
+# ranger
+alias ranger Ranger <ranger-users@nongnu.org>
+# midnight commannder
+alias mc midnight commannder <mc@gnome.org>
+# git
+alias git Git <git@vger.kernel.org>
+# getmail
+alias getmail getmail <getmail@lists.pyropus.ca>
+# pwmt.org ( jumanji, zathura )
+alias jumanji jumanji <jumanji@lists.pwmt.org>
+alias zathura zathura <zathura@lists.pwmt.org>
+# w3m text-based browser
+alias w3m w3m-dev <w3m-dev-en@sic.med.tohoku.ac.jp>
+# elinks text-based browser
+alias elinks Elinks <elinks-users@linuxfromscratch.org>
+# urxvt rxvt-unicode
+alias urxvt urxvt <rxvt-unicode@lists.schmorp.de>
+# rtorrent
+alias rtorrent rtorrent <libtorrent-devel@rakshasa.no>
+alias rtorrent-pyroscope pyroscope <pyroscope-users@googlegroups.com>
+# conky
+alias conky Conky <conky-users@lists.sourceforge.net>
+# Canto
+alias canto Canto <canto-reader@codezen.org>
+# taskwarrior
+alias task taskwarrior <support@taskwarrior.org>
+# Tux2live
+alias tux2live Tux2live <tux2live@googlegroups.com>
+# Vimperator
+alias vimperator vimperator <vimperator@mozdev.org>
+# mosh (Mobile Shell)
+alias mosh Mobile Shell <mosh-users@mit.edu>
+
+
+# Students & Teacher
+alias  ChangYingZi  常英子  <215603653@qq.com>
+alias  ChenBinBin  陈斌斌  <441895356@qq.com>
+alias  ChenMengLei  陈梦蕾-师父高二  <1060930996@qq.com>
+alias  ChenZeQiao  程泽巧芜湖-姐姐  <353359777@qq.com>
+alias  ChuJiangHui   楚江辉  <569040931@qq.com>
+alias  CuiJiaBing  崔加斌  <393401374@qq.com>
+alias  DaiWeiJun  戴维军  <380021913@qq.com>
+alias  DengZhanSi  邓占思  <912241803@qq.com>
+alias  DingXiang  小香姐姐--丁香  <511179594@qq.com>
+alias  DongShen  东升  <953938203@qq.com>
+alias  GeSiLa  哥斯拉  <574680148@qq.com>
+alias  HanMaoMao  韩毛毛--电科  <526155712@qq.com>
+alias  HanWeiQi  韩玮琪--姐姐  <273526171@qq.com>
+alias  HeQiFang  何其芳--高二  <360180699@qq.com>
+alias  HeXingQiang  何欣强  <534489863@qq.com>
+alias  HeYuXing  何玉鑫--师父  <452275880@qq.com>
+alias  HuLieFeng  胡烈峰  <519196738@qq.com>
+alias  HuXiaoPing  胡晓萍  <371932403@qq.com>
+alias  HuZhangWei  胡涨伟  <546935493@qq.com>
+alias  JinBin  金炳  <373635476@qq.com>
+alias  JinQiFen  金奇锋  <355046597@qq.com>
+alias  JinTao  金涛  <568513029@qq.com>
+alias  JingQiHuan  金奇欢  <454729464@qq.com>
+alias  LaoDi  老翟--安工科姐姐  <164353748@qq.com>
+# alias  LiBin  李斌  <694293589@qq.com>
+# alias  LiBin  李斌  <zmnlb1106@gmail.com> <1403612806@qq.com>
+alias  LiJieQing 李吉庆  <553650203@qq.com>
+alias  LiangTao  梁涛(老大)  <346476191@qq.com>
+alias  LingYuanShen  林园胜  <1018561751@qq.com>
+alias  LouKaiHen  楼凯恒  <297492316@qq.com>
+alias  LuNa  陆娜--姐姐  <157184125@qq.com>
+alias  LuoXiaoFang  罗萧芳--姐姐  <397127551@qq.com>
+alias  NiGuoLiang  倪国亮  <623015554@qq.com>
+alias  QianGuiQin  钱贵清  <651269330@qq.com>
+alias  RuanPenFei  阮彭飞  <598021769@qq.com>
+alias  ShaoWenDong  邵文东  <985398892@qq.com>
+alias  SongWei  宋威  <563341907@qq.com>
+alias  SunLiang  孙梁--初三  <360143914@qq.com>
+alias  TangJiLiang  汤吉亮--高三  <734474389@qq.com>
+alias  TianMingLiang  田明良  <553189227@qq.com>
+alias  WangLuYan  王潞燕  <714197301@qq.com>
+alias  WangShao  王邵  <381774349@qq.com>
+alias  WangSongLing  王松林  <123498712@qq.com>
+alias  WangYing  王莹--姐姐 <398278109@qq.com>
+alias  WeiYingHuan  尉银环  <524261370@qq.com>
+alias  WuQiong  吴穹  <252792836@qq.com>
+alias  XiaoMing  吕明  <452886487@qq.com>
+alias  XiaoNiao 小鸟  <245151787@qq.com>
+alias  XuJing  徐静  <448356637@qq.com>
+alias  XuanHongYan  宣红燕  <742935378@qq.com>
+alias  YangFei  杨飞--高二姐姐  <492408664@qq.com>
+alias  YangJie  杨杰  <605475999@qq.com>
+alias  YangLi  杨莉  <704948845@qq.com>
+alias  YeChao  叶超  <623005574@qq.com>
+alias  YeFangFang 叶芳芳--高二  <498302121@qq.com>
+alias  ZhangPing  张平  <996602767@qq.com>
+alias  ZhangQi  张琪  <1018417126@qq.com>
+alias  ZhangRui  张锐  <271896686@qq.com>
+alias  ZhaoLuLu  赵露霞  <782745967@qq.com>
+alias  ZheJun  浙炯--小时候  <634946909@qq.com>
+alias  ZhongJin  钟瑾  <297510901@qq.com>
+alias  ZuSiDan  朱斯丹--姐姐  <339355679@qq.com>
+# teachers
+alias  ET English teacher--高三  <413253951@qq.com>
+# Kin
+alias HeTing 何挺 <htskii1988@gmail.com>
+
+# netfriends
+alias CaiFeng CaiFeng <caifeng0404@163.com>
+
+
+# Break Wall (censorship)
+alias bypassgfw bypassgfw <bypassgfwdiscussions@googlegroups.com>
+# Tor get bridget , send a message Subject: get tor bridges
+alias tor.getbridges Tor-GetBridges <bridges@torproject.org>
+alias tor Tor-talk <tor-talk@lists.torproject.org>
+# DongTaiWang - FreeGate  -- get DongTaiWang IP
+alias dtwip DongTaiWang <dtwip001@gmail.com>, <dtwip002@gmail.com>, <dtwip003@gmail.com>
+alias psiphon3 psiphon3 <get@psiphon3.com>
+
+# Hack The Future
+alias HackTheFuture Hack The Future <sean@hackthefuture.org>
+
+# vim:ft=muttrc

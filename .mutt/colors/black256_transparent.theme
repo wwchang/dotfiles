@@ -1,0 +1,205 @@
+# -*- colors -*-
+# define colors for mutt
+
+color hdrdefault    color241  default
+color signature     color039  default
+# color indicator     color232  color204 # pink
+color indicator     color016  color088
+color attachment    color123  default
+color error         color232  color196
+color message       color039  default
+color search        color232  color154
+color status        color028  default
+color tree          color124  default
+color normal        color244  default
+color tilde         color209  default
+color bold          color039  default
+color markers       color118  default
+color quoted        color106  default
+color quoted1       color038  default
+color quoted2       color172  default
+color quoted3       color197  default
+
+
+# Colours for items in the reader
+# color header brightyellow  default "^(From|To):"
+color header        color250    default "^Date:"
+color header        color203    default "^From:"
+color header        color036    default "^(To|Cc|Bcc):"
+color header        color196    default "^Subject:"
+color header        color023    default "^(User-Agent|X-Mailer):"
+# color header red           default "^X-Virus-hagbard: .* FOUND"
+color header        color196    default "^(X-Virus-hagbard|X-SpamProbe|X-Junked-Because):"
+
+color header	    color203	default "^newsgroups: "
+color header        color036    default "^Delivered-To: "
+color header        color203    default "^sender: "
+color header        color203    default "^organi[sz]ation: "
+color header        color023    default "x-editor: "
+color header        color023    default "X-Operating-System: "
+color header        color023    default "X-MimeOLE: "
+color header        color023    default "X-Accept-Language: "
+    # bogofilter
+color header        color124    default "X-Bogosity: "
+color header	    color203	default "^message-id:"
+color header	    color203	default "^in-reply-to: "
+color header	    color203	default "^references: "
+color header	    color023	default "^followup-to: "
+color header	    color023	default "^mail-followup-to: "
+color header	    color023	default "^reply-to: "
+color header        color023    default "List-Id: "
+color header	    color023	default "MIME-Version: "
+color header	    color023	default "Content-Type: "
+color header	    color023	default "Content-Transfer-Encoding: "
+color header	    color023	default "Content-Disposition: "
+color header	    color023	default "Content-Encoding: "
+color header	    color023	default "Content-Language: "
+
+# highlight keywords
+color body          color197    default "(chris|Evanescence|stardiviner)"
+color body          color226    default "(sex|gay)"
+
+# Colours for items in the index
+# color index         color046    default "~N|~O" # OR in this situation.
+color index         color046    default ~N # new
+color index         color100    default ~O # old
+color index         color094    default ~U # unreaded
+color index         color123    default ~l # addressed "to" a known mailing list
+color index         color178    default ~u # addressed "from" a subscribed mailing list
+color index         color244    default ~R # readed mailing list mails.
+# PGP signed
+color index         color081    default  ~k  # contains PGP
+color index         color051    default  ~g  # PGP signed
+color index         color232    color167 ~G  # PGP encrypted
+color index         color203    default  ~V  # cryptographically verified messages
+# big size mail
+color index         color094    default "~z >200K" # size tween 1M-100M
+# collapsed
+color index         color196    default "~v" # message is part of a collapsed thread
+# duplicated
+color index         color196    default "~="  # duplicated messages
+# spam
+color index         color089    default '~h "X-Spam-Status: Yes"'
+# color index red default '~h "X-Spam-Status:.*score=(2|3)."'
+# notify message
+color index         color159    default '~h "From: .*noreply"'
+# important mails
+color index         color226    default "-r 24/3*3d"  # my birthday mail
+color index         color197    default "~N (~e fuhemeng | ~e 568734625 )" # Mama
+color index         color197    default "~N (~e 1051899676 )" # sister
+color index         color197    default "~N (~e 184145190 | ~e 243113196 | ~e shanyingqing )" # Baobao
+# you send in mailing list or replied in mailing list ( Message-ID | References | In-Reply-To )
+# FIXME
+# color index         color154    default "~i (Message-ID)"
+# color index         color154    default "~x (References | In-Reply-To)"
+# color index brightgreen brightwhite "~N (~x hagbard\.davep\.org | ~h \"^In-[Rr]eply-[Tt]o: .*hagbard\.davep\.org\")"
+# thread
+# color index         color255    default ~(~P) # all threads contains message from you.
+# color index         color040    default ~(~p) # all threads contains message to you.
+# let mailing list PGP mails normal
+#color index         color187    default ~(~k)  # contains PGP
+#color index         color178    default ~(~g)  # PGP signed
+#color index         color232    color197 ~(~G)  # PGP encrypted
+#color index         color240    default ~R     # readed messages
+# myself
+# color index         color025    default ~p  # message only to you
+# color index         color040    default ~P  # message from myself
+color index         color016    color123 ~(~P)  # message from myself
+color index         color105    default "~x .*@stardiviner" # I'm in the References list.
+color index         color070    default "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
+color index         color202    default ~Q  # I replied to this mail.
+color index         color232    color046 ~T  # tagged  *
+color index         color232    color203 ~F  # flagged !
+color index         color235    default  ~D  # deleted D
+
+# threads
+#color index brightyellow default  "~h 'References: +<.+>'"
+#color index yellow       default  "~h 'References: +<.+> +<.+>'"
+#color index brightred    default  "~h 'References: +<.+> +<.+> +<.+>'"
+#color index red          default  "~h 'References: +<.+> +<.+> +<.+> +<.+>'"
+#color index blue         default  "~h 'References: +<.+> +<.+> +<.+> +<.+> +<.+>'"
+#color index green        default  "~h 'References: +<.+> +<.+> +<.+> +<.+> +<.+> +<.+>'"
+
+# color index red default "Subject"
+# color index green default "Re:"
+# color index green default "-list"
+# color index green default "Digest"
+
+# URLs
+# color body blue  black "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+color body  color209  default "(http|https|ftp|news|telnet|finger|gopher)://[^ \">\t\r\n]*"
+color body  color209  default "(www|web|w3)\.[^ \">\t\t\n]*\.[a-zA-Z0-9]"
+color body  color206  default "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+color body  color206  default "news:[^ \">\t\r\n]*"
+# color body brightyellow black "(http|ftp)://[\-\.\,/+=&%~_:?\#a-zA-Z0-9]+"
+
+# email addresses
+# color body  color034  default "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+color body color034 default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+"
+
+# Various smilies and the like
+color body  color154  default "<[Gg]>"           # <g>
+color body  color154  default "<[Bb][Gg]>"       # <bg>
+color body  color045  default "[;:]-*[)>(<|PD]"  # :-) etc...
+
+# Bold, Italic, Underline
+color body  color214  default "(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$)"     # *Bold* text.
+color body  color047  default  "(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)"         # _Underlined_ text.
+color body  color037  default "(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)"         # /Italic/ text.
+# color body brightgreen black "(^| )[*_]+[-&[:alnum:]]+[*_]( |$)" # bold/underline
+
+
+color body  color118  default "Good signature" # highlight GPG key
+color body  color196  default "WARNING" # highlight GPG key Warning
+color body  color196  default "Subject" # highlight Subject
+color body  color197  default "Topic"   # highlight Topic
+color body  color204  default "(^-*\ [0-9]\ of\ [0-9]\ -*)" # highlight ---- 2 of 3 for Google Groups.
+color body  color196  default "Question:" # Quora.com question digest.
+color body  color118  default "Answer" # Quora.com question digest.
+
+
+color body  color202  default "(^| |[-.[:alnum:]]+:+)~?\(/[-_.'[:alnum:]]+\)+/?" # Unix file path
+color body  color202  default "(^| +)[[:alpha:]]:[-_.[:alnum:]\]+"               # DOS file path
+color body  color118  default "(^|[ '\"]+)\\$[[:alpha:]][-_[:alpha:]]+"           # variable
+color body  color160  default "[!?]{3,}"                                         # exclamation
+color body  color226  default "^ *[-+*o] +"                                     # list item
+
+# 2011-10-17 15:14:07 +0000
+color body color038 color232 "[0-9]{4}-([0-9]|1[0-2])(-[0-3][0-9])\ +([01][0-9]|2[0-4])(:[0-6][0-9]){2}( +[+-][0-9]{4})"
+# date formats
+color body color038 color232 "[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?"
+color body color038 color232 "(\(19|20\)?[0-9]{2}/[01]?[0-9]/[0123]?[0-9]|[0123]?[0-9][/.][01]?[0-9][/.]\(19|20\)?[0-9]{2})(( at)? +[0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+color body color038 color232 "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?)[ .]+[0-9]{1,2}(st|nd|rd|th)?,?( +(19|20)[0-9]{2}(,?( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?)?"
+color body color038 color232 "((Sun(day)?|Mon(day)?|Tue(sday)?|Wed(nesday)?|Thu(sday)?|Fri(day)?|Sat(urday)?),? +)?[0-9]{1,2}(st|nd|rd|th)?[ .]+(Jan(uary)?|Feb(ruary)?|Mar(ch)?|Apr(il)?|May|June?|July?|Aug(ust)?|Sep(ember)?|Oct(ober)?|Nov(ember)?|Dec(ember)?),?( +(19|20)?[0-9]{2})?(( at)? [0-9]{1,2}:[0-9]{2}(:[0-9]{2})?( ?(AM|PM|am|pm))?( +[+-][0-9]{4})?)?"
+
+# reference link [2]
+# FIXME color body color118  default "[[[0-9]]][:alpha:]*"
+color body color118  default "^References$"
+#color body color118  default "\ *[0-9]\."
+
+# spam
+color index color053 default "\(Resent-\)?Message-Id: <>"
+color index color053 default "\(Resent-\)?Message-Id: '<.* .*>'"
+color index color053 default "\(Resent-\)?Message-Id: localhost"
+color index color053 default "! \(Resent-\)?Message-Id: @"
+color index color053 default '~C Undisclosed.*Recipients'
+
+# mono
+mono  index      bold       ~N
+mono  index      bold       ~F
+mono  index      bold       ~T
+mono  index      bold       ~D
+mono  body       bold       "(http|https|ftp|news|telnet|finger)://[^ \">\t\r\n]*"
+mono  body       bold       "mailto:[-a-z_0-9.]+@[-a-z_0-9.]+"
+mono  body       bold       "news:[^ \">\t\r\n]*"
+mono  body       bold       "[-a-z_0-9.%$]+@[-a-z_0-9.]+\\.[-a-z][-a-z]+"
+mono  bold       bold
+mono  underline  underline
+mono  indicator  reverse
+mono  body       underline  "(ftp|http|file)://[^ >)]+"
+mono  body       underline  [-a-z_0-9.]+@[-a-z_0-9.]+
+mono  header     bold       "^(From|Subject|X-Junked-Because|X-Virus-hagbard):"
+mono  quoted	 bold
+mono  attachment bold
+
+# vim:ft=muttrc

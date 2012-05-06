@@ -1,0 +1,530 @@
+# /home/user/.procmailrc
+SHELL=/bin/sh
+PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin
+MAILDIR=$HOME/Mails
+DEFAULT=$MAILDIR/INBOX/
+PMDIR=$HOME/.mutt/procmail
+LOGFILE=$HOME/.procmail.log
+VERBOSE=on
+#INCLUDERC=$PMDIR/general.rc
+#INCLUDERC=$PMDIR/mailinglist.rc
+#INCLUDERC=$PMDIR/rss2email.rc
+#INCLUDERC=$PMDIR/QQ.rc
+#INCLUDERC=$PMDIR/syntax.rc
+
+# [ reference ] {{{2
+# http://www.ii.com/internet/robots/procmail/qs/
+# http://pm-doc.sourceforge.net/doc/
+# man procmail procmailrc procmailex procmailsc
+
+
+# The procmail recipes are read and actions are performed in order. For any given message, when the first delivering recipe is matched, the
+# message is delivered and the rest of recipe are ignored. Delivering recipes are the recipes that have a mailbox or another delivery address
+# as the action. For this reason, for certain recipes, you should put them in the proper order. In particular, above default .procmailrc has a
+# catch-all recipe that is recipe with no rule at that will perform the default action, which, for most people, should
+# be putting the message in their inbox. If you want to add additional recipe, you should add them above the default rule if
+# not, it won't even be read!
+
+# ! Forwards to all the specified mail addresses.
+# | Pipes the mail to stdout, and into the specified program (the one that comes after the `|'). If you prepend var= to this pipe, procmail will dump
+
+
+# ************** Mails must match all regexes in the rule. *************************
+# == syntax ==
+# :0 [flags] [ : local lockfile ]
+# * <(optional) conditions (one per line)>
+# * <additionaly (optional) conditions>
+# <exactly one action line>
+#
+# The action is performed only when the message matches all the conditions.
+# * ^From | * ^To_ | * ^Subject:.*test | * ^Subject:.*\<test\> ( match a word ) | * ^TO_\/(procmail@lists.rwth-aachen.de|vim@vim.org) | *
+# ^TO_\/(procmail|vim)
+
+# proper use of lockfiles is highly recommended.
+# }}}
+
+# [ examples ] {{{2
+
+##Trivial catching of potential spam towards the end of a ~/.procmailrc
+##Place only after accepting all the mailing lists you want to receive
+## [ AND ]
+#:0:
+#* ! ^TO_ts@([-a-z0-9_]+\.)*uvasa\.fi
+#* ! ^TO_timo\.salmi
+#${HOME}/.mail/PotentialSpam.mail
+
+#For entering an "or" rule, consider the following example:
+
+##Accept email from Era Eriksson, the author of the major procmail FAQ
+## [ OR ]
+#:0:
+#* ^From:.*reriksso@([-a-z0-9_]+\.)*helsinki\.fi|\
+  #^From:.*era@iki\.fi
+#${DEFAULT}
+
+# use ()
+# * ^From:.*(reriksso@([-a-z0-9]+\.)*helsinki|era@iki)\.fi
+
+# actions use "&&", ";" and "\"
+# | echo "A ^Subject: header found with" >> ${TESTDIR}/Proctest.mail &&\
+#   echo "${MATCH}" >> ${TESTDIR}/Proctest.mail
+
+# send spam to /dev/null
+# /dev/null
+
+# :0 fw
+# * ^From:.*mailing-list@lists.berkeley.edu
+# |sed -e 's/^Subject:[ ]*/Subject: [LIST] /'
+# 'f': the pipe will be considered as a filter. That means that the message will be passed down through the rest of recipe until it comes across a
+# delivering recipe that matches.
+# 'w': procmail will wait for the filter (in our case, sed) to finish and check its exitcode. If the filter exits with error (with possibly
+# garbled output), procmail will continue with the original unfiltered input.
+
+# Safety net!
+# :0 c
+# c means copy mail
+# mailbackup
+
+# # Create backup for de-HTML'd email
+# :0 c
+# * ^Content-type: text/html
+# de-html-backup
+# # de-HTML
+# :0 fbw
+# * ^Content-Type:[ ]*text/html
+# | lynx -dump -stdin -nolist \
+# && echo "" \
+# && echo "=================================================" \
+# && echo "This HTML message has been made into text by lynx" \
+# && echo "================================================="
+
+# spamassassin
+# {
+#     :0fw:spamassassin.lock
+#     * < 256000
+#     | spamassassin
+#
+#     :0e
+#     EXITCODE==$?
+#
+#     :0:
+#     * ^X-Spam-Flag: YES
+#     spam
+# }
+
+# :0 bc:   # archive things sent to junk mailing list
+# * ^To:.*junk
+# | gzip >> junk-archive.gz
+
+# notice that I don't have a colon after 'From' in that condition. This is a quirk of mail headers; there are header From lines with and
+# without colons, so leaving it off is the safest bet.
+
+# == nesting ==
+# {
+# :0 c
+# ! numbchild@gmail.com
+#
+# :0
+# | lpr -Pacsps
+# }
+
+# http://www.linuxdoc.org/HOWTO/Mutt-GnuPG-PGP-HOWTO-8.html#sec-procmail.2
+
+# mailing list
+# List-Id: Ubuntu in Australia <ubuntu-au.lists.ubuntu.com>
+# Sender: ubuntu-au-bounces@lists.ubuntu.com
+
+# delete duplicatas: {
+# :0 Whc: msgid.lock
+# | formail -D 8192 msgid.cache
+# :0 a:
+# $HOME/mail/zzzz-duplicatas
+# }
+
+# test new mail notify
+# Some filter rule
+#:0
+#* ^From: .*numbchild@gmail\.com
+#{
+    #:0 c
+    #| ~/.mutt/newmail-notifier.py
+
+    #:0
+    #INBOX/
+#}
+    # }}}
+
+# [ syntax ] {{{2
+    # [flags] : c: copy, b: body, h: head, W:
+
+    # :0 [flags] [: [lock-file] ]
+    # zero or more conditions
+    # one action line
+
+    # :0 [flags] [: [lock-file] ]
+    # zero or more conditions
+    # {
+    #   :0
+    #   zero or more conditions
+    #   action line 1
+    #
+    #   :0
+    #   zero or more conditions
+    #   action line 2
+    # }
+# }}}
+
+# spam (bogofilter) {{{2
+    #Send mail thru bogofilter
+    :0fw
+    | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
+    # ongoing train bogofilter with -u option.
+
+    :0e
+    { EXITCODE=75 HOST }
+
+    #Put mail bogofilter deems as spam in spam folder
+    :0:
+    * ^X-Bogosity: Spam, tests=bogofilter
+    # * ^X-Spam-Flag: YES
+    spam/
+
+    #Put mail bogofilter deems as unsure in unsure folder
+    :0:
+    * ^X-Bogosity: Unsure, tests=bogofilter
+    unsure/
+# }}}
+
+
+    :0
+    * ^Sender: .*noreply\+feedproxy@google\.com
+    kkkk/
+# notify my emails {{{2
+    #:0 c
+    #* ! ^Message-ID: .*@stardiviner
+    #* ^In-Reply-To: .*@stardiviner
+    ## FIXME how to get the mail's subject
+    #| /home/chris/bin/notify.sh "Replied_mailing-list:" "Subject"
+
+    #:0 c
+    #* ! ^Message-ID: .*@stardiviner
+    #* ^References:  .*@stardiviner
+    #| /home/chris/bin/notify.sh "Update_mailing-list:" "Subject"
+# }}}
+
+# QQ {{{2
+    :0
+    * ^To: .*348284894@qq\.com
+    {
+        :0
+        * ^From: .*(fuhemeng|569040931)@(qq|gmail|yahoo)\.(com|cn)
+        INBOX/
+        :0
+        * ^From: .*email@eurovpn\.org
+        /dev/null
+        :0
+        QQ/
+    }
+    :0
+    * ^To: .*450558573@qq\.com
+    {
+        # from mama send to INBOX
+        :0
+        * ^From: .*(fuhemeng|569040931)@(qq|gmail|yahoo)\.(com|cn)
+        INBOX/
+        :0
+        QQ/
+    }
+# }}}
+
+# program language {{{2
+    # Python
+    :0
+    * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
+    Python/comp-lang-py/
+    :0
+    * ^List-Id: .*python-list\.python\.org
+    Python/python/
+    :0
+    * ^List-Id: .*django-users\.googlegroups\.com
+    Python/Django/
+    :0
+    * ^List-Id: .*webpy\.googlegroups\.com
+    Python/webpy/
+    :0
+    * ^List-Id: .*pythontw\.googlegroups\.com
+    Python/python-tw/
+
+    :0
+    * ^List-Id: .*golang-nuts\.googlegroups\.com
+    Go/golang-nuts/
+    :0
+    * ^List-ID: .*golang-china\.googlegroups\.com
+    Go/golang-china/
+
+
+    :0
+    * ^To: .*rubyonrails-talk@googlegroups\.com
+    Ruby/Rails/
+
+    :0
+    * ^List-Id: .*perl.*\.googlegroups\.com
+    Perl/
+    :0
+    * ^List-Id: .*\.perl\.org
+    Perl/
+# }}}
+
+# Web {{{2
+    :0
+    * List-Id: .*jplayer\.googlegroups\.com
+    Web/jplayer/
+    :0
+    * List-Id: .*help-whatwg\.org
+    Web/whatwg/
+    :0
+    * To: .*whatwg@lists.whatwg\.org
+    Web/whatwg/
+# }}}
+
+# Drupal {{{2
+    :0
+    * List-Id: .*support\.drupal\.org
+    Drupal/support/
+    :0
+    * List-Id: .*security-news\.drupal\.org
+    Drupal/security/
+# }}}
+
+# apps {{{2
+    :0
+    * ^List-Id: .*\.vim\.org
+    Vim/
+    :0
+    * ^List-Id: .*vim_use\.googlegroups\.com
+    Vim/
+    #:0
+    #* ^List-Id: .*vimorganizer\.googlegroups\.com
+    #Vim/vimOrganizer
+
+    #:0
+    #* ^List-Id: .*vim_use\.googlegroups\.com
+    #{
+        #:0 c
+        #Vim/
+
+        #:0:
+        #* ^In-Reply-To: .*numbchild@gmail.com
+        #* ^References:  .*numbchild@gmail.com
+        #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox." ; echo "test procmail notify OK !" > /home/chris/test_procmail.txt
+    #}
+
+    :0
+    * ^List-Id: .*awesome\.naquadah\.org
+    Awesome/
+    :0
+    * ^List-Id: .*fvwm\.fvwm\.org
+    FVWM/
+    :0
+    * ^List-Post: .*@mutt\.org
+    apps/Mutt/
+    :0
+    * List-Id: .*conky-users\.lists\.sourceforge\.net
+    apps/Conky/
+    :0
+    * List-Id: .*weechat-support\.nongnu\.org
+    apps/weechat/
+    :0
+    * List-Id: .*ranger-users\.nongnu\.org
+    apps/ranger/
+    :0
+    * List-Id: .*mldonkey-users@nongnu\.org
+    apps/MLDonkey/
+    :0
+    * To: .*mldonkey-users@nongnu\.org
+    apps/MLDonkey/
+    :0
+    * ^List-ID: .*prey-security\.googlegroups\.com
+    apps/prey/
+    :0
+    * ^List-Id: .*screen-users\.gnu\.org
+    apps/screen/
+    :0
+    * ^List-Id: .*tmux-users\.lists\.sourceforge\.net
+    apps/tmux/
+    :0
+    * ^From: .*rxvt-unicode.*@lists\.schmorp\.de
+    apps/urxvt/
+    :0
+    * ^From: .*elinks-users.*@linuxfromscratch\.org
+    apps/elinks/
+    :0
+    * ^List-Id: .*bogofilter\.bogofilter\.org
+    apps/bogofilter/
+    :0
+    * ^List-Id: .*pandoc-discuss\.googlegroups\.com
+    apps/pandoc/
+    :0
+    * ^List-Id: .*canto-reader.*@codezen\.org
+    apps/Canto/
+    :0
+    * ^List-Id: .*gitit-discuss\.googlegroups\.com
+    apps/gitit/
+    :0
+    * ^List-Id: .*mosh-users\.mit\.edu
+    apps/mosh/
+# }}}
+
+# GNU {{{
+    :0
+    * ^List-Id: .*parallel\.gnu\.org
+    GNU/parallel/
+    :0
+    * ^From: .*info-gnu-request@gnu\.org
+    GNU/gnu/
+# }}}
+
+# Arch Linux {{{2
+    :0
+    * ^List-Id: .*arch-general\.archlinux\.org
+    Arch/general/
+    :0
+    * ^List-Id: .*arch-announce\.archlinux\.org
+    Arch/announce/
+    :0
+    * ^List-Id: .*arch-projects\.archlinux\.org
+    Arch/projects/
+    :0
+    * ^List-Id: .*arch-events\.archlinux\.org
+    Arch/events/
+    :0
+    * ^List-Id: .*arch-dev-public\.archlinux\.org
+    Arch/dev-public/
+    :0
+    * ^List-Id: .*pacman-dev\.archlinux\.org
+    Arch/pacman-dev/
+    :0
+    * ^List-Id: .*aur-general\.archlinux\.org
+    Arch/aur-general/
+# }}}
+
+# system {{{2
+    :0
+    * ^List-Id: .*\.maemo\.org
+    Maemo/
+    :0
+    * ^List-Id: .*linuxusersgroup\.googlegroups\.com
+    Linux/
+# }}}
+
+# newsletter {{{
+# Quora
+    :0
+    * ^From: .*digest-noreply@quora\.com
+    Newsletter/Quora/
+
+# StackExchange
+    :0
+    * ^From: .*do-not-reply@stackexchange\.com
+    {
+        :0
+        * ^Subject: .*Ask\ Ubuntu\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Ask_Ubuntu/
+        :0
+        * ^Subject: .*Code\ Review\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Code_Review/
+        :0
+        * ^Subject: .*Database\ Administrators\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Database_Admin/
+        :0
+        * ^Subject: .*Electrical\ Engineering\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Electrical_Engineering/
+        :0
+        * ^Subject: .*English\ Language\ and\ Usage\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/English_Language/
+        :0
+        * ^Subject: .*IT\ Security\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/IT_Security/
+        :0
+        * ^Subject: .*Meta\ Stack\ Overflow\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Meta_Stack_Overflow/
+        :0
+        * ^Subject: .*Programmers\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Programmers/
+        :0
+        * ^Subject: .*Server\ Fault\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Server_Fault/
+        :0
+        * ^Subject: .*Stack\ Overflow\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Stack_Overflow/
+        :0
+        * ^Subject: .*Super\ User\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Super_User/
+        :0
+        * ^Subject: .*TeX\ -\ LaTeX\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/TeX/
+        :0
+        * ^Subject: .*Unix\ and\ Linux\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Unix_Linux/
+        :0
+        * ^Subject: .*Web\ Applications\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Web_Applications/
+        :0
+        * ^Subject: .*Webmasters\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Webmasters/
+        :0
+        * ^Subject: .*Drupal\ Answers\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/Drupal/
+        :0
+        * ^Subject: .*Healthcare\ IT\ Weekly\ Newsletter\ -.*
+        Newsletter/StackExchange/HealthcareIT/
+    }
+
+    # Black Hat
+    :0
+    * ^From: .*group-digests@linkedin\.com
+    Newsletter/BlackHat/
+
+    # LinkedIn
+    :0
+    * ^From: .*news@linkedin\.com
+    Newsletter/LinkedIn/
+
+        # Social Engineer .org
+        :0
+        * ^From: .*no-reply@social-engineer\.org
+        Hack/Social-Engineer/
+
+    # Ethical Hacking Tutorials
+    :0
+    * ^From: .*worldblackstar@gmail\.com
+    Hack/EthicalHacking/
+# }}}
+
+# security  {{{2
+    :0
+    * ^List-ID: .*comp\.os\.linux\.security\.googlegroups\.com
+    Security/
+# }}}
+
+# rss2email {{{2
+:0
+* ^User-Agent: rss2email
+{
+    :0
+    * ^X-RSS-Feed: http://feeds.feedburner.com/allthingsrss/hJBr
+    ORG-LIST-END-MARKER
+    RSS/rss2email/
+
+    :0
+    * ^X-RSS-Feed: http://solidot.org.feedsportal.com/c/33236/f/556826/index.rss
+    ORG-LIST-END-MARKER
+    RSS/Solidot/
+
+}
+# }}}
+
+# censorship {{{2
+# }}}
+
+# vim:foldmethod=marker:ft=procmail

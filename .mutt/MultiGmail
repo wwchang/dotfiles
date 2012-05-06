@@ -1,0 +1,90 @@
+
+source ~/.mutt/Gmail
+
+# UserStory/GmailMultiIMAP
+# 
+# This article will try to describe one way of using Gmail's IMAP access with multiple accounts. I will base the explanation on my two Gmail accounts: redondos@gmail.com and aolivera@gmail.com
+# All of this is part of a bigger setup, so I will try to point out only the relevant parts.
+# 
+# Authentication
+# 
+# Account hooks are triggered whenever a remote mailbox is accessed and are an appropriate place to set the accounts' credentials.
+account-hook    imaps://aolivera@imap.gmail.com 'set imap_user=aolivera@gmail.com imap_pass="password1"'
+account-hook    imaps://redondos@imap.gmail.com 'set imap_user=redondos@gmail.com imap_pass="password2'
+# Folder hooks, on the other hand, are executed when changing folders. I found them to be a better choice for setting variables such as $folder than
+# account-hooks. Imagine the situation in which you set $folder in an account-hook, and you're currently browsing a folder on account1. In the
+# background and for some unknown reason, the IMAP connection to account2's server is dropped and automatically re-established. Now, you want to
+# switch to a folder in account1, but the folder browser will show you account2. We wouldn't want that, so we use folder-hooks instead.
+
+folder-hook     'imaps://aolivera@imap.gmail.com'       'set folder=imaps://aolivera@imap.gmail.com/'
+folder-hook     'imaps://redondos@imap.gmail.com'       'set folder=imaps://redondos@imap.gmail.com/'
+# Customization
+
+# To be able to easily switch between accounts, both of the inboxes should be added to mutt's mailboxes. Then they will be checked for new mail,
+# and they will appear in the mailbox folder browser.
+set folder="imaps://aolivera@imap.gmail.com"
+mailboxes "=INBOX"
+set folder="imaps://redondos@imap.gmail.com"
+mailboxes "=INBOX"
+unset folder
+# Mutt will create a new connection for all servers specified with the mailboxes command only if you unset $imap_passive, which is set by default.
+
+unset imap_passive
+# Tagging, untagging and deleting messages
+
+# Understanding this is crucial in order to not hate Gmail on your first attempts.
+# If you've opened a "folder" called ml-mutt-users, it means you're viewing all messages labelled "ml-mutt-users".
+# If you mark a message as deleted, the current tag will be removed, so it will disappear from the folder. It will not be purged, though, it will be archived. You can still find it in the [Gmail][/All mail]? folder.
+# To really delete a message, you copy/move it into the [Gmail]Trash folder.
+# If you copy a message to ml-mutt-dev, this tag will be added to the message.
+# If you save a message to ml-mutt-dev, the current tag will be removed from the message and the new one will be added.
+# Google doesn't want you to delete any e-mail. That's why it gives each account over 6GB of storage space (and counting). Think if you really want to delete messages before deciding about the following choices:
+# 
+# Keeping all deleted messages, use the <delete-message> command (typically 'd') to remove tags.
+# Really deleting deleted messages.
+# For the first option, you don't need to do anything. For the second option you just do:
+
+set trash='=[Gmail]/Trash?'
+# Note that this requires the trash patch which can be found here: http://cedricduval.free.fr/mutt/patches/#trash.
+# 
+# Sending mail
+# 
+# Mutt currently supports using SMTP relays without the need of a local MTA. I still use msmtp, but if you'd like to send mail via Gmail you can now do it with mutt alone.
+folder-hook    'imaps://aolivera@imap.gmail.com' 'set smtp_url="smtps://aolivera@smtp.gmail.com"'
+folder-hook    'imaps://redondos@imap.gmail.com' 'set smtp_url="smtps://redondos@smtp.gmail.com"'
+# If you're sending via Gmail's servers then you shouldn't save copies of outgoing messages anywhere, since they will be automatically saved in [Gmail]/Sent? Mail.
+
+folder-hook     'imaps://.*imap.gmail.com'                     unset record
+# Spam
+# 
+# To mark a message as spam you simply copy/move it to the [Gmail]/Spam? folder.
+macro index,pager S "<save-message>=[Gmail]/Spam?<enter>"    "mark message as spam"
+# To mark a message as ham (non-spam) you just move it to the inbox.
+macro index,pager H "<save-message>=INBOX<enter>"               "mark message as ham"
+# Notice that the previous command will save to the inbox no matter where you are. So perhaps you'd prefer to put it in a folder-hook that only
+# triggers when you open the Spam folder. Or perhaps you want to make this a more generic macro and use it in other situations as well. Your call.
+# Conclusions
+# 
+# If you're only using mutt for Gmail, then you can probably move some of these settings out of folder hooks and set them permanently (one example
+# is the one for $record).  If you're interested in the whole setup, it's linked in ConfigList.
+# 
+# Copy/paste config
+# 
+# It's always useful when articles provide an easy way to try out its suggestions. Unfortunately, it's not so easy here, but something is better than
+# nothing. ;)
+account-hook    imaps://aolivera@imap.gmail.com 'set imap_user=aolivera@gmail.com imap_pass="password1"'
+account-hook    imaps://redondos@imap.gmail.com 'set imap_user=redondos@gmail.com imap_pass="password2'
+folder-hook     'imaps://aolivera@imap.gmail.com'       'set folder=imaps://aolivera@imap.gmail.com/'
+folder-hook     'imaps://redondos@imap.gmail.com'       'set folder=imaps://redondos@imap.gmail.com/'
+set folder="imaps://aolivera@imap.gmail.com"
+mailboxes "=INBOX"
+set folder="imaps://redondos@imap.gmail.com"
+mailboxes "=INBOX"
+unset folder
+unset imap_passive
+folder-hook    'imaps://aolivera@imap.gmail.com' 'set smtp_url="smtps://aolivera@smtp.gmail.com"'
+folder-hook    'imaps://redondos@imap.gmail.com' 'set smtp_url="smtps://redondos@smtp.gmail.com"'
+macro index,pager S "<save-message>=[Gmail]/Spam<enter>"    "mark message as spam"
+macro index,pager H "<save-message>=INBOX<enter>"              "mark message as ham" 
+
+# vim: ft=muttrc

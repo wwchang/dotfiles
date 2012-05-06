@@ -1,0 +1,54 @@
+# It's important that the directory in which the results are going to be saved is excluded from being indexed.
+# After configuring it, `mairix' must be executed with no arguments so that the database is created
+
+# Any entry that ends '...' is recursively scanned to find any Maildir folders
+# underneath it.
+# example:
+# maildir=zzz/foo*...
+# ===================
+# maildir=zzz/foobar/zyz
+# maildir=zzz/fooquuz
+# maildir=zzz/foo
+# maildir=zzz/fooabc/u/v/w
+# ====================
+# maildir=zzz/foo[abc]*
+
+# omit folders from indexing.
+# omit=bulk...
+
+# $ mairix -f ~/.mairixrc
+
+base=~/Mails
+mfolder=Search
+database=~/.mairix/mairixdb
+# maildir=.
+# maildir=INBOX
+maildir=Send
+maildir=mbox
+maildir=Important
+maildir=unsure
+maildir=spam
+maildir=Vim
+maildir=Arch/*...
+maildir=Python/*...
+maildir=Go/*...
+maildir=Drupal/*...
+maildir=Ruby/*...
+maildir=Maemo
+maildir=Awesome
+maildir=FVWM
+maildir=Web/*...
+maildir=Perl/*...
+maildir=Linux
+maildir=ubuntu
+maildir=GNU/*...
+maildir=apps
+maildir=apps/*...
+maildir=censorship
+maildir=Hack/*...
+maildir=Newsletter/*...
+maildir=others
+maildir=Security
+maildir=RSS
+
+# vim:ft=muttrc

@@ -1,0 +1,89 @@
+# ################ IMAP  #################### #
+# [ http://mutt.sourceforge.net/imap/ ]       #
+# you can use OfflineIMAP to speed up things  #
+# ########################################### #
+
+
+# ----------- Gmail account -----------
+# set smtp_url = "smtp://numbchild@smtp.gmail.com:587/"
+# set smtp_pass = "chrisM.sprite324"
+
+# If it's unset (the default) mutt will try all available methods, in order from most-secure to least-secure.
+# set imap_authenticators = "gssapi:cram-md5:login" 
+# imap[s]://[user@]hostname[:port]/mailbox
+# imap://username@mail.example.com/
+# imaps://username@mail.example.com/
+# set imaps://numbchild@imap.gmail.com:993/INBOX
+set imap_user = "numbchild@gmail.com"
+set imap_pass = "chrisM.sprite324"
+# set imap_check_subscribed = no 
+# set imap_list_subscribed = no
+set imap_keepalive = 900
+set imap_idle = no
+set timeout = 600
+set imap_delim_chars = "/." 
+# set imap_headers = 
+set header_cache =$HOME/.mutt/cache/headers
+set message_cachedir = $HOME/.mutt/cache/bodies
+set certificate_file = $HOME/.mutt/certificates
+set maildir_header_cache_verify=no
+# set imap_peek = yes
+set imap_pipeline_depth = 17
+set imap_servernoise = yes
+
+ignore "Authentication-Results:"
+ignore "DomainKey-Signature:"
+ignore "DKIM-Signature:"
+
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed ="+[Gmail]/Drafts"
+set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
+
+
+# load Gmail key bindings 
+source ~/.mutt/Gmail 
+
+
+
+# IMAP locations can be accessed in the same sort of web-browser style as POP3 mailboxes:
+# imap://hostname/mailbox
+#where hostname is the name of your IMAP server, and mailbox is the name of your mailbox on the server. All IMAP servers provide one special
+#folder called INBOX, which is where your incoming mail normally arrives. For example, if your IMAP server is mailhost.mydomain.com, you could
+#open your INBOX there by telling mutt to open imap://mailhost.mydomain.com/INBOX
+# imap[s]://[user@]hostname[:port]/mailbox
+# imap://username@mail.example.com/
+# imaps://username@mail.example.com/
+
+
+# How you write the actually mailbox name may depend on your IMAP server. First, some servers will put all of your mail into a subfolder, often
+# a subfolder of INBOX. For instance, if your server is Courier or Cyrus, your folder Lists may actually be INBOX.Lists. This brings us to point
+# number two: some servers don't use '/' to separate folder names. The reference server (UW-IMAP) uses '/', but two common servers (Courier and
+# Cyrus) both generally use '.', and Lotus Notes has a server which uses '\' (a very bad choice, by the way). Generally you can use '/' and mutt
+# will figure out what to do with it, though. Some examples:
+# imap://hostname/lists/mutt-dev 
+# imap://hostname/INBOX.lists.mutt-dev
+# You can access individual folders in your account by using '/' as a path separator:
+# imap://username@mail.example.com/path/to/mailbox/
+
+# 1.2. Connecting to your IMAP server
+# To connect to your IMAP server, just switch to an IMAP mailbox. That is, press c to get the Open mailbox: prompt, and enter an IMAP mailbox as
+# described above. You'll need your IMAP user name and password. You may set these in advance via configuration the variables imap_user and
+# imap_pass. If you haven't set them, mutt will prompt you for this information when you first connect to your server.
+
+# 1.3. Using an IMAP server instead of local mail
+# Tell mutt to use your IMAP INBOX as your $spoolfile: set spoolfile=imap://hostname/INBOX
+# Set your $folder to your IMAP root: set folder=imap://hostname/
+#1.3.1. Polling for new mail
+# This works the same as normal mail, with a couple of caveats. You add mailboxes you'd like to check for mail using the mailboxes command. If you've
+# set your folder as above, you can do
+# mailboxes =lists/mutt-dev =lists/mutt-users
+# to poll for mail in imap://hostname/lists/mutt-dev and imap://hostname/lists/mutt-users.
+# The caveats:
+# Mutt will scan for new mail in all of your mailboxes every mail_check seconds. The default is 5 seconds, which will make mutt feel very
+# sluggish if you have more than a couple of mailboxes defined. You'll like mutt better if you increase this to at least 60.  Mutt checks for mail
+# in the current IMAP mailbox no more ofter than timeout seconds. The default is 600, which means you will only get notified about new mail in your
+# current mailbox every 10 minutes. You may wish to lower this to something like 15.
+
+
+# vim: ft=muttrc

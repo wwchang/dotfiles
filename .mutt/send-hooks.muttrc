@@ -1,0 +1,30 @@
+# Usage: send-hook [!]pattern command
+#
+# This command can be used to execute arbitrary configuration commands based upon recipients of the message. pattern is a regular expression
+# matching the desired address. command is executed when regexp matches recipients of the message. When multiple matches occur, commands are
+# executed in the order they are specified in the muttrc.
+#
+# See Message Matching in Hooks for information on the exact format of pattern.
+#
+# Example: send-hook mutt "set mime_forward signature=''"
+#
+# Another typical use for this command is to change the values of the $attribution, $signature and $locale variables in order to change the language
+# of the attributions and signatures based upon the recipients.
+#
+# Note: the send-hook's are only executed ONCE after getting the initial list of recipients. Adding a recipient after replying or editing the
+# message will NOT cause any send-hook to be executed. Also note that my_hdr commands which modify recipient headers, or the message's subject,
+# don't have any effect on the current message when executed from a send-hook.
+
+#send-hook ~A "set pgp_autosign"
+#send-hook "~C linux-kernel@zh-kernel.org" "set nopgp_autosign"
+
+send-hook "~t '(fuhemeng|shanyingqing|mama|baobao|sister|jiejie).*'" 'unset pgp_autoencrypt'
+send-hook "~t '(1051899676|397127551|184145190|243113196)@qq\\.com'" 'unset pgp_autoencrypt'
+
+# send-hook (mama|fuhemeng).* 'set signature=|~/.mutt/signature_sendhook.sh
+
+# send-hook .                     'set pgp_autosign=yes; set pgp_autoencrypt=yes'
+# send-hook '~t .*fuhemeng@.*'    'set pgp_autosign=yes; set pgp_autoencrypt=no'
+# send-hook '~t .*@qq\.com'       'set pgp_autosign=yes; set pgp_autoencrypt=no'
+
+# vim:ft=muttrc

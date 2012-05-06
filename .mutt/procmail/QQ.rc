@@ -1,0 +1,26 @@
+# QQ {{{2
+    :0
+    * ^To: .*348284894@qq\.com
+    {
+        :0
+        * ^From: .*(fuhemeng|569040931)@(qq|gmail|yahoo)\.(com|cn)
+        INBOX/
+        :0
+        * ^From: .*email@eurovpn\.org
+        /dev/null
+        :0
+        QQ/
+    }
+    :0
+    * ^To: .*450558573@qq\.com
+    {
+        # from mama send to INBOX
+        :0
+        * ^From: .*(fuhemeng|569040931)@(qq|gmail|yahoo)\.(com|cn)
+        INBOX/
+        :0
+        QQ/
+    }
+# }}}
+
+# vim:foldmethod=marker:ft=procmail
