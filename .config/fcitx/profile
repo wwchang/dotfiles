@@ -1,0 +1,22 @@
+[Profile]
+# Use Full Width Character
+# Available Value:
+# True False
+FullWidth=False
+# Use Wide Punctuation
+# Available Value:
+# True False
+WidePunc=False
+# Prompt the phrases after input
+# Available Value:
+# True False
+UseRemind=True
+# Current Input Method Name
+IMName=googlepinyin
+# Current Enabled Input Method List
+EnabledIMList=googlepinyin:True,pinyin:True,shuangpin:True,wubi:False,wbpy:False,bingchan:False,cangjie:False,dianbaoma:False,erbi:False,wanfeng:False,ziranma:False
+# Show Preedit String in Client Window
+# Available Value:
+# True False
+PreeditStringInClientWindow=False
+
