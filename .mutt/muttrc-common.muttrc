@@ -220,7 +220,7 @@ set duplicate_threads=yes
 set header = no
 # whether put mail header into editor to modify
 set edit_headers = no
-# show and User-agent in header
+# add User-agent in header to outgoing messages.
 set user_agent = yes
 
 # pager_index_lines
@@ -233,7 +233,7 @@ set honor_followup_to = yes
 
 # ---------------------- sendmail ---------------------------------
 # sendmail default: check out with type in mutt: :set ?sendmail
-set sendmail = "/usr/sbin/sendmail -oem -oi"
+set sendmail = "/usr/sbin/sendmail -oi -oem"
 # >0 : number of seconds to wait for sendmail to finish before continuing.
 # 0  : wait forever for sendmail to finish
 # <0 : always put sendmail in the background without waiting.
