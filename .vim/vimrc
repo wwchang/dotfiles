@@ -1640,34 +1640,19 @@ endif
         let g:syntastic_quiet_warnings=0 " if you only care about syntax errors, not warning.
         let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]' " statusline text
         " }}}
-    " QuickfixSigns_vim: {{{
-        " Mark quickfix & location list items with signs.
-    let g:quickfixsigns_events = (['BufEnter', 'CursorHold', 'CursorHoldI', 'InsertLeave', 'InsertEnter', 'InsertChange'])
-    let g:quickfixsigns_balloon = 1
-    let g:quickfixsigns_blacklist_buffer = '^__.*__$'
-    let g:quickfixsigns_icons = {}
-    let g:quickfixsigns#vcsdiff#vcs = {
-                \ 'git': {'cmd': 'git diff --no-ext-diff -U0 %s', 'dir': '.git'},
-                \ 'hg': {'cmd': 'hg diff -U0 %s', 'dir': '.hg'},
-                \ 'svn': {'cmd': 'svn diff --diff-cmd diff --extensions -U0 %s', 'dir': '.svn'},
-                \ 'bzr': {'cmd': 'bzr diff --diff-options=-U0 %s', 'dir': '.bzr'}
-                \ }
-    let g:quickfixsigns#vcsdiff#guess_type = 1
-    let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete', 'ADD': 'DiffAdd', 'CHANGE': 'DiffChange'}
-    let g:quickfixsigns_class_marks = {
-                \ 'sign': '*quickfixsigns#marks#GetSign',
-                \ 'get': 'quickfixsigns#marks#GetList(%s)',
-                \ 'event': g:quickfixsigns_events,
-                \ 'level': 4,
-                \ 'timeout': 2
-                \ }
-    let g:quickfixsigns#marks#buffer = split('abcdefghijklmnopqrstuvwxyz''.', '\zs')
-    let g:quickfixsigns#marks#global = split('ABCDEFGHIJKLMNOPQRSTUVWXYZ<>^', '\zs')
-    let g:quickfixsigns#marks#texthl = 'Identifier'
-    "let g:quickfixsigns#breakpoints#filetypes = {
-                "\ 'vim': 'quickfixsigns#breakpoints#Vim'
-                "\ }
-        " }}}"
+    " QuickfixSigns_vim: {{{ mark quickfix & location list items with signs.
+        let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'vcsdiff', 'breakpoints'])
+        let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
+                    \ 'CursorHold', 'CursorHoldI',
+                    \ 'InsertLeave', 'InsertEnter', 'InsertChange'])
+        let g:quickfixsigns_balloon = 1
+        let g:quickfixsigns_max = 500 " don't display signs if longer than this.
+        let g:quickfixsigns_blacklist_buffer = '^__.*__$'
+        let g:quickfixsigns_icons = {}
+        let g:quickfixsigns#vcsdiff#guess_type = 1
+        let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete', 'ADD': 'DiffAdd',
+                    \ 'CHANGE': 'DiffChange'}
+        " }}}
     " Unimpaired:
         " {{{ provides several pairs of bracket maps.
         " [, ],
