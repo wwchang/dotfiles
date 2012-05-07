@@ -806,10 +806,6 @@ endif
     source ~/.vim/misc/abbreviations.vim
     " }}}
 
-    au FileType vim,conf,muttrc,fvwm,conkyrc
-                \ setlocal foldmethod=marker
-    au BufEnter,BufRead rc.lua setlocal foldmethod=marker
-
     " [ large file ]
 
     " for Awesome Mod4-d sdcv ( OR replace viw with "vaw" )
