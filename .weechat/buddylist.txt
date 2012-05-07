@@ -5,4 +5,3 @@ freenode.XiaoQing
 freenode.archl
 freenode.jiero
 freenode.maya
-freenode.roylez
