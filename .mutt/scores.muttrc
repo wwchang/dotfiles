@@ -1,7 +1,7 @@
 # mark a number on a mail. new mail +4 , from important people +2, from company +3 , or contain keyword like "love" +3, mark as delete -5, unread +1,  include
 # some ad word like "believe" etc -10 (spam)
 # examples: score ~fbetamail@microsoft\.com 1
-# ~f alice ~s 'subject' !~f mama 
+# ~f alice ~s 'subject' !~f mama
 
 # important
 score "~P" +5 # only to me
@@ -27,11 +27,9 @@ score "~s gay" +2
 score "~D" -5 # deleted
 
 # mailing list
-score "~t '.*comp.lang.python@googlegroups.com'" +3
-score "~t '.*python-list@python\.org'" +3
 
-# subscribe update
-score "~f '.*noreply@verycd.com'" -2
-score "~f '.*noreply@youtube.com'" -2
+# subscribe update & notify
+score "~f '.*noreply.*@.*'" -2
+score "~f '.*noreply.*@.*'" -2
 
 # vim:ft=muttrc
