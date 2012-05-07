@@ -1078,9 +1078,10 @@ endif
         call vam#ActivateAddons(['Auto_Pairs'])
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
         "call vam#ActivateAddons(['ShowTrailingWhitespace'])
-            " write & spell checker
+            " write & spell checker & speak
         "call vam#ActivateAddons(['SpellCheck'])
         "call vam#ActivateAddons(['LanguageTool'])
+        "call vam#ActivateAddons(['VimSpeak'])
             " convert/format/export
         "call vam#ActivateAddons(['formatvim'])
             " Vim related
@@ -3340,6 +3341,32 @@ endif
         "let g:youdao_key = '' " API key
         "let g:youdao_keyfrom = '' " API keyfrom
         " }}}
+    " }}}
+
+    " [ speak ] {{{
+    " VimSpeak: {{{ This calls Microsoft Windows AGENT and speaks (range) selected text.
+        " [range]VimSpeak
+        " }}}
+    " VimSpeak function: {{{
+        function! VimSpeak() range
+            " Concatenate input string.
+            let curline = a:firstline
+            let strline = ''
+            while curline <= a:lastline
+                let tmpline = getline(curline)
+                if tmpline=~ '\m^\a' && strline =~ '\m\a$'
+                    let strline = strline .' '. tmpline
+                else
+                    let strline = strline . tmpline
+                endif
+                let curline = curline + 1
+            endwhile
+            " FIXME call libcall("VimSpeak.dll", "Speak", strline)
+        endfunction
+
+        command! -nargs=0 -range VimSpeak <line1>,<line2>call VimSpeak()
+        " }}}
+
     " }}}
 
     " [ encrypt ] {{{
