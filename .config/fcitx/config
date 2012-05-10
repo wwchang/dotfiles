@@ -30,7 +30,7 @@ EnterAction=Commit
 # Disable Paging in Remind Mode
 # Available Value:
 # True False
-RemindModeDisablePaging=False
+RemindModeDisablePaging=True
 # Send inputed Text if Switch to English Mode
 # Available Value:
 # True False
