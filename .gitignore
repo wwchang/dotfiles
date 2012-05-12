@@ -61,3 +61,15 @@ tags
 .task/*.data
 
 .bash/history
+
+# Temp files.
+.gnupg/
+.ssh/
+.subversion/
+Firefox\ Recovery\ Key.html
+account.txt
+install.sh
+linux_passwd.txt
+others/
+push.sh
+system.conf/ddclient.conf
