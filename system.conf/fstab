@@ -1,0 +1,83 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+
+# [ type ]
+# ext3, ext4, reiserfs, xfs, jfs, smbfs, iso9660, vfat, ntfw, swap, auto.
+# auto: this is useful for removable devices such as CDs, DVDs.
+
+# [ options ]
+#auto - file system will mount automatically at boot, or when the command 'mount -a' is issued.
+#noauto - the filesystem is mounted only when you tell it to.
+#exec - allow the execution binaries that are on that partition (default).
+#noexec - do not allow binaries to be executed on the filesystem.
+#ro - mount the filesystem read only.
+#rw - mount the filesystem read-write.
+#sync - I/O should be done synchronously.
+#async - I/O should be done asynchronously.
+#flush - specific option for FAT to flush data more often, thus making copy dialogs or progress bars to stays up until things are on the disk.
+#user - permit any user to mount the filesystem (implies noexec,nosuid,nodev unless overridden).
+#nouser - only allow root to mount the filesystem (default).
+#users - Allow any user in the users group to mount the filesystem. 
+#defaults - default mount settings (equivalent to rw,suid,dev,exec,auto,nouser,async).
+#suid - allow the operation of suid, and sgid bits. They are mostly used to allow users on a computer system to execute binary executables with temporarily elevated privileges in order to perform a specific task.
+#nosuid - block the operation of suid, and sgid bits.
+#noatime - do not update inode access times on the filesystem. Can help performance.
+#nodiratime - do not update directory inode access times on the filesystem. Can help performance.
+#relatime - update inode access times relative to modify or change time. Access time is only updated if the previous access time was earlier than the current modify or change time (similar to noatime, but doesn't break mutt or other applications that need to know if a file has been read since the last time it was modified). Can help performance. 
+
+#<dump> - is used by the dump utility to decide when to make a backup. When installed, dump checks
+#the entry and uses the number to decide if a file system should be backed up. Possible entries are 0
+#and 1. If 0, dump will ignore the file system, if 1, dump will make a backup. Most users will not
+#have dump installed, so they should put 0 for the <dump> entry.
+
+#<pass> fsck reads the <pass> number and determines in which order the file systems should be
+#checked. Possible entries are 0, 1, and 2. The root file system should have the highest priority, 1,
+#all other file systems you want to have checked should get a 2. File systems with a <pass> value 0
+#will not be checked by the fsck utility. 
+
+# ntfs/vfat = permissions are set at the time of mounting the partition with umask, dmask, and fmask
+# and can not be changed with commands such as chown or chmod.
+# I advise dmask=027,fmask=137 (if you user umask=000 all your files will be executable). More
+# permissive options would be dmask=000,fmask=111. 
+
+# [examples]
+# allow people in the users group to have access:
+# /dev/<NTFS-part>  /mnt/windows  ntfs-3g   gid=users,umask=0022    0       0
+# To enable user writing, use the dmask parameter to enable user writing: 
+# /dev/<NTFS-part>  /mnt/windows  ntfs-3g   gid=users,fmask=113,dmask=002    0       0
+# If you are running on a single user machine, you may like to own the file system yourself: 
+# /dev/<NTFS-part>  /mnt/windows  ntfs-3g   uid=USERNAME,gid=users    0       0
+
+#
+# [Device] [Mount Point] [File System Type] [Options] [Dump] [Pass]
+# Devices:
+# /dev/sda1              /             ext4      defaults              1      1
+# UUID:
+# UUID=6a60524d-061d-454a-bfd1-38989910eccd       /    ext4      defaults 1      1
+# LABEL:
+# LABEL=Debian           /             ext4      defaults              1      1
+# Network ID:
+# Samba : //server/share
+# //server/share  /media/samba  cifs  user=user,uid=1000,gid=100  0  0
+# NFS : server:/share
+# Server:/share  /media/nfs  nfs  rsize=8192 and wsize=8192,noexec,nosuid
+# SSHFS : sshfs#user@server:/share 
+# sshfs#user@server:/share  fuse  user,allow_other  0  0
+
+proc            /proc           proc    nodev,noexec,nosuid 0       0
+# / was on /dev/sda3 during installation
+UUID=e412c13d-6ef0-49a9-9f00-d31782c8660d /               ext4    errors=remount-ro 0       1
+# /home was on /dev/sda9 during installation
+UUID=7840e589-2d3a-4c66-b3d3-f840bbd7855a /home           ext4    defaults      0       2
+# swap was on /dev/sda8 during installation
+UUID=45d567ce-a7e4-4efb-b24a-d81158ae478b none            swap    sw            0       0
+
+# from other mount points
+/dev/sda5       /media/backup   ntfs    defaults,uid=1000,gid=1000,fmask=113,dmask=002,utf8    0       0
+/dev/sda7       /media/rest     ntfs    defaults,uid=1000,gid=1000,fmask=113,dmask=002,utf8    0       0
+
+# removable devices USB, CDs, DVDs.
+#/dev/sdb1       /media/USB      auto    defaults,user,uid=1000,gid=1000,fmask=113,dmask=002,utf8         0       0
