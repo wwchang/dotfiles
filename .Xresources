@@ -219,9 +219,9 @@ URxvt*dynamicColors: on
 !URxvt*background: #202428
 URxvt*foreground: #FFFFFF
 ! cursor
-URxvt*cursorColor:  cyan
-URxvt*cursorColor2: cyan
-URxvt*cursorBlink: true
+URxvt*cursorColor:  #AFFF00
+URxvt*cursorColor2: #FF5F00
+URxvt*cursorBlink:  true
 URxvt*cursorUnderline: false
 ! border
 URxvt*borderWidth: 0
