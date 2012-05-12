@@ -2,6 +2,11 @@ bitlbee.LiBin
 bitlbee.Tristan
 bitlbee.adam8157
 freenode.XiaoQing
+freenode.adam8157
 freenode.archl
+freenode.gfrog
 freenode.jiero
 freenode.maya
+freenode.ofan
+freenode.roylez
+freenode.yall
