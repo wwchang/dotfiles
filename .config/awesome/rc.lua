@@ -209,7 +209,6 @@ sexec("urxvt -name 9 -e sh -c 'tmux attach -t Daily'")
 --sexec("urxvt -name 8 -e sh -c 'xrdb ~/.Xresources; sleep 30 ' ")
 --sexec("urxvt -name 8 -e sh -c 'mplayer ~/Pictures/videos/XieLe.avi' ")
 --sexec("evince '/media/tux/data/Computer/Python/Python\ Standard\ Library\ by\ Example.pdf'")
-sexec("evince '/home/chris/vimwiki/wiki/program/shell/Bash/OReilly\ Bash\ Quick\ Reference.pdf'")
 
 run_once("urxvtd")
 run_once("mpd")
@@ -604,7 +603,7 @@ mailicon.image = image(beautiful.widget_mail)
 maildirwidget = widget({ type = "textbox" })
 -- -- Register widget
 -- vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Mail", ["Maildir-2"]="Name2" }, 150, mdir )
-vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Inbox", ["unsure"]="unsure", ["Maemo"]="Maemo" }, 150, mdir )
+vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 150, mdir )
 -- register button
 maildirwidget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () exec("urxvt -e mutt") end), -- left click
@@ -1072,7 +1071,7 @@ awful.key({ modkey, "Shift" }, "d", function ()
         local fc = ""
     -- cancel -n --non-interactive to let sdcv display exactly word, but relately words
         if cinword:find("%a") then
-            f  = io.popen("sdcv -n --utf8-output -u 'WordNet' -u '朗道英汉字典5.0' "..new_word)
+            f  = io.popen("sdcv -n --utf8-output -u 'WordNet' -u '朗道英汉字典5.0' "..cinword)
 
             for line in f:lines() do
                 fc = fc .. line .. '\n'
