@@ -1,0 +1,266 @@
+# Author: stardiviner [numbchild gmail]
+# valid tags from http://dev.w3.org/html5/html-author/
+
+# -----------------------------------------------------------------------------
+# <doctype>
+snippet     doct5
+abbr        DOCTYPE
+prev_word   '^'
+    <!DOCTYPE html>
+snippet     xhtml
+abbr        <html xmlns="...">
+prev_word   '^'
+    <html xmlns="http://www.w3.org/1999/xhtml">
+        ${1}
+    </html>
+
+# -----------------------------------------------------------------------------
+# <head>
+snippet     head
+abbr        Document head
+prev_word   '^'
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=${1:utf-8}">
+        <title>${2}</title>
+    <style type="text/css">
+        ${3}
+    </style>
+        ${4}
+    </head>
+    ${5}
+snippet     link
+abbr        link stylesheet css
+prev_word   '^'
+    <link rel="${1:stylesheet}" href="${2}.css" type="text/css" media="${3:screen}" charset="utf-8">${4}
+
+# -----------------------------------------------------------------------------
+# <meta>
+snippet metaauthor
+    <meta name="author" content="${1}">${2}
+snippet metakeywords
+    <meta name="keywords" content="${1}">${2}
+snippet metaothers
+    <meta name="others" content="${1}">${2}
+snippet metagenerator
+    <meta name="generator" content="${1}">${2}
+snippet metadescription
+    <meta name="description" content="${1}">${2}
+
+# -----------------------------------------------------------------------------
+# <script>
+snippet scriptcharset
+    <script type="text/javascript" charset="${1:UTF-8}">
+    ${2}
+    </script>${3}
+snippet script
+    <script type="text/javascript">
+    ${1}
+    </script>${2}
+
+# -----------------------------------------------------------------------------
+# <html>, <body>, <header>, <article>, <section>, <footer>
+snippet     html
+abbr        <html>
+prev_word   '^'
+    <html>
+        ${1}
+    </html>
+snippet body
+    <body>
+       ${1}
+    </body>
+snippet     header
+abbr        header
+prev_word   '^'
+    <header></header>
+snippet     article
+abbr        article
+prev_word   '^'
+    <article></article>
+snippet     section
+abbr        section
+prev_word   '^'
+    <section></section>
+snippet     footer
+abbr        footer
+prev_word   '^'
+    <footer></footer>
+
+# -----------------------------------------------------------------------------
+# <h>, <p>, <br />, <hr />, comment,
+snippet     h
+abbr        Header h1, h2...
+prev_word   '^'
+    <h${1:1}>${2}</h$1>${3}
+snippet p
+    <p>${1}</p>${2}
+snippet br
+    <br />
+snippet hr
+    <hr />
+snippet comment
+    <!--${1}-->${2}
+snippet b
+    <b>${1}</b>${2}
+snippet small
+    <small>${1}</small>${2}
+snippet strong
+    <strong>${1}</strong>${2}
+snippet sub
+    <sub>${1}</sub>${2}
+snippet sup
+    <sup>${1}</sup>${2}
+snippet ins
+    <ins>${1}</ins>${2}
+snippet del
+    <del>${1}</del>${2}
+snippet em
+    <em>${1}</em>${2}
+snippet bdo
+    <bdo dir="${1:rtl}">${2}</bdo>${3}
+
+# -----------------------------------------------------------------------------
+# <pre>, <blockquote>,
+snippet pre
+    <pre>
+    ${1}
+    </pre>${2}
+snippet blockquote
+    <blockquote>
+    ${1}
+    </blockquote>
+    ${2}
+
+# -----------------------------------------------------------------------------
+# text-align
+snippet alignl
+    text-align="left"
+snippet alignr
+    text-align="right"
+snippet alignc
+    text-align="center"
+
+# -----------------------------------------------------------------------------
+# <a href=""> (Hyperlink)
+snippet     a
+abbr        Hyperlink
+prev_word   '^'
+    <a href="${1}">${2}</a>${3}
+snippet ahref
+    <a href="${1}">${2}</a>${3}
+snippet ahref_blank
+    <a href="${1}" target="_blank">${2}</a>${3}
+snippet ahref_parent
+    <a href="${1}" target="_parent">${2}</a>${3}
+snippet ahref_top
+    <a href="${1}" target="_top">${2}</a>${3}
+snippet aname
+    <a name="${1}">${2}</a>${3}
+
+# <iframe>, <table>, <th>, # <form>, <input type="">, <textarea>,
+# <button>, <select>, <optgroup>, <option>, <label>, <labelfor>, <fieldset>, <legend>,
+snippet iframe
+    <iframe src="${1}"></iframe>${2}
+snippet table
+    <table border="${1}">
+    ${2}
+    </table>${3}
+snippet th
+    <th>${1}</th>${2}
+snippet form
+    <form>
+    ${1}
+    </form>${2}
+snippet inputtext
+    <input type="text" name="${1:user}">${2}
+snippet inputpassword
+    <input type="password" name="${1:password}">${2}
+snippet inputradio
+    <input type="radio" name="${1}" value="value">${2}
+snippet inputcheckbox
+    <input type="checkbox" name="${1}">${2}
+snippet textarea
+    <textarea rows="${1}" cols="${2}">
+    ${3}
+    </textarea>
+    ${4}
+snippet button
+    <button>${1}</button>${2}
+snippet select
+    <select>${1}</select>${2}
+snippet optgroup
+    <optgroup label="${1}">
+    ${2}
+    <optgroup>${3}
+snippet option
+    <option value="${1}">${2}</option>${3}
+snippet label
+    <label>${1}: <input type="${2}" /><label>${3}
+snippet labelfor
+    <label for="${1}:id">${2}</label>${3}
+snippet fieldset
+    <fieldset>${1}</fieldset>${2}
+snippet legend
+    <legend>${1}</legend>${2}
+
+# -----------------------------------------------------------------------------
+# <ul type="">, <ol type="">, <li>, <dl>, <dt>, <dd>,
+snippet ulsquare
+    <ul type="square">${1}</ul>${2}
+snippet uldisc
+    <ul type="cicle">${1}</ul>${2}
+snippet ulcicle
+    <ul type="disc">${1}</ul>${2}
+snippet ol
+    <ol>${1}</ol>${2}
+snippet olA
+    <ol type="A">${1}</ol>${2}
+snippet ola
+    <ol type="a">${1}</ol>${2}
+snippet olI
+    <ol type="I">${1}</ol>${2}
+snippet oli
+    <ol type="i">${1}</ol>${2}
+snippet li
+    <li>${1}</li>${2}
+snippet dl
+    <dl>${1}</dl>${2}
+snippet dt
+    <dt>${1}</dt>${2}
+snippet dd
+    <dd>${1}</dd>${2}
+
+# -----------------------------------------------------------------------------
+# id="", class="",
+snippet id
+    id="${1}"${2}
+snippet class
+    class="${1}"${2}
+snippet pclass
+    <p class="${1}">${2}</p>${3}
+snippet pid
+    <p id="${1}">${2}</p>${3}
+
+# -----------------------------------------------------------------------------
+# <div id="" class="">, <span>
+snippet divid
+    <div id="${1}">${2}</div>${3}
+snippet divclass
+    <div class="${1}">${2}</div>${3}
+snippet div
+    <div ${1:id="${2:someid\}"}>${3}</div>${4}
+snippet span
+    <span></span>
+
+# -----------------------------------------------------------------------------
+# <img src="">, <autio>, <video>
+snippet img
+    <img src="${1}" alt="${2}">${3}
+snippet     audio
+abbr        Audio
+prev_word   '^'
+    <audio></audio>
+snippet     video
+abbr        Video
+prev_word   '^'
+    <video></video>
