@@ -1,0 +1,125 @@
+# Copyright © 2011 stardiviner. All Rights Reserved.
+# Edit this file to introduce tasks to be run by cron.
+
+# Each task to run has to be defined through a single line
+# indicating with different fields when the task will be run
+# and what command to run for the task
+
+# To define the time you can provide concrete values for
+# minute (m), hour (h), day of month (dom), month (mon),
+# and day of week (dow) or use '*' in these fields (for 'any').#
+# Notice that tasks will be started based on the cron's system
+# daemon's notion of time and timezones.
+
+# Output of the crontab jobs (including errors) is sent through
+# email to the user the crontab file belongs to (unless redirected).
+
+# Field name    Mandatory?  Allowed values  Allowed special characters
+# Minutes   Yes 0-59    * / , -
+# Hours Yes 0-23    * / , -
+# Day of month  Yes 1-31    * / , - ? L W
+# Month Yes 1-12 or JAN-DEC * / , -
+# Day of week   Yes 1-7 or SUN-SAT  * / , - ? L #
+# Year  No  1970–2099   * / , -
+
+# *     *     *     *     *  command to be executed
+# -     -     -     -     -
+# |     |     |     |     +----- day of week (0 - 6) (Sunday=0)
+# |     |     |     +------- month (1 - 12)
+# |     |     +--------- day of month (1 - 31)
+# |     +----------- hour (0 - 23)
+# +------------- min (0 - 59)
+
+# Expressions
+# 1,2,3   list of several values (comma-separated)
+# 1-3     list of consecutive values (dash)
+# */2     step value (every N)
+
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 0 tar -zcf /var/backups/home.tgz /home/ # 0 is sunday
+
+# redirection: >/dev/null 2>&1 OR &>/dev/null
+
+# % is a newline character in crontab.
+# so you have to escape % with backslash \.
+
+# put your crontab.hourly in dir /etc/cron.hourly, then system(root) will use script "run-parts" to
+# execute your crontab.hourly. so that this can specify user.
+# 01 * * * * root run-parts /etc/cron.hourly
+
+# For more information see the manual pages of crontab(5) and cron(8)
+
+# VARIABLES => HOME LOGNAME PATH SHELL
+HOME=/home/chris
+SHELL=/bin/zsh
+# used for $USER to be portable.
+# USER="`whoami`"
+# for $HOME/bin and $HOME/scripts
+PATH=/home/chris/bin:/home/chris/scripts:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+# bellowing will not work like $HOME
+# PATH=$HOME/bin:$HOME/scripts:/usr/bin:/bin:/sbin:/usr/sbin:/usr/local/bin:/usr/local/sbin
+# MAILTO=chris@stardiviner
+DISPLAY=:0
+XAUTHORITY=/home/chris/.Xauthority
+
+
+# m h  dom mon dow   command
+# Birthday notify
+1   8   24  3   *   notify-send "Birthday" "Happy Birthday, chris "
+1   8   13  3   *   notify-send "Birthday" "Today is Mama s Birthday "
+1   8   15  1   *   notify-send "Birthday" "Today is sister s Birthday "
+# ----------------------------------------------------------------
+
+
+# festival
+# programmer festival.
+1   8   13  9   *   notify-send "Festival" "Today is for programmers, Hackers, Enginners, Coders !"
+1   8   1,21 9  6   notify-send "Festival" "Today is [Software Freedom Day] !"
+
+# alert morning / siesta / night
+2   6   *   *   *   alarm.sh &>/dev/null
+2   22  *   *   *   alarm.sh &>/dev/null
+16  22  *   *   *   notify-send "Time-plan" "You should go to bed to sleep now "
+31  12  *   *   *   notify-send "siesta" "You should have a siesta now"
+
+1   */1.5   *   *   1-5  notify-send "rest" "You should has a rest now "
+1   */1     *   *   6,0  notify-send "rest" "You should has a rest now "
+1   8   *   *   6   notify-send "action" "cut finger nail now, help you press keyboard"
+
+# backup
+# 0   9   *   *   *   git_push.sh
+# backup home
+# 20  1   *   *   3   tar -cjvf /media/tux/backup/home.tar.bz2 /home/chris/ >/dev/null
+# backup website
+# 0   1   10,20,30    *   *   backup.sh /var/www >/dev/null
+
+
+# mutt & getmail & maildir-utils
+# 0   4   *   *   *   getmail -q -a -l >/dev/null
+*/5     *      *   *   * getmail -q -n -l --getmaildir=/home/chris/.mutt/getmail
+# 3       */5    *   *   *   on_ac_power && mu index -q
+0   19  *   *   6   rm -rf /home/chris/Mails/Trash/{cur,new}/*
+
+# invoke gui software in crontab
+# */2 * * * * export DISPLAY=:0 && /usr/bin/chromium-browser google.com
+
+# display a man command to let you learn .
+# 0   */3 *   *   *   DISPLAY=:0 gnome-terminal -x man random_command
+
+# some basic jobs
+#*/34    *   *   *   *   sync
+
+# for taskwarrior-notification
+# Popup a little notice monday through friday ever 30 minutes with task info
+# */30    *   *   *   *   /home/chris/bin/taskwarrior-notifications/task-popup.sh >/dev/null
+# Send me an email every morning at 5:30 on all days except Sunday.
+#30 5 * * 1-6 /home/chris/bin/taskwarrior-notifications/task-email.sh
+# Print out my task list every weekday morning at 5:30
+#30 5 * * 1-5 /usr/bin/task | /usr/bin/lp
+
+# Canto receive updates must be run often.
+*   */6   *   *   * canto-fetch
+
+# clean old files
+0   19  25  */2 *   find /home/chris/backup-vim/ -mtime 60 -o -atime 60 -delete
