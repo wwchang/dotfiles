@@ -49,8 +49,9 @@ add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # "~Vimcasts
 # ebooks
 add("http://www.verycd.com/sto/book/computer/feed", tags=[None, "ebook"]) # VeryCd Computer Books
 add("http://book.zi5.me/feed", tags=[None, "ebook"]) # "~ZhiJian book house ("eBook")"
+add("http://feeds.feedburner.com/RaphaelHertzogCom", tags=[None, "debian", "admin"]) # debian handbook
 
-# projects {{{
+# projects release {{{
 add("http://sourceforge.net/apps/wordpress/tux2live/feed/", tags=[None, "USB", "system"]) # Tux2live
 add("http://www.wda.cn/forum.php?mod=rss&fid=2&auth=b6a9xe74QptVf6jQyKGedBr4NeS1DvEN2EyZYSgqVvH8zyTRGgvp8ekms33i", tags=[None, "N900", "Maemo"])
 add("http://feed43.com/vim-scripts.xml", tags=[None, "vim", "script", "plugin"]) # "~Vim scripts update"
@@ -69,6 +70,7 @@ add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat updat
 add("http://dev.mutt.org/hg/mutt/rss-log", tags=[None, "update"]) # "~Mutt dev"
 add("http://www.backtrack-linux.org/feed/", tags=[None, "hack", "BackTrack"]) # BackTrack official blog.
 add("http://www.backbox.org/blog/feed", tags=[None, "distro"]) # backbox: ubuntu based hacker distro.
+add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "ipv6"]) # Miredo
 add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # "~Tor announce"
 # https://blog.torproject.org/crss "~Tor Blog"
 # }}}
@@ -139,6 +141,7 @@ default_rate(150)
 # Blog {{{
 add("http://blog.binux.me/feed/", tags=[None, "hack"]) # Blinux.
 add("http://igfw.net/feed", tags=[None, "censorship"]) # iGFW
+add("http://instagram-engineering.tumblr.com/rss", tags=[None, "server"]) # Instagram Tech Blog
 add("http://blog.csdn.net/pongba/rss/list", tags=[None, "C++", "blog"]) # pngba C++ blog.
 #add("http://feeds.feedburner.com/codinghorror", tags=[None, "blog"]) # "~Coding Horror"
 #add("http://feeds.feedburner.com/html5rocks", tags=[None, "blog"]) # "~HTML5 Rocks"
@@ -584,7 +587,10 @@ add_info(r, "last-modified", caption="Last Modified: ", tags=["update"]) # displ
 # [ Highlighting ] {{{
 # New in 0.7.6 is the ability to statically highlight words in the reader or main views.
 #r = get_default_renderer()
-#add_hook_pre_reader(r, highlight_word("NASA"))
+# FIXME original, the "0" should be "None" behind "NASA"
+add_hook_pre_reader(r, highlight_word("hack", 0))
+add_hook_pre_reader(r, highlight_word("crack", 0))
+add_hook_pre_reader(r, highlight_word("linux", 0))
 #add_hook_pre_story(r, highlight_word("never"))
 # This will, for example, highlight the word "NASA" in the reader and "never" in the main view.
 
