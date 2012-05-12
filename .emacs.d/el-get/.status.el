@@ -1,1 +1,0 @@
-(:el-get "installed" :color-theme "installed" :markdown-mode "installed" :org-mode "required")
