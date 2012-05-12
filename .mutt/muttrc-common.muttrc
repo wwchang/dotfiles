@@ -225,7 +225,7 @@ set user_agent = yes
 
 # pager_index_lines
 # how many lines to leave to display mail list when you are reading a mail with pager.
-set pager_index_lines = 6
+set pager_index_lines = 8
 
 # notice, press "L" to reply , "r" will reply to personal mail.
 set followup_to = yes

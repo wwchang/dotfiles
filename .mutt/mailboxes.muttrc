@@ -19,10 +19,10 @@
 
 mailboxes /var/mail/chris
 mailboxes !
+mailboxes =unsure
 mailboxes =Drafts
 mailboxes =Send
 mailboxes =Important
-mailboxes =unsure
 mailboxes =spam
 
 mailboxes =Vim
