@@ -2922,17 +2922,53 @@ endif
     " }}}
 
     " [ Trailing Whitespace ] {{{
-    " DeleteTrailingWhitespace:
-        " automatically when the buffer is saved or via the '[range]:DeleteTrailingWhitespace'
-        let g:DeleteTrailingWhitespace = 1
-            " let b:DeleteTrailingWhitespace = 1 " for buffer, filetype
-        let g:DeleteTrailingWhitespace_Action = 'ask' " 'delete', 'ask'
-        let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
-    " ShowTrailingWhitespace:
-        let g:ShowTrailingWhitespace = 1
-        "highlight ShowTrailingWhitespace Error ctermbg=Red guibg=Red
-        "let g:ShowTrailingWhitespace_FilterFunc = ''
-    " JumpToTrailingWhitespace:
+        " DeleteTrailingWhitespace: " automatically when the buffer is saved
+            " '[range]:DeleteTrailingWhitespace'
+            let g:DeleteTrailingWhitespace = 1
+                " let b:DeleteTrailingWhitespace = 1 " for buffer, filetype
+            let g:DeleteTrailingWhitespace_Action = 'ask' " 'delete', 'ask'
+            let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
+        " ShowTrailingWhitespace:
+            let g:ShowTrailingWhitespace = 1
+            "highlight ShowTrailingWhitespace Error ctermbg=Red guibg=Red
+            "let g:ShowTrailingWhitespace_FilterFunc = ''
+        " JumpToTrailingWhitespace:
+    " }}}
+
+    " [ complete ] {{{
+        " CompleteHelper: {{{ 'completefunc', i_CTRL-X_CTRL-U,
+            " Functions: {{{
+                " CompleteHelper#FindMatches( matches, pattern, options )
+                " CompleteHelper#ExtractText( startPos, endPos, matchObj )
+                " CompleteHelper#Abbreviate#Word( matchObj )
+                " CompleteHelper#JoinMultiline( text )
+                " CompleteHelper#Repeat#TestForRepeat()
+            " }}}
+            "" Example: {{{
+            "function! SimpleComplete( findstart, base )
+                "if a:findstart
+                    "" Locate the start of the keyword.
+                    "let l:startCol = searchpos('\k*\%#', 'bn', line('.'))[1]
+                    "if l:startCol == 0
+                        "let l:startCol = col('.')
+                    "endif
+                    "return l:startCol - 1 " Return byte index, not column.
+                "else
+                    "" Find matches starting with a:base.
+                    "let l:matches = []
+                    "call CompleteHelper#FindMatches( l:matches, '\V\<' . escape(a:base, '') . '\k\+', {'complete': '.'} )
+                    "return l:matches
+                "endif
+            "endfunction
+
+            "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
+            "" }}}
+        " }}}
+        " SnippetComplete: {{{ Insert mode completion for abbre and snippets.
+            " i_CTRL-X_] -> find matches for abbr that start with text in front of cursor
+            " imap <C-x><Tab> <Plug>(SnippetComplete)
+            " inoremap <C-Space> <Plug>(SnippetComplete)
+        " }}}
     " }}}
 
     " [ Vim FAQ ] {{{
