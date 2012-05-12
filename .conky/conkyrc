@@ -1,0 +1,327 @@
+# ~/.conkyrc - Conky configuration file
+#edited by numbchild@gmail.com
+#edited by chris,2010-5-3
+
+# include path configfile
+
+# do not fork to background
+background yes
+
+# font settings
+# use your own font
+use_xft yes
+#font Monaco:style bold
+font Monaco
+uppercase no
+override_utf8_locale yes
+
+#music_player_interval
+music_player_interval 1
+
+# MPD
+#mpd_host 127.0.0.1
+mpd_host localhost
+mpd_port 6600
+# mpd_password
+
+# mail 
+# mail_spool $MAIL
+
+# Text alpha when using Xft
+xftalpha 0.3
+
+# update every 1 secs (need use the extra visual effects in apperance)
+update_interval 1
+update_interval_on_battery 2
+
+# stay running forever
+total_run_times 0
+
+# draw to root window yes
+#own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+#不装饰窗口（我们定义了他是个独立的窗口），永远在根窗口上（也就是屏幕），粘滞起来（不能让他乱跑），无视一切1，无视一切2”
+
+
+# if the conky in awesome window manager, you need to set no
+own_window yes
+# normal, dock, desktop, panel, override, 
+own_window_type desktop
+# you can set type normal(default), desktop(on desktop), dock(over all window, you can set as screensaver), panel, or overide(a window)
+own_window_transparent yes
+# own_window_argb_visual yes  # true transparency
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+# own_window_color hotpink   #       000000 
+out_to_console no
+# imlib_cache_flush_interval 
+# imlib_cache_size
+
+# avoid flickering
+double_buffer yes
+
+# size
+minimum_size 2000 4000
+maximum_width 5000
+pad_percents 3
+
+# position
+alignment top_left
+gap_x 0
+# for Awesome bar
+gap_y 23
+
+# colors
+default_color white
+# black
+color0 000000
+# light blue
+color1 144556
+# dark blue
+color2 33b0dc
+# pink color
+color3 FA5D6A
+# light pink
+color4 FA7173
+# grey
+color5 465457
+# lightgray darkgrey black hotpink cornflowerblue 
+
+# borders
+# set draw_graph_borders as no to let downgraph gradient color work
+# draw_border no, do not need border
+# border_margin 0 border width is 0.
+draw_borders no
+draw_graph_borders yes
+stippled_borders 9
+border_outer_margin 1 
+border_inner_margin 1
+border_width 1
+# shades
+draw_shades yes
+# default_shade_color black
+
+# extra_newline
+
+#short units
+short_units yes
+
+# outline
+draw_outline no
+#outlinecolor black
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer none # left right none 
+
+# buffers
+no_buffers yes
+text_buffer_size 1024
+max_user_text 32768
+max_text_width 0
+max_specials 512
+
+#default bar(set this for $execbar exaile)
+default_bar_size 100 6
+
+#top_name_width 20
+
+# sampling
+cpu_avg_samples 2
+net_avg_samples 2
+if_up_strictness address # up, link, address
+
+#format_human_readable
+format_human_readable yes
+
+show_graph_range no
+show_graph_scale yes
+
+temperature_unit celsius
+top_cpu_separate yes
+
+# template1 ${if_existing /tmp/\1}\1${endif}
+
+# you can set a verticality, like bellowing:
+# ||
+# ||
+# ||
+# ||
+# set hight 100, and width 10
+
+# multi_cycles.lua load
+# lua_load ~/.conky/scripts/multi_cycles.lua
+# lua_draw_hook_pre ring_stats
+
+# clock Lua Load  #
+lua_load ~/.conky/scripts/clock_rings.lua
+lua_draw_hook_pre clock_rings
+
+## put some must widget into position, then add other dynamic widget.
+
+TEXT
+${voffset 35}${offset 30}${font Monaco:size=15}${color2}[ Simplicity is the ultimate sophistication ] 
+${voffset 0}${offset 150}${font Monaco:size=12}${color1}-- Leonardo Da Vinci
+
+# CPU, Mem, I/O, Process, PID, swap, buffers, cache,
+${voffset 250}${offset 120}${color2}${font Monaco:size=9}processor CPU ${font Monaco:size=8}${voltage_v}V ${freq_g 1}GHZ ${acpitemp}°C  
+${offset 120}${color1}${font Monaco:size=8}Usage: $color2${cpu}%   ${color1}LoadAvg: ${color2}${loadavg 1|2|3} | ${color2}threads: ${font Monaco:size=9}${color2}${running_processes}-${running_threads} 
+${offset 120}${color1}Load: ${color2}${cpu}% ${cpubar 6,200}
+${offset 120}${color1}${cpugraph 25,250 000000 33b0dc} 
+${offset 120}${font Monaco:size=9}${color2}memery RAM
+${offset 120}${color1}${font Monaco:size=8}Usage: ${color2}${mem}   
+${offset 120}${color1}Load: ${color2}${memperc}% ${membar 6,165}
+${offset 120}${color1}${memgraph 20,250 000000 33b0dc}
+${voffset -50}${offset 400}${color2}${font Monaco:size=9}I/O | ${color2}${diskio_write}/${diskio_read} ${ioscheduler sda}
+${offset 400}${color1}${diskiograph 25,100 000000 33b0dc} 
+
+${voffset -150}${offset 400}${color1}${font Monaco:size=9}swap: ${color2}$swap  ${color2}${swapperc}%
+${voffset 0}${offset 400}${color1}${font Monaco:size=9}buffers:${buffers}  
+${voffset 0}${offset 400}${color1}${font Monaco:size=9}cache:${cached}
+
+${voffset 90}${offset 40}${color2}${font Monaco:size=9}entropy: ${entropy_avail} | ${entropy_perc}%
+${offset 40}${color2}${entropy_bar 6,85}
+${offset 40}${color1}poolsize: ${entropy_poolsize}
+
+${voffset 20}${offset 15}${font Monaco:size=9}${color2}process
+${goto 20}${font Monaco:size=9}${color2}${top name 1}
+${goto 20}${font Monaco:size=9}${color2}${top name 2}
+${goto 20}${font Monaco:size=9}${color2}${top name 3}
+${goto 20}${font Monaco:size=9}${color2}${top name 4}
+${voffset -52}${offset 95}${font Monaco:size=9}${color2}pid
+${goto 170}${font Monaco:size=9}${color2}${top pid 1}
+${goto 170}${font Monaco:size=9}${color2}${top pid 2}
+${goto 170}${font Monaco:size=9}${color2}${top pid 3}
+${goto 170}${font Monaco:size=9}${color2}${top pid 4}
+${voffset -52}${offset 135}${font Monaco:size=9}${color2}cpu
+${goto 90}${font Monaco:size=9}${color2}${top cpu 1}
+${goto 90}${font Monaco:size=9}${color2}${top cpu 2}
+${goto 90}${font Monaco:size=9}${color2}${top cpu 3}
+${goto 90}${font Monaco:size=9}${color2}${top cpu 4}
+${voffset -52}${offset 175}${font Monaco:size=9}${color2}mem
+${goto 130}${font Monaco:size=9}${color2}${top mem 1}
+${goto 130}${font Monaco:size=9}${color2}${top mem 2}
+${goto 130}${font Monaco:size=9}${color2}${top mem 3}
+${goto 130}${font Monaco:size=9}${color2}${top mem 4}
+
+# uptime, battery, tempartery, 
+${voffset 35}${offset 240}${color1}${font Monaco:size=9}Temp:${color2}${acpitemp}°C
+# ${voffset 0}${offset 250}${color1}HD-Temp:${color2}${hddtemp /dev/sda}
+# Fans: ${execi 1 sensors | grep fan1 | cut -c11-18}/S
+${voffset -20}${offset 200}${color1}${font Monaco:size=8}Power:  ${color2}${battery}
+${voffset 0}${offset 205}${color2}${font Monaco:size=9}${battery_bar BAT0}
+${voffset 0}${offset 210}${color2}${font Monaco:size=9}${battery_time BAT0}
+${voffset 0}${offset 210}${color2}${font Monaco:size=9}uptime: ${uptime_short}
+
+# Music, Video, Image...
+## MPD
+${if_mpd_playing}
+${voffset 20}${offset 50} ${mpd_file} ${mpd_name} ${mpd_title} ${mpd_track} ${mpd_artist} ${mpd_album} ${mpd_bitrate} | ${mpd_smart (max length)}
+${voffset 0}${offset 50} Status: ${mpd_status} | Random: ${mpd_randome} | Repeat: ${mpd_repeat} | Vol: ${mpd_vol}
+${voffset 0}${offset 50} ${mpd_elapsed}/${mpd_length}
+${voffset 5}${offset 50} ${mpd_bar 10 40} ${mpd_percent}%
+#${else}
+#${}
+${endif}
+## MOCP
+#${voffset 25}${offset 40}${color1}mocp - ${color2}${execi 2 mocp -Q %state}
+#${offset 25}${font Monaco:size=9}${color2}${execi 2 mocp -Q %song}
+#${offset 15}${font Monaco:size=8}${color1}${execi 2 mocp -Q -\ %artist\ %b}bits
+#${offset 25}${color2}${execibar 2 mocp -Q %cs/%ts}
+
+# Dynamic Output: Log, Anti-* scan(like mine sweeping), website log..., Nagios, 
+${voffset -900}${offset 400}${color2}${font Monaco:size=8}${execi 5 tail -n 1 /var/log/nginx/access.log | cut -d " " -f 1,2,6,12 }
+
+# others
+${voffset 800}${offset 420}${color2}${font Monaco:size=9}Other bloacks
+
+# machine info: kernel, cpuinfo, ....
+${voffset -1000}${offset 850}${font Monaco:size=9}${color1} ${execi 99999 cat /proc/cpuinfo | grep "model name" -m1 | cut -d":" -f2 | cut -d" " -f2- | sed 's#Processor ##'}
+${voffset 0}${offset 850}${font Monaco:size=9}machine: ${machine} 
+${offset 850}${font Monaco:size=9}${color1}kernel: $kernel
+
+# Disk size, disk space,
+${voffset 800}${offset 1280}${color1}${font Monaco:size=9}${color1}Home: ${color1}${fs_used /home} ${color1}${fs_used_perc /home}%
+${voffset 0}${offset 1280}${color1}${fs_bar 8,100 /home}
+${voffset 0}${offset 1280}${color1}${font Monaco:size=9}${color1}Disk: ${color1}${if_mounted /media/tux}${fs_used /media/STORAGE} ${color1}${fs_used_perc /media/tux}%${else}disk not found${endif}
+${voffset 0}${offset 1280}${color1}${fs_bar 8,100 /media/tux}
+
+# Lua script clock, weather, mail, Calendar,
+# CHXX0117 Shaoxing China 
+${voffset -700}${offset 1500}${color2}${font Monaco:size=9}weather: ${weather http://weather.noaa.gov/pub/data/observations/metar/stations/ CHXX0117 weather 100}
+
+# Dynamic Output: RSS, Atom, 
+${voffset 80}${offset 1500}${font Monaco:size=9}${color1}arch-news
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/news/ 30 item_title 0}
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/news/ 30 item_title 1}
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/news/ 30 item_title 2}
+${voffset 0}${offset 1500}${font Monaco:size=9}${color1}arch-packages
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/packages/ 30 item_title 0}
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/packages/ 30 item_title 1}
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/packages/ 30 item_title 2}
+${voffset 0}${offset 1500}${color2}${font Monaco:size=8}${rss http://www.archlinux.org/feeds/packages/ 30 item_title 3}
+
+# TCP/IP connections
+${voffset 10}${offset 1410}${font Monaco:size=9}${color2}${nodename} - ${sysname}   ${color1}login_users: ${color2}${user_number}
+${voffset 0}${offset 1430}${color1}${font Monaco:size=9} host/service  port
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}privilege-1-> ${tcp_portmon 1 1024 rservice 0} : ${tcp_portmon 1 1024 rhost 0} 
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}privilege-2-> ${tcp_portmon 1 1024 rservice 1} : ${tcp_portmon 1 1024 rhost 1} 
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}sshd-> ${tcp_portmon 22 22 rip 0} 
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}lservice-> ${tcp_portmon 1 65535 lservice 0} : ${tcp_portmon 1 65535 lport 0}
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}rhost-1 -> ${tcp_portmon 1025 61000 rhost 0} : ${tcp_portmon 32768 61000 rport 0}
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}rhost-2 -> ${tcp_portmon 1025 61000 rhost 1} : ${tcp_portmon 32768 61000 rport 1}
+${voffset 0}${offset 1410}${color2}${font Monaco:size=9}bit-number -> ${tcp_portmon 6881 6999 count} 
+
+# Network: Download, Upload, IP, Mac, wireless, single..
+${voffset 10}${offset 1500}${color1}${font Monaco:size=9}wireless: ${if_up wlan0}$color2${wireless_essid wlan0}${else}No AP${endif} 
+${offset 1500}${color2}${font Monaco:size=8}${wireless_mode wlan0} ${color2}${wireless_bitrate wlan0} ${wireless_link_qual_perc wlan0}% 
+${offset 1500}${color1}${font Monaco:size=9}${wireless_link_bar 7,130 wlan0}
+${offset 1500}${color2}${font Monaco:size=8}mac: ${wireless_ap}
+
+# ${voffset 0}${offset 1560}${color2}${font Monaco:size=9}${execi 10 iwlist wlan0 scanning}
+${if_up wlan0}
+${voffset -20}${offset 1535}${font Monaco:size=8}${color2}wireless:     IP:  ${color2}${addr wlan0}
+${voffset 0}${offset 1505}${color2}up:${color2}${font Monaco:size=9}${totalup wlan0}  ${alignc 1}${upspeed wlan0}/s
+${voffset 0}${offset 1505}${color1}${upspeedgraph wlan0 30,94 000000 33b0dc}
+${voffset -56}${offset 1510}${color2}dn:${color2}${font Monaco:size=9}${totaldown wlan0}  ${alignc 1}${downspeed wlan0}/s
+${voffset 0}${offset 1510}${color1}${downspeedgraph wlan0 30,94 000000 33b0dc}
+${else}${if_up eth0}
+${voffset -20}${offset 1545}${font Monaco:size=8}${color2}wire-eth:    IP: ${color2}${addr eth0}
+${voffset 0}${offset 1505}${color2}up:${color2}${font Monaco:size=9}${totalup eth0}  ${alignc 1}${upspeed eth0}/s
+${voffset 0}${offset 1505}${color1}${upspeedgraph eth0 30,94 000000 33b0dc}
+${voffset -56}${offset 1510}${color2}dn:${color2}${font Monaco:size=9}${totaldown eth0}  ${alignc 1}${downspeed eth0}/s
+${voffset 0}${offset 1510}${color1}${downspeedgraph eth0 30,94 000000 33b0dc}
+${else}
+${voffset -20}${offset 1545}${font Monaco:size=8}${color2}wire-ppp:    IP: ${color2}${addr ppp0}
+${voffset 0}${offset 1505}${color2}up:${color2}${font Monaco:size=9}${totalup ppp0}  ${alignc 1}${upspeed ppp0}/s
+${voffset 0}${offset 1505}${color1}${upspeedgraph ppp0 30,94 000000 33b0dc}
+${voffset -56}${offset 1510}${color2}dn:${color2}${font Monaco:size=9}${totaldown ppp0}  ${alignc 1}${downspeed ppp0}/s
+${voffset 0}${offset 1510}${color1}${downspeedgraph ppp0 30,94 000000 33b0dc}
+${endif}${endif}
+
+${voffset 110}${offset 1540}${color 1692D0}${font OpenLogos:size=60}A
+${voffset -110}${offset 1580}${font Monaco:size=9}${color2}${time %H:%M:%S} 
+${voffset 0}${offset 1580}${font Monaco:size=9}${color2}----------------------------------
+${voffset 0}${offset 1500}${font Monaco:size=9}${color1}${time %m-%d-}${color2}${time %A} 
+# ${image ~/.conky/images/drug-body.jpg -s 171x140 -p 840,120}
+${voffset 0}${offset 1510}${color3}${font Monaco:size=11}fuck me ...
+${voffset 0}${offset 1535}${font Monaco:size=9}${color2}[Arch philosophy] ${font Monaco:size=10}Code
+
+
+
+#${execpi 2 netstat -pa 2>1 |awk '/tcp/ && NR<11 {print $4"${tab 112}"$5"${tab 72}"$6"${tab 64}"$7}'}
+#TODO: ${execi 30 cat /home/chris/TODO.txt | fold -w40}
+#${color #8844ee}Calendar
+# ${color lightgrey}${execi 1800 conkyGoogleCalendar --username=USERNAME --password=PASSWORD --daysahead=14 --limit=3 --requestCalendarNames="X;X;X" --nowho}
+# *****
+# ${color #8844ee}Unread Gmail = ${color lightgrey}${execi 900 conkyEmail --servertype=IMAP --servername=imap.gmail.com --ssl --username=USERNAME --password=PASSWORD --mailinfo=3}
+# *****
+# ${color #8844ee}Rhythmbox
+# ${color lightgrey}${execi 10 conkyRhythmbox --datatype=TI}
+# ${execi 10 conkyRhythmbox --datatype=AR}
+# ${execi 10 conkyRhythmbox --datatype=AL}
+# ${execi 10 conkyRhythmbox --datatype=PT} / ${execi 1800 conkyRhythmbox --datatype=LE}
+# *****
+# ${color #8844ee}Buffalo weather
+# ${color lightgrey}Temp: ${execi 1800 conkyForecast --location=USNY0181 --datatype=HT --imperial}
+# Winds: ${execi 1800 conkyForecast --location=USNY0181 --datatype=WS}
+# Precip: ${execi 1800 conkyForecast --location=USNY0181 --datatype=PC}
+
+# vim:ft=conkyrc
