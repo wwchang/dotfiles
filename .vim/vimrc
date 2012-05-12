@@ -2884,7 +2884,45 @@ endif
 
         " ColorV: {{{
         " }}}
-    " VIM_Color_Picker {{{ <F5>, :ColorPicker
+        " Colorizer: {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
+            " :[range]ColorHighlight[!], :ColorToggle, :ColorClear, :ColorContrast
+            " :RGB2Xterm [#]RRGGBB,  " :HSL2RGB
+            let g:auto_color = 1
+            let g:color_x11_names = 1
+        " }}}
+        " CSSMinister:
+            " CSSMinister provides functions and mappings that convert any
+            " hexadecimal, keyword, RGB(A) or HSL(A) color values from one format to
+            " another.
+        " EasyColour: {{{ makes it really easy to create your own colour scheme.
+        " }}}
+        " VIM_Color_Picker {{{ <F5>, :ColorPicker
+        " }}}
+        " Galaxy {{{ a colorscheme tries to make colorscheming simpler.
+            " Require: colorv.
+            " Steps:
+                "colorscheme galaxy
+                ":Galaxy
+                ":GalaxyScreen {scheme}
+            let g:galaxy_enable_indent_hl = 1
+            let g:galaxy_indent_hl_pos = "start"
+            let g:galaxy_indent_hl_ftype = "python,html,css,javascript,sh,zsh"
+            let g:galaxy_show_trailing_ws = 1
+            let g:galaxy_enable_statusline = 1
+            let g:galaxy_statusline_hl_insert = 1
+            let g:galaxy_statusline_style = "Left"
+            let g:galaxy_env_fugitive = 1
+            let g:galaxy_env_syntastic = 1
+            let g:galaxy_env_virtualenv = 1
+            let g:galaxy_default_ff = "unix"
+            let g:galaxy_default_enc = "utf-8"
+            let g:galaxy_colorful_syntax = 1
+            let g:galaxy_load_syn_dict = 1
+            let g:galaxy_load_syn_tuning = 1
+            let g:galaxy_visual_hl_fg = 0
+            let g:galaxy_tcursor_color = "DarkGray"
+            let g:galaxy_scheme_file = "$HOME/.vim_galaxy_schemes"
+            let g:galaxy_cache_file = "$HOME/.vim_galaxy_cache"
         " }}}
     " }}}
 
