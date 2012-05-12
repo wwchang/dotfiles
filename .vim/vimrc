@@ -927,6 +927,8 @@ endif
         " }}}
 
         " ActivateAddones List: {{{
+            " vim plugin manager
+        "call vam#ActivateAddons(['tplugin'])
             " statusline
         call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
@@ -1000,12 +1002,15 @@ endif
         " call vam#ActivateAddons(['Align%294'])
             " session & undo & history
         call vam#ActivateAddons(['restore_view'])
+        call vam#ActivateAddons(['recover'])
+        call vam#ActivateAddons(['Gundo'])
             " Swap True False etc
         call vam#ActivateAddons(['SwapIt'])
             " Author info
         call vam#ActivateAddons(['AuthorInfo'])
             " Python
                 " enhanced python syntax 3.0.
+        call vam#ActivateAddons(['Python-mode-klen'])
         call vam#ActivateAddons(['python%790'])
         " call vam#ActivateAddons(['SimpylFold'])
         " call vam#ActivateAddons(['github:jbking/vim-pep8'])
@@ -1018,6 +1023,9 @@ endif
         call vam#ActivateAddons(['inline_edit'])
         call vam#ActivateAddons(['ZenCoding', 'MatchTag'])
             " JavaScript
+        call vam#ActivateAddons(['jsflakes%4057'])
+        call vam#ActivateAddons(['jsruntime'])
+        call vam#ActivateAddons(['jsoncodecs'])
         "call vam#ActivateAddons(['jsbeautify'])
         "call vam#ActivateAddons(['javaScriptLint'])
         "call vam#ActivateAddons(['jslint'])
@@ -1050,6 +1058,9 @@ endif
             " GTD
         call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
+            " outliner
+        call vam#ActivateAddons(['HyperList'])
+        call vam#ActivateAddons(['VOoM'])
             " markup & markdown
         "call vam#ActivateAddons(['preview%3344'])
             " encrypt
@@ -1068,6 +1079,7 @@ endif
             " color/syntax
         "call vam#ActivateAddons(['colorv'])
         "call vam#ActivateAddons(['Colorizer'])
+        call vam#ActivateAddons(['CSSMinister'])
         "call vam#ActivateAddons(['ScrollColors'])
         "call vam#ActivateAddons(['ColorSchemeEditor'])
         "call vam#ActivateAddons(['EasyColour'])
@@ -1094,6 +1106,8 @@ endif
         "call vam#ActivateAddons(['github:chrisbra/vim_faq'])
             " Vim Extension
         call vam#ActivateAddons(['repeat', 'visualrepeat', 'commentary', 'abolish'])
+        call vam#ActivateAddons(['StarRange'])
+        "call vam#ActivateAddons(['visualstar'])
         "call vam#ActivateAddons(['exjumplist'])
         "call vam#ActivateAddons(['unicode'])
         "call vam#ActivateAddons(['SudoEdit'])
@@ -1381,25 +1395,25 @@ endif
                     "   2 : exists placeholder in current buffer
                     "   3 : both found.
                 " neocomplcache#sources#snippets_complete#jumpable()
-    " neocomplcache-snippets-complete {{{
-        "This source analyzes snippet files for completion. The source offer a function
-        "similar with snipMate.vim and snippetsEmu.vim. Because you can search a snippet
-        "with a function of neocomplcache, you may omit trouble to learn.
-            " :NeoComplCacheCachingSnippets [filetype]
-            " :NeoComplCacheEditRuntimeSnippets [ft]
-            " :NeoComplCacheEditSnippets [ft]
-            " FIXME a function to open snippet edit in a vertical split or a tab. then re-load new
-            " snippet with command :NeoComplCacheCachingSnippets after :w.
-            nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
-        " TODO let g:neocomplcache_snippets_dir = '
-        let g:neocomplcache_disable_select_mode_mappings = 1
-            " usful to avoid conflicting snippets.
-        let g:neocomplcache_snippets_disable_runtime_snippets = 0
-            " <Plug>(neocomplcache_snippets_expand)
-            " <Plug>(neocomplcache_snippets_jump)
-            " <Plug>(neocomplcache_start_unite_snippet)
-            " neocomplcache#sources#snippets_complete#expandable()
-            " neocomplcache#sources#snippets_complete#jumpable()
+                " neocomplcache#sources#snippets_complete#force_expandable()
+                " <Plug>(neocomplcache_snippets_expand) -> expand_or_jump
+                " <Plug>(neocomplcache_snippets_jump)   -> jump_or_expand
+                " <Plug>(neocomplcache_snippets_force_expand)
+                " <Plug>(neocomplcache_snippets_force_jump)
+                " <Plug>(neocomplcache_start_unit_snippet)
+                " <Plug>(neocomplcache_snippets_expand)
+                " <Plug>(neocomplcache_snippets_jump)
+                " <Plug>(neocomplcache_start_unite_snippet)
+                " FIXME a function to open snippet edit in a vertical split or a
+                " tab. then re-load new
+                " snippet with command :NeoComplCacheCachingSnippets after :w.
+                nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
+            " add user own snippets dir.
+            "let g:neocomplcache_snippets_dir='~/.vim/snippets/dir2,~/.vim/snippets/dir2'
+            let g:neocomplcache_snippets_dir='~/.vim/snippets/neocomplcache-snippets'
+            let g:neocomplcache_disable_select_mode_mappings = 1
+                " usful to avoid conflicting snippets.
+            let g:neocomplcache_snippets_disable_runtime_snippets = 0
         " }}}
 
         " UltiSnips: {{{
