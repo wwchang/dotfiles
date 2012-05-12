@@ -1,19 +1,12 @@
+
 ###########################################################################
 #                            TextMate Snippets                            #
 ###########################################################################
 
-############
-# Doctypes #
-############
-snippet doct5 "DocType HTML5" b
-<!DOCTYPE HTML>
-${1}
-endsnippet
-
-snippet html "<html>" b
-<html>
-    ${1}
-</html>
+snippet select "select ... (done)"
+select ${1:#var} in ${2:"item1" "item2" "..."}; do
+	${0:#statements}
+done
 endsnippet
 
 # vim:ft=snippets:
