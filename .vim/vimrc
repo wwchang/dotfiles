@@ -3240,28 +3240,46 @@ endif
     " }}}
 
     " [ format ] {{{
-    " Tabular:
-    " Surround:
-        " {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
-        " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
-        " Visual(V): S<p class="important">
-        " :help surround.txt
+        " Tabular: {{{ flexible, intuitive text aligning.
+            " Usage:
+            " /{char} -> /,
+            " /{char}/[range] -> /,/r0 -> [range]: l,r,c => left, right, center.
+            " :Tabularize [first_comma,multiple_spaces,]
+            " /,/r1c1l0 | /^[^,]*\zs,/r0c0l0
+            " Tabularize scripts.
         " }}}
-    " Abolish:
-        " {{{ quickly find, substitute, and abbreviate several variations of a word at once.
-        " three case variants (foo, Foo, and FOO) are operated on by every command.
-        " :Abolish, :Subvert.
+        " Surround: {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
+            " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
+            " Visual(V): S<p class="important">
+            " :help surround.txt
         " }}}
-    " AutoPairs: {{{
-        let g:AutoPairsShortcuts = 1
-            " shortcuts:
-            "   <M-o> : newline with indentation
-            "   <M-a> : jump to of line
-            "   <M-n> : jump to next pairs
+        " Abolish: {{{ quick find, substitute, abbreviate
+        " several variations of a word at once
+            " three case variants (foo, Foo, and FOO) are operated on by every command.
+            " :Abolish, :Subvert.
         " }}}
-    " Formatvim:
-        " {{{ convert current file to colored HTML, BBCode or whatever. :help format.txt
-        " :[{range}]Format format/diffformat/list [{formatName} [{option1} {value1}]
+        " AutoPairs: {{{
+                " shortcuts:
+                "   <M-o> : newline with indentation
+                "   <M-a> : jump to of line
+                "   <M-n> : jump to next pairs
+                "   <M-e> : jump to end of pairs.
+                "   Ctrl-V ) : insert ) without trigger the plugin.
+            let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+            let g:AutoPairsShortcuts = 1
+            " let g:AutoPairscutToggle = '<another key>'
+                " if bellowing keys conflict with others
+            let g:AutoPairsShortcutToggle = '<M-p>'
+            let g:AutoPairsShortcutFastWrap = '<M-e>'
+            let g:AutoPairsShortcutJump = '<M-n>'
+            let g:AutoPairsMapBS = 1
+            let g:AutoPairsMapCR = 1
+            let g:AutoPairsMapSpace = 1
+            let g:AutoPairsCenterLine = 1
+        " }}}
+        " Formatvim: {{{ convert current file to colored HTML, BBCode or whatever.
+            " :help format.txt
+            " :[{range}]Format format/diffformat/list [{formatName} [{option1} {value1}]
         " }}}
     " }}}
 
