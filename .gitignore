@@ -5,31 +5,19 @@
 *.pyo
 tags
 
-.neocon/
-
-.mutt/mails/**/**/*
-!.mutt/mails/Important/
-.mutt/mails/procmail.log
+.mutt/bogofilter/wordlist.db
+.mutt/getmail/log
 .mutt/history_file
 .mutt/cache
+.mutt/getmail/oldmail-pop.gmail.com-995-numbchild@gmail.com
 
-.vim/bundle/*
 .vim/vim-addons/*
-.vim/.VimballRecord
-.vim/.netrwhist
-.vim/vimwiki_html/
+.vim/bundle/*
+.vim/view/*
 
 .emacs.d/el-get/*
 
 .weechat/logs/*
-
-.i2p/
-# .i2p/netDb/*
-# .i2p/rrd/*
-# .i2p/logs/*
-# .i2p/router.info
-
-.instantbird/
 
 .newsbeuter/queue
 .newsbeuter/pb-lock.pid
@@ -41,15 +29,7 @@ tags
 .mpd/mpd.pid
 .mpd/sticker.sql
 .mpd/state
-
-.vifm/Trash/*
-
-.aptitude/cache
-
-.bash/history
-
-.elinks/cookies
-.w3m/history
+.mpdcron/mpdcron.pid
 
 # NOTE must use /* here.
 .config/*
@@ -72,45 +52,12 @@ tags
 .config/ranger/bookmarks
 .config/ibus/
 
-.ncmpcpp/artists/
-
-.mplayer/skins/*
-
-.lyrics/
-
-.vimperator/info/default/history-command
-.vimperator/info/default/history-search
-.vimperator/info/default/local-marks
-
-.mldonkey/
-# .mldonkey/incoming/directories/*
-# .mldonkey/incoming/files/*
-# .mldonkey/cache/*
-# .mldonkey/temp/*
-# .mldonkey/mldonkey_tmp/*
-# .mldonkey/mlgui_tmp/*
-# .mldonkey/mlnet_tmp/*
-# .mldonkey/torrents/**/*
-
 .canto/feeds/
 .canto/log
 .canto/fetchlog
 
-.ipython/profile_default/history.sqlite
-.ipython/profile_default/log/
-.ipython/profile_default/pid/
-
-.gtkrc-1.2-gnome2
-
-.moc/pid
-.moc/playlist.m3u
-.moc/cache/
-.moc/last_directory
-
-.ssh/environment-*
-
-.xinput.d/
-
-.gnupg/
+.vimperator/info/
 
 .task/*.data
+
+.bash/history
