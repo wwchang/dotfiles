@@ -1103,18 +1103,18 @@ endif
             " with vimproc, neocomplcache creates the cache asynchronously.
             " :neocomplcacheEditSnippets -- you can open with vertically or tab.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
-            let g:neocomplcache_enable_at_startup = 1 " enable neocomplcache at startup time.
+            let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0
-            let g:neocomplcache_max_list = 100 " cut down to number of variable display in pop-up menu.
+            let g:neocomplcache_max_list = 100 " number display in pop-up menu.
             let g:neocomplcache_max_keyword_width = 50
             let g:neocomplcache_max_menu_width = 15
-            let g:neocomplcache_auto_completion_start_length = 1
+            let g:neocomplcache_auto_completion_start_length = 3
             let g:neocomplcache_manual_completion_start_length = 0
-            let g:neocomplcache_min_keyword_length = 1
-            let g:neocomplcache_min_syntax_length = 1
+            let g:neocomplcache_min_keyword_length = 4
+            let g:neocomplcache_min_syntax_length = 4
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
             let g:neocomplcache_enable_smart_case = 1 " smartcase
-            let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*' for input-saving
+            let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
             let g:neocomplcache_enable_cursor_hold_i = 0 " use 'CursorHoldI' event
             let g:neocomplcache_enable_insert_char_pre = 0 " use 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
@@ -1125,13 +1125,13 @@ endif
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy.
             let g:neocomplcache_fuzzy_completion_start_length = 3
             let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache.
-            let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make a cache
+            let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
             let g:neocomplcache_disable_caching_file_path_pattern = '' " pattern of buffer un-cache
             let g:neocomplcache_lock_buffer_name_pattern = '' " pattern of buffer do not auto-complete
             let g:neocomplcache_compare_function = 'neocomplcache#compare_rank'
-            let g:neocomplcache_enable_prefetch = 0 " NOTE: this has side effect.
+            let g:neocomplcache_enable_prefetch = 1 " this has side effect.
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
-            " XXX let g:neocomplcache_temporary_dir = '~/.neocon'
+            let g:neocomplcache_temporary_dir = '~/.neocon'
 
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             if !exists('g:neocomplcache_keyword_patterns')
@@ -1366,10 +1366,7 @@ endif
                 " <Plug>(neocomplcache_snippets_expand)
                 " <Plug>(neocomplcache_snippets_jump)
                 " <Plug>(neocomplcache_start_unite_snippet)
-                " FIXME a function to open snippet edit in a vertical split or a
-                " tab. then re-load new
-                " snippet with command :NeoComplCacheCachingSnippets after :w.
-                nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
+
             " add user own snippets dir.
             "let g:neocomplcache_snippets_dir='~/.vim/snippets/dir2,~/.vim/snippets/dir2'
             let g:neocomplcache_snippets_dir='~/.vim/snippets/neocomplcache-snippets'
