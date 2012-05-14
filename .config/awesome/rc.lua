@@ -162,7 +162,7 @@ end
 -- If you wish to change default settings, you can redefine any of the following fields. For details refer to luadoc.
 naughty.config.default_preset.timeout          = 15
 naughty.config.default_preset.screen           = 1
-naughty.config.default_preset.position         = "bottom_right"
+naughty.config.default_preset.position         = "top_left"
 naughty.config.default_preset.margin           = 15
 naughty.config.default_preset.height           = nil -- default = nil
 naughty.config.default_preset.width            = 450
