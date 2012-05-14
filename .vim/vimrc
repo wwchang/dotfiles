@@ -736,48 +736,6 @@ endif
     "autocmd InsertEnter * call Fcitx2zh()
     " }}}
 
-    " [ Auto-capitalize the first character of sentence ] {{{
-    "Inputing '/' cancels capitalizing without delay
-    function! CapNextKey(prev)
-        redraw
-        let input = nr2char(getchar())
-        let input = (input == '/' ? "\e" : input)
-        if input=~'[.?!\r[:blank:]]' "punctuations, return, spaces
-            exe 'normal! i' . input . "\<Right>"
-            return CapNextKey(input)
-        elseif input=="\e"
-            return "\<del>"
-        elseif a:prev=~'[\r[:blank:]]'
-            return toupper(input) . "\<del>"
-        else
-            return input . "\<del>"
-        endif
-    endfunction
-
-    function! InsertEnterCheck()
-        let trunc = getline(".")[0:col(".")-2]
-        if col(".")==1
-            return CapNextKey("\r")
-        elseif trunc=~'[?!.]\s*$\|^\s*$'   "ie, 'text.[t]ext'
-            return CapNextKey(trunc[-1:-1])
-        else
-            return "\<Del>"
-        endif
-    endfunction
-
-    " FIXME those maps can not run in "if" statement.
-    if &filetype == "markdown" || &filetype == "mail"
-        inoremap <silent> . ._<Left><C-R>=CapNextKey(".")<CR>
-        inoremap <silent> ? ?_<Left><C-R>=CapNextKey("?")<CR>
-        inoremap <silent> ! !_<Left><C-R>=CapNextKey("!")<CR>
-        inoremap <silent> <CR> <CR>_<Left><C-R>=CapNextKey("\r")<CR>
-        nnoremap <silent> o o_<Left><C-R>=CapNextKey("\r")<CR>
-        nnoremap <silent> O O_<Left><C-R>=CapNextKey("\r")<CR>
-        nnoremap <silent> a a_<Left><C-R>=InsertEnterCheck()<CR>
-        nnoremap <silent> A A_<Left><C-R>=InsertEnterCheck()<CR>
-        nnoremap <silent> i i_<Left><C-R>=InsertEnterCheck()<CR>
-        nnoremap <silent> I I_<Left><C-R>=InsertEnterCheck()<CR>
-    endif
     " }}}
 
     " [ convert file into unix & utf-8 ] {{{
