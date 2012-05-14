@@ -161,7 +161,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     "             | | `-other loaded buffers
     "             | `-windows buffers
     "             `-the current buffer
-    set completeopt=menuone,preview " menu,menuone,longest,preview(scratch window when complete)
+    set completeopt=menuone " menu,menuone,longest,preview(scratch window)
 
     " set file path completion.
     set path+=.,/usr/local/include,/usr/include,,
