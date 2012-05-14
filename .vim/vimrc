@@ -1005,7 +1005,7 @@ endif
             " R
         "call vam#ActivateAddons(['Vim-R-plugin'])
             " Lua
-        "call vam#ActivateAddons(['luainspect'])
+        call vam#ActivateAddons(['luainspect'])
             " simulate
         "call vam#ActivateAddons(['Clam'])
             " Tmux & Screen
@@ -2603,8 +2603,12 @@ endif
             " to restore highlighting for Lua 5.1:
             "let lua_version = 5
             "let lua_subversion = 1
-        " luainspect {{{
-            "
+        " luainspect {{{ Semantic highlighting for Lua in Vim.
+            " Usage:
+            "   - :LuaInspect, :LuaInspectToggle.
+            "let g:lua_inspect_events = 'CursorHold,CursorHoldI,BufReadPost,BufWritePost'
+            let g:lua_inspect_warnings = 1 " 0: do not show warnings.
+            let g:lua_inspect_internal = 1
         " }}}
     " }}}
 
