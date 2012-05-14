@@ -92,9 +92,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ paste mode ] {{{
     " set paste " set nopaste
-    " nnoremap <F2> :set paste<CR>
-    " FIXME when use command :map <F2> to show which command it maped, it shows
-    " no mapping found.
+    "nnoremap <F2> :set paste<CR>
     set pastetoggle=<F2>
     " }}}
 
