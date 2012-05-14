@@ -3149,7 +3149,63 @@ endif
             let g:wikigtd_index = 'task/task'
         " }}}
         " notes {{{ Easy note taking in Vim.
-            " TODO read doc.
+            " Usage:
+            "       - :Note -- start a new note.
+            "       - `:[edit|tabedit|split] note:filename`
+            "       - [visual text]<Leader>en/sn/tn. or :[Split|Tab]NoteFromSelectedText
+            "       - :write or :update to save notes.
+            "       - :Note strings -- to edit existing notes or new note be created.
+            "       - :SearchNotes keyword  or :SearchNotes /pattern/ for regex.
+            "       - :RelatedNotes -- back-references, find all notes refer to this file.
+            "       - :RecentNotes
+            "       - Navigating: gf, CTRL-W_f, CTRL-W_gf. (jump to open, split, tab)
+            "       - C-X_C-U, C-X_C-O for completing,
+            "       - embed filetype: embed highlighting, {{{type ...}}}
+            "       - bullets: <Tab>, <S-Tab>, <Alt-Left>, <Alt-Right>
+            let g:notes_directory = '~/vimwiki/Notes'
+            let g:notes_suffix = '.note'
+            let g:notes_title_sync = 'prompt' " prompt, change_title, rename_file, no
+            let g:notes_smart_quotes = 1
+            let g:notes_ruler_text = '* * *'
+            let g:notes_list_bullets = "['•', '◦', '▸', '▹', '▪', '▫']"
+            "let g:notes_list_bullets = '['*', '-', '+']'
+            let g:notes_shadowdir = '~/vimwiki/Notes/vimPlugin/shadow'
+            let g:notes_indexfile = '~/vimwiki/Notes/vimPlugin/index.pickle'
+            "let g:notes_indexscript =
+            let g:notes_tagsindex = '~/vimwiki/Notes/vimPlugin/tags.txt'
+            " Make the C-] combination search for @tags:
+            "imap <C-]> <C-o>:SearchNotes<CR>
+            "nmap <C-]> :SearchNotes<CR>
+            " Make double mouse click search for @tags. This is actually quite a lot of
+            " fun if you don't use the mouse for text selections anyway; you can click
+            " between notes as if you're in a web browser:
+            "imap <2-LeftMouse> <C-o>:SearchNotes<CR>
+            "nmap <2-LeftMouse> :SearchNotes<CR>
+            " ~/.vim/ftplugin/notes.vim : setlocal filetype=notes.txtfmt
+        " }}}
+        " vim-pad {{{ A quick notetaking plugin
+            " Workflow:
+            "       - open your notes.
+            "       - search in your notes.
+            "       - create a new note.
+            " file is free format, you can use modeline like markdown etc.
+            " Usage:
+            "   - :ListPads (`Ctrl-Esc`, <Leader><Esc>) <Plug>PadListPads.
+            "       - <Enter> to open pad in list.
+            "       - <Del> to delete.
+            "       - <Esc> to close buffer.
+            "       - <Shift-F> to search.
+            "   - (`<Leader>s`) <Plug>PadSearchPads.
+            "   - :OpenPad (`Shift-Esc` <Leader>n) <Plug>PadOpenPad.
+            let g:pad_dir = "~/vimwiki/vim-pad/"
+            let g:pad_format = "markdown" " markdown,pandoc,
+            let g:pad_modeline_position = "bottom" " bottom, top,
+            let g:pad_window_height = 20
+            let g:pad_highlighting_variant = 1
+            let g:pad_search_backend = 'grep' " grep, ack
+            let g:pad_search_ignore_case = 1
+            let g:pad_read_nchars_from_files = 200 " read 200 chars from files as summary.
+            " FIXME change mappings.
         " }}}
         " HyperList: <= WOIM {{{
             "HyperList is a way to describe anything - any state, item(s), pattern,
