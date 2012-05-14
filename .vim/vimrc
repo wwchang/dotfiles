@@ -148,7 +148,6 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ completion & omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
-    " TODO set mouseshape=
     set cmdheight=1                  " command line height
     set autochdir                    " auto change dir
     set dictionary=~/.vim/misc/words " dictionary for "k", '/usr/share/dict/words'
@@ -754,7 +753,6 @@ endif
 " [[ Misc ]] {{{2
 
     " [ abbreviations ] {{{
-    " FIXME Use Neocomplcache.vim 's snippet abbr. add .vim/misc/abbreviations.vim
     source ~/.vim/misc/abbreviations.vim
     " }}}
 
@@ -778,14 +776,14 @@ endif
 
 " }}}
 
-" [ pathogen ] {{{2 ".vim/bundle/"
+" [ pathogen ] {{{2 .vim/bundle/
     "" .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
     "call pathogen#infect()
     "syntax on
     "filetype plugin indent on
 " }}}
 
-"" [ vundle ] {{{2 ".vim/bundle/"
+"" [ vundle ] {{{2 .vim/bundle/
     " [ advanced way ] {{{
     "let root = '/tmp/vundle_bundles/'
     "let src = 'http://github.com/gmarik/vundle.git'
@@ -816,7 +814,7 @@ endif
     "" }}}
 "" }}}
 
-" [ VAM : vim addon manager ] {{{2 ".vim/vim-addons/"
+" [ VAM : vim addon manager ] {{{2 .vim/vim-addons/
 " FIXME how to update addons with out press Enter between every addons.
     " [ commands & functions ] {{{
         " :InstallAddons / :ActivateAddons {name} before add it to the list in .vimrc.
@@ -851,11 +849,12 @@ endif
     let g:vim_addon_manager['do_diff'] = 1
     " }}}
 
-    " minimal setup ~
-    "set runtimepath+=~/path-to/vim-plugin/manager
-    "call scriptmanager#Activate(["vim-haxe","The_NERD_tree","vim-latex"])
+    " [ minimal setup ] {{{
+        "set runtimepath+=~/path-to/vim-plugin/manager
+        "call scriptmanager#Activate(["vim-haxe","The_NERD_tree","vim-latex"])
+    " }}}
 
-    " complex setup ~
+    " [ complex setup ] {{{
     function SetupVAM()
         " {{{ if not installed, install automatically.
         " YES, you can customize this vam_install_path path and everything still works!
@@ -879,8 +878,8 @@ endif
             " VAM run helptags automatically if you install or update plugins
             exec 'helptags '.fnameescape(vam_install_path.'/vim-addon-manager/doc')
         endif
-
         " }}}
+    " }}}
 
         " ActivateAddones List: {{{
             " vim plugin manager
@@ -888,7 +887,6 @@ endif
             " statusline
         call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
-            " command line
         " TODO Add a progin to show object prototype in statusline.
             " CVS
         call vam#ActivateAddons(['fugitive', 'quickfixsigns', 'extradite'])
@@ -899,8 +897,8 @@ endif
             " Tab Completion
         call vam#ActivateAddons(['neocomplcache', 'vimproc', 'unite', 'vimshell'])
             " for C C++
+        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
         call vam#ActivateAddons(['clang_complete'])
-        "call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " for Haskell using ghc-mod
         "call vam#ActivateAddons(['neco-ghc'])
         "call vam#ActivateAddons(['neco-rake'])
@@ -950,8 +948,8 @@ endif
             " comment
         call vam#ActivateAddons(['The_NERD_Commenter'])
             " doc & help "K"
-        " FIXME call vam#ActivateAddons(['viewdoc'], {'auto_install': 0})
         call vam#ActivateAddons(['Manuals'])
+        "call vam#ActivateAddons(['viewdoc'])
             " indent guides & indent & align & splijoin
         call vam#ActivateAddons(['Indent_Guides'])
         "call vam#ActivateAddons(['splitjoin'])
@@ -962,22 +960,23 @@ endif
         call vam#ActivateAddons(['Gundo'])
             " Swap True False etc
         call vam#ActivateAddons(['SwapIt'])
-            " Author info
-        call vam#ActivateAddons(['AuthorInfo'])
+            " Author info & License
+        "call vam#ActivateAddons(['AuthorInfo'])
+        "call vam#ActivateAddons(['license_loader'])
             " Python
                 " enhanced python syntax 3.0.
-        call vam#ActivateAddons(['Python-mode-klen'])
-        call vam#ActivateAddons(['python%790'])
+        "call vam#ActivateAddons(['Python-mode-klen'])
         " call vam#ActivateAddons(['SimpylFold'])
         " call vam#ActivateAddons(['github:jbking/vim-pep8'])
         " call vam#ActivateAddons(['flake8'])
-        " FIXME call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
+        " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
         call vam#ActivateAddons(['python_match'])
         call vam#ActivateAddons(['python_open_module'])
             " Shell: Bash, Zsh
+        call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
-        call vam#ActivateAddons(['inline_edit'])
-        call vam#ActivateAddons(['ZenCoding', 'MatchTag'])
+        call vam#ActivateAddons(['inline_edit', 'MatchTag'])
+        call vam#ActivateAddons(['ZenCoding'])
             " JavaScript
         call vam#ActivateAddons(['jsflakes%4057'])
         call vam#ActivateAddons(['jsruntime'])
@@ -1002,15 +1001,19 @@ endif
         "call vam#ActivateAddons(['Lisper'])
             " Scheme
             " VimL
+        call vam#ActivateAddons(['Vim-Support'])
             " R
         "call vam#ActivateAddons(['Vim-R-plugin'])
+            " Lua
+        "call vam#ActivateAddons(['luainspect'])
             " simulate
         "call vam#ActivateAddons(['Clam'])
-                " Tmux & Screen
+            " Tmux & Screen
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
             " vimwiki & note
         call vam#ActivateAddons(['github:vim-scripts/vimwiki'])
         call vam#ActivateAddons(['notes'])
+        call vam#ActivateAddons(['vim-pad'])
             " GTD
         call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
@@ -1046,7 +1049,7 @@ endif
         "call vam#ActivateAddons(['Mark%2666'])
             " format
         call vam#ActivateAddons(['utl'])
-        "call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
+        call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
         call vam#ActivateAddons(['Tabular'])
         call vam#ActivateAddons(['surround'])
         call vam#ActivateAddons(['Auto_Pairs'])
@@ -1061,11 +1064,13 @@ endif
             " Vim related
         "call vam#ActivateAddons(['github:chrisbra/vim_faq'])
             " Vim Extension
+                " command line
         call vam#ActivateAddons(['repeat', 'visualrepeat', 'commentary', 'abolish'])
         call vam#ActivateAddons(['StarRange'])
         "call vam#ActivateAddons(['visualstar'])
         "call vam#ActivateAddons(['exjumplist'])
         "call vam#ActivateAddons(['unicode'])
+        "call vam#ActivateAddons(['mathematic'])
         "call vam#ActivateAddons(['SudoEdit'])
         "call vam#ActivateAddons(['CompleteHelper'])
         "call vam#ActivateAddons(['SnippetComplete'])
@@ -1074,6 +1079,7 @@ endif
             " translate
         "call vam#ActivateAddons(['youdao.dict'])
         " }}}
+
     endfunction
     call SetupVAM()
 " }}}
@@ -1268,7 +1274,7 @@ endif
         " when condidates have long common(same) string.
         inoremap <expr><C-l>    neocomplcache#complete_common_string()
         " =========================================================================
-        " TODO UNITE SOURCES
+        " TODO unite sources
         " <Plug>(neocomplcache_start_unite_complete)
         " <Plug>(neocomplcache_start_unite_quick_match)
         "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
@@ -1469,10 +1475,10 @@ endif
             nnoremap <F12> :TagbarToggle<CR>
             " automatically opening tagbar.
                 " autocmd VimEnter * nested :TagbarOpen " open for any files.
-                augroup TagListAutoToggle
-                    au!
-                    au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
-                augroup END
+                "augroup TagListAutoToggle
+                    "au!
+                    "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
+                "augroup END
         " }}}
 
         " Taglist: {{{ <F12>
@@ -2088,8 +2094,12 @@ endif
     " }}}
 
     " [ doc & help "K" ] {{{
-        " Viewdoc: Flexible viewer for any documentation (help/man/perldoc/etc.)
-        " Manuals: An extensible help system
+        " Manuals: {{{ An extensible help system
+            "
+        " }}}
+        " Viewdoc: {{{ Flexible viewer for any documentation (help/man/perldoc/etc.)
+            "
+        " }}}
     " }}}
 
     " [ syntax ] {{{
@@ -2319,8 +2329,7 @@ endif
             " SimpylFold
                 " correct fold for python class/function indent.
                 let g:SimpylFold_docstring_preview = 1
-            " ~/.vim/syntax/python[3.0].vim
-                " {{{
+            " ~/.vim/syntax/python[3.0].vim {{{
                 "    If you want all Python highlightings above:
                 let g:python_highlight_all = 1
                 "    (This option not override previously set options)
@@ -2380,7 +2389,7 @@ endif
         " }}}
     " }}}
 
-    " [ shell ] {{{
+    " [ Shell ] {{{
         " vim shell settings :
             let g:is_sh = 1 " default: Bourne shell.
             let g:sh_fold_enabled = 3 " 1: function, 2: heredoc, 4: if/do/for
@@ -2389,6 +2398,9 @@ endif
             " iskeyword:
             "let g:sh_isk =
             "let g:sh_noisk = 1
+        " bash-support {{{
+            "
+        " }}}
     " }}}
 
     " [ Web ] {{{
@@ -2542,8 +2554,12 @@ endif
 
     " [ VimL ] {{{
         let g:vimsyn_embed = "mpPr" " embed script highlight: perl,python,ruby,tcl
-        let g:vimsyn_folding = 'afmpPr' " augroup, function, mzscheme, perl, python, ruby
+        let g:vimsyn_folding = 'afmpPr' " augroup, function, perl, python, ruby
         let g:vimsyn_noerror = 1 " suppress error highlighting.
+
+        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
+            " :h vimsupport.
+        " }}}
     " }}}
 
     " [ C & C++ Dev Env ] {{{
@@ -2551,8 +2567,9 @@ endif
         au FileType c,cpp,java set matchpairs+==:;
 
         " neocomplcache-clang {{{ clang_complete for neocomplcache.
-            let g:neocomplcache_clang_use_library = 1 " use clang library clang.so ..
+            " Require: clang_complete
                 " clang.so, clang.dll, libclang.dylib
+            " FIXME let g:neocomplcache_clang_use_library = 1 " use clang library
             " FIXME let g:neocomplcache_clang_library_path =
             let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
             let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
@@ -2602,6 +2619,9 @@ endif
             " to restore highlighting for Lua 5.1:
             "let lua_version = 5
             "let lua_subversion = 1
+        " luainspect {{{
+            "
+        " }}}
     " }}}
 
     " [ Haskell ] {{{
@@ -2749,11 +2769,10 @@ endif
             ""call Pl#Theme#RemoveSegment({targetsegment})
             ""call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
             ""call Pl#Segment#Create(),
-            "call Pl#Theme#ReplaceSegment('filetype', '$FT %{strlen(&ft) ? &ft : "n/a"}')
-            call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
+            "call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
         " }}}
-        " fugitive.vim
         " current-func-info
+        " fugitive.vim
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
@@ -2813,7 +2832,7 @@ endif
         " }}}
     " }}}
 
-    " [ unicode ] {{{
+    " [ unicode & symble & sign ] {{{
         " unicode : {{{ A Completion function for Unicode glyphs
             " e.g. type "AE", <C-X><C-U>, / <C-X><C-G>
             " <Leader>un -- swaps between unicode name and glyphs function complete.
@@ -2901,7 +2920,7 @@ endif
     " }}}
 
     " [ syntax for *** ] {{{
-        " Txtfmt-The-Vim-Highlighter {{{ "Rich text" highlighting formatted with Vim !
+        " Txtfmt-The-Vim-Highlighter {{{ "Rich text" highlighting formatted with Vim
             " modeline: vim:ft=txtfmt || ft=c.txtfmt (mix)
             au! filetypedetect BufRead,BufNewFile *.txt setfiletype txtfmt
             " nested region
@@ -3225,7 +3244,7 @@ endif
             " PasteBin: {{{ <Visual>PasteBin
                 " http://www.vim.org/scripts/script.php?script_id=3505
                 " http://pastebin.com/api config reference.
-                let g:pastebin_browser_command = "luakit %URL% &"
+                let g:pastebin_browser_command = "firefox %URL% &"
                 let g:pastebin_private = 1 " 0: Public, 1: Unlisted, 2: Private.
                 let g:pastebin_api_dev_key = '1587f97dfac0e24806b9d5092f710dc6'
                 let g:pastebin_api_user_name = 'numbchild'
@@ -3253,7 +3272,7 @@ endif
                 let g:gist_clip_command = 'xclip -selection clipboard' " Linux
                 let g:gist_detect_filetype = 1 " detect filetype from the filename.
                 let g:gist_open_browser_after_post = 1 " open browser after post.
-                let g:gist_browser_command = 'luakit %URL% &' " 'elinks %URL%'
+                let g:gist_browser_command = 'firefox %URL% &' " 'elinks %URL%'
                 let g:gist_show_privates = 1 " show private gist in :Gist -l.
                 let g:gist_get_multiplefile = 1 " edit all files contains more than one.
             " }}}
@@ -3363,8 +3382,7 @@ endif
     " [ open with \o ] {{{ open: URL, preview doc: markdown, TeX, etc.
         " Utl: {{{ :Utl to open links, files.
             nnoremap <leader>o :Utl<CR>
-                " Syntax:
-                " no need to escape spaces.
+                " Syntax: no need to escape 'spaces'.
                 " use '' contain filename(url) strings. e.g. = ":silent !evince '%p' &"
                 " <url:#r=here> id=here | <url:tn=some text> <url:filename.txt#line=-10>
                 " <url:foo bar.pdf> | <url:./temp> folder |
