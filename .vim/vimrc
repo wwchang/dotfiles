@@ -164,7 +164,12 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     "             | | `-other loaded buffers
     "             | `-windows buffers
     "             `-the current buffer
-    set completeopt=menuone " menu,menuone,longest,preview(scratch window)
+    set completeopt=menuone " menu,menuone,longest,preview
+
+    " preview window
+    set previewheight=15
+    "set previewwindow " this popup menu is up towards.
+        " NOTE this solved python neocomplcache popup menu disappear problem.
 
     " set file path completion.
     set path+=.,/usr/local/include,/usr/include,,
