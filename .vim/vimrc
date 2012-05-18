@@ -280,8 +280,9 @@ endif
     set wrap        " how text displayed.
     set linespace=1 " 1 for Win32 GUI, space for underline.
     set sidescroll=1
-    set scrolloff=10  " show some lines up and down of cursor, 999 will let cursor always in middle
-    set magic         " magic/nomagic: changes special chars that can be used in search patterns.
+    set scrolloff=999  " N: lines up and down of cursor, 999: cursor always in middle.
+        " let cursor line in middle will make popup menu have enough space to display.
+    set magic " magic/nomagic: changes special chars that can be used in search patterns
         " use \v and \V to switch char special meaning on or off.
         " \v: this will make every following character except a-zA-Z0-9 and '_' have special meaning
         " \V: preceded by \ to activate their special meaning.
