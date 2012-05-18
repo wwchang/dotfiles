@@ -312,28 +312,38 @@ endif
     " color from /etc/x11/rgb.txt
     " [ cursor color ]
     if &term =~ "rxvt-unicode-256color\\|rxvt-unicode"
-         set ttyfast
+        "if &term == 'rxvt-256color'
+        "" urxvt
+        "let &t_SI = ']12;#89b6e2'
+        "let &t_EI = ']12;#dd4010'
+        set ttyfast
         let &t_EI = "\<Esc>]12;RoyalBlue1\x9c"
         let &t_SI = "\<Esc>]12;IndianRed1\x9c"
         silent !echo -e "\e]12;orange\x9c"
-    elseif &term =~ "screen"    " screen in urxvt or xterm
+    "elseif $TMUX != ''
+        "" tmux
+        "let &t_SI = 'Ptmux;]12;#89b6e2\'
+        "let &t_EI = 'Ptmux;]12;#dd4010\'
+    elseif &term =~ "screen-256color"
+        " screen
         :silent !echo -ne "\eP\e]12;IndianRed2\007\e\\"
         let &t_SI = "\eP\e]12;RoyalBlue1\007\e\\"
         let &t_EI = "\eP\e]12;IndianRed2\007\e\\"
         autocmd VimLeave * :!echo -ne "\eP\e]12;green\007\e\\"
     elseif &term =~ "xterm"
+        " xterm
         :silent !echo -ne "\e]12;IndianRed2\007"
         let &t_SI = "\e]12;RoyalBlue1\007"
         let &t_EI = "\e]12;IndianRed2\007"
         autocmd VimLeave * :!echo -ne "\e]12;green\007"
     elseif &term =~ "xterm\\|rxvt"
-      let &t_SI = "\<Esc>]12;orange\x7"
-      let &t_EI = "\<Esc>]12;red\x7"
-      silent !echo -ne "\033]12;red\007"
-      " reset cursor when vim exits
-      autocmd VimLeave * silent !echo -ne "\033]112\007"
-      " use \003]12;gray\007 for gnome-terminal
-     endif
+        let &t_SI = "\<Esc>]12;orange\x7"
+        let &t_EI = "\<Esc>]12;red\x7"
+        silent !echo -ne "\033]12;red\007"
+        " reset cursor when vim exits
+        autocmd VimLeave * silent !echo -ne "\033]112\007"
+        " use \003]12;gray\007 for gnome-terminal
+    endif
 
     " [ cursor shape ]
     " = '\<Esc>[1 q' .  1 or 0 > blinking block, 2 > solid block, 3 > blinking underscore, 4 > " solid underscore.
