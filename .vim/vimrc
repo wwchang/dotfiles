@@ -2977,12 +2977,11 @@ endif
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default"
-            let g:Powerline_stl_path_style = "short" " filename, short, relative, full.
-            ""call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
-            ""call Pl#Theme#RemoveSegment({targetsegment})
-            ""call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
-            ""call Pl#Segment#Create(),
-            "call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
+            let g:Powerline_stl_path_style = "filename" " filename, short, relative, full.
+                "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
+                "call Pl#Theme#RemoveSegment({targetsegment})
+                "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
+                "call Pl#Segment#Create(),
         " }}}
 
         " current-func-info
