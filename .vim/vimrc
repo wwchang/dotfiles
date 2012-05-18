@@ -1098,7 +1098,7 @@ endif
 
 " ----------------------------------------------------------------
 
-" [ vim plugins manager ] {{{
+" [ vim plugins manager (VAM) ] {{{
     " tplugin : {{{
     " }}}
 " }}}
@@ -1150,8 +1150,6 @@ endif
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-            " let g:neocomplcache_next_keyword_patterns = {}
-            " enable here because they are commented in source code file. because heavy.
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
@@ -1173,7 +1171,7 @@ endif
                 "let g:neocomplcache_context_filetype_lists = {}
             "endif
             " let g:neocomplcache_text_mode_filetypes =
-            " let g:neocomplcache_disable_select_mode_mappings = 0 " default is 1
+            " let g:neocomplcache_disable_select_mode_mappings = 0 " default: 1
             let g:neocomplcache_ctags_program = 'ctags'
             " let g:neocomplcache_ctags_arguments_list =
             " let g:neocomplcache_include_paths =
@@ -1192,7 +1190,7 @@ endif
             " let g:neocomplcache_source_completion_length = {}
             " let g:neocomplcache_source_rank =
             let g:neocomplcache_force_overwrite_completefunc = 0
-            let g:neocomplcache_release_cache_time = 900 " define time of auto release cache
+            let g:neocomplcache_release_cache_time = 900
 
             "let g:AltAutoComplPop_CalcRankMaxLists
             "let g:AltAutoComplPop_CacheLineCount
@@ -1282,12 +1280,12 @@ endif
         " inoremap <expr><C-n> pumvisible() ? "\<C-n>" : neocomplcache#manual_keyword_complete()
         inoremap <expr><C-y>    neocomplcache#smart_close_popup()
             " neocomplcache#smart_close_popup() | neocomplcache#close_popup
-        inoremap <expr><C-e>    neocomplcache#cancel_popup()
-        inoremap <expr><C-g>    neocomplcache#undo_completion()
-        inoremap <expr><C-h>    neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><BS>     neocomplcache#smart_close_popup()."\<C-h>"
+        inoremap <expr><C-e> neocomplcache#cancel_popup()
+        inoremap <expr><C-g> neocomplcache#undo_completion()
+        inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
         " when condidates have long common(same) string.
-        inoremap <expr><C-l>    neocomplcache#complete_common_string()
+        inoremap <expr><C-l> neocomplcache#complete_common_string()
         " =========================================================================
         " TODO unite sources
         " <Plug>(neocomplcache_start_unite_complete)
@@ -1296,8 +1294,11 @@ endif
         "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
             " }}}
         " }}}
+
         " Vimproc: a great asynchronous execution library for Vim.
+
         " Unite: search and display info from arbitrary sources: files buffers registers
+
         " Vimshell: {{{ powerful shell inplemented by vim script
             "built-in functionalities that you had to set up to enable if it's on zsh.
             " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
@@ -1334,9 +1335,11 @@ endif
             let g:vimshell_interactive_cygwin_home = ''
             "let g:unite_source_vimshell_external_history_path =
         " }}}
+
         " neco-look |
 
         " AutoComplPop:
+
         " SuperTab: {{{ <Tab> Perform all your vim insert mode completions with Tab.
             " let SuperTab decide which completion mode to use and should play
             " with OmniCompletion
@@ -1529,6 +1532,7 @@ endif
         " }}}
 
         " TagHighlight: highlights names of classes, variables, types etc in code.
+
         " Tag_Signature_Balloons:
             let g:loaded_tag_signature = 1
             let g:TagSignatureAllowFileLoading = 1
@@ -1536,7 +1540,9 @@ endif
 
         " AutoTag:
             " updates entries in a tags file automatically when saving.
+
         " Bundle 'indexer.tar.gz'
+
         " Bundle 'xolox/vim-easytags.git'
             " :UpdateTags [-R /path], :HighlightTags
     " }}}
@@ -1557,6 +1563,7 @@ endif
             let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
             let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
         " }}}
+
         " Minibufexplorer: {{{ <Leader>mbe
             let g:miniBufExplSplitBelow=0  " MBE at bottom or top.
             let g:miniBufExplSplitToEdge = 1
@@ -1588,9 +1595,11 @@ endif
             hi MBEChanged guifg=#CD5907 guibg=fg
             hi MBENormal guifg=#808080 guibg=fg
         " }}}
+
         " LustyJuggler: {{{ <Leader>lj
             "set hidden
         " }}}
+
         " Tabman: {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
             let g:loaded_tabman = 0 " set 1 to disable plugin completely
             let g:tabman_toggle = '<leader>tm'
@@ -1627,7 +1636,7 @@ endif
     " }}}
 
     " [ Compiler ] {{{ <F10>
-        " SingleCompile: {{{ F9 compile F10 compile&run
+        " SingleCompile: {{{ F10 compile&run
             " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
             let g:SingleCompile_alwayscompile = 1 " =0 to disable it.
             let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
@@ -1658,6 +1667,7 @@ endif
             "" for html tidy set ignore regex
             "let g:syntastic.file_types.html.ignore_regex = 'lacks "alt" attribute\|proprietary attribute'
         " }}}
+
         " Syntastic: {{{ :w saving to check. or daemon automatic check.
             " Commands: :Errors, :SyntasticToggleMode, :SyntasticCheck,
             " Require:  language syntax checker bins.
@@ -1683,6 +1693,7 @@ endif
             let g:syntastic_quiet_warnings=0 " only care about syntax errors not warning
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
         " }}}
+
         " QuickfixSigns_vim: {{{ mark quickfix & location list items with signs.
             let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
                         \ 'vcsdiff' ])
@@ -1697,6 +1708,7 @@ endif
             let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
                         \ 'ADD': 'DiffAdd', 'CHANGE': 'DiffChange'}
         " }}}
+
         " Unimpaired: {{{ provides several pairs of bracket maps.
             " [, ],
             " a: , b: :b, l: :l, q: :c, t: tag.
@@ -1729,6 +1741,7 @@ endif
             " [-/<Enter>/p/C],
             " :Gdiff, :Gbrowse, :Gedit, :Glog, :Ggrep,
         " }}}
+
         " Extradite: {{{ A git file commit log browser, Extends fugitive.vim
             " :Extradite | :Extradite! -- vertical.
             nnoremap <F9> :Extradite<cr>
@@ -1741,6 +1754,7 @@ endif
                 " let g:extradite_width = 60
                 let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
+
         " Unimpaired: {{{
             " Github
                 " vim-github : a Vim plugin to access to Github.
@@ -1749,6 +1763,7 @@ endif
                 let g:github#token=$GITHUB_TOKEN
                 let g:github#curl_cmd="curl"
         " }}}
+
         " ConflictMotions: {{{
             " This plugin defines movement commands and text objects to go to
             " and operate on conflicting lines, as indicated by many revision
@@ -1774,6 +1789,7 @@ endif
             let g:ConflictMotions_ConflictMapping = 'x'
             let g:ConflictMotions_SectionMapping = 'z'
         " }}}
+
         " Splice : {{{ A Vim plugin for resolving conflicts during three-way merges.
             let g:splice_debug = 0 " Splice is loaded only once.
             let g:splice_disable = 0 " Splice is enabled as usual.
@@ -1793,6 +1809,7 @@ endif
             let g:splice_prefix = "-"
             let g:splice_wrap = "None" " wrap, nowrap, None
         " }}}
+
         " vim-rhubarb {{{ GitHub extension for fugitive.vim
             " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
             " comment message.
@@ -1822,6 +1839,7 @@ endif
             "XXX    | TX     | Normal
             "OTHER  | T=     | Normal
         " }}}
+
         " TaskList: {{{ \tl ( \t map conflict with CommandT.vim )
             map <Leader>tl <Plug>TaskList
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
@@ -1991,6 +2009,7 @@ endif
                 " <esc>,<c-c>,<c-g> -- cancel. exit CtrlP.
                 " }}}
         " }}}
+
         " Command-T: {{{
             " <Leader>t provide fast, intuitive mechanism for opening files and buffers
             "nnoremap <silent> <Leader>t :CommandT<CR>
@@ -2023,8 +2042,10 @@ endif
             "let g:CommandTCancelMap='<C-x>'
             "let g:CommandTCancelMap=['<C-x>', '<C-c>'] " multiple alternative mapping.
         " }}}
+
         " Bundle 'FuzzyFinder'
             " buffer/file/command/tag/etc explorer with fuzzy matching.
+
         " EasyGrep {{{ make search and replace in files easy.
             " \vv: grep current word, \va: add to list,
             " \vr: replace, \vo: config options.
@@ -2052,7 +2073,8 @@ endif
             let g:EasyGrepReplaceAllPerFile = 1 " whether use 'a' (for all).
             let g:EasyGrepExtraWarnings = 1
         " }}}
-        " ack.vim {{{ a front for the Perl module App::Ack.
+
+        " Ack {{{ a front for the Perl module App::Ack.
             " Ack can be used as a replacement for 99% of the uses of grep.
             " $ apt-get install ack-grep (Perl module App:Ack)
             let g:ackprg="ack-grep -H --nocolor --nogroup --column"
@@ -2084,6 +2106,7 @@ endif
     " [ comment ] {{{
         " Commentary: {{{ \\{motion}, \\\, {Visual}\\, \\u
         " }}}
+
         " NerdCommenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
             " TODO find out how to comment Lua code with --[[
             " ]]
@@ -2092,6 +2115,7 @@ endif
             " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
             " let loaded_nerd_comments=1 " turn off this script.
         " }}}
+
         " vim-addon-commenting {{{ features: ( fork from commentary.vim )
             " - \ for commenting and uncommenting using selection or movement
             " - pays attention col of cursor so that you can indent at col 0 or
@@ -2150,6 +2174,7 @@ endif
                 " FIXME autocmd FileType python :IndentGuidesDisable
         " }}}
         " Indent_Highlight
+
         " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
             " {{{ switching between a single-line statement and a multi-line one.
             nmap <Leader>sj :SplitjoinJoin<cr>
@@ -2159,6 +2184,7 @@ endif
             let g:splitjoin_normalize_whitespace = 0
             let g:splitjoin_align = 0
         " }}}
+
         " Align%294:
     " }}}
 
@@ -2174,6 +2200,7 @@ endif
             " [count]g-, [count]g+ (are useful if you don't know exactly what
             " the change number is.)
             " :undolist :earlier/:later [time] {time travelling}
+
         " Gundo: {{{ Visual Vim Undo tree and list.
             nnoremap <F7> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
@@ -2328,6 +2355,7 @@ endif
             " SimpylFold
                 " correct fold for python class/function indent.
                 let g:SimpylFold_docstring_preview = 1
+
             " ~/.vim/syntax/python[3.0].vim {{{
                 "    If you want all Python highlightings above:
                 let g:python_highlight_all = 1
@@ -2355,6 +2383,7 @@ endif
                 "    For fast machines:
                 "       python_slow_sync
                 " }}}
+
             " python_match.vim
                 " %, g%, [%, ]%, d]%, v]%d,
                 " cycle through:
@@ -2372,6 +2401,7 @@ endif
                 "<leader>gc : Goto Class given by word under cursor.
                 "<leader>gf : Goto Function given by word under cursor.
             " }}}
+
             " python_open_module : open the python module on cursor
                 " FIXME cannot open module like from .module import text,
                 " or from kk.jj import text.
@@ -2397,8 +2427,8 @@ endif
             " iskeyword:
             "let g:sh_isk =
             "let g:sh_noisk = 1
-        " bash-support {{{
-            "
+
+        " bash-support {{{ Bash Support implements a bash-IDE for Vim/gVim.
         " }}}
     " }}}
 
@@ -2416,7 +2446,8 @@ endif
                 " detect <script> <style> tags like HTML
             let b:inline_edit_html_like_filetypes = ['vimwiki', 'tpp']
         " }}}
-        " [ HTML 5 ] {{{
+
+        " [ HTML5 ] {{{
             "au FileType html set shiftwidth=2
             "au FileType html set softtabstop=2
             "au FileType html set tabstop=2
@@ -2429,72 +2460,116 @@ endif
             " }}}
             " MatchTag:
         " }}}
+
         " [ CSS ] {{{
             " ~/.vim/syntax/css3.vim
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
         " }}}
-        " [ JavaScript ] {{{
-            " jsflakes%4057 {{{ powerful vim plugin lint javascript code on the fly.
-                " Require: jsruntime, jsoncodecs.
-                " :cl, clopen
-                " :RunJS, :RunJS 1,2 -> run js from line 1 to line 2.
-                " :RunHtml, :RunHtmlBlock 1,2
-                "let g:jshint_rcfile = {PATH}
-            " }}}
-            " jsruntime: {{{ javascript runtime library in vim.
-                " Interpreter: PyV8, node, cscript, spiderMonkey.
-                " let g:js_interpreter = 'pyv8'
-            " }}}
-            " jsoncodecs: {{{ Dumps lines from vim to a valid JSON string.
-            " }}}
-            " jsbeautify : a javascript source code formatter
-                " <Leader>ff -- Function g:Jsbeautify()
-            " javaScriptLint: Displays JavaScript Lint warnings in quickfix window
-            " jslint.vim : Check JavaScript files for errors with JSLint
-                " :JSLintUpdate
-                let g:JSLintHighlightErrorLine = 1
-            " jQuery : Syntax file for jQuery.
-                au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
-        " }}}
-        " [ Dart ] {{{
-        " }}}
-        " [ PHP ] {{{
-            let php_sql_query = 1 " highlight SQL syntax in strings.
-            let php_baselib = 1 " highlight Baselib methods.
-            let php_htmlInStrings = 1 " HTML syntax highlight inside strings.
-            let php_oldStyle = 1 " use the old colorstyle.
-            let php_asp_tags = 1 " enable highlight ASP-style short tags.
-            let php_noShortTags = 1 " disable short tags
-            let php_parent_error_close = 1 " highlight parent error ] or )
-            let php_parent_error_open = 1 " skip an php end tag, if exists open ( or [.
-            let php_folding = 1 " folding for classes and functions.
-            let php_sync_method = -1 " selecting syncing method. -1/0/>0
+    " }}}
 
-            " vim-addon-xdebug : {{{
-                " :XDbgStart
-            " }}}
-            " CakePHP: {{{ for navigating and managing CakePHP applications with Vim
-            " }}}
-            " https://github.com/tobyS/vip.git {{{
-            " }}}
-            " pdv-standalone {{{ standalone version of phpDocumentor for Vim plugin.
-                let g:pdv_cfg_Package = 'placeholder'
-                let g:pdv_cfg_Version = '1.0.0'
-                let g:pdv_cfg_Author = 'stardiviner <numbchild@gmail.com>'
-                "let g:pdv_cfg_Copyright =
-                "let g:pdv_cfg_License =
-                let g:pdv_cfg_Type = "mixed"
-                let g:pdv_cfg_Uses = 0
-                let g:pdv_cfg_paste = 1
-                let g:pdv_cfg_php4always = 0
-                let g:pdv_cfg_php4guess = 1
-                let g:pdv_cfg_php4guessval = "protected"
-                let g:pdv_cfg_CommentHead = "/**"
-                let g:pdv_cfg_Comment1 = " * "
-                let g:pdv_cfg_Commentn = " * "
-                let g:pdv_cfg_CommentTail = " */"
-                let g:pdv_cfg_CommentSingle = "//"
-            " }}}
+    " [ JavaScript ] {{{
+        " jsflakes%4057 {{{ powerful vim plugin lint javascript code on the fly.
+            " Require: jsruntime, jsoncodecs.
+            " :cl, clopen
+            " :RunJS, :RunJS 1,2 -> run js from line 1 to line 2.
+            " :RunHtml, :RunHtmlBlock 1,2
+            "let g:jshint_rcfile = {PATH}
+        " }}}
+
+        " jsruntime: {{{ javascript runtime library in vim.
+            " Interpreter: PyV8, node, cscript, spiderMonkey.
+            " let g:js_interpreter = 'pyv8'
+        " }}}
+
+        " jsoncodecs: {{{ Dumps lines from vim to a valid JSON string.
+        " }}}
+
+        " jsbeautify : a javascript source code formatter
+            " <Leader>ff -- Function g:Jsbeautify()
+
+        " javaScriptLint: Displays JavaScript Lint warnings in quickfix window
+
+        " jslint.vim : Check JavaScript files for errors with JSLint
+            " :JSLintUpdate
+            let g:JSLintHighlightErrorLine = 1
+
+        " jQuery : Syntax file for jQuery.
+            au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+    " }}}
+
+    " [ Dart ] {{{
+        " Dart {{{ Dart Lang Syntax for VIM.
+            "
+        " }}}
+    " }}}
+
+    " [ PHP ] {{{
+        let php_sql_query = 1 " highlight SQL syntax in strings.
+        let php_baselib = 1 " highlight Baselib methods.
+        let php_htmlInStrings = 1 " HTML syntax highlight inside strings.
+        let php_oldStyle = 1 " use the old colorstyle.
+        let php_asp_tags = 1 " enable highlight ASP-style short tags.
+        let php_noShortTags = 1 " disable short tags
+        let php_parent_error_close = 1 " highlight parent error ] or )
+        let php_parent_error_open = 1 " skip an php end tag, if exists open ( or [.
+        let php_folding = 1 " folding for classes and functions.
+        let php_sync_method = -1 " selecting syncing method. -1/0/>0
+
+        " DBGPavim {{{ enable PHP debug in vim with Xdebug.
+            " Requires:
+            "       - install xdebug for PHP.
+            "       - and edit php.ini file.
+            "           - zend_extension=path_to_xdebug.so
+            "           - xdebug.remote_enable=1
+            "       - edit apache config file.
+            "           - php_value xdebug.remote_port 9009
+            " Usage:
+            " :Bl/:Bp => list all breakpoints, toggle breakpoint on current line.
+            " - <F1>    => toggle help window.
+            " - <F2>    => step into.
+            " - <F3>    => step over
+            " - <F4>    => step out
+            " - <F5>    => start debugger backend.
+            " - <F6>    => stop debugger backend.
+            " - <F7>    => evalute expression and display result.
+            " - <F9>    => toggle layout.
+            " - <F11>   => show all variables.
+            " - <F12>   => show variable on current cursor.
+            " :Pg       => to print value of complex variables like $this->savings[3]
+            " :Up       => goto upper level of stack
+            " :Dn       => goto lower level of stack
+            let g:dbgPavimBreakAtEntry = 0
+            "let g:dbgPavimPathMap = [['D:/works/php','/var/www'],]
+            let g:dbgPavimPort = 9009
+        " }}}
+
+        " vim-addon-xdebug : {{{
+            " :XDbgStart
+        " }}}
+
+        " CakePHP: {{{ for navigating and managing CakePHP applications with Vim
+        " }}}
+
+        " https://github.com/tobyS/vip.git {{{
+        " }}}
+
+        " pdv-standalone {{{ standalone version of phpDocumentor for Vim plugin.
+            let g:pdv_cfg_Package = 'placeholder'
+            let g:pdv_cfg_Version = '1.0.0'
+            let g:pdv_cfg_Author = 'stardiviner <numbchild@gmail.com>'
+            "let g:pdv_cfg_Copyright =
+            "let g:pdv_cfg_License =
+            let g:pdv_cfg_Type = "mixed"
+            let g:pdv_cfg_Uses = 0
+            let g:pdv_cfg_paste = 1
+            let g:pdv_cfg_php4always = 0
+            let g:pdv_cfg_php4guess = 1
+            let g:pdv_cfg_php4guessval = "protected"
+            let g:pdv_cfg_CommentHead = "/**"
+            let g:pdv_cfg_Comment1 = " * "
+            let g:pdv_cfg_Commentn = " * "
+            let g:pdv_cfg_CommentTail = " */"
+            let g:pdv_cfg_CommentSingle = "//"
         " }}}
     " }}}
 
@@ -2539,12 +2614,14 @@ endif
             " \sel -- SQL Execute Line
             " Visual(V) -- linewise-visual to execute.
         " }}}
+
         " VDBI: {{{ Database client for Vim: browsing, operation, view.
             " :VDBI
             " viewer keys: q, <cr>, <leader>s/d/y,
             " query editor keys: q, <leader>e/r.
             " Datasource Viewer keys: q, <cr>
         " }}}
+
         " SQLUtilities: | Formatting, generate - columns lists, procedures for databases
             " [ functions ] {{{
             " automatically captilize all SQL keywords and statements.
@@ -2577,8 +2654,28 @@ endif
             let g:neocomplcache_clang_user_options = "" " clang options
             let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
+
         " clang_complete {{{ :h clang_complete.txt
+            let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu.
+            let g:clang_complete_auto = 1 " auto complete after -> . ::
+            let g:clang_complete_copen = 1 " 1: open quickfix window on error.
+            let g:clang_hl_errors = 1 " highlight warnings and errors
+            let g:clang_periodic_quickfix = 1 " periodically update quickfix
+                " you can use g:ClangUpdateQuickFix() with a mapping to do this.
+            let g:clang_snippets = 1
+            let g:clang_snippets_engine = "clang_complete" " clang_complete, snipmate, ultisnips
+            let g:clang_conceal_snippets = 1
+            let g:clang_close_preview = 0 " auto close preview window after completion.
+            let g:clang_exec = "clang" " name or path of clang executable.
+            let g:clang_user_options = "" " useful if you want filter result or others.
+            "let g:clang_auto_user_options = "path, .clang_complete, gcc"
+            let g:clang_use_library = 0 " TODO
+            let g:clang_library_path = ""
+            let g:clang_sort_algo = "priority"
+            let g:clang_complete_macros = 1
+            let g:clang_complete_patterns = 1
         " }}}
+
         " c.vim {{{ C/C++ IDE
         " }}}
     " }}}
@@ -2601,8 +2698,10 @@ endif
     " [ Lisp ] {{{
         " Slimv: {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
         " }}}
+
         " Lisper: {{{ Yet Another Lisp Engine Written In Pure VimScript
         " }}}
+
         " paredit.vim : {{{ Paredit Mode: Structured Editing of Lisp S-expressions
             " paredit.vim is a part of Slimv.vim
             " similar to paredit.el for Emacs.
@@ -2618,6 +2717,7 @@ endif
             " to restore highlighting for Lua 5.1:
             "let lua_version = 5
             "let lua_subversion = 1
+
         " luainspect {{{ Semantic highlighting for Lua in Vim.
             " Usage:
             "   - :LuaInspect, :LuaInspectToggle.
@@ -2701,15 +2801,18 @@ endif
 " [ Vim Extension ] {{{
     " [ register & operation ] {{{
         " YankRing:
+
         " Repeat: {{{ improve Vim's "."'s repeat.
             " support in:
             " surround.vim, speeddating.vim, abolish.vim, unimpaired.vim, commentary.vim
             " single/last/multiple/visual/complex repeats, using vim scripts.
             " `=> . @: :[range][v]g[lobal][!]/{pattern}/[cmd] V[Visual] q(record)->@
         " }}}
+
         " Visualrepeat: {{{ Repeat command extended to visual mode.
             " Usage: {Visual}.
         " }}}
+
         " operator-user : Define your own operator easily
     " }}}
 
@@ -2717,17 +2820,22 @@ endif
         " restore_view : automatically restoring file's cursor position and folding
             set viewoptions=cursor,folds,slash,unix
             " let g:skipview_files = ['*\.vim']
+
         " Recover: {{{ A diff buffer way to see diff between recover and on disk files.
             " :RecoverPluginDisable, :RecoverPluginEnable
             " :FinishRecovery, RecoveryPluginFinish
         " }}}
+
         " StarRange.vim | Select a string in visual mode. Press * or # key.
+
         " visualstar: | star (*) for visual-mode.
+
         " exjumplist | a Vim plugin to provide extra commands for |jumplist|
             nmap <C-M-i>  <Plug>(exjumplist-go-last)
             nmap <C-M-o>  <Plug>(exjumplist-go-first)
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
+
         " Mark%2666 {{{ Highlight several words in different colors simultaneously.
             " {Visual}[N]<Leader>m, {Visual}<Leader>r, [N]<Leader>n, :[N]Mark {pattern}
             " :Marks
@@ -2765,7 +2873,7 @@ endif
                         \ 'LINE'  : [0x2b61],
                         \ }
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
-            let g:Powerline_theme = "default"
+            let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default"
             let g:Powerline_stl_path_style = "short" " filename, short, relative, full.
             ""call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
@@ -2774,8 +2882,11 @@ endif
             ""call Pl#Segment#Create(),
             "call Pl#Theme#InsertSegment('charcode', 'after', 'filetype')
         " }}}
+
         " current-func-info
+
         " fugitive.vim
+
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
@@ -2790,6 +2901,7 @@ endif
             let g:clam_autoreturn = 1
             let g:clam_autoreturn = 'vertical botright'
         " }}}
+
         " Screen {{{ (vim + gnu screen/tmux) ['Screen_vim__gnu_screentmux']
             " simulate an embedded shell in vim by allowing you convert vim session
             " into one running in Screen or Tmux with a split window.
@@ -2847,6 +2959,7 @@ endif
             let g:unicode_complete_name = 0 " only complete Unicode Names instead glyphs
             let g:showDigraphCode = 1
         " }}}
+
         " mathematic {{{
             " Usage: {{{
                 " Superscript And Subscript:
@@ -2941,20 +3054,25 @@ endif
 
         " ColorV: {{{
         " }}}
+
         " Colorizer: {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
             " :[range]ColorHighlight[!], :ColorToggle, :ColorClear, :ColorContrast
             " :RGB2Xterm [#]RRGGBB,  " :HSL2RGB
             let g:auto_color = 1
             let g:color_x11_names = 1
         " }}}
+
         " CSSMinister:
             " CSSMinister provides functions and mappings that convert any
             " hexadecimal, keyword, RGB(A) or HSL(A) color values from one format to
             " another.
+
         " EasyColour: {{{ makes it really easy to create your own colour scheme.
         " }}}
+
         " VIM_Color_Picker {{{ <F5>, :ColorPicker
         " }}}
+
         " Galaxy {{{ a colorscheme tries to make colorscheming simpler.
             " Require: colorv.
             " Steps:
@@ -2987,7 +3105,9 @@ endif
         " ScrollColors:
             " \[n|p] to choose colorscheme
             " TODO choose a good colorscheme from .vim/colors/
+
         " Lucius:
+
         " ColorSchemeEditor:
             " {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
@@ -3012,7 +3132,9 @@ endif
             let g:txtfmtUndercurl = 1
             "let g:txtfmtUsermap{}
         " }}}
+
         " Bundle 'mutewinter/nginx.vim.git'
+
         " Nginx config syntax.
     " }}}
 
@@ -3023,10 +3145,12 @@ endif
                 " let b:DeleteTrailingWhitespace = 1 " for buffer, filetype
             let g:DeleteTrailingWhitespace_Action = 'ask' " 'delete', 'ask'
             let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
+
         " ShowTrailingWhitespace:
             let g:ShowTrailingWhitespace = 1
             "highlight ShowTrailingWhitespace Error ctermbg=Red guibg=Red
             "let g:ShowTrailingWhitespace_FilterFunc = ''
+
         " JumpToTrailingWhitespace:
     " }}}
 
@@ -3059,6 +3183,7 @@ endif
             "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
             "" }}}
         " }}}
+
         " SnippetComplete: {{{ Insert mode completion for abbre and snippets.
             " i_CTRL-X_] -> find matches for abbr that start with text in front of cursor
             " imap <C-x><Tab> <Plug>(SnippetComplete)
@@ -3075,11 +3200,10 @@ endif
 " [ tools ] {{{
     " [ GTD, wiki, note, outliner & calendar ] {{{
     " FIXME add one if condition for whether it is under Linux.
-        " Vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
+        " vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
             " TODO write template and style.css for vimwiki.
-            " \ww, 2\ww, \w\w, \wh, \wd, \wr, gqq/gww, <A-Left/Right>
+            " \ws, \ww, 2\ww, \w\w, \wh, \wd, \wr, gqq/gww, <A-Left/Right>
             " Text Objects: ah, ih, (section), a\, i\, (cell ) ac, ic, (column)
-            " Fold: zM, zr,
             " %title%, %root_path%, %content%, %template person,
             let g:vimwiki_list = [{'path': '~/vimwiki/wiki',
                         \ 'path_html': '~/vimwiki/wiki_output/',
@@ -3130,24 +3254,16 @@ endif
             let g:vimwiki_user_htmls = '404.html,search.html'
             let g:vimwiki_list_ignore_newline = 1 " ignore newlines in list items.
             let g:vimwiki_use_calendar = 1
-        " Calendar:
-            "let g:calendar_focus_today = 1
-            "let g:calendar_mark = 'right'
-            "let g:calendar_navi = 'bottom' " top, bottom, both
-            "let g:calendar_datetime = 'statusline' " show current date and time.
-            " [ extra ] {{{
-                " FIXME use Neocomplcache.vim 's abbr complete to do this.
-                autocmd FileType vimwiki source ~/.vim/misc/vimwiki-abbr.vim
-                " make word under cursor into color with \\
-                autocmd FileType vimwiki nnoremap <buffer> <Bslash><Bslash> :normal! viWo<esc><esc>i~~<Esc>ea~~<Esc>
-                " }}}
 
-            augroup DisableMBEInWiki
-                au!
-                au FileType vimwiki :MgrClose
-                " au FileType vimwiki :CMiniBufExplorer
-            augroup END
+            " [ extra ] {{{
+                augroup DisableMBEInWiki
+                    au!
+                    au FileType vimwiki :MgrClose
+                    " au FileType vimwiki :CMiniBufExplorer
+                augroup END
+            " }}}
         " }}}
+
         " Calendar: {{{
             let g:calendar_focus_today = 1
             let g:calendar_mark = 'right' " place mark(*|+) after the day.
@@ -3160,13 +3276,16 @@ endif
             let g:calendar_weeknm = 2 " WK 1
             let g:calendar_datetime = 'title'
         " }}}
+
         " VimOrganizer: {{{ A clone of Emacs' Org-mode for Vim
         " }}}
+
         " vimgtd {{{ gtd by vim.
             " :TaskToday, :TaskAll, :TaskDoneOrDoingByDate {date}, :TaskToggle ....
             "let g:loaded_wikigtd = 1
             let g:wikigtd_index = 'task/task'
         " }}}
+
         " notes {{{ Easy note taking in Vim.
             " Usage:
             "       - :Note -- start a new note.
@@ -3202,6 +3321,7 @@ endif
             "nmap <2-LeftMouse> :SearchNotes<CR>
             " ~/.vim/ftplugin/notes.vim : setlocal filetype=notes.txtfmt
         " }}}
+
         " vim-pad {{{ A quick notetaking plugin
             " Workflow:
             "       - open your notes.
@@ -3226,14 +3346,18 @@ endif
             let g:pad_read_nchars_from_files = 200 " read 200 chars from files as summary.
             " FIXME change mappings.
         " }}}
+
         " HyperList: <= WOIM {{{
             "HyperList is a way to describe anything - any state, item(s), pattern,
             "action, process, transition, program, instruction set etc.
         " }}}
+
         " VOoM: {{{ Vim two-pane outliner
             nnoremap <F8> :Voom<CR>
         " }}}
+
         " Speeddating: | <C-A>, <C-X>, {Visual}<C-A/X>
+
         " vim-pomodoro: {{{ a Vim plugin for the Pomodoro time management technique
             " Require: AsyncCommand
         " }}}
@@ -3254,6 +3378,7 @@ endif
             let g:PreviewRonnExt='ronn'
             let g:PreviewRstExt='rst'
         " }}}
+
         " SpellCheck: {{{ populates quickfix-list spelling errors workflow.
             " :[range]SpellCheck
             " :SpellCheck[!] (quickfix window), :SpellLCheck[!] (location window)
@@ -3271,6 +3396,7 @@ endif
 
             "autocmd BufWritePre /tmp/mutt-* :UpdateAndSpellCheck
         " }}}
+
         " LanguageTool: {{{ check language grammar. en, fr, etc.
             " :LanguageToolCheck
             let g:languagetool_jar=$HOME . '/languagetool/LanguageTool.jar'
@@ -3310,7 +3436,9 @@ endif
             let g:weibo_access_token='B73959D0F27E9E556E2CA09F18A687F3'
             let g:weibo_t_sign = 'from 小妖 Vim'
         " }}}
+
         " UltraBlog: local database for Blog WordPress.
+
         " Tumble:
             " {{{ :[range]Tumble [draft|publish] || :[ranger]TumbleLink
             " || ListTumbles [draft|publish]
@@ -3321,6 +3449,7 @@ endif
             let tumblr_tumblelog = 'stardiviner.tumblr.com'
             " let tumblr_http_proxy =
         " }}}
+
         " wwwsearch: {{{ Search WWW easily from Vim.
             " :Wwwsearch [{search-engine}] {keyword}
             " Functions :
@@ -3366,12 +3495,14 @@ endif
                             \ 'http://digg.com/search?s={keyword}'
                             \ )
             " }}}
+
         " https://github.com/danchoi/goog
 
         " [ paste ] {{{
             " vim-pastie:
                 " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
                 " :[%|visual]Pastie!
+
             " PasteBin: {{{ <Visual>PasteBin
                 " http://www.vim.org/scripts/script.php?script_id=3505
                 " http://pastebin.com/api config reference.
@@ -3383,6 +3514,7 @@ endif
                 let g:pastebin_expire_date = '1M'
                     " N:Never, 1H: 1 Hour, 1D: 1 Day, 1M: 1 Month
             " }}}
+
             " Gist: {{{ GitHub paste server.
                 " Requires: curl, webapi-vim, git command.
                 " :'<,'>Gist -- visual
@@ -3408,6 +3540,7 @@ endif
                 let g:gist_get_multiplefile = 1 " edit all files contains more than one.
             " }}}
         " }}}
+
         " WebAPI: {{{
         " }}}
         " TwitVim: {{{ Vim Twitter client.
@@ -3420,6 +3553,9 @@ endif
 
     " [ mail ] {{{
         let mail_minlines = 30 " highlight all the standard elements of an email.
+
+        " mail filetype settings from scripts and plugins.
+        " ~/.vim/ftplugin/mail.vim
     " }}}
 
     " [ translate ] {{{
@@ -3435,16 +3571,19 @@ endif
             " /,/r1c1l0 | /^[^,]*\zs,/r0c0l0
             " Tabularize scripts.
         " }}}
+
         " Surround: {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
             " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
             " Visual(V): S<p class="important">
             " :help surround.txt
         " }}}
+
         " Abolish: {{{ quick find, substitute, abbreviate
         " several variations of a word at once
             " three case variants (foo, Foo, and FOO) are operated on by every command.
             " :Abolish, :Subvert.
         " }}}
+
         " AutoPairs: {{{
                 " shortcuts:
                 "   <M-o> : newline with indentation
@@ -3464,8 +3603,9 @@ endif
             let g:AutoPairsMapCR = 1
             let g:AutoPairsMapSpace = 1
             let g:AutoPairsCenterLine = 1
-            let g:AutoPairsFlyMode = 1
+            let g:AutoPairsFlyMode = 0 " TODO alpha.
         " }}}
+
         " Formatvim: {{{ convert current file to colored HTML, BBCode or whatever.
             " :help format.txt
             " :[{range}]Format format/diffformat/list [{formatName} [{option1} {value1}]
@@ -3496,9 +3636,11 @@ endif
 
         " boxdraw:
             " Draw diagrams and tables using boxdrawing characters
+
         " sketch.vim:
             " Draw with mouse: boxes, arrows, lines, fills.
             " Transparent/opaque drag and drop.
+
         " drawing.vim:
             " Ascii drawing primitives with mouse in vim GUI (box, arrow, line).
     " }}}
@@ -3604,6 +3746,7 @@ endif
         " VimSpeak: {{{ call Microsoft Windows AGENT and speaks (range) selected text.
             " [range]VimSpeak
         " }}}
+
         " VimSpeak function: {{{
             function! VimSpeak() range
                 " Concatenate input string.
@@ -3659,6 +3802,7 @@ endif
             autocmd BufWritePost,FileWritePost  *.gpg set nobin
         augroup END
         " }}}
+
         " Bundle 'git://gitorious.org/vim-gnupg/vim-gnupg.git' {{{
             " :GPGEditRecipients || :GPGViewRecipients
             " :GPGEditOptions || :GPGViewOptions
@@ -3673,6 +3817,7 @@ endif
             let g:GPGUsePipes = 0
             " let g:GPGHomedir =
         " }}}
+
         " TGpg: {{{
             " :TGpgEncrypt || encrypting files with GPG. symmetric encryption(default)
             let g:tgpg_gpg_cmd = '/usr/bin/gpg'
@@ -3693,6 +3838,7 @@ endif
             let g:tgpgShellQuote = '&'.&shellxquote " more characters should be quoted.
             let g:tgpgInputsecret = 'inputsecret' " A function to input secrets.
         " }}}
+
         " openssl.vim {{{ Edit OpenSSL encrypted files and turn Vim into a Password Safe!
         " }}}
     " }}}
