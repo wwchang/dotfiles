@@ -1422,6 +1422,14 @@ endif
             let g:neocomplcache_disable_select_mode_mappings = 1
                 " usful to avoid conflicting snippets.
             let g:neocomplcache_snippets_disable_runtime_snippets = 0
+
+                function! EditNeoSnippets()
+                    split
+                    execute ":NeoComplCacheEditSnippets ".&filetype
+                endfunction
+
+                nnoremap <buffer> <Leader>es :call EditNeoSnippets()<CR>
+                "nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
         " }}}
 
         " UltiSnips: {{{
