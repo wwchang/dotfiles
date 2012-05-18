@@ -530,17 +530,18 @@ endif
     set statusline=
     set statusline+=\%#StatusSeparator#\|\%#StatusBufferNumber#\b\:%n\%#StatusSeparator#\|
     set statusline+=\%#StatusReadOnly#\ \%r\ \%#StatusList#\%q
-    set statusline+=\ \%#StatusChar#\♪\ \»
+    set statusline+=\ \%#StatusChar#\»
     set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}\%#StatusModFlag2#\%{&modified?'':'✔'}
     set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()} " for Syntastic
     set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
     set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
-    set statusline+=\ \%#StatusFileType#\%y
     set statusline+=\ \%#StatusHELP#\%H
     set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
-    set statusline+=\ \%#StatusFilePath#\%<%F
+    set statusline+=\ \%#StatusFilePath#\%<%t
+    set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
+    set statusline+=\ \%#StatusFileType#\%y
     set statusline+=\ %<%(\%#StatusNormal#\%{&ff}\%#StatusChar#\•\%#StatusNormal#\%{&fenc}%)
-    set statusline+=\ \%#StatusChar#\⌘
+    set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
     set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)\ \%#StatusPercent#\%P
 
     " a good tip for different format statusline for non-current.
