@@ -1319,7 +1319,8 @@ endif
         inoremap <expr><C-o>    neocomplcache#manual_omni_complete()
         " inoremap <expr><C-j>  pumvisible() ? "\<C-n>" : "\<Tab>"
         " inoremap <expr><C-n> pumvisible() ? "\<C-n>" : neocomplcache#manual_keyword_complete()
-        inoremap <expr><C-y>    neocomplcache#smart_close_popup()
+        inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+        inoremap <expr><C-y> neocomplcache#smart_close_popup()
             " neocomplcache#smart_close_popup() | neocomplcache#close_popup
         inoremap <expr><C-e> neocomplcache#cancel_popup()
         inoremap <expr><C-g> neocomplcache#undo_completion()
