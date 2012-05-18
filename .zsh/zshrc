@@ -65,7 +65,9 @@ if [ -d $HOME/bin ] ; then
     export PATH
 fi
 
-export LANG=en_US.UTF-8
+# powerful redirection.
+# redirect stdout and stderr to file: command |& > file
+# redirect to multiple file same time: command > file.1 > file.2
 
 # colorful man page {{{
 # code meaning
@@ -103,8 +105,11 @@ export LESS_TERMCAP_us=$'\E[01;33m' # options
     #SESSION_MANAGER=
     #SESSION_MANAGER_NAME=
     #SM_SAVE_DIR=
-# }}}
 
+    # locale
+    export LC_ALL=en_US.utf-8
+    export LANG=en_US.UTF-8
+# }}}
 
 # dircolors
 # here -b in for command dircolors is only for Bourne shell.
@@ -237,7 +242,58 @@ export PERL5LIB="/home/chris/perl5/lib/perl5/i686-linux-gnu-thread-multi-64int:/
 export PATH="/home/chris/perl5/bin:$PATH";
 # }}}
 
-# for taskwarrior {{{
+# gpg-agent require settings & vim plugin vim-gnupg.vim {{{
+GPG_TTY=$(tty)
+export GPG_TTY
+# ssh-agent
+zstyle :omz:plugins:ssh-agent agent-forwarding on # enable agent forwarding
+zstyle :omz:plugins:ssh-agent id_rsa id_rsa2 id_github # load multiple identies
+# }}}
+
+# Zsh filetype association {{{
+autoload -U zsh-mime-setup
+zsh-mime-setup
+# alias -s [extension]=[program]
+# so that you only need use <Tab> to complete filename.png,
+alias -s png=feh
+# }}}
+
+# corrections {{{
+# 1:
+#zstyle ':completion::approximate:' max-errors 1 numeric
+# 2:
+zstyle ':completion:' completer _complete _match _approximate
+zstyle ':completion::match:' original only
+zstyle ':completion::approximate:*' max-errors 1 numeric
+# }}}
+
+# history {{{
+# add timestamps to command history file.
+setopt EXTENDED_HISTORY
+# use history for command "cd", cd - [TAB] to go to path history.
+setopt AUTOPUSHD
+# same history path only keep one.
+setopt PUSHDIGNORE_DUPS
+# ignore this command in history if add space before command.
+setopt HISTIGNORESPACE
+# use comment in interactive mode
+# }}}
+
+# e.g. $ cmd # this is comment
+setopt INTERACTIVE_COMMENTS
+# line edit highlight mode
+# Ctrl+@ set mark, between marks and cursor is "region".
+zle_highlight=(region:bg=magenta # choose region.
+                special:bold # special characters
+                isearch:underline) # keywords when searching.
+
+# Fcitx {{{
+    export XMODIFIERS="@im=fcitx"
+    export GTK_IM_MODULE=xim
+    export QT_IM_MODULE=xim
+# }}}
+
+# taskwarrior {{{
     fpath=($fpath /usr/local/share/doc/task/scripts/zsh)
     autoload -Uz compinit
     compinit
@@ -266,101 +322,6 @@ export PATH="/home/chris/perl5/bin:$PATH";
     #the other codes define the colors of the 1st, 2nd, etc. pair of brackets
     #(See http://zshwiki.org/home/examples/compsys/colors for a detailed description.)
 # }}}
-
-# Zsh filetype association {{{
-autoload -U zsh-mime-setup
-zsh-mime-setup
-# alias -s [extension]=[program]
-# so that you only need use <Tab> to complete filename.png,
-alias -s png=feh
-# }}}
-
-# corrections {{{
-# 1:
-#zstyle ':completion::approximate:' max-errors 1 numeric
-# 2:
-zstyle ':completion:' completer _complete _match _approximate
-zstyle ':completion::match:' original only
-zstyle ':completion::approximate:*' max-errors 1 numeric
-# }}}
-
-# powerful redirection.
-# redirect stdout and stderr to file: command |& > file
-# redirect to multiple file same time: command > file.1 > file.2
-
-# history {{{
-# add timestamps to command history file.
-setopt EXTENDED_HISTORY
-# use history for command "cd", cd - [TAB] to go to path history.
-setopt AUTOPUSHD
-# same history path only keep one.
-setopt PUSHDIGNORE_DUPS
-# ignore this command in history if add space before command.
-setopt HISTIGNORESPACE
-# use comment in interactive mode
-# }}}
-
-# AutoComplete {{{
-## auto complete category verbose
-#autoload -Uz compinit bashcompinit
-#compinit
-#bashcompinit
-## be verbose, i.e. show descriptions
-#zstyle ':completion:*' verbose yes
-#zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-## group by tag names
-#zstyle ':completion:*' group-name ''
-
-autoload -U compinit
-compinit
-# auto complete cache
-zstyle ':completion::complete:' use-cache on
-zstyle ':completion::complete:' cache-path .zcache
-zstyle ':completion::cd:' ignore-parents parent pwd
-# auto complete options
-zstyle ':completion::match:' original only
-zstyle ':completion::prefix-1:' completer _complete
-zstyle ':completion:predict:' completer _complete
-zstyle ':completion:incremental:*' completer _complete _correct
-zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
-# auto complete path
-zstyle ':completion:' expand 'yes'
-zstyle ':completion:' squeeze-shlashes 'yes'
-zstyle ':completion::complete:*' '\'
-# color complete menu
-eval $(dircolors -b)
-export ZLSCOLORS="${LSCOLORS}"
-zmodload zsh/complist
-zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
-zstyle ':completion:::kill::processes' list-colors '=(#b) #([0-9]#)=0=01;31'
-# command kill complete
-compdef pkill=kill
-compdef pkill=killall
-zstyle ':completion:::kill:' menu yes select
-zstyle ':completion:::::processes' force-list always
-zstyle ':completion::processes' command 'ps -au$USER'
-# complete groups
-zstyle ':completion::matches' group 'yes'
-zstyle ':completion:' group-name ''
-zstyle ':completion::options' description 'yes'
-zstyle ':completion::options' auto-description '%d'
-zstyle ':completion::descriptions' format $'\e[01;33m -- %d --\e[0m'
-zstyle ':completion::messages' format $'\e[01;35m -- %d --\e[0m'
-zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
-# }}}
-
-# e.g. $ cmd # this is comment
-setopt INTERACTIVE_COMMENTS
-# line edit highlight mode
-# Ctrl+@ set mark, between marks and cursor is "region".
-zle_highlight=(region:bg=magenta # choose region.
-                special:bold # special characters
-                isearch:underline) # keywords when searching.
-
-# Fcitx
-export XMODIFIERS=@im=fcitx
-export GTK_IM_MODULE=xim
-export QT_IM_MODULE=xim
 
 # Tmux & Screen {{{
 # avoid a possible impact on stability of urxvtd
