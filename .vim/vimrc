@@ -988,8 +988,8 @@ endif
             " comment
         call vam#ActivateAddons(['The_NERD_Commenter'])
             " doc & help "K"
-        call vam#ActivateAddons(['Manuals'])
-        "call vam#ActivateAddons(['viewdoc'])
+        call vam#ActivateAddons(['viewdoc'])
+        "call vam#ActivateAddons(['Manuals'])
             " indent guides & indent & align & splijoin
         call vam#ActivateAddons(['Indent_Guides'])
         "call vam#ActivateAddons(['splitjoin'])
@@ -2158,11 +2158,62 @@ endif
     " }}}
 
     " [ doc & help "K" ] {{{
-        " Manuals: {{{ An extensible help system
-            "
+        " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+            " TODO more customize
+            " Usage:
+                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation), q (close), <Tab> completion.
+                " - :doc[!] {topic} [{filetype}]
+                " - :doc[!] <cword> [{filetype}]
+                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp, :perldoc, :ViewDocPerl.
+            "let g:no_viewdoc_abbrev
+            "let g:no_plugin_abbrev
+            "let g:no_viewdoc_maps
+            "let g:no_plugin_maps
+            let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
+            let g:viewdoc_only = 0 " if you do not use tab, you can make this window only.
+            let g:viewdoc_prevtabonclose = 1 " if you open with tab, jump to next tab when close.
+            let g:viewdoc_openempty = 1 " open empty error window when not found.
+            let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
+            "let g:viewdoc_man_cmd = "/usr/bin/man"
+
+            " customize {{{
+            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
+
+            " Functions:
+                " - ViewDoc({target}, {topic}, {filetype})
+                " - ViewDoc({target}, {topic})
+                " - ViewDoc({target}, <cword>, {filetype})
+                " - ViewDoc({target}, <cword>)
+                    " This function handle all |viewdoc-commands|.
+            " Handlers:
+                " to add documentation handler for new {filetype}, it's enough
+                " to create on function in ~/.vimrc (or some plugin):
+                " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
+                    " synid = Syntax id for requested topic as returned by synID().
+                    " Can be non-zero only if |:ViewDoc| was called with <cword>.
+                    " have_context : true if we've context.
+                    " The function must return Dictionary with these keys. (all optional)
+                    " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
+
+            "function ViewDoc_pydoc(topic, ...)
+                "return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
+                            "\ 'ft':	'pydoc',
+                            "\ }
+            "endfunction
+            "let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
+            "let g:ViewDoc_python = function('ViewDoc_pydoc')
+            " }}}
+
+            " help_custom {{{ ~/.vim/ftdoc/{filetype}
+            " example:
+                " ~/.vim/ftdoc/css/css21.txt
+                " :helptags ~/.vim/ftdoc/css/
+                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
+            autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
+            " }}}
         " }}}
-        " Viewdoc: {{{ Flexible viewer for any documentation (help/man/perldoc/etc.)
-            "
+
+        " Manuals: {{{ An extensible help system
         " }}}
     " }}}
 
