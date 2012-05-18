@@ -1019,6 +1019,7 @@ endif
         " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
         call vam#ActivateAddons(['python_match'])
         call vam#ActivateAddons(['python_open_module'])
+        "call vam#ActivateAddons(['PyREPL'])
             " Shell: Bash, Zsh
         "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
@@ -2514,6 +2515,12 @@ endif
                 let g:pom_key_open='<LocalLeader>oo' " open module in the current window
                 let g:pom_key_open_in_win='<LocalLeader>ow' " open module in a new window
                 let g:pom_key_open_in_tab='<LocalLeader>ot' " open module in a tab
+        " }}}
+
+        " [ REPL ] {{{
+            " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
+                " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
+            " }}}
         " }}}
 
         " [ Django ] {{{
