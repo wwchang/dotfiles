@@ -99,6 +99,11 @@ alias whatwg.help whatwg.help <help@whatwg.org>
 alias webdesign_programming Web design & programming <webdesign-outsource@googlegroups.com>
 # Vim plugins scripts
 alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>
+# Go
+alias golang-nuts Go nuts <golang-nuts@googlegroups.com>
+alias golang-china Go China <golang-china@googlegroups.com>
+# Dart
+alias dart.misc Dart.misc <misc@dartlang.org>
 
 # prey ( anti-thefe )
 alias prey Prey <prey-security@googlegroups.com>
@@ -108,6 +113,9 @@ alias tlf TLF.devel <tlf-devel@nongnu.org>
 alias maemo maemo.user <maemo-users@maemo.org>
 alias maemo-dev maemo.dev <maemo-developers@maemo.org>
 alias maemo-an maemo.an <maemo-announce@maemo.org>
+# Jekyll-Bootstrap
+alias jekyll Jekyll-Bootstrap <plusjade@gmail.com>
+
 # linux
 alias linuxusersgroup LinuxUsersGroup <linuxusersgroup@googlegroups.com>
 alias linuxdevelopers Linux-Developers <linux-developers@googlegroups.com>

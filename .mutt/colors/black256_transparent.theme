@@ -92,6 +92,8 @@ color index         color204    default "(~e 184145190 | ~e 243113196 | ~e shany
 color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shanyingqing )" # BaoBao
 # important notify mails
 color index         color204    default "~f taobao@news\.mail\.taobao\.com" # TaoBao
+# special mails
+# FIXME color index         color106    default "~h ^[SOLVED|solved]" # [SOLVED]
 # you send in mailing list or replied in mailing list ( Message-ID | References | In-Reply-To )
 # FIXME
 # color index         color154    default "~i (Message-ID)"

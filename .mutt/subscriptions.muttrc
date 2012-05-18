@@ -60,6 +60,8 @@ subscribe whatwg.help whatwg.help <help@whatwg.org>
 # Go
 subscribe golang-nuts golang-nuts <golang-nuts@googlegroups.com>
 subscribe golang-china golang-china <golang-china@googlegroups.com>
+# Dart
+subscribe Dart.misc Dart.misc <misc@dartlang.org>
 
 
 # Drupal
@@ -146,7 +148,7 @@ subscribe awesome Awesome <awesome@naquadah.org>
 # FVWM
 subscribe fvwm FVWM <fvwm@fvwm.org>
 # tmux
-subscribe tmux tmux <tmux-users@lists.sourceforge.net>
+subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>
 # screen
 subscribe screen screen <screen-users@gnu.org>
 # conky

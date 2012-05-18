@@ -88,7 +88,7 @@ you have to add this folder in
 
 **modify items**
 
-    mails/
+    ~/Mails/
     procmail/procmailrc
     mailboxes.muttrc
     mairixrc

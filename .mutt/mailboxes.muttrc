@@ -46,6 +46,9 @@ mailboxes =Go
 mailboxes =Go/golang-nuts
 mailboxes =Go/golang-china
 
+mailboxes =Dart
+mailboxes =Dart/misc
+
 mailboxes =Drupal
 mailboxes =Drupal/support
 mailboxes =Drupal/security

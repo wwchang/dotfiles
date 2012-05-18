@@ -262,10 +262,13 @@ VERBOSE=on
     * ^List-ID: .*golang-china\.googlegroups\.com
     Go/golang-china/
 
-
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
     Ruby/Rails/
+
+    :0
+    * ^List-Id: .*misc\.dartlang\.org
+    Dart/misc/
 
     :0
     * ^List-Id: .*perl.*\.googlegroups\.com
