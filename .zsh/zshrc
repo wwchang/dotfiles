@@ -111,6 +111,54 @@ export LESS_TERMCAP_us=$'\E[01;33m' # options
 # FIXME let zsh use this colorful.
 # eval( dircolors -b $HOME/.zsh/lib/dircolors.zsh )
 
+# AutoComplete {{{
+# auto complete category verbose
+autoload -Uz compinit bashcompinit
+compinit
+bashcompinit
+# be verbose, i.e. show descriptions
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+# group by tag names
+zstyle ':completion:*' group-name ''
+
+autoload -U compinit
+compinit
+# auto complete cache
+zstyle ':completion::complete:' use-cache on
+zstyle ':completion::complete:' cache-path .zcache
+zstyle ':completion::cd:' ignore-parents parent pwd
+# auto complete options
+zstyle ':completion::match:' original only
+zstyle ':completion::prefix-1:' completer _complete
+zstyle ':completion:predict:' completer _complete
+zstyle ':completion:incremental:*' completer _complete _correct
+zstyle ':completion:*' completer _complete _prefix _correct _prefix _match _approximate
+# auto complete path
+zstyle ':completion:' expand 'yes'
+zstyle ':completion:' squeeze-shlashes 'yes'
+zstyle ':completion::complete:*' '\'
+# color complete menu
+eval $(dircolors -b)
+export ZLSCOLORS="${LSCOLORS}"
+zmodload zsh/complist
+zstyle ':completion:*' list-colors ${(s.:.)LSCOLORS}
+zstyle ':completion:::kill::processes' list-colors '=(#b) #([0-9]#)=0=01;31'
+# command kill complete
+compdef pkill=kill
+compdef pkill=killall
+zstyle ':completion:::kill:' menu yes select
+zstyle ':completion:::::processes' force-list always
+zstyle ':completion::processes' command 'ps -au$USER'
+# complete groups
+zstyle ':completion::matches' group 'yes'
+zstyle ':completion:' group-name ''
+zstyle ':completion::options' description 'yes'
+zstyle ':completion::options' auto-description '%d'
+zstyle ':completion::descriptions' format $'\e[01;33m -- %d --\e[0m'
+zstyle ':completion::messages' format $'\e[01;35m -- %d --\e[0m'
+zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
+# }}}
 
 # [ auto-fu.zsh ] {{{
     ## way-1: source it
@@ -149,34 +197,37 @@ export LESS_TERMCAP_us=$'\E[01;33m' # options
     ##zstyle ':auto-fu:var' track-keymap-skip opp
     #clear # clear zcompile output
 
-    ## so a clean version config is here
-    #A=$ZSH/plugins/auto-fu/auto-fu.zsh; (zsh -c "source $A ; auto-fu-zcompile $A ~/.zsh/plugins/auto-fu")
-    #source ~/.zsh/plugins/auto-fu/auto-fu; auto-fu-install
-    #zle-line-init () {auto-fu-init;}; zle -N zle-line-init
+    # so a clean version config is here
+    # precompiled source
+    function () {
+        local A
+        A=~/.zsh/custom/auto-fu/auto-fu.zsh
+        [[ -e "${A:r}.zwc" ]] && [[ "$A" -ot "${A:r}.zwc" ]] ||
+        zsh -c "source $A; auto-fu-zcompile $A ${A:h}" >/dev/null 2>&1
+    }
+    source ~/.zsh/custom/auto-fu/auto-fu; auto-fu-install
+
+    # initialization and options
+    function zle-line-init () {auto-fu-init}
+    zle -N zle-line-init
+    zstyle ':auto-fu:highlight' input bold
+    zstyle ':auto-fu:highlight' completion fg=white
+    zstyle ':auto-fu:var' postdisplay ''
     #zstyle ':completion:*' completer _oldlist _complete
-    #zle -N zle-keymap-select auto-fu-zle-keymap-select
-    ## ~~~~~~~~~~~~~~~
-    #zstyle ':auto-fu:highlight' input bold
-    #zstyle ':auto-fu:highlight' input fg=green
-    #zstyle ':auto-fu:highlight' completion fg=red,bold
-    #zstyle ':auto-fu:highlight' completion/one fg=green,bold,underline
-    #zstyle ':auto-fu:var' postdisplay $'\n ♪ »'
-    #zstyle ':auto-fu:var' postdisplay/clearp 'yes'
-    #zstyle ':auto-fu:var' enable all
-    #zstyle ':auto-fu:var' disable magic-space
-    #clear # clear zcompile output
-# }}}
 
-# gpg-agent require settings & vim plugin vim-gnupg.vim {{{
-GPG_TTY=$(tty)
-export GPG_TTY
-# ssh-agent
-zstyle :omz:plugins:ssh-agent agent-forwarding on # enable agent forwarding
-zstyle :omz:plugins:ssh-agent id_rsa id_rsa2 id_github # load multiple identies
-# }}}
+    zle -N zle-keymap-select auto-fu-zle-keymap-select
+    # ~~~~~~~~~~~~~~~
+    zstyle ':auto-fu:highlight' input bold
+    zstyle ':auto-fu:highlight' input fg=green
+    zstyle ':auto-fu:highlight' completion fg=red,bold
+    zstyle ':auto-fu:highlight' completion/one fg=green,bold,underline
+    zstyle ':auto-fu:var' postdisplay $'\n ♪ »'
+    zstyle ':auto-fu:var' postdisplay/clearp 'yes'
+    zstyle ':auto-fu:var' enable all
+    zstyle ':auto-fu:var' disable magic-space
+    clear # clear zcompile output
 
-# locale
-export LC_ALL=en_US.utf-8
+# }}}
 
 # for ls++ perl installation {{{
 export PERL_LOCAL_LIB_ROOT="/home/chris/perl5";
