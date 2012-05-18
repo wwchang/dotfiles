@@ -1198,6 +1198,14 @@ endif
                 " }}}
 
             " [ KEY MAPPINGS ] {{{
+            function! s:check_back_space()
+                let col = col('.') - 1
+                return !col || getline('.')[col - 1] =~ '\s'
+            endfunction
+            "inoremap <expr><TAB> pumvisible() ? "\<C-n>"
+                        "\ : <SID>check_back_space() ? "\<TAB>"
+                        "\ : "\<C-x>\<C-u>"
+
             "inoremap <expr><Tab>  neocomplcache#start_manual_complete()
             " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
             " neocomplcache#sources#snippets_complete#expandable()
@@ -1220,7 +1228,9 @@ endif
             " ----------------------------------------------
             imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
                     \ "\<Plug>(neocomplcache_snippets_expand)"
-                    \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                    \ : pumvisible() ? "\<C-n>"
+                    \ : <SID>check_back_space() ? "\<TAB>"
+                    \ : "\<C-x>\<C-u>"
             imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable() ?
                     \ "\<Plug>(neocomplcache_snippets_jump)"
                     \ : pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -1250,13 +1260,6 @@ endif
             "imap <expr><Tab> snipMate#ShowAvailableSnips() ?
                         "\ snipMate#
                         "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
-
-        "inoremap <expr><Tab> pumvisible() ? "\<C-n>" :
-                    "\ <SID>check_back_space() ? "\<Tab>" : "\<C-x>\<C-u>"
-        "function! s:check_back_space()"{{{
-            "let col = col('.') - 1
-            "return !col || getline('.')[col - 1] =~ '\s'
-        "endfunction "}}}
 
         " <C-j>/<C-k> is used by UltiSnips jump backwards and forwards.
         "inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<C-j>"
