@@ -3340,7 +3340,7 @@ endif
             \ ]
             " TODO http://www.fanhe.org/blog/2011/01/push-vimwiki-to-github/
             " push vimwiki to github, bind a domain.
-            " let g:vimwiki_dir_link = 'index' " to directory. OR = '' -> use netrw.
+            let g:vimwiki_dir_link = '' " '', 'index', 'main' for [[dir/]] to directory.
             let g:vimwiki_camel_case = 0 " don't want WikiWord to be a link. prefer [[]].
             let g:vimwiki_use_mouse=0 " disable mouse.
             let g:vimwiki_hl_headers = 1 " use VimwikiHeader1-6
