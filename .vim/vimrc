@@ -1115,6 +1115,8 @@ endif
         "call vam#ActivateAddons(['SudoEdit'])
         "call vam#ActivateAddons(['CompleteHelper'])
         "call vam#ActivateAddons(['SnippetComplete'])
+            " Motions
+        call vam#ActivateAddons(['EasyMotion'])
             " ASCII draw
         "call vam#ActivateAddons(['DrawIt'])
             " translate
@@ -2937,6 +2939,18 @@ endif
                 " remove the default overriding of * and #
             "nmap <Plug>IgnoreMarkSearchNext <Plug>MarkSearchNext
             "nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
+        " }}}
+
+        " EasyMotion {{{ provide a much simpler way to use some motion in vim.
+            " <Leader><Leader>w -- trigger "word" motion w.
+            " <Leader><Leader>f{char} -- trigger "f" motion.
+            " and other mappings: w/W, f/F, t/T, b/B, e/E, ge/gE, j/k, n/N.
+
+            "let g:EasyMotion_keys = '1234567890'
+            "let g:EasyMotion_do_shade = 0
+            "let g:EasyMotion_leader_key = '<Leader>' " default: <Leader><Leader>
+            " Custom keys
+            "let g:EasyMotion_mapping_{motion} = {mapping}
         " }}}
     " }}}
 
