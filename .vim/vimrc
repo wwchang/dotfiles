@@ -777,8 +777,6 @@ endif
     "autocmd InsertEnter * call Fcitx2zh()
     " }}}
 
-    " }}}
-
     " [ convert file into unix & utf-8 ] {{{
     fun ConvertFile2UnixUTF8()
         if &fileformat != 'unix' || &fileencoding != 'utf-8'
@@ -1015,7 +1013,7 @@ endif
         call vam#ActivateAddons(['python_match'])
         call vam#ActivateAddons(['python_open_module'])
             " Shell: Bash, Zsh
-        call vam#ActivateAddons(['bash-support'])
+        "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
         call vam#ActivateAddons(['inline_edit', 'MatchTag'])
         call vam#ActivateAddons(['ZenCoding'])
@@ -1043,19 +1041,20 @@ endif
         "call vam#ActivateAddons(['Lisper'])
             " Scheme
             " VimL
-        call vam#ActivateAddons(['Vim-Support'])
+        "call vam#ActivateAddons(['Vim-Support'])
             " R
         "call vam#ActivateAddons(['Vim-R-plugin'])
             " Lua
-        call vam#ActivateAddons(['luainspect'])
+        "call vam#ActivateAddons(['luainspect'])
             " simulate
         "call vam#ActivateAddons(['Clam'])
             " Tmux & Screen
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
             " vimwiki & note
+        "call vam#ActivateAddons(['vimwiki'])
         call vam#ActivateAddons(['github:vim-scripts/vimwiki'])
         call vam#ActivateAddons(['notes'])
-        call vam#ActivateAddons(['vim-pad'])
+        "call vam#ActivateAddons(['vim-pad'])
             " GTD
         call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
@@ -1070,7 +1069,7 @@ endif
                 " vim-gnupg
         "call vam#ActivateAddons(['gnupg%3645'])
             " post/paste/www micro-blog/twitter/code/text/www
-        "call vam#ActivateAddons(['PasteBin'])
+        call vam#ActivateAddons(['PasteBin'])
         call vam#ActivateAddons(['Gist'])
         call vam#ActivateAddons(['WebAPI'])
         "call vam#ActivateAddons(['weibo'])
@@ -1080,7 +1079,7 @@ endif
             " color/syntax
         "call vam#ActivateAddons(['colorv'])
         "call vam#ActivateAddons(['Colorizer'])
-        call vam#ActivateAddons(['CSSMinister'])
+        "call vam#ActivateAddons(['CSSMinister'])
         "call vam#ActivateAddons(['ScrollColors'])
         "call vam#ActivateAddons(['ColorSchemeEditor'])
         "call vam#ActivateAddons(['EasyColour'])
@@ -1683,7 +1682,6 @@ endif
             call SingleCompile#ChooseCompiler('zsh', 'zsh')
             call SingleCompile#ChooseCompiler('c', 'gcc')
             call SingleCompile#ChooseCompiler('cpp', 'g++')
-            call SingleCompile#ChooseCompiler('javascript', 'js') " js, node.js, rhino.
             call SingleCompile#ChooseCompiler('html', 'firefox')
             nnoremap <F10> :SCCompileRun<cr>
         " }}}
@@ -1774,7 +1772,7 @@ endif
 
         " Extradite: {{{ A git file commit log browser, Extends fugitive.vim
             " :Extradite | :Extradite! -- vertical.
-            nnoremap <F9> :Extradite<cr>
+            nnoremap <F8> :Extradite<cr>
                 " [ mappings ] available in the Extradite buffer.
                 " <CR> -- edit the revision on the current line in a fugitive buffer.
                 " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
@@ -2232,7 +2230,7 @@ endif
             " :undolist :earlier/:later [time] {time travelling}
 
         " Gundo: {{{ Visual Vim Undo tree and list.
-            nnoremap <F7> :GundoToggle<CR>
+            nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
             let g:gundo_right = 0 " right/left position.
             let g:gundo_help = 1 " show help.
@@ -3383,7 +3381,7 @@ endif
         " }}}
 
         " VOoM: {{{ Vim two-pane outliner
-            nnoremap <F8> :Voom<CR>
+            nnoremap <F7> :Voom<CR>
         " }}}
 
         " Speeddating: | <C-A>, <C-X>, {Visual}<C-A/X>
