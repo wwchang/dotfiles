@@ -1693,6 +1693,7 @@ endif
             call SingleCompile#ChooseCompiler('c', 'gcc')
             call SingleCompile#ChooseCompiler('cpp', 'g++')
             call SingleCompile#ChooseCompiler('html', 'firefox')
+            call SingleCompile#ChooseCompiler('javascript', 'node.js') " js, gjs, node.js, rhino
             nnoremap <F10> :SCCompileRun<cr>
         " }}}
     " }}}
