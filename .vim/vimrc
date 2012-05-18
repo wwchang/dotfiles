@@ -19,6 +19,12 @@
 "
 " }}}
 
+" [ vimrc howto ] {{{
+    " boolean value settings (:help :set)
+    "   e.g.: 'previewwindow' 'pvw'	boolean (default off)
+    "       => set no<option> => set nopreviewwindow.
+" }}}
+
 " [[ vim Settings ]] {{{2
     " :echo $MYVIMRC
 set nocompatible       " not vim compatible. must be first one, will affect other options.
