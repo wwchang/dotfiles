@@ -83,6 +83,10 @@ color index         color089    default '~h "X-Spam-Status: Yes"'
 # color index red default '~h "X-Spam-Status:.*score=(2|3)."'
 # notify message
 color index         color159    default '~h "From: .*noreply"'
+color index         color159    default '~h "From: .*no-reply"'
+color index         color159    default '~h "From: .*notification"'
+color index         color159    default '~h "From: .*alert"'
+color index         color159    default '~h "From: .*service"'
 # friends mails
 # color index         color197    default "~N (~e 184145190 | ~e 243113196 | ~e shanyingqing )" # Baobao
 color index         color226    default "-r 24/3*3d"  # my birthday mail
