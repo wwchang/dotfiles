@@ -44,10 +44,12 @@ add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # "~Vimcasts
 #add("http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg", tags=[None, "podcast"]) # "~Fosscasts Podcasts"
 #add("http://feeds.feedburner.com/tedtalks_video", tags=[None, "podcast", "TED"]) # "~TED Talks"
 #add("http://feeds2.feedburner.com/ShowmedoBlog", tags=[None, "podcast"]) # "~Show Me Do"
+add("http://xkcd.com/rss.xml", tags=[None, "xkcd", "comic"]) # xkcd.com
 # }}}
 
 # ebooks
-add("http://www.verycd.com/sto/book/computer/feed", tags=[None, "ebook"]) # VeryCd Computer Books
+add("http://www.ppurl.com/feed", tags=[None, "ebook", "IT"]) # "PiPi ebooks.
+#add("http://www.ppurl.com/tag/python/feed", tags=[None, "ebook"]) # "~PiPi Books Python Tag"
 add("http://book.zi5.me/feed", tags=[None, "ebook"]) # "~ZhiJian book house ("eBook")"
 add("http://feeds.feedburner.com/RaphaelHertzogCom", tags=[None, "debian", "admin"]) # debian handbook
 
@@ -56,7 +58,9 @@ add("http://sourceforge.net/apps/wordpress/tux2live/feed/", tags=[None, "USB", "
 add("http://www.wda.cn/forum.php?mod=rss&fid=2&auth=b6a9xe74QptVf6jQyKGedBr4NeS1DvEN2EyZYSgqVvH8zyTRGgvp8ekms33i", tags=[None, "N900", "Maemo"])
 add("http://feed43.com/vim-scripts.xml", tags=[None, "vim", "script", "plugin"]) # "~Vim scripts update"
 add("http://rss.groups.yahoo.com/group/taglist/rss", tags=[None, "vim", "script", "plugin"]) # "~taglist vim plugin"
-add("http://blog.golang.org/feeds/posts/default", tags=[None, "Go", "language"]) # Go language.
+add("http://blog.golang.org/feeds/posts/default", tags=[None, "Go", "lang"]) # Go lang
+add("http://feeds.feedburner.com/dartosphere", tags=[None, "Dart", "lang"]) # Dart lang
+add("http://news.dartlang.org/feeds/posts/default", tags=[None, "Dart", "lang"]) # Dart news
 #add("http://feeds.feedburner.com/git-ready", tags=[None, "git"]) # "~tig -- git-ready"
 #add("http://feeds.feedburner.com/cheatsheets", tags=[None, "tools", "linux"]) # "~cheatsheets"
 #add("http://git.naquadah.org/?p=awesome.git;a=rss", tags=[None, "Awesome", "git"]) # "~Awesome Git"
@@ -91,8 +95,6 @@ add("http://www.clearbits.net/feeds/creator/178-this-developers-life.rss", tags=
 add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # "~vimcasts.org ogg"
 # add("http://maemo.org/news/items.xml", tags=[None, "maemo"]) # "~maemo news"
 # add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # "~maemo latest news"
-add("http://www.ppurl.com/feed", tags=[None, "ebook", "IT"]) # "PiPi ebooks.
-#add("http://www.ppurl.com/tag/python/feed", tags=[None, "ebook"]) # "~PiPi Books Python Tag"
 #add("http://feeds.feedburner.com/37signals_podcast") # "~37singles Podcast"
 add("http://www.servercircle.com/xrss.php") # "~server circle"
 add("http://feed.feedsky.com/heikezhi", tags=[None, "hack", "ebook"]) # "~黑客志 hack news"
@@ -145,6 +147,7 @@ add("http://instagram-engineering.tumblr.com/rss", tags=[None, "server"]) # Inst
 add("http://blog.csdn.net/pongba/rss/list", tags=[None, "C++", "blog"]) # pngba C++ blog.
 #add("http://feeds.feedburner.com/codinghorror", tags=[None, "blog"]) # "~Coding Horror"
 #add("http://feeds.feedburner.com/html5rocks", tags=[None, "blog"]) # "~HTML5 Rocks"
+add("http://feeds.feedburner.com/sudobits", tags=[None, "blog", "Linux"]) # Sudobits Blog
 add("http://luy.li/feed/", tags=[None, "blog"]) # "~Lazy Bones"
 add("http://pbrisbin.com/feed", tags=[None, "hack", "blog"]) # "~pbrisbin Blog"
 add("http://apt-blog.net/feed", tags=[None, "blog"]) # "~apt-blog Blog cn"
