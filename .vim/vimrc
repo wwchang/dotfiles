@@ -1031,6 +1031,8 @@ endif
         "call vam#ActivateAddons(['javaScriptLint'])
         "call vam#ActivateAddons(['jslint'])
         "call vam#ActivateAddons(['jQuery'])
+            " Dart
+        call vam#ActivateAddons(['Dart'])
             " DBMS & SQL & NoSQL
         call vam#ActivateAddons(['dbext'])
         call vam#ActivateAddons(['VDBI'])
