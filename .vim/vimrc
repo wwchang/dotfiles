@@ -3306,32 +3306,38 @@ endif
             " \ws, \ww, 2\ww, \w\w, \wh, \wd, \wr, gqq/gww, <A-Left/Right>
             " Text Objects: ah, ih, (section), a\, i\, (cell ) ac, ic, (column)
             " %title%, %root_path%, %content%, %template person,
-            let g:vimwiki_list = [{'path': '~/vimwiki/wiki',
-                        \ 'path_html': '~/vimwiki/wiki_output/',
-                        \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
-                        \ 'syntax': 'default',
-                        \ 'css_name': 'style.css',
-                        \ 'template_path': '~/vimwiki/templates/wiki/',
-                        \ 'template_default': 'default',
-                        \ 'template_ext': '.template',
-                        \ 'nested_syntaxes': {
-                            \ 'py': 'python', 'pl': 'perl', 'lua': 'lua', 'rb': 'ruby',
-                            \ 'html': 'html', 'css': 'css', 'js': 'javascript',
-                            \ 'php': 'php', 'xml': 'xml',
-                            \ 'sh': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
-                            \ 'markdown': 'markdown', 'tex': 'tex',
-                            \ 'git': 'git',
-                            \ 'snippets': 'snippets', 'snippet': 'snippet',
-                            \ 'man': 'man', 'help': 'help', 'conf': 'conf', 'vim': 'vim'
-                            \ }
-                        \ },
-                        \ {'path': '~/vimwiki/personal/',
-                        \ 'path_html': '~/vimwiki/personal_output',
-                        \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
-                        \ 'css_name': 'style.css', 'syntax': 'default',
-                        \ 'template_path': '~/vimwiki/templates/personal/',
-                        \ 'template_default': 'default',
-                        \ 'template_ext': '.template'}]
+            let g:vimwiki_list = [
+                \ {
+                    \ 'path': '~/vimwiki/wiki',
+                    \ 'path_html': '~/vimwiki/wiki_output/',
+                    \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
+                    \ 'syntax': 'default',
+                    \ 'css_name': 'style.css',
+                    \ 'template_path': '~/vimwiki/templates/wiki/',
+                    \ 'template_default': 'default',
+                    \ 'template_ext': '.template',
+                    \ 'nested_syntaxes': {
+                        \ 'py': 'python', 'pl': 'perl', 'lua': 'lua', 'rb': 'ruby',
+                        \ 'html': 'html', 'css': 'css',
+                        \ 'js': 'javascript', 'dart': 'dart',
+                        \ 'php': 'php', 'xml': 'xml',
+                        \ 'sh': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
+                        \ 'markdown': 'markdown', 'tex': 'tex',
+                        \ 'git': 'git',
+                        \ 'snippets': 'snippets', 'snippet': 'snippet',
+                        \ 'man': 'man', 'help': 'help', 'conf': 'conf', 'vim': 'vim'
+                    \ }
+                \ },
+                \ {
+                    \ 'path': '~/vimwiki/personal/',
+                    \ 'path_html': '~/vimwiki/personal_output',
+                    \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
+                    \ 'css_name': 'style.css', 'syntax': 'default',
+                    \ 'template_path': '~/vimwiki/templates/personal/',
+                    \ 'template_default': 'default',
+                    \ 'template_ext': '.template'
+                \ },
+            \ ]
             " TODO http://www.fanhe.org/blog/2011/01/push-vimwiki-to-github/
             " push vimwiki to github, bind a domain.
             " let g:vimwiki_dir_link = 'index' " to directory. OR = '' -> use netrw.
