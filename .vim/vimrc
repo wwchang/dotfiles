@@ -277,7 +277,7 @@ if has('gui_running')
 endif
 " }}}
 
-" [[ looks ]] {{{2
+" [[ looks ]] {{{
 
     " [ basic looks ] {{{
     set number         " show number
@@ -293,7 +293,43 @@ endif
         " \v: this will make every following character except a-zA-Z0-9 and '_' have special meaning
         " \V: preceded by \ to activate their special meaning.
         " \m, \M
-    set fillchars=vert:\|,stl:\ ,stlnc:\ ,fold:-,diff:-
+        " ------------------------------------------
+        " TODO setup a function: select those signs settings in window.
+        " use `:digraphs` command in vim to display.
+        " vert: \|, \┆, \│, \ ,
+        " fold: ┄, -,
+        " diff: -, ×,
+        " stl: \ ,
+        " stlnc: \ ,
+        " tab: \┆\ , \␣, \⋮\ ,
+        " tail: \·,
+        " extends: \«, ◂,
+        " precedes: \», ▸,
+        " nbsp: \✖,
+        " conceal: ≠,
+        " eol: ↵
+        " showbreak: "↪ ", "> ", "+++ ",
+        " ------------------------------------------
+    set fillchars=vert:│,fold:┄,diff:×
+    set list listchars=tab:\ \ ,trail:\·,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠
+    nnoremap <silent> <Leader>lc :set nolist!<CR>
+    set showbreak="↪ " " string at start of lines that have been wrapped.
+
+    let g:TabIndentLine = 0
+    fun! TabIndentLineToggle() " use listchars tab to show tab vertical line.
+        if (g:TabIndentLine == 0)
+            let g:TabIndentLine = 1
+            hi SpecialKey      ctermfg=237 ctermbg=NONE cterm=none
+            set noexpandtab
+            set listchars=tab:\┆\ ,
+            :IndentGuidesDisable
+        elseif (g:TabIndentLine == 1)
+            let g:TabIndentLine = 0
+            set expandtab
+            set listchars=tab:\ \ ,
+            :IndentGuidesEnable
+        endif
+    endf
         " chars to fill the statusline and vertical separators.
     " }}}
 
@@ -491,20 +527,8 @@ endif
     set textwidth=80 " =0:unlimited, limit textwidth to prevent your from nesting more code blocks.
     set formatprg=par         " default is ""
     set formatoptions=tcq     " vim default is "tcq".
+    "set comments
     set commentstring=/*%s*/  " OR #%s
-    set list listchars=tab:\ \ ,trail:\·,extends:\«,precedes:\»,nbsp:\✖,conceal:≠
-    nnoremap <silent> <Leader>lc :set nolist!<CR>
-        " use `:digraphs` command in vim to display.
-    " set list listchars=tab:\┆\ ,trail:\·,extends:\«,precedes:\»,nbsp:\✖,conceal:≠
-        " tab:<:digraphs 9478>, tab:\┆\ ,
-        " to use this tab as indent guide, you need to set noexpandtab. and disable Indent_Guides.
-		fun! ShowTabIndentLine() " use listchars tab to show tab vertical line.
-            " change line color at first
-            hi SpecialKey      ctermfg=237 ctermbg=NONE cterm=none
-			set noexpandtab
-			set list listchars=tab:\┆\ ,trail:\·,extends:\«,precedes:\»,nbsp:\✖,conceal:≠
-			:IndentGuidesDisable
-		endf
     " }}}
 
     " [ grep ] {{{
