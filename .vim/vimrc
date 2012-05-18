@@ -56,13 +56,11 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " nnoremap K <ESC>:exec "help".expand("<cWORD>")<CR>
     " nnoremap K <ESC>:exec "help" expand("<cword>")<CR>
     " autocmd FileType tex nnoremap <buffer> K :exec "help" expand("<cword>")<CR>
-    augroup KHelp
-        au!
-        au FileType sh,vimwiki,config,none
-                    \ setlocal keywordprg="man-s"
-        au FileType vim,help
-                    \ let &keywordprg=":help"
-    augroup END
+    "augroup KHelp
+        "au!
+        "au FileType sh setlocal keywordprg="man-s"
+        "au FileType vim,help let &keywordprg=":help"
+    "augroup END
         " }}}
 
     " [ history ] {{{
