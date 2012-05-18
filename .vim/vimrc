@@ -1040,6 +1040,7 @@ endif
         call vam#ActivateAddons(['VDBI'])
         call vam#ActivateAddons(['SQLUtilities'])
             " PHP
+        call vam#ActivateAddons(['DBGPavim'])
         "call vam#ActivateAddons(['vim-addon-xdebug'])
         " call vam#ActivateAddons(['github:tobyS/vip'])
         "call vam#ActivateAddons(['pdv-standalone'])
