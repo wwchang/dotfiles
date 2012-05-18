@@ -1071,6 +1071,10 @@ endif
             " outliner
         call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
+            " TeX & LaTeX
+        "call vam#ActivateAddons(['TeX_9'])
+        "call vam#ActivateAddons(['TeX-PDF'])
+        "call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
             " markup & markdown
         "call vam#ActivateAddons(['preview%3344'])
             " encrypt
@@ -3495,6 +3499,17 @@ endif
     " }}}
 
     " [ bookmark & mark ] {{{
+    " }}}
+
+    " [ TeX & LaTeX ] {{{
+        " TeX_9 {{{ semi-automatic LaTeX ftplugin with lots of firepower !
+        " }}}
+
+        " TeX-PDF {{{ Lightweight "stay-out-of-your-way" TeX-to-PDF dev support.
+        " }}}
+
+        " AutomaticLaTeXPlugin {{{ background compilation, completion, bib search, toc etc.
+        " }}}
     " }}}
 
     " [ markup & write ] {{{
