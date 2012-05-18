@@ -16,7 +16,7 @@ fi
 
 # Functions #################################################################
 
-# https://github.com/dbb 
+# https://github.com/dbb
 
 
 # empty_gh [NAME_OF_REPO]
@@ -96,6 +96,14 @@ fork_gh() { # [NAME_OF_REPO]
     fi
     # git merge upstream/master
 }
+
+# fetch & merge upstream
+#
+upstream_merge() {
+    git fetch upstream
+    git merge upstream/master
+}
+
 
 # submodule_gh [REPO_URL] /path/to/dir
 submodule_init_update_gh() { # []
