@@ -423,7 +423,8 @@ endif
             let foldLevelStr = repeat("+--", v:foldlevel)
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
-            let expansionString = repeat(" ", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
+            let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
+                " repeat"┄", repeat" ",
             return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
         endfunction
         set foldtext=VimrcFoldText()
