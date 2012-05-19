@@ -1,0 +1,155 @@
+# header
+# TODO make this header more smart with #*1/2/....
+snippet     h1
+abbr        # head 1 #
+prev_word   '^'
+    # ${1:head 1} #
+    ${0}
+snippet     h2
+abbr        ## head 1 ##
+prev_word   '^'
+    ## ${1:head 1} ##
+    ${0}
+snippet     h3
+abbr        ### head 1 ###
+prev_word   '^'
+    ### ${1:head 1} ###
+    ${0}
+
+# blockquotes and nested blockquotes
+# > ...
+# > # header ...
+# > 1. list 1
+# > 2. list 2
+# > > ...
+# > > ...
+# > ...
+
+# un-ordered list
+# * ...
+# * ...
+# + ...
+# + ...
+# - ...
+# - ...
+snippet     uol
+abbr        un-ordered list
+prev_word   '^'
+    - ${1:list 1}
+    - ${2:list 2}
+    - ${3:list 3}
+
+snippet     uol*
+abbr        un-ordered list
+prev_word   '^'
+    * ${1:list 1}
+    * ${2:list 2}
+    * ${3:list 3}
+snippet     uol+
+abbr        un-ordered list
+prev_word   '^'
+    + ${1:list 1}
+    + ${2:list 2}
+    + ${3:list 3}
+snippet     uol-
+abbr        un-ordered list
+prev_word   '^'
+    - ${1:list 1}
+    - ${2:list 2}
+    - ${3:list 3}
+
+# ordered list
+# 1. ...
+# 2. ...
+snippet     ol
+abbr        ordered list
+prev_word   '^'
+    1. ${1:list 1}
+    2. ${2:list 2}
+    3. ${3:list 3}
+
+# code block: <pre>, <code>
+# 4 spaces or Tab indent.
+
+# separate line
+# * * *
+# ***
+# ******
+# - - -
+# -----------
+snippet     line
+abbr        -----
+prev_word   '^'
+    -------------
+    ${0}
+snippet     line-
+abbr        -----
+prev_word   '^'
+    - - -
+    ${0}
+snippet     line*
+abbr        *****
+prev_word   '^'
+    * * *
+    ${0}
+
+# link
+# inline style & reference style.
+snippet     link_inline
+abbr        [title](url)
+prev_word   '^'
+    [${2:title}](${1:URL}) ${0}
+snippet     link_ref
+abbr        [title](id)
+prev_word   '^'
+    [${4:title}](${1:ID}) ${0}
+    [${2:ID}]: ${3:URL} "${5:title}"
+snippet     link_ref_shadow
+abbr        [title][]
+prev_word   '^'
+    [${2:title}][] ${0}
+    [${3:title}]: ${1:URL}
+
+# emphasis
+snippet     em*
+abbr        *string*
+prev_word   '^'
+    *${1:emphasis <em>}* ${0}
+snippet     em_
+abbr        _string_
+prev_word   '^'
+    _${1:emphasis <em>}_ ${0}
+snippet     em**
+abbr        **string**
+prev_word   '^'
+    **${1:emphasis <em>}** ${0}
+snippet     em__
+abbr        __string__
+prev_word   '^'
+    __${1:emphasis <em>}__ ${0}
+
+# code
+# `printf()`
+
+# Image
+snippet     img_inline
+abbr        ![alt](url)
+prev_word   '^'
+    ![${2:alt title}](${1:/path/to/img.jpg}) ${0}
+snippet     img_ref
+abbr        ![alt](id)
+prev_word   '^'
+    ![${4:alt title}][${3:ID}] ${0}
+    [${2:ID}]: ${1:url/to/image} "${5:optional title attribute}"
+
+
+# FIXME neocomplcache-snippet-complete can not handle ```.
+# ```
+# code snip
+# .........
+# ```
+
+# FIXME plugin not support multiple placeholders write at same time.
+# snippet     img_id
+# ![${3:title}][${2:ID}] ${0}
+# [${2:ID}]: ${1:url/to/image} ${3:title}
