@@ -1,7 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/chris/Git/dotfiles/.config/fcitx/conf'
-let g:netrw_dirhist_2='/home/chris/Git/projects'
-let g:netrw_dirhist_3='/home/chris/Git/projects/Canto/canto-next'
-let g:netrw_dirhist_4='/home/chris'
-let g:netrw_dirhist_5='/home/chris/Git/dotfiles/.vim/vim-addons/SonicTemplate/template/python'
