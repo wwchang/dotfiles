@@ -209,8 +209,8 @@ if &t_Co > 255
    hi StatusSeparator    ctermfg=064 ctermbg=016 cterm=bold
    hi StatusBufferNumber ctermfg=250 ctermbg=236 cterm=bold
    hi StatusReadOnly     ctermfg=196 ctermbg=236 cterm=bold
-   hi StatusModFlag      ctermfg=196 ctermbg=236 cterm=none
-   hi StatusModFlag2     ctermfg=046 ctermbg=236 cterm=bold
+   hi StatusModFlag      ctermfg=196 ctermbg=236 cterm=bold
+   hi StatusModFlag2     ctermfg=046 ctermbg=236 cterm=none
    hi StatusList         ctermfg=106 ctermbg=236 cterm=none
    hi StatusChar         ctermfg=045 ctermbg=236 cterm=bold
    hi StatusFileType     ctermfg=204 ctermbg=236 cterm=bold
