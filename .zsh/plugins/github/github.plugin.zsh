@@ -99,7 +99,7 @@ fork_gh() { # [NAME_OF_REPO]
 
 # fetch & merge upstream
 #
-upstream_merge() {
+upstream_merge_gh() {
     git fetch upstream
     git merge upstream/master
 }
@@ -114,10 +114,10 @@ submodule_init_update_gh() { # []
     git submodule foreach git submodule update
 }
 
-# github page
+# Github Pages
 # use "Admin" -> "GitHub Pages" -> "Automatic GitHub Page Generator"
-github_page_gh() {
-    cd $repo
+pages_gh() {
+    #cd $repo
     git fetch origin
     git checkout -b gh-pages origin/gh-pages
 }
