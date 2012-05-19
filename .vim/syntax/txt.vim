@@ -64,9 +64,9 @@ syn region txtComments  start="\/\*"    end="\*\/"      contains=@txtAlwaysConta
 
 syn region txtDelims    matchgroup=txtOperator start="<"        end=">"         contains=@txtContains,@txtAlwaysContains oneline
 syn region txtDelims    matchgroup=txtOperator start="{"        end="}"         contains=@txtContains,@txtAlwaysContains oneline
-syn region txtDelims    matchgroup=txtOperator start="\["       end="\]"                contains=@txtContains,@txtAlwaysContains oneline 
+syn region txtDelims    matchgroup=txtOperator start="\["       end="\]"                contains=@txtContains,@txtAlwaysContains oneline
 
-syn match txtLink       "\(http\|https\|ftp\)\(\w\|[\-&=,?\:\.\/]\)*"   contains=txtOperator
+syn match txtLink       "\(http\|https\|ftp\|irc\|ircs\|irc6\)\(\w\|[\-&=,?\:\.\/]\)*"   contains=txtOperator
 
 " Basic smileys
 syn match txtSmile      "[:;=8][\-]\?\([(\/\\)\[\]]\+\|[OoPpDdFf]\+\)"
