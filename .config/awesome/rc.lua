@@ -410,18 +410,18 @@ tempicon = widget({ type = "imagebox" })
 tempicon.image = image(beautiful.widget_temp)
 tempwidget = widget({ type = "textbox" })
 	vicious.register(tempwidget, vicious.widgets.thermal,
-	function (widget, args)
-		if  args[1] >= 65 and args[1] < 70 then
-			return "" .. cyellow .. " " .. coldef .. cyellow .. args[1] .. "°C" .. coldef .. ""
-		elseif args[1] >= 70 and args[1] < 75 then
-			return "" .. cyellow .. " " .. coldef .. cred .. args[1] .. "°C" .. coldef .. ""
-		elseif args[1] > 80 then
-			naughty.notify({ title = "Temperature Warning", text = "Running hot! " .. args[1] .. "°C!\nTake it easy.", timeout = 10, position = "top_right", fg = beautiful.fg_urgent, bg = beautiful.bg_urgent })
-			return "" .. cyellow .. " " .. coldef .. cred .. args[1] .. "°C" .. coldef .. ""
-		else
-			return "" .. cyellow .. " " .. coldef .. cdyellow .. args[1] .. "°C" .. coldef .. ""
-		end
-	end, 19, "thermal_zone0" )
+    function (widget, args)
+        if  args[1] >= 65 and args[1] < 70 then
+            return "" .. cyellow .. " " .. coldef .. cyellow .. args[1] .. "°C" .. coldef .. ""
+        elseif args[1] >= 70 and args[1] < 75 then
+            return "" .. cyellow .. " " .. coldef .. cred .. args[1] .. "°C" .. coldef .. ""
+        elseif args[1] > 80 then
+            naughty.notify({ title = "Temperature Warning", text = "Running hot! " .. args[1] .. "°C!\nTake it easy.", timeout = 10, position = "top_right", fg = beautiful.fg_urgent, bg = beautiful.bg_urgent })
+            return "" .. cyellow .. " " .. coldef .. cred .. args[1] .. "°C" .. coldef .. ""
+        else
+            return "" .. cyellow .. " " .. coldef .. cdyellow .. args[1] .. "°C" .. coldef .. ""
+        end
+    end, 19, "thermal_zone0" )
 
 -- RAM widget
 memicon = widget({ type = "imagebox" })
@@ -494,6 +494,7 @@ for _, w in pairs(fs) do
 end -- Enable caching
 vicious.cache(vicious.widgets.fs)
 -- Register widgets
+-- FIXME add percent number for / root and /home tec.
 vicious.register(fs.b, vicious.widgets.fs, "${/boot used_p}", 599)
 vicious.register(fs.r, vicious.widgets.fs, "${/ used_p}",     599)
 vicious.register(fs.h, vicious.widgets.fs, "${/home used_p}", 599)
@@ -603,7 +604,7 @@ mailicon.image = image(beautiful.widget_mail)
 maildirwidget = widget({ type = "textbox" })
 -- -- Register widget
 -- vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Mail", ["Maildir-2"]="Name2" }, 150, mdir )
-vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 150, mdir )
+vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 100, mdir )
 -- register button
 maildirwidget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () exec("urxvt -e mutt") end), -- left click
