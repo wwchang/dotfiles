@@ -1,9 +1,9 @@
-#!/bin/bash 
+#!/bin/bash
 
 set -o nounset  # Treat unset variables as an error
 
-# variables 
-# OR read variables from STDIN 
+# variables
+# OR read variables from STDIN
 
 
 # set display position
@@ -12,12 +12,12 @@ set -o nounset  # Treat unset variables as an error
 # notify with a command
 # notify-send syslog "`tail /var/log/syslog`"
 
-# notify-send --urgency=[critical,low,normal] -i "notification-message-IM" ( oor -i /home/chris/icons/kk.ico ) 'title' 'text' 
+# notify-send --urgency=[critical,low,normal] -i "notification-message-IM" ( oor -i /home/chris/icons/kk.ico ) 'title' 'text'
 
 # command && notify-send successful
 # long command or script ; notify-send good
 
-# ncmpcpp pause 
+# ncmpcpp pause
 # amixer -q sset Master playback 57
 
 #USER="`whoami`"
@@ -39,7 +39,7 @@ if [[ $(pgrep awesome) != "" ]]; then
         font=\"DejaVu Sans Mono 10\">' "$2" '</span>", \
         timeout = 10, width = 400, position = "top_left"})' | awesome-client -` >/dev/null
 
-    # `env DISPLAY=:0.0 notify-send -t 10000 "┌─[<span color='#FF0000'>"$1"</span>]" "└─╼ <span color='#55FFFF'>'$2'</span>"` >/dev/null 
+    # `env DISPLAY=:0.0 notify-send -t 10000 "┌─[<span color='#FF0000'>"$1"</span>]" "└─╼ <span color='#55FFFF'>'$2'</span>"` >/dev/null
 
     #echo 'naughty.notify({title = "'┌─[ "$1" ]' ", text = "└─╼   '"$2"' "})' | awesome-client
 
@@ -66,3 +66,7 @@ fi
     #. "$HOME/.dbus/session-bus/$dbus_file" && export DBUS_SESSION_BUS_ADDRESS # and export a variable from it
 #fi
 #/usr/bin/awesome-client
+
+# ================================
+# gnome-osd
+# gnome-osd-client -f "<message id='oss' osd_vposition='center' osd_halignment='center'> <span font='Comic Sans MS' foreground='red'> `xsel -o` </span></message>"
