@@ -7,7 +7,7 @@
 ontop=1                 # always keep mplayer on top
 stop-xscreensaver=yes   # disable xscreensaver
 geometry=50%:50%        # position window (50%:50%: center of screen)
-# fs=yes                    # fullscreen playback 
+# fs=yes                    # fullscreen playback
 # fstype=above            # fullscreen type OR =fullscreen
 # flip=yes              # rotate/flip video
 
@@ -15,7 +15,7 @@ geometry=50%:50%        # position window (50%:50%: center of screen)
 
 vf=screenshot           # enable screenshot with "s"
 
-# sets postprocessing into overdrive using all 
+# sets postprocessing into overdrive using all
 autoq=100               # possible spare cpu cycles to make the movie look better
 vf=pp=hb/vb/dr/al/fd # =pp=hb/vb/dr/al/fd (default) OR =pp=de,hqdn3d
 osdlevel=1              # start with all osd elements enabled (time/remaining)
@@ -70,7 +70,7 @@ sub-bg-color=0          # black to white
 font='DejaVu Sans Mono'
 # font='WenQuanYi Micro Hei'
 
-# Fix A/V sync problems. 
+# Fix A/V sync problems.
 mc=0.2
 autosync=30
 delay=0.5               # positive value delay the video, negative value delay the audio.
@@ -86,5 +86,5 @@ msglevel=all=5
 msgmodule=1
 msgcolor=1              # enable output with color
 
-# skin 
+# skin
 # skin=Ater
