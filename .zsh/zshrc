@@ -60,8 +60,8 @@ plugins=(git github git-flow mercurial svn gem gpg-agent ssh-agent \
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 # ZSH_HIGHLIGHT_HIGHLIGHTERS+=(myhighlighter)
 
-#autoload -Uz vcs_info
-#zstyle ':vcs_info:*' enable git hg bzr svn
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git hg bzr svn
 
 source $ZSH/oh-my-zsh.sh
 
