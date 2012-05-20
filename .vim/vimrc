@@ -1,6 +1,6 @@
 " Author: stardiviner ( numbchild at gmail dot com )
 
-" [[ Vim configurations structure ]] {{{2
+" [[ Vimrc structure ]] {{{2
 " .vimrc -- global settings
 " .vim/
 "   after/      -- files that are loaded at the very end.
@@ -660,20 +660,21 @@ endif
     " i_CTRL-N                      -- keyword in 'complete'
     " }}}
 
-    " TODO add an if condition to detect cwindow or lwindow, and bind this function into one key.
-        " so that you can use same <A-n/p> for next and previous.
-    "if (empty(getloclist(0))=='1')
-        "" command: :copen QuickFix window.
-        " nnoremap <F3> :botright cwindow<CR>
-        "help eval.txt
-    "elseif (empty(getqflist()
-        "" command: :lopen LocationList window.
-        " nnoremap <F4> :botright lwindow<CR>
-    "endif
-    "nnoremap <expr> <A-n> (&buftype=='quickfix'?':cn':':lnext')."\n"
-    "nnoremap <expr> <A-p> (&buftype=='quickfix'?':cp':':lprev')."\n"
-    "nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
-    "nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
+        " TODO add an if condition to detect cwindow or lwindow, and bind this
+        " function into one key.
+            " so that you can use same <A-n/p> for next and previous.
+        "if (empty(getloclist(0))=='1')
+            "" command: :copen QuickFix window.
+            " nnoremap <F3> :botright cwindow<CR>
+            "help eval.txt
+        "elseif (empty(getqflist()
+            "" command: :lopen LocationList window.
+            " nnoremap <F4> :botright lwindow<CR>
+        "endif
+        "nnoremap <expr> <A-n> (&buftype=='quickfix'?':cn':':lnext')."\n"
+        "nnoremap <expr> <A-p> (&buftype=='quickfix'?':cp':':lprev')."\n"
+        "nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
+        "nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
 " }}}
 
 " [[ functions ]] {{{2
@@ -756,30 +757,6 @@ endif
         " You can match words and even regular expressions.
         " :help matchit-install. help matchit.txt
         " or :runtime macros/matchit.vim to load it.
-    " }}}
-
-    " [ Fcitx ] {{{ automatically control the input status of Vim.
-    let g:input_toggle = 1
-    function! Fcitx2en()
-        let s:input_status = system("fcitx-remote")
-        if s:input_status == 2
-            let g:input_toggle = 1
-            let l:a = system("fcitx-remote -c") " -c close input method
-        endif
-    endfunction
-
-    function! Fcitx2zh()
-        let s:input_status = system("fcitx-remote")
-        if s:input_status != 2 && g:input_toggle == 1
-            let l:a = system("fcitx-remote -o") " -o open input method
-            let g:input_toggle = 0
-        endif
-    endfunction
-
-    set timeoutlen=750
-    autocmd InsertLeave * call Fcitx2en()
-    inoremap <buffer> <Leader>fc <Esc>:call Fcitx2zh()<CR>li
-    "autocmd InsertEnter * call Fcitx2zh()
     " }}}
 
     " [ convert file into unix & utf-8 ] {{{
@@ -929,6 +906,10 @@ endif
         " ActivateAddones List: {{{
             " vim plugin manager
         "call vam#ActivateAddons(['tplugin'])
+            " utils
+        call vam#ActivateAddons(['L9'])
+        " call vam#ActivateAddons(['tlib'])
+        call vam#ActivateAddons(['AsyncCommand'])
             " statusline
         call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
@@ -939,22 +920,18 @@ endif
         call vam#ActivateAddons(['Splice'])
             " Github
         call vam#ActivateAddons(['vim-github'])
+            " CSV
+        "call vam#ActivateAddons(['csv'])
             " Tab Completion
         call vam#ActivateAddons(['neocomplcache', 'vimproc', 'unite', 'vimshell'])
-            " for C C++
-        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
-        call vam#ActivateAddons(['clang_complete'])
-            " for Haskell using ghc-mod
-        "call vam#ActivateAddons(['neco-ghc'])
-        "call vam#ActivateAddons(['neco-rake'])
-        "call vam#ActivateAddons(['neco-rubymf'])
         "call vam#ActivateAddons(['neco-look'])
         " call vam#ActivateAddons(['AutoComplPop'])
         " call vam#ActivateAddons(['SuperTab_continued.'])
-            " utils
-        call vam#ActivateAddons(['L9'])
-        " call vam#ActivateAddons(['tlib'])
-        call vam#ActivateAddons(['AsyncCommand'])
+            " C C++
+        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
+        call vam#ActivateAddons(['clang_complete'])
+            " Haskell using ghc-mod
+        "call vam#ActivateAddons(['neco-ghc'])
             " snippet
         call vam#ActivateAddons(['neocomplcache-snippets-complete'])
         "call vam#ActivateAddons(['UltiSnips'])
@@ -1025,7 +1002,7 @@ endif
             " Shell: Bash, Zsh
         "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
-        call vam#ActivateAddons(['inline_edit', 'MatchTag'])
+        call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['ZenCoding'])
             " JavaScript
         call vam#ActivateAddons(['jsflakes%4057'])
@@ -1062,7 +1039,9 @@ endif
             " simulate
         "call vam#ActivateAddons(['Clam'])
             " Tmux & Screen
+            " special editing
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
+        call vam#ActivateAddons(['inline_edit', 'NrrwRgn'])
             " vimwiki & note
         "call vam#ActivateAddons(['vimwiki'])
         call vam#ActivateAddons(['github:vim-scripts/vimwiki'])
@@ -1123,7 +1102,7 @@ endif
         "call vam#ActivateAddons(['github:chrisbra/vim_faq'])
             " Vim Extension
                 " command line
-        call vam#ActivateAddons(['repeat', 'visualrepeat', 'commentary', 'abolish'])
+        call vam#ActivateAddons(['repeat', 'visualrepeat', 'abolish'])
         call vam#ActivateAddons(['StarRange'])
         "call vam#ActivateAddons(['visualstar'])
         "call vam#ActivateAddons(['exjumplist'])
@@ -1138,6 +1117,9 @@ endif
         "call vam#ActivateAddons(['DrawIt'])
             " translate
         "call vam#ActivateAddons(['youdao.dict'])
+            " small tools
+        call vam#ActivateAddons(['fcitx'])
+        "call vam#ActivateAddons(['bestfriend'])
         " }}}
 
     endfunction
@@ -1154,7 +1136,7 @@ endif
 " [ Program ] {{{
 
     " [ Completion ] {{{
-        " NeoComplcache: {{{ keyword completion by maintain cache of keywords in buffer.
+        " NeoComplcache: {{{ Ultimate auto Completion system for Vim.
             " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
@@ -2123,7 +2105,7 @@ endif
             let g:EasyGrepSearchCurrentBufferDir = 1 " search current buffer's dir.
             " let g:EasyGrepInvertWholeWord =
                 " 0: all files, 1: buffers, 2: associated extensions
-            let g:EasyGrepFileAssociations = 0 " 0/1/2; link C .c .h extensions.
+            let g:EasyGrepFileAssociations = 0 " TODO 0/1/2; link C .c .h extensions.
             let g:EasyGrepFileAssociationsInExplorer = 1 " show file associations list.
             let g:EasyGrepOptionPrefix='<leader>vy'
             let g:EasyGrepReplaceWindowMode = 0 " 0: new tab, 1: split, 2: autowriteall
@@ -2202,7 +2184,7 @@ endif
             "let g:tcomment_types {}
         " }}}
 
-        " NerdCommenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
+        " Nerd Commenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
             " TODO find out how to comment Lua code with --[[
             " ]]
             " \cc: Comment, \cu: Uncomment,
@@ -2228,18 +2210,20 @@ endif
         " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
             " TODO more customize
             " Usage:
-                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation), q (close), <Tab> completion.
+                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
+                "   q (close), <Tab> completion.
                 " - :doc[!] {topic} [{filetype}]
                 " - :doc[!] <cword> [{filetype}]
-                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp, :perldoc, :ViewDocPerl.
+                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
+                "   :perldoc, :ViewDocPerl.
             "let g:no_viewdoc_abbrev
             "let g:no_plugin_abbrev
             "let g:no_viewdoc_maps
             "let g:no_plugin_maps
             let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
-            let g:viewdoc_only = 0 " if you do not use tab, you can make this window only.
-            let g:viewdoc_prevtabonclose = 1 " if you open with tab, jump to next tab when close.
-            let g:viewdoc_openempty = 1 " open empty error window when not found.
+            let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
+            let g:viewdoc_prevtabonclose = 1
+            let g:viewdoc_openempty = 0 " do not open anything if not found tag.
             let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
             "let g:viewdoc_man_cmd = "/usr/bin/man"
 
@@ -2288,8 +2272,7 @@ endif
         " TagHighlight:
             " highlights names of classes, variables, types etc in source code.
             " [ embeded code ] {{{
-            " https://github.com/AndrewRadev/inline_edit.vim
-        " }}}
+            " }}}
     " }}}
 
     " [ indent & align ] {{{
@@ -2375,7 +2358,17 @@ endif
             "noremap <Leader>ai <Esc>:AuthorInfoDetect<CR>
             let g:vimrc_author = 'stardiviner'
             let g:vimrc_email = 'numbchild@gmail.com'
-            let g:vimrc_homepage = 'http://stardiviner.dyndns-blog.com'
+            " TODO let g:vimrc_homepage = ''
+        " }}}
+
+        " license_loader {{{ a vim script to load a license template.
+            " Usage: :call LoadMyLicense('apache')
+            " license template in templates/license/*
+            let g:T_AUTHOR = "stardiviner"
+            let g:T_AUTHOR_EMAIL = "numbchild@gmail.com"
+            let g:T_DATE_FORMAT = "%c"
+            "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
+            "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
         " }}}
     " }}}
 " }}}
@@ -2592,20 +2585,6 @@ endif
     " }}}
 
     " [ Web ] {{{
-        " inline_edit {{{ Edit code that's embedded within other code.
-            " Visual select -> <Leader>e - any area that you mark.
-            " JS/CSS in HTML, SQL in RUby, code in markdown, Django block in template.
-            " normal mode:
-            nnoremap <leader>e :InlineEdit<cr>
-            " visual mode:
-            xnoremap <leader>e :InlineEdit<cr>
-            " insert mode:
-            inoremap <c-e> <esc>:InlineEdit<cr>a
-            let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
-                " detect <script> <style> tags like HTML
-            let b:inline_edit_html_like_filetypes = ['vimwiki', 'tpp']
-        " }}}
-
         " [ HTML5 ] {{{
             "au FileType html set shiftwidth=2
             "au FileType html set softtabstop=2
@@ -2670,43 +2649,64 @@ endif
         let php_asp_tags = 1 " enable highlight ASP-style short tags.
         let php_noShortTags = 1 " disable short tags
         let php_parent_error_close = 1 " highlight parent error ] or )
-        let php_parent_error_open = 1 " skip an php end tag, if exists open ( or [.
+        let php_parent_error_open = 1 " skip php end tag, if exists, open (, [
         let php_folding = 1 " folding for classes and functions.
         let php_sync_method = -1 " selecting syncing method. -1/0/>0
 
-        " DBGPavim {{{ enable PHP debug in vim with Xdebug.
-            " Requires:
-            "       - install xdebug for PHP.
-            "       - and edit php.ini file.
-            "           - zend_extension=path_to_xdebug.so
-            "           - xdebug.remote_enable=1
-            "       - edit apache config file.
-            "           - php_value xdebug.remote_port 9009
-            " Usage:
-            " :Bl/:Bp => list all breakpoints, toggle breakpoint on current line.
-            " - <F1>    => toggle help window.
-            " - <F2>    => step into.
-            " - <F3>    => step over
-            " - <F4>    => step out
-            " - <F5>    => start debugger backend.
-            " - <F6>    => stop debugger backend.
-            " - <F7>    => evalute expression and display result.
-            " - <F9>    => toggle layout.
-            " - <F11>   => show all variables.
-            " - <F12>   => show variable on current cursor.
-            " :Pg       => to print value of complex variables like $this->savings[3]
-            " :Up       => goto upper level of stack
-            " :Dn       => goto lower level of stack
-            let g:dbgPavimBreakAtEntry = 0
-            "let g:dbgPavimPathMap = [['D:/works/php','/var/www'],]
-            let g:dbgPavimPort = 9009
+        " [ debugger ] {{{
+            " DBGPavim {{{ enable PHP debug in vim with Xdebug.
+                " Requires:
+                "       - install xdebug for PHP.
+                "       - and edit php.ini file.
+                "           - zend_extension=path_to_xdebug.so
+                "           - xdebug.remote_enable=1
+                "       - edit apache config file.
+                "           - php_value xdebug.remote_port 9009
+                " Usage:
+                " :Bl/:Bp => list all breakpoints, toggle breakpoint on current line.
+                " - <F1>    => toggle help window.
+                " - <F2>    => step into.
+                " - <F3>    => step over
+                " - <F4>    => step out
+                " - <F5>    => start debugger backend.
+                " - <F6>    => stop debugger backend.
+                " - <F7>    => evalute expression and display result.
+                " - <F9>    => toggle layout.
+                " - <F11>   => show all variables.
+                " - <F12>   => show variable on current cursor.
+                " :Pg       => to print value of complex variables like $this->savings[3]
+                " :Up       => goto upper level of stack
+                " :Dn       => goto lower level of stack
+                let g:dbgPavimBreakAtEntry = 0
+                "let g:dbgPavimPathMap = [['D:/works/php','/var/www'],]
+                let g:dbgPavimPort = 9009
+            " }}}
+
+            " Xdebug {{{ An awesome debugging client for Vim, Xdebug and PHP.
+                " This is YET another version of the DBGP client script that
+                " Seung Woo Shin created The reason I've added this as a new
+                " script is because I've added enough new features to warrant
+                " it.
+            " }}}
+
+            " vim-addon-xdebug : {{{
+                " :XDbgStart
+            " }}}
         " }}}
 
-        " vim-addon-xdebug : {{{
-            " :XDbgStart
+        " [ syntax checker ] {{{
+            " phpqa {{{ Run PHP QA tools and show highlighted results.
+                " This is a plugin for Vim that integrates PHP quality checking
+                " tools, to allow you to code to a particular standard and
+                " easily spot errors and violations.
+            " }}}
+            " PHPUnit_QF : Run PHPUnit tests from within vim and put the errors
+            " into the quickfix list.
         " }}}
 
-        " CakePHP: {{{ for navigating and managing CakePHP applications with Vim
+        " [ Framework ] {{{
+            " CakePHP: {{{ navigating, managing CakePHP applications with Vim
+            " }}}
         " }}}
 
         " https://github.com/tobyS/vip.git {{{
@@ -2849,8 +2849,11 @@ endif
         let ruby_fold = 1
         "let ruby_no_comment_fold = 1
 
-        " neocomplcache-ruby |
-        " rails {{{
+        " neco-rubymf
+        " rails {{{ Ruby on Rails
+            " easy file navigation, enhanced syntax highlighting, and more
+        " }}}
+        " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
     " }}}
 
@@ -3071,21 +3074,24 @@ endif
             let g:clam_autoreturn = 1
             let g:clam_autoreturn = 'vertical botright'
         " }}}
+    " }}}
 
+    " [ special editing ] {{{
         " Screen {{{ (vim + gnu screen/tmux) ['Screen_vim__gnu_screentmux']
-            " simulate an embedded shell in vim by allowing you convert vim session
-            " into one running in Screen or Tmux with a split window.
+            " simulate an embedded shell in vim by allowing you convert vim
+            " session into one running in Screen or Tmux with a split window.
             " :help screen.txt
             " Workflow:
             " $ vim filename.py edit a python file.
-            " :ScreenShell python Run all or pieces of code in interactive python shell.
+            " :ScreenShell python Run all or pieces of code in interactive
+            " python shell.
             " [Visual]:ScreenSend Send code from a vim buffer to the shell.
             " :ScreenQuit or :qa Quit the screen session return to vim session.
             " --- :ScreenShellVertical [cmd], :IPython
             let g:ScreenImpl = 'Tmux' " 'GnuScreen' , 'Tmux'
             " Note: With tmux, :ScreenShellAttach is currently not supported.
             "let g:ScreenShellScreenInitArgs =
-            let g:ScreenShellTmuxInitArgs = '-2' " start tmux with 256 color support
+            let g:ScreenShellTmuxInitArgs = '-2' " tmux 256 color support
             let g:ScreenShellHeight = 15
             let g:ScreenShellWidth = -1
             let g:ScreenShellQuitOnVimExit = 1
@@ -3097,7 +3103,8 @@ endif
             let g:ScreenShellSendPrefix = ''
             let g:ScreenShellSendSuffix = ''
 
-                " map depending on whether you have an active screen shell open or not.
+                " map depending on whether you have an active screen shell open
+                " or not.
                 "function! s:ScreenShellListener()
                     "if g:ScreenShellActive
                         "nmap <C-c><C-c> :ScreenSend<cr>
@@ -3114,6 +3121,32 @@ endif
                 "augroup ScreenShellExit
                     "autocmd User * call <SID>ScreenShellListener()
                 "augroup END
+        " }}}
+
+        " inline_edit {{{ Edit code that's embedded within other code.
+            " Visual select -> <Leader>e - any area that you mark.
+            " JS/CSS in HTML, SQL in RUby, code in markdown, Django block in template.
+            " normal mode:
+            nnoremap <leader>e :InlineEdit<cr>
+            " visual mode:
+            xnoremap <leader>e :InlineEdit<cr>
+            " insert mode:
+            inoremap <c-e> <esc>:InlineEdit<cr>a
+            let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
+                " detect <script> <style> tags like HTML
+            let b:inline_edit_html_like_filetypes = ['vimwiki', 'tpp']
+        " }}}
+
+        " NrrwRgn {{{ A Narrow Region Plugin similar to Emacs
+            "Narrowing means focussing on a region and making the rest
+            "inaccessible." This is a script emulates Emacs Narrowing feature,
+            "by opening a selected range in a new scratch buffer.  In the
+            "scratch buffer simply save it and the changes will be copied into
+            "the original file.
+            " Usage:
+            "   - :NarrowRegion/:NR, :NarrowWindow/:NW, :WidenRegion[!]
+            "   - {Visual select} \nr
+            " TODO learn this.
         " }}}
     " }}}
 
@@ -3372,7 +3405,8 @@ endif
     " FIXME add one if condition for whether it is under Linux.
         " vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
             " TODO write template and style.css for vimwiki.
-            " \ws, \ww, 2\ww, \w\w, \wh, \wd, \wr, gqq/gww, <A-Left/Right>
+            " Wiki: \ws, \ww, 2\ww, \wd, \wr, gqq/gww, <A-Left/Right>
+            " Diary: \w\w,
             " Text Objects: ah, ih, (section), a\, i\, (cell ) ac, ic, (column)
             " %title%, %root_path%, %content%, %template person,
             let g:vimwiki_list = [
@@ -3407,21 +3441,19 @@ endif
                     \ 'template_ext': '.template'
                 \ },
             \ ]
-            " TODO http://www.fanhe.org/blog/2011/01/push-vimwiki-to-github/
-            " push vimwiki to github, bind a domain.
             let g:vimwiki_dir_link = '' " '', 'index', 'main' for [[dir/]] to directory.
-            let g:vimwiki_camel_case = 0 " don't want WikiWord to be a link. prefer [[]].
+            let g:vimwiki_camel_case = 0 " don't want WikiWord to be a link. prefer [[]]
             let g:vimwiki_use_mouse=0 " disable mouse.
             let g:vimwiki_hl_headers = 1 " use VimwikiHeader1-6
             let g:vimwiki_folding = 1 " disable folding. speed up file.
             let g:vimwiki_fold_lists = 1
-            let g:vimwiki_fold_trailing_empty_lines = 0 " Fold only one empty line.
+            let g:vimwiki_fold_trailing_empty_lines = 0 " fold only one empty line.
             let g:vimwiki_browsers = ['/usr/bin/luakit']
             let g:vimwiki_table_auto_fmt = 0 " auto format table.
             let g:vimwiki_html_header_numbering = 1
             let g:vimwiki_html_header_numbering_sym = '.'
             let g:vimwiki_hl_cb_checked = 1 " checked list items
-            let g:vimwiki_auto_checkbox = 1 " if no, creat checkbox when toggle list item
+            let g:vimwiki_auto_checkbox = 1 " if no creat checkbox when toggle list item
             " let g:vimwiki_listsyms = '.oOX' " todo list: check/uncheck.
             let g:vimwiki_stripsym = ' ' " filename can not use /*?<>:
             " let g:vimwiki_badsyms = ' ' " filename treat space as bad.
@@ -3778,7 +3810,7 @@ endif
                 "   <M-n> : jump to next pairs
                 "   <M-e> : jump to end of pairs.
                 "   Ctrl-V ) : insert ) without trigger the plugin.
-            let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+            "let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
             let g:AutoPairsShortcuts = 1
             " let g:AutoPairscutToggle = '<another key>'
                 " if bellowing keys conflict with others
@@ -3919,6 +3951,10 @@ endif
     " }}}
 
     " [ smalltools ] {{{
+        " fcitx
+            " for set small delay
+            set timeoutlen=600
+            " Screen: maptimeout, Tmux: escape-time options.
     " }}}
 
     " [ translater ] {{{
