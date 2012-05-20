@@ -1010,6 +1010,7 @@ endif
         call vam#ActivateAddons(['jsoncodecs'])
         "call vam#ActivateAddons(['jsbeautify'])
         "call vam#ActivateAddons(['javaScriptLint'])
+        "call vam#ActivateAddons(['jshint'])
         "call vam#ActivateAddons(['jslint'])
         "call vam#ActivateAddons(['jQuery'])
             " Dart
@@ -1019,13 +1020,20 @@ endif
         call vam#ActivateAddons(['VDBI'])
         call vam#ActivateAddons(['SQLUtilities'])
             " PHP
-        call vam#ActivateAddons(['DBGPavim'])
+        "call vam#ActivateAddons(['DBGPavim'])
+        "call vam#ActivateAddons(['Xdebug'])
         "call vam#ActivateAddons(['vim-addon-xdebug'])
+        call vam#ActivateAddons(['phpqa'])
+        "call vam#ActivateAddons(['PHPUnit_QF'])
         " call vam#ActivateAddons(['github:tobyS/vip'])
         "call vam#ActivateAddons(['pdv-standalone'])
         "call vam#ActivateAddons(['cakephp'])
             " Ruby & Rails
-        "call vam#ActivateAddons(['rails'])
+        call vam#ActivateAddons(['neco-rubymf'])
+        "call vam#ActivateAddons(['neco-rake'])
+        call vam#ActivateAddons(['rails'])
+        "call vam#ActivateAddons(['vroom'])
+        "call vam#ActivateAddons(['RbREPL'])
             " Lisp
         "call vam#ActivateAddons(['slimv'])
         "call vam#ActivateAddons(['Lisper'])
@@ -1036,6 +1044,8 @@ endif
         "call vam#ActivateAddons(['Vim-R-plugin'])
             " Lua
         "call vam#ActivateAddons(['luainspect'])
+            " Perl
+        "call vam#ActivateAddons(['perlomni'])
             " simulate
         "call vam#ActivateAddons(['Clam'])
             " Tmux & Screen
@@ -1081,6 +1091,7 @@ endif
         "call vam#ActivateAddons(['EasyColour'])
         "call vam#ActivateAddons(['VIM_Color_Picker'])
         "call vam#ActivateAddons(['Galaxy'])
+        "call vam#ActivateAddons(['nosyntaxwords'])
             " mark & position & session
                 " mark several words in different colors simultaneously.
         "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
