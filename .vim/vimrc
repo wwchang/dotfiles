@@ -992,7 +992,9 @@ endif
         call vam#ActivateAddons(['EasyGrep'])
         "call vam#ActivateAddons(['ack'])
             " comment
-        call vam#ActivateAddons(['The_NERD_Commenter'])
+        call vam#ActivateAddons(['tComment'])
+        call vam#ActivateAddons(['commentary'])
+        "call vam#ActivateAddons(['The_NERD_Commenter'])
             " doc & help "K"
         call vam#ActivateAddons(['viewdoc'])
         "call vam#ActivateAddons(['Manuals'])
@@ -2159,7 +2161,45 @@ endif
     " }}}
 
     " [ comment ] {{{
-        " Commentary: {{{ \\{motion}, \\\, {Visual}\\, \\u
+        " commentary: \\{motion}, \\\, {Visual}\\, \\u
+
+        " tComment: {{{ An extensible & universal comment plugin
+            " also handles embedded filetypes.
+                " Usage:
+                "   - gc{motion}    :: toggle comments.
+                "   - gcc           :: toggle comment for current line.
+                "   - gC{motion}    :: Comment region.
+                "   - gCc           :: Comment the current line.
+                "   - <C-_>...      :: :TComment ...
+                "   - <Leader>...   :: :TComment ...
+                "   - :[range]TComment[!] ?ARGS
+                "   - :[range]TCommentAs[!] [commenttype] ?ARGS
+                " tcomment#DefineType() to override defualt choice.
+            let g:tcommentMapLeader1 = '<c-_>'
+            let g:tcommentMapLeader2 = '<Leader>_'
+            let g:tcommentMapLeaderOp1 = 'gc'
+            let g:tcommentMapLeaderOp2 = 'gC'
+            let g:tcommentBlankLines = 1 " comment blank lines too.
+            let g:tcommentOpModeExtra = '' " '>' move cursor to end of comment
+            let g:tcommentOptions = {}
+            let g:tcomment#ignore_char_type = 1
+            let g:tcommentGuessFileType = 1 " default: 0
+            let g:tcommentGuessFileType_dsl = 'xml'
+            let g:tcommentGuessFileType_php = 'html'
+            let g:tcommentGuessFileType_html = 1
+            let g:tcommentGuessFileType_tskeleton = 1
+            let g:tcommentGuessFileType_vim = 1
+            let g:tcommentGuessFileType_django = 1
+            let g:tcommentIgnoreTypes_php = 'sql'
+            "let g:tcomment#syntax_substitute = {}
+            "let g:tcommentSyntaxMap = {}
+            "let g:tcomment#replacements_c = {}
+            "let g:tcommentBlockC = {}
+            "let g:tcommentBlockC2 = {}
+            "let g:tcommentInlineC = g:tcommentLineC
+            "let g:tcommentBlockXML = "<!--%s-->\n  "
+            "let g:tcommentInlineXML = "<!-- %s -->"
+            "let g:tcomment_types {}
         " }}}
 
         " NerdCommenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
