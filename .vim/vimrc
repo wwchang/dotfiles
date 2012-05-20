@@ -1522,6 +1522,13 @@ endif
                         \ 'python': '#'
                         \}
         " }}}
+
+        " SnippetComplete: {{{
+            " Insert mode completion for abbre and snippets.
+            " i_CTRL-X_] : find matches for abbr that start with text in front of cursor
+            " imap <C-x><Tab> <Plug>(SnippetComplete)
+            " inoremap <C-Space> <Plug>(SnippetComplete)
+        " }}}
     " }}}
 
     " [ skeleton/template ] {{{
@@ -2655,6 +2662,8 @@ endif
 
         " javaScriptLint: Displays JavaScript Lint warnings in quickfix window
 
+        " jshint.vim : JSHint Integration
+            " jshint.vim facilitates tight integration between JSHint and Vim.
         " jslint.vim : Check JavaScript files for errors with JSLint
             " :JSLintUpdate
             let g:JSLintHighlightErrorLine = 1
