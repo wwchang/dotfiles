@@ -92,7 +92,7 @@ ZSH_THEME_SVN_PROMPT_CLEAN="%{$fg_bold[green]%} ✔%{$reset_color%}"
 # }}}
 
 # {{{ locale variables
-# local full_path='%{$fg[white]%}%~%{$reset_color%}'
+local full_path='%{$fg[cyan]%}%~%{$reset_color%}'
 local base_path='%{$fg_bold[cyan]%}%c%{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%} $user_prompt %{$reset_color%}'
 local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.$) %{$reset_color%}'
