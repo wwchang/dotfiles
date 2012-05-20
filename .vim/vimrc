@@ -3357,6 +3357,9 @@ endif
             let g:galaxy_scheme_file = "$HOME/.vim_galaxy_schemes"
             let g:galaxy_cache_file = "$HOME/.vim_galaxy_cache"
         " }}}
+        " nosyntaxwords :
+            " find words that are not syntactically highlighted in current
+            " buffer.
     " }}}
 
     " [ colorscheme ] {{{
