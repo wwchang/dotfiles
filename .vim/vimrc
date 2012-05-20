@@ -1083,6 +1083,7 @@ endif
         "call vam#ActivateAddons(['Galaxy'])
             " mark & position & session
                 " mark several words in different colors simultaneously.
+        "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
         "call vam#ActivateAddons(['Mark%2666'])
             " format
         call vam#ActivateAddons(['utl'])
@@ -3000,6 +3001,23 @@ endif
             nmap <C-M-o>  <Plug>(exjumplist-go-first)
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
+
+        " vmark.vim_Visual_Bookmarking {{{
+            " Toggle visual bookmarking and jump through bookmarks
+            " Usage:
+            "   - mm    -- toggle visual bookmark current line.
+            "   - ma    -- remove all bookmarks
+            "   - mn    -- move to next bookmark below current line.
+            "   - mp    -- move to prev bookmark above current line.
+            "let b:vm_maxmarks " max number of bookmarks in buffer.
+            "let b:vm_guifg
+            "let b:vm_guibg
+            let b:vm_ctermfg = 'black'
+            let b:vm_ctermbg = 'cyan'
+            " FIXME un-map <F2>, <F3> maps.
+            "nunmap <F2>
+            "nunmap <F3>
+        " }}}
 
         " Mark%2666 {{{ Highlight several words in different colors simultaneously.
             " {Visual}[N]<Leader>m, {Visual}<Leader>r, [N]<Leader>n, :[N]Mark {pattern}
