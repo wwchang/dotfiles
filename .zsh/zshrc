@@ -41,7 +41,7 @@ export ZSH_THEME="stardiviner"
 export DISABLE_AUTO_UPDATE="true"
 
 # Uncomment following line if you want to disable colors in ls
-export DISABLE_LS_COLORS="false" # =true will let ls display @/* etc for filetype.
+export DISABLE_LS_COLORS="true" # =true will let ls display @/* etc for filetype.
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # export DISABLE_AUTO_TITLE="true"
