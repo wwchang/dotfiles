@@ -1240,92 +1240,117 @@ endif
             "let g:AltAutoComplPop_DeleteRank0
                 " }}}
 
-            " [ KEY MAPPINGS ] {{{
-            function! s:check_back_space()
-                let col = col('.') - 1
-                return !col || getline('.')[col - 1] =~ '\s'
-            endfunction
+            " [ neocomplcache functions ] {{{
+            " inoremap <expr><C-n>
+                " pumvisible() ? "\<C-n>" : "\<Tab>"
+                " pumvisible() ? "\<C-j>" : "\<C-n>"
+                " pumvisible() ? "\<C-j>" : neocomplcache#...()
+                " neocomplcache#manual_filename_complete()
+                " neocomplcache#manual_omni_complete()
+                " neocomplcache#manual_keyword_complete()
+                " neocomplcache#smart_close_popup()
+                " neocomplcache#close_popup
+                " neocomplcache#complete_common_string()
+                " ----------------------------------------------
+                function! s:check_back_space()
+                    let col = col('.') - 1
+                    return !col || getline('.')[col - 1] =~ '\s'
+                endfunction
+                " ----------------------------------------------
+            " Awesome EXample.
+            "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
+                    "\ "\<Plug>(neocomplcache_snippets_expand)"
+                    "\ : pumvisible() ? "\<C-n>"
+                    "\ : <SID>check_back_space() ? "\<TAB>"
+                    "\ : "\<C-x>\<C-u>"
+
             "inoremap <expr><TAB> pumvisible() ? "\<C-n>"
                         "\ : <SID>check_back_space() ? "\<TAB>"
                         "\ : "\<C-x>\<C-u>"
+            " }}}
 
-            "inoremap <expr><Tab>  neocomplcache#start_manual_complete()
-            " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
-            " neocomplcache#sources#snippets_complete#expandable()
+            " [ key mappings ] {{{
+                " <Tab> -- complete or jump in snippet placeholder.
+                " <C-j> -- next popup selection or jump forwards in snippet placeholder
+                " <C-k> -- prev popup selection or jump backward in snippet placeholder
+                " <C-n> -- next popup selection.
+                " <C-p> -- prev popup selection.
+                " <C-o> -- manual omni complete.
+                " <C-y> -- smart close popup.
+                " <C-e> -- cancel popup.
+                " <C-g> -- undo completion.
+                " <C-h> -- smart close popup.
+                " <C-l> -- common string complete.
+                " <BS>  -- smart close popup.
 
-            " (for neocomplcache-snippets-complete)
-            " neocomplcache#sources#snippets_complete#expandable()
-            " return value:
-            "   0 : not found
-            "   1 : cursor text is snippets trigger
-            "   2 : exists placeholder in current buffer
-            "   3 : both found.
-            " neocomplcache#sources#snippets_complete#force_expandable()
-            " neocomplcache#sources#snippets_complete#jumpable()
-            " :NeoComplcacheEditSnippets [filetype],
-            " <Plug>(neocomplcache_snippets_expand) -> expand_or_jump
-            " <Plug>(neocomplcache_snippets_jump)   -> jump_or_expand
-            " <Plug>(neocomplcache_snippets_force_expand)
-            " <Plug>(neocomplcache_snippets_force_jump)
-            " <Plug>(neocomplcache_start_unit_snippet)
-            " ----------------------------------------------
-            imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
-                    \ "\<Plug>(neocomplcache_snippets_expand)"
-                    \ : pumvisible() ? "\<C-n>"
-                    \ : <SID>check_back_space() ? "\<TAB>"
-                    \ : "\<C-x>\<C-u>"
-            imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable() ?
-                    \ "\<Plug>(neocomplcache_snippets_jump)"
-                    \ : pumvisible() ? "\<C-n>" : "\<Tab>"
-            imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable() ?
-                    \ "\<Plug>(neocomplcache_snippets_jump)"
-                    \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
+                inoremap <expr><C-o> neocomplcache#manual_omni_complete()
+                inoremap <expr><C-y> neocomplcache#smart_close_popup()
+                inoremap <expr><C-e> neocomplcache#cancel_popup()
+                inoremap <expr><C-g> neocomplcache#undo_completion()
+                inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><C-l> neocomplcache#complete_common_string()
 
-            " (for UltiSnips)
-            " defined jump forward and backwards with C-j/k.
-            " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
-            " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
-            " ----------------------------------------------
-            "imap <expr><Tab> UltiSnips_ListSnippets() ?
-                        "\ UltiSnips_ExpandSnippetOrJump()
-                        "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
-            " ----------------------------------------------
-            "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump() ?
-                        "\ UltiSnips_ExpandSnippetOrJump()
-                        "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
-            " ----------------------------------------------
-            "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump()
-                        "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " ------------------------------------------------------------
+                " { neocomplcache-snippets-complete } {{{
+                " neocomplcache#sources#snippets_complete#expandable()
+                    " return value:
+                    "   0 : not found
+                    "   1 : cursor text is snippets trigger
+                    "   2 : exists placeholder in current buffer
+                    "   3 : both found.
+                " neocomplcache#sources#snippets_complete#expandable()
+                " neocomplcache#sources#snippets_complete#force_expandable()
+                " neocomplcache#sources#snippets_complete#jumpable()
+                " :NeoComplcacheEditSnippets [filetype],
+                " <Plug>(neocomplcache_snippets_expand) -> expand_or_jump
+                " <Plug>(neocomplcache_snippets_jump)   -> jump_or_expand
+                " <Plug>(neocomplcache_snippets_force_expand)
+                " <Plug>(neocomplcache_snippets_force_jump)
+                " <Plug>(neocomplcache_start_unit_snippet)
+                    " force_expand force complete are used in special like func(for
+                    " force_jump too.
+                " ----------------------------------------------
+                imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
+                        \ "\<Plug>(neocomplcache_snippets_expand)"
+                        \ : pumvisible() ? "\<C-n>"
+                        \ : <SID>check_back_space() ? "\<TAB>"
+                        \ : "\<C-x>\<C-u>"
+                imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable() ?
+                        \ "\<Plug>(neocomplcache_snippets_jump)"
+                        \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ?
+                        \ "\<Plug>(neocomplcache_snippets_expand)"
+                        \ : pumvisible() ? "\<C-p>" : "\<Tab>"
+                " }}}
 
-            " (for snipMate)
-            " FIXME snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
-            " ----------------------------------------------
-            "imap <expr><Tab> snipMate#ShowAvailableSnips() ?
-                        "\ snipMate#
-                        "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " { UltiSnips } {{{
+                " <C-j>/<C-k> is used by UltiSnips jump backwards and forwards.
+                " defined jump forward and backwards with C-j/k.
+                " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
+                " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
+                " ----------------------------------------------
+                "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump() ?
+                            "\ UltiSnips_ExpandSnippetOrJump()
+                            "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " }}}
 
-        " <C-j>/<C-k> is used by UltiSnips jump backwards and forwards.
-        "inoremap <expr><C-j> pumvisible()? "\<C-n>" : "\<C-j>"
-        "inoremap <expr><C-k> pumvisible()?  "\<C-p>" : "\<C-k>"
-        inoremap <expr><C-x><C-f>  neocomplcache#manual_filename_complete()
-        inoremap <expr><C-o>    neocomplcache#manual_omni_complete()
-        " inoremap <expr><C-j>  pumvisible() ? "\<C-n>" : "\<Tab>"
-        " inoremap <expr><C-n> pumvisible() ? "\<C-n>" : neocomplcache#manual_keyword_complete()
-        inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-        inoremap <expr><C-y> neocomplcache#smart_close_popup()
-            " neocomplcache#smart_close_popup() | neocomplcache#close_popup
-        inoremap <expr><C-e> neocomplcache#cancel_popup()
-        inoremap <expr><C-g> neocomplcache#undo_completion()
-        inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        " when condidates have long common(same) string.
-        inoremap <expr><C-l> neocomplcache#complete_common_string()
-        " =========================================================================
-        " TODO unite sources
-        " <Plug>(neocomplcache_start_unite_complete)
-        " <Plug>(neocomplcache_start_unite_quick_match)
-        "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-        "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                " { snipMate } {{{
+                " FIXME snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
+                " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
+                " ----------------------------------------------
+                "imap <expr><Tab> snipMate#ShowAvailableSnips() ?
+                            "\ snipMate#
+                            "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " }}}
+
+                " unite sources {{{ TODO
+                    " <Plug>(neocomplcache_start_unite_complete)
+                    " <Plug>(neocomplcache_start_unite_quick_match)
+                    "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+                    "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                " }}}
             " }}}
         " }}}
 
