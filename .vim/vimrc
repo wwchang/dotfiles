@@ -1188,6 +1188,8 @@ endif
             let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
             let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+                " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
+            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
             " let g:neocomplcache_tags_filter_patterns =
             " let g:neocomplcache_same_filetype_lists =
             " Define dictionary.
@@ -2871,6 +2873,7 @@ endif
     " }}}
 
     " [ Perl ] {{{
+    " perlomni : https://github.com/c9s/perlomni.vim
     " }}}
 
     " [ Lua ] {{{
