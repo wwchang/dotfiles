@@ -95,7 +95,8 @@ ZSH_THEME_SVN_PROMPT_CLEAN="%{$fg_bold[green]%} ✔%{$reset_color%}"
 local full_path='%{$fg[cyan]%}%~%{$reset_color%}'
 local base_path='%{$fg_bold[cyan]%}%c%{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%} $user_prompt %{$reset_color%}'
-local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.$) %{$reset_color%}'
+# local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.$) %{$reset_color%}'
+local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.➜) %{$reset_color%}'
 local return_code='%(?..%{$fg[red]%}%? ↵%{$reset_color%})'
 
 local username='%{$fg_bold[green]%}%n%{$reset_color%}'
@@ -112,10 +113,12 @@ local male='%{$fg_bold[cyan]%}♂%{$reset_color%}'
 local female='%{$fg[green]%}♀%{$reset_color%}'
 local fuck='%{$fg[yellow]%}fuck%{$reset_color%}'
 
+local right_sign='%{$fg_bold[white]%} ⑆ %{$reset_color%}'
+
 if [ "$(whoami) == 'chris'" -a "$(hostname) == 'stardiviner'" ]; then
-    local ssh_info='%{$fg_bold[red]%} « %{$reset_color%}'
+    local ssh_info=''
 else
-    local ssh_info='%{$fg[green]%}$(whoami) %{$fg[red]%}$(hostname) %{$fg_bold[red]%} « %{$reset_color%}'
+    local ssh_info='%{$fg[green]%}$(whoami) %{$fg[red]%}$(hostname) %{$reset_color%}'
 fi
 
 # # local time, color coded by last return code
@@ -146,11 +149,13 @@ fi
 
 # left side PROMPT
 # ${music_prompt}
-PROMPT=" ${base_path} ${git_branch}${git_status}${svn_info}${rvm_info} ${sign_prompt}${pre_prompt}"
+PROMPT=" ${full_path} ${ssh_info}
+${git_branch}${git_status}${svn_info}${rvm_info} ${sign_prompt}${pre_prompt}"
 # PS1="${return_code}"
+
 # right side PROMPT
 # RPROMPT="${return_code} ${female} ${fuck} ${male} %T "
-RPROMPT="${return_code} ${ssh_info} "
+RPROMPT="${return_code} ${right_sign} "
 # RPS1="${return_code}"
 
 # vim:ft=zsh:fdm=marker
