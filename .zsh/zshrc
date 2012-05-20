@@ -22,6 +22,7 @@ if [ -n "$TMUX" ]; then # if terminal is Tmux.
 fi
 # }}}
 
+# theme {{{
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -31,6 +32,7 @@ export ZSH_THEME="stardiviner"
     # source for PROMPT
     # source ~/.zsh/plugins/vundle/vundle.plugin.zsh
 # export ZSH_THEME="random"
+# }}}
 
 # Set to this to use case-sensitive completion
 # export CASE_SENSITIVE="true"
@@ -45,7 +47,10 @@ export DISABLE_LS_COLORS="false" # =true will let ls display @/* etc for filetyp
 # export DISABLE_AUTO_TITLE="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git github git-flow mercurial svn gpg-agent ssh-agent ls_colors color_cmd gem zsh-syntax-highlighting-filetypes zsh-syntax-highlighting history-substring-search command-not-found extract apt)
+plugins=(git github git-flow mercurial svn gem gpg-agent ssh-agent \
+    ls_colors color_cmd zsh-syntax-highlighting-filetypes zsh-syntax-highlighting \
+    history-substring-search command-not-found \
+    extract apt)
 # source other plugins
 # FIXME source $ZSH/plugins/ls_colors/LS_COLORS.zsh # A cool color LS and command line type color.
 # source $ZSH/plugins/color_cmd/colorCMD.zsh # colorful typing command line
@@ -111,10 +116,11 @@ export LESS_TERMCAP_us=$'\E[01;33m' # options
     export LANG=en_US.UTF-8
 # }}}
 
-# dircolors
+# dircolors {{{
 # here -b in for command dircolors is only for Bourne shell.
 # FIXME let zsh use this colorful.
 # eval( dircolors -b $HOME/.zsh/lib/dircolors.zsh )
+# }}}
 
 # AutoComplete {{{
 # auto complete category verbose
