@@ -682,7 +682,7 @@ vicious.register(volwidget, vicious.widgets.volume, " $1%", 2, "Master")
 volbar.widget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () exec("urxvt -e alsamixer") end), -- middle click to open alsamixer in terminal
    -- FIXME mute will mute all channels in alsamixer, but unmute only work on Master channel.
-   awful.button({ }, 1, function () exec("amixer -q set Master mute") end), -- middle click to MUTE.
+   awful.button({ }, 2, function () exec("amixer -q set Master mute") end), -- middle click to MUTE.
    awful.button({ }, 3, function () exec("amixer -q set Master unmute") end), -- right click to UNMUTE.
    awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end), -- middle mouse up
    awful.button({ }, 5, function () exec("amixer -q set Master 2dB-", false) end) -- middle mouse down
@@ -696,21 +696,21 @@ musicicon.image = image(beautiful.widget_music)
 mpdwidget = widget({ type = 'textbox' })
 -- TODO add tooltip for mpdwidget
 	vicious.register(mpdwidget, vicious.widgets.mpd,
-		function (widget, args)
-			if args["{state}"] == "Stop" then
-				return "" .. ccyan .. " " .. coldef .. cblack .. "Stop" .. coldef .. ""
-			elseif args["{state}"] == "Play" then
-				return "" .. ccyan .. " " .. coldef .. cblue .. args["{Title}"] .. " - " .. args["{Artist}"] .. coldef .. ""
-			elseif args["{state}"] == "Pause" then
-				return "" .. ccyan .. " " .. coldef .. cdgrey .. "Pause" .. coldef .. ""
-			end
+	    function (widget, args)
+	        if args["{state}"] == "Stop" then
+	            return "" .. ccyan .. " " .. coldef .. cblack .. "Stop" .. coldef .. ""
+	        elseif args["{state}"] == "Play" then
+	            return "" .. ccyan .. " " .. coldef .. cblue .. args["{Title}"] .. " - " .. args["{Artist}"] .. coldef .. ""
+	        elseif args["{state}"] == "Pause" then
+	            return "" .. ccyan .. " " .. coldef .. cdgrey .. "Pause" .. coldef .. ""
+	        end
         end)
 mpdwidget:buttons(
 	awful.util.table.join(
-		awful.button({}, 1, function () exec("mpc toggle", false) end), -- here false can avoid cursor switch busy mode
-		awful.button({}, 3, function () exec(terminal .. " -e ncmpcpp")   end),
-		awful.button({}, 4, function () exec("mpc prev", false) end),
-		awful.button({}, 5, function () exec("mpc next", false) end)
+	    awful.button({}, 1, function () exec("mpc toggle", false) end), -- here false can avoid cursor switch busy mode
+	    awful.button({}, 3, function () exec(terminal .. " -e ncmpcpp")   end),
+	    awful.button({}, 4, function () exec("mpc prev", false) end),
+	    awful.button({}, 5, function () exec("mpc next", false) end)
 	)
 )
 -- Bashets MPD cover art
