@@ -3444,12 +3444,6 @@ endif
             "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
             "" }}}
         " }}}
-
-        " SnippetComplete: {{{ Insert mode completion for abbre and snippets.
-            " i_CTRL-X_] -> find matches for abbr that start with text in front of cursor
-            " imap <C-x><Tab> <Plug>(SnippetComplete)
-            " inoremap <C-Space> <Plug>(SnippetComplete)
-        " }}}
     " }}}
 
     " [ Vim FAQ ] {{{
