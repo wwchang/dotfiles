@@ -208,35 +208,36 @@ zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
     ##zstyle ':auto-fu:var' track-keymap-skip opp
     #clear # clear zcompile output
 
-    # so a clean version config is here
-    # precompiled source
-    function () {
-        local A
-        A=~/.zsh/custom/auto-fu/auto-fu.zsh
-        [[ -e "${A:r}.zwc" ]] && [[ "$A" -ot "${A:r}.zwc" ]] ||
-        zsh -c "source $A; auto-fu-zcompile $A ${A:h}" >/dev/null 2>&1
-    }
-    source ~/.zsh/custom/auto-fu/auto-fu; auto-fu-install
+    ## clean version {{{
+    ## precompiled source
+    #function () {
+        #local A
+        #A=~/.zsh/custom/auto-fu/auto-fu.zsh
+        #[[ -e "${A:r}.zwc" ]] && [[ "$A" -ot "${A:r}.zwc" ]] ||
+        #zsh -c "source $A; auto-fu-zcompile $A ${A:h}" >/dev/null 2>&1
+    #}
+    #source ~/.zsh/custom/auto-fu/auto-fu; auto-fu-install
 
-    # initialization and options
-    function zle-line-init () {auto-fu-init}
-    zle -N zle-line-init
-    zstyle ':auto-fu:highlight' input bold
-    zstyle ':auto-fu:highlight' completion fg=white
-    zstyle ':auto-fu:var' postdisplay ''
-    #zstyle ':completion:*' completer _oldlist _complete
+    ## initialization and options
+    #function zle-line-init () {auto-fu-init}
+    #zle -N zle-line-init
+    #zstyle ':auto-fu:highlight' input bold
+    #zstyle ':auto-fu:highlight' completion fg=white
+    #zstyle ':auto-fu:var' postdisplay ''
+    ##zstyle ':completion:*' completer _oldlist _complete
 
-    zle -N zle-keymap-select auto-fu-zle-keymap-select
-    # ~~~~~~~~~~~~~~~
-    zstyle ':auto-fu:highlight' input bold
-    zstyle ':auto-fu:highlight' input fg=green
-    zstyle ':auto-fu:highlight' completion fg=red,bold
-    zstyle ':auto-fu:highlight' completion/one fg=green,bold,underline
-    zstyle ':auto-fu:var' postdisplay $'\n ♪ »'
-    zstyle ':auto-fu:var' postdisplay/clearp 'yes'
-    zstyle ':auto-fu:var' enable all
-    zstyle ':auto-fu:var' disable magic-space
-    clear # clear zcompile output
+    #zle -N zle-keymap-select auto-fu-zle-keymap-select
+    ## ~~~~~~~~~~~~~~~
+    #zstyle ':auto-fu:highlight' input bold
+    #zstyle ':auto-fu:highlight' input fg=green
+    #zstyle ':auto-fu:highlight' completion fg=red,bold
+    #zstyle ':auto-fu:highlight' completion/one fg=green,bold,underline
+    #zstyle ':auto-fu:var' postdisplay $'\n ♪ »'
+    #zstyle ':auto-fu:var' postdisplay/clearp 'yes'
+    #zstyle ':auto-fu:var' enable all
+    #zstyle ':auto-fu:var' disable magic-space
+    #clear # clear zcompile output
+    ## }}}
 
 # }}}
 
