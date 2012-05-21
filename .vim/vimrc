@@ -1,6 +1,6 @@
 " Author: stardiviner ( numbchild at gmail dot com )
 
-" [[ Vimrc structure ]] {{{2
+" [[ vimrc structure ]] {{{2
 " .vimrc -- global settings
 " .vim/
 "   after/      -- files that are loaded at the very end.
@@ -138,6 +138,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
     set nospell
+    set dictionary=/usr/share/dict/words " dictionary for spell.
     augroup ToggleSpell
         au!
         au FileType mail,tex,markdown,org,tpp setlocal spell " vim default spellcheck
