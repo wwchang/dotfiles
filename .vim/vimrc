@@ -1106,6 +1106,7 @@ endif
         call vam#ActivateAddons(['Tabular'])
         call vam#ActivateAddons(['surround'])
         call vam#ActivateAddons(['Auto_Pairs'])
+        " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
         "call vam#ActivateAddons(['ShowTrailingWhitespace'])
             " write & spell checker & speak
@@ -3909,6 +3910,9 @@ endif
                 " FIXME error in abbreviations <space> auto expand.
             let g:AutoPairsCenterLine = 1
             let g:AutoPairsFlyMode = 0 " TODO alpha.
+        " }}}
+
+        " delimitMate: {{{ auto closing of quotes, parenthesis, brackets etc.
         " }}}
 
         " Formatvim: {{{ convert current file to colored HTML, BBCode or whatever.
