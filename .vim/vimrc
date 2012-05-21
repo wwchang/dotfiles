@@ -901,6 +901,11 @@ endif
         " }}}
     " }}}
 
+    " [ VAM-known-repositories ] {{{
+    let g:vim_addon_manager.plugin_sources = {}
+    " let g:vim_addon_manager.plugin_sources['your_plugin_name'] = {plugin dictionary}
+    " }}}
+
         " ActivateAddones List: {{{
             " vim plugin manager
         "call vam#ActivateAddons(['tplugin'])
