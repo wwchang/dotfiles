@@ -214,8 +214,8 @@ run_once("urxvtd")
 run_once("mpd")
 run_once("mlnet")
 run_once("nm-applet")
---run_once("anki")
--- run_once("xscreensaver","-no-splash")
+run_once("anki")
+run_once("xscreensaver","-no-splash")
 
 -- run_once("wicd-gtk")
 -- It is possible to set up Urxvt so that a single Daemon runs, and individual client windows connect to it, (urxvtd and urxvtc), the advantage of this is reduced
