@@ -1341,6 +1341,11 @@ endif
                     " force_expand force complete are used in special like func(for
                     " force_jump too.
                 " ----------------------------------------------
+                " neocomplcache snippet
+                "   -> neocomplcache complete
+                "       -> check backspace
+                "           -> <Tab>
+                "               -> User defined complete.
                 imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
                         \ "\<Plug>(neocomplcache_snippets_expand)"
                         \ : pumvisible() ? "\<C-n>"
