@@ -1235,9 +1235,21 @@ endif
             " let g:neocomplcache_vim_completefuncs =
             " let g:neocomplcache_source_disable = {}
             " let g:neocomplcache_source_completion_length = {}
-            " let g:neocomplcache_source_rank =
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
+                " control each source's completion priority.
+            let g:neocomplcache_source_rank = {
+                        \ 'dictionary_complete' : 4,
+                        \ 'buffer_complete' : 5,
+                        \ 'syntax_complete' : 7,
+                        \ 'include_complete' : 8,
+                        \ 'snippets_complete' : 8,
+                        \ 'vim_complete' : 300,
+                        \ 'omni_complete' : 300,
+                        \ 'other plugin sources' : 5,
+                        \ 'other completefunc sources' : 10,
+                        \ 'other ftplugin sources' : 100
+                        \ }
 
             "let g:AltAutoComplPop_CalcRankMaxLists
             "let g:AltAutoComplPop_CacheLineCount
