@@ -10,7 +10,7 @@ color error         color232  color196
 color message       color039  default
 color search        color232  color154
 color status        color028  default
-color tree          color124  default
+color tree          color240  default
 color normal        color244  default
 color tilde         color209  default
 color bold          color039  default
