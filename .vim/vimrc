@@ -1028,6 +1028,7 @@ endif
         "call vam#ActivateAddons(['vim-addon-xdebug'])
         call vam#ActivateAddons(['phpqa'])
         "call vam#ActivateAddons(['PHPUnit_QF'])
+        call vam#ActivateAddons(['PIV'])
         " call vam#ActivateAddons(['github:tobyS/vip'])
         "call vam#ActivateAddons(['pdv-standalone'])
         "call vam#ActivateAddons(['cakephp'])
@@ -2765,6 +2766,11 @@ endif
             " }}}
             " PHPUnit_QF : Run PHPUnit tests from within vim and put the errors
             " into the quickfix list.
+        " }}}
+
+        " [ Integration ] {{{
+            " PIV {{{ PHP Integration for Vim.
+            " }}}
         " }}}
 
         " [ Framework ] {{{
