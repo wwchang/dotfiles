@@ -3905,7 +3905,8 @@ endif
             let g:AutoPairsMapBS = 1
             let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
                 " FIXME error in vimwiki <CR> Enter. but use upper inoremap can solve.
-            let g:AutoPairsMapSpace = 1
+            let g:AutoPairsMapSpace = 0
+                " FIXME error in abbreviations <space> auto expand.
             let g:AutoPairsCenterLine = 1
             let g:AutoPairsFlyMode = 0 " TODO alpha.
         " }}}
