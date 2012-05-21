@@ -41,13 +41,6 @@ else
     # user_prompt="»"
 fi
 
-# whether has background running jobs `$ jobs`
-#if [ (`$jobs`) -n ]; then
-    #bgjobs="%{$fg_bold[cyan]%} %{$reset_color%}"
-#else
-    #bgjobs=""
-#fi
-
 sign_prompt="%{$fg[black]%}[%{$fg_bold[red]%}妖%{$reset_color%}%{$fg[black]%}] %{$reset_color%}"
 # mpd status
 if [ -n "`mpc status | grep playing`" ]; then
@@ -146,6 +139,26 @@ fi
 
 #typeset -A host_repr
 #host_repr=('dieter-ws-a7n8x-arch' "%{$fg_bold[green]%}ws" 'dieter-p4sci-arch' "%{$fg_bold[blue]%}p4")
+
+# whether has background running jobs "$(jobs)"
+# FIXME the prompt can not refresh.
+#get_background_jobs() {
+    #if [[ -n "$(jobs)" ]]; then
+        #local jobs_count="`jobs | wc -l`"
+        ## jobs_state="`jobs`"
+        ## ---
+        ## $jobstates, $jobdirs, $jobtexts
+        #local background_jobs=" %{$fg[black]%}bg:%{$fg[yellow]%}${jobs_count} %{$reset_color%}"
+        #echo "$background_jobs"
+    #else
+        #local background_jobs=""
+    #fi
+#}
+#PROMPT=" ${base_path} ${git_branch}${git_status}${svn_info}${rvm_info}$(get_background_jobs) ${sign_prompt}${pre_prompt}"
+
+# two lines prompt:
+# PROMPT=" ${base_path} ${git_branch}${git_status}${svn_info}${rvm_info}
+# ${sign_prompt}${pre_prompt}"
 
 # left side PROMPT
 # ${music_prompt}
