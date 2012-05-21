@@ -4151,6 +4151,11 @@ endif
         " openssl.vim {{{ Edit OpenSSL encrypted files and turn Vim into a Password Safe!
         " }}}
     " }}}
+
+    " [ helper ] {{{
+    " bestfriend : how long did you edit a file with Vim ?
+        " :Bestfriend[s]
+    " }}}
 " }}}
 
 " vim: foldmethod=marker
