@@ -144,7 +144,6 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
         au FileType mail,tex,markdown,org,tpp setlocal spell " vim default spellcheck
     augroup END
     set spelllang=en_us " en: all, en_gb: Great Britain.
-    set spellcapcheck="[.?!]\_[\])\" \t]\+"
     set spellsuggest=best " default and fast list.
     set spellfile=~/.vim/spell/en.utf-8.add " 'zg' add to this file.
     nnoremap <silent> <Leader>sc :set spell!<CR>
@@ -154,7 +153,6 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     set mousemodel=extend
     set cmdheight=1                  " command line height
     set autochdir                    " auto change dir
-    set dictionary=~/.vim/misc/words " dictionary for "k", '/usr/share/dict/words'
     "set complete=".,w,b,t,i,u,k"     " completion buffers
     "             | | | | | | |
     "             | | | | | | `-dict
@@ -429,7 +427,7 @@ endif
     augroup END
     " }}}
 
-    " [ fold ] {{{3
+    " [ folding ] {{{3
     set foldenable          " enable fold
     set foldmethod=indent   " indent, syntax, manual, expr, diff, marker
     set foldnestmax=3       " maximum nesting of fold
@@ -438,7 +436,7 @@ endif
     set foldmarker={{{,}}}      " fold marker
     set foldminlines=3      " fold minlines
     set foldcolumn=0        " 3 colums ahead of line number.
-    set foldopen=block,hor,mark,percent,quickfix,search,tag,undo
+    set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
     nnoremap <SPACE> za
         " conflict with set foldopen=all
 
@@ -1083,7 +1081,7 @@ endif
         call vam#ActivateAddons(['wwwsearch'])
         "call vam#ActivateAddons(['TwitVim'])
             " color/syntax
-        "call vam#ActivateAddons(['colorv'])
+        call vam#ActivateAddons(['colorv'])
         "call vam#ActivateAddons(['Colorizer'])
         "call vam#ActivateAddons(['CSSMinister'])
         "call vam#ActivateAddons(['ScrollColors'])
@@ -2151,7 +2149,7 @@ endif
             let g:EasyGrepSearchCurrentBufferDir = 1 " search current buffer's dir.
             " let g:EasyGrepInvertWholeWord =
                 " 0: all files, 1: buffers, 2: associated extensions
-            let g:EasyGrepFileAssociations = 0 " TODO 0/1/2; link C .c .h extensions.
+            " let g:EasyGrepFileAssociations = '' " location of ext info file.
             let g:EasyGrepFileAssociationsInExplorer = 1 " show file associations list.
             let g:EasyGrepOptionPrefix='<leader>vy'
             let g:EasyGrepReplaceWindowMode = 0 " 0: new tab, 1: split, 2: autowriteall
@@ -2630,7 +2628,7 @@ endif
         " }}}
     " }}}
 
-    " [ Web ] {{{
+    " [ Web: HTML5 & CSS ] {{{
         " [ HTML5 ] {{{
             "au FileType html set shiftwidth=2
             "au FileType html set softtabstop=2
@@ -3321,7 +3319,7 @@ endif
     " [ color ] {{{
         let rgb_file = "/usr/X11/lib/X11/rgb.txt"
 
-        " ColorV: {{{
+        " colorv: {{{
         " }}}
 
         " Colorizer: {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
@@ -3866,7 +3864,7 @@ endif
             " :Abolish, :Subvert.
         " }}}
 
-        " AutoPairs: {{{
+        " Auto_Pairs: {{{
                 " shortcuts:
                 "   <M-o> : newline with indentation
                 "   <M-a> : jump to of line
