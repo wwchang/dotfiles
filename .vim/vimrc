@@ -142,7 +142,6 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     augroup ToggleSpell
         au!
         au FileType mail,tex,markdown,org,tpp setlocal spell " vim default spellcheck
-        au FileType help setlocal nospell
     augroup END
     set spelllang=en_us " en: all, en_gb: Great Britain.
     set spellcapcheck="[.?!]\_[\])\" \t]\+"
