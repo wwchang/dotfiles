@@ -62,6 +62,7 @@ mailboxes =FVWM
 
 mailboxes =Web
 mailboxes =Web/whatwg
+mailboxes =Web/firebug
 mailboxes =Web/jplayer
 
 mailboxes =Perl

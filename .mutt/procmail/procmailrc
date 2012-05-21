@@ -280,6 +280,9 @@ VERBOSE=on
 
 # Web {{{2
     :0
+    * List-Id: .*firebug\.googlegroups\.com
+    Web/firebug/
+    :0
     * List-Id: .*jplayer\.googlegroups\.com
     Web/jplayer/
     :0

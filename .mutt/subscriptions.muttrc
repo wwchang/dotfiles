@@ -69,6 +69,7 @@ subscribe drupal-support Drupal-support <support-request@drupal.org>
 subscribe drupal-security Drupal-security <security-news@drupal.org>
 # Web
 subscribe jplayer jPlayer <jplayer@googlegroups.com>
+subscribe firebug Firebug <firebug@googlegroups.com>
 
 # Maemo
 subscribe maemo maemo-developers <maemo-developers@maemo.org>
