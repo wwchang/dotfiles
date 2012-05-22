@@ -8,9 +8,9 @@ color indicator     color016  color088
 color attachment    color123  default
 color error         color232  color196
 color message       color039  default
-color search        color232  color154
+color search        color016  color154
 color status        color028  default
-color tree          color240  default
+color tree          color239  default
 color normal        color244  default
 color tilde         color209  default
 color bold          color039  default
@@ -61,32 +61,32 @@ color body          color226    default "(sex|gay)"
 
 # Colours for items in the index
 # color index         color046    default "~N|~O" # OR in this situation.
-color index         color046    default ~N # new
-color index         color100    default ~O # old
-color index         color094    default ~U # unreaded
+color index         color082    default ~N # new
+color index         color094    default ~O # old
+color index         color058    default ~U # unreaded
 color index         color123    default ~l # addressed "to" a known mailing list
-color index         color178    default ~u # addressed "from" a subscribed mailing list
-color index         color244    default ~R # readed mailing list mails.
+color index         color255    default ~u # addressed "from" a subscribed mailing list
+color index         color241    default ~R # readed
 # PGP signed
-color index         color081    default  ~k  # contains PGP
-color index         color051    default  ~g  # PGP signed
+color index         color022    default  ~k  # contains PGP
+color index         color070    default  ~g  # PGP signed
 color index         color232    color167 ~G  # PGP encrypted
 color index         color203    default  ~V  # cryptographically verified messages
 # big size mail
-color index         color094    default "~z >200K" # size tween 1M-100M
+color index         color053    default "~z >200K" # size tween 1M-100M
 # collapsed
-color index         color196    default "~v" # message is part of a collapsed thread
+color index         color162    default "~v" # message is part of a collapsed thread
 # duplicated
-color index         color196    default "~="  # duplicated messages
+color index         color233    default "~="  # duplicated messages
 # spam
 color index         color089    default '~h "X-Spam-Status: Yes"'
 # color index red default '~h "X-Spam-Status:.*score=(2|3)."'
 # notify message
-color index         color159    default '~h "From: .*noreply"'
-color index         color159    default '~h "From: .*no-reply"'
-color index         color159    default '~h "From: .*notification"'
-color index         color159    default '~h "From: .*alert"'
-color index         color159    default '~h "From: .*service"'
+color index         color215    default '~h "From: .*noreply"'
+color index         color215    default '~h "From: .*no-reply"'
+color index         color215    default '~h "From: .*notification"'
+color index         color215    default '~h "From: .*alert"'
+color index         color215    default '~h "From: .*service"'
 # friends mails
 # color index         color197    default "~N (~e 184145190 | ~e 243113196 | ~e shanyingqing )" # Baobao
 color index         color226    default "-r 24/3*3d"  # my birthday mail
@@ -114,11 +114,11 @@ color index         color204    default "~f taobao@news\.mail\.taobao\.com" # Ta
 # myself
 # color index         color025    default ~p  # message only to you
 # color index         color040    default ~P  # message from myself
-color index         color016    color123 ~(~P)  # message from myself
-color index         color105    default "~x .*@stardiviner" # I'm in the References list.
-color index         color070    default "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
+color index         color153    default ~(~P)  # message from myself
+color index         color030    default "~x .*@stardiviner" # I'm in the References list.
+color index         color051    default "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
 color index         color202    default ~Q  # I replied to this mail.
-color index         color232    color046 ~T  # tagged  *
+color index         color232    color040 ~T  # tagged  *
 color index         color232    color203 ~F  # flagged !
 color index         color235    default  ~D  # deleted D
 
