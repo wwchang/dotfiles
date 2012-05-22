@@ -9,7 +9,10 @@ color attachment    color123  default
 color error         color232  color196
 color message       color039  default
 color search        color016  color154
-color status        color028  default
+    # Mutt looks color
+color status        color148  default
+    # `->
+    #  `->
 color tree          color239  default
 color normal        color244  default
 color tilde         color209  default
