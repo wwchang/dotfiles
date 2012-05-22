@@ -1010,6 +1010,8 @@ endif
             " Web: HTML/CSS/XML etc
         call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['ZenCoding'])
+        call vam#ActivateAddons(['html5'])
+        call vam#ActivateAddons(['HTML5_Syntax_File'])
             " JavaScript
         call vam#ActivateAddons(['jsflakes%4057'])
         call vam#ActivateAddons(['jsruntime'])
@@ -2702,6 +2704,25 @@ endif
                 let g:use_zen_complete_tag = 1 " complete tags using omnifunc.
             " }}}
             " MatchTag:
+            " HTML AutoCloseTag:
+            " html5 {{{ HTML5 omnicomplete func and syntax for Vim.
+                " based on the default htmlcomplete.vim.
+                " Features:
+                "   - Support all new elements and attributes.
+                "   - Support microdata
+                "   - Support RDFa.
+                "   - Support WAI-ARIA.
+                " XXX upper features reference can find link in script readme.
+                " enable event-handler attributes support:
+                let g:html5_event_handler_attributes_complete = 1
+                " enable RDFa attributes support:
+                let g:html5_rdfa_attributes_complete = 1
+                " enable microdata attributes support:
+                let g:html5_microdata_attributes_complete = 1
+                " enable WAI-ARIA attribute support:
+                let g:html5_aria_attributes_complete = 1
+            " }}}
+            " HTML5_Syntax_File : HTML5 syntax file.
         " }}}
 
         " [ CSS ] {{{
