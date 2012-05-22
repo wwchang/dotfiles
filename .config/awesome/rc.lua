@@ -160,15 +160,15 @@ end
 -- }}}
 
 -- If you wish to change default settings, you can redefine any of the following fields. For details refer to luadoc.
-naughty.config.default_preset.timeout          = 15
+naughty.config.default_preset.timeout          = 10
 naughty.config.default_preset.screen           = 1
-naughty.config.default_preset.position         = "top_left"
-naughty.config.default_preset.margin           = 15
+naughty.config.default_preset.position         = "bottom_left" -- top_left, top_right, bottom_left, bottom_right.
+naughty.config.default_preset.margin           = 20
 naughty.config.default_preset.height           = nil -- default = nil
 naughty.config.default_preset.width            = 450
 naughty.config.default_preset.gap              = 10
 naughty.config.default_preset.ontop            = true
-naughty.config.default_preset.font             = "Comic Sans MS 10"
+naughty.config.default_preset.font             = beautiful.font
 -- naughty.config.default_preset.icon             = nil
 -- naughty.config.default_preset.icon_size        = 16
 naughty.config.default_preset.fg               = beautiful.fg_focus
