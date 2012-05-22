@@ -34,10 +34,9 @@ if [[ $(pgrep awesome) != "" ]]; then
     mplayer ~/bin/sounds/voice-incoming-transmission.wav &>/dev/null
     `echo \
         'naughty.notify({\
-        title = "<span color=\"#FF0000\" font=\"Comic Sans MS 11\">┌─[  ' "$1" '  ]</span>", \
-        text  = "<span color=\"#FF0000\" font=\"Comic Sans MS 11\">└─╼ </span> \ <span color=\"#DCDCCC\" \
-        font=\"DejaVu Sans Mono 10\">' "$2" '</span>", \
-        timeout = 10, width = 400, position = "top_left"})' | awesome-client -` >/dev/null
+        title = "<span color=\"#87AF00\">┌─[  ' "$1" '  ]</span>", \
+        text  = "<span color=\"#87AF00\">└─╼ </span> \ <span color=\"#808080\">' "$2" '</span>", })' \
+        | awesome-client -` >/dev/null
 
     # `env DISPLAY=:0.0 notify-send -t 10000 "┌─[<span color='#FF0000'>"$1"</span>]" "└─╼ <span color='#55FFFF'>'$2'</span>"` >/dev/null
 
