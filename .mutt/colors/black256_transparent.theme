@@ -81,6 +81,9 @@ color index         color233    default "~="  # duplicated messages
 # spam
 color index         color089    default '~h "X-Spam-Status: Yes"'
 # color index red default '~h "X-Spam-Status:.*score=(2|3)."'
+# important mails
+# Amazon.cn
+color index         color234    color190 '~h "From: .*auto-confirm@amazon.cn"'
 # notify message
 color index         color215    default '~h "From: .*noreply"'
 color index         color215    default '~h "From: .*no-reply"'
