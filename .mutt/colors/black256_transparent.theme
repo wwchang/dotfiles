@@ -4,7 +4,7 @@
 color hdrdefault    color241  default
 color signature     color039  default
 # color indicator     color232  color204 # pink
-color indicator     color016  color088
+color indicator     color234  color116
 color attachment    color123  default
 color error         color232  color196
 color message       color039  default
@@ -114,7 +114,7 @@ color index         color204    default "~f taobao@news\.mail\.taobao\.com" # Ta
 # myself
 # color index         color025    default ~p  # message only to you
 # color index         color040    default ~P  # message from myself
-color index         color153    default ~(~P)  # message from myself
+color index         color237    color153 ~(~P)  # message from myself
 color index         color030    default "~x .*@stardiviner" # I'm in the References list.
 color index         color051    default "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
 color index         color202    default ~Q  # I replied to this mail.
