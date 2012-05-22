@@ -1070,6 +1070,7 @@ endif
             " GTD
         call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
+        call vam#ActivateAddons(['github:mattn/calendar-vim'])
             " outliner
         call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
@@ -3824,19 +3825,19 @@ endif
         " }}}
 
         " Calendar: {{{
+            " Usage:
+            "   :Calendar, :Calendar 2001 8
             let g:calendar_focus_today = 1
             let g:calendar_mark = 'right' " place mark(*|+) after the day.
+                " left, left-fit, right.
             let g:calendar_navi = 'both' " use navigator: top, bottom, both
             let g:calendar_navi_label = 'Prev,Today,Next'
             " let g:calendar_erafmt = 'Heisei,-1988'   " replace header: for Japanese
             "let g:calendar_mruler = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'
             "let g:calendar_wruler = 'Su Mo Tu We Th Fr Sa'
             let g:calendar_monday = 1 " start with monday.
-            let g:calendar_weeknm = 2 " WK 1
-            let g:calendar_datetime = 'title'
-        " }}}
-
-        " VimOrganizer: {{{ A clone of Emacs' Org-mode for Vim
+            let g:calendar_weeknm = 2 " 1: WK01, 2: WK 1, 3: KW01, 4: KW 1.
+            let g:calendar_datetime = 'statusline' " title, statusline, ''
         " }}}
 
         " vimgtd {{{ gtd by vim.
