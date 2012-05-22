@@ -149,7 +149,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     nnoremap <silent> <Leader>sc :set spell!<CR>
     " }}}
 
-    " [ completion & omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
+    " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
     set cmdheight=1                  " command line height
     set autochdir                    " auto change dir
@@ -527,7 +527,7 @@ endif
     " }}}
 
     " [ text ] {{{
-    set textwidth=80 " =0:unlimited, limit textwidth to prevent your from nesting more code blocks.
+    set textwidth=80 " =0:unlimited, =80.
     set formatprg=par         " default is ""
     set formatoptions=tcq     " vim default is "tcq".
     "set comments
@@ -773,6 +773,10 @@ endif
 " [[ Misc ]] {{{2
 
     " [ abbreviations ] {{{
+    " Abbreviations are used in Insert, Replace and Command-line mode.
+    " three types of abbreviations: full-id, end-id, non-id.
+    " show current buffer all abbreviates with command: ':verbose abbreviate'.
+    " FIXME why those abbreviations is expanded with dot instead of space.
     source ~/.vim/misc/abbreviations.vim
     " }}}
 
@@ -925,7 +929,7 @@ endif
         call vam#ActivateAddons(['vim-github'])
             " CSV
         "call vam#ActivateAddons(['csv'])
-            " Tab Completion
+            " Completion <Tab>
         call vam#ActivateAddons(['neocomplcache', 'vimproc', 'unite', 'vimshell'])
         "call vam#ActivateAddons(['neco-look'])
         " call vam#ActivateAddons(['AutoComplPop'])
@@ -1103,6 +1107,7 @@ endif
         "call vam#ActivateAddons(['VIM_Color_Picker'])
         "call vam#ActivateAddons(['Galaxy'])
         "call vam#ActivateAddons(['nosyntaxwords'])
+            " colorschemes
             " mark & position & session
                 " mark several words in different colors simultaneously.
         "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
@@ -1273,7 +1278,10 @@ endif
             "let g:AltAutoComplPop_OptimizeLevel
             "let g:AltAutoComplPop_DisableAutoComplete
             "let g:AltAutoComplPop_DeleteRank0
-                " }}}
+            " }}}
+            " FIXME  python-gtk3
+            " issue: https://github.com/Shougo/neocomplcache/issues/181
+            " let g:neocomplcache_omni_patterns['python'] = ''
 
             " [ neocomplcache functions ] {{{
             " inoremap <expr><C-n>
@@ -2286,6 +2294,9 @@ endif
 
     " [ doc & help "K" ] {{{
         " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+            " support python dot operator help.
+            " e.g. module.fun|<K>ction(args)
+            " FIXME, viewdoc, will open a new help doc window when use :ViewDocHelp
             " TODO more customize
             " Usage:
                 " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
@@ -3303,7 +3314,7 @@ endif
             let b:inline_edit_html_like_filetypes = ['vimwiki', 'tpp']
         " }}}
 
-        " NrrwRgn {{{ A Narrow Region Plugin similar to Emacs
+        " NrrwRgn (NarrowRegion) {{{ A Narrow Region Plugin similar to Emacs
             "Narrowing means focussing on a region and making the rest
             "inaccessible." This is a script emulates Emacs Narrowing feature,
             "by opening a selected range in a new scratch buffer.  In the
@@ -3478,12 +3489,11 @@ endif
             " \[n|p] to choose colorscheme
             " TODO choose a good colorscheme from .vim/colors/
 
-        " Lucius:
-
-        " ColorSchemeEditor:
-            " {{{ PyGTK GUI to more easily create colorschemes
+        " ColorSchemeEditor: {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
         " }}}
+
+        " Lucius:
     " }}}
 
     " [ syntax for *** ] {{{
