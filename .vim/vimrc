@@ -3131,7 +3131,9 @@ endif
         let g:tex_verbspell = 1 " spell checking in Verbatim Zones
         "let tex_no_error=1
         let g:tex_conceal = "admgs"
-            "accents/ligatures, delimiters, math symbols, Greek, superscripts/subscripts.
+            "accents/ligatures, delimiters, math symbols, Greek, superscripts/subscripts
+
+        " tex_autoclose:
     " }}}
 
     " [ R ] {{{
