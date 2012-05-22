@@ -81,7 +81,14 @@ color index         color233    default "~="  # duplicated messages
 # spam
 color index         color089    default '~h "X-Spam-Status: Yes"'
 # color index red default '~h "X-Spam-Status:.*score=(2|3)."'
-# important mails
+
+# useless mails {{{
+color index         color233    default '~h signoff'
+# }}}
+
+# important notify mails {{{
+# TaoBao
+color index         color204    default "~f taobao@news\.mail\.taobao\.com"
 # Amazon.cn
 color index         color234    color190 '~h "From: .*auto-confirm@amazon.cn"'
 # notify message
@@ -90,16 +97,16 @@ color index         color215    default '~h "From: .*no-reply"'
 color index         color215    default '~h "From: .*notification"'
 color index         color215    default '~h "From: .*alert"'
 color index         color215    default '~h "From: .*service"'
-# friends mails
+# }}}
+# friends mails {{{
 # color index         color197    default "~N (~e 184145190 | ~e 243113196 | ~e shanyingqing )" # Baobao
 color index         color226    default "-r 24/3*3d"  # my birthday mail
 color index         color204    default "(~e fuhemeng | ~e 568734625 | ~f fuhemeng | ~f 568734625 )" # Mama
 color index         color204    default "(~e 1051899676 | ~e 1051899676 )" # sister
 color index         color204    default "(~e 184145190 | ~e 243113196 | ~e shanyingqing )" # BaoBao
 color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shanyingqing )" # BaoBao
-# important notify mails
-color index         color204    default "~f taobao@news\.mail\.taobao\.com" # TaoBao
-# special mails
+# }}}
+# special mails {{{
 # FIXME color index         color106    default "~h ^[SOLVED|solved]" # [SOLVED]
 # you send in mailing list or replied in mailing list ( Message-ID | References | In-Reply-To )
 # FIXME
@@ -114,16 +121,21 @@ color index         color204    default "~f taobao@news\.mail\.taobao\.com" # Ta
 #color index         color178    default ~(~g)  # PGP signed
 #color index         color232    color197 ~(~G)  # PGP encrypted
 #color index         color240    default ~R     # readed messages
-# myself
+# }}}
+# myself {{{
 # color index         color025    default ~p  # message only to you
 # color index         color040    default ~P  # message from myself
 color index         color237    color153 ~(~P)  # message from myself
 color index         color030    default "~x .*@stardiviner" # I'm in the References list.
 color index         color051    default "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
 color index         color202    default ~Q  # I replied to this mail.
+# }}}
+
+# marked emails {{{
 color index         color232    color040 ~T  # tagged  *
 color index         color232    color203 ~F  # flagged !
 color index         color235    default  ~D  # deleted D
+# }}}
 
 # threads
 #color index brightyellow default  "~h 'References: +<.+>'"
