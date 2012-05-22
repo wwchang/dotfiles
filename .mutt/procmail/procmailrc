@@ -412,6 +412,9 @@ VERBOSE=on
     :0
     * ^List-Id: .*aur-general\.archlinux\.org
     Arch/aur-general/
+    :0
+    * ^List-Id: .*archlinux-cn\.googlegroups\.com
+    Arch/archlinux-cn/
 # }}}
 
 # system {{{2

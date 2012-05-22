@@ -93,6 +93,7 @@ subscribe arch-commits arch-commits <arch-commits@archlinux.org>
 subscribe pacman arch-pacman-dev <pacman-dev@archlinux.org>
 subscribe aur-general arch-aur-general <aur-general@archlinux.org>
 subscribe arch-releng arch-releng <arch-releng@archlinux.org>
+subscribe archlinux-cn archlinux-cn <archlinux-cn@googlegroups.com>
 # Gentoo
 subscribe linux.gentoo.user linux.gentoo.user.G <linux.gentoo.user@googlegroups.com>
 

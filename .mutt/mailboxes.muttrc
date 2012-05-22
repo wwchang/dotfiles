@@ -35,6 +35,7 @@ mailboxes =Arch/events
 mailboxes =Arch/dev-public
 mailboxes =Arch/pacman-dev
 mailboxes =Arch/aur-general
+mailboxes =Arch/archlinux-cn
 
 mailboxes =Python
 mailboxes =Python/python
