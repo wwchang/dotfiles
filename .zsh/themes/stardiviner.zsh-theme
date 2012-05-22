@@ -54,6 +54,7 @@ fi
 # VCS
 # man zshcontrib | ( GATHERING INFORMATION FROM VERSION CONTROL SYSTEMS )
 zstyle ':vcs_info:*' enable git cvs svn hg
+
 # {{{ GIT PROMPT
 ZSH_THEME_GIT_PROMPT_PREFIX="git:(%{$fg[red]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
@@ -66,6 +67,28 @@ ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
 ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ⌥"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[white]%} ⚡"
+# ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ⭠"
+# }}}
+
+# {{{ hg PROMPT (Mercurial)
+# ZSH_THEME_HG_PROMPT=
+
+# ~/.zsh/customize/hg-prompt/
+hg_ps1() {
+    hg prompt "{[+{incoming|count}]-->}{root|basename}{/{branch}}{-->[+{outgoing|count}]}{ at {bookmark}}{status}" 2> /dev/null
+}
+
+# export PS1='$(hg_ps1)\n\u at \h in \w\n$ '
+# local hg_prompt="hg:(%{$fg[cyan]%} $hg_ps1)"
+
+# https://bitbucket.org/FoxLegend/oh-my-zsh/src/67296a73a3db/themes/rkj-repos.zsh-theme
+function hg_prompt_info {
+    hg prompt --angle-brackets "\
+    <hg:%{$fg[magenta]%}<branch>%{$reset_color%}>\
+    </%{$fg[yellow]%}<tags|%{$reset_color%}, %{$fg[yellow]%}>%{$reset_color%}>\
+    %{$fg[red]%}<status|modified|unknown><update>%{$reset_color%}<
+    patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset_color%})|pre_unapplied(%{$fg_bold[black]%})|post_unapplied(%{$reset_color%})>>" 2>/dev/null
+}
 # }}}
 
 # {{{ RVM PROMPT
