@@ -1267,19 +1267,53 @@ endif
             " let g:neocomplcache_source_completion_length = {}
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
-                " control each source's completion priority.
-            let g:neocomplcache_source_rank = {
-                        \ 'dictionary_complete' : 4,
-                        \ 'buffer_complete' : 5,
-                        \ 'syntax_complete' : 7,
-                        \ 'include_complete' : 8,
-                        \ 'snippets_complete' : 8,
-                        \ 'vim_complete' : 300,
-                        \ 'omni_complete' : 300,
-                        \ 'other plugin sources' : 5,
-                        \ 'other completefunc sources' : 10,
-                        \ 'other ftplugin sources' : 100
-                        \ }
+
+            " [ priority ] {{{
+            " control each source's completion priority.
+            " The higher value is, the higher priority.
+
+                " default
+                " let g:neocomplcache_source_rank = {
+                "             \ 'dictionary_complete' : 4,
+                "             \ 'buffer_complete' : 5,
+                "             \ 'syntax_complete' : 7,
+                "             \ 'include_complete' : 8,
+                "             \ 'snippets_complete' : 8,
+                "             \ 'vim_complete' : 300,
+                "             \ 'omni_complete' : 300,
+                "             \ 'other plugin sources' : 5,
+                "             \ 'other completefunc sources' : 10,
+                "             \ 'other ftplugin sources' : 100
+                "             \ }
+
+                let g:neocomplcache_source_rank = {
+                            \ 'dictionary_complete' : 4,
+                            \ 'buffer_complete' : 5,
+                            \ 'syntax_complete' : 7,
+                            \ 'include_complete' : 8,
+                            \ 'snippets_complete' : 400,
+                            \ 'vim_complete' : 300,
+                            \ 'omni_complete' : 300,
+                            \ 'other plugin sources' : 5,
+                            \ 'other completefunc sources' : 10,
+                            \ 'other ftplugin sources' : 100
+                            \ }
+
+                " totally custom
+                " let g:neocomplcache_source_rank = {
+                "             \ 'dictionary_complete' : 50,
+                "             \ 'buffer_complete' : 90,
+                "             \ 'syntax_complete' : 80,
+                "             \ 'include_complete' : 70,
+                "             \ 'snippets_complete' : 100,
+                "             \ 'vim_complete' : 10,
+                "             \ 'omni_complete' : 60,
+                "             \ 'other plugin sources' : 40,
+                "             \ 'other completefunc sources' : 30,
+                "             \ 'other ftplugin sources' : 20
+                "             \ }
+
+            " }}}
 
             "let g:AltAutoComplPop_CalcRankMaxLists
             "let g:AltAutoComplPop_CacheLineCount
