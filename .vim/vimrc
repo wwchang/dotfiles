@@ -1037,6 +1037,7 @@ endif
         " call vam#ActivateAddons(['github:tobyS/vip'])
         "call vam#ActivateAddons(['pdv-standalone'])
         "call vam#ActivateAddons(['cakephp'])
+        "call vam#ActivateAddons(['cake'])
             " Ruby & Rails
         call vam#ActivateAddons(['neco-rubymf'])
         "call vam#ActivateAddons(['neco-rake'])
@@ -2840,7 +2841,18 @@ endif
         " }}}
 
         " [ Framework ] {{{
-            " CakePHP: {{{ navigating, managing CakePHP applications with Vim
+            " cakephp {{{ navigating, managing CakePHP applications with Vim
+            " }}}
+            " cake {{{ easy jumping between Controller, Model and View files
+                " Usage:
+                " specified the app directory of your CakePHP.
+                " :CakePHP /path/to/cakephp_app/
+                " Automatically perform at startup.
+                let g:cakephp_enable_fix_mode = 1
+                let g:cakephp_app = "/path/to/cakephp_app/"
+                " When you find a project from open file automatically,
+                " please set it as follows.
+                let g:cakephp_enable_auto_mode = 1
             " }}}
         " }}}
 
