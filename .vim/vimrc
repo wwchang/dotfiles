@@ -117,7 +117,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
     set confirm                      " confirm current buffer.
     set backup		" keep a backup file
-    set backupdir=$HOME/backup-vim/  " backup dir
+    set backupdir=$HOME/.backup-vim/  " backup dir
     set backupcopy=auto             " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
@@ -310,7 +310,7 @@ endif
         " precedes: \», ▸,
         " nbsp: \✖,
         " conceal: ≠,
-        " eol: ↵
+        " eol: ↵, ¶
         " showbreak: "↪ ", "> ", "+++ ",
         " ------------------------------------------
     set fillchars=vert:│,fold:┄,diff:×
@@ -922,13 +922,14 @@ endif
         call vam#ActivateAddons(['current-func-info'])
         " TODO Add a progin to show object prototype in statusline.
             " CVS
-        call vam#ActivateAddons(['fugitive', 'quickfixsigns', 'extradite'])
-        call vam#ActivateAddons(['unimpaired', 'ConflictMotions'])
-        call vam#ActivateAddons(['Splice'])
+        call vam#ActivateAddons(['fugitive', 'extradite', 'quickfixsigns'])
+        call vam#ActivateAddons(['Splice', 'ConflictMotions'])
             " Github
         call vam#ActivateAddons(['vim-github'])
             " CSV
         "call vam#ActivateAddons(['csv'])
+            " debug: quickfix/location list.
+        call vam#ActivateAddons(['unimpaired'])
             " Completion <Tab>
         call vam#ActivateAddons(['neocomplcache', 'vimproc', 'unite', 'vimshell'])
         "call vam#ActivateAddons(['neco-look'])
@@ -944,6 +945,7 @@ endif
         "call vam#ActivateAddons(['UltiSnips'])
         "call vam#ActivateAddons(['snipmate'])
         "call vam#ActivateAddons(['snipmate', 'tlib', 'vim-addon-mw-utils', 'snipmate-snippets'])
+        "call vam#ActivateAddons(['SnippetComplete'])
             " skeleton / templates
         call vam#ActivateAddons(['SonicTemplate'])
             " Tags : taglist-plus,
@@ -1132,7 +1134,6 @@ endif
             " Vimrc manager
         call vam#ActivateAddons(['Sauce'])
             " Vim Extension
-                " command line
         call vam#ActivateAddons(['repeat', 'visualrepeat', 'abolish'])
         call vam#ActivateAddons(['StarRange'])
         "call vam#ActivateAddons(['visualstar'])
@@ -1142,7 +1143,6 @@ endif
         "call vam#ActivateAddons(['SudoEdit'])
         call vam#ActivateAddons(['SpitVspit'])
         "call vam#ActivateAddons(['CompleteHelper'])
-        "call vam#ActivateAddons(['SnippetComplete'])
             " Motions
         call vam#ActivateAddons(['EasyMotion'])
             " ASCII draw
@@ -1633,7 +1633,9 @@ endif
     " [ skeleton/template ] {{{
         " SonicTemplate: {{{ Easy and high speed coding method.
             " :Template <Tab>
-            let g:template_vim_template_dir = '~/.vim/templates/SonicTemplate/'
+            let g:template_vim_template_dir = [
+                        \ '$HOME/.vim/templates/SonicTemplate/'
+                        \ ]
                 " template filename rule:
                 " [kind]-[name].[extension]
                 "  `- 'base' or 'snip'
@@ -1911,7 +1913,7 @@ endif
     " }}}
 
     " [ VCS ] {{{
-        " Fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
+        " fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
             " Usage:
                 " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
                 " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
@@ -1924,7 +1926,7 @@ endif
                 " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
         " }}}
 
-        " Extradite: {{{ A git file commit log browser, Extends fugitive.vim
+        " extradite: {{{ A git commit log browser that extends fugitive.vim
             " :Extradite | :Extradite! -- vertical.
             nnoremap <F8> :Extradite<cr>
                 " [ mappings ] available in the Extradite buffer.
@@ -1937,13 +1939,11 @@ endif
                 let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
 
-        " Unimpaired: {{{
-            " Github
-                " vim-github : a Vim plugin to access to Github.
-                " :Github {feature} [arguments]
-                let g:github#user="numbchild"
-                let g:github#token=$GITHUB_TOKEN
-                let g:github#curl_cmd="curl"
+        " vim-github {{{ A vim plugin to access to Github.
+            " :Github {feature} [arguments]
+            let g:github#user="numbchild"
+            " FIXME ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
+            let g:github#curl_cmd="curl"
         " }}}
 
         " ConflictMotions: {{{
@@ -3127,17 +3127,6 @@ endif
         let highlight_sedtabs = 1 " make tabs stand out from regular blanks
     " }}}
 
-    " [ TeX ] {{{
-        let g:tex_fold_enabled = 1
-        let g:tex_comment_nospell = 1 " useful when include source code in comments
-        let g:tex_verbspell = 1 " spell checking in Verbatim Zones
-        "let tex_no_error=1
-        let g:tex_conceal = "admgs"
-            "accents/ligatures, delimiters, math symbols, Greek, superscripts/subscripts
-
-        " tex_autoclose:
-    " }}}
-
     " [ R ] {{{
         " Vim-R-plugin: {{{ editing R code and integrate Vim with R
             " :help vim-r-plugin
@@ -4000,6 +3989,13 @@ endif
     " }}}
 
     " [ TeX & LaTeX ] {{{
+        let g:tex_fold_enabled = 1
+        let g:tex_comment_nospell = 1 " useful when include source code in comments
+        let g:tex_verbspell = 1 " spell checking in Verbatim Zones
+        "let tex_no_error=1
+        let g:tex_conceal = "admgs"
+            "accents/ligatures, delimiters, math symbols, Greek, superscripts/subscripts
+
         " TeX_9 {{{ semi-automatic LaTeX ftplugin with lots of firepower !
         " }}}
 
@@ -4008,6 +4004,9 @@ endif
 
         " AutomaticLaTeXPlugin {{{ background compilation, completion, bib search, toc etc.
         " }}}
+
+        " tex_autoclose:
+        " auctex : macros for LaTeX.
     " }}}
 
     " [ markup & write ] {{{
