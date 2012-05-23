@@ -1910,11 +1910,17 @@ endif
     " }}}
 
     " [ VCS ] {{{
-        " Fugitive: {{{ :Git[!] [cmd] [args]/(%|:h :_%, :h cmdline-special)
-            " C-n/p keyword autocompletion.
-            " :G[write/read/remove/move/commit/blame]
-            " [-/<Enter>/p/C],
-            " :Gdiff, :Gbrowse, :Gedit, :Glog, :Ggrep,
+        " Fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
+            " Usage:
+                " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
+                " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
+                " :{range}Gread[!] [revision] -- empty the buffer and :read a revision.
+                " :Gwrite {path} -- write file, and stage the result.
+                " :G[s/v]diff [revision] -- perform a vimdiff against the current file.
+                " :Gmove {destination} -- wrapper around git-mv
+                " :Gremove  -- wrapper around git-rm
+                " :[range]Gblame [flags]
+                " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
         " }}}
 
         " Extradite: {{{ A git file commit log browser, Extends fugitive.vim
