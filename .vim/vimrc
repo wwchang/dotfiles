@@ -2762,11 +2762,6 @@ endif
 
     " [ Web: HTML5 & CSS ] {{{
         " [ HTML5 ] {{{
-            augroup HTMLSettings
-                au!
-                au FileType html setlocal tabstop=2 expandtab shiftwidth=2 softtabstop=2
-                au FileType html setlocal foldmethod=indent foldlevel=99
-            augroup END
             " ZenCoding: {{{ "div#foo$*2>div.bar", "<C-Y>," || "<C-Y>n/N"
                 " The core of this plugin is a powerful abbreviation engine
                 " which allows you to expand expressions?similar to CSS
