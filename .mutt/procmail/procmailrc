@@ -254,6 +254,9 @@ VERBOSE=on
     :0
     * ^List-Id: .*pythontw\.googlegroups\.com
     Python/python-tw/
+    :0
+    * ^List-Id: .*sphinx-dev\.googlegroups\.com
+    Python/sphinx-dev/
 
     :0
     * ^List-Id: .*golang-nuts\.googlegroups\.com

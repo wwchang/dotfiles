@@ -42,6 +42,7 @@ mailboxes =Python/python
 mailboxes =Python/comp-lang-py
 mailboxes =Python/Django
 mailboxes =Python/webpy
+mailboxes =Python/sphinx-dev
 
 mailboxes =Go
 mailboxes =Go/golang-nuts

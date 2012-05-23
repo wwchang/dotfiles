@@ -44,6 +44,7 @@ subscribe python.lang python.lang.G <comp.lang.python@googlegroups.com>
 subscribe python.linux python.linux.G <python_linux@googlegroups.com>
 subscribe python.tw python.tw <pythontw@googlegroups.com>
 subscribe webpy web.py <webpy@googlegroups.com>
+subscribe sphinx sphinx-dev <sphinx-dev@googlegroups.com>
 # Ruby
 subscribe rubyonrails Ruby On Rails <rubyonrails-talk@googlegroups.com>
 # Java
