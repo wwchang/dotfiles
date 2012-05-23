@@ -6,6 +6,8 @@
 " by Wimer Hazenberg and its darker variant
 " by Hamish Stuart Macpherson
 " Vimhelp: :help group-name :help syntax.txt
+" term={attr-list}
+"   - bold, underline, undercurl, reverse, inverse, italic, standout, NONE.
 
 " checks whether an earlier file has defined a syntax already. If so, exits with finish.
 if exists("b:current_syntax")
@@ -139,7 +141,7 @@ if &t_Co > 255
    hi Number          ctermfg=135
    " String: string in quote 'string'
    hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold
+   hi Conditional     ctermfg=161               cterm=bold,standout
    hi Constant        ctermfg=135               cterm=bold
    hi Conceal         ctermfg=039  ctermbg=236  cterm=bold
    hi Cursor          ctermfg=255  ctermbg=197  cterm=underline
@@ -148,15 +150,15 @@ if &t_Co > 255
    hi Define          ctermfg=081
    hi Delimiter       ctermfg=241
 
-   hi DiffAdd         ctermfg=NONE ctermbg=064 cterm=none
+   hi DiffAdd         ctermfg=NONE ctermbg=064 cterm=standout
    hi DiffDelete      ctermfg=NONE ctermbg=052 cterm=none
-   hi DiffChange      ctermfg=NONE ctermbg=233 cterm=none
+   hi DiffChange      ctermfg=NONE ctermbg=233 cterm=standout
    hi DiffText        ctermfg=NONE ctermbg=204 cterm=bold
 
    hi Directory       ctermfg=118   ctermbg=NONE    cterm=bold
    hi Error           ctermfg=NONE  ctermbg=160     cterm=underline
    hi ErrorMsg        ctermfg=196   ctermbg=232     cterm=bold
-   hi Exception       ctermfg=118                   cterm=bold
+   hi Exception       ctermfg=118                   cterm=bold,standout
    hi Float           ctermfg=135
 
    " fold
@@ -164,27 +166,27 @@ if &t_Co > 255
    hi FoldColumn      ctermfg=045   ctermbg=016 cterm=bold
    hi vimFold         ctermfg=081   ctermbg=016 cterm=bold
 
-   hi Function        ctermfg=118
+   hi Function        ctermfg=118               cterm=bold
    hi Identifier      ctermfg=208               cterm=bold
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=196 ctermbg=016
 
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
-   hi Macro           ctermfg=193
+   hi Macro           ctermfg=193               cterm=none
 
    " brackets match color
    hi MatchParen      ctermfg=016  ctermbg=046 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
+   hi Operator        ctermfg=161  ctermbg=236 cterm=bold,standout
 
 " Pop complete menu   154 brightgreen  198 pink  038 light blue
-   hi Pmenu           ctermfg=016 ctermbg=255
-   hi PmenuSel        ctermfg=016 ctermbg=204
-   hi PmenuSbar       ctermfg=203 ctermbg=016
+   hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
+   hi PmenuSel        ctermfg=016 ctermbg=204  cterm=bold,standout
+   hi PmenuSbar       ctermfg=203 ctermbg=016  cterm=none
    " scroll forward small bar
-   hi PmenuThumb      ctermfg=198
+   hi PmenuThumb      ctermfg=198              cterm=none
 
    hi PreCondit       ctermfg=118               cterm=bold
    hi PreProc         ctermfg=118
@@ -196,7 +198,7 @@ if &t_Co > 255
    hi SignColumn      ctermfg=161 ctermbg=NONE
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=081  ctermbg=232
+   hi Special         ctermfg=081  ctermbg=232  cterm=bold
 
    hi Statement       ctermfg=161               cterm=bold
    " hi StatusLine      ctermfg=255 ctermbg=232
@@ -224,12 +226,12 @@ if &t_Co > 255
 
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=081
-   hi Tag             ctermfg=161
-   hi Title           ctermfg=124 cterm=bold
-   hi Todo            ctermfg=033 ctermbg=232   cterm=bold
+   hi Tag             ctermfg=161 ctermbg=236   cterm=standout
+   hi Title           ctermfg=124               cterm=bold
+   hi Todo            ctermfg=033 ctermbg=232   cterm=bold,standout
 
-   hi Typedef         ctermfg=081
-   hi Type            ctermfg=081                cterm=none
+   hi Typedef         ctermfg=081 ctermbg=236    cterm=bold
+   hi Type            ctermfg=081                cterm=bold
    hi Underlined      ctermfg=033                cterm=underline
 
    hi VertSplit       ctermfg=236 ctermbg=232   cterm=bold
