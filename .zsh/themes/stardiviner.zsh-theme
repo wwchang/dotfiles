@@ -185,7 +185,7 @@ fi
 
 # left side PROMPT
 # ${music_prompt}
-PROMPT=" [ ${full_path} ] ${ssh_info}
+PROMPT=" ${ssh_info} [ ${full_path} ]
 ${git_branch}${git_status}${svn_info}${rvm_info} ${sign_prompt}${pre_prompt}"
 # PS1="${return_code}"
 
