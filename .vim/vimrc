@@ -1023,6 +1023,7 @@ endif
         call vam#ActivateAddons(['jsruntime'])
         call vam#ActivateAddons(['jsoncodecs'])
         "call vam#ActivateAddons(['jsbeautify'])
+        "call vam#ActivateAddons(['sourcebeautify'])
         "call vam#ActivateAddons(['javaScriptLint'])
         "call vam#ActivateAddons(['jshint'])
         "call vam#ActivateAddons(['jslint'])
@@ -2817,6 +2818,7 @@ endif
 
         " jsbeautify : a javascript source code formatter
             " <Leader>ff -- Function g:Jsbeautify()
+        " sourcebeautify : Beautify your source code, js, css, html.
 
         " javaScriptLint: Displays JavaScript Lint warnings in quickfix window
 
