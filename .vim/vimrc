@@ -1140,6 +1140,7 @@ endif
         "call vam#ActivateAddons(['unicode'])
         "call vam#ActivateAddons(['mathematic'])
         "call vam#ActivateAddons(['SudoEdit'])
+        call vam#ActivateAddons(['SpitVspit'])
         "call vam#ActivateAddons(['CompleteHelper'])
         "call vam#ActivateAddons(['SnippetComplete'])
             " Motions
@@ -3617,6 +3618,15 @@ endif
 
             "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
             "" }}}
+        " }}}
+    " }}}
+
+    " [ window: split, navigation ] {{{
+        " SpitVspit {{{ Powerful multiple files splitting; split/vsplit/edit.
+            " Usage:
+            "   - :Spit[Up/Down]
+            "   - :[V/W]spit[Left/Right]
+            let g:loaded_SpitVspit = 0 " =1 to disable load script.
         " }}}
     " }}}
 
