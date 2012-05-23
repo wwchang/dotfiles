@@ -5,7 +5,59 @@ snippet     env
 abbr        #!/usr/bin/env
 prev_word   '^'
     #!/usr/bin/env python
-    ${1}
+    # encoding: utf-8
+
+    ${0}
+
+# import
+snippet     imp
+abbr        import ...
+prev_word   '^'
+    import ${1}
+    ${0}
+
+# doc
+snippet     docs
+abbr        docs
+prev_word   '^'
+	'''
+	File: ${1:}
+	Author: ${2:stardiviner}
+	Description: ${3}
+	'''
+    ${0}
+
+# new property
+snippet     property
+abbr        property
+prev_word   '^'
+	def ${1:foo}():
+	    doc = "${2:The $1 property.}"
+	    def fget(self):
+	        ${3:return self._$1}
+	    def fset(self, value):
+	        ${4:self._$1 = value}
+    ${0}
+
+# lambda
+snippet     lambda
+abbr        lambda
+prev_word   '^'
+	${1:var} = lambda ${2:vars} : ${3:action}
+    ${0}
+
+# FIXME self
+#snippet     .
+#abbr        self.
+#prev_word   '^'
+#   self.${1}
+
+# __magic__
+snippet     _
+abbr        __magic__
+prev_word   '^'
+	__${1:init}__${2}
+    ${0}
 
 # statement
 snippet     pr
@@ -13,4 +65,3 @@ abbr        print()
 prev_word   '^'
     print(${1})
     ${0}
-

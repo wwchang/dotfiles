@@ -1,0 +1,8 @@
+# multiple same placeholders.
+snippet     img_ref
+abbr        ![alt](id)
+prev_word   '^'
+    ![${1:1}][${2:2}] ${0}
+    [$2]: ${3:url/to/image} "$1"
+
+# vim: ft=snippet

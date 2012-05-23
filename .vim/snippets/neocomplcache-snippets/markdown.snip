@@ -98,17 +98,17 @@ prev_word   '^'
 snippet     link_inline
 abbr        [title](url)
 prev_word   '^'
-    [${2:title}](${1:URL}) ${0}
+    [${1:title}](${2:URL}) ${0}
 snippet     link_ref
 abbr        [title](id)
 prev_word   '^'
-    [${4:title}](${1:ID}) ${0}
-    [${2:ID}]: ${3:URL} "${5:title}"
+    [${1:1}][${2:2}] ${0}
+    [$2]: ${3:url/to/image} "$1"
 snippet     link_ref_shadow
 abbr        [title][]
 prev_word   '^'
-    [${2:title}][] ${0}
-    [${3:title}]: ${1:URL}
+    [${1:1}][] ${0}
+    [$1]: ${2:url/to/image} "$3"
 
 # emphasis
 snippet     em*
@@ -132,15 +132,19 @@ prev_word   '^'
 # `printf()`
 
 # Image
+# ![alter text](URL)
+# ------------------
+# ![alter text][ID]
+# [ID]: URL "Title"
 snippet     img_inline
 abbr        ![alt](url)
 prev_word   '^'
-    ![${2:alt title}](${1:/path/to/img.jpg}) ${0}
+    ![${1:alt title}](${2:/path/to/img.jpg}) ${0}
 snippet     img_ref
 abbr        ![alt](id)
 prev_word   '^'
-    ![${4:alt title}][${3:ID}] ${0}
-    [${2:ID}]: ${1:url/to/image} "${5:optional title attribute}"
+    ![${1:1}][${2:2}] ${0}
+    [$2]: ${3:url/to/image} "$1"
 
 
 # FIXME neocomplcache-snippet-complete can not handle ```.
@@ -148,8 +152,3 @@ prev_word   '^'
 # code snip
 # .........
 # ```
-
-# FIXME plugin not support multiple placeholders write at same time.
-# snippet     img_id
-# ![${3:title}][${2:ID}] ${0}
-# [${2:ID}]: ${1:url/to/image} ${3:title}
