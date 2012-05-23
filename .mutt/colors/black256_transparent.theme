@@ -124,6 +124,10 @@ color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shany
 #color index         color232    color197 ~(~G)  # PGP encrypted
 #color index         color240    default ~R     # readed messages
 # }}}
+
+# readed mails should be gray color.
+color index         color241    default ~R # readed
+
 # myself {{{
 # color index         color025    default ~p  # message only to you
 # color index         color040    default ~P  # message from myself
@@ -134,7 +138,6 @@ color index         color202    default ~Q  # I replied to this mail.
 # }}}
 
 # marked emails {{{
-color index         color241    default ~R # readed
 color index         color232    color040 ~T  # tagged  *
 color index         color232    color203 ~F  # flagged !
 color index         color235    default  ~D  # deleted D
