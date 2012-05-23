@@ -204,11 +204,11 @@ URxvt.geometry: 90x10
 !URxvt*italicFont:           xft:Monaco for Powerline:italic:size=10
 !URxvt*boldItalicFont:       xft:Monaco for Powerline:bold:italic:size=10
 
-URxvt.font:           xft:DejaVu Sans Mono for Powerline:regular:pixelsize=13.5
-URxvt.imFont:         xft:DejaVu Sans Mono for Powerline:regular:pixelsize=13.5
-URxvt.boldFont:       xft:DejaVu Sans Mono for Powerline:bold:pixelsize=13.5
-URxvt.italicFont:     xft:DejaVu Sans Mono for Powerline:italic:pixelsize=13.5
-URxvt.bolditalicFont: xft:DejaVu Sans Mono for Powerline:bold:italic:pixelsize=13.5
+URxvt.imFont:         xft:DejaVu Sans Mono for Powerline:regular:pixelsize=14.5
+URxvt.font:           xft:DejaVu Sans Mono for Powerline:regular:pixelsize=14.5
+URxvt.boldFont:       xft:DejaVu Sans Mono for Powerline:bold:pixelsize=14.5
+URxvt.italicFont:     xft:DejaVu Sans Mono for Powerline:italic:pixelsize=14.5
+URxvt.bolditalicFont: xft:DejaVu Sans Mono for Powerline:bold:italic:pixelsize=14.5
 
 ! bell
 URxvt*urgentOnBell:     true
