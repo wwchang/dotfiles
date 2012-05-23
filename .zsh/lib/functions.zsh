@@ -195,13 +195,15 @@ function vim2HTML_() {
 
 
 # tmux
-function tmuxDaily() {
-    if [[ -n "$(tmux list-sessions | grep Daily)" ]]; then
-        tmux attach -t Daily
-    else
-        tmux
-    fi
-}
+#function tmuxSessions() {
+    #if [[ -n $(tmux list-sessions) ]]; then
+        #sessions_list=$(tmux list-sessions | sed "s/.*/'&'/g" | tr '\n' ' ')
+        #select Tsession in ${sessions_list[*]}; do
+        #done
+    #else
+        #tmux
+    #fi
+#}
 
 #user-complete() {
     #if [[ -n $BUFFER ]]; then # if this line has content
