@@ -75,7 +75,7 @@ color index         color070    default  ~g  # PGP GPG signed
 color index         color232    color167 ~G  # PGP GPG encrypted
 color index         color203    default  ~V  # cryptographically verified messages
 # big size mail
-color index         color053    default "~z >200K" # size tween 1M-100M
+color index         color053    default "~z >2048K" # size tween 1M-100M
 # collapsed
 color index         color162    default "~v" # message is part of a collapsed thread
 # duplicated
