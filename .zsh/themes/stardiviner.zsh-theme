@@ -132,7 +132,7 @@ local fuck='%{$fg[yellow]%}fuck%{$reset_color%}'
 local right_sign='%{$fg_bold[white]%} ⑆ %{$reset_color%}'
 
 if [ "$(whoami) == 'chris'" -a "$(hostname) == 'stardiviner'" ]; then
-    local ssh_info=''
+    local ssh_info='%{$fg[green]%}localhost%{$reset_color%}'
 else
     local ssh_info='%{$fg[green]%}$(whoami) %{$fg[red]%}$(hostname) %{$reset_color%}'
 fi
@@ -185,7 +185,7 @@ fi
 
 # left side PROMPT
 # ${music_prompt}
-PROMPT=" ${full_path} ${ssh_info}
+PROMPT=" [ ${full_path} ] ${ssh_info}
 ${git_branch}${git_status}${svn_info}${rvm_info} ${sign_prompt}${pre_prompt}"
 # PS1="${return_code}"
 
