@@ -1632,7 +1632,7 @@ endif
     " [ skeleton/template ] {{{
         " SonicTemplate: {{{ Easy and high speed coding method.
             " :Template <Tab>
-            let g:template_vim_template_dir = '~/.vim/skeletons/SonicTemplate/'
+            let g:template_vim_template_dir = '~/.vim/templates/SonicTemplate/'
                 " template filename rule:
                 " [kind]-[name].[extension]
                 "  `- 'base' or 'snip'
