@@ -69,11 +69,10 @@ color index         color094    default ~O # old
 color index         color058    default ~U # unreaded
 color index         color123    default ~l # addressed "to" a known mailing list
 color index         color255    default ~u # addressed "from" a subscribed mailing list
-color index         color241    default ~R # readed
 # PGP signed
-color index         color022    default  ~k  # contains PGP
-color index         color070    default  ~g  # PGP signed
-color index         color232    color167 ~G  # PGP encrypted
+color index         color022    default  ~k  # contains PGP GPG
+color index         color070    default  ~g  # PGP GPG signed
+color index         color232    color167 ~G  # PGP GPG encrypted
 color index         color203    default  ~V  # cryptographically verified messages
 # big size mail
 color index         color053    default "~z >200K" # size tween 1M-100M
@@ -135,6 +134,7 @@ color index         color202    default ~Q  # I replied to this mail.
 # }}}
 
 # marked emails {{{
+color index         color241    default ~R # readed
 color index         color232    color040 ~T  # tagged  *
 color index         color232    color203 ~F  # flagged !
 color index         color235    default  ~D  # deleted D
