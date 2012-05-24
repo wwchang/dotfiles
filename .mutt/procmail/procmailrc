@@ -176,6 +176,11 @@ VERBOSE=on
     # }
 # }}}
 
+# [ lbdb fetch email address ] {{{2
+    :0hc
+    | lbdb-fetchaddr
+# }}}
+
 # spam (bogofilter) {{{2
     #Send mail thru bogofilter
     :0fw
