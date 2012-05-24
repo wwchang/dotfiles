@@ -29,7 +29,7 @@ set nomove  # hold messages in $MAIL
 # Query menu.
 # press "C-T" to complete and display query menu result.
 set query_command = "lbdbq '%s'"   # Use the little brother database for doing queries.
-set query_format = "%4c %t %-25.25n %-25.25a %?e?(%e)?"
+set query_format = "%4c %t ┆ %-25.25n » %-40.25a │ %> %?e?(%e)?"
 
 # enable mime lookup by extension
 mime_lookup application/octet-stream
