@@ -96,7 +96,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ paste mode ] {{{
     " set paste " set nopaste
-    "nnoremap <F2> :set paste<CR>
+    nnoremap <F2> :set invpaste paste?<CR>
     set pastetoggle=<F2>
     " }}}
 
