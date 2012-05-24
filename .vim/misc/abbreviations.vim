@@ -21,6 +21,8 @@
 
 " iabbr chris chris M. sprite
 
+" iabbr <expr> date strftime("%c")
+
 " [ mail ]
 " iabbr gmail numbchild@gmail.com
 iabbr Gmail [ numbchild AT gmail DOT com ]
@@ -39,3 +41,4 @@ iabbr DeathNote_font    Death Note
 iabbr Evanescence_font  Evanescent
 
 iabbr oreilly O'Reilly
+iabbr latex LaTeX
