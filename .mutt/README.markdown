@@ -1,6 +1,6 @@
 # build up
                                                / encrypt : gpg.
-                                                - aliases.muttrc & abook
+                                                - aliases.muttrc & abook & lbdb
                                              - Send : sendmail
                          bogofilter         /
     getmail -> procmail ----------> INBOX -> Read.

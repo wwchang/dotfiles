@@ -24,8 +24,8 @@ set write_inc      = 10
 set pager_stop     = yes
 set mailcap_path   = $HOME/.mutt/mailcap:/usr/local/etc/mailcap:/etc/mailcap
 
-set nomove                                                             # hold messages in $MAIL
-# set query_command = "lbdbq '%s'"   # Use the little brother database for doing queries.
+set nomove  # hold messages in $MAIL
+set query_command = "lbdbq '%s'"   # Use the little brother database for doing queries.
 
 # enable mime lookup by extension
 mime_lookup application/octet-stream
