@@ -72,7 +72,7 @@ macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this
 #address book related
 #set query_command = "lbdbq '%s'"     #;$HOME/bin/mutt_ldap_query.py '%s'"
 # If <complete-query> is called instead, it will use as the search string what you have typed back to the last space or comma as for the alias completion.
-set query_command =  "abook --mutt-query '%s'"
+set query_command =  "abook --datafile $HOME/.mutt/abook/addressbook --mutt-query '%s'"
 macro generic,index,pager \ca "<shell-escape>abook --config $HOME/.mutt/abook/abookrc --datafile $HOME/.mutt/abook/addressbook<return>" "launch abook"
 macro index,pager A "|abook --add-email --config $HOME/.mutt/abook/abookrc --datafile $HOME/.mutt/abook/addressbook<return>" "add sender to abook"
 # macro pager A "|abook --add-email-quiet\n" "Add sender to abook"
