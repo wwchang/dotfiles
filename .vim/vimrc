@@ -3983,7 +3983,27 @@ endif
         " }}}
 
         " VOoM: {{{ Vim two-pane outliner
+            " Usage:
+            "   - :Voom {MarkupMode}, :Voomhelp.
+            "   - :Voomexec [vim/py], :Voomlog,
             nnoremap <F7> :Voom<CR>
+            let g:voom_tree_placement = "left" " left, right, top, bottom.
+            let g:voom_tree_width = 30
+            let g:voom_tree_height = 12
+            let g:voom_log_placement = "bottom" " right, left, top, bottom.
+            let g:voom_log_width = 30
+            let g:voom_log_height = 12
+            let g:voom_return_key = "<Return>"
+            let g:voom_tab_key = "<Tab>"
+            " let g:voom_ft_modes = {'markdown': 'markdown', 'pandoc': 'markdown'}
+            " let g:voom_default_mode = 'asciidoc'
+            " let g:voom_verify_oop =
+            " let g:voom_rstrip_chars_{filetype}
+                " let g:voom_rstrip_chars_vim = "\"# \t"
+                " let g:voom_rstrip_chars_text = " \t"
+                " let g:voom_rstrip_chars_help = " \t"
+            " let g:voom_user_command
+            " let g:voom_create_devel_commands
         " }}}
 
         " Speeddating: | <C-A>, <C-X>, {Visual}<C-A/X>
