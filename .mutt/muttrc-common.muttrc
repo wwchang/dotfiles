@@ -26,6 +26,8 @@ set mailcap_path   = $HOME/.mutt/mailcap:/usr/local/etc/mailcap:/etc/mailcap
 
 set nomove  # hold messages in $MAIL
 
+set pager="builtin" # "builtin", vim,
+
 # Query menu.
 # press "C-T" to complete and display query menu result.
 set query_command = "lbdbq '%s'"   # Use the little brother database for doing queries.

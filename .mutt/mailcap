@@ -2,16 +2,19 @@
 
 # [ text ]
 text/plain; less %s
-# muttHtml command:
-# enconv|elinks -force-html -dump -dump-color-mode 1 -eval "set document.css.stylesheet='$HOME/etc/mail.css'" /dev/stdin
-# text/html; muttHtml; copiousoutput
 
+# [ html ]
 text/html; elinks %s; nametemplate=%s.html; copiousoutput
 # text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
 # text/html; w3m -I %{charset} -T text/html; copiousoutput;
 # text/html; /usr/bin/elinks -force-html %s
 # text/html; w3m -v -F -T text/html %s; nametemplate=%s.html; needsterminal
 # text/html; mozilla %s; test=test -n "$DISPLAY"; nametemplate=%s.html
+# muttHtml command:
+# enconv|elinks -force-html -dump -dump-color-mode 1 -eval "set document.css.stylesheet='$HOME/etc/mail.css'" /dev/stdin
+# text/html; muttHtml; copiousoutput
+
+# [ diff ]
 text/diff; vimdiff %s
 
 # [ application ]
@@ -37,5 +40,8 @@ application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
 application/postscript; ps2ascii %s; copiousoutput
 # like ranger to get archive's file list
 
+# [ source code ]
+# view with source-highlight
+# text/python; source-highlight -i %s
 
 # vim: ft=mailcap
