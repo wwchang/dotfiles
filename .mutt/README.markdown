@@ -78,6 +78,10 @@ gi -- go to INBOX (mutt)
 gd -- go to Draft (mutt)
 tab -- next unread/new
 space -- next page
+## address
+### query
+Q -- query external program
+C-T -- complete when input address in new composed mail.
 
 # add at same time ( sync )
 

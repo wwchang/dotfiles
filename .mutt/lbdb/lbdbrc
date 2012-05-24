@@ -1,0 +1,26 @@
+# methods
+METHODS="m_muttalias m_abook m_inmail m_finger m_gpg"
+
+# private modules
+MODULES_PATH="/usr/lib/lbdb $HOME/.mutt/lbdb/modules"
+
+# sort output
+# false/no, name, comment, reverse_comment, address.
+SORT_OUTPUT=name
+
+# whether print duplicate mail addresses.
+KEEP_DUPES=no
+
+# Finger
+M_FINGER_HOSTS="master.debian.org localhost"
+
+# Mutt alias query
+MUTT_DIRECTORY="$HOME/.mutt"
+MUTTALIAS_FILES="aliases.muttrc .muttrc"
+
+# abook
+ABOOK_FILES="$HOME/.mutt/abook/addressbook"
+
+# m_passwd search in /etc/passwd
+# ignore others UID except between 1000 and 29999.
+PASSWD_IGNORESYS=true

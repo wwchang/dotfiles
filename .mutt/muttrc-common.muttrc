@@ -24,8 +24,10 @@ set write_inc      = 10
 set pager_stop     = yes
 set mailcap_path   = $HOME/.mutt/mailcap:/usr/local/etc/mailcap:/etc/mailcap
 
-# Query
 set nomove  # hold messages in $MAIL
+
+# Query menu.
+# press "C-T" to complete and display query menu result.
 set query_command = "lbdbq '%s'"   # Use the little brother database for doing queries.
 set query_format = "%4c %t %-25.25n %-25.25a %?e?(%e)?"
 
