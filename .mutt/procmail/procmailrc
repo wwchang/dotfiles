@@ -3,6 +3,8 @@ SHELL=/bin/sh
 PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin
 MAILDIR=$HOME/Mails
 DEFAULT=$MAILDIR/INBOX/
+# system mail mailbox.
+ORGMAIL=$DEFAULT
 PMDIR=$HOME/.mutt/procmail
 LOGFILE=$HOME/.procmail.log
 VERBOSE=on
