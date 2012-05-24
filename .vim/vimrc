@@ -926,6 +926,7 @@ endif
         call vam#ActivateAddons(['Splice', 'ConflictMotions'])
             " Github
         call vam#ActivateAddons(['vim-github'])
+        call vam#ActivateAddons(['github:tpope/vim-rhubarb'])
             " CSV
         "call vam#ActivateAddons(['csv'])
             " debug: quickfix/location list.
@@ -1946,13 +1947,6 @@ endif
                 let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
 
-        " vim-github {{{ A vim plugin to access to Github.
-            " :Github {feature} [arguments]
-            let g:github#user="numbchild"
-            " FIXME ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
-            let g:github#curl_cmd="curl"
-        " }}}
-
         " ConflictMotions: {{{
             " This plugin defines movement commands and text objects to go to
             " and operate on conflicting lines, as indicated by many revision
@@ -1999,9 +1993,21 @@ endif
             let g:splice_wrap = "None" " wrap, nowrap, None
         " }}}
 
-        " vim-rhubarb {{{ GitHub extension for fugitive.vim
+        " vim-github {{{ A vim plugin to access to Github.
+            " :Github {feature} [arguments]
+            let g:github#user="numbchild"
+            " FIXME ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
+            let g:github#curl_cmd="curl"
+        " }}}
+
+        " rhubarb {{{ GitHub extension for fugitive.vim
             " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
             " comment message.
+            " XXX This makes inserting those Closes #123 remarks slightly easier
+            " than copying and pasting from the browser.
+            " --------------------------
+            " let g:github_user = '<user>'
+            " let g:github_password = '<password>'
         " }}}
     " }}}
 
