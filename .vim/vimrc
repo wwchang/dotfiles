@@ -1879,6 +1879,12 @@ endif
             let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
                         \ 'CursorHold', 'CursorHoldI',
                         \ 'InsertLeave', 'InsertEnter', 'InsertChange'])
+            let g:quickfixsigns_class_vcsdiff = {
+                        \ 'sign': '*quickfixsigns#vcsdiff#Signs',
+                        \ 'get': 'quickfixsigns#vcsdiff#GetList(%s)',
+                        \ 'event': [ 'BufEnter', 'BufLeave', 'BufWritePost'],
+                        \ 'level': 6
+                        \ }
             let g:quickfixsigns_balloon = 1
             let g:quickfixsigns_max = 500 " don't display signs if longer than this.
             let g:quickfixsigns_blacklist_buffer = '^__.*__$'
