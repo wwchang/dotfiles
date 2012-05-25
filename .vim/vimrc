@@ -3707,7 +3707,7 @@ syntax on
                     \ 'list_margin': -1,
                     \ 'nested_syntaxes': {
                         \ 'python': 'python', 'perl': 'perl', 'ruby': 'ruby',
-                        \ 'sh': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
+                        \ 'bash': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
                         \ 'javascript': 'javascript', 'dart': 'dart', 'php': 'php',
                         \ 'html': 'html', 'css': 'css', 'xml': 'xml',
                         \ 'lisp': 'lisp', 'lua': 'lua',
