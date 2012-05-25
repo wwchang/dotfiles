@@ -972,7 +972,7 @@ endif
         "call vam#ActivateAddons(['Command-T'])
         "call vam#ActivateAddons(['FuzzyFinder'])
         call vam#ActivateAddons(['EasyGrep'])
-        "call vam#ActivateAddons(['ack'])
+        call vam#ActivateAddons(['ack'])
             " comment
         call vam#ActivateAddons(['tComment'])
         call vam#ActivateAddons(['commentary'])
