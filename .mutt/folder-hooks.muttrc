@@ -10,6 +10,9 @@
 # Note: if you use the ``!'' shortcut for $spoolfile at the beginning of the pattern, you must place it inside of double or single quotes in order
 # to distinguish it from the logical not operator for the expression.
 
+# format
+# %?<sequence_char>?<if_string>&<else_string>?
+
 # automatically delete all duplicated mails when change mailbox or quit.
 folder-hook . push "<delete-pattern>~=<enter>"
 
@@ -23,10 +26,11 @@ folder-hook . push "<delete-pattern>~=<enter>"
 # for mailing list
 folder-hook .       set sort = threads
 # folder-hook .       set index_format = '" %?n?♪? %?o?♩? %?d?✖? %?H?? %2C| [%4Z] | %-10L » %s %>  %[%I:%M %P %b/%d]"'
-folder-hook .       set index_format = '"%?H?[spam]? [%4Z] ┆ %-20F » %s %>  │%[%I:%M %P %b/%d]"'
+
+folder-hook .       set index_format = '"%?H?[spam]? [%4Z] ┆ %?F?%-20.20F&%-10.10L? » %-40.40s %>  │%-15.15[%I:%M %P %b/%d]"'
 # folder-hook .       set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
-folder-hook =spam   set index_format = '" ☠ %?H?[spam]? %C┆ [%4Z] %-10L » %s  %>  %4c"'
+folder-hook =spam   set index_format = '" ☠ %?H?[spam]? %C┆ [%4Z] %-10L » %s  %>  %-4.4c"'
 
 # for INBOX
 folder-hook "\!"    set sort = score # spoolfile
@@ -36,8 +40,9 @@ folder-hook =INBOX  set sort = score # for macro "gi", because spoolfile is diff
 #folder-hook =INBOX  set index_format = '" %?n?♪? %?o?♩? %?d?✖? %2C|•%N [%4Z] | %-10L »%?H?[spam]? %s %> %4c %[%I:%M %P %b/%d]"' # for macro "gi"
 
 # for INBOX
-folder-hook "\!"    set index_format = '"%2C┊•%N [%4Z] ┆ %-10L ┆ %-15F » %?H?[spam]? %s %> »%4c │%[%I:%M %P %b/%d]"'
-folder-hook =INBOX  set index_format = '"%2C┊•%N [%4Z] ┆ %-10L ┆ %-15F » %?H?[spam]? %s %> »%4c │%[%I:%M %P %b/%d]"' # for macro "gi"
+# folder-hook "\!"    set index_format = '"%3C┆%N [%4Z] ➜ %-10.10F × %-15.15L » %?H?[spam]?%-30.30s %> %c │%-15.15[%I:%M %P %b/%d]"'
+folder-hook "\!"    set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-45.45s %> │%-16.15[%I:%M %P %b.%d]"'
+folder-hook =INBOX  set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-45.45s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
 #folder-hook "\!"    set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 #folder-hook =INBOX  set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 # folder-hook .       set sort_aux = reverse-date-received
