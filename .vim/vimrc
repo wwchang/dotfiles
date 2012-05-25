@@ -923,6 +923,9 @@ endif
         call vam#ActivateAddons(['github:tpope/vim-rhubarb'])
             " CSV
         "call vam#ActivateAddons(['csv'])
+            " diff
+        call vam#ActivateAddons(['gf-diff'])
+        call vam#ActivateAddons(['gf-user'])
             " debug: quickfix/location list.
         call vam#ActivateAddons(['unimpaired'])
             " Completion <Tab>
@@ -2042,6 +2045,8 @@ syntax on
             " let g:github_user = '<user>'
             " let g:github_password = '<password>'
         " }}}
+
+        " gf-diff : open code file in 'diff' output with 'gf'.
     " }}}
 
     " [ projects ] {{{
@@ -3300,6 +3305,8 @@ syntax on
             " Custom keys
             "let g:EasyMotion_mapping_{motion} = {mapping}
         " }}}
+
+        " gf-user: extend 'gf' operation to open code file.
     " }}}
 
     " [ statusline ] {{{
