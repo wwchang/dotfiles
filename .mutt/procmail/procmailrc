@@ -202,7 +202,6 @@ VERBOSE=on
     unsure/
 # }}}
 
-
 # notify my emails {{{2
     #:0 c
     #* ! ^Message-ID: .*@stardiviner
@@ -309,13 +308,16 @@ VERBOSE=on
     Drupal/security/
 # }}}
 
-# apps {{{2
+# Apps: Vim, Emacs, Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{2
     :0
     * ^List-Id: .*\.vim\.org
     Vim/
     :0
     * ^List-Id: .*vim_use\.googlegroups\.com
     Vim/
+    :0
+    * ^List-Id: .*vimwiki\.googlegroups\.com
+    Vim/vimwiki/
     #:0
     #* ^List-Id: .*vimorganizer\.googlegroups\.com
     #Vim/vimOrganizer

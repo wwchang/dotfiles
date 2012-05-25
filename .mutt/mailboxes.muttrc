@@ -26,6 +26,7 @@ mailboxes =Important
 mailboxes =spam
 
 mailboxes =Vim
+mailboxes =Vim/vimwiki
 
 mailboxes =Arch
 mailboxes =Arch/general

@@ -157,4 +157,7 @@ subscribe screen screen <screen-users@gnu.org>
 # conky
 subscribe conky Conky <conky-users@lists.sourceforge.net>
 
+# vimwiki
+subscribe vimwiki vimwiki <vimwiki@googlegroups.com>
+
 # vim:ft=muttrc
