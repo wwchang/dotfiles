@@ -510,12 +510,6 @@ endif
 
     " [ filetype & fileformat ] {{{
     filetype plugin indent on " combine three into one.
-        " filetype on " enables filetype detection
-        " filetype plugin on " enables filetype specific plugins
-        " filetype indent on  "
-    " set fileformats
-    " TODO write a function to check whether file has dos or Mac fileformat line ending.
-    " if there is, or has mixture of them, then raise a prompt to ask whether auto convert.
     " }}}
 
     " [ tab ] {{{
