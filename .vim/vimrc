@@ -3675,10 +3675,21 @@ endif
     " FIXME add one if condition for whether it is under Linux.
         " vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
             " TODO write template and style.css for vimwiki.
-            " Wiki: \ws, \ww, 2\ww, \wd, \wr, gqq/gww, <A-Left/Right>
-            " Diary: \w\w,
-            " Text Objects: ah, ih, (section), a\, i\, (cell ) ac, ic, (column)
-            " %title%, %root_path%, %content%, %template person,
+            " Wiki: \ws, [count][\ww,\wt],
+            " Diary: [count][\wi, \w\w, \w\t], <C-Up/Down>,
+            " WikiLink: <CR>, <S-CR>(split and follow), <C-CR>(vsplit and follow).
+            "           <Backspace>, <Tab>, <S-Tab>,
+            "           \wd, \wr, <C-Space>,
+            "           =, -, +,
+            "           glm, gll, gl[*,#,-,1], gqq/gww, <A-Left/Right>,
+            " Text Objects: [operation:v,d,y,c][ah,ih],
+            " Search: :VimwikiSearch /pattern/ ,
+            " Syntax:
+            "   * mathematical formulae rendered in HTML using engine MathJax.
+            "   FIXME test index. :Vimwiki2HTMLBrowse
+            "   * code block syntax highlighting.
+            " There are global and per-wiki (local) options available to tune vimwiki.
+                " 'syntax': default, media, markdown,
             let g:vimwiki_list = [
                 \ {
                     \ 'path': '~/vimwiki/wiki',
@@ -3688,13 +3699,16 @@ endif
                     \ 'css_name': 'style.css',
                     \ 'template_path': '~/vimwiki/templates/wiki/',
                     \ 'template_default': 'default',
-                    \ 'template_ext': '.template',
+                    \ 'template_ext': '.html',
+                    \ 'custom_wiki2html': '',
+                    \ 'maxhi': 0,
+                    \ 'list_margin': -1,
                     \ 'nested_syntaxes': {
-                        \ 'py': 'python', 'pl': 'perl', 'lua': 'lua', 'rb': 'ruby',
-                        \ 'html': 'html', 'css': 'css',
-                        \ 'js': 'javascript', 'dart': 'dart',
-                        \ 'php': 'php', 'xml': 'xml',
+                        \ 'python': 'python', 'perl': 'perl', 'ruby': 'ruby',
                         \ 'sh': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
+                        \ 'javascript': 'javascript', 'dart': 'dart', 'php': 'php',
+                        \ 'html': 'html', 'css': 'css', 'xml': 'xml',
+                        \ 'lisp': 'lisp', 'lua': 'lua',
                         \ 'markdown': 'markdown', 'tex': 'tex',
                         \ 'git': 'git',
                         \ 'snippets': 'snippets', 'snippet': 'snippet',
@@ -3710,35 +3724,58 @@ endif
                     \ 'template_default': 'default',
                     \ 'template_ext': '.template'
                 \ },
+                \ {
+                    \ 'diary_rel_path': 'Diary/',
+                    \ 'diary_index': 'diary',
+                    \ 'diary_header': 'Diary',
+                    \ 'diary_sort': 'desc'
+                \ },
             \ ]
-            let g:vimwiki_dir_link = '' " '', 'index', 'main' for [[dir/]] to directory.
-            let g:vimwiki_camel_case = 0 " don't want WikiWord to be a link. prefer [[]]
-            let g:vimwiki_use_mouse=0 " disable mouse.
             let g:vimwiki_hl_headers = 1 " use VimwikiHeader1-6
-            let g:vimwiki_folding = 1 " disable folding. speed up file.
-            let g:vimwiki_fold_lists = 1
-            let g:vimwiki_fold_trailing_empty_lines = 0 " fold only one empty line.
-            let g:vimwiki_browsers = ['/usr/bin/luakit']
-            let g:vimwiki_table_auto_fmt = 0 " auto format table.
-            let g:vimwiki_html_header_numbering = 1
-            let g:vimwiki_html_header_numbering_sym = '.'
             let g:vimwiki_hl_cb_checked = 1 " checked list items
-            let g:vimwiki_auto_checkbox = 1 " if no creat checkbox when toggle list item
-            " let g:vimwiki_listsyms = '.oOX' " todo list: check/uncheck.
-            let g:vimwiki_stripsym = ' ' " filename can not use /*?<>:
-            " let g:vimwiki_badsyms = ' ' " filename treat space as bad.
-            let g:vimwiki_file_exts = 'pdf,txt,doc,xls,php,zip,rar,7z,html,gz,tar.gz,tar.bz2,jpg,png,py,sh'
+            let g:vimwiki_global_ext = 1 " make temporary wiki in dir.
+            let g:vimwiki_ext2syntax = {'md': 'markdown',
+                        \ 'mkd': 'markdown',
+                        \ 'wiki': 'default'}
+            let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
+            let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
+            let g:vimwiki_listsyms = ' .oOX'
+            let g:vimwiki_use_mouse=0 " disable mouse.
+            let g:vimwiki_folding = 1 " disable folding. speed up file.
+            let g:vimwiki_fold_lists = 1 " enable list subitem's folding.
+            let g:vimwiki_list_ignore_newline = 1
+            let g:vimwiki_use_calendar = 1
+            let g:vimwiki_table_mappings = 1
+            let g:vimwiki_table_auto_fmt = 0
+            " let g:vimwiki_w32_dir_enc = 'cp1251'
+            " let g:vimwiki_CJK_length = 0 " Vim73 users obsolete this option.
+            let g:vimwiki_dir_link = '' " [[dir/]] to open directory with netrw.
+            let g:vimwiki_html_header_numbering = 2
+            let g:vimwiki_html_header_numbering_sym = '.'
             " let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr'
             let g:vimwiki_user_htmls = '404.html,search.html'
-            let g:vimwiki_list_ignore_newline = 1 " ignore newlines in list items.
-            let g:vimwiki_use_calendar = 1
+            let g:vimwiki_conceallevel = 2 " vimwiki set this everytime
+            let g:vimwiki_url_mingain = 20 " min chars be gained by concealing URLs
+            let g:vimwiki_url_maxsave = 25
+            let g:vimwiki_debug = 0
+            let g:vimwiki_diary_months = {
+                        \ 1: 'January', 2: 'February', 3: 'March',
+                        \ 4: 'April', 5: 'May', 6: 'June',
+                        \ 7: 'July', 8: 'August', 9: 'September',
+                        \ 10: 'October', 11: 'November', 12: 'December'
+                        \ }
 
             " [ extra ] {{{
-                augroup DisableMBEInWiki
-                    au!
-                    au FileType vimwiki :MgrClose
-                    " au FileType vimwiki :CMiniBufExplorer
-                augroup END
+            function! VimwikiWeblinkHandler(weblink)
+                let browser = 'firefox'
+                execute '!start "'.browser.'" ' . a:weblink
+            endfunction
+
+            augroup DisableMBEInWiki
+                au!
+                au FileType vimwiki :MgrClose
+                " au FileType vimwiki :CMiniBufExplorer
+            augroup END
             " }}}
         " }}}
 
