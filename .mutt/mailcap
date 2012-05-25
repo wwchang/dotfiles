@@ -41,7 +41,8 @@ application/postscript; ps2ascii %s; copiousoutput
 # like ranger to get archive's file list
 
 # [ source code ]
-# view with source-highlight
+# view with Vim or source-highlight
+# FIXME
 # text/python; source-highlight -i %s
 
 # vim: ft=mailcap
