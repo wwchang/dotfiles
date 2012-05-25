@@ -1154,6 +1154,8 @@ endif
     call SetupVAM()
 " }}}
 
+filetype plugin indent on
+syntax on
 " ----------------------------------------------------------------
 
 " [ vim plugins manager (VAM) ] {{{
