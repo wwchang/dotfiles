@@ -1071,8 +1071,8 @@ endif
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
         call vam#ActivateAddons(['inline_edit', 'NrrwRgn'])
             " vimwiki & note
-        "call vam#ActivateAddons(['vimwiki'])
-        call vam#ActivateAddons(['github:vim-scripts/vimwiki'])
+        call vam#ActivateAddons(['vimwiki'])
+        "call vam#ActivateAddons(['github:vim-scripts/vimwiki'])
         call vam#ActivateAddons(['notes'])
         "call vam#ActivateAddons(['vim-pad'])
             " GTD
