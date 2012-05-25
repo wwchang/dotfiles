@@ -203,9 +203,6 @@ VERBOSE=on
 # }}}
 
 
-    :0
-    * ^Sender: .*noreply\+feedproxy@google\.com
-    kkkk/
 # notify my emails {{{2
     #:0 c
     #* ! ^Message-ID: .*@stardiviner
