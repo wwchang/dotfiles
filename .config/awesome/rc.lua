@@ -516,9 +516,9 @@ vicious.register(fs.s, vicious.widgets.fs, "${/media/tux used_p}", 599)
 -- }}}
 
 -- OLD
---fswidget = widget({ type = "textbox"})
-    --vicious.cache(vicious.widgets.fs)
-    --vicious.register( fswidget, vicious.widgets.fs, "" .. cmagenta .. " " .. coldef .. cmagenta .. " ${/home avail_p}%" .. coldef .. "")
+fswidget = widget({ type = "textbox"})
+    vicious.cache(vicious.widgets.fs)
+    vicious.register( fswidget, vicious.widgets.fs, "" .. cbrown .. " " .. coldef .. cmagenta .. " ${/home avail_p}%" .. coldef .. "")
 
 -- weather:
 weathericon = widget({ type = "imagebox" })
@@ -914,16 +914,17 @@ for s = 1, screen.count() do
         foursquare,
         mytextclock, datetext, separator_sign,
         --weatherwidget, weathertext, separator_sign,
-        volwidget, volbar.widget, voltext,
+        volwidget, voltext,
         separator_sign,
-        fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fstext, separator_sign,
+        -- fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fstext, separator_sign,
+        fswidget, fstext, separator_sign,
         tempwidget, temptext, separator_sign,
         uptimewidget, uptimetext, separator_sign,
         batwidget, battext, separator_sign,
         netedownwidget, dntext, neteupwidget, uptext, separator_sign,
         -- wifiwidget, wifitext,
         netwdownwidget, netwupwidget,
-        memwidget, membar.widget, memtext, separator_sign,
+        memwidget, memtext, separator_sign,
         -- diowidget, separator_sign,
         loadavgwidget, loadavgtext, separator_sign,
         cputwidget, cputext, separator_sign,
