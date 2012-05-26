@@ -3775,10 +3775,16 @@ syntax on
                         \ }
 
             " [ extra ] {{{
-            function! VimwikiWeblinkHandler(weblink)
-                let browser = 'firefox'
-                execute '!start "'.browser.'" ' . a:weblink
-            endfunction
+            " Schemes:
+            "   - [[file:///...]]
+            "   - [[wiki#:this is a link|describ]]
+            "   - [[local:../path/|desc]]
+            " FIXME use utl.vim at here. :Utl.
+            " function! VimwikiWeblinkHandler(weblink)
+            "     let browser = 'firefox'
+            "     execute 'silent !"'.browser.'" ' . shellescape(a:weblink, 1) . '&'
+            " endfunction
+            " call VimwikiWeblinkHandler(expand("<cWORD>"))
 
             augroup DisableMBEInWiki
                 au!
