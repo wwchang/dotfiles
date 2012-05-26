@@ -1,7 +1,7 @@
 
 theme = {}
 
-theme.font          = "Comic Sans MS bold 10"
+theme.font          = "Ubuntu 10"
 --theme.font          = "FZMiaoWuS-GB 14"
 --theme.font = "Sans 10"
 --theme.font = "Digital dream 9"
@@ -29,7 +29,7 @@ theme.border_marked = "#91231C"
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 
-theme.taglist_font      = "Ubuntu bold 12"
+theme.taglist_font      = "Ubuntu 12"
 theme.taglist_bg_focus  = "#535D6C"
 theme.taglist_bg_normal = "#222222"
 theme.taglist_bg_urgent = "#FF0000"
@@ -66,7 +66,7 @@ theme.border_widget    = theme.bg_normal
 
 theme.mouse_finder_color = theme.fg_urgent
 
--- white bird on tasklist icon 
+-- white bird on tasklist icon
 -- theme.tasklist_floating_icon = theme_icons .. "tasklist/floatingw.png"
 
 -- Variables set for theming the menu:
@@ -107,7 +107,7 @@ theme.titlebar_maximized_button_focus_active  = theme_icons .. "titlebar/maximiz
 -- theme.wallpaper_cmd = { "awsetbg" .. " " .. os.getenv("HOME") .. "/.Wallpaper" }
 theme.wallpaper_cmd = { "feh --bg-fill /home/chris/.config/awesome/themes/wallpapers/gene.jpg" }
 
--- random wallpaper 
+-- random wallpaper
 -- XXX you can just { $ cd .config/awesome/.. ; ln -s /media/tux/Pictures . }
 -- theme.wallpaper_cmd = { "awsetbg -c -r ~/.config/awesome/themes/black/background/" }
 -- theme.wallpaper_cmd = { "awsetbg -c -r /media/tux/Private/Pictures/wallpapers/" }
