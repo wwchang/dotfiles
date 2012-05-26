@@ -438,7 +438,7 @@ memwidget = widget({ type = "textbox" })
 	vicious.cache(vicious.widgets.mem)
 	-- vicious.register(memwidget, vicious.widgets.mem, "" .. colwhi .. "Ram " .. coldef .. colbyel .. "$1% ($3M)" .. coldef .. "", 13)
 	-- vicious.register(memwidget, vicious.widgets.mem, "" .. colblu .. "Ram " .. coldef .. colbblu .. "$1% ($6M)" .. coldef .. "", 13)
-	vicious.register(memwidget, vicious.widgets.mem, "" .. cdbrown .. " " .. coldef .. cdbrown .. "$1% ($6M)" .. coldef .. "", 13)
+	vicious.register(memwidget, vicious.widgets.mem, "" .. cblue .. " " .. coldef .. cblue .. "$1% ($6M)" .. coldef .. "", 13)
 
 -- RAM bar widget
 membar = awful.widget.progressbar()
