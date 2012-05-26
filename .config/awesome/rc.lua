@@ -210,12 +210,12 @@ sexec("urxvt -name 9 -e sh -c 'tmux attach -t Daily'")
 --sexec("urxvt -name 8 -e sh -c 'mplayer ~/Pictures/videos/XieLe.avi' ")
 --sexec("evince '/media/tux/data/Computer/Python/Python\ Standard\ Library\ by\ Example.pdf'")
 
-run_once("urxvtd")
-run_once("mpd")
-run_once("mlnet")
-run_once("nm-applet")
-run_once("anki")
-run_once("xscreensaver","-no-splash")
+-- run_once("urxvtd")
+-- run_once("mpd")
+-- run_once("mlnet")
+-- run_once("nm-applet")
+-- run_once("anki")
+-- run_once("xscreensaver","-no-splash")
 
 -- run_once("wicd-gtk")
 -- It is possible to set up Urxvt so that a single Daemon runs, and individual client windows connect to it, (urxvtd and urxvtc), the advantage of this is reduced
@@ -929,7 +929,7 @@ for s = 1, screen.count() do
         loadavgwidget, loadavgtext, separator_sign,
         cputwidget, cputext, separator_sign,
         -- cpugraph.widget,
-        maildirwidget, mailtext, separator_sign,
+        maildirwidget, separator_sign,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
