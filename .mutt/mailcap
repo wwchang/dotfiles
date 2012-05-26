@@ -14,11 +14,20 @@ text/html; elinks %s; nametemplate=%s.html; copiousoutput
 # enconv|elinks -force-html -dump -dump-color-mode 1 -eval "set document.css.stylesheet='$HOME/etc/mail.css'" /dev/stdin
 # text/html; muttHtml; copiousoutput
 
-# [ diff ]
-text/diff; vimdiff %s
+# [ diff & patch ]
+text/x-diff; vimdiff %s
+text/x-patch; vim %s
 
-# [ application ]
+# [ source code ]
 application/x-sh; vim %s
+application/x-python; vim %s
+application/x-perl; vim %s
+application/x-tcl; vim %s
+application/x-delphi-source; vim %s
+application/x-emacs-lisp; vim %s
+application/x-script.elisp; vim %s
+
+# [ document ]
 application/pdf; zathura %s
 # application/pdf; pdftotext -enc UTF-8 %s /dev/stdout; copiousoutput
 # application/pdf; evince %s
@@ -26,6 +35,7 @@ application/chm; chmsee %s
 # Microsoft Word Doc
 application/msword; wvHtml --charset=gb2312 %s - | lynx --dump -stdin; nametemplate=%s.html; copiousoutput
 # application/msword; wvHtml --charset=gb2312 %s - | elinks -dump 1; nametemplate=%s.html; copiousoutput
+# application/x-vcard; abook
 
 # [ image ]
 # image/*; feh %s >/dev/null
@@ -35,14 +45,15 @@ image/*; sxiv %s >/dev/null
 video/*; mplayer %s >/dev/null
 
 # [ archive ]
+application/zip; gzcat; copiousoutput
+application/x-gzip; gzcat; copiousoutput
 application/x-gunzip;   gzcat; copiousoutput
 application/x-tar-gz; gunzip -c %s | tar -tf - ; copiousoutput
+application/x-zip-compressed; gzcat; copiousoutput
+# application/x-arj-compressed; arj;
+
+
 application/postscript; ps2ascii %s; copiousoutput
 # like ranger to get archive's file list
-
-# [ source code ]
-# view with Vim or source-highlight
-# FIXME
-# text/python; source-highlight -i %s
 
 # vim: ft=mailcap
