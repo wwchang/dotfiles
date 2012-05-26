@@ -60,6 +60,11 @@ mailboxes =Ruby
 mailboxes =Ruby/Rails
 
 mailboxes =Maemo
+mailboxes =Maemo/update/N900
+mailboxes =Maemo/update/Development
+mailboxes =Maemo/users
+mailboxes =Maemo/devel
+
 mailboxes =Awesome
 mailboxes =FVWM
 

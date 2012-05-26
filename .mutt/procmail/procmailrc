@@ -182,7 +182,7 @@ VERBOSE=on
 # }}}
 
 # spam (bogofilter) {{{2
-    #Send mail thru bogofilter
+    # deliver mail through bogofilter
     :0fw
     | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
     # ongoing train bogofilter with -u option.
@@ -213,6 +213,11 @@ VERBOSE=on
     #* ! ^Message-ID: .*@stardiviner
     #* ^References:  .*@stardiviner
     #| /home/chris/bin/notify.sh "Update_mailing-list:" "Subject"
+
+    #:0:
+    #* ^In-Reply-To: .*numbchild@gmail.com
+    #* ^References:  .*numbchild@gmail.com
+    #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox." ; echo "test procmail notify OK !" > /home/chris/test_procmail.txt
 # }}}
 
 # QQ {{{2
@@ -428,8 +433,17 @@ VERBOSE=on
 
 # system {{{2
     :0
-    * ^List-Id: .*\.maemo\.org
-    Maemo/
+    * ^List-Id: .*maemo-developers\.maemo\.org
+    Maemo/devel/
+    :0
+    * ^List-Id: .*maemo-users\.maemo\.org
+    Maemo/users/
+    :0
+    * ^Subject: .*"Development"\ update
+    Maemo/update/Development/
+    :0
+    * ^Subject: .*"Nokia N900"\ update
+    Maemo/update/N900/
     :0
     * ^List-Id: .*linuxusersgroup\.googlegroups\.com
     Linux/
