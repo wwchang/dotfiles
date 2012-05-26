@@ -370,6 +370,8 @@ mylauncher = awful.widget.launcher({ image = image(beautiful.awesome_icon),
 
 dateicon = widget({ type = "imagebox" })
 dateicon.image = image(beautiful.widget_date)
+datetext = widget({ type = "textbox" })
+datetext.text = "" .. cwhite .. " Date " .. coldef .. ""
 -- Calendar2
 mytextclock = awful.widget.textclock({ align = "right" }, " %a %b %d [%H:%M:%S] ", 1)
 -- Calendar widget to attach to the textclock
@@ -379,6 +381,8 @@ calendar2.addCalendarToWidget(mytextclock)
 -- {{{ CPU widget
 cpuicon = widget({ type = "imagebox" })
 cpuicon.image = image(beautiful.widget_cpu)
+cputext = widget({ type = "textbox" })
+cputext.text = "" .. cdgreen .. " cpu " .. coldef .. ""
 -- Initialize widgets
 cpugraph  = awful.widget.graph()
 -- Graph properties
@@ -408,6 +412,8 @@ cputwidget:buttons(awful.util.table.join(awful.button({}, 1, function () awful.u
 -- CPU temperature widget
 tempicon = widget({ type = "imagebox" })
 tempicon.image = image(beautiful.widget_temp)
+temptext = widget({ type = "textbox" })
+temptext.text = "" .. cdyellow .. " temp " .. coldef .. ""
 tempwidget = widget({ type = "textbox" })
 	vicious.register(tempwidget, vicious.widgets.thermal,
     function (widget, args)
@@ -426,6 +432,8 @@ tempwidget = widget({ type = "textbox" })
 -- RAM widget
 memicon = widget({ type = "imagebox" })
 memicon.image = image(beautiful.widget_mem)
+memtext = widget({ type = "textbox" })
+memtext.text = "" .. cdblue .. " mem " .. coldef .. ""
 memwidget = widget({ type = "textbox" })
 	vicious.cache(vicious.widgets.mem)
 	-- vicious.register(memwidget, vicious.widgets.mem, "" .. colwhi .. "Ram " .. coldef .. colbyel .. "$1% ($3M)" .. coldef .. "", 13)
@@ -451,6 +459,8 @@ vicious.register(membar, vicious.widgets.mem, "$1", 13)
 -- Uptime
 uptimeicon = widget({ type = "imagebox" })
 uptimeicon.image = image(beautiful.widget_uptime)
+uptimetext = widget({ type = "textbox" })
+uptimetext.text = "" .. cwhite .. " uptime " .. coldef .. ""
 uptimewidget = widget({ type = "textbox" })
 -- vicious.register( uptimewidget, vicious.widgets.uptime, "uptime $2h:$3m")
 vicious.register( uptimewidget, vicious.widgets.uptime, "" .. cdcyan .. " " .. coldef .. cdcyan .. " $2h:$3m" .. coldef .. "")
@@ -458,6 +468,8 @@ vicious.register( uptimewidget, vicious.widgets.uptime, "" .. cdcyan .. " " .. c
 -- load average
 loadavgicon = widget({ type = "imagebox" })
 loadavgicon.image = image({beautiful.widget_loadavg})
+loadavgtext = widget({ type = "textbox" })
+loadavgtext.text = "" .. cdcyan .. " avg " .. coldef .. ""
 loadavgwidget = widget({ type = "textbox" })
 -- $4 for 1 minutes, $5 for 5 minutes, $6 for 15 minutes.
 vicious.register( loadavgwidget, vicious.widgets.uptime, "" .. cgreen .. " " .. coldef .. cgreen .. " $4 $5 $6" .. coldef .. "")
@@ -474,6 +486,8 @@ diowidget = widget({ type = "textbox"})
 -- {{{ file system
 fsicon = widget({ type = "imagebox" })
 fsicon.image = image(beautiful.widget_fs)
+fstext = widget({ type = "textbox" })
+fstext.text = "" .. cdbrown .. " fs " .. coldef .. ""
 -- Initialize widgets
 fs = {
   b = awful.widget.progressbar(), r = awful.widget.progressbar(),
@@ -509,6 +523,8 @@ vicious.register(fs.s, vicious.widgets.fs, "${/media/tux used_p}", 599)
 -- weather:
 weathericon = widget({ type = "imagebox" })
 weathericon.image = image(beautiful.widget_weather)
+weathertext = widget({ type = "textbox" })
+weathertext.text = "" .. cwhite .. " weather " .. coldef .. ""
 weatherwidget = widget({ type = "textbox" })
 weather_t = awful.tooltip({ objects = { weatherwidget },})
 vicious.register(weatherwidget, vicious.widgets.weather,
@@ -545,6 +561,10 @@ dnicon = widget({ type = "imagebox" })
 dnicon.image = image(beautiful.widget_net)
 upicon = widget({ type = "imagebox" })
 upicon.image = image(beautiful.widget_netup)
+dntext = widget({ type = "textbox" })
+dntext.text = "" .. cblue .. " dn " .. coldef .. ""
+uptext = widget({ type = "textbox" })
+uptext.text = "" .. cred .. " up " .. coldef .. ""
 
 -- eth
 neteupwidget = widget({ type = "textbox" })
@@ -563,6 +583,8 @@ netwdownwidget = widget({ type = "textbox" })
 
 wifiicon = widget({ type = "imagebox" })
 wifiicon.image = image(beautiful.widget_wifi)
+wifitext = widget({ type = "textbox" })
+wifitext.text = "" .. ccyan .. " wifi " .. coldef .. ""
 wifiwidget = widget({ type = "textbox" })
 	vicious.register(wifiwidget, vicious.widgets.wifi,
 	function (widget, args)
@@ -600,6 +622,8 @@ wifiwidget = widget({ type = "textbox" })
 local mdir = os.getenv("HOME") .. "/Mails/"
 mailicon = widget({ type = "imagebox" })
 mailicon.image = image(beautiful.widget_mail)
+mailtext = widget({ type = "textbox" })
+mailtext.text = "" .. cdred .. " Mail " .. coldef .. ""
 -- -- Initialize widget
 maildirwidget = widget({ type = "textbox" })
 -- -- Register widget
@@ -629,6 +653,8 @@ maildirwidget:buttons(awful.util.table.join(
 -- Battery widget
 baticon = widget({ type = "imagebox" })
 baticon.image = image(beautiful.widget_bat)
+battext = widget({ type = "textbox" })
+battext.text = "" .. cdbrown .. " Bat " .. coldef .. ""
 batwidget = widget({ type = "textbox" })
 	vicious.register(batwidget, vicious.widgets.bat,
 	function (widget, args)
@@ -642,6 +668,8 @@ batwidget = widget({ type = "textbox" })
             return blinking(batwidget, 1)
 		elseif args[2] < 20 then
 			return "" .. cred .. " " .. coldef .. cred .. args[2] .. "%" .. coldef .. ""
+		elseif args[2] <= 0 then
+			return "" .. cdbrown .. " " .. coldef .. cblack .. " full " .. coldef .. ""
 		else
 			-- return "" .. colgrey .. "Bat " .. coldef .. colbgrey .. args[2] .. "%" .. coldef .. ""
             -- unecho Bat when on A/C, it is unnessery
@@ -664,6 +692,8 @@ batwidget = widget({ type = "textbox" })
 -- {{{ Volume level
 volicon = widget({ type = "imagebox" })
 volicon.image = image(beautiful.widget_vol)
+voltext = widget({ type = "textbox" })
+voltext.text = "" .. cgrey .. " Vol " .. coldef .. ""
 -- Initialize widgets
 volbar    = awful.widget.progressbar()
 volwidget = widget({ type = "textbox" })
@@ -693,6 +723,8 @@ volwidget:buttons(volbar.widget:buttons())
 -- MPD widget
 musicicon = widget({ type = "imagebox" })
 musicicon.image = image(beautiful.widget_music)
+musictext = widget({ type = "textbox" })
+musictext.text = "" .. cdgreen .. " mpd " .. coldef .. ""
 mpdwidget = widget({ type = 'textbox' })
 -- TODO add tooltip for mpdwidget
 	vicious.register(mpdwidget, vicious.widgets.mpd,
@@ -851,15 +883,15 @@ for s = 1, screen.count() do
         {
             foursquare,
             mylauncher,
-            mytaglist[s], separator_image,
-            mypromptbox[s], separator_image,
+            mytaglist[s], separator_sign,
+            mypromptbox[s], separator_sign,
             layout = awful.widget.layout.horizontal.leftright
         },
         foursquare,
-        mylayoutbox[s], separator_image,  -- layout style pic
-        s == 1 and mysystray or nil, separator_image, -- systray
+        mylayoutbox[s], separator_sign,  -- layout style pic
+        s == 1 and mysystray or nil, separator_sign, -- systray
         -- remove systray here
-        -- s == 1 and nil, separator_image, -- systray
+        -- s == 1 and nil, separator_sign, -- systray
         -- mytextbox, -- code Evanescene
         mytasklist[s], -- task list
         layout = awful.widget.layout.horizontal.rightleft
@@ -874,29 +906,29 @@ for s = 1, screen.count() do
         {
             foursquare,
             mytextword,
-            musicicon, mpdwidget,
+            musictext, mpdwidget,
             -- osinfowidget,
-            -- mailbox, separator_image,
+            -- mailbox, separator_sign,
             layout = awful.widget.layout.horizontal.leftright
         },
         foursquare,
-        mytextclock, dateicon, separator_image,
-        --weatherwidget, weathericon, separator_image,
-        volwidget, volbar.widget, volicon,
-        separator_image,
-        fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fsicon, separator_image,
-        tempwidget, tempicon, separator_image,
-        uptimewidget, uptimeicon, separator_image,
-        batwidget, baticon, separator_image,
-        netedownwidget, dnicon, neteupwidget, upicon, separator_image,
-        -- wifiwidget, wifiicon,
+        mytextclock, datetext, separator_sign,
+        --weatherwidget, weathertext, separator_sign,
+        volwidget, volbar.widget,
+        separator_sign,
+        fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fstext, separator_sign,
+        tempwidget, temptext, separator_sign,
+        uptimewidget, uptimetext, separator_sign,
+        batwidget, battext, separator_sign,
+        netedownwidget, dntext, neteupwidget, uptext, separator_sign,
+        -- wifiwidget, wifitext,
         netwdownwidget, netwupwidget,
-        memwidget, membar.widget, memicon, separator_image,
-        -- diowidget, separator_image,
-        loadavgwidget, loadavgicon, separator_image,
-        cputwidget, cpuicon, separator_image,
+        memwidget, membar.widget, memtext, separator_sign,
+        -- diowidget, separator_sign,
+        loadavgwidget, loadavgtext, separator_sign,
+        cputwidget, cputext, separator_sign,
         -- cpugraph.widget,
-        maildirwidget, mailicon, separator_image,
+        maildirwidget, mailtext, separator_sign,
         layout = awful.widget.layout.horizontal.rightleft
     }
 end
