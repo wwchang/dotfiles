@@ -393,19 +393,19 @@ cpugraph:set_gradient_angle(0):set_gradient_colors({
 }) -- Register widgets
 vicious.register(cpugraph,  vicious.widgets.cpu,      "$1")
 tzswidget = widget({ type = "textbox" })
-vicious.register(tzswidget, vicious.widgets.thermal, " $1C", 19, "thermal_zone0")
+vicious.register(tzswidget, vicious.widgets.thermal, "$1C", 19, "thermal_zone0")
 
 cputwidget = widget({ type = "textbox" })
 	vicious.register(cputwidget, vicious.widgets.cpu,
-	function (widget, args)
-		if  args[1] >= 50 and args[1] <=75 then
-			return "" .. cred .. " " .. coldef .. cred .. args[1] .. "%" .. coldef .. ""
-		elseif args[1] >= 75 then
-			return "" .. cdred .. " " .. coldef .. cdred .. args[1] .. "%" .. coldef .. ""
-		else
-			return "" .. cred .. " " .. coldef .. cred .. args[1] .. "%" .. coldef .. ""
-		end
-	end )
+    function (widget, args)
+        if  args[1] >= 70 and args[1] <=85 then
+            return "" .. cred .. args[1] .. "%" .. coldef .. ""
+        elseif args[1] >= 85 then
+            return "" .. cdred .. args[1] .. "%" .. coldef .. ""
+        else
+            return "" .. cgreen .. args[1] .. "%" .. coldef .. ""
+        end
+    end )
 cputwidget:buttons(awful.util.table.join(awful.button({}, 1, function () awful.util.spawn ( terminal .. " -e htop --sort-key PERCENT_CPU") end ) ) )
 -- }}}
 
@@ -418,14 +418,14 @@ tempwidget = widget({ type = "textbox" })
 	vicious.register(tempwidget, vicious.widgets.thermal,
     function (widget, args)
         if  args[1] >= 65 and args[1] < 70 then
-            return "" .. cyellow .. " " .. coldef .. cyellow .. args[1] .. "°C" .. coldef .. ""
+            return "" .. cyellow .. args[1] .. "°C" .. coldef .. ""
         elseif args[1] >= 70 and args[1] < 75 then
-            return "" .. cyellow .. " " .. coldef .. cred .. args[1] .. "°C" .. coldef .. ""
+            return "" .. cred .. args[1] .. "°C" .. coldef .. ""
         elseif args[1] > 80 then
             naughty.notify({ title = "Temperature Warning", text = "Running hot! " .. args[1] .. "°C!\nTake it easy.", timeout = 10, position = "top_right", fg = beautiful.fg_urgent, bg = beautiful.bg_urgent })
-            return "" .. cyellow .. " " .. coldef .. cred .. args[1] .. "°C" .. coldef .. ""
+            return "" .. cred .. args[1] .. "°C" .. coldef .. ""
         else
-            return "" .. cyellow .. " " .. coldef .. cdyellow .. args[1] .. "°C" .. coldef .. ""
+            return "" .. cdyellow .. args[1] .. "°C" .. coldef .. ""
         end
     end, 19, "thermal_zone0" )
 
@@ -438,7 +438,7 @@ memwidget = widget({ type = "textbox" })
 	vicious.cache(vicious.widgets.mem)
 	-- vicious.register(memwidget, vicious.widgets.mem, "" .. colwhi .. "Ram " .. coldef .. colbyel .. "$1% ($3M)" .. coldef .. "", 13)
 	-- vicious.register(memwidget, vicious.widgets.mem, "" .. colblu .. "Ram " .. coldef .. colbblu .. "$1% ($6M)" .. coldef .. "", 13)
-	vicious.register(memwidget, vicious.widgets.mem, "" .. cblue .. " " .. coldef .. cblue .. "$1% ($6M)" .. coldef .. "", 13)
+	vicious.register(memwidget, vicious.widgets.mem, "" .. cblue .. "$1% ($6M)" .. coldef .. "", 13)
 
 -- RAM bar widget
 membar = awful.widget.progressbar()
@@ -463,7 +463,7 @@ uptimetext = widget({ type = "textbox" })
 uptimetext.text = "" .. cwhite .. " uptime " .. coldef .. ""
 uptimewidget = widget({ type = "textbox" })
 -- vicious.register( uptimewidget, vicious.widgets.uptime, "uptime $2h:$3m")
-vicious.register( uptimewidget, vicious.widgets.uptime, "" .. cdcyan .. " " .. coldef .. cdcyan .. " $2h:$3m" .. coldef .. "")
+vicious.register( uptimewidget, vicious.widgets.uptime, "" .. cdcyan .. " $2h:$3m" .. coldef .. "")
 
 -- load average
 loadavgicon = widget({ type = "imagebox" })
@@ -472,16 +472,20 @@ loadavgtext = widget({ type = "textbox" })
 loadavgtext.text = "" .. cdcyan .. " avg " .. coldef .. ""
 loadavgwidget = widget({ type = "textbox" })
 -- $4 for 1 minutes, $5 for 5 minutes, $6 for 15 minutes.
-vicious.register( loadavgwidget, vicious.widgets.uptime, "" .. cgreen .. " " .. coldef .. cgreen .. " $4 $5 $6" .. coldef .. "")
+vicious.register( loadavgwidget, vicious.widgets.uptime, "" .. ccyan .. " $4 $5 $6" .. coldef .. "")
 
 -- operating system info
+ostext = widget({ type = "textbox" })
+ostext.text = "" .. cdcyan .. " os " .. coldef .. ""
 osinfowidget = widget({ type = "textbox"})
-vicious.register( osinfowidget, vicious.widgets.os, "" .. cgrey .. "OS:" .. coldef .. cblack .. " $4" .. coldef .. "")
+vicious.register( osinfowidget, vicious.widgets.os, "" .. cwhite .. " $4" .. coldef .. "")
 
 -- disk I/O
+diotext = widget({ type = "textbox" })
+diotext.text = "" .. cdcyan .. " I/O " .. coldef .. ""
 diowidget = widget({ type = "textbox"})
     vicious.cache(vicious.widgets.dio)
-    vicious.register( diowidget, vicious.widgets.dio, "" .. cdcyan .. "I/O:" .. coldef .. ccyan .. " ${sda total_kb}k" .. coldef .. "")
+    vicious.register( diowidget, vicious.widgets.dio, "" .. ccyan .. " ${sda total_kb}k" .. coldef .. "")
 
 -- {{{ file system
 fsicon = widget({ type = "imagebox" })
@@ -518,7 +522,7 @@ vicious.register(fs.s, vicious.widgets.fs, "${/media/tux used_p}", 599)
 -- OLD
 fswidget = widget({ type = "textbox"})
     vicious.cache(vicious.widgets.fs)
-    vicious.register( fswidget, vicious.widgets.fs, "" .. cbrown .. " " .. coldef .. cmagenta .. " ${/home avail_p}%" .. coldef .. "")
+    vicious.register( fswidget, vicious.widgets.fs, "" .. cmagenta .. " ${/home avail_p}%" .. coldef .. "")
 
 -- weather:
 weathericon = widget({ type = "imagebox" })
@@ -569,17 +573,17 @@ uptext.text = "" .. cred .. " up " .. coldef .. ""
 -- eth
 neteupwidget = widget({ type = "textbox" })
 	vicious.cache(vicious.widgets.net)
-	vicious.register(neteupwidget, vicious.widgets.net, "" .. cwhite .. " " .. coldef .. cwhite .. "${eth0 up_kb}k " .. coldef .. "")
+	vicious.register(neteupwidget, vicious.widgets.net, "" .. cred .. "${eth0 up_kb}k " .. coldef .. "")
 
 netedownwidget = widget({ type = "textbox" })
-	vicious.register(netedownwidget, vicious.widgets.net, "" .. cdblue .. " " ..coldef .. cred .. "${eth0 down_kb}k" .. coldef .. "")
+	vicious.register(netedownwidget, vicious.widgets.net, "" .. cblue .. "${eth0 down_kb}k" .. coldef .. "")
 
 -- wlan
 netwupwidget = widget({ type = "textbox" })
-	vicious.register(netwupwidget, vicious.widgets.net, "" .. cwhite .. " " .. coldef .. cwhite .. "${wlan0 up_kb}k " .. coldef .. "")
+	vicious.register(netwupwidget, vicious.widgets.net, "" .. cred .. "${wlan0 up_kb}k " .. coldef .. "")
 
 netwdownwidget = widget({ type = "textbox" })
-	vicious.register(netwdownwidget, vicious.widgets.net, "" .. cdblue .. " " .. coldef .. cdblue .. "${wlan0 down_kb}k " .. coldef .. "")
+	vicious.register(netwdownwidget, vicious.widgets.net, "" .. cdblue .. "${wlan0 down_kb}k " .. coldef .. "")
 
 wifiicon = widget({ type = "imagebox" })
 wifiicon.image = image(beautiful.widget_wifi)
@@ -658,24 +662,20 @@ battext.text = "" .. cdbrown .. " Bat " .. coldef .. ""
 batwidget = widget({ type = "textbox" })
 	vicious.register(batwidget, vicious.widgets.bat,
 	function (widget, args)
-		if args[2] >= 30 and args[2] < 75 then
-			return "" .. cyellow .. " " .. coldef .. cyellow .. args[2] .. "%" .. coldef .. ""
-		elseif args[2] >= 20 and args[2] < 30 then
-			return "" .. cdred .. " " .. coldef .. cdred .. args[2] .. "%" .. coldef .. ""
-		elseif args[2] < 20 and args[1] == "-" then
-			naughty.notify({ title = "Battery Warning", text = "Battery low! "..args[2].."% left!\nBetter get some power.", timeout = 10, position = "top_right", fg = beautiful.fg_urgent, bg = beautiful.bg_urgent })
-			-- return "" .. cred .. " " .. coldef .. cred .. args[2] .. "%" .. coldef .. ""
+        if args[2] >= 30 and args[2] < 75 then
+            return "" .. cyellow .. args[2] .. "%" .. coldef .. ""
+        elseif args[2] >= 20 and args[2] < 30 then
+            return "" .. cdred .. args[2] .. "%" .. coldef .. ""
+        elseif args[2] < 20 and args[1] == "-" then
+            naughty.notify({ title = "Battery Warning", text = "Battery low! "..args[2].."% left!\nBetter get some power.", timeout = 10, position = "top_right", fg = beautiful.fg_urgent, bg = beautiful.bg_urgent })
+            -- return "" .. cred .. " " .. coldef .. cred .. args[2] .. "%" .. coldef .. ""
             return blinking(batwidget, 1)
-		elseif args[2] < 20 then
-			return "" .. cred .. " " .. coldef .. cred .. args[2] .. "%" .. coldef .. ""
-		elseif args[2] <= 0 then
-			return "" .. cdbrown .. " " .. coldef .. cblack .. " full " .. coldef .. ""
-		else
-			-- return "" .. colgrey .. "Bat " .. coldef .. colbgrey .. args[2] .. "%" .. coldef .. ""
-            -- unecho Bat when on A/C, it is unnessery
-            return "" .. cdyellow .. " A/C" .. coldef .. ""
-		end
-	end, 23, "BAT0"	)
+        elseif args[2] < 20 and args[2] > 0 then
+            return "" .. cred .. args[2] .. "%" .. coldef .. ""
+        else
+            return "" .. cdbrown .. " A/C" .. coldef .. ""
+        end
+    end, 23, "BAT0"	)
 
 -- Volume widget
 --volwidget = widget({ type = "textbox" })
@@ -730,11 +730,11 @@ mpdwidget = widget({ type = 'textbox' })
 	vicious.register(mpdwidget, vicious.widgets.mpd,
 	    function (widget, args)
 	        if args["{state}"] == "Stop" then
-	            return "" .. ccyan .. " " .. coldef .. cblack .. "Stop" .. coldef .. ""
+	            return "" .. cblack .. "Stop" .. coldef .. ""
 	        elseif args["{state}"] == "Play" then
-	            return "" .. ccyan .. " " .. coldef .. cblue .. args["{Title}"] .. " - " .. args["{Artist}"] .. coldef .. ""
+	            return "" .. cblue .. args["{Title}"] .. " - " .. args["{Artist}"] .. coldef .. ""
 	        elseif args["{state}"] == "Pause" then
-	            return "" .. ccyan .. " " .. coldef .. cdgrey .. "Pause" .. coldef .. ""
+	            return "" .. cdgrey .. "Pause" .. coldef .. ""
 	        end
         end)
 mpdwidget:buttons(
