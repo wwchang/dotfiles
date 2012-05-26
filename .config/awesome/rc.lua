@@ -914,7 +914,7 @@ for s = 1, screen.count() do
         foursquare,
         mytextclock, datetext, separator_sign,
         --weatherwidget, weathertext, separator_sign,
-        volwidget, volbar.widget,
+        volwidget, volbar.widget, voltext,
         separator_sign,
         fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fstext, separator_sign,
         tempwidget, temptext, separator_sign,
