@@ -1803,7 +1803,7 @@ syntax on
             let NERDTreeShowHidden = 0 " does not show hidden files.
             let NERDTreeShowLineNumbers = 0 " do not show line numbers, default=0
             let NERDTreeWinPos = "left" " NERD-tree window position.
-            let NERDTreeWinSize = 25 " window size, default=31.
+            let NERDTreeWinSize = 20 " window size, default=31.
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
