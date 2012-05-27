@@ -59,6 +59,8 @@ mailboxes =Drupal/security
 mailboxes =Ruby
 mailboxes =Ruby/Rails
 
+mailboxes =Perl
+
 mailboxes =Maemo
 mailboxes =Maemo/update/N900
 mailboxes =Maemo/update/Development
@@ -72,8 +74,6 @@ mailboxes =Web
 mailboxes =Web/whatwg
 mailboxes =Web/firebug
 mailboxes =Web/jplayer
-
-mailboxes =Perl
 
 mailboxes =Linux
 mailboxes =ubuntu

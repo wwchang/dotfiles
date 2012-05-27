@@ -27,7 +27,7 @@ folder-hook . push "<delete-pattern>~=<enter>"
 folder-hook .       set sort = threads
 # folder-hook .       set index_format = '" %?n?♪? %?o?♩? %?d?✖? %?H?? %2C| [%4Z] | %-10L » %s %> %[%I:%M %P %b/%d]"'
 
-folder-hook .       set index_format = '"%?H?[spam]? [%4Z] ┆ %?F?%-20.20F&%-20.20L? » %-40.40s %> │%-15.15[%I:%M %P %b/%d]"'
+folder-hook .       set index_format = '"%?H?[spam]? [%4Z] ┆ %?F?%-20.20F&%-20.20L? » %-45.44s %> │%-15.15[%I:%M %P %b/%d]"'
 # folder-hook .       set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
 folder-hook =spam   set index_format = '" ☠ %?H?[spam]? %C┆ [%4Z] %?F?%-20.20F&%-10.10L? » %s %> %-4.4c"'
@@ -41,8 +41,8 @@ folder-hook =INBOX  set sort = score # for macro "gi", because spoolfile is diff
 
 # for INBOX
 # folder-hook "\!"    set index_format = '"%3C┆%N [%4Z] ➜ %-10.10F × %-15.15L » %?H?[spam]?%-30.30s %> %c │%-15.15[%I:%M %P %b/%d]"'
-folder-hook "\!"    set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-45.45s %> │%-16.15[%I:%M %P %b.%d]"'
-folder-hook =INBOX  set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-45.45s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
+folder-hook "\!"    set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-50.49s %> │%-16.15[%I:%M %P %b.%d]"'
+folder-hook =INBOX  set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-50.49s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
 #folder-hook "\!"    set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 #folder-hook =INBOX  set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 # folder-hook .       set sort_aux = reverse-date-received

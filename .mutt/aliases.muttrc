@@ -156,9 +156,9 @@ alias mutt Mutt <mutt-users@mutt.org>
 alias mutt-dev Mutt-dev <mutt-dev@mutt.org>
 alias mairix mairix <mairix-users@lists.sourceforge.net>
 # procmail
-# alias procmail Procmail <procmail-users@procmail.org>
-alias procmail Procmail <procmail@informatik.rwth-aachen.de>
-alias procmail-an Procmail.an <procmail-announce@procmail.org>
+alias procmail-users.notActive procmail-users.notActive <procmail-users@procmail.org>
+alias procmail procmail <procmail@informatik.rwth-aachen.de>
+alias procmail-an Procmail-an <procmail-announce@procmail.org>
 # bogofilter
 alias bogofilter bogofilter <bogofilter@bogofilter.org>
 # screen & tmux
