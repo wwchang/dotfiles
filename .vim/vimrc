@@ -476,18 +476,6 @@ endif
         " }}}
     " }}}
 
-    " [ balloon ] {{{
-    set ballooneval " enable balloon when has feature: +balloon_eval.
-    set balloondelay=600
-        "function! MyBalloonExpr()
-            "return 'Cursor is at line ' . v:beval_lnum .
-                        "\', column ' . v:beval_col .
-                        "\ ' of file ' .  bufname(v:beval_bufnr) .
-                        "\ ' on word "' . v:beval_text . '"'
-        "endfunction
-        "set balloonexpr=MyBalloonExpr()
-    " }}}
-
     " [ syntax & highlight ] {{{
     syntax enable   " enable syntax highlighting
     syntax on       " follows colorscheme to highlight.
@@ -537,6 +525,18 @@ endif
         set conceallevel=1 " 0,1,2,3
         set concealcursor=vic " n: normal v: visual i: insert c: command line editing
     endif
+    " }}}
+
+    " [ balloon ] {{{
+    set balloondelay=600
+    function! MyBalloonExpr()
+        return 'Cursor is at line ' . v:beval_lnum .
+                    \', column ' . v:beval_col .
+                    \ ' of file ' .  bufname(v:beval_bufnr) .
+                    \ ' on word "' . v:beval_text . '"'
+    endfunction
+    set bexpr=MyBalloonExpr()
+    set ballooneval
     " }}}
 
     " [ title ] {{{
