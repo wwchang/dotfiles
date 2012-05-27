@@ -928,6 +928,7 @@ endif
             " diff
         call vam#ActivateAddons(['gf-diff'])
         call vam#ActivateAddons(['gf-user'])
+        call vam#ActivateAddons(['patchreview'])
             " debug: quickfix/location list.
         call vam#ActivateAddons(['unimpaired'])
             " Completion <Tab>
@@ -2049,6 +2050,8 @@ syntax on
         " }}}
 
         " gf-diff : open code file in 'diff' output with 'gf'.
+
+        " patchreview : allows easy single or multipatch code or diff reviews.
     " }}}
 
     " [ projects ] {{{
