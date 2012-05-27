@@ -4346,7 +4346,7 @@ syntax on
             " :help surround.txt
         " }}}
 
-        " Abolish: {{{ quick find, substitute, abbreviate
+        " abolish: {{{ quick find, substitute, abbreviate
         " several variations of a word at once
             " three case variants (foo, Foo, and FOO) are operated on by every command.
             " :Abolish, :Subvert.
