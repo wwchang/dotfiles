@@ -1,1 +1,9 @@
+#############
+#   GTK     #
+#############
 include '/usr/share/themes/Aurora/gtk-2.0/gtkrc'
+
+#############
+#   ICON    #
+#############
+gtk-icon-theme-name = "Buuf-Deuce"
