@@ -112,6 +112,8 @@ theme.wallpaper_cmd = { "feh --bg-fill /home/chris/.config/awesome/themes/wallpa
 -- theme.wallpaper_cmd = { "awsetbg -c -r ~/.config/awesome/themes/black/background/" }
 -- theme.wallpaper_cmd = { "awsetbg -c -r /media/tux/Private/Pictures/wallpapers/" }
 
+theme.notify_icon = theme_icons .. "notify.jpg"
+
 theme.layout_fairh = theme_icons .. "layouts/fairh.png"
 theme.layout_fairv = theme_icons .. "layouts/fairv.png"
 theme.layout_floating  = theme_icons .. "layouts/floating.png"
