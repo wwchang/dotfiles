@@ -1,7 +1,10 @@
 #############
 #   GTK     #
 #############
-include '/usr/share/themes/Aurora/gtk-2.0/gtkrc'
+# include '/usr/share/themes/Aurora/gtk-2.0/gtkrc'
+
+include '/usr/share/themes/Adwaita/gtk-2.0/gtkrc'
+include '/usr/share/themes/Adwaita/gtk-3.0/settings.ini'
 
 #############
 #   ICON    #
