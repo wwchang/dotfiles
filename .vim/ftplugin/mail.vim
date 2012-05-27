@@ -142,6 +142,8 @@ endfunction
 call Mail_Del_Empty_Quoted()
 call Mail_Begining()
 
+au BufRead /tmp/mutt* normal :g/^> -- $/,/^$/-1d^M/^$^M^L
+
 "http://permalink.gmane.org/gmane.editors.vim.devel/20890
 setlocal foldmethod=expr foldlevel=1 foldminlines=2
 setlocal foldexpr=strlen(substitute(substitute(getline(v:lnum),'\\s','','g'),'[^>].*','',''))
