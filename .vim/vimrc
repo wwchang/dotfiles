@@ -846,6 +846,7 @@ endif
     " }}}
 
     "" [ show changelog/diff ] {{{
+    " FIXME
     "let g:vim_addon_manager = {}
     "let g:vim_addon_manager['git_update'] = {'f': 'MyGitUpdate', 'a': []}
     "fun! MyGitUpdate(targetDir)
@@ -910,7 +911,7 @@ endif
         "call vam#ActivateAddons(['tplugin'])
             " utils
         call vam#ActivateAddons(['L9'])
-        " call vam#ActivateAddons(['tlib'])
+        call vam#ActivateAddons(['tlib'])
         call vam#ActivateAddons(['AsyncCommand'])
             " statusline
         call vam#ActivateAddons(['Powerline'])
@@ -931,16 +932,14 @@ endif
         call vam#ActivateAddons(['unimpaired'])
             " Completion <Tab>
         call vam#ActivateAddons(['neocomplcache', 'vimproc', 'unite', 'vimshell'])
-        "call vam#ActivateAddons(['neco-look'])
+        call vam#ActivateAddons(['neco-look'])
         " call vam#ActivateAddons(['AutoComplPop'])
         " call vam#ActivateAddons(['SuperTab_continued.'])
             " C C++
-        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
         call vam#ActivateAddons(['clang_complete'])
-            " Haskell using ghc-mod
-        "call vam#ActivateAddons(['neco-ghc'])
+        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " snippet
-        call vam#ActivateAddons(['neocomplcache-snippets-complete'])
+        call vam#ActivateAddons(['neocomplcache-snippets_complete'])
         "call vam#ActivateAddons(['UltiSnips'])
         "call vam#ActivateAddons(['snipmate'])
         "call vam#ActivateAddons(['snipmate', 'tlib', 'vim-addon-mw-utils', 'snipmate-snippets'])
@@ -953,8 +952,8 @@ endif
         call vam#ActivateAddons(['TagHighlight', 'AutoTag'])
         call vam#ActivateAddons(['Tag_Signature_Balloons'])
             " buffers
-        " call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
         call vam#ActivateAddons(['Tagma_Buffer_Manager'])
+        "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
         "call vam#ActivateAddons(['LustyJuggler'])
             " tab manager
         "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
@@ -963,7 +962,6 @@ endif
             " compile
         call vam#ActivateAddons(['SingleCompile'])
             " syntax checker
-        "call vam#ActivateAddons(['syntastic2'])
         call vam#ActivateAddons(['Syntastic'])
         " call vam#ActivateAddons(['checksyntax'])
             " quickfix
@@ -978,8 +976,8 @@ endif
         call vam#ActivateAddons(['EasyGrep'])
         call vam#ActivateAddons(['ack'])
             " comment
-        call vam#ActivateAddons(['tComment'])
         call vam#ActivateAddons(['commentary'])
+        "call vam#ActivateAddons(['tComment'])
         "call vam#ActivateAddons(['The_NERD_Commenter'])
             " doc & help "K"
         call vam#ActivateAddons(['viewdoc'])
@@ -1013,8 +1011,8 @@ endif
             " Shell: Bash, Zsh
         "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
-        call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['ZenCoding'])
+        call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['html5'])
         call vam#ActivateAddons(['HTML5_Syntax_File'])
             " JavaScript
@@ -1046,46 +1044,47 @@ endif
         "call vam#ActivateAddons(['cake'])
             " Ruby & Rails
         call vam#ActivateAddons(['neco-rubymf'])
-        "call vam#ActivateAddons(['neco-rake'])
+        call vam#ActivateAddons(['neco-rake'])
         call vam#ActivateAddons(['rails'])
-        "call vam#ActivateAddons(['vroom'])
+        call vam#ActivateAddons(['vroom'])
         "call vam#ActivateAddons(['RbREPL'])
             " Lisp
-        "call vam#ActivateAddons(['slimv'])
-        "call vam#ActivateAddons(['Lisper'])
+        call vam#ActivateAddons(['slimv'])
+        call vam#ActivateAddons(['Lisper'])
+        call vam#ActivateAddons(['paredit'])
             " Scheme
             " VimL
         "call vam#ActivateAddons(['Vim-Support'])
+            " Haskell using ghc-mod
+        call vam#ActivateAddons(['neco-ghc'])
             " R
         "call vam#ActivateAddons(['Vim-R-plugin'])
             " Lua
         "call vam#ActivateAddons(['luainspect'])
             " Perl
         "call vam#ActivateAddons(['perlomni'])
-            " simulate
+            " simulate : Tmux & Screen
         "call vam#ActivateAddons(['Clam'])
-            " Tmux & Screen
             " special editing
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
-        call vam#ActivateAddons(['inline_edit', 'NrrwRgn'])
+        call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
             " vimwiki & note
         call vam#ActivateAddons(['vimwiki'])
-        "call vam#ActivateAddons(['github:vim-scripts/vimwiki'])
         call vam#ActivateAddons(['notes'])
-        "call vam#ActivateAddons(['vim-pad'])
+        " call vam#ActivateAddons(['vim-pad'])
             " GTD
-        call vam#ActivateAddons(['VimOrganizer'])
+        " call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
         call vam#ActivateAddons(['github:mattn/calendar-vim'])
             " outliner
         call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
             " TeX & LaTeX
-        "call vam#ActivateAddons(['TeX_9'])
-        "call vam#ActivateAddons(['TeX-PDF'])
-        "call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
+        call vam#ActivateAddons(['TeX_9'])
+        call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
+        call vam#ActivateAddons(['TeX-PDF'])
             " markup & markdown
-        "call vam#ActivateAddons(['preview%3344'])
+        call vam#ActivateAddons(['preview%3344'])
             " encrypt
         "call vam#ActivateAddons(['tGpg'])
         "call vam#ActivateAddons(['openssl'])
@@ -1095,9 +1094,9 @@ endif
         call vam#ActivateAddons(['PasteBin'])
         call vam#ActivateAddons(['Gist'])
         call vam#ActivateAddons(['WebAPI'])
+        " call vam#ActivateAddons(['wwwsearch'])
         "call vam#ActivateAddons(['weibo'])
         "call vam#ActivateAddons(['github:fmoralesc/Tumble'])
-        call vam#ActivateAddons(['wwwsearch'])
         "call vam#ActivateAddons(['TwitVim'])
             " color/syntax
         call vam#ActivateAddons(['colorv'])
@@ -1115,12 +1114,12 @@ endif
         "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
         "call vam#ActivateAddons(['Mark%2666'])
             " format
-        call vam#ActivateAddons(['utl'])
         call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
         call vam#ActivateAddons(['Tabular'])
         call vam#ActivateAddons(['surround'])
         call vam#ActivateAddons(['Auto_Pairs'])
         " call vam#ActivateAddons(['delimitMate'])
+        call vam#ActivateAddons(['utl'])
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
         "call vam#ActivateAddons(['ShowTrailingWhitespace'])
             " write & spell checker & speak
@@ -1128,11 +1127,12 @@ endif
         "call vam#ActivateAddons(['LanguageTool'])
         "call vam#ActivateAddons(['VimSpeak'])
             " convert/format/export
+                " 2HTML
         "call vam#ActivateAddons(['formatvim'])
             " Vim related
         "call vam#ActivateAddons(['github:chrisbra/vim_faq'])
             " Vimrc manager
-        call vam#ActivateAddons(['Sauce'])
+        "call vam#ActivateAddons(['Sauce'])
             " Vim Extension
         call vam#ActivateAddons(['repeat', 'visualrepeat', 'abolish'])
         call vam#ActivateAddons(['StarRange'])
@@ -1496,7 +1496,8 @@ syntax on
             "let g:unite_source_vimshell_external_history_path =
         " }}}
 
-        " neco-look |
+        " neco-look {{{ neocomplcache-look (/usr/bin/look)
+        " }}}
 
         " AutoComplPop:
 
@@ -2338,7 +2339,10 @@ syntax on
     " }}}
 
     " [ comment ] {{{
-        " commentary: \\{motion}, \\\, {Visual}\\, \\u
+        " commentary {{{
+        " \\{motion}, \\\, {Visual}\\ ==> comment
+        " \\u ==> uncomment
+        " }}}
 
         " tComment: {{{ An extensible & universal comment plugin
             " also handles embedded filetypes.
@@ -3128,7 +3132,7 @@ syntax on
         " Lisper: {{{ Yet Another Lisp Engine Written In Pure VimScript
         " }}}
 
-        " paredit.vim : {{{ Paredit Mode: Structured Editing of Lisp S-expressions
+        " paredit: {{{ Paredit Mode: Structured Editing of Lisp S-expressions
             " paredit.vim is a part of Slimv.vim
             " similar to paredit.el for Emacs.
         " }}}
@@ -4219,8 +4223,9 @@ syntax on
         " }}}
 
         " wwwsearch: {{{ Search WWW easily from Vim.
+            " Usage:
             " :Wwwsearch [{search-engine}] {keyword}
-            " Functions :
+            " Functions:
                 " wwwsearch#search({keyword}, [{search-engine}])
                 " wwwsearch:add({search-engine}, {uri-template})
                 " wwwsearch:remove({search-engine})
@@ -4234,34 +4239,34 @@ syntax on
                     " -twitter : Twitter
                     " -vim.org : Google for www.vim.org
                     " -wikipedia : Wikipedia
-                "call wwwsearch#default(
-                            "\   'default',
-                            "\   'http://en.wikipedia.org/w/index.php?search={keyword}'
-                            "\ )
-                call wwwsearch#add(
-                            \ 'blekko',
-                            \ 'http://blekko.com/ws/+{keyword}'
-                            \ )
-                call wwwsearch#add(
-                            \ 'duckduckgo',
-                            \ 'http://duckduckgo.com/?q={keyword}'
-                            \ )
-                call wwwsearch#add(
-                            \ 'github',
-                            \ 'http://github.com/search?q={keyword}'
-                            \ )
-                call wwwsearch#add(
-                            \ 'googlecode',
-                            \ 'http://code.google.com/query/#q={keyword}'
-                            \ )
-                call wwwsearch#add(
-                            \ 'baidu',
-                            \ 'http://www.baidu.com/s?wd={keyword}'
-                            \ )
-                call wwwsearch#add(
-                            \ 'digg',
-                            \ 'http://digg.com/search?s={keyword}'
-                            \ )
+                " call wwwsearch#default(
+                "             \   'default',
+                "             \   'http://en.wikipedia.org/w/index.php?search={keyword}'
+                "             \ )
+                " call wwwsearch#add(
+                "             \ 'blekko',
+                "             \ 'http://blekko.com/ws/+{keyword}'
+                "             \ )
+                " call wwwsearch#add(
+                "             \ 'duckduckgo',
+                "             \ 'http://duckduckgo.com/?q={keyword}'
+                "             \ )
+                " call wwwsearch#add(
+                "             \ 'github',
+                "             \ 'http://github.com/search?q={keyword}'
+                "             \ )
+                " call wwwsearch#add(
+                "             \ 'googlecode',
+                "             \ 'http://code.google.com/query/#q={keyword}'
+                "             \ )
+                " call wwwsearch#add(
+                "             \ 'baidu',
+                "             \ 'http://www.baidu.com/s?wd={keyword}'
+                "             \ )
+                " call wwwsearch#add(
+                "             \ 'digg',
+                "             \ 'http://digg.com/search?s={keyword}'
+                "             \ )
             " }}}
 
         " https://github.com/danchoi/goog
@@ -4500,7 +4505,7 @@ syntax on
     " }}}
 
     " [ terminal multiplexer ] {{{
-        " vimux : {{{ effortless vim and tmux interaction. :call RunVimTmuxCommand("ls").
+        " vimux {{{ effortless vim and tmux interaction. :call RunVimTmuxCommand("ls")
         " }}}
     " }}}
 
