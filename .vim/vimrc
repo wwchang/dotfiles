@@ -3437,6 +3437,9 @@ syntax on
             "   - {Visual select} \nr
             " TODO learn this.
         " }}}
+
+        " partedit {{{ Edit part of buffer by another buffer.
+        " }}}
     " }}}
 
     " [ unicode & symble & sign ] {{{
