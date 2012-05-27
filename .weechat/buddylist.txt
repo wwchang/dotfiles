@@ -3,11 +3,13 @@ bitlbee.Tristan
 bitlbee.adam8157
 freenode.LeoNerd
 freenode.MarcWeber
+freenode.MaskRay
 freenode.adam8157
 freenode.archl
 freenode.daniel
 freenode.housetier
 freenode.iGnome
+freenode.iGoogle
 freenode.jiero
 freenode.madduck
 freenode.maya
