@@ -216,6 +216,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
             au FileType php             setlocal omnifunc=phpcomplete#CompletePHP
             au FileType sql             setlocal omnifunc=sqlcomplete#Map('sqlKeyword')
             au FileType go              setlocal omnifunc=gocomplete#Complete
+            au Filetype haskell         setlocal omnifunc=necoghc#omnifunc
                 let g:ftplugin_sql_omni_key = '<C-c>'
                 " <C-c>[akfoTsvclLR]
         augroup END
@@ -3130,6 +3131,13 @@ syntax on
         " paredit.vim : {{{ Paredit Mode: Structured Editing of Lisp S-expressions
             " paredit.vim is a part of Slimv.vim
             " similar to paredit.el for Emacs.
+        " }}}
+    " }}}
+
+    " [ Haskell ] {{{
+        " neco-ghc {{{ neocomplcache complete for Haskell.
+        " omnifunc=necoghc#omnifunc
+        " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
         " }}}
     " }}}
 
