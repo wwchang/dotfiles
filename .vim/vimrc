@@ -1219,7 +1219,7 @@ syntax on
             " Key Maps:
             " <cr>, <c-j/k/l/cr> == oOsi, q, u, co, D, S, m, git, x, X, r, R, P.
             let g:Gitv_CommitStep = &lines
-            let g:Gitv_OpenHorizontal = auto " auto/0: browser mode vertical split.
+            let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
             let g:Gitv_GitExecutable = 'git'
             let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close.
             let g:Gitv_WrapLines = 0 " wrap long commit.
