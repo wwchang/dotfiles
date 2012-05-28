@@ -918,7 +918,8 @@ endif
         call vam#ActivateAddons(['current-func-info'])
         " TODO Add a progin to show object prototype in statusline.
             " CVS
-        call vam#ActivateAddons(['fugitive', 'extradite', 'quickfixsigns'])
+        call vam#ActivateAddons(['fugitive', 'extradite', 'gitv'])
+        call vam#ActivateAddons(['quickfixsigns'])
         call vam#ActivateAddons(['Splice', 'ConflictMotions'])
             " Github
         call vam#ActivateAddons(['vim-github'])
@@ -1182,6 +1183,142 @@ syntax on
 " }}}
 
 " [ Program ] {{{
+
+    " [ VCS ] {{{
+        " fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
+            " Usage:
+                " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
+                " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
+                " :{range}Gread[!] [revision] -- empty the buffer and :read a revision.
+                " :Gwrite {path} -- write file, and stage the result.
+                " :G[s/v]diff [revision] -- perform a vimdiff against the current file.
+                " :Gmove {destination} -- wrapper around git-mv
+                " :Gremove  -- wrapper around git-rm
+                " :[range]Gblame [flags]
+                " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
+        " }}}
+
+        " extradite: {{{ A git commit log browser that extends fugitive.vim
+            " :Extradite | :Extradite! -- vertical.
+            nnoremap <F8> :Extradite<cr>
+                " [ mappings ] available in the Extradite buffer.
+                " <CR> -- edit the revision on the current line in a fugitive buffer.
+                " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
+                " dh, dv, dt diff the revision under the cursor in a new h/v split / tab
+                " t -- toggle the visibility of the file diff buffer.
+                " q -- quit.
+                " let g:extradite_width = 60
+                let g:extradite_showhash = 1 " show abbre commit hashes.
+        " }}}
+
+        " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
+            " Usage: {Visual}:GitV
+        " }}}
+
+        " ConflictMotions: {{{
+            " This plugin defines movement commands and text objects to go to
+            " and operate on conflicting lines, as indicated by many revision
+            " control systems, like Subversion, Git, etc. The source code
+            " management system inserts conflict markers such as <<<<<<<,
+            " =======, and >>>>>>> on merges to indicate that the automatic
+            " resolution failed; this plugin helps you with locating and
+            " resolving these conflicts.
+            " USAGE:
+            " ]x ]X [x [X v_]x v_]X v_[x v_[X o_]x o_]X o_[x o_[X
+            " ax az iz
+            " ]x Go to [count] next start of a conflict.
+            " ]X Go to [count] next end of a conflict.
+            " [x Go to [count] previous start of a conflict.
+            " [X Go to [count] previous end of a conflict.
+            " ]z Go to [count] next conflict marker.
+            " [z Go to [count] previous conflict marker.
+            " To change the default motion mappings, use:
+            let g:ConflictMotions_ConflictBeginMapping = 'x'
+            let g:ConflictMotions_ConflictEndMapping = 'X'
+            let g:ConflictMotions_MarkerMapping = 'z'
+            " To change the default text object mappings, use:
+            let g:ConflictMotions_ConflictMapping = 'x'
+            let g:ConflictMotions_SectionMapping = 'z'
+        " }}}
+
+        " Splice : {{{ A Vim plugin for resolving conflicts during three-way merges.
+            " Usage: {{{
+            " Workflow:
+            " When resolving merge conflicts your goal is:
+            " - Examine the three files describing the changes being merged.
+            " - Combine these changes into a fourth file (the "result").
+            " - Save the result to disk.
+            " - Exit Vim with a non-error status code, tell the VCS the merge succeeded.
+            " Splice has several "modes" to help you work with the various files.
+            " Original <-> One(current) <-> Two(target) <-> Result
+            " Modes Or Views:
+            " Grid -- four files at once to give you an overview.
+            " Loupe -- a single file at a time for close examination.
+            " Compare -- two files at a time for examining.
+            " Path -- three files at once. original, one or two, result.
+            " Key Binds: prefixed with '-'
+            " mode selection keys
+                " <prefix>g -- grid view
+                " <prefix>l -- loupe view
+                " <prefix>c -- compare view
+                " <prefix>p -- path view
+            " file selection keys
+                " <prefix>o -- original file
+                " <prefix>1 -- file one
+                " <prefix>2 -- file two
+                " <prefix>r -- result file
+            " other keys
+                " <prefix>d -- cycle through various diff combinations.
+                " <prefix>D -- turn off all diffs.
+                " <prefix>u -- placea hunk from file one/two into result file.
+                " <prefix>s -- toggle scroll locking on and off.
+                " <prefix><space> -- cycle through various layouts of current view.
+                " <prefix>n -- move to next unresolved conflict.
+                " <prefix>N -- move to previous unresolved conflict.
+                " <prefix>q -- save the result file and exit Vim.
+                " <prefix>CC -- exits Vim with error code(like :cquit). not successful.
+            " }}}
+
+            let g:splice_debug = 0 " Splice is loaded only once.
+            let g:splice_disable = 0 " Splice is enabled as usual.
+            let g:splice_initial_diff_grid = 0 " the diff the grid mode starts in.
+            let g:splice_initial_diff_loupe = 0
+            let g:splice_initial_diff_compare = 0
+            let g:splice_initial_diff_path = 0
+            let g:splice_initial_layout_grid = 0 " grid mode layout 0
+            let g:splice_initial_layout_loupe = 0 " single file
+            let g:splice_initial_layout_compare = 0 " 0: vsplit, 1: hsplit
+            let g:splice_initial_layout_path = 0 " 0,1,2,3,4
+            let g:splice_initial_scrollbind_grid = 0
+            let g:splice_initial_scrollbind_loupe = 0
+            let g:splice_initial_scrollbind_compare = 0
+            let g:splice_initial_scrollbind_path = 0
+            let g:splice_initial_mode = "grid" " grid, loupe, compare, path
+            let g:splice_prefix = "-"
+            let g:splice_wrap = "None" " wrap, nowrap, None
+        " }}}
+
+        " vim-github {{{ A vim plugin to access to Github.
+            " :Github {feature} [arguments]
+            let g:github#user="numbchild"
+            " FIXME ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
+            let g:github#curl_cmd="curl"
+        " }}}
+
+        " rhubarb {{{ GitHub extension for fugitive.vim
+            " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
+            " comment message.
+            " XXX This makes inserting those Closes #123 remarks slightly easier
+            " than copying and pasting from the browser.
+            " --------------------------
+            " let g:github_user = '<user>'
+            " let g:github_password = '<password>'
+        " }}}
+
+        " gf-diff : open code file in 'diff' output with 'gf'.
+
+        " patchreview : allows easy single or multipatch code or diff reviews.
+    " }}}
 
     " [ Completion ] {{{
         " NeoComplcache: {{{ Ultimate auto Completion system for Vim.
@@ -1919,138 +2056,6 @@ syntax on
             " OmniCompletion Swaps
             let b:swap_completefunc = 'cssswapit#CssSwapComplete'
         " }}}
-    " }}}
-
-    " [ VCS ] {{{
-        " fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
-            " Usage:
-                " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
-                " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
-                " :{range}Gread[!] [revision] -- empty the buffer and :read a revision.
-                " :Gwrite {path} -- write file, and stage the result.
-                " :G[s/v]diff [revision] -- perform a vimdiff against the current file.
-                " :Gmove {destination} -- wrapper around git-mv
-                " :Gremove  -- wrapper around git-rm
-                " :[range]Gblame [flags]
-                " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
-        " }}}
-
-        " extradite: {{{ A git commit log browser that extends fugitive.vim
-            " :Extradite | :Extradite! -- vertical.
-            nnoremap <F8> :Extradite<cr>
-                " [ mappings ] available in the Extradite buffer.
-                " <CR> -- edit the revision on the current line in a fugitive buffer.
-                " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
-                " dh, dv, dt diff the revision under the cursor in a new h/v split / tab
-                " t -- toggle the visibility of the file diff buffer.
-                " q -- quit.
-                " let g:extradite_width = 60
-                let g:extradite_showhash = 1 " show abbre commit hashes.
-        " }}}
-
-        " ConflictMotions: {{{
-            " This plugin defines movement commands and text objects to go to
-            " and operate on conflicting lines, as indicated by many revision
-            " control systems, like Subversion, Git, etc. The source code
-            " management system inserts conflict markers such as <<<<<<<,
-            " =======, and >>>>>>> on merges to indicate that the automatic
-            " resolution failed; this plugin helps you with locating and
-            " resolving these conflicts.
-            " USAGE:
-            " ]x ]X [x [X v_]x v_]X v_[x v_[X o_]x o_]X o_[x o_[X
-            " ax az iz
-            " ]x Go to [count] next start of a conflict.
-            " ]X Go to [count] next end of a conflict.
-            " [x Go to [count] previous start of a conflict.
-            " [X Go to [count] previous end of a conflict.
-            " ]z Go to [count] next conflict marker.
-            " [z Go to [count] previous conflict marker.
-            " To change the default motion mappings, use:
-            let g:ConflictMotions_ConflictBeginMapping = 'x'
-            let g:ConflictMotions_ConflictEndMapping = 'X'
-            let g:ConflictMotions_MarkerMapping = 'z'
-            " To change the default text object mappings, use:
-            let g:ConflictMotions_ConflictMapping = 'x'
-            let g:ConflictMotions_SectionMapping = 'z'
-        " }}}
-
-        " Splice : {{{ A Vim plugin for resolving conflicts during three-way merges.
-            " Usage: {{{
-            " Workflow:
-            " When resolving merge conflicts your goal is:
-            " - Examine the three files describing the changes being merged.
-            " - Combine these changes into a fourth file (the "result").
-            " - Save the result to disk.
-            " - Exit Vim with a non-error status code, tell the VCS the merge succeeded.
-            " Splice has several "modes" to help you work with the various files.
-            " Original <-> One(current) <-> Two(target) <-> Result
-            " Modes Or Views:
-            " Grid -- four files at once to give you an overview.
-            " Loupe -- a single file at a time for close examination.
-            " Compare -- two files at a time for examining.
-            " Path -- three files at once. original, one or two, result.
-            " Key Binds: prefixed with '-'
-            " mode selection keys
-                " <prefix>g -- grid view
-                " <prefix>l -- loupe view
-                " <prefix>c -- compare view
-                " <prefix>p -- path view
-            " file selection keys
-                " <prefix>o -- original file
-                " <prefix>1 -- file one
-                " <prefix>2 -- file two
-                " <prefix>r -- result file
-            " other keys
-                " <prefix>d -- cycle through various diff combinations.
-                " <prefix>D -- turn off all diffs.
-                " <prefix>u -- placea hunk from file one/two into result file.
-                " <prefix>s -- toggle scroll locking on and off.
-                " <prefix><space> -- cycle through various layouts of current view.
-                " <prefix>n -- move to next unresolved conflict.
-                " <prefix>N -- move to previous unresolved conflict.
-                " <prefix>q -- save the result file and exit Vim.
-                " <prefix>CC -- exits Vim with error code(like :cquit). not successful.
-            " }}}
-
-            let g:splice_debug = 0 " Splice is loaded only once.
-            let g:splice_disable = 0 " Splice is enabled as usual.
-            let g:splice_initial_diff_grid = 0 " the diff the grid mode starts in.
-            let g:splice_initial_diff_loupe = 0
-            let g:splice_initial_diff_compare = 0
-            let g:splice_initial_diff_path = 0
-            let g:splice_initial_layout_grid = 0 " grid mode layout 0
-            let g:splice_initial_layout_loupe = 0 " single file
-            let g:splice_initial_layout_compare = 0 " 0: vsplit, 1: hsplit
-            let g:splice_initial_layout_path = 0 " 0,1,2,3,4
-            let g:splice_initial_scrollbind_grid = 0
-            let g:splice_initial_scrollbind_loupe = 0
-            let g:splice_initial_scrollbind_compare = 0
-            let g:splice_initial_scrollbind_path = 0
-            let g:splice_initial_mode = "grid" " grid, loupe, compare, path
-            let g:splice_prefix = "-"
-            let g:splice_wrap = "None" " wrap, nowrap, None
-        " }}}
-
-        " vim-github {{{ A vim plugin to access to Github.
-            " :Github {feature} [arguments]
-            let g:github#user="numbchild"
-            " FIXME ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
-            let g:github#curl_cmd="curl"
-        " }}}
-
-        " rhubarb {{{ GitHub extension for fugitive.vim
-            " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
-            " comment message.
-            " XXX This makes inserting those Closes #123 remarks slightly easier
-            " than copying and pasting from the browser.
-            " --------------------------
-            " let g:github_user = '<user>'
-            " let g:github_password = '<password>'
-        " }}}
-
-        " gf-diff : open code file in 'diff' output with 'gf'.
-
-        " patchreview : allows easy single or multipatch code or diff reviews.
     " }}}
 
     " [ projects ] {{{
@@ -4330,7 +4335,7 @@ syntax on
             " :help surround.txt
         " }}}
 
-        " abolish: {{{ quick find, substitute, abbreviate
+        " Abolish: {{{ quick find, substitute, abbreviate
         " several variations of a word at once
             " three case variants (foo, Foo, and FOO) are operated on by every command.
             " :Abolish, :Subvert.
