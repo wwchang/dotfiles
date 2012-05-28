@@ -335,6 +335,7 @@ endif
         endif
     endf
         " chars to fill the statusline and vertical separators.
+    set lazyredraw
     " }}}
 
     " [ colorscheme ] {{{
