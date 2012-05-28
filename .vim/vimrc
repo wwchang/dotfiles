@@ -1145,6 +1145,7 @@ endif
         "call vam#ActivateAddons(['SudoEdit'])
         call vam#ActivateAddons(['SpitVspit'])
         "call vam#ActivateAddons(['CompleteHelper'])
+        call vam#ActivateAddons(['LargeFile'])
             " Motions
         call vam#ActivateAddons(['EasyMotion'])
             " ASCII draw
@@ -3547,6 +3548,7 @@ syntax on
     " }}}
 
     " [ session ] {{{
+        " LargeFile: disable some option to speed up on time.
         " SudoEdit {{{ Edit Files using Sudo/su.
             " Commands:
             " <Tab>
