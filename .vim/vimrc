@@ -1212,7 +1212,19 @@ syntax on
         " }}}
 
         " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
-            " Usage: {Visual}:GitV
+            " Usage: [range]:GitV[!] [args]
+            " [Browser/File] mode
+            " Key Maps:
+            " <cr>, <c-j/k/l/cr> == oOsi, q, u, co, D, S, m, git, x, X, r, R, P.
+            let g:Gitv_CommitStep = &lines
+            let g:Gitv_OpenHorizontal = auto " auto/0: browser mode vertical split.
+            let g:Gitv_GitExecutable = 'git'
+            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close.
+            let g:Gitv_WrapLines = 0 " wrap long commit.
+            let g:Gitv_TruncateCommitSubjects = 0
+            let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
+            let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
+            let g:Gitv_DoNotMapCtrlKey = 1
         " }}}
 
         " ConflictMotions: {{{
