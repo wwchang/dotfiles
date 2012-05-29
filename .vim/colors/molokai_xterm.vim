@@ -6,6 +6,8 @@
 " by Wimer Hazenberg and its darker variant
 " by Hamish Stuart Macpherson
 " Vimhelp: :help group-name :help syntax.txt
+" term={attr-list}
+"   - bold, underline, undercurl, reverse, inverse, italic, bold, none.
 
 " checks whether an earlier file has defined a syntax already. If so, exits with finish.
 if exists("b:current_syntax")
@@ -82,7 +84,7 @@ if &t_Co > 255
 
 " Pop complete menu   154 brightgreen  198 pink  038 light blue
    hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
-   hi PmenuSel        ctermfg=016 ctermbg=204  cterm=bold
+   hi PmenuSel        ctermfg=016 ctermbg=038  cterm=none
    hi PmenuSbar       ctermfg=203 ctermbg=016  cterm=none
    " scroll forward small bar
    hi PmenuThumb      ctermfg=198              cterm=none
