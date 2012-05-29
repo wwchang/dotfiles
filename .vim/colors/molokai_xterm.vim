@@ -42,20 +42,21 @@ if &t_Co > 255
    hi String          ctermfg=144
    hi Conditional     ctermfg=161               cterm=bold
    hi Constant        ctermfg=135               cterm=bold
+   hi Conceal         ctermfg=039  ctermbg=236  cterm=bold
    hi Cursor          ctermfg=255  ctermbg=197  cterm=underline
    hi iCursor         ctermfg=081               cterm=underline
    hi Debug           ctermfg=196               cterm=bold
    hi Define          ctermfg=081
    hi Delimiter       ctermfg=241
 
-   hi DiffAdd         ctermfg=NONE ctermbg=022
-   hi DiffDelete      ctermfg=NONE ctermbg=088
-   hi DiffChange      ctermfg=NONE ctermbg=235
-   hi DiffText        ctermfg=NONE ctermbg=053
+   hi DiffAdd         ctermfg=none ctermbg=022 cterm=none
+   hi DiffDelete      ctermfg=none ctermbg=088 cterm=none
+   hi DiffChange      ctermfg=none ctermbg=233 cterm=bold
+   hi DiffText        ctermfg=none ctermbg=053 cterm=none
 
-   hi Directory       ctermfg=118   ctermbg=NONE    cterm=bold
-   hi Error           ctermfg=NONE  ctermbg=160     cterm=underline
-   hi ErrorMsg        ctermfg=196   ctermbg=016     cterm=bold
+   hi Directory       ctermfg=118   ctermbg=none    cterm=bold
+   hi Error           ctermfg=none  ctermbg=160     cterm=underline
+   hi ErrorMsg        ctermfg=196   ctermbg=232     cterm=bold
    hi Exception       ctermfg=118                   cterm=bold
    hi Float           ctermfg=135
 
@@ -64,27 +65,27 @@ if &t_Co > 255
    hi FoldColumn      ctermfg=045   ctermbg=016 cterm=bold
    hi vimFold         ctermfg=081   ctermbg=016 cterm=bold
 
-   hi Function        ctermfg=118
+   hi Function        ctermfg=118               cterm=bold
    hi Identifier      ctermfg=208               cterm=bold
    hi Ignore          ctermfg=244 ctermbg=232
    hi IncSearch       ctermfg=196 ctermbg=016
 
    hi Keyword         ctermfg=161               cterm=bold
-   hi Label           ctermfg=229               cterm=NONE
-   hi Macro           ctermfg=193
+   hi Label           ctermfg=229               cterm=none
+   hi Macro           ctermfg=193               cterm=none
 
    " brackets match color
    hi MatchParen      ctermfg=016  ctermbg=046 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161
+   hi Operator        ctermfg=161  ctermbg=232 cterm=bold
 
 " Pop complete menu   154 brightgreen  198 pink  038 light blue
-   hi Pmenu           ctermfg=232 ctermbg=255
-   hi PmenuSel        ctermfg=232 ctermbg=038
-   hi PmenuSbar       ctermfg=038 ctermbg=232
+   hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
+   hi PmenuSel        ctermfg=016 ctermbg=204  cterm=bold
+   hi PmenuSbar       ctermfg=203 ctermbg=016  cterm=none
    " scroll forward small bar
-   hi PmenuThumb      ctermfg=198
+   hi PmenuThumb      ctermfg=198              cterm=none
 
    hi PreCondit       ctermfg=118               cterm=bold
    hi PreProc         ctermfg=118
@@ -93,10 +94,10 @@ if &t_Co > 255
    hi Search          ctermfg=232 ctermbg=154   cterm=bold
 
    " marks column
-   hi SignColumn      ctermfg=161 ctermbg=NONE
+   hi SignColumn      ctermfg=161 ctermbg=none
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
-   hi Special         ctermfg=081  ctermbg=232
+   hi Special         ctermfg=081  ctermbg=232  cterm=bold
 
    hi Statement       ctermfg=161               cterm=bold
    " hi StatusLine      ctermfg=255 ctermbg=232
@@ -105,57 +106,58 @@ if &t_Co > 255
    hi StatusLineNC    ctermfg=016 ctermbg=076
 
    " add for vimrc statusline
-   hi StatusNormal       ctermfg=248 ctermbg=236 cterm=NONE
-   hi StatusStop         ctermfg=248 ctermbg=236 cterm=NONE
+   hi StatusNormal       ctermfg=248 ctermbg=236 cterm=none
+   hi StatusStop         ctermfg=248 ctermbg=236 cterm=none
    hi StatusSeparator    ctermfg=064 ctermbg=016 cterm=bold
    hi StatusBufferNumber ctermfg=250 ctermbg=236 cterm=bold
    hi StatusReadOnly     ctermfg=196 ctermbg=236 cterm=bold
-   hi StatusModFlag      ctermfg=039 ctermbg=236 cterm=bold
-   hi StatusList         ctermfg=106 ctermbg=236 cterm=NONE
+   hi StatusModFlag      ctermfg=196 ctermbg=236 cterm=bold
+   hi StatusModFlag2     ctermfg=046 ctermbg=236 cterm=none
+   hi StatusList         ctermfg=106 ctermbg=236 cterm=none
    hi StatusChar         ctermfg=045 ctermbg=236 cterm=bold
    hi StatusFileType     ctermfg=204 ctermbg=236 cterm=bold
    hi StatusProgramInfo  ctermfg=076 ctermbg=236 cterm=bold
    hi StatusFugitive     ctermfg=190 ctermbg=236 cterm=bold
-   hi StatusHELP         ctermfg=249 ctermbg=236 cterm=NONE
-   hi StatusFilePath     ctermfg=248 ctermbg=236 cterm=NONE
-   hi StatusLineNumber   ctermfg=104 ctermbg=236 cterm=NONE
+   hi StatusHELP         ctermfg=249 ctermbg=236 cterm=none
+   hi StatusFilePath     ctermfg=248 ctermbg=236 cterm=none
+   hi StatusLineNumber   ctermfg=104 ctermbg=236 cterm=none
    hi StatusPercent      ctermfg=202 ctermbg=236 cterm=bold
 
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=081
-   hi Tag             ctermfg=161
-   hi Title           ctermfg=124 cterm=bold
+   hi Tag             ctermfg=161 ctermbg=236   cterm=bold
+   hi Title           ctermfg=124               cterm=bold
    hi Todo            ctermfg=033 ctermbg=232   cterm=bold
 
-   hi Typedef         ctermfg=081
-   hi Type            ctermfg=081                cterm=NONE
+   hi Typedef         ctermfg=081 ctermbg=236    cterm=bold
+   hi Type            ctermfg=081                cterm=bold
    hi Underlined      ctermfg=033                cterm=underline
 
-   hi VertSplit       ctermfg=244 ctermbg=232   cterm=bold
-   hi VisualNOS                   ctermbg=238
-   hi Visual                      ctermbg=240
+   hi VertSplit       ctermfg=236 ctermbg=232   cterm=bold
+   hi VisualNOS       ctermfg=none ctermbg=238  cterm=none
+   hi Visual          ctermfg=none ctermbg=024  cterm=bold
    hi WarningMsg      ctermfg=197 ctermbg=232   cterm=bold
    hi WildMenu        ctermfg=045 ctermbg=016   cterm=bold
 
    hi Normal          ctermfg=252 ctermbg=232
-   hi Comment         ctermfg=240 ctermbg=NONE
+   hi Comment         ctermfg=240 ctermbg=none
    " cursor line & column
-   hi CursorLine      ctermfg=NONE ctermbg=234   CTErm=NONE
-   hi CursorColumn    ctermfg=NONE ctermbg=NONE  cterm=NONE
+   hi CursorLine      ctermfg=none ctermbg=233   cterm=bold
+   hi CursorColumn    ctermfg=none ctermbg=233   cterm=none
 
    " line number
-   hi LineNr          ctermfg=239 ctermbg=234
+   hi LineNr          ctermfg=235 ctermbg=232
 
    " listchars
-   hi NonText         ctermfg=087 ctermbg=NONE cterm=bold
-   hi SpecialKey      ctermfg=087 ctermbg=NONE cterm=bold
+   hi NonText         ctermfg=087 ctermbg=none cterm=none
+   hi SpecialKey      ctermfg=051 ctermbg=none cterm=none
 
    " tabs
-   hi TabLine         ctermfg=255 ctermbg=016   cterm=NONE
-   hi TabLineSel      ctermfg=154 ctermbg=016   cterm=bold
-   hi TabLineFill     ctermfg=016 ctermbg=016   cterm=NONE
+   hi TabLine         ctermfg=244 ctermbg=233   cterm=none
+   hi TabLineSel      ctermfg=233 ctermbg=118   cterm=none
+   hi TabLineFill     ctermfg=233 ctermbg=233   cterm=none
 
-   hi ColorColumn     ctermfg=NONE ctermbg=233 cterm=none
+   hi ColorColumn     ctermfg=none ctermbg=233  cterm=none
 
    hi link htmlLink         Underlined
    hi link pythonFunction   Identifier
@@ -163,8 +165,8 @@ if &t_Co > 255
     "if has("spell")
         "hi SpellBad       ctermfg=016 ctermbg=197
         "hi SpellCap       ctermfg=016 ctermbg=203
-        "hi SpellLocal     ctermfg=NONE ctermbg=117
-        "hi SpellRare      ctermfg=NONE ctermbg=214
+        "hi SpellLocal     ctermfg=none ctermbg=117
+        "hi SpellRare      ctermfg=none ctermbg=214
     "endif
 
 end
@@ -197,44 +199,44 @@ endif
 
 " {{{ for Tagbar.vim
     " cyan
-    highlight TagbarHighlight       ctermfg=051 ctermbg=NONE cterm=bold
+    highlight TagbarHighlight       ctermfg=051 ctermbg=none cterm=bold
     " gray
-    highlight TagbarComment         ctermfg=238 ctermbg=NONE cterm=NONE
+    highlight TagbarComment         ctermfg=238 ctermbg=none cterm=none
     " green
-    highlight TagbarKind            ctermfg=154 ctermbg=NONE cterm=bold
+    highlight TagbarKind            ctermfg=154 ctermbg=none cterm=bold,italic
     " dark green
-    highlight TagbarNestedKind      ctermfg=070 ctermbg=NONE cterm=NONE
+    highlight TagbarNestedKind      ctermfg=070 ctermbg=none cterm=none
     " blue
-    highlight TagbarScope           ctermfg=039 ctermbg=NONE cterm=NONE
+    highlight TagbarScope           ctermfg=039 ctermbg=none cterm=none
     " yellow
-    highlight TagbarType            ctermfg=190 ctermbg=NONE cterm=NONE
+    highlight TagbarType            ctermfg=190 ctermbg=none cterm=none
     " orange
-    highlight TagbarSignature       ctermfg=202 ctermbg=NONE cterm=NONE
+    highlight TagbarSignature       ctermfg=202 ctermbg=none cterm=none
     " pink
-    highlight TagbarPseudoID        ctermfg=205 ctermbg=NONE cterm=bold
+    highlight TagbarPseudoID        ctermfg=205 ctermbg=none cterm=bold
     " red
-    highlight TagbarFoldIcon        ctermfg=197 ctermbg=NONE cterm=NONE
+    highlight TagbarFoldIcon        ctermfg=197 ctermbg=none cterm=none
     " dark green
-    highlight TagbarAccessPublic    ctermfg=022 ctermbg=NONE cterm=NONE
+    highlight TagbarAccessPublic    ctermfg=022 ctermbg=none cterm=none
     " dark red
-    highlight TagbarAccessProtected ctermfg=088 ctermbg=NONE cterm=bold
+    highlight TagbarAccessProtected ctermfg=088 ctermbg=none cterm=bold
     " red
-    highlight TagbarPrivate         ctermfg=196 ctermbg=NONE cterm=bold
+    highlight TagbarPrivate         ctermfg=196 ctermbg=none cterm=italic
 " }}}
 
 " Colors: {
-"hi Black    ctermfg=240         ctermbg=NONE        cterm=NONE
-"hi Blue     ctermfg=68          ctermbg=NONE        cterm=NONE
-"hi Green    ctermfg=107         ctermbg=NONE        cterm=NONE
-"hi Orange   ctermfg=214         ctermbg=NONE        cterm=NONE
-"hi Peach    ctermfg=222         ctermbg=NONE        cterm=NONE
-"hi Pink     ctermfg=205         ctermbg=NONE        cterm=NONE
-"hi Pink2    ctermfg=211         ctermbg=NONE        cterm=NONE
-"hi Purple   ctermfg=153         ctermbg=NONE        cterm=NONE
-"hi Purple2  ctermfg=164         ctermbg=NONE        cterm=NONE
-"hi Red      ctermfg=203         ctermbg=NONE        cterm=NONE
-"hi Silver   ctermfg=245         ctermbg=NONE        cterm=NONE
-"hi White    ctermfg=255         ctermbg=NONE        cterm=NONE
+"hi Black    ctermfg=240         ctermbg=none        cterm=none
+"hi Blue     ctermfg=68          ctermbg=none        cterm=none
+"hi Green    ctermfg=107         ctermbg=none        cterm=none
+"hi Orange   ctermfg=214         ctermbg=none        cterm=none
+"hi Peach    ctermfg=222         ctermbg=none        cterm=none
+"hi Pink     ctermfg=205         ctermbg=none        cterm=none
+"hi Pink2    ctermfg=211         ctermbg=none        cterm=none
+"hi Purple   ctermfg=153         ctermbg=none        cterm=none
+"hi Purple2  ctermfg=164         ctermbg=none        cterm=none
+"hi Red      ctermfg=203         ctermbg=none        cterm=none
+"hi Silver   ctermfg=245         ctermbg=none        cterm=none
+"hi White    ctermfg=255         ctermbg=none        cterm=none
 " }
 
 "" JavaScript: {
