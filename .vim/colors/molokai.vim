@@ -141,7 +141,7 @@ if &t_Co > 255
    hi Number          ctermfg=135
    " String: string in quote 'string'
    hi String          ctermfg=144
-   hi Conditional     ctermfg=161               cterm=bold,standout
+   hi Conditional     ctermfg=161               cterm=bold
    hi Constant        ctermfg=135               cterm=bold
    hi Conceal         ctermfg=039  ctermbg=236  cterm=bold
    hi Cursor          ctermfg=255  ctermbg=197  cterm=underline
@@ -158,7 +158,7 @@ if &t_Co > 255
    hi Directory       ctermfg=118   ctermbg=NONE    cterm=bold
    hi Error           ctermfg=NONE  ctermbg=160     cterm=underline
    hi ErrorMsg        ctermfg=196   ctermbg=232     cterm=bold
-   hi Exception       ctermfg=118                   cterm=bold,standout
+   hi Exception       ctermfg=118                   cterm=bold
    hi Float           ctermfg=135
 
    " fold
@@ -179,11 +179,11 @@ if &t_Co > 255
    hi MatchParen      ctermfg=016  ctermbg=046 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161  ctermbg=236 cterm=bold,standout
+   hi Operator        ctermfg=161  ctermbg=236 cterm=bold
 
 " Pop complete menu   154 brightgreen  198 pink  038 light blue
    hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
-   hi PmenuSel        ctermfg=016 ctermbg=204  cterm=bold,standout
+   hi PmenuSel        ctermfg=016 ctermbg=204  cterm=bold
    hi PmenuSbar       ctermfg=203 ctermbg=016  cterm=none
    " scroll forward small bar
    hi PmenuThumb      ctermfg=198              cterm=none
@@ -228,7 +228,7 @@ if &t_Co > 255
    hi Structure       ctermfg=081
    hi Tag             ctermfg=161 ctermbg=236   cterm=standout
    hi Title           ctermfg=124               cterm=bold
-   hi Todo            ctermfg=033 ctermbg=232   cterm=bold,standout
+   hi Todo            ctermfg=033 ctermbg=232   cterm=bold
 
    hi Typedef         ctermfg=081 ctermbg=236    cterm=bold
    hi Type            ctermfg=081                cterm=bold
