@@ -1018,6 +1018,7 @@ endif
         call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['html5'])
         call vam#ActivateAddons(['HTML5_Syntax_File'])
+        call vam#ActivateAddons(['Better_CSS_Syntax_for_Vim'])
             " JavaScript
         call vam#ActivateAddons(['jsflakes%4057'])
         call vam#ActivateAddons(['jsruntime'])
@@ -2872,6 +2873,11 @@ syntax on
         " [ CSS ] {{{
             " ~/.vim/syntax/css3.vim
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
+        " }}}
+
+        " Better_CSS_Syntax_for_Vim {{{
+            " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
+            " 2. Different highlight colors for properties, value, units and so on.
         " }}}
     " }}}
 
