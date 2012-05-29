@@ -7,7 +7,7 @@
 " by Hamish Stuart Macpherson
 " Vimhelp: :help group-name :help syntax.txt
 " term={attr-list}
-"   - bold, underline, undercurl, reverse, inverse, italic, standout, NONE.
+"   - bold, underline, undercurl, reverse, inverse, italic, bold, none.
 
 " checks whether an earlier file has defined a syntax already. If so, exits with finish.
 if exists("b:current_syntax")
@@ -121,7 +121,7 @@ else
    hi CursorColumn                  guibg=#293739
    hi LineNr          guifg=#BCBCBC guibg=#232526
    hi NonText         guifg=#BCBCBC guibg=#232526
-   hi ColorColumn     guifg=NONE    guibg=#282828
+   hi ColorColumn     guifg=none    guibg=#282828
 
     if has("spell")
         hi SpellBad    guisp=#FF0000 gui=undercurl
@@ -150,13 +150,13 @@ if &t_Co > 255
    hi Define          ctermfg=081
    hi Delimiter       ctermfg=241
 
-   hi DiffAdd         ctermfg=NONE ctermbg=064 cterm=standout
-   hi DiffDelete      ctermfg=NONE ctermbg=052 cterm=none
-   hi DiffChange      ctermfg=NONE ctermbg=233 cterm=standout
-   hi DiffText        ctermfg=NONE ctermbg=204 cterm=bold
+   hi DiffAdd         ctermfg=none ctermbg=022 cterm=none
+   hi DiffDelete      ctermfg=none ctermbg=088 cterm=none
+   hi DiffChange      ctermfg=none ctermbg=233 cterm=bold
+   hi DiffText        ctermfg=none ctermbg=053 cterm=none
 
-   hi Directory       ctermfg=118   ctermbg=NONE    cterm=bold
-   hi Error           ctermfg=NONE  ctermbg=160     cterm=underline
+   hi Directory       ctermfg=118   ctermbg=none    cterm=bold
+   hi Error           ctermfg=none  ctermbg=160     cterm=underline
    hi ErrorMsg        ctermfg=196   ctermbg=232     cterm=bold
    hi Exception       ctermfg=118                   cterm=bold
    hi Float           ctermfg=135
@@ -179,11 +179,11 @@ if &t_Co > 255
    hi MatchParen      ctermfg=016  ctermbg=046 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161  ctermbg=236 cterm=bold
+   hi Operator        ctermfg=161  ctermbg=016 cterm=bold
 
 " Pop complete menu   154 brightgreen  198 pink  038 light blue
    hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
-   hi PmenuSel        ctermfg=016 ctermbg=204  cterm=bold
+   hi PmenuSel        ctermfg=016 ctermbg=038  cterm=none
    hi PmenuSbar       ctermfg=203 ctermbg=016  cterm=none
    " scroll forward small bar
    hi PmenuThumb      ctermfg=198              cterm=none
@@ -195,7 +195,7 @@ if &t_Co > 255
    hi Search          ctermfg=232 ctermbg=154   cterm=bold
 
    " marks column
-   hi SignColumn      ctermfg=161 ctermbg=NONE
+   hi SignColumn      ctermfg=161 ctermbg=none
    hi SpecialChar     ctermfg=161               cterm=bold
    hi SpecialComment  ctermfg=245               cterm=bold
    hi Special         ctermfg=081  ctermbg=232  cterm=bold
@@ -226,7 +226,7 @@ if &t_Co > 255
 
    hi StorageClass    ctermfg=208
    hi Structure       ctermfg=081
-   hi Tag             ctermfg=161 ctermbg=236   cterm=standout
+   hi Tag             ctermfg=161 ctermbg=236   cterm=bold
    hi Title           ctermfg=124               cterm=bold
    hi Todo            ctermfg=033 ctermbg=232   cterm=bold
 
@@ -235,30 +235,30 @@ if &t_Co > 255
    hi Underlined      ctermfg=033                cterm=underline
 
    hi VertSplit       ctermfg=236 ctermbg=232   cterm=bold
-   hi VisualNOS       ctermfg=NONE ctermbg=238  cterm=none
-   hi Visual          ctermfg=NONE ctermbg=024  cterm=bold
+   hi VisualNOS       ctermfg=none ctermbg=238  cterm=none
+   hi Visual          ctermfg=none ctermbg=024  cterm=bold
    hi WarningMsg      ctermfg=197 ctermbg=232   cterm=bold
    hi WildMenu        ctermfg=045 ctermbg=016   cterm=bold
 
    hi Normal          ctermfg=252 ctermbg=232
    hi Comment         ctermfg=240 cterm=italic
    " cursor line & column
-   hi CursorLine      ctermfg=NONE ctermbg=233   cterm=bold
-   hi CursorColumn    ctermfg=NONE ctermbg=233   cterm=none
+   hi CursorLine      ctermfg=none ctermbg=233   cterm=bold
+   hi CursorColumn    ctermfg=none ctermbg=233   cterm=none
 
    " line number
    hi LineNr          ctermfg=235 ctermbg=232
 
    " listchars
-   hi NonText         ctermfg=087 ctermbg=NONE cterm=none
-   hi SpecialKey      ctermfg=051 ctermbg=NONE cterm=none
+   hi NonText         ctermfg=087 ctermbg=none cterm=none
+   hi SpecialKey      ctermfg=051 ctermbg=none cterm=none
 
    " tabs
    hi TabLine         ctermfg=244 ctermbg=233   cterm=none
    hi TabLineSel      ctermfg=233 ctermbg=118   cterm=none
    hi TabLineFill     ctermfg=233 ctermbg=233   cterm=none
 
-   hi ColorColumn     ctermfg=NONE ctermbg=233  cterm=none
+   hi ColorColumn     ctermfg=none ctermbg=233  cterm=none
 
    hi link htmlLink         Underlined
    hi link pythonFunction   Identifier
@@ -326,18 +326,18 @@ endif
 " }}}
 
 " Colors: {
-"hi Black    ctermfg=240         ctermbg=NONE        cterm=NONE
-"hi Blue     ctermfg=68          ctermbg=NONE        cterm=NONE
-"hi Green    ctermfg=107         ctermbg=NONE        cterm=NONE
-"hi Orange   ctermfg=214         ctermbg=NONE        cterm=NONE
-"hi Peach    ctermfg=222         ctermbg=NONE        cterm=NONE
-"hi Pink     ctermfg=205         ctermbg=NONE        cterm=NONE
-"hi Pink2    ctermfg=211         ctermbg=NONE        cterm=NONE
-"hi Purple   ctermfg=153         ctermbg=NONE        cterm=NONE
-"hi Purple2  ctermfg=164         ctermbg=NONE        cterm=NONE
-"hi Red      ctermfg=203         ctermbg=NONE        cterm=NONE
-"hi Silver   ctermfg=245         ctermbg=NONE        cterm=NONE
-"hi White    ctermfg=255         ctermbg=NONE        cterm=NONE
+"hi Black    ctermfg=240         ctermbg=none        cterm=none
+"hi Blue     ctermfg=68          ctermbg=none        cterm=none
+"hi Green    ctermfg=107         ctermbg=none        cterm=none
+"hi Orange   ctermfg=214         ctermbg=none        cterm=none
+"hi Peach    ctermfg=222         ctermbg=none        cterm=none
+"hi Pink     ctermfg=205         ctermbg=none        cterm=none
+"hi Pink2    ctermfg=211         ctermbg=none        cterm=none
+"hi Purple   ctermfg=153         ctermbg=none        cterm=none
+"hi Purple2  ctermfg=164         ctermbg=none        cterm=none
+"hi Red      ctermfg=203         ctermbg=none        cterm=none
+"hi Silver   ctermfg=245         ctermbg=none        cterm=none
+"hi White    ctermfg=255         ctermbg=none        cterm=none
 " }
 
 "" JavaScript: {
