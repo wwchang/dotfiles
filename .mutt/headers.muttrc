@@ -25,7 +25,7 @@ unignore X-SpamProbe:
 unignore X-Virus-hagbard:
 
 # Now order the visable header lines
-hdr_order From: Subject: To: CC: BCC: Reply-To: Mail-Followup-To: Date: Organization: User-Agent: X-Mailer: Newsgroups:
+hdr_order From: To: Subject: CC: BCC: Reply-To: Mail-Followup-To: Date: Organization: User-Agent: X-Mailer: Newsgroups:
 
 # set from = 'stardiviner <numbchild@gmail.com>'
 # set different from information when replying according to accounts

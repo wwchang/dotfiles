@@ -27,9 +27,9 @@ color quoted3       color197  default
 # Colours for items in the reader
 # color header brightyellow  default "^(From|To):"
 color header        color250    default "^Date:"
-color header        color203    default "^From:"
+color header        color039    default "^From:"
 color header        color036    default "^(To|Cc|Bcc):"
-color header        color196    default "^Subject:"
+color header        color203    default "^Subject:"
 color header        color023    default "^(User-Agent|X-Mailer):"
 # color header red           default "^X-Virus-hagbard: .* FOUND"
 color header        color196    default "^(X-Virus-hagbard|X-SpamProbe|X-Junked-Because):"
