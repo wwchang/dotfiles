@@ -643,22 +643,6 @@ endif
     " i_CTRL-X_s                    -- spelling suggestions
     " i_CTRL-N                      -- keyword in 'complete'
     " }}}
-
-        " TODO add an if condition to detect cwindow or lwindow, and bind this
-        " function into one key.
-            " so that you can use same <A-n/p> for next and previous.
-        "if (empty(getloclist(0))=='1')
-            "" command: :copen QuickFix window.
-            " nnoremap <F3> :botright cwindow<CR>
-            "help eval.txt
-        "elseif (empty(getqflist()
-            "" command: :lopen LocationList window.
-            " nnoremap <F4> :botright lwindow<CR>
-        "endif
-        "nnoremap <expr> <A-n> (&buftype=='quickfix'?':cn':':lnext')."\n"
-        "nnoremap <expr> <A-p> (&buftype=='quickfix'?':cp':':lprev')."\n"
-        "nnoremap <expr> <silent> <F3>   (&diff ? "]c" : ":cnext\<CR>")
-        "nnoremap <expr> <silent> <S-F3> (&diff ? "[c" : ":cprev\<CR>")
 " }}}
 
 " [[ functions ]] {{{2
@@ -762,7 +746,6 @@ endif
     " Abbreviations are used in Insert, Replace and Command-line mode.
     " three types of abbreviations: full-id, end-id, non-id.
     " show current buffer all abbreviates with command: ':verbose abbreviate'.
-    " FIXME why those abbreviations is expanded with dot instead of space.
     source ~/.vim/misc/abbreviations.vim
     " }}}
 
@@ -904,10 +887,12 @@ endif
         call vam#ActivateAddons(['L9'])
         call vam#ActivateAddons(['tlib'])
         call vam#ActivateAddons(['AsyncCommand'])
+        call vam#ActivateAddons(['unite'])
             " statusline
         call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
         " TODO Add a progin to show object prototype in statusline.
+        " reference taglist/tagbar script <Space> show prototype.
             " CVS
         call vam#ActivateAddons(['fugitive', 'extradite', 'gitv'])
         call vam#ActivateAddons(['quickfixsigns'])
@@ -1207,6 +1192,7 @@ syntax on
         " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
             " Usage: [range]:GitV[!] [args]
             " [Browser/File] mode
+            " FIXME how to view diff state in File mode.
             " Key Maps:
             " <cr>, <c-j/k/l/cr> == oOsi, q, u, co, D, S, m, git, x, X, r, R, P.
             let g:Gitv_CommitStep = &lines
@@ -1312,9 +1298,8 @@ syntax on
 
         " rhubarb {{{ GitHub extension for fugitive.vim
             " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
-            " comment message.
-            " XXX This makes inserting those Closes #123 remarks slightly easier
-            " than copying and pasting from the browser.
+            " comment message.  This makes inserting those Closes #123 remarks
+            " slightly easier than copying and pasting from the browser.
             " --------------------------
             " let g:github_user = '<user>'
             " let g:github_password = '<password>'
@@ -1474,9 +1459,6 @@ syntax on
             "let g:AltAutoComplPop_DisableAutoComplete
             "let g:AltAutoComplPop_DeleteRank0
             " }}}
-            " FIXME  python-gtk3
-            " issue: https://github.com/Shougo/neocomplcache/issues/181
-            " let g:neocomplcache_omni_patterns['python'] = ''
 
             " [ neocomplcache functions ] {{{
             " inoremap <expr><C-n>
@@ -1589,10 +1571,11 @@ syntax on
                 " }}}
 
                 " unite sources {{{ TODO
-                    " <Plug>(neocomplcache_start_unite_complete)
-                    " <Plug>(neocomplcache_start_unite_quick_match)
-                    "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-                    "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                    " start completion with unite.vim
+                        " <Plug>(neocomplcache_start_unite_complete)
+                        " <Plug>(neocomplcache_start_unite_quick_match)
+                        "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+                        "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
                 " }}}
             " }}}
         " }}}
@@ -1790,10 +1773,8 @@ syntax on
 
     " [ tags ] {{{ <F12>
         " Tagbar: {{{ <F12> Display tags of a file ordered by scope.
-            " <F12>
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
-            " FIXME no color syntax.
-            let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty | '/usr/bin/ctags'.
+            let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
             let g:tagbar_width = 25
             let g:tagbar_compact = 0 " omitting heading help line and blank lines.
             let g:tagbar_left = 0
@@ -2396,10 +2377,8 @@ syntax on
         " }}}
 
         " Nerd Commenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
-            " TODO find out how to comment Lua code with --[[
-            " ]]
-            " \cc: Comment, \cu: Uncomment,
-            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert, \cs: Sexy,
+            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
+            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
             " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
             " let loaded_nerd_comments=1 " turn off this script.
         " }}}
@@ -2421,7 +2400,6 @@ syntax on
         " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
             " support python dot operator help.
             " e.g. module.fun|<K>ction(args)
-            " FIXME, viewdoc, will open a new help doc window when use :ViewDocHelp
             " TODO more customize
             " Usage:
                 " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
@@ -2511,10 +2489,6 @@ syntax on
                 hi IndentGuidesEven ctermbg=233 guibg=LightRed
                 hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
             endif
-                " tab:<:digraphs 9478>, tab:\┆\ ,
-                " to use this tab as indent guide, you need to set noexpandtab.
-                " and disable Indent_Guides.
-                " FIXME autocmd FileType python :IndentGuidesDisable
         " }}}
 
         " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
@@ -2572,7 +2546,7 @@ syntax on
             "noremap <Leader>ai <Esc>:AuthorInfoDetect<CR>
             let g:vimrc_author = 'stardiviner'
             let g:vimrc_email = 'numbchild@gmail.com'
-            " TODO let g:vimrc_homepage = ''
+            " let g:vimrc_homepage = ''
         " }}}
 
         " license_loader {{{ a vim script to load a license template.
@@ -2592,7 +2566,6 @@ syntax on
         " [ Python options ] {{{
             let python_highlight_all = 1
             let python_slow_sync = 1 " for fast machines
-        " FIXME use which one python syntax file in ~/.vim/syntax/
         augroup PythonSettings
             au!
             au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
@@ -2602,7 +2575,6 @@ syntax on
 
         " [ IDE ] {{{
             " Python-mode-klen: {{{ Python IDE.
-            " FIXME let plugin support "gd" to jump to function defintion.
                 " K: doc <C-space>: Rope autocomp
                 " <Leader>r: run <Leader>b: set/unset breakpoint.
                 " pylint, rope, pydoc  :help Python-mode-contents Show documentation
@@ -2847,7 +2819,7 @@ syntax on
                 "   - Support microdata
                 "   - Support RDFa.
                 "   - Support WAI-ARIA.
-                " XXX upper features reference can find link in script readme.
+                " XXX learn upper features reference can find link in script readme.
                 " enable event-handler attributes support:
                 let g:html5_event_handler_attributes_complete = 1
                 " enable RDFa attributes support:
@@ -3449,7 +3421,6 @@ syntax on
             " Usage:
             "   - :NarrowRegion/:NR, :NarrowWindow/:NW, :WidenRegion[!]
             "   - {Visual select} \nr
-            " TODO learn this.
         " }}}
 
         " partedit {{{ Edit part of buffer by another buffer.
@@ -3590,8 +3561,8 @@ syntax on
 
     " [ colorscheme ] {{{
         " ScrollColors:
+            " :ScrollColors
             " \[n|p] to choose colorscheme
-            " TODO choose a good colorscheme from .vim/colors/
 
         " ColorSchemeEditor: {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
@@ -3688,7 +3659,6 @@ syntax on
 
 " [ tools ] {{{
     " [ GTD, wiki, note, outliner & calendar ] {{{
-    " FIXME add one if condition for whether it is under Linux.
         " vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
             " TODO write template and style.css for vimwiki.
             " Wiki: \ws, [count][\ww,\wt],
@@ -3833,9 +3803,7 @@ syntax on
             " default Tag list.  Both of these can also be defined
             " on a document-specific basis by config lines in a file.
             " See :h vimorg-todo-metadata and/or :h vimorg-tag-metadata
-            " 'TODO | DONE' is the default, so not really necessary to define it at all
             "let g:org_todo_setup='TODO | DONE'
-            " OR, e.g.,:
             let g:org_todo_setup='TODO NEXT STARTED | DONE CANCELED'
 
             " include a tags setup string if you want:
@@ -4069,8 +4037,8 @@ syntax on
             let g:pad_highlighting_variant = 1
             let g:pad_search_backend = 'grep' " grep, ack
             let g:pad_search_ignore_case = 1
-            let g:pad_read_nchars_from_files = 200 " read 200 chars from files as summary.
-            " FIXME change mappings.
+            let g:pad_read_nchars_from_files = 200 " read 200 chars summary from files
+            " XXX change mappings.
         " }}}
 
         " HyperList: <= WOIM {{{
@@ -4327,7 +4295,10 @@ syntax on
     " }}}
 
     " [ translate ] {{{
-        " TODO youdao.dict
+        " youdao.dict
+            "map <Leader>d <Esc>:call Youdao()<CR>
+            "let g:youdao_key = '' " API key
+            "let g:youdao_keyfrom = '' " API keyfrom
     " }}}
 
     " [ format ] {{{
@@ -4369,11 +4340,11 @@ syntax on
             let g:AutoPairsShortcutBackInsert = '<M-b>'
             let g:AutoPairsMapBS = 1
             let g:AutoPairsMapCR = 0 " insert a new indented line if cursor in pairs.
-                " FIXME error in vimwiki <CR> Enter. but use upper inoremap can solve.
+                " error in vimwiki <CR> Enter. but use upper inoremap can solve.
             let g:AutoPairsMapSpace = 0
-                " FIXME error in abbreviations <space> auto expand.
+                " error in abbreviations <space> auto expand.
             let g:AutoPairsCenterLine = 1
-            let g:AutoPairsFlyMode = 0 " TODO alpha.
+            let g:AutoPairsFlyMode = 0 " XXX alpha.
         " }}}
 
         " delimitMate: {{{ auto closing of quotes, parenthesis, brackets etc.
@@ -4442,7 +4413,7 @@ syntax on
             let g:utl_opt_verbose=0 " 0=no (default), 1=yes
             let g:utl_opt_highlight_urls='yes' " 'yes' is default / 'no'
 
-            " TODO reference utl_rc.vim
+            " XXX reference utl_rc.vim
             " HTTP
             " %u, %p for Unix, %P for Windows.
             if !exists("g:utl_cfg_hdl_scm_http_system")
@@ -4509,14 +4480,6 @@ syntax on
             " for set small delay
             set timeoutlen=600
             " Screen: maptimeout, Tmux: escape-time options.
-    " }}}
-
-    " [ translater ] {{{
-        " youdao.dict {{{ FIXME
-            "map <Leader>d <Esc>:call Youdao()<CR>
-            "let g:youdao_key = '' " API key
-            "let g:youdao_keyfrom = '' " API keyfrom
-        " }}}
     " }}}
 
     " [ speak ] {{{
