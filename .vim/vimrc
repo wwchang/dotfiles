@@ -412,20 +412,10 @@ endif
     " [ current line ] {{{
     augroup CursorLineColumn
         au!
-        "au InsertEnter * setlocal nocursorline cursorcolumn
-        "au InsertLeave * setlocal cursorline nocursorcolumn
-        "au WinEnter,BufEnter * setlocal cursorline cursorcolumn
-        "au WinLeave,BufLeave * setlocal nocursorline nocursorcolumn
-        " TODO use different color for cursorline when in different mode.
         au InsertEnter * setlocal nocursorline cursorcolumn
         au InsertLeave * setlocal cursorline nocursorcolumn
-        " when open a new file which not empty.
-        au BufEnter * setlocal cursorline nocursorcolumn
-        au BufLeave * setlocal nocursorline nocursorcolumn
-        " au InsertLeave * hi CursorLine ctermfg=none ctermbg=233 cterm=bold
-        " only highlight cursorline for current buffer and window.
-        au WinEnter * setlocal cursorline cursorcolumn
-        au WinLeave * setlocal nocursorline nocursorcolumn
+        " au BufEnter * setlocal cursorline nocursorcolumn
+        " au BufLeave * setlocal nocursorline nocursorcolumn
     augroup END
     " }}}
 
