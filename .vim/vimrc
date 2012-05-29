@@ -86,6 +86,8 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     set encoding=utf-8
     set fileencoding=utf-8
     set fileencodings=utf-8,ucs-bom,enc-cn,cp936,gbk,latin1
+    set ambiwidth="double" " ambiguous character width.
+        " ambiwidth: only effect when 'encoding' is 'utf-8'
     " "set isfname+=32 " let vim support filename with white spaces when  using "gf".
     " }}}
 
