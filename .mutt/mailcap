@@ -1,5 +1,7 @@
 # URL: http://www.mutt.org/doc/manual/manual-5.html
 
+# NOTE: use command; copiousoutput for non-text file attachment.
+
 # [ text ]
 text/plain; less %s
 
@@ -28,10 +30,10 @@ application/x-emacs-lisp; vim %s
 application/x-script.elisp; vim %s
 
 # [ document ]
-application/pdf; zathura %s
+application/pdf; zathura %s; copiousoutput
 # application/pdf; pdftotext -enc UTF-8 %s /dev/stdout; copiousoutput
-# application/pdf; evince %s
-application/chm; chmsee %s
+# application/pdf; evince %s; copiousoutput
+application/chm; chmsee %s; copiousoutput
 # Microsoft Word Doc
 application/msword; wvHtml --charset=gb2312 %s - | lynx --dump -stdin; nametemplate=%s.html; copiousoutput
 # application/msword; wvHtml --charset=gb2312 %s - | elinks -dump 1; nametemplate=%s.html; copiousoutput
@@ -39,10 +41,11 @@ application/msword; wvHtml --charset=gb2312 %s - | lynx --dump -stdin; nametempl
 
 # [ image ]
 # image/*; feh %s >/dev/null
-image/*; sxiv %s >/dev/null
+image/*; sxiv %s >/dev/null; copiousoutput
+# image/*; true; copiousoutput
 
 # [ video ]
-video/*; mplayer %s >/dev/null
+video/*; mplayer %s >/dev/null; copiousoutput
 
 # [ archive ]
 application/zip; gzcat; copiousoutput
