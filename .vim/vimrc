@@ -1124,6 +1124,7 @@ endif
         "call vam#ActivateAddons(['formatvim'])
             " Vim related
         "call vam#ActivateAddons(['github:chrisbra/vim_faq'])
+        " call vam#ActivateAddons(['Fortune_vimtips'])
             " Vimrc manager
         "call vam#ActivateAddons(['Sauce'])
             " Vim Extension
@@ -3669,6 +3670,8 @@ syntax on
     " [ Vim FAQ / Tips ] {{{
         " Bundle 'chrisbra/vim_faq.git'
             " :h vim-faq.
+        " Fortune_vimtips {{{ view vimtips.
+        " }}}
     " }}}
 " }}}
 
