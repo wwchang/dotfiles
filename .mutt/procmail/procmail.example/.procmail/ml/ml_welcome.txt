@@ -1,0 +1,19 @@
+###############################################################
+# sample text written by Tadashi Kawaguchi <ojin@erehwon.org> #
+###############################################################
+Your subscription to the list has been accepted.
+
+
+To send a message to all the people currently subscribed to the list,
+just send mail to <ml@your.domain>.
+
+You may leave this mailing list at any time by sending an e-mail to
+<owner-ml@your.domain> with "Subject: signoff ml".
+
+You can get help file by sending an e-mail to <owner-ml@your.domain>
+with "Subject: send help".
+
+
+Thank you,
+----------
+mlmaster@your.domain

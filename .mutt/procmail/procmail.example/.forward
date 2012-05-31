@@ -1,0 +1,1 @@
+"|IFS=' '&&exec /opt/local/bin/procmail -f-||exit 75 #your_login_name"

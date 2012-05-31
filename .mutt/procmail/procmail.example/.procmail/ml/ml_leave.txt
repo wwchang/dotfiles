@@ -1,0 +1,12 @@
+###############################################################
+# sample text written by Tadashi Kawaguchi <ojin@erehwon.org> #
+###############################################################
+
+Your unsubscription from the list
+has been accepted.
+
+
+
+Thank you,
+----------
+mlmaster@your.domain

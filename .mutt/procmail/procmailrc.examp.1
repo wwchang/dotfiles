@@ -1,0 +1,382 @@
+# For security, only allow procmail to know certain things and drop any
+# non-user privileges that procmail may have had.
+DROPPRIVS=yes
+
+# Set library paths so various software we use works correctly
+LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:$LD_LIBRARY_PATH"
+
+# Haha! These environment variables assist with my evil popup email rules. Be
+# notified, be very notified.
+DISPLAY=:0
+XAUTHORITY=$HOME/.Xauthority
+
+# Explicitly define helper app paths as env variables this saves us typing a
+# lot, and also keeps a massive path away from procmail should anything go
+# awry. If gmsgp isn't installed, you can use the standard xmessage utility,
+# but it's not as sexy.  Sexy is important.
+SED=/bin/sed
+SHELL=/bin/bash
+FORMAIL=/usr/bin/formail
+LBDBFETCH=/usr/bin/lbdb-fetchaddr
+#MESSAGE="`which xmessage` -file -"
+MESSAGE="`which gmsgp` --no_hscrollbar -f -"
+ONSCREEN="osd_cat --color=#ffe000 --offset=-70 --delay=5 --shadow=2 --font=-urw-eurostile-bold-r-normal-*-*-480-*-*-p-*-iso8859-1"
+
+# My primary mail folder, this is so I don't have to retype it in rules
+# Maildir:
+#MAILDIR=$HOME/Maildir/
+# mbox:
+MAILDIR=$HOME/Mail
+
+# Default delivery folder.
+# Maildir:
+#DEFAULT=$MAILDIR/
+# mbox:
+DEFAULT=$MAILDIR/INBOX
+
+# Write a log so I can use mailstat to find out where my mail went
+LOGFILE=$MAILDIR/.procmaillog
+LOGABSTRACT=all
+LINEBUF=4096
+
+#:0 HBci:
+#* ^Content-Type: multipart/mixed
+#* ^date:
+#* I send you this file in order to have your advice
+
+#:0 BD: sircam.lock
+#* AAAAGgU0NhbTMyABCDTUlN|AAAAAaBTQ2FtMzIAEINNSU1F|ABkAAAABoFNDYW0zMgAQg01J
+#| /home/jdub/bin/sircam-extract
+
+#dd if="$FILE" of="$SIRCAMDIR/$(basename "$(echo "$FILE" | sed -e 's/.*-\(.*\)\.\w*$/\1/')")" bs=512 skip=268)
+
+
+# DUPLICATE REMOVAL
+# This rule uses formail to remove emails that have a message-id that has
+# already passed through the system. It keeps an 8K log.  "W" waits until it
+# gets the exit code from formail and filters if appropriate. the 'h' means
+# pipe the headers only. it uses a user-defined lockfile for this task.
+:0 Wh: msgid.lock
+| $FORMAIL -D 8192 $HOME/.msgid.cache
+
+
+# ABSOLUTE JUNK
+# Stuff wot should be trashed with great prejudice (but without /dev/null,
+# because I'm a wimp). I really ought to add more here, like Tom Gilbert's
+# crazy spam rules. He is a procmail artiste.
+#
+# NOW USING THE SPAMINATOR!
+#:0 Wcihb: spaminator.lock
+#| /home/jdub/bin/spaminator.pl
+#
+# NOW USING SPAMASSASSIN
+:0 fw
+| /usr/bin/spamc
+
+:0:
+* ^X-Spam-Status: Yes
+Trash
+
+
+# MAILMAN REMINDERS
+# I'm so completely not interested in receiving these at the end of every month
+:0:
+* ^From: .*mailman-owner@
+* ^Subject: .* mailing list memberships reminder
+Trash
+
+
+# BACKUP
+#:0 c:
+#Backup
+
+
+# REALTIME MESSAGES
+# These are my terrible procmail-displaying-messages-in-X rules.  gmsgp is very
+# cool for this; but you need to be careful what you filter on. Andrew Bennetts
+# found a very simple exploit in the ones I displayed at SLUG. The second one
+# is particularly easy to exploit; for "randomly piss Jeff off" values of
+# exploit. Of course, if you were the real Catie, it wouldn't piss me off much
+# at all. It only spews out the body, 'cos the header can be ascertained from
+# the MATCH env variable, which is taken from the Subject header.  Explaining
+# procmail matching will be a PITA. :)
+
+# gnome announcements
+:0 icb
+* ^TO_.*(gnome-announce-list@gnome.org)
+* ^Subject:.*\/.*
+| $MESSAGE --title="$MATCH"
+
+# fluffy catie
+:0 icb
+* ^From: .*liedra@liedra.net
+* ^TO_jdub@
+* ^Subject:.*\/.*
+| $MESSAGE --title="$MATCH"
+
+
+# TRANSIENT RULES
+# this is so i can add and remove quick rules as I need them into a little
+# inconsequential file
+INCLUDERC=$HOME/.procmailrc.transient
+
+
+# SIGNATURE DELIMITER FIXER
+# Some people haven't realised that '--' is actually an incorrect sig
+# delimiter, so this quickly sed-fixes it for them. I contemplated
+# automatically sending a "FIX YER DELIMITER!" email, but that would just be an
+# unproductive nuisance.
+:0 fBw
+* ^--$
+| $SED -e 's/^--$/-- /'
+
+:0 fBw
+* ^_______________________________________________$
+| $SED -e 's/^_______________________________________________$/-- /'
+
+
+# MAILDIR LINES
+# Add Lines header for mutt with Maildirs. Mutt shows lines based on Lines
+# header.  We have to do this manually for Maildir delivered messages.
+#:0 Bfh
+#* H ?? !^Lines:
+#* -1^0
+#*  1^1 ^.*$
+#| formail -A "Lines: $="
+
+
+# LBDB SUCKER
+# Whee! This clones out the headers, and pipes them into the lbdb
+# message grabbing program. It is way cool, man.
+:0 hc
+| $LBDBFETCH
+
+
+# SLUG
+# Here is my attempt to make slug lists work with minimal prior configuration
+# 'cos I preferred them to go into a Slug/ folder instead of Lists/. I no
+# longer use a setup quite like this though.
+#
+# Basically, it matches the address for anything that is sent to @slug., then
+# matches everything up to the @ sign. Within the braces, it delivers to the
+# lists first, via their list ids.  Anything that falls through is filtered at
+# first specifically, for any special cases, then generally.
+# 
+# This will satisfy the main concern -> keeping slug configuration neatly in
+# one place, and putting it all into a folder with as little future maintenance
+# as possible. However, it's broken, because anything that is sent to multiple
+# addresses within slug.org.au will be delivered unpredictably. Because I
+# filter out duplicate emails, whichever hits first will be delivered, so it
+# may not have list ids, and the first address may be to my personal address.
+# This sucks. :) Because I receive replies from slug so often, it's easier just
+# to filter them by folder priority.
+#
+# I've left this in as an example of a complex recipe.
+
+#:0
+#* ^TO_ ()\/[^@]+@slug.
+#* MATCH ?? ()\/[^@]+
+#{
+#   DESTINATION=$MATCH
+#
+#   :0
+#   * ^((List-Id|X-(Mailing-)?List):(.*[<]\/[^>]*))
+#   { 
+#       LISTID=$MATCH
+#       
+#       :0:
+#       * LISTID ?? ^\/[^@\.]*
+#       IN.slug-$MATCH
+#   }
+#   
+#   :0:
+#   * DESTINATION ?? (admin|root)
+#   IN.slug-admin
+#
+#   :0:
+#   * DESTINATION ?? (*-admin|*-owner)
+#   IN.slug-admin-lists
+#
+#   :0:
+#   * DESTINATION ?? (jdub|jeff)
+#   IN.slug-personal
+#
+#   :0:
+#   IN.slug-$DESTINATION
+#}
+
+:0 HB:
+* ^TO_.*list@slug.
+* ^Warning: Unrecognized character set: windows-1252
+Trash
+
+:0:
+* ^TO_.*(slug|announce)@slug.org.au
+SLUG/slug
+
+:0:
+* ^TO_.*chat@slug.org.au
+SLUG/chat
+
+:0:
+* ^TO_.*festies@slug.org.au
+SLUG/festies
+
+:0:
+* ^TO_.*committee@slug.org.au
+SLUG/committee
+
+:0:
+* ^TO_.*pearls@slug.org.au
+SLUG/pearls
+
+:0:
+* ^TO_.*jdub\+rsvp@slug.
+SLUG/rsvp
+
+:0:
+* ^TO_.*(jdub|jeff|president)@slug.
+SLUG/personal
+
+:0:
+* ^TO_.*webmaster@slug.
+SLUG/webmaster
+
+:0:
+* ^TO_.*(owner|admin|root|list)@slug.
+SLUG/admin
+
+:0:
+* ^TO_.*(progsoc-status@progsoc.uts.edu.au|netstatus@listserv.uts.edu.au)
+SLUG/admin
+
+# GNOME
+:0:
+* ^TO_.*(gnome-2-0-list|desktop-devel-list)@
+Lists/desktop-devel-list
+
+:0:
+* ^TO_.*gnome2-release-team@
+* ^Subject: .* GNOME 2.0 release:
+Lists/gnome2-releases
+
+:0:
+* ^TO_.*gnome-hackers@
+Lists/gnome-hackers
+
+:0:
+* ^TO_.*cvs-commits-list@mail.gnome.org
+Lists/gnome-cvs-commits
+
+:0:
+* ^From:.*bugzilla-daemon@widget.gnome.org
+* ^TO_.*jdub@
+Lists/gnome-bugs
+
+:0:
+* ^RT-Ticket: gnome.org
+Lists/gnome-sysadmin-rt
+
+# ARTFUL PROCMAIL ALERT!
+# Here are two rules that will automagically filter *most* list emails based on
+# sane matches, such as list id. Very funky, and you almost never have to deal
+# with folder-making for lists again.
+
+# MOST LISTS - Automagically handle lists
+:0
+* ^((List-Id|X-(Mailing-)?List):(.*[<]\/[^>]*))
+{
+    LISTID=$MATCH
+
+    :0:
+    * LISTID ?? ^\/[^@\.]*
+    Lists/$MATCH
+
+}
+
+# MAJORDOMO - Automagically handle Majordomo lists
+:0
+* ^Sender: owner-[^@]+@[^@\+]+
+* ^Sender: owner-\/[^@\+]+
+{
+    :0:
+    Lists/$MATCH
+}
+
+
+# BORKY LISTS - These don't work with the main list processing rule
+:0:
+* ^TO_.*geeks@
+Lists/geeks
+
+:0:
+* ^TO_.*slarken-list@
+Lists/slarken
+
+:0:
+* ^TO_.*aussie-isp@
+Lists/aussie-isp
+
+:0:
+* ^TO_.*delivery@phpclasses.UpperDesign.com
+/dev/null
+
+:0:
+* ^TO_.*gimpnet-opers@acc.umu.se
+Lists/gimpnet-opers
+
+:0:
+* ^TO_.*pgsql-general@postgresql.org
+Lists/pgsql-general
+
+:0:
+* ^Sender: <win4lin-users@netraverse.com>
+Lists/win4lin-users
+
+:0:
+* ^Mailing-List: contact 2600-network-help@wiretapped.net
+Lists/2600-network
+
+
+# SERVER REPORTS
+# Here's the old line:
+#* ^(To:|Cc:|From:).*(root@|anonymous@)
+# Now I use this:
+:0:
+* ^FROM_DAEMON
+Reportage
+
+
+# PERSONAL STUFF
+# Why the jdub.*@perkypants.org? Well, I can use the + notation when mail
+# is delivered to that host, so that things like jdub+spam and jdub+pants
+# are delivered to my account.
+
+# ME ME ME
+# These match emails that I send to me; it doesn't kick in for lists,
+# as they're all matched up the top, so it acts as a basic todo list
+# kinda thing.
+:0:
+* ^From:.*(jdub@aphid.net|jdub.*@perkypants.org)
+TODO
+
+# DUMP IT IN THE TRASH
+# This will make Bcc emails fall into my trash. Other than that,
+# it's fine. I don't really get to much valid Bcc email on my personal
+# mail anyway.
+:0:
+* ! ^TO_.*(jdub@aphid.net|jdub.*@perkypants.org|jdub.*@gnome.org)
+Trash
+
+# DISPLAY IT ON THE SCREEN!
+:0 c
+* ^Subject:.*\/.*
+{
+    SUBJECT=$MATCH
+
+    :0 ih
+    * ^From: .*\/[^<]*
+    | echo "$SUBJECT from $MATCH" | $ONSCREEN
+}
+
+# vim: ft=procmail

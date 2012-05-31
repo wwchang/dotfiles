@@ -1,0 +1,15 @@
+#########################################################################
+#       an example of procmailrc                                        #
+#       (c) 1996 Tadashi Kawaguchi <ojin@erehwon.org>                   #
+#       Created on: 5/30/96     Last Modified on: 6/12/97               #
+#########################################################################
+
+#########################
+#  autoreply info_file  #
+#########################
+:0 h
+* ^TO.*info@your.domain
+| (formail -r -I "From: info@your.domain" \
+-I "Reply-To: webmaster@your.domain" \
+-I "Subject: your.domain information" ; \
+cat $PMDIR/autoreply/info.txt) | $SENDMAIL -oi -t

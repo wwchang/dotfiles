@@ -1,0 +1,5 @@
+# banned domains file
+#
+# Example:
+#	foo.bar.com
+#   foo.net

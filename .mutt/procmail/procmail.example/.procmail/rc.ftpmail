@@ -1,0 +1,94 @@
+#########################################################################
+#               an example of procmailrc                                #
+#           (c)1996 Tadashi Kawaguchi <ojin@erehwon.org>                #
+#           Created on: 5/30/96 Last Modified on: 09/12/97              #
+#########################################################################
+
+#################################################################
+#                auto get requested one file                    #
+#    it ignores the body of incoming mails and does not         #
+#    return files that have names starting with a dot           #
+#    usage                                                      #
+#        "Subject: get file the_file_you_want"                  #
+#        "To: geter@your.domain"                                #
+#################################################################
+:0 h
+* ^TO.*geter@your.domain.*
+* ^Subject: get file [a-zA-Z0-9_].*
+* !^X-Loop: geter@your.domain
+* !^Subject:.*Re:
+* !^FROM_DAEMON
+* !^Subject: get file .*[/.]\.
+{
+    MAILDIR=$PMDIR/ftpmail    # chdir to the archiver directory
+
+    :0 fhw
+    * ^Subject: get file \/[^ ]*
+    | formail -rA "X-Loop: geter@your.domain" \
+    -I "From: geter@your.domain"
+
+    FILE="$MATCH"            # the requested filename
+
+    :0 ah
+    | cat - ./$FILE | $SENDMAIL -oi -t
+}
+
+#################################################################
+#            auto put requested one file                        #
+#    it does not put files that have names                      #
+#    starting with a dot                                        #
+#    usage                                                      #
+#        "Subject: put file the_file_you_send"                  #
+#        "To: puter@your.domain"                                #
+#################################################################
+:0 h
+* ^TO.*puter@your.domain.*
+* ^Subject: put file [a-zA-Z0-9_].*
+* !^X-Loop: puter@your.domain
+* !^Subject:.*Re:
+* !^FROM_DAEMON
+* !^Subject: put file .*[/.]\.
+{
+    PUTDIR=$PMDIR/ftpmail
+    SUBJECT=`formail -xSubject:`
+    FILENAME=`echo "$SUBJECT" | sed -e 's/^.*put file //'`
+    REPLYTO=`formail -xFrom:`
+    TMPFILE="tmp.$$"
+
+    MAILDIR=$PUTDIR        # chdir to the archiver directory
+
+    :0 fhb
+    * ? test ! -f $FILENAME
+    | (formail -k -X Content-Type: -X Date: -X From: -X Subject: \
+    | cat > $PUTDIR/$FILENAME) ; \
+    ls -go > $PUTDIR/allfiles.txt ; \
+    touch $PUTDIR/$TMPFILE
+
+    :0 hc
+    * ? test ! -f $TMPFILE
+    | (formail -A "Precedence: junk" \
+    -I "To: $REPLYTO" \
+    -I "From: puter@your.domain" \
+    -I "Subject: Try again please" \
+    -A "X-Loop: puter@your.domain" ; \
+    echo "The filename $FILENAME already exists." ; \
+    echo "Please try again with another filename." ; \
+    echo "" ; echo "----" ; \
+    echo "puter@your.domain" ; \
+    ) | $SENDMAIL -t
+
+    :0 hc
+    * ? test -f $TMPFILE
+    | (formail -A "Precedence: junk" \
+    -I "To: $REPLYTO" \
+    -I "From: puter@your.domain" \
+    -I "Subject: Thank you !" \
+    -A "X-Loop: puter@your.domain" ; \
+    echo "Your mail was saved into a file as follows:" ; \
+    echo "" ; \
+    ls -go $PUTDIR/$FILENAME ; \
+    echo "" ; echo "----" ; \
+    echo "puter@your.domain" ; \
+    ) | $SENDMAIL -t ; \
+    rm -f $PUTDIR/$TMPFILE
+}

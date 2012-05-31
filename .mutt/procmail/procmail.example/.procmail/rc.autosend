@@ -1,0 +1,34 @@
+#########################################################################
+#       an example of procmailrc                                        #
+#       (c) 1996 Tadashi Kawaguchi <ojin@erehwon.org>                   #
+#       Created on: 5/30/96     Last Modified on: 6/12/97               #
+#########################################################################
+
+#################################################################
+# autosend requested one file                                   #
+#    This script ignores the body of incoming mails and         #
+#    does not return files that have names starting with a dot. #
+#    usage:                                                     #
+#               "Subject: send file the_file_you_want"          #
+#               "To: sender@your.domain"                        #
+#################################################################
+:0 h
+* ^Subject: send file [a-zA-Z0-9_].*
+* ^TO.*sender@your.domain
+* !^X-Loop: sender@your.domain
+* !^Subject:.*Re:
+* !^FROM_DAEMON
+* !^Subject: send file .*[/.]\.
+{
+	MAILDIR=$PMDIR/autoreply
+
+	:0 fhw
+	* ^Subject: send file \/[^ ]*
+	| formail -rA "X-Loop: sender@your.domain" \
+	-I "From: sender@your.domain"
+
+	FILE="$MATCH"
+
+	:0 ah
+	| cat - ./$FILE | $SENDMAIL -oi -t
+}

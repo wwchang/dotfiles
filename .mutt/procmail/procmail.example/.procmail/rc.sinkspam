@@ -1,0 +1,70 @@
+#########################################
+#   Sink mails that suspected as Spam   #
+#########################################
+
+# X-Advertisement header found in message
+:0
+* ^X-Advertisement:.*
+/dev/null
+
+# Bogus `To' addresses (Friend@*|you@*|hello@*)
+:0
+* ^TO((F|f)riend|(Y|y)ou|(H|h)ello)@.*
+/dev/null
+
+# Spam domains or keywords found in `Received:' header
+:0
+* ^Received:.*(ybecker.net|earthlink.net|CLOAKED|savetrees).*
+/dev/null
+
+# Spam keywords found in `Subject:' header
+:0:
+* ^Subject:.*looking for executives.*
+/dev/null
+
+# From a numerical userid
+:0:
+* ^From[ :] ?[0-9]+@.*
+/dev/null
+
+# From a numerical host.domain
+:0:
+* ^From[ :].*@[0-9]+\.[0-9]+
+/dev/null
+
+# Blank Message-Id
+:0
+* ^Message-Id: *$
+/dev/null
+
+# Null Message-Id
+:0
+* ^Message-Id: <>$
+/dev/null
+
+# `From ' domain found in "banned.domains.txt" file
+:0
+* !^FROM_DAEMON
+* !^FROM_MAILER
+{
+	ISSPAM=`formail -x'From ' | sed -e 's/ .*$//' \
+		  | fgrep -i -f $PMDIR/banned.domains.txt`
+
+	:0 ah
+	* ? test ! -z "$ISSPAM"
+	/dev/null
+}
+
+# `From:' domain found in "banned.domains.txt" file
+:0
+* !^FROM_DAEMON
+* !^FROM_MAILER
+{
+	ISSPAM=`formail -xFrom: | sed -e 's/.* <//' -e 's/>//' \
+		  -e 's/ (.*)//' -e 's/^ //' \
+		  | fgrep -i -f $PMDIR/banned.domains.txt`
+
+	:0 ah
+	* ? test ! -z "$ISSPAM"
+	/dev/null
+}

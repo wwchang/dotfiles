@@ -1,0 +1,47 @@
+###############################################################
+# sample text written by Tadashi Kawaguchi <ojin@erehwon.org> #
+###############################################################
+
+*****************************************
+*           	ML HELP     	        *
+*       Last update: Jun 07, 1996       *
+*****************************************
+
+
+post message
+------------
+To send a message to all the people currently subscribed to the list,
+just send mail to <ml@your.domain>.
+
+
+subscribe
+---------
+You can subscribe this mailing list by sending an e-mail to
+<owner-ml@your.domain> with "Subject: subscribe ml".
+
+
+signoff
+-------
+You may leave this mailing list at any time by sending an e-mail to
+<owner-ml@your.domain> with "Subject: signoff ml".
+
+
+subscriber list
+---------------
+You can get subscriber list of this mailing list by sending an e-mail to
+<owner-ml@your.domain> with "Subject: send list".
+
+
+help
+----
+You can get help file of this mailing list by sending an e-mail to
+<owner-ml@your.domain> with "Subject: send help".
+
+
+archive
+-------
+You can get archived all messages of this mailing list by sending an
+e-mail to <owner-ml@your.domain> with "Subject: send archive".
+
+
+---<<EOF>>--
