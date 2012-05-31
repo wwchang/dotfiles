@@ -3784,6 +3784,13 @@ syntax on
                         \ 10: 'October', 11: 'November', 12: 'December'
                         \ }
 
+            " TODO
+            " function! VimwikiLinkHandler(link)
+            "     let browser = 'firefox'
+            "     " let link = vimwiki#base#resolve_scheme(link, 0)
+            "     execute 'silent !xdg-open "'.browser.'" ' . a:link
+            " endfunction
+
             " [ extra ] {{{
             " Schemes:
             "   - [[file:///...]]
