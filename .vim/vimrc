@@ -914,8 +914,9 @@ endif
             " Github
         call vam#ActivateAddons(['vim-github'])
         call vam#ActivateAddons(['github:tpope/vim-rhubarb'])
-            " CSV
-        "call vam#ActivateAddons(['csv'])
+            " CSV & CVS
+        " call vam#ActivateAddons(['csv'])
+        " call vam#ActivateAddons(['cvsmenu'])
             " diff
         call vam#ActivateAddons(['gf-diff'])
         call vam#ActivateAddons(['gf-user'])
@@ -950,7 +951,7 @@ endif
         "call vam#ActivateAddons(['LustyJuggler'])
             " tab manager
         "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
-            " file manager
+            " file/project manager
         call vam#ActivateAddons(['The_NERD_tree'])
             " compile
         call vam#ActivateAddons(['SingleCompile'])
