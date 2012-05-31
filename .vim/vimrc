@@ -53,7 +53,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
         set mouse=a " enable in all four modes.
         " right mouse button
         set mousemodel=popup_setpos " extends a selection. like in an xterm.
-        " set mouseshape= " i:beam, r:beam, s:updown, sd:cross, m:no, ml:up-arrow, v:rightup-arrow.
+        " set mouseshape=
     endif
     " }}}
 
@@ -941,8 +941,8 @@ endif
             " Tags : taglist-plus,
         call vam#ActivateAddons(['Tagbar'])
         "call vam#ActivateAddons(['taglist'])
-        call vam#ActivateAddons(['TagHighlight', 'AutoTag'])
-        call vam#ActivateAddons(['Tag_Signature_Balloons'])
+        call vam#ActivateAddons(['TagHighlight', 'Tag_Signature_Balloons'])
+        call vam#ActivateAddons(['AutoTag'])
             " buffers
         call vam#ActivateAddons(['Tagma_Buffer_Manager'])
         "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
@@ -3616,7 +3616,7 @@ syntax on
             let g:DeleteTrailingWhitespace = 1
                 " let b:DeleteTrailingWhitespace = 1 " for buffer, filetype
             let g:DeleteTrailingWhitespace_Action = 'ask' " 'delete', 'ask'
-            let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 0
+            let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 1
 
         " ShowTrailingWhitespace:
             let g:ShowTrailingWhitespace = 1
@@ -3666,7 +3666,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Vim FAQ ] {{{
+    " [ Vim FAQ / Tips ] {{{
         " Bundle 'chrisbra/vim_faq.git'
             " :h vim-faq.
     " }}}
