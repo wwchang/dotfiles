@@ -1086,7 +1086,8 @@ endif
         "call vam#ActivateAddons(['tGpg'])
         "call vam#ActivateAddons(['openssl'])
                 " vim-gnupg
-        "call vam#ActivateAddons(['gnupg%3645'])
+            " call vam#ActivateAddons(['gnupg%3645'])
+            " call vam#ActivateAddons(['github:jamessan/vim-gnupg'])
             " post/paste/www micro-blog/twitter/code/text/www
         call vam#ActivateAddons(['PasteBin'])
         call vam#ActivateAddons(['Gist'])
