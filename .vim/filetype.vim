@@ -46,6 +46,9 @@ augroup filetypedetect
     au BufRead,BufNewFile COMMIT_EDITMSG set filetype=gitcommit
     " gitdiff
 
+    " vimperator
+    au BufRead,BufNewFile *.vimp set filetype=vimperator
+
     " Engspchk plugin
     au BufNewFile,BufReadPost  *.eml setf mail
 
