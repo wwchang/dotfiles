@@ -945,6 +945,9 @@ endif
         call vam#ActivateAddons(['TagHighlight', 'Tag_Signature_Balloons'])
         call vam#ActivateAddons(['AutoTag'])
         " call vam#ActivateAddons(['taggatron'])
+            " cscope
+        " call vam#ActivateAddons(['cscope'])
+            " call vam#ActivateAddons(['github:brookhong/cscope.vim'])
             " buffers
         call vam#ActivateAddons(['Tagma_Buffer_Manager'])
         "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
