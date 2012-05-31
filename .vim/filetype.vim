@@ -46,4 +46,7 @@ augroup filetypedetect
     au BufRead,BufNewFile COMMIT_EDITMSG set filetype=gitcommit
     " gitdiff
 
+    " Engspchk plugin
+    au BufNewFile,BufReadPost  *.eml setf mail
+
 augroup END

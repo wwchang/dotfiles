@@ -1115,6 +1115,7 @@ endif
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
         "call vam#ActivateAddons(['ShowTrailingWhitespace'])
             " write & spell checker & speak
+        call vam#ActivateAddons(['Engspchk'])
         "call vam#ActivateAddons(['SpellCheck'])
         "call vam#ActivateAddons(['LanguageTool'])
         "call vam#ActivateAddons(['VimSpeak'])
@@ -4126,6 +4127,40 @@ syntax on
             let g:PreviewHtmlExt='html,htm'
             let g:PreviewRonnExt='ronn'
             let g:PreviewRstExt='rst'
+        " }}}
+
+        " Engspchk {{{ on-the-fly spellcheck uses Vim's native syntax highlighting.
+            " English Spelling Checker Manual
+            " The engspchk source uses Vim's native syntax highlighting to catch
+            " spelling errors, so you get quick on-the-fly spellchecking!
+            " for source code, only check on comment instead of variables.
+            " Usage:
+            "   - on-the-fly spellcheck.
+            "   - \ec : startup, \en : next, \ep : prev, \ee : end.
+            "   - \ea : alternative, \er : RareWord<>Error, (user dict)
+            "   - \es : save to dict, \eS : remove. (proj dict)
+            "   - \ev : check on visual, \eV : turn off.
+            " for alternative window:
+            "   - <cr> : select, <tab> : select and global substitute.
+            "   - q : quit.
+            " Commands: ':Engspchk'
+            " Keys:
+            "   - <leftmouse>/<rightmouse>/<middlemouse>.
+            set mouse=n
+            let g:spchkmouse = 1
+            let g:spchkautonext = 1
+            let g:spchkdialect = "usa" " 'usa', 'can', 'uk'
+            let g:spchklang = "eng"
+            " let g:spchknonhl = " force all non-syntax-highlighted text.
+            let g:spchkpunc = 1
+            let g:spchksilent = 1
+            " let g:spchkaltright=20 " let alternate-spelling window on right side
+            " let g:spchkacronym=
+            " let g:cvimsyn= expand('${HOME}/.vim/plugin/CVIMSYN')
+            " let g:DrChipTopLvlMenu
+
+            " highlighting groups:
+                " BadWord, Dialect, RareWord,
         " }}}
 
         " SpellCheck: {{{ populates quickfix-list spelling errors workflow.

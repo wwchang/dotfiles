@@ -16,6 +16,13 @@
 " set ft=mail             " needless to say, vim had already guessed that alone :)
 set spell
 
+" Engspchk plugin.
+" in ~/.vim/after/syntax/mail.vim
+" if (expand("%") != "") && !&diff && (v:progname !~ "vimdiff")
+"     normal \ec
+" endif
+
+
 
 "" ----------------------------------------------------------------------------
 ""   Automatic line wrap
@@ -192,3 +199,9 @@ ino <C-p> <C-X><C-U>
 " :/^>\s*>//^>\(\s*>\)\@!\ze\s*\S/<CR>:nohlsearch<CR>zzzv
 " " (doc: that's just ":/pattern1//pattern2/")
 "
+
+" disable DeleteTrailingWhitespace script for mail.
+" because the signature format:
+" --[space]
+"  ......
+let b:DeleteTrailingWhitespace = 0
