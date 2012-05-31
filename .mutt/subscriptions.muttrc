@@ -156,6 +156,8 @@ subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>
 subscribe screen screen <screen-users@gnu.org>
 # conky
 subscribe conky Conky <conky-users@lists.sourceforge.net>
+# Wayland
+subscribe wayland Wayland <wayland-devel@list.freedesktop.org>
 
 # vimwiki
 subscribe vimwiki vimwiki <vimwiki@googlegroups.com>

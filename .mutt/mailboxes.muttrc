@@ -23,7 +23,6 @@ mailboxes =unsure
 mailboxes =Drafts
 mailboxes =Send
 mailboxes =Important
-mailboxes =spam
 
 mailboxes =Vim
 mailboxes =Vim/vimwiki
@@ -59,9 +58,13 @@ mailboxes =Drupal/security
 mailboxes =Ruby
 mailboxes =Ruby/Rails
 
+mailboxes =Lisp
+mailboxes =Lisp/Lisp-cn
+
 mailboxes =Perl
 
 mailboxes =Maemo
+mailboxes =Maemo/update
 mailboxes =Maemo/update/N900
 mailboxes =Maemo/update/Development
 mailboxes =Maemo/users
@@ -98,6 +101,7 @@ mailboxes =apps/bogofilter
 mailboxes =apps/pandoc
 mailboxes =apps/gitit
 mailboxes =apps/mosh
+mailboxes =apps/Wayland
 
 mailboxes =censorship
 
@@ -139,6 +143,7 @@ mailboxes =RSS
 # mbox is for sended and received mails
 mailboxes =mbox
 mailboxes =Trash
+mailboxes =spam
 mailboxes $MAIL
 # mailboxes =Search
 # mailboxes =Draft

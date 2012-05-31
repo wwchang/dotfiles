@@ -1,163 +1,92 @@
 # /home/user/.procmailrc
-SHELL=/bin/sh
-PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin
-MAILDIR=$HOME/Mails
-DEFAULT=$MAILDIR/INBOX/
+SHELL = /bin/sh
+PATH = ${HOME}/bin:/usr/local/bin:/usr/bin:/bin
+MAILDIR = ${HOME}/Mails
+DEFAULT = ${MAILDIR}/INBOX/
 # system mail mailbox.
-ORGMAIL=$DEFAULT
-PMDIR=$HOME/.mutt/procmail
-LOGFILE=$HOME/.procmail.log
-VERBOSE=on
-#INCLUDERC=$PMDIR/general.rc
-#INCLUDERC=$PMDIR/mailinglist.rc
-#INCLUDERC=$PMDIR/rss2email.rc
-#INCLUDERC=$PMDIR/QQ.rc
-#INCLUDERC=$PMDIR/syntax.rc
+ORGMAIL = $DEFAULT
+PMDIR = ${HOME}/.mutt/procmail
+LOGFILE = ${HOME}/.procmail.log
+VERBOSE = "on"
+# [ separated rc files ]
+#INCLUDERC = $PMDIR/general.rc
+#INCLUDERC = $PMDIR/mailinglist.rc
+#INCLUDERC = $PMDIR/rss2email.rc
+#INCLUDERC = $PMDIR/QQ.rc
+#INCLUDERC = $PMDIR/syntax.rc
 
-# [ reference ] {{{2
+NOTIFY = ${HOME}/bin/notify.sh
+
+# [ procmail Module Library ] {{{
+# system procmail-lib package files in /usr/share/procmail-lib/
+PMSRC = ${HOME}/.mutt/procmail/lib
+# IMCLUDERC = $PMSRC/pm-mydefaults.rc
+# }}}
+
+# [ reference ] {{{
 # http://www.ii.com/internet/robots/procmail/qs/
 # http://pm-doc.sourceforge.net/doc/
 # man procmail procmailrc procmailex procmailsc
-
-
-# The procmail recipes are read and actions are performed in order. For any given message, when the first delivering recipe is matched, the
-# message is delivered and the rest of recipe are ignored. Delivering recipes are the recipes that have a mailbox or another delivery address
-# as the action. For this reason, for certain recipes, you should put them in the proper order. In particular, above default .procmailrc has a
-# catch-all recipe that is recipe with no rule at that will perform the default action, which, for most people, should
-# be putting the message in their inbox. If you want to add additional recipe, you should add them above the default rule if
-# not, it won't even be read!
-
-# ! Forwards to all the specified mail addresses.
-# | Pipes the mail to stdout, and into the specified program (the one that comes after the `|'). If you prepend var= to this pipe, procmail will dump
-
-
-# ************** Mails must match all regexes in the rule. *************************
-# == syntax ==
-# :0 [flags] [ : local lockfile ]
-# * <(optional) conditions (one per line)>
-# * <additionaly (optional) conditions>
-# <exactly one action line>
-#
-# The action is performed only when the message matches all the conditions.
-# * ^From | * ^To_ | * ^Subject:.*test | * ^Subject:.*\<test\> ( match a word ) | * ^TO_\/(procmail@lists.rwth-aachen.de|vim@vim.org) | *
-# ^TO_\/(procmail|vim)
-
-# proper use of lockfiles is highly recommended.
 # }}}
 
-# [ examples ] {{{2
-
-##Trivial catching of potential spam towards the end of a ~/.procmailrc
-##Place only after accepting all the mailing lists you want to receive
-## [ AND ]
-#:0:
-#* ! ^TO_ts@([-a-z0-9_]+\.)*uvasa\.fi
-#* ! ^TO_timo\.salmi
-#${HOME}/.mail/PotentialSpam.mail
-
-#For entering an "or" rule, consider the following example:
-
-##Accept email from Era Eriksson, the author of the major procmail FAQ
-## [ OR ]
-#:0:
-#* ^From:.*reriksso@([-a-z0-9_]+\.)*helsinki\.fi|\
-  #^From:.*era@iki\.fi
-#${DEFAULT}
-
-# use ()
-# * ^From:.*(reriksso@([-a-z0-9]+\.)*helsinki|era@iki)\.fi
-
-# actions use "&&", ";" and "\"
-# | echo "A ^Subject: header found with" >> ${TESTDIR}/Proctest.mail &&\
-#   echo "${MATCH}" >> ${TESTDIR}/Proctest.mail
-
-# send spam to /dev/null
-# /dev/null
-
-# :0 fw
-# * ^From:.*mailing-list@lists.berkeley.edu
-# |sed -e 's/^Subject:[ ]*/Subject: [LIST] /'
-# 'f': the pipe will be considered as a filter. That means that the message will be passed down through the rest of recipe until it comes across a
-# delivering recipe that matches.
-# 'w': procmail will wait for the filter (in our case, sed) to finish and check its exitcode. If the filter exits with error (with possibly
-# garbled output), procmail will continue with the original unfiltered input.
-
-# Safety net!
-# :0 c
-# c means copy mail
-# mailbackup
-
-# # Create backup for de-HTML'd email
-# :0 c
-# * ^Content-type: text/html
-# de-html-backup
-# # de-HTML
-# :0 fbw
-# * ^Content-Type:[ ]*text/html
-# | lynx -dump -stdin -nolist \
-# && echo "" \
-# && echo "=================================================" \
-# && echo "This HTML message has been made into text by lynx" \
-# && echo "================================================="
-
-# spamassassin
-# {
-#     :0fw:spamassassin.lock
-#     * < 256000
-#     | spamassassin
-#
-#     :0e
-#     EXITCODE==$?
-#
-#     :0:
-#     * ^X-Spam-Flag: YES
-#     spam
-# }
-
-# :0 bc:   # archive things sent to junk mailing list
-# * ^To:.*junk
-# | gzip >> junk-archive.gz
-
-# notice that I don't have a colon after 'From' in that condition. This is a quirk of mail headers; there are header From lines with and
-# without colons, so leaving it off is the safest bet.
-
-# == nesting ==
-# {
-# :0 c
-# ! numbchild@gmail.com
-#
-# :0
-# | lpr -Pacsps
-# }
-
-# http://www.linuxdoc.org/HOWTO/Mutt-GnuPG-PGP-HOWTO-8.html#sec-procmail.2
-
-# mailing list
-# List-Id: Ubuntu in Australia <ubuntu-au.lists.ubuntu.com>
-# Sender: ubuntu-au-bounces@lists.ubuntu.com
-
-# delete duplicatas: {
-# :0 Whc: msgid.lock
-# | formail -D 8192 msgid.cache
-# :0 a:
-# $HOME/mail/zzzz-duplicatas
-# }
-
-# test new mail notify
-# Some filter rule
-#:0
-#* ^From: .*numbchild@gmail\.com
-#{
-    #:0 c
-    #| ~/.mutt/newmail-notifier.py
-
-    #:0
-    #INBOX/
-#}
+# [ syntax ] {{{
+    # [flags] {{{
+    # The order of the flags
+        # The order of the flags does not matter in practice, but here is one
+        # stylistic suggestion.
+        # The idea here is that the most important flags are put to the left,
+        # like giving priority 1 for aAeE, which affect the recipe immediately.
+        # Priority 2 is given to flag f, which tells if a recipe filters
+        # something. Also (h)eader and (b)ody should immediately follow f, this
+        # is considered priority 3. In the middle there are other flags, and
+        # last flag is c, which ends the recipe, or allows it to continue. In
+        # addition according to [david]: "...I'm quite sure that putting
+        # anything other than the opening colon and the number to the left of
+        # AaEe will cause an error."
+        #:0 aAeE HBD fhb wWir c: LOCKFILE
+        # |    |   |   |    |
+        # |    |   |   |    (c)ontinue or (c)lone flag last.
+        # |    |   |   (w)ait and other flags
+        # |    |   (f)ilter flag and to filter what: (h)ead or (b)ody
+        # |    (H)eader and (B)ody match, possibly case sensitive (D)
+        # |    Note: Procmail 3.22 bug
+        # |   http://mailman.rwth-aachen.de/pipermail/procmail/2002-February/008355.html
+        # The `process' flags first. (A)nd or (E)lse recipe
+    # A - if you did the recipe at the start of the chain, try this one (A)lso.
+    # a - if the last action at that nesting level was (a)ccomplished).
+    # e - if the last action at that nesting level (e)rred.
+    # E - (E)lse because the conditions down the chain so far have not matched.
+    #       Or "try this recipe unless the last tried recipe matched".
+    # a - AND
+    #    A - try this recipe if the conditions succeeded on the most recent
+    #        recipe at that nesting level that did not itself have an A nor an a.
+    #    a - same as A, but moreover the action must have succeeded on the most
+    #        recently tried recipe at that nesting level.
+    # e - ELSE
+    #    E -  try this recipe if the conditions have failed on the most recent
+    #        recipe at that nesting level that did not have an E and on since
+    #        then every recipe at that level that did have an E; essentially
+    #        opposite of A.
+    #    e - Almost like A, try this recipe if the conditions matched but the
+    #        action failed on the most recently tried (not skipped) recipe at
+    #        this nesting level. universe, e is the opposite of a. e only looks
+    #        backwards past E recipes that were skipped because of their E. It
+    #        doesn't care whether a previous recipe had an A or a flag.
+    # c - copy (continue, clone) send a copy to the action.
+    #       use 'c' flag to let procmail treat this recipe as a non-delivering recipe.
+    # d -
+    # b - body
+    # h - header
+    # w - wait
+    # W - (implicit) NOTE: this is only turn on the recipe that opens a nested
+    #      block.
+    # f - filter
+    # i - ignore error.
+    # r - raw mode
     # }}}
 
-# [ syntax ] {{{2
-    # [flags] : c: copy, b: body, h: head, W:
+    # The "\/" is a special procmail-only operand which puts a (possible) match
+    # found by the rest of the expression into a variable named MATCH.
 
     # :0 [flags] [: [lock-file] ]
     # zero or more conditions
@@ -174,14 +103,48 @@ VERBOSE=on
     #   zero or more conditions
     #   action line 2
     # }
+
+    # lock file W: file$LOCKEXT
+    # -------------------
+    # :0 Wc: file$LOCKEXT
+    # { ... }
+
+    # variable reference => $FORMAIL
+    # using absolute paths when calling a shell program
+    # ---------------------
+    # FORMAIL = /usr/local/bin/formail
+    # GREP    = /bin/grep
+    # DATE    = /bin/date
+    # :0 fhw
+    # | $FORMAIL -r
+
+    # pipe (|)
+    # ---------
+
+    # backup all emails
+    # -----------------
+    # SPOOL = $HOME/Mails/spool
+    # BACKUP_SPOOL = $SPOOL/backup
+    # :0 c:
+    # $BACKUP_SPOOL
+
+    # AND & OR
+    # -----------
+    # * condition1
+    # * condition2
+    # -----------
+    # * condition1 | condition2
+    # * ? condition1 || condition2
 # }}}
 
-# [ lbdb fetch email address ] {{{2
+# ------------------------------------------------------------------
+
+# [ lbdb fetch email address ] {{{
     :0hc
     | lbdb-fetchaddr
 # }}}
 
-# spam (bogofilter) {{{2
+# spam (bogofilter) {{{
     # deliver mail through bogofilter
     :0fw
     | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
@@ -202,25 +165,88 @@ VERBOSE=on
     unsure/
 # }}}
 
-# notify my emails {{{2
-    #:0 c
-    #* ! ^Message-ID: .*@stardiviner
-    #* ^In-Reply-To: .*@stardiviner
-    ## FIXME how to get the mail's subject
-    #| /home/chris/bin/notify.sh "Replied_mailing-list:" "Subject"
+# notify my emails {{{
+    # get the subject into a variable
+    # use procmail's MATCH feature.
+    :0 c
+    * ^References:.*@stardiviner
+    * ^Subject:.*\/.*
+    {
+        SUBJECT=$MATCH
 
-    #:0 c
-    #* ! ^Message-ID: .*@stardiviner
-    #* ^References:  .*@stardiviner
-    #| /home/chris/bin/notify.sh "Update_mailing-list:" "Subject"
+        :0 ih
+        * ^From: .*\/[^<]*
+        | $NOTIFY "$SUBJECT from $MATCH"
+    }
 
-    #:0:
-    #* ^In-Reply-To: .*numbchild@gmail.com
-    #* ^References:  .*numbchild@gmail.com
-    #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox." ; echo "test procmail notify OK !" > /home/chris/test_procmail.txt
+    # another one format notify.
+    # :0 fw
+    # * ^From: .*numbchild@gmail\.com
+    # {
+    #     :0 c
+    #     * ^Subject:\/.*
+    #     SUBJECT=$MATCH
+    #     | $NOTIFY "Thread ('$SUBJECT') updated" "Body"
+    # }
+
+    # get the variable SUBJECT
+    # SUBJECT=`formail -xSubject: \
+    #          | tr '\;\`\\' '   ' \
+    #                   | expand | sed -e 's/^[ ]*//g' -e 's/[ ]*$//g'`
+
+    # FIXME how to get the mail's subject
+    # * ^In-Reply-To: .*@stardiviner
+    # * ^Message-ID: .*@stardiviner
 # }}}
 
-# QQ {{{2
+# [ convert ] {{{
+    # [ convert HTML to text ] {{{
+    :0
+    * B ?? ()<HTML>
+    * B ?? ()</HTML>
+    {
+        conversion = "lynx"     # or select this conditionally
+
+        :0
+        * conversion ?? lynx
+        {
+            # In new lynx version you can read from stdin. If
+            # /dev/stdin doesn't exits try /dev/fd/0
+            #
+            # lynx -dump -force_HTML -nolist -restrictions=all \
+            #   /dev/stdin
+            #
+            #  Without a global lock on this, you have a chance
+            #  that two procmail instances will try to write to
+            #  msg.dump
+
+            file = "$HOME/tmp/msg.dump"
+
+            LOCKFILE = $file$LOCKEXT
+
+            :0 fbw
+            | cat > $file && lynx -dump $file
+
+            LOCKFILE
+        }
+
+        :0 E fbw
+        | perl -0777 -pe 's/<[^>]*>//g'
+    }
+    # }}}
+
+    # [ remove signature ] {{{
+    # FIXME
+    # :0 c
+    # * ^In-Reply-To:\/.* | ^List-ID:\/.* | ^List-Post:\/.*
+    # {
+    #     :0 fbw
+    #     | sed -e '/^-- /,/^$/ d'
+    # }
+    # }}}
+# }}}
+
+# From QQ {{{
     :0
     * ^To: .*348284894@qq\.com
     {
@@ -245,8 +271,8 @@ VERBOSE=on
     }
 # }}}
 
-# program language {{{2
-    # Python
+# Programming Language {{{
+    # [ Python ] {{{
     :0
     * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
     Python/comp-lang-py/
@@ -265,31 +291,46 @@ VERBOSE=on
     :0
     * ^List-Id: .*sphinx-dev\.googlegroups\.com
     Python/sphinx-dev/
+    # }}}
 
+    # [ Go ] {{{
     :0
     * ^List-Id: .*golang-nuts\.googlegroups\.com
     Go/golang-nuts/
     :0
     * ^List-ID: .*golang-china\.googlegroups\.com
     Go/golang-china/
+    # }}}
 
+    # [ Ruby ] {{{
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
     Ruby/Rails/
+    # }}}
 
+    # [ Dart ] {{{
     :0
     * ^List-Id: .*misc\.dartlang\.org
     Dart/misc/
+    # }}}
 
+    # [ Lisp ] {{{
+    :0
+    * ^List-Id: .*lisp-cn\.googlegroups\.com
+    Lisp/Lisp-cn/
+    # }}}
+
+    # [ Perl ] {{{
     :0
     * ^List-Id: .*perl.*\.googlegroups\.com
     Perl/
     :0
     * ^List-Id: .*\.perl\.org
     Perl/
+    # }}}
 # }}}
 
-# Web {{{2
+# Web {{{
     :0
     * List-Id: .*firebug\.googlegroups\.com
     Web/firebug/
@@ -304,7 +345,7 @@ VERBOSE=on
     Web/whatwg/
 # }}}
 
-# Drupal {{{2
+# Drupal {{{
     :0
     * List-Id: .*support\.drupal\.org
     Drupal/support/
@@ -313,7 +354,7 @@ VERBOSE=on
     Drupal/security/
 # }}}
 
-# Apps: Vim, Emacs, Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{2
+# Apps: Vim, Emacs, Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{
     :0
     * ^List-Id: .*\.vim\.org
     Vim/
@@ -393,6 +434,9 @@ VERBOSE=on
     :0
     * ^List-Id: .*mosh-users\.mit\.edu
     apps/mosh/
+    :0
+    * ^List-Id: .*wayland-devel\.lists\.freedesktop\.org
+    apps/Wayland/
 # }}}
 
 # GNU {{{
@@ -404,7 +448,7 @@ VERBOSE=on
     GNU/gnu/
 # }}}
 
-# Arch Linux {{{2
+# Arch Linux {{{
     :0
     * ^List-Id: .*arch-general\.archlinux\.org
     Arch/general/
@@ -431,7 +475,7 @@ VERBOSE=on
     Arch/archlinux-cn/
 # }}}
 
-# system {{{2
+# Maemo {{{
     :0
     * ^List-Id: .*maemo-developers\.maemo\.org
     Maemo/devel/
@@ -444,6 +488,9 @@ VERBOSE=on
     :0
     * ^Subject: .*"Nokia N900"\ update
     Maemo/update/N900/
+# }}}
+
+# Linux {{{
     :0
     * ^List-Id: .*linuxusersgroup\.googlegroups\.com
     Linux/
@@ -533,13 +580,13 @@ VERBOSE=on
     Hack/EthicalHacking/
 # }}}
 
-# security  {{{2
+# security  {{{
     :0
     * ^List-ID: .*comp\.os\.linux\.security\.googlegroups\.com
     Security/
 # }}}
 
-# rss2email {{{2
+# rss2email {{{
 :0
 * ^User-Agent: rss2email
 {
@@ -556,7 +603,9 @@ VERBOSE=on
 }
 # }}}
 
-# censorship {{{2
+# DEFAULT {{{
+:0
+$DEFAULT
 # }}}
 
 # vim:foldmethod=marker:ft=procmail
