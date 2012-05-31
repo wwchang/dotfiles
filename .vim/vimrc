@@ -943,6 +943,7 @@ endif
         "call vam#ActivateAddons(['taglist'])
         call vam#ActivateAddons(['TagHighlight', 'Tag_Signature_Balloons'])
         call vam#ActivateAddons(['AutoTag'])
+        " call vam#ActivateAddons(['taggatron'])
             " buffers
         call vam#ActivateAddons(['Tagma_Buffer_Manager'])
         "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
@@ -1857,6 +1858,17 @@ syntax on
 
         " AutoTag:
             " updates entries in a tags file automatically when saving.
+
+        " Taggatron: {{{ A simple tag file manager for vim.
+            " allow user to setup rules for creating your tag files based on language.
+            " :TagUpdate
+            " let g:tagdefaults = "/path/to/other/tag.file"
+            " let g:taggatron_verbose = 1 " debug
+            let g:tagcommands = {
+                        \ "php" : {"tagfile":".php.tags","args":"-R"},
+                        \ "javascript" : {"tagfile":".js.tags","args":"-R"}
+                        \ }
+        " }}}
 
         " Bundle 'indexer.tar.gz'
 
