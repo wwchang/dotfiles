@@ -984,6 +984,8 @@ endif
         call vam#ActivateAddons(['restore_view'])
         call vam#ActivateAddons(['recover'])
         call vam#ActivateAddons(['Gundo'])
+            " other small functions
+        " call vam#ActivateAddons(['TagmaLast'])
             " Swap True False etc
         call vam#ActivateAddons(['SwapIt'])
             " Author info & License
@@ -1786,6 +1788,7 @@ syntax on
                 "  `- 'base' or 'snip'
                 " template file keyword: {{_name_}}, {{_cursor_}}, {{_input_:var}} ....
         " }}}
+        " TagmaLast : Update the 'Last Changed' line in a file.
     " }}}
 
     " [ tags ] {{{ <F12>
