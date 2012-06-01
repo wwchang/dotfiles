@@ -76,7 +76,7 @@ alias recordmydesktop='recordmydesktop --no-frame'
 
 # Vim
 # alias vimwiki='vim -c "normal \ww" +Calendar '
-# alias vimwiki='vim +VimwikiIndex +MgrClose'
+alias vimwiki='vim +VimwikiIndex'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
