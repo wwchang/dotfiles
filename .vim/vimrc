@@ -2659,13 +2659,14 @@ syntax on
             " :undolist :earlier/:later [time] {time travelling}
 
         " Gundo: {{{ Visual Vim Undo tree and list.
+            " gundo#GundoShow(), gundo#GundoHide()
             nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
             let g:gundo_right = 0 " right/left position.
             let g:gundo_help = 1 " show help.
-            let g:gundo_preview_height = 25
             let g:gundo_width = 45
             let g:gundo_auto_preview = 1
+            let g:gundo_preview_height = 25
             let g:gundo_preview_buttom = 0 " 0 default.
             let g:gundo_preview_statusline = 'Preview'
             let g:gundo_tree_statusline = 'Tree'
