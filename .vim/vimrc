@@ -3358,6 +3358,7 @@ syntax on
 " }}}
 
 " [ Vim Extension ] {{{
+
     " [ register & operation ] {{{
         " YankRing:
 
@@ -3801,6 +3802,7 @@ syntax on
 " }}}
 
 " [ tools ] {{{
+
     " [ GTD, wiki, note, outliner & calendar ] {{{
         " vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
             " TODO write template and style.css for vimwiki.
@@ -3837,7 +3839,8 @@ syntax on
                         \ 'bash': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
                         \ 'javascript': 'javascript', 'dart': 'dart', 'php': 'php',
                         \ 'html': 'html', 'css': 'css', 'xml': 'xml',
-                        \ 'lisp': 'lisp', 'lua': 'lua',
+                        \ 'lisp': 'lisp', 'lua': 'lua', 'c': 'c', 'go': 'go',
+                        \ 'haskell': 'haskell',
                         \ 'markdown': 'markdown', 'tex': 'tex',
                         \ 'git': 'git',
                         \ 'snippets': 'snippets', 'snippet': 'snippet',
