@@ -423,7 +423,7 @@ endif
 
     " [ folding ] {{{3
     set foldenable          " enable fold
-    set foldmethod=indent   " indent, syntax, manual, expr, diff, marker
+    set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
     set foldnestmax=3       " maximum nesting of fold
     set foldlevel=2         " fold start from which level
     set foldlevelstart=1    " default which foldlevel to start fold.
@@ -3187,8 +3187,11 @@ syntax on
     " }}}
 
     " [ C & C++ Dev Env ] {{{
-        au FileType c,cpp setlocal cindent  " use correct indent for C.
-        au FileType c,cpp,java set matchpairs+==:;
+        augroup CSettings
+            au!
+            au FileType c,cpp setlocal cindent
+            au FileType c,cpp,java set matchpairs+==:;
+        augroup END
 
         " neocomplcache-clang {{{ clang_complete for neocomplcache.
             " Require: clang_complete
