@@ -67,6 +67,14 @@ function switchNaughtyMonth(switchMonths)
         calendar[3].box.widgets[2].text = string.format('<span font_desc="%s">%s</span>', "monospace", displayMonth(calendar[1], calendar[2], 2))
 end
 
+function switchNaughtyGoToToday()
+        if (#calendar < 3) then return end
+        local swMonths = switchMonths or 1
+        calendar[1] = os.date("*t").month
+        calendar[2] = os.date("*t").year
+       switchNaughtyMonth(0)
+end
+
 function addCalendarToWidget(mywidget, custom_current_day_format)
   if custom_current_day_format then current_day_format = custom_current_day_format end
 
@@ -87,6 +95,7 @@ function addCalendarToWidget(mywidget, custom_current_day_format)
     awful.button({ }, 1, function()
         switchNaughtyMonth(-1)
     end),
+    awful.button({ }, 2, switchNaughtyGoToToday),
     awful.button({ }, 3, function()
         switchNaughtyMonth(1)
     end),
@@ -110,4 +119,3 @@ function addCalendarToWidget(mywidget, custom_current_day_format)
     end)
   ))
 end
-

@@ -215,7 +215,7 @@ run_once("mpd")
 run_once("mlnet")
 run_once("nm-applet")
 run_once("anki")
-run_once("xscreensaver","-no-splash")
+-- run_once("xscreensaver","-no-splash")
 
 -- run_once("wicd-gtk")
 -- It is possible to set up Urxvt so that a single Daemon runs, and individual client windows connect to it, (urxvtd and urxvtc), the advantage of this is reduced
@@ -332,7 +332,7 @@ tags = {
   names  = { "1. shape ideas into text. ", "2. Read & Fuck", "3. session", "4. Design ", "5. Log ", "6. Media ", "7. www ", "8. Temp ", "9. Do It Now. "},
   layout = { layouts[11], layouts[2], layouts[5], -- tags: 1, 2, 3
              layouts[2], layouts[12], layouts[2], --       4, 5, 6
-             layouts[2], layouts[2], layouts[6]  --       7, 8, 9
+             layouts[2], layouts[2], layouts[2]  --       7, 8, 9
 }}
 
 for s = 1, screen.count() do
@@ -373,10 +373,10 @@ dateicon.image = image(beautiful.widget_date)
 datetext = widget({ type = "textbox" })
 datetext.text = "" .. cwhite .. " Date " .. coldef .. ""
 -- Calendar2
-mytextclock = awful.widget.textclock({ align = "right" }, " %a %b %d [%H:%M:%S] ", 1)
--- Calendar widget to attach to the textclock
 -- require('calendar2')
-calendar2.addCalendarToWidget(mytextclock)
+datewidget = awful.widget.textclock({ align = "right" }, " %a %b %d [%H:%M:%S] ", 1)
+-- calendar2.addCalendarToWidget(datewidget)
+calendar2.addCalendarToWidget(datewidget, "<span color='#FF8700' font='Ubuntu bold 14'> %s </span>")
 
 -- {{{ CPU widget
 cpuicon = widget({ type = "imagebox" })
@@ -631,8 +631,9 @@ mailtext.text = "" .. cdred .. " Mail " .. coldef .. ""
 -- -- Initialize widget
 maildirwidget = widget({ type = "textbox" })
 -- -- Register widget
+-- update every N seconds.
 -- vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Mail", ["Maildir-2"]="Name2" }, 150, mdir )
-vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 100, mdir )
+vicious.register(maildirwidget, vicious.widgets.maildir, { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 10, mdir )
 -- register button
 maildirwidget:buttons(awful.util.table.join(
    awful.button({ }, 1, function () exec("urxvt -e mutt") end), -- left click
@@ -912,7 +913,7 @@ for s = 1, screen.count() do
             layout = awful.widget.layout.horizontal.leftright
         },
         foursquare,
-        mytextclock, datetext, separator_sign,
+        datewidget, datetext, separator_sign,
         --weatherwidget, weathertext, separator_sign,
         volwidget, voltext,
         separator_sign,
