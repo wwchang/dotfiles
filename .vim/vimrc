@@ -909,6 +909,7 @@ endif
             " CVS
         call vam#ActivateAddons(['fugitive', 'extradite', 'gitv'])
         call vam#ActivateAddons(['quickfixsigns'])
+        " call vam#ActivateAddons(['svndiff%1881'])
         call vam#ActivateAddons(['Splice', 'ConflictMotions'])
             " Github
         call vam#ActivateAddons(['vim-github'])
@@ -2063,6 +2064,9 @@ syntax on
             let g:quickfixsigns#vcsdiff#guess_type = 1
             let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
                         \ 'ADD': 'DiffAdd', 'CHANGE': 'DiffChange'}
+        " }}}
+
+        " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
         " }}}
 
         " Unimpaired: {{{ provides several pairs of bracket maps.
