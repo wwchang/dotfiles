@@ -1122,6 +1122,7 @@ endif
         call vam#ActivateAddons(['Auto_Pairs'])
         " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['utl'])
+        call vam#ActivateAddons(['open-browser'])
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
         "call vam#ActivateAddons(['ShowTrailingWhitespace'])
             " write & spell checker & speak
@@ -4638,6 +4639,9 @@ syntax on
             " FIXME let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
             " application/doc
             let g:utl_cfg_hdl_mt_application_msword = ":silent !libreoffice '%p' &"
+        " }}}
+
+        " open-browser {{{
         " }}}
 
         " Elinks: {{{ <Leader>o/<leader>O, <C-j>/<C-k> :[n]LMarks :[n]LHist
