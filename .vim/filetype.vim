@@ -9,7 +9,8 @@ augroup filetypedetect
     au BufRead,BufNewFile .conkyrc set filetype=conkyrc
 
     " Vimperator
-    autocmd BufRead,BufNewFile .vimperatorrc,vimperatorrc set filetype=vimperator
+    au BufRead,BufNewFile .vimperatorrc,vimperatorrc set filetype=vimperator
+    au BufRead,BufNewFile *.vimp set filetype=vimperator
 
     " vimwiki
     au BufRead,BufNewFile *.{vimwiki,wiki} set filetype=vimwiki
@@ -46,10 +47,10 @@ augroup filetypedetect
     au BufRead,BufNewFile COMMIT_EDITMSG set filetype=gitcommit
     " gitdiff
 
-    " vimperator
-    au BufRead,BufNewFile *.vimp set filetype=vimperator
-
     " Engspchk plugin
     au BufNewFile,BufReadPost  *.eml setf mail
+
+    " Go language
+    au BufRead,BufNewFile *.go set filetype=go
 
 augroup END
