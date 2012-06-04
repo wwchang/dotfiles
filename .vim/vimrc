@@ -444,7 +444,7 @@ endif
             "return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
         "endfunction " }}}
 
-        function! VimrcFoldText() " {{{
+        function! VimFoldText() " {{{
             " get first non-blank line
             let fs = v:foldstart
             while getline(fs) =~ '^\s*$'
@@ -466,7 +466,7 @@ endif
                 " repeat"┄", repeat" ",
             return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
         endfunction
-        set foldtext=VimrcFoldText()
+        set foldtext=VimFoldText()
         " }}}
     " }}}
 
