@@ -166,8 +166,13 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # }}}
 
 # notify my emails {{{
+    # execute a script without affect delivering.
+
     # get the subject into a variable
-    # use procmail's MATCH feature.
+    # use procmail's MATCH variable (\/) feature.
+
+    # * ^In-Reply-To: .*@stardiviner
+    # * ^Message-ID: .*@stardiviner
     :0 c
     * ^References:.*@stardiviner
     * ^Subject:.*\/.*
@@ -176,27 +181,8 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
         :0 ih
         * ^From: .*\/[^<]*
-        | $NOTIFY "$SUBJECT from $MATCH"
+        | export DISPLAY=:0 ; $NOTIFY "Email: $SUBJECT from" "$MATCH" ; echo "1 ok" >> $HOME/notify.txt
     }
-
-    # another one format notify.
-    # :0 fw
-    # * ^From: .*numbchild@gmail\.com
-    # {
-    #     :0 c
-    #     * ^Subject:\/.*
-    #     SUBJECT=$MATCH
-    #     | $NOTIFY "Thread ('$SUBJECT') updated" "Body"
-    # }
-
-    # get the variable SUBJECT
-    # SUBJECT=`formail -xSubject: \
-    #          | tr '\;\`\\' '   ' \
-    #                   | expand | sed -e 's/^[ ]*//g' -e 's/[ ]*$//g'`
-
-    # FIXME how to get the mail's subject
-    # * ^In-Reply-To: .*@stardiviner
-    # * ^Message-ID: .*@stardiviner
 # }}}
 
 # [ convert ] {{{
@@ -413,9 +399,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*tmux-users\.lists\.sourceforge\.net
     apps/tmux/
-    :0
-    * ^From: .*rxvt-unicode.*@lists\.schmorp\.de
-    apps/urxvt/
+    # :0
+    # * ^From: .*rxvt-unicode.*@lists\.schmorp\.de
+    # apps/urxvt/
     :0
     * ^From: .*elinks-users.*@linuxfromscratch\.org
     apps/elinks/

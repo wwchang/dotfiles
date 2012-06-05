@@ -95,7 +95,6 @@ mailboxes =apps/Canto
 mailboxes =apps/ranger
 mailboxes =apps/MLDonkey
 mailboxes =apps/prey
-mailboxes =apps/urxvt
 mailboxes =apps/elinks
 mailboxes =apps/bogofilter
 mailboxes =apps/pandoc
