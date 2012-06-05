@@ -92,4 +92,17 @@ EOF
     "hi! HintElem clear
 " }}}
 
-" vim: set foldmarker={{{,}}} ft=vimperator:
+" disable Vimperator keys on URL {{{
+" Google Gmail, Reader,
+autocmd LocationChange .* js modes.passAllKeys = /.*(mail\.google\.com|www\.google\.com\/reader).*/.test(buffer.URL)
+" Web QQ
+autocmd LocationChange .* js modes.passAllKeys = /.*(web\.qq\.com).*/.test(buffer.URL)
+" Stack Overflow
+" autocmd LocationChange .* js modes.passAllKeys = /.*(stackoverflow|superuser\.com).*/.test(buffer.URL)
+
+" Set the filetype to mail when editing email at gmail:
+"autocmd LocationChange .* :set editor=gvim -f
+"autocmd LocationChange mail\\.google\\.com :set editor=gvim -f -c 'set ft=mail'
+" }}}
+
+" vim: ft=vimperator foldmarker={{{,}}} foldmethod=marker
