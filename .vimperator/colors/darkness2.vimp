@@ -65,5 +65,3 @@ hi LineNr               color: #afafaf; background: #222222;
 "EOM
 
 "For other descriptions of each item, please see ``Styling'' section included with Vimperator
-
-" vim: set ft=vimperator:

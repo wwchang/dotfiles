@@ -17,6 +17,7 @@ source! /home/chris/.vimperatorrc.local
     let mapleader='\'
     set complete=sSlf
     set newtab=all
+    " }}}
 
     " [ for about:config ] {{{
     set! ui.key.generalAccesskey=0
