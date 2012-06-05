@@ -81,6 +81,10 @@ alias python.lang.G comp.lang.Py <comp.lang.python@googlegroups.com>
 alias python_linux.G Py.linux <python_linux@googlegroups.com>
 alias python-cn Py-cn <python-chinese@lists.python.cn>
 alias python.tw Py.tw <pythontw@googlegroups.com>
+# Ruby
+alias ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>
+alias ruby.core Ruby-Core <ruby-core@ruby-lang.org>
+alias ruby.doc  Ruby-Doc  <ruby-doc@ruby-lang.org>
 # Java
 alias java.G comp.lang.Java <comp.lang.java.programmer@googlegroups.com>
 # C

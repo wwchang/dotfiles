@@ -56,6 +56,9 @@ mailboxes =Drupal/support
 mailboxes =Drupal/security
 
 mailboxes =Ruby
+mailboxes =Ruby/Talk
+mailboxes =Ruby/Core
+mailboxes =Ruby/Doc
 mailboxes =Ruby/Rails
 
 mailboxes =Lisp
