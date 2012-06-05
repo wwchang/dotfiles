@@ -27,15 +27,14 @@ mailboxes =Important
 mailboxes =Vim
 mailboxes =Vim/vimwiki
 
-mailboxes =Arch
-mailboxes =Arch/general
-mailboxes =Arch/announce
-mailboxes =Arch/projects
-mailboxes =Arch/events
-mailboxes =Arch/dev-public
-mailboxes =Arch/pacman-dev
-mailboxes =Arch/aur-general
-mailboxes =Arch/archlinux-cn
+mailboxes =Ruby
+mailboxes =Ruby/Talk
+mailboxes =Ruby/Core
+mailboxes =Ruby/Doc
+mailboxes =Ruby/Rails
+
+mailboxes =Lisp
+mailboxes =Lisp/Lisp-cn
 
 mailboxes =Python
 mailboxes =Python/python
@@ -51,18 +50,21 @@ mailboxes =Go/golang-china
 mailboxes =Dart
 mailboxes =Dart/misc
 
+mailboxes =Arch
+mailboxes =Arch/general
+mailboxes =Arch/announce
+mailboxes =Arch/projects
+mailboxes =Arch/events
+mailboxes =Arch/dev-public
+mailboxes =Arch/pacman-dev
+mailboxes =Arch/aur-general
+mailboxes =Arch/archlinux-cn
+
+mailboxes =Linux
+
 mailboxes =Drupal
 mailboxes =Drupal/support
 mailboxes =Drupal/security
-
-mailboxes =Ruby
-mailboxes =Ruby/Talk
-mailboxes =Ruby/Core
-mailboxes =Ruby/Doc
-mailboxes =Ruby/Rails
-
-mailboxes =Lisp
-mailboxes =Lisp/Lisp-cn
 
 mailboxes =Perl
 
@@ -73,27 +75,23 @@ mailboxes =Maemo/update/Development
 mailboxes =Maemo/users
 mailboxes =Maemo/devel
 
-mailboxes =Awesome
-mailboxes =FVWM
-
 mailboxes =Web
 mailboxes =Web/whatwg
 mailboxes =Web/firebug
 mailboxes =Web/jplayer
-
-mailboxes =Linux
-mailboxes =ubuntu
 
 mailboxes =GNU
 mailboxes =GNU/parallel
 mailboxes =GNU/gnu
 
 mailboxes =apps
+mailboxes =apps/Awesome
 mailboxes =apps/Mutt
 mailboxes =apps/tmux
 mailboxes =apps/screen
-mailboxes =apps/Conky
 mailboxes =apps/weechat
+mailboxes =apps/FVWM
+mailboxes =apps/Conky
 mailboxes =apps/Canto
 mailboxes =apps/ranger
 mailboxes =apps/MLDonkey

@@ -289,6 +289,19 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     # }}}
 
     # [ Ruby ] {{{
+    # Ruby-Talk
+    :0
+    * ^List-Id: .*ruby-talk.ruby-lang\.org
+    Ruby/Talk
+    # Ruby-Core
+    :0
+    * ^List-Id: .*ruby-core\.ruby-lang\.org
+    Ruby/Core
+    # Ruby-Doc
+    :0
+    * ^List-Id: .*ruby-doc\.ruby-lang\.org
+    Ruby/Doc
+    # Ruby on Rails
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
     Ruby/Rails/
@@ -368,10 +381,10 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
     :0
     * ^List-Id: .*awesome\.naquadah\.org
-    Awesome/
+    apps/Awesome/
     :0
     * ^List-Id: .*fvwm\.fvwm\.org
-    FVWM/
+    apps/FVWM/
     :0
     * ^List-Post: .*@mutt\.org
     apps/Mutt/
