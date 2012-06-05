@@ -77,6 +77,7 @@ alias recordmydesktop='recordmydesktop --no-frame'
 # Vim
 # alias vimwiki='vim -c "normal \ww" +Calendar '
 alias vimwiki='vim +VimwikiIndex'
+alias vimtasks="vim ~/vimwiki/wiki/Dreams/Dreams.wiki -c 'vsplit ~/vimwiki/wiki/plan.wiki' +Calendar"
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -84,7 +85,7 @@ alias vimwiki='vim +VimwikiIndex'
 
 # software edit config alias
 alias awesome_check='awesome -c ~/.config/awesome/rc.lua -k'
-alias xprop='xprop | grep -e CLASS -e ROLE'
+alias xprop.alias='xprop | grep -e CLASS -e ROLE'
 alias xev=" xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p' "
 alias Xephyr_debug='Xephyr -ac -br -noreset -screen 1000x500 :1 &'
 
