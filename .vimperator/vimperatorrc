@@ -40,7 +40,14 @@ map <silent> <F2> :js toggle_bar()<CR>
 map <silent> <F3> :js toggle_autoproxy()<CR>
 map <silent> <F1> :js openProfileDirectory()<CR>
 
-" Scripts {{{
+" maps for Autoproxy
+noremap <silent> <leader>ap :js toggle_autoproxy()<CR>
+noremap <silent> <leader>a :set! extensions.autoproxy.proxyMode=auto<CR>:echo ':)'<CR>
+noremap <silent> <leader>g :set! extensions.autoproxy.proxyMode=global<CR>:echo ':D'<CR>
+noremap <silent> <leader>d :set!  extensions.autoproxy.proxyMode=disabled<CR>:echo ':('<CR>')'
+" }}}
+
+" [ Scripts ] {{{
 js << EOF
 
 // Toggle menubar and toolbar {{{
