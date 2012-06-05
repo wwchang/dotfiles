@@ -25,3 +25,8 @@ export LANGUAGE="en_US:en"
 export LC_MESSAGES="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
+
+# Fcitx
+export XMODIFIERS=@im=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
