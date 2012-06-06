@@ -70,7 +70,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
         " }}}
 
     " [ history ] {{{
-    set history=256 " history lines
+    set history=50 " history lines
     " undo
     set undolevels=1000
     " }}}
