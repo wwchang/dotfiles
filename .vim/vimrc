@@ -1440,6 +1440,7 @@ syntax on
             " let g:neocomplcache_source_completion_length = {}
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
+            let g:neocomplcache_use_vimproc = 1
 
             " [ priority ] {{{
             " control each source's completion priority.
