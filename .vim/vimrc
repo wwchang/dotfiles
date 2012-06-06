@@ -1138,7 +1138,7 @@ endif
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
         "call vam#ActivateAddons(['ShowTrailingWhitespace'])
             " write & spell checker & speak
-        call vam#ActivateAddons(['Engspchk'])
+        " call vam#ActivateAddons(['Engspchk'])
         "call vam#ActivateAddons(['SpellCheck'])
         "call vam#ActivateAddons(['LanguageTool'])
         "call vam#ActivateAddons(['VimSpeak'])
