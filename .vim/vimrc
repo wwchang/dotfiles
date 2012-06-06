@@ -1068,12 +1068,14 @@ endif
             " Scheme
             " VimL
         "call vam#ActivateAddons(['Vim-Support'])
+            " Lua
+        call vam#ActivateAddons(['lua'])
+        call vam#ActivateAddons(['lua_omni'])
+        " call vam#ActivateAddons(['luainspect'])
             " Haskell using ghc-mod
         call vam#ActivateAddons(['neco-ghc'])
             " R
         "call vam#ActivateAddons(['Vim-R-plugin'])
-            " Lua
-        "call vam#ActivateAddons(['luainspect'])
             " Perl
         "call vam#ActivateAddons(['perlomni'])
             " simulate : Tmux & Screen
@@ -3297,6 +3299,27 @@ syntax on
             " to restore highlighting for Lua 5.1:
             "let lua_version = 5
             "let lua_subversion = 1
+
+        " lua {{{ Lua filetype plugin for Vim
+            " let g:lua_path =
+            let g:lua_check_syntax= 1
+            let g:lua_check_globals = 1
+            let g:lua_compiler_name = 'luac' " luac, lualint
+            let g:lua_compiler_args = '-p'
+            " let g:lua_error_format =
+            let g:lua_complete_globals = 1
+            let g:lua_complete_library = 1
+            let g:lua_complete_dynamic = 1
+            let g:lua_complete_omni = 0 " have unintended consequences and slow
+        " }}}
+
+        " lua_omni {{{ omni completion function for Lua.
+            " It works by scanning _G and parsing Vim buffers.
+            " CTRL-X CTRL-O,
+            " :help lua_omni
+            let b:lua_inner_folds = 1
+            " To regenerate folds use the zx or zX normal commands.
+        " }}}
 
         " luainspect {{{ Semantic highlighting for Lua in Vim.
             " Usage:
