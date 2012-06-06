@@ -431,8 +431,6 @@ endif
     set foldminlines=3      " fold minlines
     set foldcolumn=0        " 3 colums ahead of line number.
     set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
-    nnoremap <SPACE> za
-        " conflict with set foldopen=all
 
         "set foldtext=VimrcFoldText() " {{{
         "function! VimrcFoldText()
@@ -613,6 +611,9 @@ endif
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
+    " toggle fold
+    " nnoremap <SPACE> za
+    nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
         " NOTICE use nonrecursive mapping.
         " Each of the *map commands has a *noremap counterpart that ignores other mappings:
