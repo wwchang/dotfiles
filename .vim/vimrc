@@ -950,6 +950,7 @@ endif
         "call vam#ActivateAddons(['SnippetComplete'])
             " skeleton / templates
         call vam#ActivateAddons(['SonicTemplate'])
+        " call vam#ActivateAddons(['template'])
             " Tags : taglist-plus,
         call vam#ActivateAddons(['Tagbar'])
         "call vam#ActivateAddons(['taglist'])
@@ -2386,7 +2387,7 @@ syntax on
             " let g:unite_source_file_ignore_pattern
             " .............
 
-            " unite.vim extensions:
+            " unite.vim extensions: {{{
                 " unite-ack {{{ Unite plugin for Ack.
                     " Usage:
                     " - :Unite ack:directory:search_word<CR>
@@ -2398,6 +2399,7 @@ syntax on
                     let g:unite_source_ack_enable_print_cmd = 1
                     " shortcut
                     let g:unite_source_ack_targetdir_shortcut = {
+                            \ 'vim': '$HOME/.vim',
                             \ 'bundle': '$HOME/.vim/bundle',
                             \ 'vam': '$HOME/.vim/vim-addons',
                             \ 'neco': "$HOME/.vim/vim-addons/neocomplcache",
@@ -2430,6 +2432,7 @@ syntax on
                 " unite-colorscheme :
                 " unite-cmdwin : put next Ex command to command-line:
                     " Usage: :Unite cmdwin
+            " }}}
         " }}}
 
         " EasyGrep {{{ make search and replace in files easy.
@@ -3000,6 +3003,8 @@ syntax on
             " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
             " 2. Different highlight colors for properties, value, units and so on.
         " }}}
+
+        " css3_mod
     " }}}
 
     " [ JavaScript ] {{{
@@ -3297,6 +3302,7 @@ syntax on
         " rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
         " }}}
+
         " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
     " }}}
