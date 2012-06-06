@@ -118,7 +118,11 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     set autoread                     " auto read changed files
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
     set confirm                      " confirm current buffer.
-    set backup		" keep a backup file
+    if has("vms")
+        set nobackup " do not keep a backup file, use version instead
+    else
+        set backup		" keep a backup file
+    endif
     set backupdir=$HOME/.backup-vim/  " backup dir
     set backupcopy=auto             " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
