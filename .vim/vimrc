@@ -1056,7 +1056,8 @@ endif
         "call vam#ActivateAddons(['cakephp'])
         "call vam#ActivateAddons(['cake'])
             " Ruby & Rails
-        call vam#ActivateAddons(['neco-rubymf'])
+        call vam#ActivateAddons(['vim-ruby'])
+        " call vam#ActivateAddons(['neco-rubymf'])
         call vam#ActivateAddons(['neco-rake'])
         call vam#ActivateAddons(['rails'])
         call vam#ActivateAddons(['vroom'])
@@ -3261,7 +3262,32 @@ syntax on
         let ruby_fold = 1
         "let ruby_no_comment_fold = 1
 
-        " neco-rubymf
+        " vim-ruby {{{
+            " https://github.com/vim-ruby/vim-ruby
+            " https://github.com/MarcWeber/vim-ruby
+
+            " autocmd FileType ruby compiler ruby
+
+            " syntax
+            let ruby_no_expensive = 1 " smart end color etc
+            let ruby_operators = 1 " highlight operators
+            let ruby_space_errors = 0 " highlight whitespace erros
+                " disable this, because use other script
+
+            " completion CTRL-X CTRL-O
+                " Ruby completion will parse your buffer on demand in order to
+                " provide a list of completions.
+            let g:rubycomplete_buffer_loading = 0 " this will cause some code execute
+            let g:rubycomplete_classes_in_global = 1
+            let g:rubycomplete_rails = 1
+        " }}}
+
+        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
+            " Requires:
+            "   - Ruby 1.9.3
+            "   - gem install methodfinder
+        " }}}
+
         " rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
         " }}}
