@@ -615,6 +615,10 @@ endif
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
+    " window resize [ <C-w>(-,+,<,>), Mouse ]
+    nnoremap - <c-w>-
+    nnoremap + <c-w>+
+
     " toggle fold
     " nnoremap <SPACE> za
     nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
