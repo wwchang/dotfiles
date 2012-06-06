@@ -908,7 +908,9 @@ endif
         " TODO Add a progin to show object prototype in statusline.
         " reference taglist/tagbar script <Space> show prototype.
             " CVS
-        call vam#ActivateAddons(['fugitive', 'extradite', 'gitv'])
+        call vam#ActivateAddons(['fugitive',
+        call vam#ActivateAddons(['gitv'])
+        " call vam#ActivateAddons(['extradite'])
         call vam#ActivateAddons(['quickfixsigns'])
         " call vam#ActivateAddons(['svndiff%1881'])
         call vam#ActivateAddons(['Splice', 'ConflictMotions'])
@@ -1205,22 +1207,10 @@ syntax on
                 " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
         " }}}
 
-        " extradite: {{{ A git commit log browser that extends fugitive.vim
-            " :Extradite | :Extradite! -- vertical.
-            nnoremap <F8> :Extradite<cr>
-                " [ mappings ] available in the Extradite buffer.
-                " <CR> -- edit the revision on the current line in a fugitive buffer.
-                " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
-                " dh, dv, dt diff the revision under the cursor in a new h/v split / tab
-                " t -- toggle the visibility of the file diff buffer.
-                " q -- quit.
-                " let g:extradite_width = 60
-                let g:extradite_showhash = 1 " show abbre commit hashes.
-        " }}}
-
         " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
             " Usage: [range]:GitV[!] [args]
             " [Browser/File] mode
+            nnoremap <F8> :Gitv<cr>
             " FIXME how to view diff state in File mode.
             " Key Maps:
             " <cr>, <c-j/k/l/cr> == oOsi, q, u, co, D, S, m, git, x, X, r, R, P.
@@ -1233,6 +1223,19 @@ syntax on
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
             let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
             let g:Gitv_DoNotMapCtrlKey = 1
+        " }}}
+
+        " extradite: {{{ A git commit log browser that extends fugitive.vim
+            " :Extradite | :Extradite! -- vertical.
+            " nnoremap <F8> :Extradite<cr>
+                " [ mappings ] available in the Extradite buffer.
+                " <CR> -- edit the revision on the current line in a fugitive buffer.
+                " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
+                " dh, dv, dt diff the revision under the cursor in a new h/v split / tab
+                " t -- toggle the visibility of the file diff buffer.
+                " q -- quit.
+                " let g:extradite_width = 60
+                let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
 
         " ConflictMotions: {{{
