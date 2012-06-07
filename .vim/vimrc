@@ -1245,12 +1245,20 @@ syntax on
         " }}}
 
         " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
-            " Usage: [range]:GitV[!] [args]
             " [Browser/File] mode
-            nnoremap <F8> :Gitv<cr>
-            " FIXME how to view diff state in File mode.
+            " Usage: [range]:GitV[!] [args]
+            "   - :Gitv [args]
+            "   - :Gitv! [args]
+            "   - [range]Gitv! [args]
+            "   - [args]:
+            "       - --all
+            "       - <since>..<until>
+            "       - --merges
+            "       - -S<string>
+            "       - -G<regex>
             " Key Maps:
-            " <cr>, <c-j/k/l/cr> == oOsi, q, u, co, D, S, m, git, x, X, r, R, P.
+            " <cr>, oOs, i, q, u, co, D, S, m, git, x, X, r, R, P.
+            nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
             let g:Gitv_GitExecutable = 'git'
