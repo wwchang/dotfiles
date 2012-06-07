@@ -2,8 +2,8 @@
 " Language:		shell (sh) Korn shell (ksh) bash (sh)
 " Maintainer:		Dr. Charles E. Campbell, Jr.  <NdrOchipS@PcampbellAfamily.Mbiz>
 " Previous Maintainer:	Lennart Schultz <Lennart.Schultz@ecmwf.int>
-" Last Change:		May 19, 2012
-" Version:		124	ASTRO-ONLY
+" Last Change:		May 29, 2012
+" Version:		125	ASTRO-ONLY
 " URL:		http://mysite.verizon.net/astronaut/vim/index.html#vimlinks_syntax
 " For options and settings, please use:      :help ft-sh-syntax
 " This file includes many ideas from ?ric Brunet (eric.brunet@ens.fr)
@@ -17,15 +17,18 @@ elseif exists("b:current_syntax")
 endif
 
 " AFAICT "." should be considered part of the iskeyword.  Using iskeywords in
-" syntax is dicey, so the following code permits the user to prevent/override
-" its setting.
-if exists("g:sh_isk")          " override support
- exe "setlocal isk=".g:sh_isk
-elseif !exists("g:sh_noisk")   " optionally prevent modification support
- setlocal isk+=.
+" syntax is dicey, so the following code permits the user to
+"  g:sh_isk set to a string	: specify iskeyword.
+"  g:sh_noisk exists	: don't change iskeyword
+"  g:sh_noisk does not exist	: (default) append "." to iskeyword
+if exists("g:sh_isk") && type(g:sh_isk) == 1	" user specifying iskeyword
+ exe "setl isk=".g:sh_isk
+elseif !exists("g:sh_noisk")		" optionally prevent appending '.' to iskeyword
+ setl isk+=.
 endif
 
 " trying to answer the question: which shell is /bin/sh, really?
+" If the user has not specified any of g:is_kornshell, g:is_bash, g:is_posix, g:is_sh, then guess.
 if !exists("g:is_kornshell") && !exists("g:is_bash") && !exists("g:is_posix") && !exists("g:is_sh")
  if executable("/bin/sh")
   if     resolve("/bin/sh") =~ 'bash$'
@@ -76,16 +79,19 @@ elseif g:sh_fold_enabled != 0 && !has("folding")
  echomsg "Ignoring g:sh_fold_enabled=".g:sh_fold_enabled."; need to re-compile vim for +fold support"
 endif
 if !exists("s:sh_fold_functions")
- let s:sh_fold_functions = 1
+ let s:sh_fold_functions= and(g:sh_fold_enabled,1)
 endif
 if !exists("s:sh_fold_heredoc")
- let s:sh_fold_heredoc   = 2
+ let s:sh_fold_heredoc  = and(g:sh_fold_enabled,2)
 endif
 if !exists("s:sh_fold_ifdofor")
- let s:sh_fold_ifdofor   = 4
+ let s:sh_fold_ifdofor  = and(g:sh_fold_enabled,4)
 endif
 if g:sh_fold_enabled && &fdm == "manual"
- setlocal fdm=syntax
+ " Given that	the	user provided g:sh_fold_enabled
+ " 	AND	g:sh_fold_enabled is manual (usual default)
+ " 	implies	a desire for syntax-based folding
+ setl fdm=syntax
 endif
 
 " sh syntax is case sensitive {{{1
@@ -126,8 +132,6 @@ syn cluster shTestList	contains=shCharClass,shComment,shCommandSub,shDeref,shDer
 " Echo: {{{1
 " ====
 " This one is needed INSIDE a CommandSub, so that `echo bla` be correct
-" However, -print and -echo should be treated as options, not as echo/print commands.
-syn match  shStatement "[-+]\(print\|echo\)"
 syn region shEcho matchgroup=shStatement start="\<echo\>"  skip="\\$" matchgroup=shEchoDelim end="$" matchgroup=NONE end="[<>;&|()]"me=e-1 end="\d[<>]"me=e-2 end="\s#"me=e-2 contains=@shEchoList skipwhite nextgroup=shQuickComment
 syn region shEcho matchgroup=shStatement start="\<print\>" skip="\\$" matchgroup=shEchoDelim end="$" matchgroup=NONE end="[<>;&|()]"me=e-1 end="\d[<>]"me=e-2 end="\s#"me=e-2 contains=@shEchoList skipwhite nextgroup=shQuickComment
 syn match  shEchoQuote contained	'\%(\\\\\)*\\["`'()]'
@@ -206,7 +210,7 @@ syn match   shCharClass	contained	"\[:\(backspace\|escape\|return\|xdigit\|alnum
 
 " Loops: do, if, while, until {{{1
 " ======
-if (g:sh_fold_enabled % (s:sh_fold_ifdofor * 2))/s:sh_fold_ifdofor
+if s:sh_fold_ifdofor
  syn region shDo	fold transparent matchgroup=shConditional start="\<do\>" matchgroup=shConditional end="\<done\>" contains=@shLoopList
  syn region shIf	fold transparent matchgroup=shConditional start="\<if\_s" matchgroup=shConditional skip=+-fi\>+ end="\<;\_s*then\>" end="\<fi\>"   contains=@shIfList
  syn region shFor	fold matchgroup=shLoop start="\<for\_s" end="\<in\_s" end="\<do\>"me=e-2	contains=@shLoopList,shDblParen skipwhite nextgroup=shCurlyIn
@@ -232,7 +236,7 @@ syn match  shComma     contained	","
 " ====
 syn match   shCaseBar	contained skipwhite "\(^\|[^\\]\)\(\\\\\)*\zs|"		nextgroup=shCase,shCaseStart,shCaseBar,shComment,shCaseExSingleQuote,shCaseSingleQuote,shCaseDoubleQuote
 syn match   shCaseStart	contained skipwhite skipnl "("			nextgroup=shCase,shCaseBar
-if (g:sh_fold_enabled % (s:sh_fold_ifdofor * 2))/s:sh_fold_ifdofor
+if s:sh_fold_ifdofor
  syn region  shCase	fold contained skipwhite skipnl matchgroup=shSnglCase start="\%(\\.\|[^#$()'" \t]\)\{-}\zs)"  end=";;" end="esac"me=s-1 contains=@shCaseList nextgroup=shCaseStart,shCase,shComment
  syn region  shCaseEsac	fold matchgroup=shConditional start="\<case\>" end="\<esac\>"	contains=@shCaseEsacList
 else
@@ -333,7 +337,7 @@ if version < 600
  syn region shHereDoc matchgroup=shRedir start="<<\s*\**\.\**"	matchgroup=shRedir	end="^\.$"	contains=@shDblQuoteList
  syn region shHereDoc matchgroup=shRedir start="<<-\s*\**\.\**"	matchgroup=shRedir	end="^\s*\.$"	contains=@shDblQuoteList
 
-elseif (g:sh_fold_enabled % (s:sh_fold_heredoc * 2))/s:sh_fold_heredoc
+elseif s:sh_fold_heredoc
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*\z(\S*\)"		matchgroup=shRedir end="^\z1\s*$"	contains=@shDblQuoteList
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*\"\z(\S*\)\""		matchgroup=shRedir end="^\z1\s*$"
  syn region shHereDoc matchgroup=shRedir fold start="<<\s*'\z(\S*\)'"		matchgroup=shRedir end="^\z1\s*$"
@@ -392,7 +396,7 @@ if !exists("g:is_posix")
 endif
 
 if exists("b:is_bash")
- if (g:sh_fold_enabled % (s:sh_fold_functions * 2))/s:sh_fold_functions
+ if s:sh_fold_functions
   syn region shFunctionOne fold	matchgroup=shFunction start="^\s*\h[-a-zA-Z_0-9]*\s*()\_s*{" end="}"	contains=@shFunctionList			skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
   syn region shFunctionTwo fold	matchgroup=shFunction start="\h[-a-zA-Z_0-9]*\s*\%(()\)\=\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained	skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
  else
@@ -400,7 +404,7 @@ if exists("b:is_bash")
   syn region shFunctionTwo	matchgroup=shFunction start="\h[-a-zA-Z_0-9]*\s*\%(()\)\=\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained
  endif
 else
- if (g:sh_fold_enabled % (s:sh_fold_functions * 2))/s:sh_fold_functions
+ if s:sh_fold_functions
   syn region shFunctionOne fold	matchgroup=shFunction start="^\s*\h\w*\s*()\_s*{" end="}"	contains=@shFunctionList			skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
   syn region shFunctionTwo fold	matchgroup=shFunction start="\h\w*\s*\%(()\)\=\_s*{"	end="}"	contains=shFunctionKey,@shFunctionList contained	skipwhite skipnl nextgroup=shFunctionStart,shQuickComment
  else
@@ -411,7 +415,7 @@ endif
 
 " Parameter Dereferencing: {{{1
 " ========================
-syn match  shDerefSimple	"\$\%(\k*\|\d\)"
+syn match  shDerefSimple	"\$\%(\k\+\|\d\)"
 syn region shDeref	matchgroup=PreProc start="\${" end="}"	contains=@shDerefList,shDerefVarArray
 if !exists("g:sh_no_error")
  syn match  shDerefWordError	"[^}$[]"	contained
@@ -484,7 +488,7 @@ if exists("b:is_bash")
 endif
 
 " Arithmetic Parenthesized Expressions: {{{1
-syn region shParen matchgroup=shArithRegion start='(\%(\ze[^(]\|$\)' end=')' contains=@shArithParenList
+syn region shParen matchgroup=shArithRegion start='[^$]\zs(\%(\ze[^(]\|$\)' end=')' contains=@shArithParenList
 
 " Useful sh Keywords: {{{1
 " ===================

@@ -731,7 +731,6 @@ if has("conceal") && &enc == 'utf-8'
     \ ['leq'		, '≤'],
     \ ['leqq'		, '≦'],
     \ ['lessdot'	, '⋖'],
-    \ ['lessgtr'	, '≶'],
     \ ['lesseqgtr'	, '⋚'],
     \ ['lesssim'	, '≲'],
     \ ['lfloor'		, '⌊'],
