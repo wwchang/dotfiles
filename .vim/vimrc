@@ -890,6 +890,8 @@ endif
         " ActivateAddones List: {{{
             " vim plugin manager
         "call vam#ActivateAddons(['tplugin'])
+            " VimLint: a correctness and sanity checker of Vim configuration
+        call vam#ActivateAddons(['VimLint'])
             " utils
         call vam#ActivateAddons(['L9'])
         call vam#ActivateAddons(['tlib'])
@@ -1219,6 +1221,10 @@ syntax on
         " This can be used as a simple project organiser tool.
         " e.g. Load the MyProject sauce: :Sauce MyProject
         let g:sauce_path = "~/.vimsauce"
+    " }}}
+
+    " VimLint: {{{ a correctness and sanity checker of Vim configuration
+        " Usage: :VimLint
     " }}}
 " }}}
 
