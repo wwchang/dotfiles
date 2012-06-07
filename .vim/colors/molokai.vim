@@ -162,7 +162,7 @@ if &t_Co > 255
    hi Float           ctermfg=135
 
    " fold
-   hi Folded          ctermfg=045   ctermbg=235 cterm=bold
+   hi Folded          ctermfg=045   ctermbg=234 cterm=bold
    hi FoldColumn      ctermfg=045   ctermbg=016 cterm=bold
    hi vimFold         ctermfg=081   ctermbg=016 cterm=bold
 
