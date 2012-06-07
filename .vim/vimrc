@@ -1,6 +1,6 @@
 " Author: stardiviner ( numbchild at gmail dot com )
 
-" [[ vimrc structure ]] {{{2
+" [[ vimrc structure ]] {{{
 " .vimrc -- global settings
 " .vim/
 "   after/      -- files that are loaded at the very end.
@@ -25,9 +25,9 @@
     "       => set no<option> => set nopreviewwindow.
 " }}}
 
-" [[ vim Settings ]] {{{2
+" [[ vim Settings ]] {{{
     " :echo $MYVIMRC
-set nocompatible       " not vim compatible. must be first one, will affect other options.
+set nocompatible " not vim compatible. must be first one, will affect other options
 set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ updating vimrc file on the fly ] {{{
@@ -594,7 +594,7 @@ endif
 
 " }}}
 
-" [[ key bindings ]] {{{2
+" [[ key bindings ]] {{{
 
     " F1~12 {{{
     fun ShowFuncKeys(bang)
@@ -657,7 +657,7 @@ endif
     " }}}
 " }}}
 
-" [[ functions ]] {{{2
+" [[ functions ]] {{{
 " Vimscript functions must start with a capital letter if they are unscoped!
 " you can call function with ":source file.vim" then ":call"
 
@@ -764,7 +764,7 @@ endif
         " nnoremap <C-w>- :call ResizeWindowSize()
 " }}}
 
-" [[ Misc ]] {{{2
+" [[ Misc ]] {{{
 
     " [ abbreviations ] {{{
     " Abbreviations are used in Insert, Replace and Command-line mode.
@@ -793,14 +793,19 @@ endif
 
 " }}}
 
-" [ pathogen ] {{{2 .vim/bundle/
+" }}}
+
+" ----------------------------------------------------------------
+
+" [[ addons manager: VAM, vundle, pathogen ]] {{{
+" [ pathogen ] {{{ .vim/bundle/
     "" .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
     "call pathogen#infect()
     "syntax on
     "filetype plugin indent on
 " }}}
 
-"" [ vundle ] {{{2 .vim/bundle/
+"" [ vundle ] {{{ .vim/bundle/
     " [ advanced way ] {{{
     "let root = '/tmp/vundle_bundles/'
     "let src = 'http://github.com/gmarik/vundle.git'
@@ -917,7 +922,7 @@ endif
         " TODO Add a progin to show object prototype in statusline.
         " reference taglist/tagbar script <Space> show prototype.
             " CVS
-        call vam#ActivateAddons(['fugitive',
+        call vam#ActivateAddons(['fugitive'])
         call vam#ActivateAddons(['gitv'])
         " call vam#ActivateAddons(['extradite'])
         call vam#ActivateAddons(['quickfixsigns'])
@@ -1183,11 +1188,14 @@ endif
 
 filetype plugin indent on
 syntax on
+" }}}
+
 " ----------------------------------------------------------------
 
-" [ vim plugins manager (VAM) ] {{{
+" [ plugins manager ] {{{
     " tplugin : {{{
     " }}}
+
     " Sauce : {{{ Dynamic vimrc manager for load different settings.
         " a manager for multiple vimrc files, which can be used to
         " load different settings for different environments.
@@ -2003,6 +2011,9 @@ syntax on
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
+        " }}}
+
+        " vim-nerdtree_plugin_collections {{{
         " }}}
     " }}}
 
