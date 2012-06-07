@@ -621,8 +621,8 @@ endif
     nnoremap + <c-w>+
 
     " toggle fold
-    " nnoremap <SPACE> za
-    nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
+    nnoremap <SPACE> za
+    " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
         " NOTICE use nonrecursive mapping.
         " Each of the *map commands has a *noremap counterpart that ignores other mappings:
