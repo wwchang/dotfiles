@@ -1725,9 +1725,7 @@ syntax on
     " }}}
 
     " [ snippets ] {{{ <Tab> / Ctrl-j/k ??
-    set runtimepath+=~/.vim/snippets/ " add my snippets to script runtime.
-
-        " neocomplcache-snippets-complete {{{ snippets using neocomplcache complete.
+        " neocomplcache-snippets_complete {{{ snippets using neocomplcache complete.
             "This source analyzes snippet files for completion. The source offer
             "a function similar with snipMate.vim and snippetsEmu.vim. Because
             "you can search a snippet with a function of neocomplcache, you may
