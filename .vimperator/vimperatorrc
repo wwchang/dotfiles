@@ -15,7 +15,8 @@ source! /home/chris/.vimperatorrc.local
     set status=input,tabcount,position
     set verbose=9
     let mapleader='\'
-    set complete=sSlf
+        " S search engine suggest
+    set complete=slf
     set newtab=all
     " }}}
 
