@@ -836,72 +836,50 @@ endif
     "" }}}
 "" }}}
 
-" [ VAM : vim addon manager ] {{{2 .vim/vim-addons/
-" FIXME how to update addons with out press Enter between every addons.
-    " [ commands & functions ] {{{
-        " :InstallAddons / :ActivateAddons {name} before add it to the list in .vimrc.
-        " :AddonsInfo NAME<C-d>then<Tab>
-            " - look up source from pool (<c-x><c-p> complete plugin names):
-        " :ActivateInstalledAddons {name}
-        " :UpdateAddons {name} / :UpdateActivateAddons {name}
-        " :UninstallNotLoadedAddons {name}
-        " https://github.com/MarcWeber/vim-addon-manager
-    " }}}
-
-    "" [ show changelog/diff ] {{{
-    " FIXME
-    "let g:vim_addon_manager = {}
-    "let g:vim_addon_manager['git_update'] = {'f': 'MyGitUpdate', 'a': []}
-    "fun! MyGitUpdate(targetDir)
-        "let cd = shellescape
-        "let oldHash = system(vam#utils#ShellDSL('cd $; git rev-list HEAD -1', a:targetDir))
-        "call vam#utils#RunShell('cd $p && git pull', a:targetDir)
-        "let newHash = system(vam#utils#ShellDSL('cd $; git rev-list HEAD -1', a:targetDir))
-        "silent! e VAM_GIT_UPDATES
-        "if oldHash != newHash
-            "puts=a:targetDir
-            "puts=split(system(vam#utils#ShellDSL('cd $; git log $[]..$[]  ', a:targetDir, oldHash, newHash)
-        "endif
-    "endfun
-    "" }}}
-
-    " [ options ] {{{
-    let g:vim_addon_manager = {}
-    let g:vim_addon_manager['shell_commands_method'] = 'bang' " system/bang
-    let g:vim_addon_manager['auto_install'] = 1
-    let g:vim_addon_manager['do_diff'] = 1
-    " }}}
-
+" [ VAM : vim addon manager ] {{{ .vim/vim-addons/
     " [ minimal setup ] {{{
-        "set runtimepath+=~/path-to/vim-plugin/manager
-        "call scriptmanager#Activate(["vim-haxe","The_NERD_tree","vim-latex"])
+        " set runtimepath+=$HOME/.vim/vim-addons/vim-addon-manager
+        " call vam#ActivateAddons([.. list of plugin names ..], {'auto_install' : 0})
     " }}}
 
     " [ complex setup ] {{{
-    function SetupVAM()
-        " {{{ if not installed, install automatically.
-        " YES, you can customize this vam_install_path path and everything still works!
-        let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
-        exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
-
-        " * unix based os users may want to use this code checking out VAM
-        " * windows users want to use http://mawercer.de/~marc/vam/index.php
-        " to fetch VAM, VAM-known-repositories and the listed plugins
-        " without having to install curl, unzip, git tool chain first
-        " -> BUG [4] (git-less installation)
-        if !filereadable(vam_install_path.'/vim-addon-manager/.git/config') &&
-                    \ 1 == confirm("git clone VAM into ".vam_install_path."?","&Y\n&N")
+    fun! EnsureVamIsOnDisk(vam_install_path)
+        if !filereadable(a:vam_install_path.'/vim-addon-manager/.git/config')
+                \&& 1 == confirm("Clone VAM into ".a:vam_install_path."?","&Y\n&N")
             " I'm sorry having to add this reminder. Eventually it'll pay off.
-            call confirm("Remind yourself that most plugins ship with documentation
-                        \(README*, doc/*.txt). Its your first source of knowledge.
-                        \If you can't find the info you're looking for in reasonable time
-                        \ask maintainers to improve documentation")
-            exec '!p='.shellescape(vam_install_path).'; mkdir -p "$p" && cd "$p" &&
-                        \ git clone --depth 1 git://github.com/MarcWeber/vim-addon-manager.git'
-            " VAM run helptags automatically if you install or update plugins
-            exec 'helptags '.fnameescape(vam_install_path.'/vim-addon-manager/doc')
+            call confirm("Remind yourself that most plugins ship with ".
+                        \"documentation (README*, doc/*.txt). It is your ".
+                        \"first source of knowledge. If you can't find ".
+                        \"the info you're looking for in reasonable ".
+                        \"time ask maintainers to improve documentation")
+            call mkdir(a:vam_install_path, 'p')
+            execute '!git clone --depth=1 git://github.com/MarcWeber/vim-addon-manager '.shellescape(a:vam_install_path, 1).'/vim-addon-manager'
+            exec 'helptags '.fnameescape(a:vam_install_path.'/vim-addon-manager/doc')
         endif
-        " }}}
+    endf
+
+    fun! SetupVAM()
+
+        " [ options ]
+        let g:vim_addon_manager = {}
+        let g:vim_addon_manager['shell_commands_run_method'] = 'system' " system/bang
+        let g:vim_addon_manager['auto_install'] = 1
+        " let g:vim_addon_manager['plugin_sources'] =
+        " let g:vim_addon_manager['plugin_root_dir'] =
+        let g:vim_addon_manager['do_diff'] = 1 " retain user changes to plugins
+        let g:vim_addon_manager['known_repos_activation_policy'] = 'autoload'
+        " let g:vim_addon_manager['change_to_unix_ff'] = 1
+        " let g:vim_addon_manager['name_rewriting'] =
+        " .......
+
+      " VAM install location:
+      let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
+      call EnsureVamIsOnDisk(vam_install_path)
+      exec 'set runtimepath+='.vam_install_path.'/vim-addon-manager'
+
+      " Tell VAM which plugins to fetch & load:
+      " call vam#ActivateAddons(['pluginA','pluginB', ...], {'auto_install' : 0})
+
     " }}}
 
     " [ VAM-known-repositories ] {{{
@@ -1184,7 +1162,39 @@ endif
 
     endfunction
     call SetupVAM()
-" }}}
+
+    " [ experimental ] {{{
+    " load lazily:
+    " let ft_addons = {
+    "   \ '^\%(c\|cpp\)$': [ 'plugin-for-c-development' ],
+    "   \ 'javascript': [ 'plugin-for-javascript' ]
+    " \ }
+    " au FileType * for l in values(filter(copy(ft_addons), string(expand('<amatch>')).' =~ v:key')) | call vam#ActivateAddons(l, {'force_loading_plugins_now':1}) | endfor
+
+    " " Another example: replace git_update and show changelog >
+    "   let g:vim_addon_manager = {'scms': {'git': {}}}
+    "   fun! MyGitUpdate(targetDir)
+    "       let cd = shellescape
+    "       let oldHash = vam#utils#System('git --git-dir=$p/.git rev-list HEAD -1', a:targetDir)
+    "       call vam#utils#RunShell('cd $p && git pull', a:targetDir)
+    "       let newHash = vam#utils#System('git --git-dir=$p/.git rev-list HEAD -1', a:targetDir)
+    "       if oldHash isnot# newHash
+    "         silent enew
+    "         setlocal buftype=nofile bufhidden=wipe
+    "         call setline(1, a:targetDir)
+    "         call append(1, split(system(vam#utils#ShellDSL('cd $; git log $[]..$[]', a:targetDir, oldHash, newHash)), "\n"))
+    "       endif
+    "       return 0
+    "   endfun
+    "   let g:vim_addon_manager.scms.git.update=['MyGitUpdate']
+
+    " experimental [E1]: load plugins lazily depending on filetype, See
+    " NOTES
+    " experimental [E2]: run after gui has been started (gvim) [3]
+    " option1:  au VimEnter * call SetupVAM()
+    " option2:  au GUIEnter * call SetupVAM()
+
+    " }}}
 
 filetype plugin indent on
 syntax on
