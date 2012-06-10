@@ -24,6 +24,9 @@ mailboxes =Drafts
 mailboxes =Send
 mailboxes =Important
 
+mailboxes =Emacs
+mailboxes =Emacs/anon
+
 mailboxes =Vim
 mailboxes =Vim/vimwiki
 
