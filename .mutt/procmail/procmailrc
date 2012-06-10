@@ -181,7 +181,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
         :0 ih
         * ^From: .*\/[^<]*
-        | export DISPLAY=:0 ; $NOTIFY "Email: $SUBJECT from" "$MATCH" ; echo "1 ok" >> $HOME/notify.txt
+        | export DISPLAY=:0 ; $NOTIFY "Email: $SUBJECT from" "$MATCH"
     }
 # }}}
 
@@ -354,6 +354,13 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # }}}
 
 # Apps: Vim, Emacs, Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{
+    :0
+    * ^List-Id: .*help-gnu-emacs\.gnu\.org
+    Emacs/
+    :0
+    * ^List-Id: .*info-gnu-emacs\.gnu\.org
+    Emacs/anon/
+
     :0
     * ^List-Id: .*\.vim\.org
     Vim/
