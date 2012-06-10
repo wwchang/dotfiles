@@ -138,6 +138,9 @@ alias arch-releng arch.releng <arch-releng@archlinux.org>
 alias gentoo.user.G Gentoo.user.G <linux.gentoo.user@googlegroups.com>
 alias gentoo.china.G Gentoo.china.G <gentoo-china@googlegroups.com>
 alias Gentoo.china.G.noreply Gentoo.china.G.noreply <gentoo-china+noreply@googlegroups.com>
+# Emacs
+alias emacs Emacs-help <help-gnu-emacs@gnu.org>
+alias emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
 # Vim
 # Help on vim and vim usage
 alias vim_use.G Vim.use.G <vim_use@googlegroups.com>

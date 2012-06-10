@@ -113,6 +113,9 @@ subscribe microsoft.public.security microsoft.public.security.G <microsoft.publi
 
 
 # ------- softwares -------------
+# Emacs
+subscribe emacs Emacs-help <help-gnu-emacs@gnu.org>
+subscribe emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
 # Vim
 # Announcements only: new releases and important patches
 subscribe vim-an vim-announce <vim-announce@vim.org	>
