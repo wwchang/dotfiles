@@ -26,6 +26,7 @@ mailboxes =Important
 
 mailboxes =Emacs
 mailboxes =Emacs/anon
+mailboxes =Emacs/Evil
 
 mailboxes =Vim
 mailboxes =Vim/vimwiki

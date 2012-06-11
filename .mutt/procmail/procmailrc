@@ -360,6 +360,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*info-gnu-emacs\.gnu\.org
     Emacs/anon/
+    :0
+    * ^List-Id: .*implementations-list\.lists\.ourproject\.org
+    Emacs/Evil/
 
     :0
     * ^List-Id: .*\.vim\.org
@@ -369,6 +372,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Vim/
     :0
     * ^List-Id: .*vimwiki\.googlegroups\.com
+    Vim/vimwiki/
+    :0
+    * ^From: .*vimwiki@googlecode\.com
     Vim/vimwiki/
     #:0
     #* ^List-Id: .*vimorganizer\.googlegroups\.com
@@ -450,7 +456,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*parallel\.gnu\.org
     GNU/parallel/
     :0
-    * ^From: .*info-gnu-request@gnu\.org
+    * ^List-Id: .*info-gnu\.gnu\.org
     GNU/gnu/
 # }}}
 
