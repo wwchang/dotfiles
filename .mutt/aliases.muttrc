@@ -141,6 +141,7 @@ alias Gentoo.china.G.noreply Gentoo.china.G.noreply <gentoo-china+noreply@google
 # Emacs
 alias emacs Emacs-help <help-gnu-emacs@gnu.org>
 alias emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
+alias Evil Emacs-Evil <implementations-list@lists.ourproject.org>
 # Vim
 # Help on vim and vim usage
 alias vim_use.G Vim.use.G <vim_use@googlegroups.com>
