@@ -38,16 +38,18 @@ prev_word   '^'
 
 # -----------------------------------------------------------------------------
 # <meta>
-snippet metaauthor
-    <meta name="author" content="${1}">${0}
-snippet metakeywords
+snippet meta-author
+    <meta name="author" content="stardiviner${1}">${0}
+snippet meta-copyright
+    <meta name="copyright" content="© ${1:stardiviner}">${0}
+snippet meta-keywords
     <meta name="keywords" content="${1}">${0}
-snippet metaothers
-    <meta name="others" content="${1}">${0}
-snippet metagenerator
-    <meta name="generator" content="${1}">${0}
-snippet metadescription
+snippet meta-generator
+    <meta name="generator" content="${1:Vim}">${0}
+snippet meta-description
     <meta name="description" content="${1}">${0}
+snippet meta-others
+    <meta name="others" content="${1}">${0}
 
 # -----------------------------------------------------------------------------
 # <script>
