@@ -104,7 +104,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ modeline ] {{{
     set modeline     " =/* vim: set ai ft=config: */
-    set modelines=2  " the number of lines that is checked for set commands.
+    set modelines=5  " the number of lines that is checked for set commands.
     set columns=80
     set colorcolumn=+1 " 80 columns: highlight column after 'textwidth', a red line.
     " set cc=+1,+2,+3  " highlight three columns after 'textwidth'
@@ -114,7 +114,9 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " }}}
 
     " [ buffer ] {{{
-    set autowrite                    " auto write when changed
+    " set autowrite                    " auto write when changed
+    " set autowriteall
+    set autochdir
     set autoread                     " auto read changed files
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
     set confirm                      " confirm current buffer.
@@ -158,7 +160,6 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
     set cmdheight=1                  " command line height
-    set autochdir                    " auto change dir
     "set complete=".,w,b,t,i,u,k"     " completion buffers
     "             | | | | | | |
     "             | | | | | | `-dict
@@ -479,7 +480,8 @@ endif
     " }}}
 
     " [ indent ] {{{
-    set autoindent  " use previous indent format, useful for multi-line comment.
+    " help indent.txt
+    set smartindent  " autoindent, smartindent, cindent, indentexpr.
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -519,8 +521,8 @@ endif
 
     " [ conceal ] {{{
     if has('conceal')
-        set conceallevel=1 " 0,1,2,3
-        set concealcursor=vic " n: normal v: visual i: insert c: command line editing
+        set conceallevel=2 " 0:, 1:, 2:completely hidden, 3
+        set concealcursor=nc " n: normal v: visual i: insert c: command line editing
     endif
     " }}}
 
@@ -569,28 +571,30 @@ endif
     " set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)\ \%#StatusPercent#\%P
 
     " a good tip for different format statusline for non-current.
-    "let g:Active_statusline=&g:statusline
-    "let g:NCstatusline=substitute(
-                "\                substitute(g:Active_statusline,
-                "\                'User1', 'User3', 'g'),
-                "\                'User2', 'User4', 'g')
-    "au WinEnter * let&l:statusline = g:Active_statusline
-    "au WinLeave * let&l:statusline = g:NCstatusline
+    " let g:Active_statusline=&g:statusline
+    " let g:NCstatusline=substitute(
+    "             \                substitute(g:Active_statusline,
+    "             \                'User1', 'User3', 'g'),
+    "             \                'User2', 'User4', 'g')
+    " au WinEnter * let&l:statusline = g:Active_statusline
+    " au WinLeave * let&l:statusline = g:NCstatusline
 
-    "function! StatusLineSet()
-        "if &l:modified
-            "setlocal statusline=✖
-        "else
-            "setlocal statusline=✔
-        "endif
-    "endfunction
-    "set statusline=%!StatusLineSet()
+    " function! StatusLineSet()
+    "     if &l:modified
+    "         setlocal statusline=✖
+    "     else
+    "         setlocal statusline=✔
+    "     endif
+    " endfunction
+    " set statusline=%!StatusLineSet()
 
     set shortmess="lnrxtToO"  " short on status line message : default is "filnxtToO"
     set cmdheight=1        " cmd line height
     set ruler              " show the cursor position all the time in status line.
     set showmode           " show insert, visual, replace mode on last line.
     " }}}
+
+" }}}
 
 " }}}
 
@@ -661,20 +665,7 @@ endif
 " Vimscript functions must start with a capital letter if they are unscoped!
 " you can call function with ":source file.vim" then ":call"
 
-    " [ complete dictionary words ] {{{ <Tab> OR <c-j> to complete words.
-    "function! Tab_Or_Complete()
-      "if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-        "return "\<c-j>"
-      "else
-        "return "\<Tab>"
-      "endif
-    "endfunction
-    "inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-    "autocmd FileType text,mail,vimwiki,markdown,none
-      "\ inoremap <Tab> <C-R>=Tab_Or_Complete()<CR>
-    " }}}
-
-    " auto remove any extra whitespaces from the ends of lines
+    " delete trailing whitespaces
     " autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
 
     " [ execute mode ] {{{
@@ -790,8 +781,6 @@ endif
           "au BufWritePost *.bin set nomod | endif
         "augroup END
 
-
-" }}}
 
 " }}}
 
@@ -996,8 +985,7 @@ endif
         "call vam#ActivateAddons(['AuthorInfo'])
         "call vam#ActivateAddons(['license_loader'])
             " Python
-                " enhanced python syntax 3.0.
-        "call vam#ActivateAddons(['Python-mode-klen'])
+        " call vam#ActivateAddons(['Python-mode-klen'])
         " call vam#ActivateAddons(['SimpylFold'])
         " call vam#ActivateAddons(['github:jbking/vim-pep8'])
         " call vam#ActivateAddons(['flake8'])
@@ -1124,9 +1112,8 @@ endif
         call vam#ActivateAddons(['Auto_Pairs'])
         " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['utl'])
-        call vam#ActivateAddons(['open-browser'])
+        " call vam#ActivateAddons(['open-browser'])
         call vam#ActivateAddons(['DeleteTrailingWhitespace'])
-        "call vam#ActivateAddons(['ShowTrailingWhitespace'])
             " write & spell checker & speak
         " call vam#ActivateAddons(['Engspchk'])
         "call vam#ActivateAddons(['SpellCheck'])
@@ -1136,8 +1123,7 @@ endif
                 " 2HTML
         "call vam#ActivateAddons(['formatvim'])
             " Vim related
-        "call vam#ActivateAddons(['github:chrisbra/vim_faq'])
-        " call vam#ActivateAddons(['Fortune_vimtips'])
+        " call vam#ActivateAddons(['tips'])
             " Vimrc manager
         "call vam#ActivateAddons(['Sauce'])
             " Vim Extension
@@ -1155,8 +1141,6 @@ endif
         call vam#ActivateAddons(['EasyMotion'])
             " ASCII draw
         "call vam#ActivateAddons(['DrawIt'])
-            " translate
-        "call vam#ActivateAddons(['youdao.dict'])
             " small tools
         call vam#ActivateAddons(['fcitx'])
         "call vam#ActivateAddons(['bestfriend'])
@@ -1369,7 +1353,7 @@ syntax on
         " vim-github {{{ A vim plugin to access to Github.
             " :Github {feature} [arguments]
             let g:github#user="numbchild"
-            " FIXME ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
+            " ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
             let g:github#curl_cmd="curl"
         " }}}
 
@@ -1492,33 +1476,6 @@ syntax on
                 "             \ 'other plugin sources' : 5,
                 "             \ 'other completefunc sources' : 10,
                 "             \ 'other ftplugin sources' : 100
-                "             \ }
-
-                let g:neocomplcache_source_rank = {
-                            \ 'dictionary_complete' : 4,
-                            \ 'buffer_complete' : 5,
-                            \ 'syntax_complete' : 7,
-                            \ 'include_complete' : 8,
-                            \ 'snippets_complete' : 400,
-                            \ 'vim_complete' : 300,
-                            \ 'omni_complete' : 300,
-                            \ 'other plugin sources' : 5,
-                            \ 'other completefunc sources' : 10,
-                            \ 'other ftplugin sources' : 100
-                            \ }
-
-                " totally custom
-                " let g:neocomplcache_source_rank = {
-                "             \ 'dictionary_complete' : 50,
-                "             \ 'buffer_complete' : 90,
-                "             \ 'syntax_complete' : 80,
-                "             \ 'include_complete' : 70,
-                "             \ 'snippets_complete' : 100,
-                "             \ 'vim_complete' : 10,
-                "             \ 'omni_complete' : 60,
-                "             \ 'other plugin sources' : 40,
-                "             \ 'other completefunc sources' : 30,
-                "             \ 'other ftplugin sources' : 20
                 "             \ }
 
             " }}}
@@ -1917,7 +1874,7 @@ syntax on
             " let g:Tlist_Max_Tag_Length = 25
             let g:Tlist_javascript_Hide_Extras = 0 " hide extra tag data
 
-            " FIXME highlighting
+            " TODO highlighting
             "TagListTagName  - Used for tag names
             "TagListTagScope - Used for tag scope
             "TagListTitle    - Used for tag titles
@@ -2169,13 +2126,6 @@ syntax on
             let g:TagmaTasksPrefix = '<Leader>t'
             let g:TagmaTasksTokens = ['FIXME', 'TODO', 'NOTE', 'XXX',
                         \ 'COMBAK', 'ISSUE', 'ERROR', 'FUCK']
-            "Token  | Marker | Highlight
-            "--------+--------+----------
-            "FIXME  | TF     | Error
-            "TODO   | TT     | Search
-            "NOTE   | TN     | Search
-            "XXX    | TX     | Normal
-            "OTHER  | T=     | Normal
         " }}}
 
         " TaskList: {{{ \tl ( \t map conflict with CommandT.vim )
@@ -3019,7 +2969,7 @@ syntax on
                 "   - Support microdata
                 "   - Support RDFa.
                 "   - Support WAI-ARIA.
-                " XXX learn upper features reference can find link in script readme.
+                " TODO learn upper features reference can find link in script readme.
                 " enable event-handler attributes support:
                 let g:html5_event_handler_attributes_complete = 1
                 " enable RDFa attributes support:
@@ -3576,8 +3526,8 @@ syntax on
                         \ }
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
-            let g:Powerline_colorscheme = "default"
-            let g:Powerline_stl_path_style = "filename" " filename, short, relative, full.
+            let g:Powerline_colorscheme = "default" " default, skwp
+            let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
                 "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
                 "call Pl#Theme#RemoveSegment({targetsegment})
                 "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
@@ -3662,7 +3612,7 @@ syntax on
             inoremap <c-e> <esc>:InlineEdit<cr>a
             let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
                 " detect <script> <style> tags like HTML
-            let b:inline_edit_html_like_filetypes = ['vimwiki', 'tpp']
+            let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
         " }}}
 
         " NrrwRgn (NarrowRegion) {{{ A Narrow Region Plugin similar to Emacs
@@ -3827,6 +3777,7 @@ syntax on
     " [ syntax for *** ] {{{
         " Txtfmt-The-Vim-Highlighter {{{ "Rich text" highlighting formatted with Vim
             " modeline: vim:ft=txtfmt || ft=c.txtfmt (mix)
+            " token(define, concealed), attributes,
             au! filetypedetect BufRead,BufNewFile *.txt setfiletype txtfmt
             " nested region
             "augroup filetypedetect
@@ -3905,10 +3856,11 @@ syntax on
     " }}}
 
     " [ Vim FAQ / Tips ] {{{
-        " Bundle 'chrisbra/vim_faq.git'
-            " :h vim-faq.
-        " Fortune_vimtips {{{ view vimtips.
+        " tips.vim {{{ show vim tips everytime when you enter vim.
+            " :NextTip
         " }}}
+
+        " Bundle 'chrisbra/vim_faq.git'
     " }}}
 " }}}
 
@@ -4008,14 +3960,14 @@ syntax on
                         \ 10: 'October', 11: 'November', 12: 'December'
                         \ }
 
-            " TODO
+            " [ extra ] {{{
+            " FIXME
             " function! VimwikiLinkHandler(link)
             "     let browser = 'firefox'
             "     " let link = vimwiki#base#resolve_scheme(link, 0)
             "     execute 'silent !xdg-open "'.browser.'" ' . a:link
             " endfunction
 
-            " [ extra ] {{{
             " Schemes:
             "   - [[file:///...]]
             "   - [[wiki#:this is a link|describ]]
@@ -4026,6 +3978,11 @@ syntax on
             "     execute 'silent !"'.browser.'" ' . shellescape(a:weblink, 1) . '&'
             " endfunction
             " call VimwikiWeblinkHandler(expand("<cWORD>"))
+
+            " TODO
+            " function! VimwikiLastChangeTimeStamp()
+            " endfunction
+            " autocmd FileType vimwiki :call VimwikiLastChangeTimeStamp()
 
             augroup DisableMBEInWiki
                 au!
@@ -4246,18 +4203,19 @@ syntax on
 
         " notes {{{ Easy note taking in Vim.
             " Usage:
-            "       - :Note -- start a new note.
-            "       - `:[edit|tabedit|split] note:filename`
-            "       - [visual text]<Leader>en/sn/tn. or :[Split|Tab]NoteFromSelectedText
-            "       - :write or :update to save notes.
-            "       - :Note strings -- to edit existing notes or new note be created.
-            "       - :SearchNotes keyword  or :SearchNotes /pattern/ for regex.
-            "       - :RelatedNotes -- back-references, find all notes refer to this file.
-            "       - :RecentNotes
-            "       - Navigating: gf, CTRL-W_f, CTRL-W_gf. (jump to open, split, tab)
-            "       - C-X_C-U, C-X_C-O for completing,
-            "       - embed filetype: embed highlighting, {{{type ...}}}
-            "       - bullets: <Tab>, <S-Tab>, <Alt-Left>, <Alt-Right>
+            " - :Note -- start a new note.
+            " - `:[edit|tabedit|split] note:filename`
+            " - [visual text]<Leader>en/sn/tn.
+            " - :[Split|Tab]NoteFromSelectedText
+            " - :write or :update to save notes.
+            " - :Note strings -- to edit existing notes or new note be created.
+            " - :SearchNotes keyword  or :SearchNotes /pattern/ for regex.
+            " - :RelatedNotes -- back-references, find all notes refer to this file.
+            " - :RecentNotes
+            " - Navigating: gf, CTRL-W_f, CTRL-W_gf. (jump to open, split, tab)
+            " - C-X_C-U, C-X_C-O for completing,
+            " - embed filetype: embed highlighting, {{{type ...}}}
+            " - bullets: <Tab>, <S-Tab>, <Alt-Left>, <Alt-Right>
             let g:notes_directory = '~/vimwiki/Notes'
             let g:notes_suffix = '.note'
             let g:notes_title_sync = 'prompt' " prompt, change_title, rename_file, no
@@ -4306,8 +4264,8 @@ syntax on
         " }}}
 
         " HyperList: <= WOIM {{{
-            "HyperList is a way to describe anything - any state, item(s), pattern,
-            "action, process, transition, program, instruction set etc.
+            " HyperList is a way to describe anything: any state, item(s),
+            " pattern, action, process, transition, program, instruction etc
         " }}}
 
         " VOoM: {{{ Vim two-pane outliner
@@ -4367,7 +4325,7 @@ syntax on
 
     " [ markup & write ] {{{
         " preview%3344 {{{
-            " <Leader>P => preview markup : markdown, rdoc, textile, html, rst, ronn
+            " <Leader>P => preview markup: markdown, rdoc, textile, html, rst
             let g:PreviewBrowsers='firefox,luakit,chromium-browser'
             " let g:PreviewCSSPath='/path/to/css/file'
             let g:PreviewMarkdownExt='markdown,md,mkd,mkdn,mdown'
@@ -4472,9 +4430,10 @@ syntax on
 
         " UltraBlog: local database for Blog WordPress.
 
-        " Tumble:
-            " {{{ :[range]Tumble [draft|publish] || :[ranger]TumbleLink
-            " || ListTumbles [draft|publish]
+        " Tumble: {{{ Tumble for Vim.
+            " :[range]Tumble [draft|published]
+            " :[ranger]TumbleLink
+            " :TumblesList [draft|publish]
             " ( here [ranger] can be selected by visual.)
             " markdown title at first line.
             let tumblr_email = 'numbchild@gmail.com'
@@ -4593,10 +4552,6 @@ syntax on
     " }}}
 
     " [ translate ] {{{
-        " youdao.dict
-            "map <Leader>d <Esc>:call Youdao()<CR>
-            "let g:youdao_key = '' " API key
-            "let g:youdao_keyfrom = '' " API keyfrom
     " }}}
 
     " [ format ] {{{
@@ -4642,7 +4597,7 @@ syntax on
             let g:AutoPairsMapSpace = 0
                 " error in abbreviations <space> auto expand.
             let g:AutoPairsCenterLine = 1
-            let g:AutoPairsFlyMode = 0 " XXX alpha.
+            let g:AutoPairsFlyMode = 0
         " }}}
 
         " delimitMate: {{{ auto closing of quotes, parenthesis, brackets etc.
@@ -4711,7 +4666,7 @@ syntax on
             let g:utl_opt_verbose=0 " 0=no (default), 1=yes
             let g:utl_opt_highlight_urls='yes' " 'yes' is default / 'no'
 
-            " XXX reference utl_rc.vim
+            " reference utl_rc.vim
             " HTTP
             " %u, %p for Unix, %P for Windows.
             if !exists("g:utl_cfg_hdl_scm_http_system")
@@ -4755,12 +4710,9 @@ syntax on
             " application/pdf
             let g:utl_cfg_hdl_mt_application_pdf = ":silent !evince '%p' &"
             " application/chm
-            " FIXME let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
+            " let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
             " application/doc
             let g:utl_cfg_hdl_mt_application_msword = ":silent !libreoffice '%p' &"
-        " }}}
-
-        " open-browser {{{
         " }}}
 
         " Elinks: {{{ <Leader>o/<leader>O, <C-j>/<C-k> :[n]LMarks :[n]LHist
