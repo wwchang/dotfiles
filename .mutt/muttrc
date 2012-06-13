@@ -14,12 +14,12 @@ source ~/.mutt/scores.muttrc
 source ~/.mutt/mailboxes.muttrc              #  define the list of folders to receive mail
 source ~/.mutt/non-standard.muttrc           #  support for mutt patch
 source ~/.mutt/spam.muttrc
- 
+
 # Hooks {{{
 source ~/.mutt/account-hooks.muttrc          #  define account-hooks
 source ~/.mutt/account_info.muttrc
 # source ~/.mutt/fcc-hooks.muttrc
-source ~/.mutt/fcc-save-hooks.muttrc         # 
+source ~/.mutt/fcc-save-hooks.muttrc         #
 source ~/.mutt/send-hooks.muttrc             #  define send-hooks
 source ~/.mutt/folder-hooks.muttrc           #  define folder-hooks
 # source ~/.mutt/save-hooks.muttrc             #  define save-hooks
@@ -28,9 +28,9 @@ source ~/.mutt/message-hooks.muttrc          #  define message-hooks
 
 source ~/.mutt/format.muttrc                #  define format
 
-# use shell to judge 
+# use shell to judge
+source ~/.mutt/colors/current.theme       #  define colours
 # source ~/.mutt/colors/white.theme       #  define colours
-source ~/.mutt/colors/black256_transparent.theme       #  define colours
 # source ~/.mutt/colors/black256.theme       #  define colours
 # source ~/.mutt/colors/solarized-dark-256.theme # solarized theme
 # source ~/.mutt/colors/solarized-light-256.theme # solarized theme
@@ -51,14 +51,14 @@ source ~/.mutt/gpg.muttrc
 source ~/.mutt/sidebar.muttrc
 
 # ========================================================
-# mutt load in order , so if you want to enable IMAP Gmail. 
+# mutt load in order , so if you want to enable IMAP Gmail.
 # You "must" to put source Gmail at hehinde
 # ========================================================
 # dynmatic load config . RTFM
-# Maildir 
+# Maildir
 # POP3
-# SMTP 
-# IMAP 
+# SMTP
+# IMAP
 
 # Gmail {{{
 # source ~/.mutt/IMAP
