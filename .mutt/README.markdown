@@ -20,6 +20,8 @@
                                            `--- Notify :
                                            |
                                             \__ Write : Vim
+                                            \__ attachment : press "p" (on PDF)
+                                             to choose printer to print. (PDF file)
 
 NOTE:
     1. store password with encrypt instead of plain text.

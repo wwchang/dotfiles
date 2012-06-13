@@ -59,4 +59,9 @@ application/x-zip-compressed; gzcat; copiousoutput
 application/postscript; ps2ascii %s; copiousoutput
 # like ranger to get archive's file list
 
+# [ print PDF ]
+# press "p" to select printer.
+# use mailcap's 'print' parameter.
+application/pdf; pdftotext -enc UTF-8 %s /dev/stdout; copiousoutput; print=scripts/select-print.sh %s
+
 # vim: ft=mailcap
