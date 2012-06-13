@@ -181,7 +181,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
         :0 ih
         * ^From: .*\/[^<]*
-        | export DISPLAY=:0 ; $NOTIFY "Email: $SUBJECT from" "$MATCH"
+        | export DISPLAY=:0 ; $NOTIFY "From $MATCH" "Email: $SUBJECT"
     }
 # }}}
 
@@ -485,6 +485,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*archlinux-cn\.googlegroups\.com
     Arch/archlinux-cn/
+    :0
+    * ^List-Id: .*arch-releng\.archlinux\.org
+    Arch/releng/
 # }}}
 
 # Maemo {{{

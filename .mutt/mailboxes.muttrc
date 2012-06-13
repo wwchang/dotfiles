@@ -63,6 +63,7 @@ mailboxes =Arch/dev-public
 mailboxes =Arch/pacman-dev
 mailboxes =Arch/aur-general
 mailboxes =Arch/archlinux-cn
+mailboxes =Arch/releng
 
 mailboxes =Linux
 
