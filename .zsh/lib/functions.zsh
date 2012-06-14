@@ -1,27 +1,27 @@
-function zsh_stats() {
+function zsh_stats.f() {
   history | awk '{print $2}' | sort | uniq -c | sort -rn | head
 }
 
-function uninstall_oh_my_zsh() {
+function uninstall_oh_my_zsh.f() {
   /usr/bin/env ZSH=$ZSH /bin/sh $ZSH/tools/uninstall.sh
 }
 
-function upgrade_oh_my_zsh() {
+function upgrade_oh_my_zsh.f() {
   /usr/bin/env ZSH=$ZSH /bin/sh $ZSH/tools/upgrade.sh
 }
 
-function take() {
+function take.f() {
   mkdir -p $1
   cd $1
 }
 
 # for Awesome's urxvt
-#function ok_() {
+#function ok.f() {
     #echo -ne '\a'
     #mplayer ~/bin/sounds/voice-complete.wav
 #}
 
-function say_() {
+function say.f() {
     # HELP << say hi OR say how+are+you
     # wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?tl=en&q=$1"; gnome-terminal -x bash -c "totem output.mp3"; sleep 4; totem --quit;
 
@@ -36,7 +36,7 @@ function say_() {
     local IFS=+;mplayer "http://translate.google.com/translate_tts?q=$*"
 }
 
-Emergency_() {
+Emergency.f() {
     while true
     do xset dpms force off
         sleep 0.3
@@ -47,7 +47,7 @@ Emergency_() {
     # Ctrl-C to stop.
 }
 
-function proxy_() {
+function proxy.f() {
     # FIXME
     function proxy_check() {
     }
@@ -111,7 +111,7 @@ function proxy_() {
     fi
 }
 
-#function vman_() {
+#function vman.f() {
     #if [ "$#" = "1" ]; then
         #man $* | col -b | vim -c 'set ft=man nomod nolist' -
     #else
@@ -121,7 +121,7 @@ function proxy_() {
 #}
 
 # by default man only show found first section. even if page exist in several sections.
-#function man_() {
+#function man.f() {
     ## man -a $*
 
     #man -f $*
@@ -143,7 +143,7 @@ function vim2HTML.f() {
     vim +"syn on" +TOhtml +"wqa" "$*"
 }
 
-#function todo_() {
+#function todo.f() {
    #test -f $HOME/.todo || touch $HOME/.todo
    #if test $# = 0
    #then
@@ -166,7 +166,7 @@ function vim2HTML.f() {
    #fi
 #}
 
-#function note_() {
+#function note.f() {
    ##if file doesn't exist, create it
    #[ -f $HOME/.notes ] || touch $HOME/.notes
    ##no arguments, print file
@@ -184,18 +184,18 @@ function vim2HTML.f() {
    #fi
 #}
 
-#function calc_() { echo "scale=3;$@" | bc -l ; }
+#function calc.f() { echo "scale=3;$@" | bc -l ; }
 
-#function output_null_() { $* &>/dev/null }
-#function port_watch_() { watch -n1 "netstat -tn | grep -P :$1" }
+#function output_null.f() { $* &>/dev/null }
+#function port_watch.f() { watch -n1 "netstat -tn | grep -P :$1" }
 
-#function pasteImg_() {
+#function pasteImg.f() {
     #curl -s --form image=@$1 --form submit=OK http://imm.io/store/ | awk -F '\"[:,]\"' '{print $4}';
 #}
 
 
 # tmux
-#function tmuxSessions() {
+#function tmuxSessions.f() {
     #if [[ -n $(tmux list-sessions) ]]; then
         #sessions_list=$(tmux list-sessions | sed "s/.*/'&'/g" | tr '\n' ' ')
         #select Tsession in ${sessions_list[*]}; do
