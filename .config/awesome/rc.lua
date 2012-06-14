@@ -109,7 +109,7 @@ require("bashets")
 -- [ settings ] {{{
     -- terminal = "x-terminal-emulator"
     -- terminal = "gnome-terminal"
-    terminal = "urxvtc" -- USE urxvtc for daemon urxvtd.
+    terminal = "urxvt" -- USE urxvtc for daemon urxvtd.
     editor = os.getenv("EDITOR") or "vim"
     editor_cmd = terminal .. " -e " .. editor
     browser = "/usr/bin/firefox" -- browser = "chromium%-browser"
