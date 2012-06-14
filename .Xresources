@@ -260,10 +260,10 @@ URxvt*highlightTextColor: #151515
 !foreground                      = Black
 !background                      = Whit
 
-!foreground, background, cursorColor, cursorColor2, colorBD, colorUL as a number 0-15, as a convenient shorthand to reference the colour name of color0-color15.
+! foreground, background, cursorColor, cursorColor2, colorBD, colorUL as a number 0-15
+!as a convenient shorthand to reference the colour name of color0-color15.
 
-! ALPHA VALUE !!!
-
+! gray colorscheme for weechat IRC. {{{
 *foreground: #D2D6D1
 *background: #202428
 
@@ -304,3 +304,4 @@ URxvt*highlightTextColor: #151515
 *cursorColor2: #FF5B5B
 *colorBD:    #FF2929
 *colorUL:    #EAA200
+! }}}
