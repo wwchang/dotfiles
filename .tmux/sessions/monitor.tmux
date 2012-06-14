@@ -28,6 +28,8 @@
     # [ session ] {{{
     # FIXME because some monitor need root premission. so write a tmux script.
     # XXX raise a prompt to ask for sudo password. use:
+    # read password from user only once, pass this input to a variable. used by
+    # echo for sudo -S.
     # 'zsh -c "sudo nethogs ppp0"'
     # or: 'echo "password" | sudo -S command'
     # for network monitor, need to detect eth0 or ppp0 or wlan0 interface.
@@ -40,7 +42,7 @@
     select-pane -t 1
     split-window -v -p 30 'echo "PASSWORD" | sudo -S iotop"'
     # [ log ]
-    new-window -n log 'multitail -i /var/log/apache2/error.log -i /var/log/apache2/access.log -i /var/log/mail.err -i /var/log/mysql.err'
+    new-window -n log 'multitail -i /var/log/apache2/error.log -i /var/log/apache2/access.log -i /var/log/mail.err -i ~/.procmail.log'
     # [ network ]
     new-window -n network 'echo "PASSWORD" | sudo -S nethogs -d 3 ppp0"'
     split-window -h 'bmon'
