@@ -201,9 +201,9 @@ require("bashets")
     --]]
 
 --[[ sexec examples
-    sexec("urxvt -name ncmpcpp -e sh -c 'ncmpcpp play'")
-    sexec("urxvt -name wiki -e sh -c 'vim +VimwikiIndex +Calendar' ")
-    sexec("urxvt -name 8 -e sh -c 'xrdb ~/.Xresources; sleep 30 ' ")
+    sexec(terminal .. "-name ncmpcpp -e sh -c 'ncmpcpp play'")
+    sexec(terminal .. "-name wiki -e sh -c 'vim +VimwikiIndex +Calendar' ")
+    sexec(terminal .. "-name 8 -e sh -c 'xrdb ~/.Xresources; sleep 30 ' ")
 --]]
 
 --[[
@@ -671,9 +671,9 @@ end
 
     -- register button
     maildirwidget:buttons(awful.util.table.join(
-       awful.button({ }, 1, function () exec("urxvt -e mutt") end),
-       awful.button({ }, 4, function () exec("urxvt -e mutt") end),
-       awful.button({ }, 5, function () exec("urxvt -e mutt") end)
+       awful.button({ }, 1, function () exec(terminal .. "-e mutt") end),
+       awful.button({ }, 4, function () exec(terminal .. "-e mutt") end),
+       awful.button({ }, 5, function () exec(terminal .. "-e mutt") end)
     ))
     maildirwidget:buttons(maildirwidget:buttons())
     -- }}}
@@ -757,7 +757,7 @@ end
 
     -- Register buttons
     volbar.widget:buttons(awful.util.table.join(
-        awful.button({ }, 1, function () exec("urxvt -e alsamixer") end),
+        awful.button({ }, 1, function () exec(terminal .. "-e alsamixer") end),
         awful.button({ }, 2, function () exec("amixer -q set Master mute") end),
         awful.button({ }, 3, function () exec("amixer -q set Master unmute") end),
         awful.button({ }, 4, function () exec("amixer -q set Master 2dB+", false) end),
