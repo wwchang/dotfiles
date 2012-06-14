@@ -36,6 +36,15 @@ snippet     date_time
 alias       dt
     `strftime("%H:%M:%S")`
 
+snippet     lastchange
+abbr        Last Change: ...
+prev_word   '^'
+    Last Change: `strftime("%Y-%m-%d %H:%M")`
+snippet     filename
+abbr        current filename
+prev_word   '^'
+    Filename: `expand("%")`
+
 # [ author info ]
 snippet     author
 abbr        author info

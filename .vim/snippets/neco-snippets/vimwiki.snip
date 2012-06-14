@@ -14,11 +14,11 @@ prev_word   '^'
     }}$
 
 # links scheme: URL, local:, file:, image.
-snippet     link_altText
+snippet     link_alt
 abbr        link with alternate text
 prev_word   '^'
         [[${1:link}|${2:alternate text}]] ${0}
-snippet     image_display
+snippet     img_disp
 abbr        Transclusion (Wiki-Include) link
 prev_word   '^'
     {{local:${1:relative/path/to/file}}} ${0}
