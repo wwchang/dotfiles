@@ -296,15 +296,17 @@ zshaddhistory() {
     ( [[ `id -u $USER` -eq 0 ]] || [[ $first_arg == sudo ]] ) && logger -t "$USER@${TTY/\/dev\/}[$PWD]" $LASTCMD
 }
 # }}}
-# e.g. $ cmd # this is comment
-setopt INTERACTIVE_COMMENTS
-# line edit highlight mode
-# Ctrl+@ set mark, between marks and cursor is "region".
-zle_highlight=(region:bg=magenta # choose region.
-                special:bold # special characters
-                isearch:underline) # keywords when searching.
 
-# Fcitx {{{
+
+# confirm when reboot/halt/shutdown {{{
+confirm_yes() {
+    sure=$(dialog --stdout  --inputbox "Are you sure that you want to run '$1' command? Type YES to confirm." 10 50)
+    [[ $sure == YES ]] && $1
+}
+
+for c in reboot halt shutdown; do alias $c="confirm_yes $c"; done
+# }}}
+
     export XMODIFIERS=@im=fcitx
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
