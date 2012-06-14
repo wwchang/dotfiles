@@ -133,7 +133,7 @@ function proxy_() {
     # $MANOPT
 #}
 
-function vim2HTML_() {
+function vim2HTML.f() {
     #for f in *.[ch]; do
         #vim -f +"syn on" +"run! syntax/2html.vim" +"wq" +"q" $f
     #done
@@ -204,6 +204,14 @@ function vim2HTML_() {
         #tmux
     #fi
 #}
+
+function mount.f() {
+    if [[ $* != 2 ]]; then
+        echo "Usage: mount.f /dev/sdb /media/USB"
+    else
+        sudo mount -o user,rw,noexec,uid=$UID,gid=$GID "$1" "$2"
+    fi
+}
 
 #user-complete() {
     #if [[ -n $BUFFER ]]; then # if this line has content
