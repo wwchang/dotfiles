@@ -31,12 +31,61 @@ awesome_pid="$(pgrep awesome)"
 eval $(tr '\0' '\n' < /proc/$awesome_pid/environ | sed -nr '/^(DISPLAY|XAUTHORITY)=/p')
 
 if [[ $(pgrep awesome) != "" ]]; then
-    mplayer ~/bin/sounds/voice-incoming-transmission.wav &>/dev/null
-    `echo \
-        'naughty.notify({\
-        title = "<span color=\"#87AF00\">┌─[  ' "$1" '  ]</span>", \
-        text  = "<span color=\"#87AF00\">└─╼ </span> \ <span color=\"#808080\">' "$2" '</span>", })' \
-        | awesome-client -` >/dev/null
+    notify_type=$(echo "$1" | cut -d ':' -f 1)
+    if [[ $( echo "$1" | grep "In Private Message" ) != "" ]]; then
+        notify_type="IRC"
+    fi
+        # Email: IRC: Notify: Urgent:
+    case $notify_type in
+        Email)
+            mplayer ~/bin/sounds/voice-incoming-transmission.wav
+            `echo \
+            'naughty.notify({\
+            timeout = 40, position = "bottom_left", \
+            width = 500, height = nil, \
+            fg = "#000000", bg = "#87AF00", \
+            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            | awesome-client -` >/dev/null
+            ;;
+        IRC)
+            mplayer ~/bin/sounds/voice-incoming-transmission.wav
+            `echo \
+            'naughty.notify({\
+            timeout = 40, position = "bottom_left", \
+            width = nil, height = nil, \
+            fg = "#000000", bg = "#00AFFF", \
+            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            | awesome-client -` >/dev/null
+            ;;
+        Notify)
+            `echo \
+            'naughty.notify({\
+            timeout = 10, position = "top_left", \
+            fg = "#000000", bg = "#5F8700", \
+            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            | awesome-client -` >/dev/null
+            ;;
+        Urgent)
+            `echo \
+            'naughty.notify({\
+            timeout = 10, position = "top_left", \
+            bg = "red", \
+            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            | awesome-client -` >/dev/null
+            ;;
+        *)
+            `echo \
+            'naughty.notify({\
+            timeout = 10, position = "bottom_right", \
+            title = "<span color=\"#FFFFFF\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"#FFFFFF\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            | awesome-client -` >/dev/null
+            ;;
+    esac
 
     # `env DISPLAY=:0.0 notify-send -t 10000 "┌─[<span color='#FF0000'>"$1"</span>]" "└─╼ <span color='#55FFFF'>'$2'</span>"` >/dev/null
 

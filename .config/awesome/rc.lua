@@ -168,7 +168,7 @@ require("bashets")
     naughty.config.default_preset.timeout          = 10
     naughty.config.default_preset.screen           = 1
         -- top_left, top_right, bottom_left, bottom_right.
-    naughty.config.default_preset.position         = "bottom_left"
+    naughty.config.default_preset.position         = "top_left"
     naughty.config.default_preset.margin           = 20
     naughty.config.default_preset.height           = nil -- default = nil
     naughty.config.default_preset.width            = 450
@@ -235,7 +235,6 @@ run_once("urxvtd -q -o -f")
 run_once("mpd")
 run_once("mlnet")
 run_once("nm-applet")
-run_once("anki")
 
 -- TODO what does this screen argument means.
 -- run_once("luakit", nil, nil, 6)
@@ -556,7 +555,7 @@ end
 
 -- sentence {{{
     mytextword = widget({ type = "textbox" })
-    mytextword.text = "" .. cbrown .. "shape ideas into code » " .. coldef .. ""
+    mytextword.text = "" .. ccyan .. "shape ideas into code »" .. coldef .. cred .. " 负气流浪, 自我放逐 " .. coldef .. ""
 -- }}}
 
 -- separator {{{
