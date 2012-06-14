@@ -91,22 +91,23 @@ mailboxes =GNU/gnu
 
 mailboxes =apps
 mailboxes =apps/Awesome
+mailboxes =apps/FVWM
 mailboxes =apps/Mutt
 mailboxes =apps/tmux
 mailboxes =apps/screen
 mailboxes =apps/weechat
-mailboxes =apps/FVWM
 mailboxes =apps/Conky
 mailboxes =apps/Canto
 mailboxes =apps/ranger
-mailboxes =apps/MLDonkey
+mailboxes =apps/ledger
 mailboxes =apps/prey
+mailboxes =apps/pandoc
+mailboxes =apps/mosh
+mailboxes =apps/gitit
+mailboxes =apps/Wayland
 mailboxes =apps/elinks
 mailboxes =apps/bogofilter
-mailboxes =apps/pandoc
-mailboxes =apps/gitit
-mailboxes =apps/mosh
-mailboxes =apps/Wayland
+mailboxes =apps/MLDonkey
 
 mailboxes =censorship
 

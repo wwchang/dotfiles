@@ -165,7 +165,8 @@ subscribe screen screen <screen-users@gnu.org>
 subscribe conky Conky <conky-users@lists.sourceforge.net>
 # Wayland
 subscribe wayland Wayland <wayland-devel@list.freedesktop.org>
-
+# ledger
+subscribe ledger ledger-cli <ledger-cli@googlegroups.com>
 # vimwiki
 subscribe vimwiki vimwiki <vimwiki@googlegroups.com>
 
