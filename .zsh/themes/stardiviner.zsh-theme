@@ -41,7 +41,8 @@ else
     # user_prompt="»"
 fi
 
-sign_prompt="%{$fg[black]%}[%{$fg_bold[red]%}妖%{$reset_color%}%{$fg[black]%}] %{$reset_color%}"
+# sign_prompt="%{$fg[black]%}{%{$fg_bold[red]%}妖%{$reset_color%}%{$fg[black]%}}%{$reset_color%}"
+sign_prompt="%{$fg[black]%}{%{$fg_bold[red]%}ハック%{$reset_color%}%{$fg[black]%}}%{$reset_color%}"
 # mpd status
 if [ -n "`mpc status | grep playing`" ]; then
     music_prompt="%{$fg_bold[black]%}| %{$fg_bold[cyan]%}♪%{$reset_color%}"
@@ -66,7 +67,7 @@ ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ∓"
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
 ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ⌥"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[white]%} ⚡"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ⚡"
 # ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ⭠"
 # }}}
 
@@ -112,7 +113,7 @@ local full_path='%{$fg[cyan]%}%~%{$reset_color%}'
 local base_path='%{$fg_bold[cyan]%}%c%{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%} $user_prompt %{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.$) %{$reset_color%}'
-local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.➜) %{$reset_color%}'
+local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#./>) %{$reset_color%}'
 local return_code='%(?..%{$fg[red]%}%? ↵%{$reset_color%})'
 
 local username='%{$fg_bold[green]%}%n%{$reset_color%}'
@@ -185,8 +186,8 @@ fi
 
 # left side PROMPT
 # ${music_prompt}
-PROMPT=" ${ssh_info} [ ${full_path} ]
-${git_branch}${git_status}${svn_info}${rvm_info} ${sign_prompt}${pre_prompt}"
+PROMPT=" ${ssh_info} ${sign_prompt} [ ${full_path} ]
+${git_branch}${git_status}${svn_info}${rvm_info} ${pre_prompt}"
 # PS1="${return_code}"
 
 # right side PROMPT
