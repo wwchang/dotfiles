@@ -26,6 +26,8 @@ alias l='ls++' # use ls-- custom plugin.
 alias ll='ls -l'
 alias sl=ls # often screw this up
 
+alias grep='grep --color=auto'
+
 alias afind='ack-grep -il'
 
 # ================ customiz ====================
@@ -77,7 +79,10 @@ alias recordmydesktop='recordmydesktop --no-frame'
 # Vim
 # alias vimwiki='vim -c "normal \ww" +Calendar '
 alias vimwiki='vim +VimwikiIndex'
-alias vimtasks="vim ~/vimwiki/wiki/Dreams/Dreams.wiki -c 'vsplit ~/vimwiki/wiki/plan.wiki' +Calendar"
+# alias vimtasks="vim ~/vimwiki/wiki/Dreams/Dreams.wiki -c 'vsplit ~/vimwiki/wiki/plan.wiki' +Voom"
+alias vimtasks="vim ~/vimwiki/wiki/Dreams/Dreams.wiki -c 'vsplit ~/vimwiki/wiki/plan.wiki'"
+alias vim.NERDTree='vim +NERDTree'
+alias vim.benchmarking='vim --startuptime startup.log -c q'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -114,5 +119,8 @@ alias chaoliu='feh http://i821.photobucket.com/albums/zz136/newt66y/dns.gif'
 alias conky_reload='killall -SIGUSR1 conky'
 alias conky_debug='conky -D'
 alias conky_debug_more='conky -DD'
+
+# wget
+alias wget_clone_site='wget -r -p -k -np -nc --follow-ftp --limit-rate=80k'
 
 # MLDonkey
