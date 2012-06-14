@@ -1,7 +1,10 @@
 # build up
-                                               / encrypt : gpg.
-                                                - aliases.muttrc & abook & lbdb
-                                             - Send : sendmail
+                                                  /-- encrypt : gpg.
+                                                 /    (after write email,
+                                                /     press "p"
+                                               /     show up encrypt/sign/clear menu)
+                                              /-- aliases.muttrc & abook & lbdb
+                                             /-- Send : sendmail
                          bogofilter         /
     getmail -> procmail ----------> INBOX -> Read.
                                            |    `- bogofilter for spam
@@ -16,8 +19,8 @@
                                            |      `- signature
                                            |      `- SMTP, POP3, IMAP ...
                                            |      `-
-                                           `--- Search : Mairix,
-                                           `--- Notify :
+                                           \__ Search : Mairix,
+                                           \__ Notify :
                                            |
                                             \__ Write : Vim
                                             \__ attachment : press "p" (on PDF)
