@@ -417,4 +417,14 @@ zle_highlight=(region:bg=magenta # choose region.
 # fi
 # # }}}
 
+# tmux {{{
+if [ -n "$TMUX" ]; then # if terminal is Tmux.
+    echo "Now, you're in tmux."
+elif [ -n "$SCREEN" ]; then
+    echo "Now, you're in screen"
+else
+    tmux
+fi
+# }}}
+
 # vim: foldmethod=marker
