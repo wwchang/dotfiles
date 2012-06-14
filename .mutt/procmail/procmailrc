@@ -428,6 +428,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*wayland-devel\.lists\.freedesktop\.org
     apps/Wayland/
+    :0
+    * ^From: .*ledger-cli@googlegroups\.com
+    apps/ledger/
 # }}}
 
 # GNU {{{
