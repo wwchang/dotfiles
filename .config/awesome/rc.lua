@@ -322,6 +322,24 @@ end
     )
 -- }}}
 
+-- sentence {{{
+    mytextword = widget({ type = "textbox" })
+    -- mytextword.text = "" .. ccyan .. "九州 - 海上牧云记 » " .. coldef .. cred .. " 牧云笙 " .. coldef .. ""
+
+    statements_file = io.open(configdir .. "/statements.txt", "r")
+    mytimer = timer({ timeout = 60*5 })
+    mytimer:add_signal("timeout", function()
+        text_line = statements_file:read("*line")
+        if text_line then
+            mytextword.text =  "" .. cred .. "九州 - 海上牧云记 » " .. coldef .. ccyan .. text_line .. coldef .. ""
+        else
+            statements_file:seek("set")
+            -- "set": begin of file, "cur": current line, "end": end of file.
+        end
+    end)
+    mytimer:start()
+-- }}}
+
 -- CPU {{{
     cpuicon = widget({ type = "imagebox" })
     cpuicon.image = image(beautiful.widget_cpu)
@@ -553,11 +571,6 @@ end
     --'ZSHC': the Montreal ICAO code. (HangZhou China)
 -- }}}
 
--- sentence {{{
-    mytextword = widget({ type = "textbox" })
-    mytextword.text = "" .. ccyan .. "shape ideas into code »" .. coldef .. cred .. " 负气流浪, 自我放逐 " .. coldef .. ""
--- }}}
-
 -- separator {{{
     foursquare = widget({ type = "textbox" })
     foursquare.text  = "<span color='#87AF00'> ⌘ </span>"
@@ -664,8 +677,7 @@ end
     -- update every N seconds. {["maildir1"="name1", ["maildir2"]="name2"]}
     vicious.register(
         maildirwidget, vicious.widgets.maildir,
-        { ["INBOX"]="Inbox", ["unsure"]="unsure" },
-        10, mdir
+        { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 3600, mdir
         )
 
     -- register button
@@ -1305,16 +1317,19 @@ root.buttons(awful.util.table.join(
 
         -- prompt {{{
 
-        -- default
+        -- default prompt
         -- awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
         -- dmenu prompt
-        awful.key({ modkey },            "r",
+        awful.key({ modkey }, "r",
             function ()
-                awful.util.spawn("dmenu_run -i -p 'Run command:' -nb '" ..
-                beautiful.bg_normal .. "' -nf '" .. beautiful.fg_normal ..
-                "' -sb '" .. beautiful.bg_focus ..
-                "' -sf '" .. beautiful.fg_focus .. "'")
+                awful.util.spawn("dmenu_run -i -p 'Run command:' \
+                -nb '" .. beautiful.bg_normal .. "' \
+                -nf '" .. beautiful.fg_normal .. "' \
+                -sb '" .. beautiful.bg_focus .. "' \
+                -sf '" .. beautiful.fg_focus .. "' \
+                -fn '" .. beautiful.font .. "' \
+                ")
             end
         ),
 
