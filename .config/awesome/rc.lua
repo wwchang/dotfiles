@@ -327,7 +327,7 @@ end
     -- mytextword.text = "" .. ccyan .. "九州 - 海上牧云记 » " .. coldef .. cred .. " 牧云笙 " .. coldef .. ""
 
     statements_file = io.open(configdir .. "/statements.txt", "r")
-    mytimer = timer({ timeout = 60*5 })
+    mytimer = timer({ timeout = 5 })
     mytimer:add_signal("timeout", function()
         text_line = statements_file:read("*line")
         if text_line then
@@ -335,6 +335,13 @@ end
         else
             statements_file:seek("set")
             -- "set": begin of file, "cur": current line, "end": end of file.
+        end
+        if mpdwidget.visible == true then
+            mytextword.visible = false
+            musictext.visible = true
+        elseif mpdwidget.visible == false then
+            mytextword.visible = true
+            musictext.visible = false
         end
     end)
     mytimer:start()
@@ -791,11 +798,14 @@ end
         mpdwidget, vicious.widgets.mpd,
         function (widget, args)
             if args["{state}"] == "Stop" then
+                mpdwidget.visible = false
                 return "" .. cblack .. "Stop" .. coldef .. ""
             elseif args["{state}"] == "Play" then
+                mpdwidget.visible = true
                 return "" .. cblue .. args["{Title}"] .. " - " ..
                 args["{Artist}"] .. coldef .. ""
             elseif args["{state}"] == "Pause" then
+                mpdwidget.visible = false
                 return "" .. cdgrey .. "Pause" .. coldef .. ""
             end
         end)
