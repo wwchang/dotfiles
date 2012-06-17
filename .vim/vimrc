@@ -1021,6 +1021,7 @@ endif
         call vam#ActivateAddons(['html5'])
         call vam#ActivateAddons(['HTML5_Syntax_File'])
         call vam#ActivateAddons(['Better_CSS_Syntax_for_Vim'])
+        " call vam#ActivateAddons(['css3_mod'])
             " JavaScript
         call vam#ActivateAddons(['jsflakes%4057'])
         call vam#ActivateAddons(['jsruntime'])
