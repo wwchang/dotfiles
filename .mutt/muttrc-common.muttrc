@@ -11,7 +11,7 @@
 
 
 set hidden_host    = yes
-set include        = ask-yes
+set include        = ask-yes # include original email body.
 set mark_old       = yes  # mark new mails as old when leave Mutt.
 set copy           = no
 set beep           = yes
@@ -104,11 +104,12 @@ set reply_to = ask-yes
 # excludes you from list
 unset metoo
 unset reply_self
-# set reply_regexp = "^(re([\[0-9\]+])*|aw| Reply)(:[ \t]|：)"
+# set reply_regexp = "^(re([\[0-9\]+])*|aw|回复|答复|Reply)(:[ \t]|：)"
+set reply_regexp="^(re([\[0-9\]+])*|aw|回复|答复)[:：][ \t]*"
 
 # resolve
 # whether move to next mail when you press "t" or "D" those marks.
-set resolve = no
+set resolve = yes
 
 # -------- alias  ---------------
 # alias_file
@@ -231,7 +232,7 @@ set user_agent = yes
 
 # pager_index_lines
 # how many lines to leave to display mail list when you are reading a mail with pager.
-set pager_index_lines = 8
+set pager_index_lines = 10
 
 # notice, press "L" to reply , "r" will reply to personal mail.
 set followup_to = yes
