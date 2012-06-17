@@ -439,7 +439,7 @@ endif
     set foldlevelstart=1    " default which foldlevel to start fold.
     set foldmarker={{{,}}}      " fold marker
     set foldminlines=3      " fold minlines
-    set foldcolumn=0        " 3 colums ahead of line number.
+    set foldcolumn=2        " colums ahead of line number.
     set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
 
         "set foldtext=VimrcFoldText() " {{{
