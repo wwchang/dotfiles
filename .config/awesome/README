@@ -1,16 +1,5 @@
-== * remove icons == 
-    $ cd /usr/share/awesome/lib/awful/widget/
-    /usr/share/awesome/lib/awful/widget$ sudo vim tasklist.lua 
-    Find the line (around line 123 in function called local function widget_tasklist_label_common(c, args)) like:
-    text = text .. "</span>"
-    -- return text, bg, statRemove icons
-    genjix@l:~$ cd /usr/share/awesome/lib/awful/widget/
-    genjix@l:/usr/share/awesome/lib/awful/widget$ sudo vim tasklist.lua 
-    Find the line (around line 123 in function called local function widget_tasklist_label_common(c, args)) like:
-    ----------------------------------------------------
-    text = text .. "</span>"
-    -- return text, bg, status_image, c.icon
-    return text, bg, status_image, nil
-    end
-    -----------------------------------------------------
-    Commenting it with -- and changing the last c.icon to nil like above
+# build up
+    `- http://awesome.naquadah.org/wiki/Blingbling BlingBling
+    `- awesomepd (MPD) http://awesome.naquadah.org/wiki/Awesompd_widget
+
+> vim: ft=markdown
