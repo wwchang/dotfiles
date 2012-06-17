@@ -1811,7 +1811,7 @@ syntax on
         " SonicTemplate: {{{ Easy and high speed coding method.
             " :Template <Tab>
             let g:template_vim_template_dir = [
-                        \ '$HOME/.vim/templates/SonicTemplate/'
+                        \ '$HOME/.vim/template/SonicTemplate/'
                         \ ]
                 " template filename rule:
                 " [kind]-[name].[extension]
@@ -1822,7 +1822,7 @@ syntax on
         " template {{{ read the template file automatically when edit new file.
             " Usage:
             "   - :[line]TemplateLoad[!] [pattern]
-            let g:template_basedir = ['$HOME/.vim/templates/template']
+            let g:template_basedir = ['$HOME/.vim/template/template']
             let g:template_files = 'template/**'
             let g:template_free_pattern = 'template'
         " }}}
@@ -2742,7 +2742,7 @@ syntax on
 
         " license_loader {{{ a vim script to load a license template.
             " Usage: :call LoadMyLicense('apache')
-            " license template in templates/license/*
+            " license template in template/license/*
             let g:T_AUTHOR = "stardiviner"
             let g:T_AUTHOR_EMAIL = "numbchild@gmail.com"
             let g:T_DATE_FORMAT = "%c"
