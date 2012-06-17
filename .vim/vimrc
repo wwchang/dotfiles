@@ -973,6 +973,7 @@ endif
         call vam#ActivateAddons(['unite-ack'])
         call vam#ActivateAddons(['EasyGrep'])
         call vam#ActivateAddons(['ack'])
+        call vam#ActivateAddons(['buffers_search_and_replace'])
             " comment
         call vam#ActivateAddons(['commentary'])
         "call vam#ActivateAddons(['tComment'])
@@ -2487,6 +2488,15 @@ syntax on
             " $ apt-get install ack-grep (Perl module App:Ack)
             let g:ackprg="ack-grep -H --nocolor --nogroup --column"
             " nnoremap <Leader>ak <Esc>:Ack!
+        " }}}
+
+        " buffers_search_and_replace {{{ powerful buffer(s) search & replace tool.
+            " Usage:
+            "   - [range]Bs[flag] <search regex>
+            "   - flags:
+            "       - c -- current buffer
+            "       - e -- exclude
+            "       - f --
         " }}}
     " }}}
 
