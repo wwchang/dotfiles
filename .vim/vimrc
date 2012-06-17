@@ -1581,6 +1581,7 @@ syntax on
                     "   3 : both found.
                 " neocomplcache#sources#snippets_complete#expandable()
                 " neocomplcache#sources#snippets_complete#jumpable()
+                " neocomplcache#sources#snippets_complete#get_snippets_dir()
                 " :NeoComplcacheEditSnippets [filetype],
                 " <Plug>(neocomplcache_snippets_expand) -> expand_or_jump
                 " <Plug>(neocomplcache_snippets_jump)   -> jump_or_expand
@@ -1597,9 +1598,6 @@ syntax on
                 "       -> check backspace
                 "           -> <Tab>
                 "               -> User defined complete.
-                " FIXME add force_expand into <Tab> manual complete.
-                " \ : neocomplcache#sources#snippets_complete#force_expandable() ?
-                " \ "\<Plug>(neocomplcache_snippets_force_expand)"
                 " Manually <Tab> complete.
                 imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
                         \ "\<Plug>(neocomplcache_snippets_expand)"
@@ -2494,6 +2492,7 @@ syntax on
                     "               bundle/bundled_gem/routes/root/command]
                 " unite-outline : provides your Vim's buffer with the outline view.
                     " Usage: :Unite outline
+                " unite-adb : unite.vim Android Debug Bridge
                 " unite-oreore :
                 " unite-mark :
                 " unite-locate : find/open files easily using locate command.
