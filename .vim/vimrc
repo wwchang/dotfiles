@@ -950,7 +950,7 @@ endif
         " call vam#ActivateAddons(['CCTree'])
             " call vam#ActivateAddons(['github:brookhong/cscope.vim'])
             " buffers
-        call vam#ActivateAddons(['Tagma_Buffer_Manager'])
+        " call vam#ActivateAddons(['Tagma_Buffer_Manager'])
         "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
         "call vam#ActivateAddons(['LustyJuggler'])
             " tab manager
@@ -1034,16 +1034,16 @@ endif
             " Dart
         call vam#ActivateAddons(['Dart'])
             " DBMS & SQL & NoSQL
-        call vam#ActivateAddons(['dbext'])
-        call vam#ActivateAddons(['VDBI'])
-        call vam#ActivateAddons(['SQLUtilities'])
+        " call vam#ActivateAddons(['dbext'])
+        " call vam#ActivateAddons(['VDBI'])
+        " call vam#ActivateAddons(['SQLUtilities'])
             " PHP
         "call vam#ActivateAddons(['DBGPavim'])
         "call vam#ActivateAddons(['Xdebug'])
         "call vam#ActivateAddons(['vim-addon-xdebug'])
-        call vam#ActivateAddons(['phpqa'])
+        " call vam#ActivateAddons(['phpqa'])
         "call vam#ActivateAddons(['PHPUnit_QF'])
-        call vam#ActivateAddons(['PIV'])
+        " call vam#ActivateAddons(['PIV'])
         " call vam#ActivateAddons(['github:tobyS/vip'])
         "call vam#ActivateAddons(['pdv-standalone'])
         "call vam#ActivateAddons(['cakephp'])
@@ -1052,22 +1052,22 @@ endif
         call vam#ActivateAddons(['vim-ruby'])
         " call vam#ActivateAddons(['neco-rubymf'])
         call vam#ActivateAddons(['neco-rake'])
-        call vam#ActivateAddons(['rails'])
-        call vam#ActivateAddons(['vroom'])
+        " call vam#ActivateAddons(['rails'])
+        " call vam#ActivateAddons(['vroom'])
         "call vam#ActivateAddons(['RbREPL'])
             " Lisp
-        call vam#ActivateAddons(['slimv'])
-        call vam#ActivateAddons(['Lisper'])
-        call vam#ActivateAddons(['paredit'])
+        " call vam#ActivateAddons(['slimv'])
+        " call vam#ActivateAddons(['Lisper'])
+        " call vam#ActivateAddons(['paredit'])
             " Scheme
             " VimL
         "call vam#ActivateAddons(['Vim-Support'])
             " Lua
-        call vam#ActivateAddons(['lua'])
-        call vam#ActivateAddons(['lua_omni'])
+        " call vam#ActivateAddons(['lua'])
+        " call vam#ActivateAddons(['lua_omni'])
         " call vam#ActivateAddons(['luainspect'])
             " Haskell using ghc-mod
-        call vam#ActivateAddons(['neco-ghc'])
+        " call vam#ActivateAddons(['neco-ghc'])
             " R
         "call vam#ActivateAddons(['Vim-R-plugin'])
             " Perl
@@ -1087,12 +1087,12 @@ endif
         call vam#ActivateAddons(['speeddating'])
         call vam#ActivateAddons(['github:mattn/calendar-vim'])
             " outliner
-        call vam#ActivateAddons(['HyperList'])
+        " call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
             " TeX & LaTeX
-        call vam#ActivateAddons(['TeX_9'])
-        call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
-        call vam#ActivateAddons(['TeX-PDF'])
+        " call vam#ActivateAddons(['TeX_9'])
+        " call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
+        " call vam#ActivateAddons(['TeX-PDF'])
             " markup & markdown
         call vam#ActivateAddons(['preview%3344'])
             " encrypt
