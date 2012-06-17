@@ -1120,6 +1120,7 @@ endif
         "call vam#ActivateAddons(['VIM_Color_Picker'])
         "call vam#ActivateAddons(['nosyntaxwords'])
             " colorschemes
+        call vam#ActivateAddons(['galaxy'])
             " mark & position & session
                 " mark several words in different colors simultaneously.
         "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
@@ -3871,6 +3872,15 @@ syntax on
     " }}}
 
     " [ colorscheme ] {{{
+        " galaxy {{{ a colorscheme tries to make colorscheming simpler.
+            " Require: colorv
+            " Usage:
+            " - :colorscheme galaxy -- start galaxy
+            " - :Galaxy {scheme}  -- Schemes Window
+            " - :GalaxyScreen -- Schemes details
+            " - :GalaxyLoad {scheme} -- Load Galaxy scheme.
+        " }}}
+
         " ScrollColors:
             " :ScrollColors
             " \[n|p] to choose colorscheme
