@@ -109,7 +109,7 @@ set reply_regexp="^(re([\[0-9\]+])*|aw|回复|答复)[:：][ \t]*"
 
 # resolve
 # whether move to next mail when you press "t" or "D" those marks.
-set resolve = yes
+set resolve = no
 
 # -------- alias  ---------------
 # alias_file
