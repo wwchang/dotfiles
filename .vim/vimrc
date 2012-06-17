@@ -624,7 +624,7 @@ endif
     "       (without space, those press are continuously)
     "   - in command line mode with CTRL-K {char1} {char2} -- when digraph option is set.
     "   - in command line mode, :digraphs {char1}{char2} {number}...
-    set digraph
+    " set digraph
     " }}}
 
 " }}}
