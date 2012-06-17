@@ -1010,7 +1010,9 @@ endif
         call vam#ActivateAddons(['python_open_module'])
         "call vam#ActivateAddons(['PyREPL'])
             " Django
-        call vam#ActivateAddons(['vim-htmldjango_omnicomplete'])
+        " call vam#ActivateAddons(['vim-htmldjango_omnicomplete'])
+        " call vam#ActivateAddons(['vim-django-support'])
+        " call vam#ActivateAddons(['vim-django'])
             " Shell: Bash, Zsh
         "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
@@ -2988,6 +2990,9 @@ syntax on
         " }}}
 
         " [ Django ] {{{
+            " vim-django-support {{{ Django omni completion.
+            " }}}
+
             " vim-htmldjango_omnicomplete {{{ htmldjango ft OmniCompletion
                 " Usage:
                 "   Filters:
