@@ -1123,6 +1123,7 @@ endif
         call vam#ActivateAddons(['galaxy'])
             " mark & position & session
                 " mark several words in different colors simultaneously.
+        " call vam#ActivateAddons(['DynamicSigns'])
         "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
         "call vam#ActivateAddons(['Mark%2666'])
             " format
@@ -3620,6 +3621,15 @@ syntax on
         " }}}
 
         " gf-user: extend 'gf' operation to open code file.
+
+        " DynamicSigns {{{ Use Signs for different things.
+            let g:Signs_IndentationLevel = 1 " numeric indentation level.
+            let g:SignsMixedIndentation = 1 " mixed indentation
+            let g:Signs_Bookmarks = 1 " display marks
+            let g:Signs_QFList = 1 " display quickfix items signs.
+            let g:Signs_Diff = 1 " display signs for viewing changes to the buffer
+            let g:Signs_Alternate = 1 " alternating colors
+        " }}}
     " }}}
 
     " [ statusline ] {{{
