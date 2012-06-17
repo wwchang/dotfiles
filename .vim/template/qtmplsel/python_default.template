@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+# stardiviner, Email: [numbchild A/T G/mail dot com]
+# filename: @{@expand('%:t')@}@
+# Date: @{@strftime('%Y-%m-%d')@}@
