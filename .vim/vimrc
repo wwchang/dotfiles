@@ -4236,30 +4236,7 @@ syntax on
 
             endfunction
 
-            " Below are two examples of Org-mode "hook" functions
-            " These present opportunities for end-user customization
-            " of how VimOrganizer works.  For more info see the
-            " documentation for hooks in Emacs' Org-mode documentation:
-            " http://orgmode.org/worg/org-configs/org-hooks.php#sec-1_40
-            "
-            " These two hooks are currently the only ones enabled in
-            " the VimOrganizer codebase, but they are easy to add so if
-            " there's a particular hook you want go ahead and request it
-            " or look for where these hooks are implemented in
-            " /ftplugin/org.vim and use them as example for placing your
-            " own hooks in VimOrganizer:
-            function! Org_property_changed_functions(line,key, val)
-                    "call confirm("prop changed: ".a:line."--key:".a:key." val:".a:val)
-            endfunction
-            function! Org_after_todo_state_change_hook(line,state1, state2)
-                    "call confirm("changed: ".a:line."--key:".a:state1." val:".a:state2)
-                    "call OrgConfirmDrawer("LOGBOOK")
-                    "let str = ": - State: " . org#Pad(a:state2,10) . "   from: " . Pad(a:state1,10) .
-                    "            \ '    [' . org#Timestamp() . ']'
-                    "call append(line("."), repeat(' ',len(matchstr(getline(line(".")),'^\s*'))) . str)
-            endfunction
             " }}}
-
         " }}}
 
         " Calendar: {{{
