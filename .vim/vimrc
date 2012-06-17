@@ -1107,7 +1107,7 @@ endif
         call vam#ActivateAddons(['WebAPI'])
         " call vam#ActivateAddons(['wwwsearch'])
         "call vam#ActivateAddons(['weibo'])
-        "call vam#ActivateAddons(['github:fmoralesc/Tumble'])
+        call vam#ActivateAddons(['Tumble'])
         "call vam#ActivateAddons(['TwitVim'])
             " color/syntax
         call vam#ActivateAddons(['colorv'])
