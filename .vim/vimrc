@@ -4478,20 +4478,6 @@ syntax on
         " }}}
 
         " SpellCheck & LanguageToolCheck {{{
-            "fun WriterHelperCheck()
-                ":LanguageToolCheck
-                "" FIXME Use vimple to detect opened buffer window object: "[Scratch]"
-                ":LanguageToolClear
-                ":UpdateAndSpellCheck
-            "endf
-            "autocmd BufWritePre /tmp/mutt-* call WriterHelperCheck()
-
-            " FIXME :LanguageToolCheck command treat bar | as an argument.
-            "autocmd BufWritePre * if &ft=='mail' | :LanguageToolCheck | endif
-
-            "autocmd BufWritePre * if &ft=='mail' | call g:LanguageToolCheck(1, line($)) | endif
-                                    " changed s:LanguageToolCheck into g:LaguageToolCheck scope
-            "com! -nargs=0 -range=% LanguageToolCheck :call s:LanguageToolCheck(<line1>, <line2>)
         " }}}
     " }}}
 
