@@ -4067,8 +4067,7 @@ syntax on
             " endfunction
             " autocmd FileType vimwiki :call VimwikiLastChangeTimeStamp()
 
-            augroup DisableMBEInWiki
-                au!
+            au FileType vimwiki setlocal concealcursor=v
                 au FileType vimwiki :MgrClose
                 " au FileType vimwiki :CMiniBufExplorer
             augroup END
