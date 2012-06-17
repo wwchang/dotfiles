@@ -552,23 +552,34 @@ endif
 
     " [ statusline ] {{{
     set laststatus=2 " Always show the statusline
-        " Require: fugitive, current-func-info,
-    " set statusline=
-    " set statusline+=\%#StatusSeparator#\|\%#StatusBufferNumber#\b\:%n\%#StatusSeparator#\|
-    " set statusline+=\%#StatusReadOnly#\ \%r\ \%#StatusList#\%q
-    " set statusline+=\ \%#StatusChar#\»
-    " set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}\%#StatusModFlag2#\%{&modified?'':'✔'}
-    " set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()} " for Syntastic
-    " set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-    " set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
-    " set statusline+=\ \%#StatusHELP#\%H
-    " set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
-    " set statusline+=\ \%#StatusFilePath#\%<%t
-    " set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
-    " set statusline+=\ \%#StatusFileType#\%y
-    " set statusline+=\ %<%(\%#StatusNormal#\%{&ff}\%#StatusChar#\•\%#StatusNormal#\%{&fenc}%)
-    " set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
-    " set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)\ \%#StatusPercent#\%P
+        " Require: fugitive, current-func-info, syntastic,
+        " - fugitive:
+        "   - %{fugitive#statusline()}
+        "   - %{fugitive#head(7)}
+        " - current-func-info:
+        "   - %{cfi#get_func_name()}
+        " - syntastic:
+        "   - %{SyntasticStatuslineFlag()}
+    set statusline=
+    set statusline+=\%#StatusSeparator#\|\%#StatusBufferNumber#\b
+                \\:%n\%#StatusSeparator#\|
+    set statusline+=\%#StatusReadOnly#\ \%r\ \%#StatusList#\%q
+    set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
+    set statusline+=\ \%#StatusChar#\»
+    set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
+                \\%#StatusModFlag2#\%{&modified?'':'✔'}
+    set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
+    set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
+    set statusline+=\ \%#StatusHELP#\%H
+    set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
+    set statusline+=\ \%#StatusFilePath#\%<%t
+    set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
+    set statusline+=\ \%#StatusFileType#\%y
+    set statusline+=\ %<%(\%#StatusNormal#\%{&ff}\%#StatusChar#\•
+                \\%#StatusNormal#\%{&fenc}%)
+    set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
+    set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
+                \\ \%#StatusPercent#\%P
 
     " a good tip for different format statusline for non-current.
     " let g:Active_statusline=&g:statusline
