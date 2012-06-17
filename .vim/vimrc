@@ -959,6 +959,7 @@ endif
         "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
             " file/project manager
         call vam#ActivateAddons(['The_NERD_tree'])
+        call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
             " compile
         call vam#ActivateAddons(['SingleCompile'])
             " syntax checker
