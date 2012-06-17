@@ -152,6 +152,8 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
     # * ^In-Reply-To: .*@stardiviner
     # * ^Message-ID: .*@stardiviner
+
+    # emails which reply to my email thread.
     :0 c
     * ^References:.*@stardiviner
     * ^Subject:.*\/.*
@@ -160,7 +162,19 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
         :0 ih
         * ^From: .*\/[^<]*
-        | export DISPLAY=:0 ; $NOTIFY "From $MATCH" "Email: $SUBJECT"
+        | export DISPLAY=:0 ; $NOTIFY "Email: From $MATCH" "Subject: $SUBJECT"
+    }
+
+    # mail from myself (to a mailing list)
+    :0 c
+    * ^From: .*numbchild@gmail\.com
+    * ^Subject:.*\/.*
+    {
+        SUBJECT=$MATCH
+
+        :0 ih
+        * ^To: .*\/[^<]*
+        | export DISPLAY=:0 ; $NOTIFY "Email: Your Email to $MATCH send successed" "Subject: $SUBJECT"
     }
 # }}}
 
@@ -404,9 +418,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*tmux-users\.lists\.sourceforge\.net
     apps/tmux/
-    # :0
-    # * ^From: .*rxvt-unicode.*@lists\.schmorp\.de
-    # apps/urxvt/
+    :0
+    * ^List-Id: .*rxvt-unicode\.lists\.schmorp\.de
+    apps/urxvt/
     :0
     * ^From: .*elinks-users.*@linuxfromscratch\.org
     apps/elinks/
@@ -429,7 +443,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*wayland-devel\.lists\.freedesktop\.org
     apps/Wayland/
     :0
-    * ^From: .*ledger-cli@googlegroups\.com
+    * ^List-Id: .*ledger-cli\.googlegroups\.com
     apps/ledger/
 # }}}
 
@@ -495,6 +509,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
 # newsletter {{{
 # Quora
+    :0
+    * ^From: .*board-digest-noreply@quora\.com
+    DEFAULT/
     :0
     * ^From: .*digest-noreply@quora\.com
     Newsletter/Quora/

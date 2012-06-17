@@ -103,6 +103,7 @@ mailboxes =apps/ledger
 mailboxes =apps/prey
 mailboxes =apps/pandoc
 mailboxes =apps/mosh
+mailboxes =apps/urxvt
 mailboxes =apps/gitit
 mailboxes =apps/Wayland
 mailboxes =apps/elinks
