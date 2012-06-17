@@ -44,7 +44,7 @@ set mixmaster                = "mixmaster-filter" # default on Debian
 set ssl_ca_certificates_file = "/etc/ssl/certs/ca-certificates.crt" # System-wide CA file managed by the ca-certificates package
 
 set reverse_name     = yes
-set reverse_realname = no
+set reverse_realname = yes
 
 set history_file = "$HOME/.mutt/history_file"
 set history      = 15
