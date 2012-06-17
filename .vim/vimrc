@@ -920,6 +920,7 @@ endif
         call vam#ActivateAddons(['patchreview'])
             " debug: quickfix/location list.
         call vam#ActivateAddons(['unimpaired'])
+        " call vam#ActivateAddons(['sharefix'])
             " Completion <Tab>
         call vam#ActivateAddons(['neocomplcache', 'vimproc'])
         call vam#ActivateAddons(['neco-look'])
@@ -2160,6 +2161,11 @@ syntax on
             " o: alphabetically, n: SCM conflict marker.
             " <space>: add count blank lines. e: exchange current with.
             " encoding & decoding
+        " }}}
+
+        " sharefix {{{ sharefix addresses the pain point of your quickfix list
+        " being wiped out between running different commands or functions that
+        " update the list.
         " }}}
     " }}}
 
