@@ -616,15 +616,14 @@ endif
     set scrollopt=ver,jump
     set cursorbind
     " }}}
-    " }}}
 
-" }}}
-
-" }}}
-
-" [[ key bindings ]] {{{
-
-    " F1~12 {{{
+    " [ digraph ] {{{
+    " entering of graphs
+    "   - :digraphs -> show up currently defined digraphs.
+    "   - in insert mode with {char1} <BS> {char2}
+    "   - in insert mode with CTRL-K {char1} {char2} -- when digraph option is set.
+    "   - in command line, :digraphs {char1}{char2} {number}...
+    " set digraph
     fun ShowFuncKeys(bang)
         for i in range(1,12)
             redir! => map
