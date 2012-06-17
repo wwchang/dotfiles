@@ -3034,6 +3034,15 @@ syntax on
                 " :python from django.conf import settings; print settings.TEMPLATE_DIRS
                 " should show the apps template dirs you need.
             " }}}
+
+            " vim-django {{{ Django vim wraps the manage.py.
+                " Usage:
+                "   - DjangoAdmin
+                "   - DjangoManage
+                "   - DjangoProjectActivate
+                " let g:django_projects = "$HOME/Projects"
+                " let g:django_apps =
+            " }}}
         " }}}
     " }}}
 
