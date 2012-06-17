@@ -936,6 +936,7 @@ endif
         "call vam#ActivateAddons(['SnippetComplete'])
             " skeleton / templates
         call vam#ActivateAddons(['SonicTemplate'])
+        " call vam#ActivateAddons(['qtmplsel'])
         " call vam#ActivateAddons(['template'])
             " Tags : taglist-plus,
         call vam#ActivateAddons(['Tagbar'])
@@ -1823,6 +1824,25 @@ syntax on
             let g:template_basedir = ['$HOME/.vim/templates/template']
             let g:template_files = 'template/**'
             let g:template_free_pattern = 'template'
+        " }}}
+
+        " qtmplsel {{{ select a template on creating a new file.
+            " Usage:
+            "   - Search Rules:
+            "       - by filetype:
+            "           filetype=python -> template/python_*
+            "       - by suffix:
+            "           *.cpp -> template/*.cpp
+            "       - by filename:
+            "           Makefile -> template/Makefile_*
+            " Note that especially in case 3, 'Makefile_' is a legal template
+            " name but 'Makefile' is not even if you have no other template file.
+            " String surrounded by '@{@' '@}@' in the template file is regarded
+            " as a vim expression, and will be eval()ed on loading.
+            "   e.g.
+            "       @{@expand('%:t')@}@          ->  newfile.py
+            "       @{@strftime('%Y-%m-%d')@}@   ->  2009-08-30
+            let g:qts_templatedir = "$HOME/.vim/template/qtmplsel"
         " }}}
 
         " TagmaLast : Update the 'Last Changed' line in a file.
