@@ -1477,6 +1477,11 @@ syntax on
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
             let g:neocomplcache_use_vimproc = 1
+                " for composite file type (only use one completion)
+            let g:neocomplcache_ignore_composite_filetype_lists = {
+                        \ 'python.unit' : 'python',
+                        \ 'ruby.spec' : 'ruby'
+                        \ }
 
             " [ priority ] {{{
             " control each source's completion priority.
