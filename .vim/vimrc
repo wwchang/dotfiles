@@ -50,7 +50,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " [ mouse ] {{{ " :help 'mouse'
     if has('mouse')
         " set mouse=""           " disable mouse
-        set mouse=a " enable in all four modes.
+        set mouse=v " a: all four modes. v: visual.
         " right mouse button
         set mousemodel=popup_setpos " extends a selection. like in an xterm.
         " set mouseshape=
@@ -899,8 +899,6 @@ endif
             " statusline
         call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
-        " TODO Add a progin to show object prototype in statusline.
-        " reference taglist/tagbar script <Space> show prototype.
             " CVS
         call vam#ActivateAddons(['fugitive'])
         call vam#ActivateAddons(['gitv'])
