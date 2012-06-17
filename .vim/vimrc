@@ -611,7 +611,7 @@ endif
 
     " [ diff mode ] {{{
     set diff
-    set diffopt=vertical,filler,context:6,foldcolumn:2
+    set diffopt=vertical,filler,context:5,foldcolumn:2
     set scrollbind
     set scrollopt=ver,jump
     set cursorbind
@@ -620,10 +620,20 @@ endif
     " [ digraph ] {{{
     " entering of graphs
     "   - :digraphs -> show up currently defined digraphs.
-    "   - in insert mode with {char1} <BS> {char2}
-    "   - in insert mode with CTRL-K {char1} {char2} -- when digraph option is set.
-    "   - in command line, :digraphs {char1}{char2} {number}...
-    " set digraph
+    "   - in command line mode with {char1} <BS> {char2}
+    "       (without space, those press are continuously)
+    "   - in command line mode with CTRL-K {char1} {char2} -- when digraph option is set.
+    "   - in command line mode, :digraphs {char1}{char2} {number}...
+    set digraph
+    " }}}
+
+" }}}
+
+" }}}
+
+" [[ key bindings ]] {{{
+
+    " F1~12 {{{
     fun ShowFuncKeys(bang)
         for i in range(1,12)
             redir! => map
