@@ -1,18 +1,29 @@
 # Genertics: {
 set smooth_scrolling true
 # set history=10
-set browser=/usr/bin/chromium-browser
+set browser=/usr/bin/firefox
+set labels true
+set save_position save_zoom_level true
 # }
 
 # Interface: {
-set font Monospace normal 9
+set font DejaVu Sans Mono normal 9
 set transparency true
-set height 580
-set width 1024
+# set height 580
+# set width 1024
+# set adjust_open [bestfit|width|noadjust]
 set adjust_open width
-# inverting colors
-# set recolor true 
-# set recolor_darkcolor #BDE090 
-# set recolor_lightcolor #000000
+set scrollbars false
+set show_statusbar true
 set show_inputbar false
+# inverting colors
+# set recolor true
+# set recolor_darkcolor #BDE090
+# set recolor_lightcolor #000000
+# }
+
+# maps {
+map + zoom in
+map - zoom out
+map <C-q> quit
 # }
