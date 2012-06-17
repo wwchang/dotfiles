@@ -1,6 +1,5 @@
 bitlbee.LiBin
 bitlbee.Tristan
 bitlbee.adam8157
-freenode.MarcWeber
-freenode.maya
-freenode.tpope
+freenode.archl
+freenode.jiero
