@@ -38,7 +38,7 @@ if [[ $(pgrep awesome) != "" ]]; then
         # Email: IRC: Notify: Urgent:
     case $notify_type in
         Email)
-            mplayer ~/bin/sounds/voice-incoming-transmission.wav
+            # mplayer ~/Music/sounds/voice-incoming-transmission.wav
             `echo \
             'naughty.notify({\
             timeout = 40, position = "bottom_left", \
@@ -49,7 +49,7 @@ if [[ $(pgrep awesome) != "" ]]; then
             | awesome-client -` >/dev/null
             ;;
         IRC)
-            mplayer ~/bin/sounds/voice-incoming-transmission.wav
+            # mplayer ~/Music/sounds/voice-incoming-transmission.wav
             `echo \
             'naughty.notify({\
             timeout = 40, position = "bottom_left", \
@@ -91,9 +91,9 @@ if [[ $(pgrep awesome) != "" ]]; then
 
     #echo 'naughty.notify({title = "'┌─[ "$1" ]' ", text = "└─╼   '"$2"' "})' | awesome-client
 
-    # mplayer ~/bin/sounds/hesfx_untold_email.wav
+    # mplayer ~/Music/sounds/hesfx_untold_email.wav
     # mplayer ~/Music/sound.mp3 &>/dev/null
-    # mplayer ~/bin/sounds/voice-incoming-transmission.wav &>/dev/null
+    # mplayer ~/Music/sounds/voice-incoming-transmission.wav &>/dev/null
 
 
     # echo 'naughty.notify({title = "<span color=\"#FF602E\">┌─[' "$1" ']</span>", text = "<span color=\"#FF602E\">└─╼ </span> <span color=\"#FFFFFF\">' "$2" '</span>", timeout = 60, icon = "~/Pictures/icons/tag-blue.png", width = 500, position = "top_right"})' | awesome-client -
@@ -102,9 +102,9 @@ else
     `env DISPLAY=:0 notify-send -t 10000 -i ~/Pictures/icons/tag-blue.png \
     "┌─[<span color='#FF0000'>"$1"</span>]" \
     "└─╼ <span color='#55FFFF'>'$2'</span>"` >/dev/null
-    # mplayer ~/bin/sounds/hesfx_untold_email.wav
+    # mplayer ~/Music/sounds/hesfx_untold_email.wav
     # mplayer ~/Music/sound.mp3 &>/dev/null
-    # mplayer ~/bin/sounds/voice-incoming-transmission.wav &>/dev/null
+    # mplayer ~/Music/sounds/voice-incoming-transmission.wav &>/dev/null
 
 fi
 
