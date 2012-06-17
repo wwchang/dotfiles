@@ -1864,7 +1864,7 @@ syntax on
             let g:tagbar_expand = 1 " window be expanded by width of tagbar win if GVim.
             let g:tagbar_foldlevel = 2 " level higher than this number will be closed.
             let g:tagbar_usearrows = 0 " { Windows only }
-            " let g:tagbar_iconchars = ['▶', '▼'] " default on Linux and Mac.
+            let g:tagbar_iconchars = ['▶', '▼'] " default on Linux and Mac.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
             let g:tagbar_type_javascript = {
@@ -1877,6 +1877,19 @@ syntax on
                     "au!
                     "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
                 "augroup END
+
+            " tagbar highlight
+                highlight TagbarComment ctermfg=Black
+                highlight TagbarKind ctermfg=Red
+                highlight TagbarScope ctermfg=Green
+                highlight TagbarType ctermfg=Cyan
+                highlight TagbarSignature ctermfg=Yellow
+                highlight TagbarPseudoID ctermfg=Blue
+                highlight TagbarFoldIcon ctermfg=Black
+                highlight TagbarHighlight ctermfg=Black ctermbg=Yellow cterm=bold
+                highlight TagbarAccessPublic ctermfg=Green
+                highlight TagbarAccessProtected ctermfg=Blue
+                highlight TagbarAccessPrivate ctermfg=Red
         " }}}
 
         " Taglist: {{{ <F12>
