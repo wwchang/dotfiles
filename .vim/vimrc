@@ -946,6 +946,7 @@ endif
         " call vam#ActivateAddons(['taggatron'])
             " cscope
         " call vam#ActivateAddons(['cscope'])
+        " call vam#ActivateAddons(['CCTree'])
             " call vam#ActivateAddons(['github:brookhong/cscope.vim'])
             " buffers
         call vam#ActivateAddons(['Tagma_Buffer_Manager'])
@@ -1952,6 +1953,28 @@ syntax on
 
         " Bundle 'xolox/vim-easytags.git'
             " :UpdateTags [-R /path], :HighlightTags
+    " }}}
+
+    " [ cscope ] {{{
+        " cscope {{{
+        " }}}
+        " CCTree {{{ generate dependency-trees for symbols using cscope database in Vim
+            " Usage: Build cscope database, e.g.
+            "   > cscope -b -i cscope.files
+            " - Load database with command, :CCTreeLoadDB
+            " - Append database with command, :CCTreeAppendDB ./cscope.out
+            " - show loaded databases, :CCTreeShowLoadedDBs
+            let g:CCTreeUseUTF8Symbols = 1 " use symbols for drawing the tree.
+            let g:CCTreeOrientation = "left"
+            let g:CCTreeWindowVertical = 1 " use vertical window.
+            let g:CCTreeWindowMinWidth = 20
+            let g:CCTreeWindowWidth = -1 " auto-select best width to fix.
+            let g:CCTreeDisplayMode = 1 " 1:Ultra-compact, 2:Compact, 3:Wide
+
+            " syntax coloring:
+                " CCTreeSymbol -- symbol name.
+                " CCTreeMarkers -- include "|", "+--->"
+        " }}}
     " }}}
 
     " [ buffers ] {{{
