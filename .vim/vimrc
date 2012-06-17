@@ -1727,7 +1727,7 @@ syntax on
 
             " add user own snippets dir.
             "let g:neocomplcache_snippets_dir='~/.vim/snippets/dir2,~/.vim/snippets/dir2'
-            let g:neocomplcache_snippets_dir='~/.vim/snippets/neocomplcache-snippets'
+            let g:neocomplcache_snippets_dir='~/.vim/snippets/neco-snippets'
             let g:neocomplcache_disable_select_mode_mappings = 1
                 " usful to avoid conflicting snippets.
             let g:neocomplcache_snippets_disable_runtime_snippets = 0
