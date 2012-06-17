@@ -305,7 +305,6 @@ endif
         " \V: preceded by \ to activate their special meaning.
         " \m, \M
         " ------------------------------------------
-        " TODO setup a function: select those signs settings in window.
         " use `:digraphs` command in vim to display.
         " vert: \|, \┆, \│, \ ,
         " fold: ┄, -,
@@ -326,21 +325,26 @@ endif
     nnoremap <silent> <Leader>lc :set nolist!<CR>
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
-    let g:TabIndentLine = 0
-    fun! TabIndentLineToggle() " use listchars tab to show tab vertical line.
-        if (g:TabIndentLine == 0)
+    " use listchars tab to show tab vertical line.
+    " TODO use this for other language except Python.
+    fun! TabIndentLineToggle(toggle_vertline)
+        if (a:toggle_vertline == 1)
             let g:TabIndentLine = 1
             hi SpecialKey      ctermfg=237 ctermbg=NONE cterm=none
             set noexpandtab
             set listchars=tab:\┆\ ,
             :IndentGuidesDisable
-        elseif (g:TabIndentLine == 1)
+	    " elseif (a:toggle_vertline == 0)
+	    else
             let g:TabIndentLine = 0
             set expandtab
             set listchars=tab:\ \ ,
             :IndentGuidesEnable
         endif
     endf
+
+    " autocmd FileType *      call TabIndentLineToggle(1)
+    " autocmd FileType python call TabIndentLineToggle(0)
         " chars to fill the statusline and vertical separators.
     set lazyredraw
     " }}}
