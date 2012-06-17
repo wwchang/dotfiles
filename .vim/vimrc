@@ -3329,13 +3329,13 @@ syntax on
         " neocomplcache-clang {{{ clang_complete for neocomplcache.
             " Require: clang_complete
                 " clang.so, clang.dll, libclang.dylib
-            " FIXME let g:neocomplcache_clang_use_library = 1 " use clang library
-            " FIXME let g:neocomplcache_clang_library_path =
+            let g:neocomplcache_clang_use_library = 1 " use clang library
+            let g:neocomplcache_clang_library_path = '/usr/lib/'
             let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
             let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
             let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
             let g:neocomplcache_clang_auto_options = "path, .clang_complete"
-            let g:neocomplcache_clang_user_options = "" " clang options
+            let g:neocomplcache_clang_user_options = "" " user clang options
             let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
 
@@ -3353,8 +3353,8 @@ syntax on
             let g:clang_exec = "clang" " name or path of clang executable.
             let g:clang_user_options = "" " useful if you want filter result or others.
             "let g:clang_auto_user_options = "path, .clang_complete, gcc"
-            let g:clang_use_library = 0 " TODO
-            let g:clang_library_path = ""
+            let g:clang_use_library = 1
+            let g:clang_library_path = "/usr/lib/"
             let g:clang_sort_algo = "priority"
             let g:clang_complete_macros = 1
             let g:clang_complete_patterns = 1
