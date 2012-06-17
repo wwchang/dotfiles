@@ -962,6 +962,7 @@ endif
             " syntax checker
         call vam#ActivateAddons(['Syntastic'])
         " call vam#ActivateAddons(['checksyntax'])
+        " call vam#ActivateAddons(['flymake'])
             " quickfix
         call vam#ActivateAddons(['quickfixstatus'])
             " task list
@@ -2129,6 +2130,11 @@ syntax on
         " }}}
 
         " checksyntax {{{
+        " }}}
+
+        " flymake {{{ on-the-fly syntax checking using external syntax checking tool.
+            " autocmd BufWritePost <buffer> call FlyMake({checker}, {err-regexp}, {warn-regexp})
+            " autocmd BufWinLeave <buffer>  call FlyMakeCloseWindows()
         " }}}
 
         " QuickfixSigns_vim: {{{ mark quickfix & location list items with signs.
