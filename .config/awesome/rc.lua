@@ -327,7 +327,7 @@ end
     -- mytextword.text = "" .. ccyan .. "九州 - 海上牧云记 » " .. coldef .. cred .. " 牧云笙 " .. coldef .. ""
 
     statements_file = io.open(configdir .. "/statements.txt", "r")
-    mytimer = timer({ timeout = 5 })
+    mytimer = timer({ timeout = 60*5 })
     mytimer:add_signal("timeout", function()
         text_line = statements_file:read("*line")
         if text_line then
@@ -1049,15 +1049,17 @@ root.buttons(awful.util.table.join(
         -- }}}
 
         -- Screensaver lock  [ Mod4-CTRL-l ] {{{
-        awful.key({ modkey, "Control" }, "l",
-            function ()
-                awful.util.spawn("xscreensaver-command -lock")
-            end
-        ),
+        -- awful.key({ modkey, "Control" }, "l",
+        --     function ()
+        --         awful.util.spawn("xscreensaver-command -lock")
+        --     end
+        -- ),
 
         -- xlock
-        -- awful.key({ modkey }, "F7", function () awful.util.spawn("xlock") end)
-        -- awful.key({ modkey, "Control" }, "l", function () awful.util.spawn("xlock") end)
+        awful.key({ modkey, "Control" }, "l", function ()
+            awful.util.spawn("xlock -mode blank -dpmsoff 5 -font -misc-fixed-*-*-*-*-20-*-*-*-*-*-*")
+        end),
+
         -- }}}
 
         -- client lists that minimized windows cycle/restore, [ Mod4-; ] {{{
