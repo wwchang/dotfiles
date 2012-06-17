@@ -935,7 +935,7 @@ endif
         "call vam#ActivateAddons(['snipmate'])
         "call vam#ActivateAddons(['snipmate', 'tlib', 'vim-addon-mw-utils', 'snipmate-snippets'])
         "call vam#ActivateAddons(['SnippetComplete'])
-            " skeleton / templates
+            " skeleton / template
         call vam#ActivateAddons(['SonicTemplate'])
         " call vam#ActivateAddons(['qtmplsel'])
         " call vam#ActivateAddons(['template'])
@@ -4916,6 +4916,12 @@ syntax on
         " }}}
 
         " openssl.vim {{{ Edit OpenSSL encrypted files and turn Vim into a Password Safe!
+        " }}}
+    " }}}
+
+    " [ ledger / accounting ] {{{
+        " ledger {{{
+            au BufNewFile,BufRead *.ldg,*.ledger setf ledger | comp ledger
         " }}}
     " }}}
 
