@@ -4068,12 +4068,28 @@ syntax on
             " autocmd FileType vimwiki :call VimwikiLastChangeTimeStamp()
 
             au FileType vimwiki setlocal concealcursor=v
-                au FileType vimwiki :MgrClose
-                " au FileType vimwiki :CMiniBufExplorer
-            augroup END
+
+            " add/update "Last Change" time stamp in vimwiki
+            " Check no more than 30 lines from start for 'Last Change:'
+            " and update it with the current datetime.
+            function! LastChangeUpdate()
+                for linenr in range(1, min([30, line('$')]))
+                    let line = getline(linenr)
+                    if line =~ 'Last Change:'
+                        let line = substitute(line, 'Last Change:.*$',
+                                \ 'Last Change: '.strftime("%Y-%m-%d %H:%M"), '')
+                        call setline(linenr, line)
+                        break
+                    " add create timestamp
+                    " else
+                    "     call setline(1, strftime("%Y-%m-%d %H:%M"))
+                    endif
+                endfor
+            endfunction
+            au BufWritePre *.wiki call LastChangeUpdate()
+
             " }}}
         " }}}
-
 
             " add/update "Last Change" time stamp in vimwiki
             " Check no more than 30 lines from start for 'Last Change:'
