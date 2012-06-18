@@ -43,9 +43,9 @@ if [[ $(pgrep awesome) != "" ]]; then
             'naughty.notify({\
             timeout = 40, position = "bottom_left", \
             width = 500, height = nil, \
-            fg = "#000000", bg = "#87AF00", \
-            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
-            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            border_color = "lightblue", border_width = 5, \
+            title = "<span color=\"lightblue\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"lightblue\">└─╼ </span> <span color=\"#888888\">' "$2" '</span>", })' \
             | awesome-client -` >/dev/null
             ;;
         IRC)
@@ -54,33 +54,34 @@ if [[ $(pgrep awesome) != "" ]]; then
             'naughty.notify({\
             timeout = 40, position = "bottom_left", \
             width = nil, height = nil, \
-            fg = "#000000", bg = "#00AFFF", \
-            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
-            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            border_color = "gray", border_width = 5, \
+            title = "<span color=\"lightblue\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"lightblue\">└─╼ </span> <span color=\"#888888\">' "$2" '</span>", })' \
             | awesome-client -` >/dev/null
             ;;
         Notify)
             `echo \
             'naughty.notify({\
             timeout = 10, position = "top_left", \
-            fg = "#000000", bg = "#5F8700", \
-            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
-            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            border_color = "green", border_width = 5, \
+            title = "<span color=\"lightblue\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"lightblue\">└─╼ </span> <span color=\"#888888\">' "$2" '</span>", })' \
             | awesome-client -` >/dev/null
             ;;
         Urgent)
             `echo \
             'naughty.notify({\
             timeout = 10, position = "top_left", \
-            bg = "red", \
-            title = "<span color=\"#000000\">┌─[  ' "$1" '  ]</span>", \
-            text  = "<span color=\"#000000\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
+            border_color = "red", border_width = 5, \
+            title = "<span color=\"red\">┌─[  ' "$1" '  ]</span>", \
+            text  = "<span color=\"red\">└─╼ </span> <span color=\"#888888\">' "$2" '</span>", })' \
             | awesome-client -` >/dev/null
             ;;
         *)
             `echo \
             'naughty.notify({\
             timeout = 10, position = "bottom_right", \
+            border_color = "gray", border_width = 5, \
             title = "<span color=\"#FFFFFF\">┌─[  ' "$1" '  ]</span>", \
             text  = "<span color=\"#FFFFFF\">└─╼ </span> <span color=\"#000000\">' "$2" '</span>", })' \
             | awesome-client -` >/dev/null
