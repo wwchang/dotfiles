@@ -104,8 +104,8 @@ theme.titlebar_maximized_button_focus_inactive  = theme_icons .. "titlebar/maxim
 theme.titlebar_maximized_button_normal_active = theme_icons .. "titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = theme_icons .. "titlebar/maximized_focus_active.png"
 
--- theme.wallpaper_cmd = { "awsetbg" .. " " .. os.getenv("HOME") .. "/.Wallpaper" }
-theme.wallpaper_cmd = { "feh --bg-fill /home/chris/.config/awesome/themes/wallpapers/gene.jpg" }
+-- theme.wallpaper_cmd = { "awsetbg" .. "-r -f" .. os.getenv("HOME") .. "/Pictures/wallpapers" }
+theme.wallpaper_cmd = { "feh --bg-fill " .. os.getenv("HOME") .. "/.config/awesome/themes/wallpapers/gene.jpg" }
 
 -- random wallpaper
 -- XXX you can just { $ cd .config/awesome/.. ; ln -s /media/tux/Pictures . }
