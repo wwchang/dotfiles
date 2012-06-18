@@ -2269,8 +2269,8 @@ syntax on
             let g:ctrlp_switch_buffer = 2 " when file opened, jump to there (tag, buffer)
             let g:ctrlp_reuse_window = 'netrw' " not open in window created by plugins
                 " let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-            let g:ctrlp_working_path_mode = 1 " start up working dir.
-            " let g:ctrlp_root_markers = ['']
+            let g:ctrlp_working_path_mode = 2 " 0:, 1: pwd, 2: nearest ancestor VCS.
+            " let g:ctrlp_root_markers = [''] " .git, .hg, .svn, .bzr, and _darcs.
             let g:ctrlp_use_caching = 1 " 0: disable per-session caching.
             let g:ctrlp_clear_cache_on_exit = 1
             let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
@@ -2337,7 +2337,7 @@ syntax on
             let g:ctrlp_arg_map = 0
                 " 1: <c-o> <c-y> accept extra key as argument to override default
                 " t, h, v, r, <esc>|<c-c> to go back to prompt.
-            let g:ctrlp_follow_symlinks = 0 " 1: follow symbolic links listing files.
+            let g:ctrlp_follow_symlinks = 0 " 1: follow all symlinks indiscriminately.
             let g:ctrlp_lazy_update = 0 " only update match window after typing stopped
             let g:ctrlp_use_migemo = 0 " 1: use Migemo Pattern for Japanese filenames.
             let g:ctrlp_buftag_systemenc = &encoding
