@@ -276,7 +276,11 @@ set trash          = $HOME/Mails/Trash
 
 
 # ----------------------  MIME   --------------------------------
-set mime_forward = no
+# use this to forward attachment:
+#   press 'v' to view attachments,
+#   tag attachment (include message) you want to forward,
+#   press ';' + 'f' to forward all tagged attachments.
+set mime_forward = ask-no
 # set mime_forward_rest
 # set mime_forward_decode = no
 
