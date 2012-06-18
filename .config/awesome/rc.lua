@@ -973,7 +973,7 @@ mysystray = widget({ type = "systray" })
             foursquare,
             mylayoutbox[s], separator_sign,  -- layout style pic
             s == 1 and mysystray or nil, separator_sign, -- systray
-                -- remove systray here
+                -- remove systray
                 -- s == 1 and nil, separator_sign, -- systray
             -- mytextbox,
             mytasklist[s], -- tasklist
@@ -1134,14 +1134,13 @@ root.buttons(awful.util.table.join(
             old_word = new_word
 
             local fc = ""
-                -- sdcv options:
-                    -- remove "-n" option to disable display relative words.
-                    -- --data-dir '~/.stardict/dir' to search through all dicts.
-                    -- -u '朗道汉英字典5.0', '牛津英汉双解美化版'
-            -- XXX if selected word is not english word, use chinese-english dictionary instead.
+            -- if selected word is not english word, use zh-en dictionary instead.
             -- if new_word:match("[^a-zA-Z]") then
             if new_word:find("%a") then
                 f  = io.popen(
+                    -- remove "-n" option to disable display relative words.
+                    -- -u '朗道汉英字典5.0', '牛津英汉双解美化版'
+                    -- --data-dir '~/.stardict/dir' to search through all dicts.
                     "sdcv -n --utf8-output -u 'WordNet' -u '朗道英汉字典5.0' "
                     ..  new_word
                 )
@@ -1253,6 +1252,10 @@ root.buttons(awful.util.table.join(
                 nil, awful.util.getdir("cache").."/dict"
             )
         end),
+        -- }}}
+
+        -- naughty manipulation {{{ [ Mod4-i ]
+        -- FIXME awful.key({ modkey, }, "i", naughty.resume() ),
         -- }}}
 
         -- tag manipulation {{{
@@ -1445,6 +1448,7 @@ root.buttons(awful.util.table.join(
         -- instance = ""
         -- role = ""
     -- }}}
+
     -- [ properties ] {{{
         -- maximized_horizontal = false, maximized_vertical = false,
         -- tag = tagobject, tag = tags[1][4],
@@ -1480,7 +1484,8 @@ root.buttons(awful.util.table.join(
                 focus = true,
                 keys = clientkeys,
                 size_hints_honor = false, -- remove gaps between windows
-                buttons = clientbuttons
+                buttons = clientbuttons,
+                callback = awful.client.setslave -- open window as slave.
             }
         },
 
