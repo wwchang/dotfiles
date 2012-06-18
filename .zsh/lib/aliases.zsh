@@ -89,6 +89,7 @@ alias vim.benchmarking='vim --startuptime startup.log -c q'
 # software edit config alias
 alias awesome.check='awesome -c ~/.config/awesome/rc.lua -k'
 alias awesome.restart='echo "awesome.restart()" | awesome-client'
+alias awesome.quit='echo "awesome.quit()" | awesome-client'
 alias xprop.a='xprop | grep -e CLASS -e ROLE'
 alias xev.a=" xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p' "
 alias Xephyr.debug='Xephyr -ac -br -noreset -screen 1000x500 :1 &'
