@@ -14,23 +14,19 @@ alias ..5="cd ../../../../.."
 # Super user
 alias _='sudo'
 
-#alias g='grep -in'
-
 # Show history
-alias history='fc -l 1'
+alias history.fc='fc -l 1'
+#alias g='grep -in'
+alias grep='grep --color=auto'
+alias afind.ack='ack-grep -il'
 
+# ================ customiz ====================
 # List direcory contents
 alias lsa='ls -lah'
 #alias l='ls -la'
 alias l='ls++' # use ls-- custom plugin.
 alias ll='ls -l'
 alias sl=ls # often screw this up
-
-alias grep='grep --color=auto'
-
-alias afind='ack-grep -il'
-
-# ================ customiz ====================
 #alias ps='ps aux --forest | sort -nk +4 | tail'
 alias rm='rm -i -v'
 alias killall='killall -i'
@@ -51,21 +47,22 @@ alias chmod='chmod -c'
 alias chown='chown -c'
 #alias ctags='ctags -R --fields=+lS'
 #alias cscope='cscope -R -b -q'
-alias tags='ctags -R --fields=+lS ; cscope -R -b -q'
+alias tags.a='ctags -R --fields=+lS ; cscope -R -b -q'
 # cscope: -R "recursive" -b "build" -q "fast symbol look up"
 alias rename='rename -v'
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -v'
 alias ls='ls --color=always -N -B -h -F'
-alias subdir='ls -F | grep /$' # list subdir
+alias subdir.a='ls -F | grep /$' # list subdir
 alias eject='eject -v'
 # alias realpath='readlink -f'
-alias hd='od -Ax -tx1z -v' # easy Hex output
-alias topApp='ps aux | sort -nrk +4 | head'
-alias lynx='lynx -lss=~/.lynx/lynx.lss'
-alias videoBackground='mplayer -loop 3 ~/Videos/NotLove.avi -rootwin -vf scale=1000:400 -noconsolecontrols'
-alias nethack_telnet='telnet nethack.alt.org'
-alias recordmydesktop='recordmydesktop --no-frame'
+alias hd.a='od -Ax -tx1z -v' # easy Hex output
+alias topApp.a='ps aux | sort -nrk +4 | head'
+alias killtop.a='top -b -n 1 | head | grep -A 1 PID | grep "^[0-9]" | cut -f1 -d" " | xargs kill'
+alias lynx.a='lynx -lss=~/.lynx/lynx.lss'
+alias videoBackground.a='mplayer -loop 3 ~/Videos/NotLove.avi -rootwin -vf scale=1000:400 -noconsolecontrols'
+alias nethack.telnet='telnet nethack.alt.org'
+alias recordmydesktop.a='recordmydesktop --no-frame'
 
 # volume - amixer
 # alias setvol_mute='amixer -q sset Master mute'
@@ -81,6 +78,7 @@ alias recordmydesktop='recordmydesktop --no-frame'
 alias vimwiki='vim +VimwikiIndex'
 # alias vimtasks="vim ~/vimwiki/wiki/Dreams/Dreams.wiki -c 'vsplit ~/vimwiki/wiki/plan.wiki' +Voom"
 alias vimtasks="vim ~/vimwiki/wiki/Dreams/Dreams.wiki -c 'vsplit ~/vimwiki/wiki/plan.wiki'"
+alias vimdiary="vim +VimwikiDiaryIndex +Calendar"
 alias vim.NERDTree='vim +NERDTree'
 alias vim.benchmarking='vim --startuptime startup.log -c q'
 
@@ -89,14 +87,15 @@ alias vim.benchmarking='vim --startuptime startup.log -c q'
 # alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # software edit config alias
-alias awesome_check='awesome -c ~/.config/awesome/rc.lua -k'
-alias xprop.alias='xprop | grep -e CLASS -e ROLE'
-alias xev=" xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p' "
-alias Xephyr_debug='Xephyr -ac -br -noreset -screen 1000x500 :1 &'
+alias awesome.check='awesome -c ~/.config/awesome/rc.lua -k'
+alias awesome.restart='echo "awesome.restart()" | awesome-client'
+alias xprop.a='xprop | grep -e CLASS -e ROLE'
+alias xev.a=" xev | grep -A2 --line-buffered '^KeyRelease' | sed -n '/keycode /s/^.*keycode \([0-9]*\).* (.*, \(.*\)).*$/\1 \2/p' "
+alias Xephyr.debug='Xephyr -ac -br -noreset -screen 1000x500 :1 &'
 
 # mplayer radio
-alias radio_pop='mplayer -loop 0 mms://live.cri.cn/pop'
-alias radio_english='mplayer -loop 0 mms://live.cri.cn/english'
+alias radio.pop='mplayer -loop 0 mms://live.cri.cn/pop'
+alias radio.english='mplayer -loop 0 mms://live.cri.cn/english'
 
 # set for alarm - mplayer
 # alias alarm='amixer -q sset Master 80; mplayer'
@@ -109,18 +108,18 @@ alias radio_english='mplayer -loop 0 mms://live.cri.cn/english'
 # ifconfig.me/all ifconfig.me/ip ifconfig.me
 alias ifconfig.me='curl ifconfig.me/all'
 # script alias
-alias color_='perl ~/scripts/color/colortest.pl -w -r -s'
+alias color.a='perl ~/scripts/color/colortest.pl -w -r -s'
 # 1984
-alias 1984='echo -e "$(date)\b\b\b\b\b\b\t1984: $foo"|pv -L 10 -q'
+alias 1984.a='echo -e "$(date)\b\b\b\b\b\b\t1984: $foo"|pv -L 10 -q'
 # ChaoLiu Forums
-alias chaoliu='feh http://i821.photobucket.com/albums/zz136/newt66y/dns.gif'
+alias chaoliu.a='feh http://i821.photobucket.com/albums/zz136/newt66y/dns.gif'
 
 # conky
-alias conky_reload='killall -SIGUSR1 conky'
-alias conky_debug='conky -D'
-alias conky_debug_more='conky -DD'
+alias conky.reload='killall -SIGUSR1 conky'
+alias conky.debug='conky -D'
+alias conky.debug_more='conky -DD'
 
 # wget
-alias wget_clone_site='wget -r -p -k -np -nc --follow-ftp --limit-rate=80k'
+alias wget.clone_site='wget -r -p -k -np -nc --follow-ftp --limit-rate=80k'
 
 # MLDonkey
