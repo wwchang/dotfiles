@@ -168,7 +168,7 @@ require("bashets")
     naughty.config.default_preset.timeout          = 10
     naughty.config.default_preset.screen           = 1
         -- top_left, top_right, bottom_left, bottom_right.
-    naughty.config.default_preset.position         = "top_left"
+    naughty.config.default_preset.position         = "top_right"
     naughty.config.default_preset.margin           = 20
     naughty.config.default_preset.height           = nil -- default = nil
     naughty.config.default_preset.width            = 450
