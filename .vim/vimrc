@@ -574,7 +574,7 @@ endif
                 \\%#StatusModFlag2#\%{&modified?'':'✔'}
     set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
     set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-    set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag()}
+    " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", "")}
     set statusline+=\ \%#StatusHELP#\%H
     set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
     set statusline+=\ \%#StatusFilePath#\%<%t
