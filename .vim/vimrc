@@ -611,7 +611,6 @@ endif
     " }}}
 
     " [ diff mode ] {{{
-    set diff
     set diffopt=vertical,filler,context:5,foldcolumn:2
     set scrollbind
     set scrollopt=ver,jump
