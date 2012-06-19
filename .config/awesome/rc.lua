@@ -1619,6 +1619,19 @@ root.buttons(awful.util.table.join(
 
 -- }}}
 
+-- [ hooks ] {{{
+    -- hooks:
+    -- focus, unfocus, manage, unmanage, mouseover, arrange, titleupdate,
+    -- urgent, timer, ...
+    --[[
+    awful.hooks.new_hook(function (c)
+        if c.name:find("mplayer") then
+            c.floating = true
+        end
+    end)
+    --]]
+-- }}}
+
 -- [ signals ] {{{
     -- Signal function to execute when a new client appears.
     client.add_signal("manage", function (c, startup)
