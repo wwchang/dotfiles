@@ -1,16 +1,23 @@
--- {{{ Libraries
--- Standard awesome library
+-- {{{ require Libraries
+-- default library to interact with Awesome. like mouse action or keybinds.
 require("awful")
 require("awful.autofocus")
 require("awful.rules")
--- require("awful.remote") -- for awesome-client
--- Theme handling library
+require("awful.remote") -- for awesome-client
+-- The library to theme the look of Awesome.
 require("beautiful")
 -- Load Debian menu entries
 require("debian.menu")
+
 -- widget required
+-- a modular widget library for Awesome, derived from the Wicked widget library.
 require("vicious")
+-- a set of widgets for your Awesome that provide helpful info.
 require("obvious")
+-- dynamic tagging library + client matching.
+-- require("shifty")
+
+-- config dir custom libraries (single file)
 -- Notification library
 require("naughty")
 -- maildir
@@ -25,6 +32,22 @@ require("aweror")
 require("minitray")
 -- bash powerful widgets
 require("bashets")
+-- }}}
+
+-- {{{ About Awesome
+--[[
+    Learn Lua -> http://www.lua.org/pil/
+    Lua API doc -> http://awesome.naquadah.org/doc/api/
+
+    Awesome object types:
+        - Screen
+        - Client
+        - Tag
+        - Widget
+        - wibox
+        - Titlebar
+        - Statusbar
+--]]
 -- }}}
 
 -- {{{ variable definitions
@@ -164,7 +187,7 @@ require("bashets")
     end
 -- }}}
 
--- {{{ naughty notify settings
+-- {{{ naughty config
     naughty.config.default_preset.timeout          = 10
     naughty.config.default_preset.screen           = 1
         -- top_left, top_right, bottom_left, bottom_right.
@@ -275,6 +298,7 @@ tags = {
 }
 
 for s = 1, screen.count() do
+    -- Each screen has its own tag table.
     tags[s] = awful.tag(tags.names, s, tags.layout)
 end
 -- }}}
@@ -304,6 +328,15 @@ end
 
 -- {{{ [ widgets ]
 
+-- separator {{{
+    foursquare = widget({ type = "textbox" })
+    foursquare.text  = "<span color='#87AF00'> ⌘ </span>"
+    separator_sign = widget({ type = "textbox" })
+    separator_sign.text = "<span color='#151515'> | </span>"
+    separator_image = widget({ type = "imagebox" })
+    separator_image.image = image(beautiful.widget_sep)
+-- }}}
+
 -- textclock widget
     -- mytextclock = awful.widget.textclock({ align = "right" })
     -- mytextclock = awful.widget.textclock({ align = "right" }, " %a %b %d, %H:%M ", 1)
@@ -322,7 +355,7 @@ end
     )
 -- }}}
 
--- sentence {{{
+-- words {{{
     mytextword = widget({ type = "textbox" })
     -- mytextword.text = "" .. ccyan .. "九州 - 海上牧云记 » " .. coldef .. cred .. " 牧云笙 " .. coldef .. ""
 
@@ -441,17 +474,6 @@ end
 
     vicious.register(membar, vicious.widgets.mem, "$1", 13)
 -- }}}
-
---[[
--- swap {{{
-    swapwidget = widget({ type = "textbox" })
-    vicious.cache(vicious.widgets.mem)
-    vicious.register(
-        swapwidget, vicious.widgets.mem,
-        "" .. clblack .. "swap " .. coldef .. clblack .. "$5% ($6 M)" .. coldef .. "",
-        13)
--- }}}
---]]
 
 -- uptime {{{
     uptimeicon = widget({ type = "imagebox" })
@@ -576,15 +598,6 @@ end
     )
     --'3600': check per 1 hour.
     --'ZSHC': the Montreal ICAO code. (HangZhou China)
--- }}}
-
--- separator {{{
-    foursquare = widget({ type = "textbox" })
-    foursquare.text  = "<span color='#87AF00'> ⌘ </span>"
-    separator_sign = widget({ type = "textbox" })
-    separator_sign.text = "<span color='#151515'> | </span>"
-    separator_image = widget({ type = "imagebox" })
-    separator_image.image = image(beautiful.widget_sep)
 -- }}}
 
 -- network {{{
@@ -867,8 +880,12 @@ end
     )
 -- }}}
 
--- systray {{{
-mysystray = widget({ type = "systray" })
+-- systray
+    mysystray = widget({ type = "systray" })
+
+-- output of commands or scripts {{{
+    scriptwidget = widget({ type = "textbox" })
+    scriptwidget.text = " " .. execute_command("cat /proc/loadavg") .. " "
 -- }}}
 
 -- }}}
@@ -975,7 +992,6 @@ mysystray = widget({ type = "systray" })
             s == 1 and mysystray or nil, separator_sign, -- systray
                 -- remove systray
                 -- s == 1 and nil, separator_sign, -- systray
-            -- mytextbox,
             mytasklist[s], -- tasklist
             layout = awful.widget.layout.horizontal.rightleft
         }
@@ -1013,6 +1029,7 @@ mysystray = widget({ type = "systray" })
             cputwidget, cputext, separator_sign,
             -- cpugraph.widget,
             maildirwidget, separator_sign,
+            -- scriptwidget,
             layout = awful.widget.layout.horizontal.rightleft
         }
         -- }}}
@@ -1028,6 +1045,8 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- [ key binds ] {{{
+        -- a function to show up a tooltip of created key binds.
+
     globalkeys = awful.util.table.join(
         -- for "run or raise"
         -- globalkeys, aweror.genkeys(modkey),
