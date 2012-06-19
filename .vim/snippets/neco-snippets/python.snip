@@ -64,9 +64,18 @@ prev_word   '^'
 	__${1:init}__${2}
     ${0}
 
-# statement
+# [ statement ]
 snippet     pr
 abbr        print()
 prev_word   '^'
     print(${1})
+    ${0}
+
+# [ conditions ]
+snippet     ifargv1
+abbr        if len(sys.argv) == 1 or ...
+prev_word   '^'
+    if len(sys.argv) == 1 or sys.argv[1] in {"-h", "--help"}:
+        print("Usage: {0} file1 [file2 [... fileN]] ${1}").format(sys.argv[0])
+        sys.exit()
     ${0}
