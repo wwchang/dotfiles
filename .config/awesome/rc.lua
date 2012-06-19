@@ -1,4 +1,4 @@
--- {{{ require Libraries
+-- [ require libraries ] {{{
 -- default library to interact with Awesome. like mouse action or keybinds.
 require("awful")
 require("awful.autofocus")
@@ -34,7 +34,7 @@ require("minitray")
 require("bashets")
 -- }}}
 
--- {{{ About Awesome
+-- About Awesome {{{
 --[[
     Learn Lua -> http://www.lua.org/pil/
     Lua API doc -> http://awesome.naquadah.org/doc/api/
@@ -46,19 +46,77 @@ require("bashets")
         - Widget
         - wibox
         - Titlebar
-        - Statusbar
+
+    What keys: 1,2,3,4,5 means ?
+        1 -- left click
+        2 -- middle click
+        3 -- right click
+        4 -- middle up
+        5 -- middle down
 --]]
 -- }}}
 
--- {{{ variable definitions
+-- [ settings ] {{{
     local home = os.getenv("HOME")
     local scripts_dir = awful.util.getdir("config") .. "/scripts"
     local exec  = awful.util.spawn
     local sexec = awful.util.spawn_with_shell
     local scount = screen.count()
+
+    -- terminal = "x-terminal-emulator"
+    -- terminal = "gnome-terminal"
+    terminal = "urxvt" -- USE urxvtc for daemon urxvtd.
+    editor = os.getenv("EDITOR") or "vim"
+    editor_cmd = terminal .. " -e " .. editor
+    browser = "/usr/bin/firefox" -- browser = "chromium%-browser"
+    mail = "mutt" -- mail = "thunderbird"
+
+    --[[ Mod key.
+        Usually, Mod4 is the key with a logo between Control and Alt.  If you do
+        not like this or do not have such a key, I suggest you to remap Mod4 to
+        another key using xmodmap or other tools.  However, you can use another
+        modifier like Mod1, but it may interact with others.
+
+        Mod1 -> Alt
+        Mod4 -> Windows key
+    --]]
+    altkey = "Mod1"
+    modkey = "Mod4"
 -- }}}
 
--- {{{ [ functions ]
+-- [ Theme ] {{{
+    -- beautiful.init("/home/chris/.config/awesome/themes/linkinPark/theme.lua")
+
+    local configdir = awful.util.getdir ("config")
+    beautiful.init(configdir .. "/themes/black/theme.lua")
+-- }}}
+
+-- [ Error handling ] {{{
+    -- Check if awesome encountered an error during startup and fell back to
+    -- another config (This code will only ever execute for the fallback config)
+    if awesome.startup_errors then
+        naughty.notify({ preset = naughty.config.presets.critical,
+                         title = "Oops, there were errors during startup!",
+                         text = awesome.startup_errors })
+    end
+
+    -- handle runtime errors after startup
+    do
+        local in_error = false
+        awesome.add_signal("debug::error", function (err)
+            -- Make sure we don't go into an endless error loop
+            if in_error then return end
+            in_error = true
+
+            naughty.notify({ preset = naughty.config.presets.critical,
+                             title = "Oops, an error happened! see ~/.xsession-errors",
+                             text = err })
+            in_error = false
+        end)
+    end
+-- }}}
+
+-- [ functions ] {{{
     -- {{{ blinkers
     -- use blinking(any_textbox_widget,blinking_interval_in_seconds).
     -- The call of blinking function toggles the blinking of text.
@@ -112,14 +170,7 @@ require("bashets")
     -- }}}
 -- }}}
 
--- {{{ [ Theme ]
-    -- beautiful.init("/home/chris/.config/awesome/themes/linkinPark/theme.lua")
-
-    local configdir = awful.util.getdir ("config")
-    beautiful.init(configdir .. "/themes/black/theme.lua")
--- }}}
-
--- {{{ [ Colors ]
+-- [ Colors ] {{{
     coldef    = "</span>"
     cblack    = "<span color = '#000000'>" -- black
     cred      = "<span color = '#FF5F87'>" -- red
@@ -141,65 +192,7 @@ require("bashets")
     cdgrey    = "<span color = '#4E4E4E'>" -- dark-grey
 -- }}}
 
--- [ settings ] {{{
-    -- terminal = "x-terminal-emulator"
-    -- terminal = "gnome-terminal"
-    terminal = "urxvt" -- USE urxvtc for daemon urxvtd.
-    editor = os.getenv("EDITOR") or "vim"
-    editor_cmd = terminal .. " -e " .. editor
-    browser = "/usr/bin/firefox" -- browser = "chromium%-browser"
-    mail = "mutt" -- mail = "thunderbird"
-
-    --[[ Mod key.
-        Usually, Mod4 is the key with a logo between Control and Alt.  If you do
-        not like this or do not have such a key, I suggest you to remap Mod4 to
-        another key using xmodmap or other tools.  However, you can use another
-        modifier like Mod1, but it may interact with others.
-
-        Mod1 -> Alt
-        Mod4 -> Windows key
-    --]]
-    altkey = "Mod1"
-    modkey = "Mod4"
-
-    --[[
-    {{{ 1,2,3,4,5 keys means
-        1 -- left click
-        2 -- middle click
-        3 -- right click
-        4 -- middle up
-        5 -- middle down
-    }}}
-    --]]
-
--- }}}
-
--- {{{ Error handling
-    -- Check if awesome encountered an error during startup and fell back to
-    -- another config (This code will only ever execute for the fallback config)
-    if awesome.startup_errors then
-        naughty.notify({ preset = naughty.config.presets.critical,
-                         title = "Oops, there were errors during startup!",
-                         text = awesome.startup_errors })
-    end
-
-    -- handle runtime errors after startup
-    do
-        local in_error = false
-        awesome.add_signal("debug::error", function (err)
-            -- Make sure we don't go into an endless error loop
-            if in_error then return end
-            in_error = true
-
-            naughty.notify({ preset = naughty.config.presets.critical,
-                             title = "Oops, an error happened! see ~/.xsession-errors",
-                             text = err })
-            in_error = false
-        end)
-    end
--- }}}
-
--- {{{ naughty config
+-- naughty config {{{
     naughty.config.default_preset.timeout          = 10
     naughty.config.default_preset.screen           = 1
         -- top_left, top_right, bottom_left, bottom_right.
@@ -278,7 +271,7 @@ run_once("nm-applet")
 -- run_once("wicd-client",nil,"/usr/bin/python2 -O /usr/share/wicd/gtk/wicd-client.py")
 -- }}}
 
--- {{{ [ Layout ]
+-- [ layout ] {{{
 -- you can comment or delete them if you do not want to use them forever.
 layouts =
 {
@@ -297,7 +290,7 @@ layouts =
 }
 -- }}}
 
--- {{{ [ Tags ]
+-- [ tags ] {{{
 tags = {
     names  = { " 1. shape ideas into code ", "2. Read & Fuck", "3. session",
                "4. Design ", "5. Log ", "6. Media ",
@@ -315,7 +308,7 @@ for s = 1, screen.count() do
 end
 -- }}}
 
--- {{{ [ Menu ]
+-- [ menu ] {{{
     -- create a laucher widget and a main menu
     myawesomemenu = {
         { "manual", terminal .. " -e man awesome" },
@@ -338,7 +331,7 @@ end
     })
 -- }}}
 
--- {{{ [ widgets ]
+-- [ widgets ] {{{
 
 -- separator {{{
     foursquare = widget({ type = "textbox" })
@@ -371,6 +364,7 @@ end
     mytextword = widget({ type = "textbox" })
     -- mytextword.text = "" .. ccyan .. "九州 - 海上牧云记 » " .. coldef .. cred .. " 牧云笙 " .. coldef .. ""
 
+    -- FIXME put statements_file io.open can not read file update time.
     statements_file = io.open(configdir .. "/statements.txt", "r")
     mytimer = timer({ timeout = 60*5 })
     mytimer:add_signal("timeout", function()
@@ -1056,7 +1050,7 @@ root.buttons(awful.util.table.join(
 ))
 -- }}}
 
--- [ key binds ] {{{
+-- [ keybinds ] {{{
         -- a function to show up a tooltip of created key binds.
 
     globalkeys = awful.util.table.join(
