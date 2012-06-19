@@ -259,16 +259,31 @@ function run_once(prg,arg_string,pname,screen)
     end
 end
 
-run_once("urxvtd -q -o -f")
-run_once("mpd")
-run_once("mlnet")
-run_once("nm-applet")
+-- run_once("urxvtd -q -o -f")
+-- run_once("mpd")
+-- run_once("mlnet")
+-- run_once("nm-applet")
 
 -- TODO what does this screen argument means.
 -- run_once("luakit", nil, nil, 6)
 -- run_once("xscreensaver","-no-splash")
 -- run_once("wicd-gtk")
 -- run_once("wicd-client",nil,"/usr/bin/python2 -O /usr/share/wicd/gtk/wicd-client.py")
+-- }}}
+
+-- [ other user custom settings ] {{{
+    -- Mouseless {{{ move mouse to corner
+        -- set the desired pixel coordinates:
+        -- if your screen is 1024x768 -->> local saftCoords = {x=1024, y=768}
+        local saftCoords = {x=1920, y=1080}
+        local moveMouseOnStartup = true -- tell Awesome to do this at startup
+        local function moveMouse(x_co, y_co)
+            mouse.coords({ x=x_co, y=y_co })
+        end
+        if moveMouseOnStartup then
+            moveMouse(saftCoords.x, saftCoords.y)
+        end
+    -- }}}
 -- }}}
 
 -- [ layout ] {{{
@@ -1072,6 +1087,11 @@ root.buttons(awful.util.table.join(
         -- minitray.lua [ Mod4-CTRL-L ] {{{
         awful.key({ modkey, "Control" }, "t",   function()  minitray.toggle() end ),
         -- }}}
+
+        -- Mouseless [ Mod4-CTRL-m ]
+        awful.key({ modkey, "Control" }, "m", function()
+            moveMouse(saftCoords.x, saftCoords.y)
+        end),
 
         -- Screensaver lock  [ Mod4-CTRL-l ] {{{
         -- awful.key({ modkey, "Control" }, "l",
