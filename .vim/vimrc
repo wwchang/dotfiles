@@ -945,17 +945,15 @@ endif
         call vam#ActivateAddons(['gf-diff'])
         call vam#ActivateAddons(['gf-user'])
         call vam#ActivateAddons(['patchreview'])
-            " debug: quickfix/location list.
+            " quickfix/location list.
         call vam#ActivateAddons(['unimpaired'])
+        call vam#ActivateAddons(['quickfixstatus'])
         " call vam#ActivateAddons(['sharefix'])
             " Completion <Tab>
         call vam#ActivateAddons(['neocomplcache', 'vimproc'])
         call vam#ActivateAddons(['neco-look'])
         " call vam#ActivateAddons(['AutoComplPop'])
         " call vam#ActivateAddons(['SuperTab_continued.'])
-            " C C++
-        call vam#ActivateAddons(['clang_complete'])
-        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " snippet
         call vam#ActivateAddons(['neocomplcache-snippets_complete'])
         "call vam#ActivateAddons(['UltiSnips'])
@@ -992,7 +990,7 @@ endif
         " call vam#ActivateAddons(['checksyntax'])
         " call vam#ActivateAddons(['flymake'])
             " Debugger
-        call vam#ActivateAddons(['GdbFromVim'])
+        " call vam#ActivateAddons(['GdbFromVim'])
             " task list
         call vam#ActivateAddons(['TagmaTasks'])
         " call vam#ActivateAddons(['TaskList'])
@@ -1067,7 +1065,7 @@ endif
         " call vam#ActivateAddons(['VDBI'])
         " call vam#ActivateAddons(['SQLUtilities'])
             " Web App
-        call vam#ActivateAddons(['vim-brunch'])
+        " call vam#ActivateAddons(['vim-brunch'])
             " PHP
         "call vam#ActivateAddons(['DBGPavim'])
         "call vam#ActivateAddons(['Xdebug'])
@@ -1093,6 +1091,9 @@ endif
             " Scheme
             " VimL
         "call vam#ActivateAddons(['Vim-Support'])
+            " C C++
+        call vam#ActivateAddons(['clang_complete'])
+        call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " Lua
         " call vam#ActivateAddons(['lua'])
         " call vam#ActivateAddons(['lua_omni'])
@@ -1237,8 +1238,6 @@ filetype plugin indent on
 syntax on
 " }}}
 
-" ----------------------------------------------------------------
-
 " [ plugins manager ] {{{
     " tplugin : {{{
     " }}}
@@ -1265,161 +1264,185 @@ syntax on
 
 " [ Program ] {{{
 
-    " [ VCS ] {{{
-        " fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
+    " [ syntax ] {{{
+        " TagHighlight:
+            " highlights names of classes, variables, types etc in source code.
+            " [ embeded code ] {{{
+            " }}}
+    " }}}
+
+    " [ indent & align ] {{{
+        " Indent_Guide {{{ <Leader>ig, :IndentGuidesToggle
+            let g:indent_guides_enable_on_vim_startup = 1
+            let g:indent_guides_start_level = 2
+            let g:indent_guides_indent_levels = 7
+            let g:indent_guides_color_change_percent = 100 " 0~100
+            let g:indent_guides_guide_size = 1 " indent vertical lines width.
+            let g:indent_guides_space_guides = 1 " consider spaces as indention.
+                let g:indent_guides_auto_colors = 0
+                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
+                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
+                " alternately
+                "hi IndentGuidesOdd  guibg=red   ctermbg=3
+                "hi IndentGuidesEven guibg=green ctermbg=4
+            if &background == "dark"
+                hi IndentGuidesEven ctermbg=darkgrey    guibg=#6F7500
+                hi IndentGuidesOdd  ctermbg=black       guibg=#6F7500
+            elseif &background == "light"
+                "molokai's background = light, guibg for peachpuff
+                hi IndentGuidesEven ctermbg=233 guibg=LightRed
+                hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
+            endif
+        " }}}
+
+        " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
+            " scans through a file when it's opened and attempts to guess which
+            " style of indentation is being used. It then overrides your
+            " preferences so that you match the style of the file.
+        " }}}
+
+        " Indent_Highlight
+
+        " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
+            " {{{ switching between a single-line statement and a multi-line one.
+            nmap <Leader>sj :SplitjoinJoin<cr>
+            nmap <Leader>ss :SplitjoinSplit<cr>
+            "let b:splitjoin_join_callbacks
+            "let b:splitjoin_split_callbacks
+            let g:splitjoin_normalize_whitespace = 0
+            let g:splitjoin_align = 0
+        " }}}
+
+        " Align%294:
+    " }}}
+
+    " [ comment ] {{{
+        " commentary {{{
+        " \\{motion}, \\\, {Visual}\\ ==> comment
+        " \\u ==> uncomment
+        " }}}
+
+        " tComment: {{{ An extensible & universal comment plugin
+            " also handles embedded filetypes.
+                " Usage:
+                "   - gc{motion}    :: toggle comments.
+                "   - gcc           :: toggle comment for current line.
+                "   - gC{motion}    :: Comment region.
+                "   - gCc           :: Comment the current line.
+                "   - <C-_>...      :: :TComment ...
+                "   - <Leader>...   :: :TComment ...
+                "   - :[range]TComment[!] ?ARGS
+                "   - :[range]TCommentAs[!] [commenttype] ?ARGS
+                " tcomment#DefineType() to override defualt choice.
+            let g:tcommentMapLeader1 = '<c-_>'
+            let g:tcommentMapLeader2 = '<Leader>_'
+            let g:tcommentMapLeaderOp1 = 'gc'
+            let g:tcommentMapLeaderOp2 = 'gC'
+            let g:tcommentBlankLines = 1 " comment blank lines too.
+            let g:tcommentOpModeExtra = '' " '>' move cursor to end of comment
+            let g:tcommentOptions = {}
+            let g:tcomment#ignore_char_type = 1
+            let g:tcommentGuessFileType = 1 " default: 0
+            let g:tcommentGuessFileType_dsl = 'xml'
+            let g:tcommentGuessFileType_php = 'html'
+            let g:tcommentGuessFileType_html = 1
+            let g:tcommentGuessFileType_tskeleton = 1
+            let g:tcommentGuessFileType_vim = 1
+            let g:tcommentGuessFileType_django = 1
+            let g:tcommentIgnoreTypes_php = 'sql'
+            "let g:tcomment#syntax_substitute = {}
+            "let g:tcommentSyntaxMap = {}
+            "let g:tcomment#replacements_c = {}
+            "let g:tcommentBlockC = {}
+            "let g:tcommentBlockC2 = {}
+            "let g:tcommentInlineC = g:tcommentLineC
+            "let g:tcommentBlockXML = "<!--%s-->\n  "
+            "let g:tcommentInlineXML = "<!-- %s -->"
+            "let g:tcomment_types {}
+        " }}}
+
+        " Nerd Commenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
+            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
+            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
+            " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
+            " let loaded_nerd_comments=1 " turn off this script.
+        " }}}
+
+        " vim-addon-commenting {{{ features: ( fork from commentary.vim )
+            " - \ for commenting and uncommenting using selection or movement
+            " - pays attention col of cursor so that you can indent at col 0 or
+            "   indentation level
+            " - n\\ comment n lines - prefer simple comemnts (// in C/C++ case)
+            "   without configuration
+            " work for repeat.vim
+            " https://github.com/MarcWeber/vim-addon-commenting
+            "let g:vim_addon_commenting = {'force_filetype_comments':
+                        "\ {'php': ['#',''], 'c' : ['/*','*/']} }
+        " }}}
+    " }}}
+
+    " [ doc & help "K" ] {{{
+        " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+            " support python dot operator help.
+            " e.g. module.fun|<K>ction(args)
+            " TODO more customize
             " Usage:
-                " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
-                " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
-                " :{range}Gread[!] [revision] -- empty the buffer and :read a revision.
-                " :Gwrite {path} -- write file, and stage the result.
-                " :G[s/v]diff [revision] -- perform a vimdiff against the current file.
-                " :Gmove {destination} -- wrapper around git-mv
-                " :Gremove  -- wrapper around git-rm
-                " :[range]Gblame [flags]
-                " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
-        " }}}
+                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
+                "   q (close), <Tab> completion.
+                " - :doc[!] {topic} [{filetype}]
+                " - :doc[!] <cword> [{filetype}]
+                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
+                "   :perldoc, :ViewDocPerl.
+            "let g:no_viewdoc_abbrev
+            "let g:no_plugin_abbrev
+            "let g:no_viewdoc_maps
+            "let g:no_plugin_maps
+            let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
+            let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
+            let g:viewdoc_prevtabonclose = 1
+            let g:viewdoc_openempty = 0 " do not open anything if not found tag.
+            let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
+            "let g:viewdoc_man_cmd = "/usr/bin/man"
 
-        " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
-            " [Browser/File] mode
-            " Usage: [range]:GitV[!] [args]
-            "   - :Gitv [args]
-            "   - :Gitv! [args]
-            "   - [range]Gitv! [args]
-            "   - [args]:
-            "       - --all
-            "       - <since>..<until>
-            "       - --merges
-            "       - -S<string>
-            "       - -G<regex>
-            " Key Maps:
-            " <cr>, oOs, i, q, u, co, D, S, m, git, x, X, r, R, P.
-            nnoremap <F8> :Gitv<cr>
-            let g:Gitv_CommitStep = &lines
-            let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
-            let g:Gitv_GitExecutable = 'git'
-            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close.
-            let g:Gitv_WrapLines = 0 " wrap long commit.
-            let g:Gitv_TruncateCommitSubjects = 0
-            let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
-            let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
-            let g:Gitv_DoNotMapCtrlKey = 1
-        " }}}
+            " customize {{{
+            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
 
-        " extradite: {{{ A git commit log browser that extends fugitive.vim
-            " :Extradite | :Extradite! -- vertical.
-            " nnoremap <F8> :Extradite<cr>
-                " [ mappings ] available in the Extradite buffer.
-                " <CR> -- edit the revision on the current line in a fugitive buffer.
-                " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
-                " dh, dv, dt diff the revision under the cursor in a new h/v split / tab
-                " t -- toggle the visibility of the file diff buffer.
-                " q -- quit.
-                " let g:extradite_width = 60
-                let g:extradite_showhash = 1 " show abbre commit hashes.
-        " }}}
+            " Functions:
+                " - ViewDoc({target}, {topic}, {filetype})
+                " - ViewDoc({target}, {topic})
+                " - ViewDoc({target}, <cword>, {filetype})
+                " - ViewDoc({target}, <cword>)
+                    " This function handle all |viewdoc-commands|.
+            " Handlers:
+                " to add documentation handler for new {filetype}, it's enough
+                " to create on function in ~/.vimrc (or some plugin):
+                " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
+                    " synid = Syntax id for requested topic as returned by synID().
+                    " Can be non-zero only if |:ViewDoc| was called with <cword>.
+                    " have_context : true if we've context.
+                    " The function must return Dictionary with these keys. (all optional)
+                    " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
 
-        " ConflictMotions: {{{
-            " This plugin defines movement commands and text objects to go to
-            " and operate on conflicting lines, as indicated by many revision
-            " control systems, like Subversion, Git, etc. The source code
-            " management system inserts conflict markers such as <<<<<<<,
-            " =======, and >>>>>>> on merges to indicate that the automatic
-            " resolution failed; this plugin helps you with locating and
-            " resolving these conflicts.
-            " USAGE:
-            " ]x ]X [x [X v_]x v_]X v_[x v_[X o_]x o_]X o_[x o_[X
-            " ax az iz
-            " ]x Go to [count] next start of a conflict.
-            " ]X Go to [count] next end of a conflict.
-            " [x Go to [count] previous start of a conflict.
-            " [X Go to [count] previous end of a conflict.
-            " ]z Go to [count] next conflict marker.
-            " [z Go to [count] previous conflict marker.
-            " To change the default motion mappings, use:
-            let g:ConflictMotions_ConflictBeginMapping = 'x'
-            let g:ConflictMotions_ConflictEndMapping = 'X'
-            let g:ConflictMotions_MarkerMapping = 'z'
-            " To change the default text object mappings, use:
-            let g:ConflictMotions_ConflictMapping = 'x'
-            let g:ConflictMotions_SectionMapping = 'z'
-        " }}}
-
-        " Splice : {{{ A Vim plugin for resolving conflicts during three-way merges.
-            " Usage: {{{
-            " Workflow:
-            " When resolving merge conflicts your goal is:
-            " - Examine the three files describing the changes being merged.
-            " - Combine these changes into a fourth file (the "result").
-            " - Save the result to disk.
-            " - Exit Vim with a non-error status code, tell the VCS the merge succeeded.
-            " Splice has several "modes" to help you work with the various files.
-            " Original <-> One(current) <-> Two(target) <-> Result
-            " Modes Or Views:
-            " Grid -- four files at once to give you an overview.
-            " Loupe -- a single file at a time for close examination.
-            " Compare -- two files at a time for examining.
-            " Path -- three files at once. original, one or two, result.
-            " Key Binds: prefixed with '-'
-            " mode selection keys
-                " <prefix>g -- grid view
-                " <prefix>l -- loupe view
-                " <prefix>c -- compare view
-                " <prefix>p -- path view
-            " file selection keys
-                " <prefix>o -- original file
-                " <prefix>1 -- file one
-                " <prefix>2 -- file two
-                " <prefix>r -- result file
-            " other keys
-                " <prefix>d -- cycle through various diff combinations.
-                " <prefix>D -- turn off all diffs.
-                " <prefix>u -- placea hunk from file one/two into result file.
-                " <prefix>s -- toggle scroll locking on and off.
-                " <prefix><space> -- cycle through various layouts of current view.
-                " <prefix>n -- move to next unresolved conflict.
-                " <prefix>N -- move to previous unresolved conflict.
-                " <prefix>q -- save the result file and exit Vim.
-                " <prefix>CC -- exits Vim with error code(like :cquit). not successful.
+            "function ViewDoc_pydoc(topic, ...)
+                "return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
+                            "\ 'ft':	'pydoc',
+                            "\ }
+            "endfunction
+            "let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
+            "let g:ViewDoc_python = function('ViewDoc_pydoc')
             " }}}
 
-            let g:splice_debug = 0 " Splice is loaded only once.
-            let g:splice_disable = 0 " Splice is enabled as usual.
-            let g:splice_initial_diff_grid = 0 " the diff the grid mode starts in.
-            let g:splice_initial_diff_loupe = 0
-            let g:splice_initial_diff_compare = 0
-            let g:splice_initial_diff_path = 0
-            let g:splice_initial_layout_grid = 0 " grid mode layout 0
-            let g:splice_initial_layout_loupe = 0 " single file
-            let g:splice_initial_layout_compare = 0 " 0: vsplit, 1: hsplit
-            let g:splice_initial_layout_path = 0 " 0,1,2,3,4
-            let g:splice_initial_scrollbind_grid = 0
-            let g:splice_initial_scrollbind_loupe = 0
-            let g:splice_initial_scrollbind_compare = 0
-            let g:splice_initial_scrollbind_path = 0
-            let g:splice_initial_mode = "grid" " grid, loupe, compare, path
-            let g:splice_prefix = "-"
-            let g:splice_wrap = "None" " wrap, nowrap, None
+            " help_custom {{{ ~/.vim/ftdoc/{filetype}
+            " example:
+                " ~/.vim/ftdoc/css/css21.txt
+                " :helptags ~/.vim/ftdoc/css/
+                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
+            autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
+            " }}}
         " }}}
 
-        " vim-github {{{ A vim plugin to access to Github.
-            " :Github {feature} [arguments]
-            let g:github#user="numbchild"
-            " ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
-            let g:github#curl_cmd="curl"
+        " Manuals: {{{ An extensible help system
         " }}}
-
-        " rhubarb {{{ GitHub extension for fugitive.vim
-            " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
-            " comment message.  This makes inserting those Closes #123 remarks
-            " slightly easier than copying and pasting from the browser.
-            " --------------------------
-            " let g:github_user = '<user>'
-            " let g:github_password = '<password>'
-        " }}}
-
-        " gf-diff : open code file in 'diff' output with 'gf'.
-
-        " patchreview : allows easy single or multipatch code or diff reviews.
     " }}}
 
     " [ Completion ] {{{
@@ -1993,6 +2016,25 @@ syntax on
 
         " Bundle 'xolox/vim-easytags.git'
             " :UpdateTags [-R /path], :HighlightTags
+
+        " gtags.vim {{{
+            " | http://www.vim.org/scripts/script.php?script_id=893#0.6
+            " $ sudo apt-get install global || .vim/plugin/gtags.vim
+            " The gtags.vim plugin script integrates the GNU GLOBAL source code
+            " tag system with Vim.  About the details, see
+            " http://www.gnu.org/software/global/.
+            " First of all, you must execute gtags at the root of source
+            " directory to make tag files.
+            " $ cd /var/src ; gtags
+            " General form of Gtags command is as follows:
+            " :Gtags [option] pattern
+            " To go to func, you can say :Gtags func
+            " Input completion is available. <Tab>
+            " QucikFix windows, go to any entry with commands: :cn :cp :ccN :cl
+            " You can use POSIX regular expression too. :Gtags ^[sg]et_
+            " To go to the referenced point of func. add -r option. :Gtags -r func
+            " More details please refer vim/plugin/gtags.vim
+        " }}}
     " }}}
 
     " [ cscope ] {{{
@@ -2014,251 +2056,6 @@ syntax on
             " syntax coloring:
                 " CCTreeSymbol -- symbol name.
                 " CCTreeMarkers -- include "|", "+--->"
-        " }}}
-    " }}}
-
-    " [ buffers ] {{{
-        " TagmaBufMgr: {{{
-            " h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
-            " :MgrToggle :help TagmaBufMgr
-            let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
-            let g:TagmaBufMgrBufferNumbers = 1 " buffer number
-            let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
-            let g:TagmaBufMgrLastWindow = 1 " default =0.
-            let g:TagmaBufMgrLocation = 'T' " Top, Bottom, Left, Right, Float
-            let g:TagmaBufMgrMapCArrow = 1 " Ctrl-Arrow
-            let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
-            let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
-            let g:TagmaBufMgrPopUp = 1 " Right-Click PopUp menu
-            let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
-            let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
-        " }}}
-
-        " Minibufexplorer: {{{ <Leader>mbe
-            let g:miniBufExplSplitBelow=0  " MBE at bottom or top.
-            let g:miniBufExplSplitToEdge = 1
-            let g:miniBufExplorerMoreThanOne=1 " open when more than one.
-            let g:miniBufExplMapWindowNavVim = 0 " Ctrl + h/j/k/l
-            let g:miniBufExplMapWindowNavArrows = 1 " Ctrl + Arrow keys
-            let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
-            let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
-            let g:miniBufExplUseSingleClick = 1 " single click or tabs.
-            let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
-            let g:miniBufExplCloseOnSelect = 1 " close after select buffer.
-            let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
-            let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
-            " let g:miniBufExplForceSyntaxEnable = 1 " when no highlight
-            let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
-            let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
-            " Horizontal mode
-            let g:miniBufExplMaxSize = 0
-            let g:miniBufExplMinSize = 1
-            " Vertical mode
-            " let g:miniBufExplVSplit = 20   " column width in chars
-            " let g:miniBufExplMaxSize = <max width: default 0>
-            " let g:miniBufExplMinSize = <min width: default 1>
-            " MiniBufExpl Colors
-            hi MBEVisibleActive guifg=#A6DB29 guibg=fg
-            hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-            hi MBEVisibleChanged guifg=#F1266F guibg=fg
-            hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
-            hi MBEChanged guifg=#CD5907 guibg=fg
-            hi MBENormal guifg=#808080 guibg=fg
-        " }}}
-
-        " LustyJuggler: {{{ <Leader>lj
-            "set hidden
-        " }}}
-
-        " Tabman: {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
-            let g:loaded_tabman = 0 " set 1 to disable plugin completely
-            let g:tabman_toggle = '<leader>tm'
-            let g:tabman_width = 25
-            let g:tabman_side = 'left'
-            let g:tabman_specials = 0 " show help and quickfix window created by plugin
-            let g:tabman_number = 0 " disable line number in TabMan
-        " }}}
-    " }}}
-
-    " [ FileManager ] {{{ F11
-        " NerdTree: {{{ <F11> :NERDTree [dir|bookmark-name]
-            " let loaded_nerd_tree=1 " let vim can not load NERDTree.
-            let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
-            let NERDTreeAutoCenter = 1 " default = 1.
-            let NERDTreeAutoCenterThreshold = 3 " default = 3.
-            let NERDTreeCaseSensitiveSort = 0 " default = 0.
-            let NERDTreeChDirMode = 1 " 0/1/2
-            let NERDTreeHighlightCursorline = 1 " highlight cursorline.
-            let NERDTreeHijackNetrw = 1 " for :edit <dir> open 'secondary' NERD tree.
-            let NERDTreeIgnore = ['\~$', '\.log', '\.pyo', '\.pyc', '\.swp', '\.bak', '\.git', '\.hg']
-            let NERDTreeBookmarksFile="$HOME/.vim/NERDTreeBookmarks"
-            let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
-            let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
-            let NERDTreeShowHidden = 0 " does not show hidden files.
-            let NERDTreeShowLineNumbers = 0 " do not show line numbers, default=0
-            let NERDTreeWinPos = "left" " NERD-tree window position.
-            let NERDTreeWinSize = 20 " window size, default=31.
-            "let NERDTreeDirArrows =
-            "new own syntax highlight gnap.
-            "let NERDTreeMinimalUI =
-            nnoremap <silent> <F11> :NERDTreeToggle<CR>
-        " }}}
-
-        " vim-nerdtree_plugin_collections {{{
-        " }}}
-    " }}}
-
-    " [ Compiler ] {{{ <F10>
-        " SingleCompile: {{{ F10 compile&run
-            " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
-            let g:SingleCompile_alwayscompile = 1 " =0 to disable it.
-            let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
-            let g:SingleCompile_autowrite = 1 " save file when compile.
-            let g:SingleCompile_usequickfix = 1 " use QuickFix.
-            let g:SingleCompile_menumode = 2 " 0 don't show menu, 1 sub menu, 2 menu bar
-            let g:SingleCompile_resultheight = 10
-            let g:SingleCompile_showquickfixiferror = 1 " auto show error.
-            let g:SingleCompile_showresultafterrun = 0 " show result even no error
-            let g:SingleCompile_usedialog = 1 " show dialog
-            call SingleCompile#ChooseCompiler('python', 'python3')
-            call SingleCompile#ChooseCompiler('sh', 'bash')
-            call SingleCompile#ChooseCompiler('bash', 'bash')
-            call SingleCompile#ChooseCompiler('zsh', 'zsh')
-            call SingleCompile#ChooseCompiler('c', 'gcc')
-            call SingleCompile#ChooseCompiler('cpp', 'g++')
-            call SingleCompile#ChooseCompiler('html', 'firefox')
-            call SingleCompile#ChooseCompiler('javascript', 'node.js') " js, gjs, node.js, rhino
-            nnoremap <F10> :SCCompileRun<cr>
-        " }}}
-    " }}}
-
-    " [ debug & syntax checker ] {{{
-        " Syntastic2: {{{
-            "" runtime plugin/syntastic_setup.vim
-            "let g:syntastic['auto_setup'] = 0 " 0=auto, 1=manually.
-            "let g:syntastic.file_types['xml'] = 'disabled'
-            "" for html tidy set ignore regex
-            "let g:syntastic.file_types.html.ignore_regex = 'lacks "alt" attribute\|proprietary attribute'
-        " }}}
-
-        " Syntastic: {{{ :w saving to check. or daemon automatic check.
-            " Commands: :Errors, :SyntasticToggleMode, :SyntasticCheck,
-            " Require:  language syntax checker bins.
-            "Syntastic is a syntax checking plugin that runs files through
-            "external syntax checkers.  This can be done on demand, or
-            "automatically as files are saved and opened.  If syntax errors are
-            "detected, the user is notified and is happy because they didn't
-            "have to compile their code or execute their script to find them.
-            let g:syntastic_check_on_open=0 " checks when buffers are first loaded/save.
-            let g:syntastic_echo_current_error=1 " error associated with lines.
-            let g:syntastic_enable_signs=1 " use :sign interface to mark syntax errors.
-            let g:syntastic_enable_balloons = 1
-                " whether display error messages in balloons when mouse is
-                " hovered over erroneous lines.  need '+balloon_eval'
-            let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors.
-            let g:syntastic_auto_jump=1 " jump to first detected error
-            let g:syntastic_auto_loc_list=2 " 0/1/2: auto open and,or close location-list
-            let g:syntastic_loc_list_height=10
-                " fine tune when automatic syntax checking is done.
-            let g:syntastic_mode_map = { 'mode': 'active',
-                        \ "active_filetypes": [],
-                        \ "passive_filetypes": [] }
-            let g:syntastic_quiet_warnings=0 " only care about syntax errors not warning
-            let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-        " }}}
-
-        " checksyntax {{{
-        " }}}
-
-        " flymake {{{ on-the-fly syntax checking using external syntax checking tool.
-            " autocmd BufWritePost <buffer> call FlyMake({checker}, {err-regexp}, {warn-regexp})
-            " autocmd BufWinLeave <buffer>  call FlyMakeCloseWindows()
-        " }}}
-    " }}}
-
-    " [ Debugger ] {{{
-        " GdbFromVim {{{ debug your applications with gdb from Vim.
-            " let g:gdb_from_vim_app = 'applications'
-            " let g:gdb_from_vim_args = 'arguments'
-        " }}}
-    " }}}
-
-        " QuickfixSigns_vim: {{{ mark quickfix & location list items with signs.
-            let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
-                        \ 'vcsdiff' ])
-            let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
-                        \ 'CursorHold', 'CursorHoldI',
-                        \ 'InsertLeave', 'InsertEnter', 'InsertChange'])
-            let g:quickfixsigns_class_vcsdiff = {
-                        \ 'sign': '*quickfixsigns#vcsdiff#Signs',
-                        \ 'get': 'quickfixsigns#vcsdiff#GetList(%s)',
-                        \ 'event': [ 'BufEnter', 'BufLeave', 'BufWritePost'],
-                        \ 'level': 6
-                        \ }
-            let g:quickfixsigns_balloon = 1
-            let g:quickfixsigns_max = 500 " don't display signs if longer than this.
-            let g:quickfixsigns_blacklist_buffer = '^__.*__$'
-            let g:quickfixsigns_icons = {}
-            let g:quickfixsigns#vcsdiff#guess_type = 1
-            let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
-                        \ 'ADD': 'DiffAdd', 'CHANGE': 'DiffChange'}
-        " }}}
-
-        " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
-        " }}}
-
-        " Unimpaired: {{{ provides several pairs of bracket maps.
-            " [, ],
-            " a: , b: :b, l: :l, q: :c, t: tag.
-            " o: alphabetically, n: SCM conflict marker.
-            " <space>: add count blank lines. e: exchange current with.
-            " encoding & decoding
-        " }}}
-
-        " sharefix {{{ sharefix addresses the pain point of your quickfix list
-        " being wiped out between running different commands or functions that
-        " update the list.
-        " }}}
-    " }}}
-
-    " [ test ] {{{
-    " }}}
-
-    " [ swap value ] {{{
-        " SwapIt: {{{ <C-A>, <C-X>
-            " to integrate with other incrementor scripts (such as speeddating.vim)
-            " to the keys that be invoked when swapit doesn't have a proper option
-            nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
-            nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
-            " Multi word Swaps
-            " Filetype Swaps
-            " OmniCompletion Swaps
-            let b:swap_completefunc = 'cssswapit#CssSwapComplete'
-        " }}}
-    " }}}
-
-    " [ projects ] {{{
-        " TagmaTasks: {{{
-            " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
-            " :TagmaTasksClear, :TagmaTasksToggle
-            " \tt, \tc, \tm, \tw. => [t, ]t, [T, ]T.
-            let g:TagmaTasksAutoUpdate = 1
-            let g:TagmaTasksHeight = 10
-            let g:TagmaTasksIdleUpdate = 0
-            let g:TagmaTasksJumpTask = 1
-            let g:TagmaTasksJumpKeys = 1
-            let g:TagmaTasksMarks = 1
-            let g:TagmaTasksOpen = 1
-            let g:TagmaTasksPrefix = '<Leader>t'
-            let g:TagmaTasksTokens = ['FIXME', 'TODO', 'NOTE', 'XXX',
-                        \ 'COMBAK', 'ISSUE', 'ERROR', 'FUCK']
-        " }}}
-
-        " TaskList: {{{ \tl ( \t map conflict with CommandT.vim )
-            map <Leader>tl <Plug>TaskList
-            let g:tlWindowPosition = 1 " 1: bottom, 0: top.
-            let g:tlRememberPosition = 1
-            let g:tlTokenList = ["FIXME", "BUG", "TODO", "XXX", "FUCK"]
         " }}}
     " }}}
 
@@ -2595,235 +2392,390 @@ syntax on
         " }}}
     " }}}
 
-    " [ locate ] {{{
-        " gtags.vim {{{
-            " | http://www.vim.org/scripts/script.php?script_id=893#0.6
-            " $ sudo apt-get install global || .vim/plugin/gtags.vim
-            " The gtags.vim plugin script integrates the GNU GLOBAL source code
-            " tag system with Vim.  About the details, see
-            " http://www.gnu.org/software/global/.
-            " First of all, you must execute gtags at the root of source
-            " directory to make tag files.
-            " $ cd /var/src ; gtags
-            " General form of Gtags command is as follows:
-            " :Gtags [option] pattern
-            " To go to func, you can say :Gtags func
-            " Input completion is available. <Tab>
-            " QucikFix windows, go to any entry with commands: :cn :cp :ccN :cl
-            " You can use POSIX regular expression too. :Gtags ^[sg]et_
-            " To go to the referenced point of func. add -r option. :Gtags -r func
-            " More details please refer vim/plugin/gtags.vim
+    " [ syntax checker ] {{{
+        " Syntastic2: {{{
+            "" runtime plugin/syntastic_setup.vim
+            "let g:syntastic['auto_setup'] = 0 " 0=auto, 1=manually.
+            "let g:syntastic.file_types['xml'] = 'disabled'
+            "" for html tidy set ignore regex
+            "let g:syntastic.file_types.html.ignore_regex = 'lacks "alt" attribute\|proprietary attribute'
+        " }}}
+
+        " Syntastic: {{{ :w saving to check. or daemon automatic check.
+            " Commands: :Errors, :SyntasticToggleMode, :SyntasticCheck,
+            " Require:  language syntax checker bins.
+            "Syntastic is a syntax checking plugin that runs files through
+            "external syntax checkers.  This can be done on demand, or
+            "automatically as files are saved and opened.  If syntax errors are
+            "detected, the user is notified and is happy because they didn't
+            "have to compile their code or execute their script to find them.
+            let g:syntastic_check_on_open=0 " checks when buffers are first loaded/save.
+            let g:syntastic_echo_current_error=1 " error associated with lines.
+            let g:syntastic_enable_signs=1 " use :sign interface to mark syntax errors.
+            let g:syntastic_enable_balloons = 1
+                " whether display error messages in balloons when mouse is
+                " hovered over erroneous lines.  need '+balloon_eval'
+            let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors.
+            let g:syntastic_auto_jump=1 " jump to first detected error
+            let g:syntastic_auto_loc_list=2 " 0/1/2: auto open and,or close location-list
+            let g:syntastic_loc_list_height=10
+                " fine tune when automatic syntax checking is done.
+            let g:syntastic_mode_map = { 'mode': 'active',
+                        \ "active_filetypes": [],
+                        \ "passive_filetypes": [] }
+            let g:syntastic_quiet_warnings=0 " only care about syntax errors not warning
+            let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+        " }}}
+
+        " checksyntax {{{
+        " }}}
+
+        " flymake {{{ on-the-fly syntax checking using external syntax checking tool.
+            " autocmd BufWritePost <buffer> call FlyMake({checker}, {err-regexp}, {warn-regexp})
+            " autocmd BufWinLeave <buffer>  call FlyMakeCloseWindows()
         " }}}
     " }}}
 
-    " [ comment ] {{{
-        " commentary {{{
-        " \\{motion}, \\\, {Visual}\\ ==> comment
-        " \\u ==> uncomment
-        " }}}
-
-        " tComment: {{{ An extensible & universal comment plugin
-            " also handles embedded filetypes.
-                " Usage:
-                "   - gc{motion}    :: toggle comments.
-                "   - gcc           :: toggle comment for current line.
-                "   - gC{motion}    :: Comment region.
-                "   - gCc           :: Comment the current line.
-                "   - <C-_>...      :: :TComment ...
-                "   - <Leader>...   :: :TComment ...
-                "   - :[range]TComment[!] ?ARGS
-                "   - :[range]TCommentAs[!] [commenttype] ?ARGS
-                " tcomment#DefineType() to override defualt choice.
-            let g:tcommentMapLeader1 = '<c-_>'
-            let g:tcommentMapLeader2 = '<Leader>_'
-            let g:tcommentMapLeaderOp1 = 'gc'
-            let g:tcommentMapLeaderOp2 = 'gC'
-            let g:tcommentBlankLines = 1 " comment blank lines too.
-            let g:tcommentOpModeExtra = '' " '>' move cursor to end of comment
-            let g:tcommentOptions = {}
-            let g:tcomment#ignore_char_type = 1
-            let g:tcommentGuessFileType = 1 " default: 0
-            let g:tcommentGuessFileType_dsl = 'xml'
-            let g:tcommentGuessFileType_php = 'html'
-            let g:tcommentGuessFileType_html = 1
-            let g:tcommentGuessFileType_tskeleton = 1
-            let g:tcommentGuessFileType_vim = 1
-            let g:tcommentGuessFileType_django = 1
-            let g:tcommentIgnoreTypes_php = 'sql'
-            "let g:tcomment#syntax_substitute = {}
-            "let g:tcommentSyntaxMap = {}
-            "let g:tcomment#replacements_c = {}
-            "let g:tcommentBlockC = {}
-            "let g:tcommentBlockC2 = {}
-            "let g:tcommentInlineC = g:tcommentLineC
-            "let g:tcommentBlockXML = "<!--%s-->\n  "
-            "let g:tcommentInlineXML = "<!-- %s -->"
-            "let g:tcomment_types {}
-        " }}}
-
-        " Nerd Commenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
-            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
-            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
-            " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
-            " let loaded_nerd_comments=1 " turn off this script.
-        " }}}
-
-        " vim-addon-commenting {{{ features: ( fork from commentary.vim )
-            " - \ for commenting and uncommenting using selection or movement
-            " - pays attention col of cursor so that you can indent at col 0 or
-            "   indentation level
-            " - n\\ comment n lines - prefer simple comemnts (// in C/C++ case)
-            "   without configuration
-            " work for repeat.vim
-            " https://github.com/MarcWeber/vim-addon-commenting
-            "let g:vim_addon_commenting = {'force_filetype_comments':
-                        "\ {'php': ['#',''], 'c' : ['/*','*/']} }
+    " [ Debugger ] {{{
+        " GdbFromVim {{{ debug your applications with gdb from Vim.
+            " let g:gdb_from_vim_app = 'applications'
+            " let g:gdb_from_vim_args = 'arguments'
         " }}}
     " }}}
 
-    " [ doc & help "K" ] {{{
-        " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
-            " support python dot operator help.
-            " e.g. module.fun|<K>ction(args)
-            " TODO more customize
+    " [ Compiler ] {{{ <F10>
+        " SingleCompile: {{{ F10 compile&run
+            " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
+            let g:SingleCompile_alwayscompile = 1 " =0 to disable it.
+            let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
+            let g:SingleCompile_autowrite = 1 " save file when compile.
+            let g:SingleCompile_usequickfix = 1 " use QuickFix.
+            let g:SingleCompile_menumode = 2 " 0 don't show menu, 1 sub menu, 2 menu bar
+            let g:SingleCompile_resultheight = 10
+            let g:SingleCompile_showquickfixiferror = 1 " auto show error.
+            let g:SingleCompile_showresultafterrun = 0 " show result even no error
+            let g:SingleCompile_usedialog = 1 " show dialog
+            call SingleCompile#ChooseCompiler('python', 'python3')
+            call SingleCompile#ChooseCompiler('sh', 'bash')
+            call SingleCompile#ChooseCompiler('bash', 'bash')
+            call SingleCompile#ChooseCompiler('zsh', 'zsh')
+            call SingleCompile#ChooseCompiler('c', 'gcc')
+            call SingleCompile#ChooseCompiler('cpp', 'g++')
+            call SingleCompile#ChooseCompiler('html', 'firefox')
+            call SingleCompile#ChooseCompiler('javascript', 'node.js') " js, gjs, node.js, rhino
+            nnoremap <F10> :SCCompileRun<cr>
+        " }}}
+    " }}}
+
+    " [ quickfix & location list ] {{{
+        " QuickfixSigns_vim: {{{ mark quickfix & location list items with signs.
+            let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
+                        \ 'vcsdiff' ])
+            let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
+                        \ 'CursorHold', 'CursorHoldI',
+                        \ 'InsertLeave', 'InsertEnter', 'InsertChange'])
+            let g:quickfixsigns_class_vcsdiff = {
+                        \ 'sign': '*quickfixsigns#vcsdiff#Signs',
+                        \ 'get': 'quickfixsigns#vcsdiff#GetList(%s)',
+                        \ 'event': [ 'BufEnter', 'BufLeave', 'BufWritePost'],
+                        \ 'level': 6
+                        \ }
+            let g:quickfixsigns_balloon = 1
+            let g:quickfixsigns_max = 500 " don't display signs if longer than this.
+            let g:quickfixsigns_blacklist_buffer = '^__.*__$'
+            let g:quickfixsigns_icons = {}
+            let g:quickfixsigns#vcsdiff#guess_type = 1
+            let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
+                        \ 'ADD': 'DiffAdd', 'CHANGE': 'DiffChange'}
+        " }}}
+
+        " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
+        " }}}
+
+        " Unimpaired: {{{ provides several pairs of bracket maps.
+            " [, ],
+            " a: , b: :b, l: :l, q: :c, t: tag.
+            " o: alphabetically, n: SCM conflict marker.
+            " <space>: add count blank lines. e: exchange current with.
+            " encoding & decoding
+        " }}}
+
+        " sharefix {{{ sharefix addresses the pain point of your quickfix list
+        " being wiped out between running different commands or functions that
+        " update the list.
+        " }}}
+    " }}}
+
+    " [ VCS ] {{{
+        " fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
             " Usage:
-                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
-                "   q (close), <Tab> completion.
-                " - :doc[!] {topic} [{filetype}]
-                " - :doc[!] <cword> [{filetype}]
-                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
-                "   :perldoc, :ViewDocPerl.
-            "let g:no_viewdoc_abbrev
-            "let g:no_plugin_abbrev
-            "let g:no_viewdoc_maps
-            "let g:no_plugin_maps
-            let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
-            let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
-            let g:viewdoc_prevtabonclose = 1
-            let g:viewdoc_openempty = 0 " do not open anything if not found tag.
-            let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
-            "let g:viewdoc_man_cmd = "/usr/bin/man"
+                " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
+                " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
+                " :{range}Gread[!] [revision] -- empty the buffer and :read a revision.
+                " :Gwrite {path} -- write file, and stage the result.
+                " :G[s/v]diff [revision] -- perform a vimdiff against the current file.
+                " :Gmove {destination} -- wrapper around git-mv
+                " :Gremove  -- wrapper around git-rm
+                " :[range]Gblame [flags]
+                " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
+        " }}}
 
-            " customize {{{
-            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
+        " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
+            " [Browser/File] mode
+            " Usage: [range]:GitV[!] [args]
+            "   - :Gitv [args]
+            "   - :Gitv! [args]
+            "   - [range]Gitv! [args]
+            "   - [args]:
+            "       - --all
+            "       - <since>..<until>
+            "       - --merges
+            "       - -S<string>
+            "       - -G<regex>
+            " Key Maps:
+            " <cr>, oOs, i, q, u, co, D, S, m, git, x, X, r, R, P.
+            nnoremap <F8> :Gitv<cr>
+            let g:Gitv_CommitStep = &lines
+            let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
+            let g:Gitv_GitExecutable = 'git'
+            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close.
+            let g:Gitv_WrapLines = 0 " wrap long commit.
+            let g:Gitv_TruncateCommitSubjects = 0
+            let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
+            let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
+            let g:Gitv_DoNotMapCtrlKey = 1
+        " }}}
 
-            " Functions:
-                " - ViewDoc({target}, {topic}, {filetype})
-                " - ViewDoc({target}, {topic})
-                " - ViewDoc({target}, <cword>, {filetype})
-                " - ViewDoc({target}, <cword>)
-                    " This function handle all |viewdoc-commands|.
-            " Handlers:
-                " to add documentation handler for new {filetype}, it's enough
-                " to create on function in ~/.vimrc (or some plugin):
-                " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
-                    " synid = Syntax id for requested topic as returned by synID().
-                    " Can be non-zero only if |:ViewDoc| was called with <cword>.
-                    " have_context : true if we've context.
-                    " The function must return Dictionary with these keys. (all optional)
-                    " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
+        " extradite: {{{ A git commit log browser that extends fugitive.vim
+            " :Extradite | :Extradite! -- vertical.
+            " nnoremap <F8> :Extradite<cr>
+                " [ mappings ] available in the Extradite buffer.
+                " <CR> -- edit the revision on the current line in a fugitive buffer.
+                " oh, ov, ot edit the revision under the cursor in a new h/v split / tab
+                " dh, dv, dt diff the revision under the cursor in a new h/v split / tab
+                " t -- toggle the visibility of the file diff buffer.
+                " q -- quit.
+                " let g:extradite_width = 60
+                let g:extradite_showhash = 1 " show abbre commit hashes.
+        " }}}
 
-            "function ViewDoc_pydoc(topic, ...)
-                "return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
-                            "\ 'ft':	'pydoc',
-                            "\ }
-            "endfunction
-            "let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
-            "let g:ViewDoc_python = function('ViewDoc_pydoc')
+        " ConflictMotions: {{{
+            " This plugin defines movement commands and text objects to go to
+            " and operate on conflicting lines, as indicated by many revision
+            " control systems, like Subversion, Git, etc. The source code
+            " management system inserts conflict markers such as <<<<<<<,
+            " =======, and >>>>>>> on merges to indicate that the automatic
+            " resolution failed; this plugin helps you with locating and
+            " resolving these conflicts.
+            " USAGE:
+            " ]x ]X [x [X v_]x v_]X v_[x v_[X o_]x o_]X o_[x o_[X
+            " ax az iz
+            " ]x Go to [count] next start of a conflict.
+            " ]X Go to [count] next end of a conflict.
+            " [x Go to [count] previous start of a conflict.
+            " [X Go to [count] previous end of a conflict.
+            " ]z Go to [count] next conflict marker.
+            " [z Go to [count] previous conflict marker.
+            " To change the default motion mappings, use:
+            let g:ConflictMotions_ConflictBeginMapping = 'x'
+            let g:ConflictMotions_ConflictEndMapping = 'X'
+            let g:ConflictMotions_MarkerMapping = 'z'
+            " To change the default text object mappings, use:
+            let g:ConflictMotions_ConflictMapping = 'x'
+            let g:ConflictMotions_SectionMapping = 'z'
+        " }}}
+
+        " Splice : {{{ A Vim plugin for resolving conflicts during three-way merges.
+            " Usage: {{{
+            " Workflow:
+            " When resolving merge conflicts your goal is:
+            " - Examine the three files describing the changes being merged.
+            " - Combine these changes into a fourth file (the "result").
+            " - Save the result to disk.
+            " - Exit Vim with a non-error status code, tell the VCS the merge succeeded.
+            " Splice has several "modes" to help you work with the various files.
+            " Original <-> One(current) <-> Two(target) <-> Result
+            " Modes Or Views:
+            " Grid -- four files at once to give you an overview.
+            " Loupe -- a single file at a time for close examination.
+            " Compare -- two files at a time for examining.
+            " Path -- three files at once. original, one or two, result.
+            " Key Binds: prefixed with '-'
+            " mode selection keys
+                " <prefix>g -- grid view
+                " <prefix>l -- loupe view
+                " <prefix>c -- compare view
+                " <prefix>p -- path view
+            " file selection keys
+                " <prefix>o -- original file
+                " <prefix>1 -- file one
+                " <prefix>2 -- file two
+                " <prefix>r -- result file
+            " other keys
+                " <prefix>d -- cycle through various diff combinations.
+                " <prefix>D -- turn off all diffs.
+                " <prefix>u -- placea hunk from file one/two into result file.
+                " <prefix>s -- toggle scroll locking on and off.
+                " <prefix><space> -- cycle through various layouts of current view.
+                " <prefix>n -- move to next unresolved conflict.
+                " <prefix>N -- move to previous unresolved conflict.
+                " <prefix>q -- save the result file and exit Vim.
+                " <prefix>CC -- exits Vim with error code(like :cquit). not successful.
             " }}}
 
-            " help_custom {{{ ~/.vim/ftdoc/{filetype}
-            " example:
-                " ~/.vim/ftdoc/css/css21.txt
-                " :helptags ~/.vim/ftdoc/css/
-                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
-            autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
-            " }}}
+            let g:splice_debug = 0 " Splice is loaded only once.
+            let g:splice_disable = 0 " Splice is enabled as usual.
+            let g:splice_initial_diff_grid = 0 " the diff the grid mode starts in.
+            let g:splice_initial_diff_loupe = 0
+            let g:splice_initial_diff_compare = 0
+            let g:splice_initial_diff_path = 0
+            let g:splice_initial_layout_grid = 0 " grid mode layout 0
+            let g:splice_initial_layout_loupe = 0 " single file
+            let g:splice_initial_layout_compare = 0 " 0: vsplit, 1: hsplit
+            let g:splice_initial_layout_path = 0 " 0,1,2,3,4
+            let g:splice_initial_scrollbind_grid = 0
+            let g:splice_initial_scrollbind_loupe = 0
+            let g:splice_initial_scrollbind_compare = 0
+            let g:splice_initial_scrollbind_path = 0
+            let g:splice_initial_mode = "grid" " grid, loupe, compare, path
+            let g:splice_prefix = "-"
+            let g:splice_wrap = "None" " wrap, nowrap, None
         " }}}
 
-        " Manuals: {{{ An extensible help system
+        " vim-github {{{ A vim plugin to access to Github.
+            " :Github {feature} [arguments]
+            let g:github#user="numbchild"
+            " ~/.gitconfig TOKEN let g:github#token=$GITHUB_TOKEN
+            let g:github#curl_cmd="curl"
+        " }}}
+
+        " rhubarb {{{ GitHub extension for fugitive.vim
+            " use i_CTRL-X_CTRL-O to omni-complete GitHub issues when editing a
+            " comment message.  This makes inserting those Closes #123 remarks
+            " slightly easier than copying and pasting from the browser.
+            " --------------------------
+            " let g:github_user = '<user>'
+            " let g:github_password = '<password>'
+        " }}}
+
+        " gf-diff : open code file in 'diff' output with 'gf'.
+
+        " patchreview : allows easy single or multipatch code or diff reviews.
+    " }}}
+
+    " [ FileManager ] {{{ F11
+        " NerdTree: {{{ <F11> :NERDTree [dir|bookmark-name]
+            " let loaded_nerd_tree=1 " let vim can not load NERDTree.
+            let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
+            let NERDTreeAutoCenter = 1 " default = 1.
+            let NERDTreeAutoCenterThreshold = 3 " default = 3.
+            let NERDTreeCaseSensitiveSort = 0 " default = 0.
+            let NERDTreeChDirMode = 1 " 0/1/2
+            let NERDTreeHighlightCursorline = 1 " highlight cursorline.
+            let NERDTreeHijackNetrw = 1 " for :edit <dir> open 'secondary' NERD tree.
+            let NERDTreeIgnore = ['\~$', '\.log', '\.pyo', '\.pyc', '\.swp', '\.bak', '\.git', '\.hg']
+            let NERDTreeBookmarksFile="$HOME/.vim/NERDTreeBookmarks"
+            let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
+            let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
+            let NERDTreeShowHidden = 0 " does not show hidden files.
+            let NERDTreeShowLineNumbers = 0 " do not show line numbers, default=0
+            let NERDTreeWinPos = "left" " NERD-tree window position.
+            let NERDTreeWinSize = 20 " window size, default=31.
+            "let NERDTreeDirArrows =
+            "new own syntax highlight gnap.
+            "let NERDTreeMinimalUI =
+            nnoremap <silent> <F11> :NERDTreeToggle<CR>
+        " }}}
+
+        " vim-nerdtree_plugin_collections {{{
         " }}}
     " }}}
 
-    " [ syntax ] {{{
-        " TagHighlight:
-            " highlights names of classes, variables, types etc in source code.
-            " [ embeded code ] {{{
-            " }}}
-    " }}}
-
-    " [ indent & align ] {{{
-        " Indent_Guide {{{ <Leader>ig, :IndentGuidesToggle
-            let g:indent_guides_enable_on_vim_startup = 1
-            let g:indent_guides_start_level = 2
-            let g:indent_guides_indent_levels = 7
-            let g:indent_guides_color_change_percent = 100 " 0~100
-            let g:indent_guides_guide_size = 1 " indent vertical lines width.
-            let g:indent_guides_space_guides = 1 " consider spaces as indention.
-                let g:indent_guides_auto_colors = 0
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
-                " alternately
-                "hi IndentGuidesOdd  guibg=red   ctermbg=3
-                "hi IndentGuidesEven guibg=green ctermbg=4
-            if &background == "dark"
-                hi IndentGuidesEven ctermbg=darkgrey    guibg=#6F7500
-                hi IndentGuidesOdd  ctermbg=black       guibg=#6F7500
-            elseif &background == "light"
-                "molokai's background = light, guibg for peachpuff
-                hi IndentGuidesEven ctermbg=233 guibg=LightRed
-                hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
-            endif
+    " [ buffers ] {{{
+        " TagmaBufMgr: {{{
+            " h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
+            " :MgrToggle :help TagmaBufMgr
+            let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
+            let g:TagmaBufMgrBufferNumbers = 1 " buffer number
+            let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
+            let g:TagmaBufMgrLastWindow = 1 " default =0.
+            let g:TagmaBufMgrLocation = 'T' " Top, Bottom, Left, Right, Float
+            let g:TagmaBufMgrMapCArrow = 1 " Ctrl-Arrow
+            let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
+            let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
+            let g:TagmaBufMgrPopUp = 1 " Right-Click PopUp menu
+            let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
+            let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
         " }}}
 
-        " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
-            " scans through a file when it's opened and attempts to guess which
-            " style of indentation is being used. It then overrides your
-            " preferences so that you match the style of the file.
+        " Minibufexplorer: {{{ <Leader>mbe
+            let g:miniBufExplSplitBelow=0  " MBE at bottom or top.
+            let g:miniBufExplSplitToEdge = 1
+            let g:miniBufExplorerMoreThanOne=1 " open when more than one.
+            let g:miniBufExplMapWindowNavVim = 0 " Ctrl + h/j/k/l
+            let g:miniBufExplMapWindowNavArrows = 1 " Ctrl + Arrow keys
+            let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
+            let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
+            let g:miniBufExplUseSingleClick = 1 " single click or tabs.
+            let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
+            let g:miniBufExplCloseOnSelect = 1 " close after select buffer.
+            let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
+            let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
+            " let g:miniBufExplForceSyntaxEnable = 1 " when no highlight
+            let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
+            let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
+            " Horizontal mode
+            let g:miniBufExplMaxSize = 0
+            let g:miniBufExplMinSize = 1
+            " Vertical mode
+            " let g:miniBufExplVSplit = 20   " column width in chars
+            " let g:miniBufExplMaxSize = <max width: default 0>
+            " let g:miniBufExplMinSize = <min width: default 1>
+            " MiniBufExpl Colors
+            hi MBEVisibleActive guifg=#A6DB29 guibg=fg
+            hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
+            hi MBEVisibleChanged guifg=#F1266F guibg=fg
+            hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
+            hi MBEChanged guifg=#CD5907 guibg=fg
+            hi MBENormal guifg=#808080 guibg=fg
         " }}}
 
-        " Indent_Highlight
-
-        " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
-            " {{{ switching between a single-line statement and a multi-line one.
-            nmap <Leader>sj :SplitjoinJoin<cr>
-            nmap <Leader>ss :SplitjoinSplit<cr>
-            "let b:splitjoin_join_callbacks
-            "let b:splitjoin_split_callbacks
-            let g:splitjoin_normalize_whitespace = 0
-            let g:splitjoin_align = 0
+        " LustyJuggler: {{{ <Leader>lj
+            "set hidden
         " }}}
 
-        " Align%294:
+        " Tabman: {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
+            let g:loaded_tabman = 0 " set 1 to disable plugin completely
+            let g:tabman_toggle = '<leader>tm'
+            let g:tabman_width = 25
+            let g:tabman_side = 'left'
+            let g:tabman_specials = 0 " show help and quickfix window created by plugin
+            let g:tabman_number = 0 " disable line number in TabMan
+        " }}}
     " }}}
 
-    " [ conceal ] {{{
-        " vim-ocaml-conceal
-    " }}}
+    " [ projects ] {{{
+        " TagmaTasks: {{{
+            " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
+            " :TagmaTasksClear, :TagmaTasksToggle
+            " \tt, \tc, \tm, \tw. => [t, ]t, [T, ]T.
+            let g:TagmaTasksAutoUpdate = 1
+            let g:TagmaTasksHeight = 10
+            let g:TagmaTasksIdleUpdate = 0
+            let g:TagmaTasksJumpTask = 1
+            let g:TagmaTasksJumpKeys = 1
+            let g:TagmaTasksMarks = 1
+            let g:TagmaTasksOpen = 1
+            let g:TagmaTasksPrefix = '<Leader>t'
+            let g:TagmaTasksTokens = ['FIXME', 'TODO', 'NOTE', 'XXX',
+                        \ 'COMBAK', 'ISSUE', 'ERROR', 'FUCK']
+        " }}}
 
-    " [ history/undo ] {{{
-        " Vim's builtin undo tree:
-            " "u" -> undo
-            " "<C-R>" -> redo
-            " :undo (is useful if you know what change you want to jump to.)
-            " [count]g-, [count]g+ (are useful if you don't know exactly what
-            " the change number is.)
-            " :undolist :earlier/:later [time] {time travelling}
-
-        " Gundo: {{{ Visual Vim Undo tree and list.
-            " gundo#GundoShow(), gundo#GundoHide()
-            nnoremap <F9> :GundoToggle<CR>
-            " let g:gundo_disable = 1 " disable Gundo.
-            let g:gundo_right = 0 " right/left position.
-            let g:gundo_help = 1 " show help.
-            let g:gundo_width = 45
-            let g:gundo_auto_preview = 1
-            let g:gundo_preview_height = 25
-            let g:gundo_preview_buttom = 0 " 0 default.
-            let g:gundo_preview_statusline = 'Preview'
-            let g:gundo_tree_statusline = 'Tree'
-            let g:gundo_map_move_older = "j"
-            let g:gundo_map_move_newer = "k"
+        " TaskList: {{{ \tl ( \t map conflict with CommandT.vim )
+            map <Leader>tl <Plug>TaskList
+            let g:tlWindowPosition = 1 " 1: bottom, 0: top.
+            let g:tlRememberPosition = 1
+            let g:tlTokenList = ["FIXME", "BUG", "TODO", "XXX", "FUCK"]
         " }}}
     " }}}
 
@@ -2843,6 +2795,19 @@ syntax on
             let g:T_DATE_FORMAT = "%c"
             "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
             "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
+        " }}}
+    " }}}
+
+    " [ swap value ] {{{
+        " SwapIt: {{{ <C-A>, <C-X>
+            " to integrate with other incrementor scripts (such as speeddating.vim)
+            " to the keys that be invoked when swapit doesn't have a proper option
+            nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+            nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
+            " Multi word Swaps
+            " Filetype Swaps
+            " OmniCompletion Swaps
+            let b:swap_completefunc = 'cssswapit#CssSwapComplete'
         " }}}
     " }}}
 " }}}
@@ -3714,6 +3679,32 @@ syntax on
     " [ command line ] {{{
     " }}}
 
+    " [ history/undo ] {{{
+        " Vim's builtin undo tree:
+            " "u" -> undo
+            " "<C-R>" -> redo
+            " :undo (is useful if you know what change you want to jump to.)
+            " [count]g-, [count]g+ (are useful if you don't know exactly what
+            " the change number is.)
+            " :undolist :earlier/:later [time] {time travelling}
+
+        " Gundo: {{{ Visual Vim Undo tree and list.
+            " gundo#GundoShow(), gundo#GundoHide()
+            nnoremap <F9> :GundoToggle<CR>
+            " let g:gundo_disable = 1 " disable Gundo.
+            let g:gundo_right = 0 " right/left position.
+            let g:gundo_help = 1 " show help.
+            let g:gundo_width = 45
+            let g:gundo_auto_preview = 1
+            let g:gundo_preview_height = 25
+            let g:gundo_preview_buttom = 0 " 0 default.
+            let g:gundo_preview_statusline = 'Preview'
+            let g:gundo_tree_statusline = 'Tree'
+            let g:gundo_map_move_older = "j"
+            let g:gundo_map_move_newer = "k"
+        " }}}
+    " }}}
+
     " [ simulate ] {{{
         " Clam: {{{ A lightweight Vim plugin for working with shell commands.
             " :Clam ls -l, :%Clam sort, :1,10Clam python
@@ -3976,6 +3967,10 @@ syntax on
         " Bundle 'mutewinter/nginx.vim.git'
 
         " Nginx config syntax.
+    " }}}
+
+    " [ conceal ] {{{
+        " vim-ocaml-conceal
     " }}}
 
     " [ Trailing Whitespace ] {{{
