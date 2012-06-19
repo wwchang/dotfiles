@@ -1066,6 +1066,8 @@ endif
         " call vam#ActivateAddons(['dbext'])
         " call vam#ActivateAddons(['VDBI'])
         " call vam#ActivateAddons(['SQLUtilities'])
+            " Web App
+        call vam#ActivateAddons(['vim-brunch'])
             " PHP
         "call vam#ActivateAddons(['DBGPavim'])
         "call vam#ActivateAddons(['Xdebug'])
@@ -3177,6 +3179,19 @@ syntax on
     " [ Dart ] {{{
         " Dart {{{ Dart Lang Syntax for VIM.
             "
+        " }}}
+    " }}}
+
+    " [ Web App ] {{{
+        " vim-brunch {{{ makes navigating your brunch projects comfortable
+            " Brunch -> https://github.com/brunch/brunch.git
+            " is a lightweight approach to building HTML5 applications
+            " with emphasis on elegance and simplicity.
+            let g:brunch_path_app = 'app' " the dir of the app folder.
+            let g:brunch_path_test = 'test' " the dir of the test folder.
+            let g:brunch_ext_script = 'js' " the extension for script files
+            let g:brunch_ext_stylesheet = 'less' " the extension for stylesheets
+            let g:brunch_ext_template = 'hbs' " the extension for templates
         " }}}
     " }}}
 
