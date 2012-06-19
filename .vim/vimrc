@@ -1657,8 +1657,10 @@ syntax on
                 " neocomplcache snippet
                 "   -> neocomplcache complete
                 "       -> check backspace
-                "           -> <Tab>
+                "           -> <Tab> to expand snippet.
                 "               -> User defined complete.
+                "                   -> <C-j/k> next/prev placeholder or complete
+                "                   -> <C-n/p> next/prev complete item.
                 " Manually <Tab> complete.
                 imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
                         \ "\<Plug>(neocomplcache_snippets_expand)"
@@ -1668,8 +1670,8 @@ syntax on
                 imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable() ?
                         \ "\<Plug>(neocomplcache_snippets_jump)"
                         \ : pumvisible() ? "\<C-n>" : "\<Tab>"
-                imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ?
-                        \ "\<Plug>(neocomplcache_snippets_expand)"
+                imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable() ?
+                        \ "\<Plug>(neocomplcache_snippets_jump)"
                         \ : pumvisible() ? "\<C-p>" : "\<Tab>"
                 " }}}
 
