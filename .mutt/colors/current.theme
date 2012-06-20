@@ -87,8 +87,10 @@ color index         color233    default "~="  # duplicated messages
 color index         color089    default '~h "X-Spam-Status: Yes"'
 # color index red default '~h "X-Spam-Status:.*score=(2|3)."'
 
-# useless mails {{{
-color index         color233    default '~h signoff'
+# color INBOX mails with score scope {{{
+color index         color154    default "~n 6-10"
+color index         color070    default "~n 1-5"
+color index         color022    default "~n 0-0"
 # }}}
 
 # important notify mails {{{
@@ -105,6 +107,7 @@ color index         color215    default '~h "From: .*alert"'
 color index         color215    default '~h "From: .*service"'
 color index         color215    default '~h "From: .*update"'
 # }}}
+
 # friends mails {{{
 # color index         color197    default "~N (~e 184145190 | ~e 243113196 | ~e shanyingqing )" # Baobao
 color index         color226    default "-r 24/3*3d"  # my birthday mail
@@ -113,6 +116,7 @@ color index         color204    default "(~e 1051899676 | ~e 1051899676 )" # sis
 color index         color204    default "(~e 184145190 | ~e 243113196 | ~e shanyingqing )" # BaoBao
 color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shanyingqing )" # BaoBao
 # }}}
+
 # special mails {{{
 # FIXME color index         color106    default "~h ^[SOLVED|solved]" # [SOLVED]
 # you send in mailing list or replied in mailing list ( Message-ID | References | In-Reply-To )
