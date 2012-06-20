@@ -151,7 +151,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
         au!
         au FileType mail,tex,markdown,vimwiki,org,tpp setlocal spell
     augroup END
-    set spelllang=en_us " en: all, en_gb: Great Britain.
+    set spelllang=en,zh " en: all, en_gb: Great Britain.
     set spellsuggest=best " default and fast list.
     set spellfile=~/.vim/spell/en.utf-8.add " 'zg' add to this file.
     nnoremap <silent> <Leader>sc :set spell!<CR>
