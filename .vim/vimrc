@@ -3371,7 +3371,7 @@ syntax on
             let g:clang_complete_auto = 1 " auto complete after -> . ::
             let g:clang_complete_copen = 1 " 1: open quickfix window on error.
             let g:clang_hl_errors = 1 " highlight warnings and errors
-            let g:clang_periodic_quickfix = 1 " periodically update quickfix
+            let g:clang_periodic_quickfix = 0 " periodically update quickfix
                 " you can use g:ClangUpdateQuickFix() with a mapping to do this.
             let g:clang_snippets = 1
             let g:clang_snippets_engine = "clang_complete" " clang_complete, snipmate, ultisnips
