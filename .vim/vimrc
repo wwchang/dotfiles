@@ -1654,6 +1654,12 @@ syntax on
                     "   - expand '.' snippet.
                     " force_jump too.
                 " ----------------------------------------------
+                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
+                "         \ "\<Plug>(neocomplcache_snippets_expand)"
+                "         \ : pumvisible() ? "\<C-n>"
+                "         \ : <SID>check_back_space() ? "\<TAB>"
+                "         \ : "\<C-x>\<C-u>"
+                " ----------------------------------------------
                 " neocomplcache snippet
                 "   -> neocomplcache complete
                 "       -> check backspace
@@ -1661,10 +1667,8 @@ syntax on
                 "               -> User defined complete.
                 "                   -> <C-j/k> next/prev placeholder or complete
                 "                   -> <C-n/p> next/prev complete item.
-                " Manually <Tab> complete.
                 imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
                         \ "\<Plug>(neocomplcache_snippets_expand)"
-                        \ : pumvisible() ? "\<C-n>"
                         \ : <SID>check_back_space() ? "\<TAB>"
                         \ : "\<C-x>\<C-u>"
                 imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable() ?
@@ -1672,7 +1676,9 @@ syntax on
                         \ : pumvisible() ? "\<C-n>" : "\<Tab>"
                 imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable() ?
                         \ "\<Plug>(neocomplcache_snippets_jump)"
-                        \ : pumvisible() ? "\<C-p>" : "\<Tab>"
+                        \ : pumvisible() ? "\<C-p>"
+                imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
+                imap <expr><C-p> pumvisible() ? "\<C-p>"
                 " }}}
 
                 " { UltiSnips } {{{
