@@ -70,6 +70,11 @@ if [ -d $HOME/bin ] ; then
     export PATH
 fi
 
+# define CD Base directory
+# used to command 'cd' directory.
+# e.g. cd mail -> /etc/mail
+export CDPATH=.:/etc:/var:/media
+
 # powerful redirection.
 # redirect stdout and stderr to file: command |& > file
 # redirect to multiple file same time: command > file.1 > file.2
@@ -233,7 +238,7 @@ zstyle ':completion:*:warnings' format $'\e[01;31m -- No Matches Found --\e[0m'
     zstyle ':auto-fu:highlight' input fg=green
     zstyle ':auto-fu:highlight' completion fg=red,bold
     zstyle ':auto-fu:highlight' completion/one fg=green,bold,underline
-    zstyle ':auto-fu:var' postdisplay $'\n ♪ »'
+    zstyle ':auto-fu:var' postdisplay $'\n Ϟ'
     zstyle ':auto-fu:var' postdisplay/clearp 'yes'
     zstyle ':auto-fu:var' enable all
     zstyle ':auto-fu:var' disable magic-space
@@ -307,6 +312,15 @@ confirm_yes() {
 for c in reboot halt shutdown; do alias $c="confirm_yes $c"; done
 # }}}
 
+# e.g. $ cmd # this is comment
+setopt INTERACTIVE_COMMENTS
+# line edit highlight mode
+# Ctrl+@ set mark, between marks and cursor is "region".
+zle_highlight=(region:bg=magenta # choose region.
+                special:bold # special characters
+                isearch:underline) # keywords when searching.
+
+# Fcitx {{{
     export XMODIFIERS=@im=fcitx
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
