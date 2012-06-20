@@ -997,6 +997,7 @@ endif
         " call vam#ActivateAddons(['flymake'])
             " Debugger
         " call vam#ActivateAddons(['GdbFromVim'])
+        " call vam#ActivateAddons(['gdbmgr'])
             " task list
         call vam#ActivateAddons(['TagmaTasks'])
         " call vam#ActivateAddons(['TaskList'])
@@ -1193,6 +1194,7 @@ endif
         "call vam#ActivateAddons(['mathematic'])
         "call vam#ActivateAddons(['SudoEdit'])
         call vam#ActivateAddons(['SpitVspit'])
+        " call vam#ActivateAddons(['ZoomWin'])
         "call vam#ActivateAddons(['CompleteHelper'])
         call vam#ActivateAddons(['LargeFile'])
             " Motions
@@ -2454,6 +2456,9 @@ syntax on
         " GdbFromVim {{{ debug your applications with gdb from Vim.
             " let g:gdb_from_vim_app = 'applications'
             " let g:gdb_from_vim_args = 'arguments'
+        " }}}
+
+        " gdbmgr {{{ Vim interface to gdb.
         " }}}
     " }}}
 
@@ -3981,6 +3986,13 @@ syntax on
         " Bundle 'mutewinter/nginx.vim.git'
 
         " Nginx config syntax.
+    " }}}
+
+    " [ window ] {{{
+        " ZoomWin {{{ <c-w>o :ZoomWin, :call ZoomWin() to zoom window.
+            let g:zoomwin_preserve_taglist = 1
+            let g:zoomwin_preserve_winmanager = 1
+        " }}}
     " }}}
 
     " [ conceal ] {{{
