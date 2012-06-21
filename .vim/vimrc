@@ -1,5 +1,10 @@
 " Author: stardiviner ( numbchild at gmail dot com )
 
+" TODO
+" :e ftplugin/example.template
+" :help ftplugin
+" write some language specified filetype settings into ftplugin/
+
 " [[ vimrc structure ]] {{{
 " .vimrc -- global settings
 " .vim/
@@ -789,6 +794,13 @@ endif
             endif
         endfunction
         " nnoremap <C-w>- :call ResizeWindowSize()
+" }}}
+
+" [[ ftplugin ]] {{{
+    " ~/.vim/ftplugin/<filetype>.vim
+    " ~/.vim/ftplugin/<filetype>/<name>.vim
+    " ~/.vim/ftplugin/<filetype>_<name>.vim
+
 " }}}
 
 " [[ Misc ]] {{{
