@@ -524,6 +524,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*linuxusersgroup\.googlegroups\.com
     Linux/
+    :0
+    * ^List-ID: .*comp\.os\.linux\.security\.googlegroups\.com
+    Linux/security/
 # }}}
 
 # newsletter {{{
@@ -614,9 +617,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # }}}
 
 # security  {{{
-    :0
-    * ^List-ID: .*comp\.os\.linux\.security\.googlegroups\.com
-    Security/
+    # :0
+    # * ^List-ID: .*
+    # Security/
 # }}}
 
 # rss2email {{{

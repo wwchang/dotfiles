@@ -68,6 +68,7 @@ mailboxes =Arch/archlinux-cn
 mailboxes =Arch/releng
 
 mailboxes =Linux
+mailboxes =Linux/security
 
 mailboxes =Drupal
 mailboxes =Drupal/support
