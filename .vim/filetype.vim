@@ -68,4 +68,8 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.inc set ft=masm syntax=masm
     autocmd BufRead,BufNewFile *.[sS] set ft=gas syntax=gas
     autocmd BufRead,BufNewFile *.hla set ft=hla syntax=hla
+
+    " Ruby
+    " Ruby document
+    autocmd BufNewFile,BufRead *.{rd,rdoc} set filetype=rdoc
 augroup END
