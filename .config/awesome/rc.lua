@@ -1066,6 +1066,7 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- [ keybinds ] {{{
+        -- grab key through $ xev . then press keyboard. display name "Print"
         -- a function to show up a tooltip of created key binds.
 
     globalkeys = awful.util.table.join(
@@ -1125,7 +1126,6 @@ root.buttons(awful.util.table.join(
         -- }}}
 
         -- Screenshot [Prt Src] {{{
-        -- grab key through $ xev . then press keyboard. display name "Print"
         awful.key({ }, "Print", function ()
             awful.util.spawn("scrot -e 'mv $f ~ 2>/dev/null'")
             os.execute("sleep 0.5")
