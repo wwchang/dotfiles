@@ -1,6 +1,10 @@
 
 " runtime! ftdetect/*.vim
 
+if exists("did_load_filetypes")
+    finish
+endif
+
 augroup filetypedetect
     " CSS3
     autocmd BufRead,BufNewFile *.css set ft=css syntax=css3
