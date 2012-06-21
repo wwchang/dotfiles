@@ -409,6 +409,10 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
 # Apps: Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{
     :0
+    * ^List-Id: .*gotgit\.googlegroups\.com
+    Git/GotGit/
+
+    :0
     * ^List-Id: .*awesome\.naquadah\.org
     apps/Awesome/
     :0

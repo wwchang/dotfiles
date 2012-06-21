@@ -57,6 +57,9 @@ mailboxes =Go/golang-china
 mailboxes =Dart
 mailboxes =Dart/misc
 
+mailboxes =Git
+mailboxes =Git/GotGit
+
 mailboxes =Arch
 mailboxes =Arch/general
 mailboxes =Arch/announce
