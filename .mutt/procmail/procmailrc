@@ -346,7 +346,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Drupal/security/
 # }}}
 
-# Apps: Vim, Emacs, Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{
+# Emacs {{{
     :0
     * ^List-Id: .*help-gnu-emacs\.gnu\.org
     Emacs/
@@ -356,7 +356,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*implementations-list\.lists\.ourproject\.org
     Emacs/Evil/
+# }}}
 
+# Vim {{{
     :0
     * ^List-Id: .*\.vim\.org
     Vim/
@@ -384,7 +386,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
         #* ^References:  .*numbchild@gmail.com
         #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox." ; echo "test procmail notify OK !" > /home/chris/test_procmail.txt
     #}
+# }}}
 
+# Apps: Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{
     :0
     * ^List-Id: .*awesome\.naquadah\.org
     apps/Awesome/
