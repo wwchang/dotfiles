@@ -22,7 +22,7 @@ augroup filetypedetect
     au BufRead,BufNewFile /tmp/mutt-* set filetype=mail
 
     " Markdown
-    au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown
+    au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown autoindent formatoptions=tcroqn2 comments=n:>
 
     " PostgreSQL
     au BufRead,BufNewFile *.psql set filetype=psql
