@@ -31,6 +31,7 @@ mailboxes =Emacs/Evil
 mailboxes =Vim
 mailboxes =Vim/dev
 mailboxes =Vim/anon
+mailboxes =Vim/cn
 mailboxes =Vim/vimwiki
 
 mailboxes =Ruby
