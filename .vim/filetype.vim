@@ -6,7 +6,7 @@ augroup filetypedetect
     autocmd BufRead,BufNewFile *.css set ft=css syntax=css3
 
     " Tmux
-    au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
+    au BufNewFile,BufRead .tmux.conf*,tmux.conf* set filetype=tmux
 
     " Conky
     au BufRead,BufNewFile .conkyrc set filetype=conkyrc
