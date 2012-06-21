@@ -4583,6 +4583,8 @@ syntax on
             " Tabularize scripts.
         " }}}
 
+        " Align%294
+
         " Surround: {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
             " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
             " Visual(V): S<p class="important">
