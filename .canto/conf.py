@@ -40,6 +40,7 @@ add("http://www.archlinuxcn.org/feed/", tags=[None, "Arch", "changes"]) # Arch h
 
 default_rate(500)
 # projects release {{{
+add("http://groups.google.com/group/vim_announce/feeds", tags=[None, "Vim", "release"]) # Vim announce
 add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "Ruby", "lang"]) # Ruby language
 add("https://getfirebug.com/wiki/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "firebug", "tool", "software"]) # Firebug extensions
 add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "BackTrack", "Linux", "distro", "Crack", "Hack"]) # BackTrack Linux Atom 3
@@ -140,20 +141,20 @@ add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # "~vimcasts
 # add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # "~maemo latest news"
 # add("http://maemo.org/news/items.xml", tags=[None, "maemo"]) # "~maemo news"
 # add("http://feeds.feedburner.com/37signals_podcast") # "~37singles Podcast"
-add("http://feed.feedsky.com/heikezhi", tags=[None, "hack", "ebook"]) # "~黑客志 hack news"
 add("http://www.hackthissite.org/pages/hts.rss.php", tags=[None, "hack"]) # "~hackthissite RSS"
 # add("http://feeds.feedburner.com/PyMOTW", tags=[None, "python", "program"]) # "~Python Module of the Week"
-add("http://feed.feedsky.com/aqee-net", tags=[None, "program"]) # 外刊 IT 评论
 add("http://ninlands.diandian.com/rss", tags=[None, "JiuZhou", "Novel", "books"]) # 九州 点点官方
+add("http://feed.feedsky.com/heikezhi", tags=[None, "hack", "ebook"]) # "~黑客志 hack news"
+add("http://feed.feedsky.com/aqee-net", tags=[None, "program"]) # 外刊 IT 评论
 # }}}
 
 default_rate(60)
 # NEWS {{{
 # add("http://news.ycombinator.com/rss", tags=[None, "news", "hack"]) # "~Hacker News"
+add("http://rss.slashdot.org/slashdot/Slashdot", keep=200, tags=[None, "news", "Slashdot"]) # "~Slashdot"
 # add("http://slashdot.org/index.rss", tags=[None, "news", "slashdot"]) # Slashdot
-#add("http://rss.slashdot.org/slashdot/Slashdot", keep=200, tags=[None, "news", "Slashdot"]) # "~Slashdot"
 # add("http://reddit.com/.rss", tags=[None, "news", "reddit"]) # Reddit
-add("http://feeds2.feedburner.com/solidot", tags=[None, "news", "Solidot"]) # "~Solidot"
+add("http://feeds2.feedburner.com/solidot", tags=[None, "news", "Solidot"]) # Solidot
 add("http://linuxtoy.org/feed/", tags=[None, "news"]) # "~LinuxToy"
 add("http://feeds.geekpark.net/", tags=[None, "news"]) # 极客公园
 # add("http://kerneltrap.org/node/feed", tags=[None, "kernel"]) # kerneltrap
