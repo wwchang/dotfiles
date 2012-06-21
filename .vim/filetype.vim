@@ -12,7 +12,7 @@ augroup filetypedetect
     au BufRead,BufNewFile .conkyrc set filetype=conkyrc
 
     " Vimperator
-    au BufRead,BufNewFile .vimperatorrc,vimperatorrc set filetype=vimperator
+    au BufRead,BufNewFile .vimperatorrc,*vimperatorrc* set filetype=vimperator
     au BufRead,BufNewFile *.vimp set filetype=vimperator
 
     " vimwiki
