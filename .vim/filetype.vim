@@ -2,6 +2,9 @@
 " runtime! ftdetect/*.vim
 
 augroup filetypedetect
+    " CSS3
+    autocmd BufRead,BufNewFile *.css set ft=css syntax=css3
+
     " Tmux
     au BufNewFile,BufRead .tmux.conf*,tmux.conf* setf tmux
 
