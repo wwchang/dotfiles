@@ -56,6 +56,9 @@ augroup filetypedetect
     " Go language
     au BufRead,BufNewFile *.go set filetype=go
 
+    " Clojure
+    autocmd BufRead,BufNewFile *.clj set filetype=clojure
+
     " JSON language.
     autocmd BufNewFile,BufRead *.json set filetype=json
 
