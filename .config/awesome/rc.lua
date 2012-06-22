@@ -718,7 +718,8 @@ end
     -- update every N seconds. {["maildir1"="name1", ["maildir2"]="name2"]}
     vicious.register(
         maildirwidget, vicious.widgets.maildir,
-        { ["INBOX"]="Inbox", ["unsure"]="unsure" }, 3600, mdir
+        { ["INBOX"]="Inbox", ["unsure"]="unsure" },
+        300, mdir
         )
 
     -- register button
