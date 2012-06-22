@@ -596,9 +596,4 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     unsure/
 # }}}
 
-# DEFAULT {{{
-:0
-$DEFAULT
-# }}}
-
 # vim:foldmethod=marker:ft=procmail
