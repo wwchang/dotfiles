@@ -84,6 +84,7 @@ subscribe comp.os.linux.setup comp.os.linux.setup.G <comp.os.linux.setup@googleg
 # LUG (Linux User Group)
 subscribe shlug ShangHai LUG <shlug@googlegroups.com>
 subscribe hzlug HangZhou LUG <hzlug@googlegroups.com>
+subscribe xidian_linux XiDian LUG <xidian_linux@googlegroups.com>
 # Ubuntu
 subscribe ubuntu-users ubuntu-users <ubuntu-users@lists.ubuntu.com>
 subscribe ubuntu-mobile ubuntu-mobile <ubuntu-mobile@lists.ubuntu.com>

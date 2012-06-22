@@ -546,6 +546,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-ID: .*shlug\.googlegroups\.com
     Linux/LUG/ShangHai/
+    :0
+    * ^List-ID: .*xidian_linux\.googlegroups\.com
+    Linux/LUG/XiDian/
     # }}}
 # }}}
 
