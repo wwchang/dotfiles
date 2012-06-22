@@ -123,39 +123,8 @@ mailboxes =apps/MLDonkey
 
 mailboxes =censorship
 
-mailboxes =Hack
-mailboxes =Hack/Social-Engineer
-mailboxes =Hack/BlackHat
-mailboxes =Hack/EthicalHacking
-
-mailboxes =Newsletter
-mailboxes =Newsletter/Quora
-mailboxes =Newsletter/StackExchange
-mailboxes =Newsletter/StackExchange/Stack_Overflow
-mailboxes =Newsletter/StackExchange/Meta_Stack_Overflow
-mailboxes =Newsletter/StackExchange/Unix_Linux
-mailboxes =Newsletter/StackExchange/Database_Admin
-mailboxes =Newsletter/StackExchange/Programmers
-mailboxes =Newsletter/StackExchange/Ask_Ubuntu
-mailboxes =Newsletter/StackExchange/Code_Review
-mailboxes =Newsletter/StackExchange/Drupal
-mailboxes =Newsletter/StackExchange/Super_User
-mailboxes =Newsletter/StackExchange/Server_Fault
-mailboxes =Newsletter/StackExchange/Webmasters
-mailboxes =Newsletter/StackExchange/Web_Applications
-mailboxes =Newsletter/StackExchange/English_Language
-mailboxes =Newsletter/StackExchange/Electrical_Engineering
-mailboxes =Newsletter/StackExchange/TeX
-mailboxes =Newsletter/StackExchange/IT_Security
-mailboxes =Newsletter/StackExchange/HealthcareIT
-mailboxes =Newsletter/BlackHat
-mailboxes =Newsletter/LinkedIn
-
-mailboxes =others
-
 # bellowing two lines is for ubuntu/* "subfolders"
 # mailboxes `echo ~/Mails/ubuntu/*`
-mailboxes =Security
 mailboxes =RSS
 # Send Draft Junk Viruses Spam
 # mbox is for sended and received mails
