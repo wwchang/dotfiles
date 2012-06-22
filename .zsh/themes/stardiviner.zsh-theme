@@ -105,7 +105,7 @@ ZSH_THEME_RVM_PROMPT_CLEAN="%{$fg[blue]%})"
 # {{{ SVN PROMPT
 # FIXME svn prompt
 ZSH_THEME_SVN_PROMPT_PREFIX="svn:(%{$fg[red]%}"
-ZSH_THEME_SVN_PROMPT_SUFFIX="%{$fg[red]%})"
+ZSH_THEME_SVN_PROMPT_SUFFIX="%{$fg[blue]%})"
 ZSH_THEME_SVN_PROMPT_DIRTY="%{$fg[red]%} ✘ %{$reset_color%}"
 ZSH_THEME_SVN_PROMPT_CLEAN="%{$fg_bold[green]%} ✔%{$reset_color%}"
 # }}}
