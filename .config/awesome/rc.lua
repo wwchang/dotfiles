@@ -259,10 +259,10 @@ function run_once(prg,arg_string,pname,screen)
     end
 end
 
--- run_once("urxvtd -q -o -f")
--- run_once("mpd")
--- run_once("mlnet")
--- run_once("nm-applet")
+run_once("urxvtd -q -o -f")
+run_once("mpd")
+run_once("mlnet")
+run_once("nm-applet")
 
 -- TODO what does this screen argument means.
 -- run_once("luakit", nil, nil, 6)
