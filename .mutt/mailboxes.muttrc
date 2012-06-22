@@ -74,7 +74,8 @@ mailboxes =Arch/releng
 mailboxes =Linux
 mailboxes =Linux/security
 mailboxes =Linux/LUG
-mailboxes =Linux/LUG/shanghai
+mailboxes =Linux/LUG/ShangHai
+mailboxes =Linux/LUG/HangZhou
 
 mailboxes =Drupal
 mailboxes =Drupal/support

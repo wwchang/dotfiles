@@ -81,6 +81,9 @@ subscribe maemo maemo-developers <maemo-developers@maemo.org>
 subscribe linuxuers LUG.G <linuxusersgroup@googlegroups.com>
 subscribe os.linux alt.os.linux.G <alt.os.linux@googlegroups.com>
 subscribe comp.os.linux.setup comp.os.linux.setup.G <comp.os.linux.setup@googlegroups.com>
+# LUG (Linux User Group)
+subscribe shlug ShangHai LUG <shlug@googlegroups.com>
+subscribe hzlug HangZhou LUG <hzlug@googlegroups.com>
 # Ubuntu
 subscribe ubuntu-users ubuntu-users <ubuntu-users@lists.ubuntu.com>
 subscribe ubuntu-mobile ubuntu-mobile <ubuntu-mobile@lists.ubuntu.com>

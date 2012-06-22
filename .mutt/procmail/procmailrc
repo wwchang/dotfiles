@@ -538,8 +538,11 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
     # LUG ( Linux User Group ) {{{
     :0
+    * ^List-ID: .*hzlug\.googlegroups\.com
+    Linux/LUG/HangZhou/
+    :0
     * ^List-ID: .*shlug\.googlegroups\.com
-    Linux/LUG/shanghai/
+    Linux/LUG/ShangHai/
     # }}}
 # }}}
 
