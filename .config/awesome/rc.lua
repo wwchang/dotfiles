@@ -381,7 +381,7 @@ end
 
     -- FIXME put statements_file io.open can not read file update time.
     statements_file = io.open(configdir .. "/statements.txt", "r")
-    mytimer = timer({ timeout = 60*5 })
+    mytimer = timer({ timeout = 60*1 })
     mytimer:add_signal("timeout", function()
         text_line = statements_file:read("*line")
         if text_line then
