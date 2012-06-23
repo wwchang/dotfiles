@@ -475,6 +475,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*ledger-cli\.googlegroups\.com
     apps/ledger/
+    :0
+    * ^List-Id: .*jekyll-rb\.googlegroups\.com
+    apps/jekyll/
 # }}}
 
 # GNU {{{

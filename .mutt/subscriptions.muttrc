@@ -174,5 +174,7 @@ subscribe wayland Wayland <wayland-devel@list.freedesktop.org>
 subscribe ledger ledger-cli <ledger-cli@googlegroups.com>
 # vimwiki
 subscribe vimwiki vimwiki <vimwiki@googlegroups.com>
+# jekyll
+subscribe jekyll jekyll <jekyll-rb@googlegroups.com>
 
 # vim:ft=muttrc

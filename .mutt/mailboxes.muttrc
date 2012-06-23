@@ -107,6 +107,7 @@ mailboxes =apps/Mutt
 mailboxes =apps/tmux
 mailboxes =apps/screen
 mailboxes =apps/weechat
+mailboxes =apps/jekyll
 mailboxes =apps/Conky
 mailboxes =apps/Canto
 mailboxes =apps/ranger
