@@ -23,6 +23,10 @@ bind pager \Cp sidebar-prev
 bind pager \Cn sidebar-next
 bind pager \Co sidebar-open
 
+# do not list many sub-mailboxes, just display a main mailbox.
+# then use a macro to to open the main folder(mailbox) to access sub-mailboxes
+macro index,pager \Ci "<change-folder>?<search>Stack\ Exchange<enter>"
+
 # Alt-*
 #bind index \ek sidebar-prev
 #bind index \ej sidebar-next

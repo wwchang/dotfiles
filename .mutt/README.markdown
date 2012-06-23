@@ -87,6 +87,8 @@ space -- next page
 ### query
 Q -- query external program
 C-T -- complete when input address in new composed mail.
+C-i -- open mailboxes list, and jump(search) to Stack Exchange folder to access
+sub-mailboxes.
 
 # add at same time ( sync )
 
