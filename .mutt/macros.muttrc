@@ -1,6 +1,144 @@
 # -*- muttrc -*-
 #
-# macros for mutt.
+# Macros {{{
+
+# Macros, what is it all about?
+
+    # This is a short introduction to writing macros. As you will see they are
+    # very handy and easy to use. They are no programming language though. (even
+    # if since version 1.5.12 mutt allows you to define your own variables)
+
+    # Macros are a way to save keystrokes in mutt. Basically you can do
+    # everything you would enter interactively in a macro, too. With one
+    # exception: You can't prompt the user for input.
+
+    # See http://www.mutt.org/doc/manual/manual-6.html#ss6.4 resp.
+    # http://www.mutt.org/doc/devel/manual.html#functions for a list of
+    # functions.
+
+    # Commands can also be used. You have use the <enter-command> prefix
+    # (default key ":") just like you would do interactively. See
+    # http://www.mutt.org/doc/manual/manual-6.html#ss6.2 resp.
+    # http://www.mutt.org/doc/devel/manual.html#commands for a list of commands.
+
+# How to use
+
+    # Usage: macro menu key sequence [ description ]
+
+        # What are menus?
+
+        # Every different "part" of mutt is called a menu.
+
+        # see the functions link above for a complete list. See also /Actions.
+        # Note that not all functions are available in every menu.
+
+        # Key
+
+        # The key(s) to hit to execute the macro.
+
+        # Sequence - the actual macro
+
+        # Sequence is just a concatenation of functions and commands. Just use
+        # the function names in <> brackets.  You simply write down what you
+        # would type in interactively.  Though you can use the bound keys too,
+        # that is not recommended! Function names are way more portable and
+        # readable.  For example:
+
+        # macro index,pager <f1> "<shell-escape>less
+        # /usr/local/doc/mutt/manual.txt<enter>" "Show Mutt documentation"
+
+        # Nothing special yet. Note that you can define a macro for more than
+        # one menu (comma no space). You need to quote sequence if it contains
+        # spaces.
+
+        # macro index,pager <f1> "<enter-command>unset
+        # wait_key<enter><shell-escape>less
+        # /usr/local/doc/mutt/manual.txt<enter><enter-command>set
+        # wait_key<enter>" "Show Mutt documentation"
+
+        # So here is an example of a more complex macro. It first unsets
+        # $wait_key, then runs less and sets $wait_key again.  You can see how
+        # to use commands.
+
+        # macro index <tag-prefix-cond><save-message>=foo<enter> "Save tagged
+        # messages (if any) to =foo"
+
+        # No space in sequence, no quotes needed. This is an example where you
+        # might want a [ask user for input here] function. Unfortunately that
+        # does not exist.
+
+    # Special usage: applying to several tagged entries
+
+        # If you define a macro to work with a single entry, then it can not be
+        # applied to tagged entries just by using <tag-prefix>macro-key!!!
+        # That's because you must remember that macros are just a series of
+        # key-strikes you'd do normally, not a real built-in <function>, but
+        # tagging only works with real built-in <function>s.
+
+        # If you want to use a macro with multiple entries, then you must define
+        # your macro right from the start to do so. I.e. prepend all your
+        # functions in your macro that should operate on tagged entries with
+        # tag-prefix. For example
+
+        #  macro index ,g '<pipe-entry>shell-cmd...<delete>...'
+
+        # becomes
+
+        #  macro index ,g
+        #  '<tag-prefix><pipe-entry>shell-cmd...<tag-prefix><delete>...'
+
+        # Now, such a macro operates on tagged entries by typing just ",g" and
+        # not "<tag-prefix>,g", because <tag-prefix> is already present in the
+        # macro definition.
+
+        # Alternatively, if you don't like to clutter your macro with
+        # <tag-prefix>, you could make a macro which sets and resets auto_tag
+        # before executing your original macro:
+
+        #  macro index ,A '<enter-command>set auto_tag=yes<enter>' macro index
+        #  ,g '<pipe-entry>shell-cmd...<delete>...' macro index ,Q
+        #  '<enter-command>set auto_tag=no<enter>'
+
+        # Then you execute ",A,g,Q" to apply ",g" for all tagged entries.
+
+        # Note: Both solutions do also operate on a single selected entry if
+        # there are no tags!!! The auto_tag solution will not stop when there
+        # are no tags, it will apply the macro on the current entry, since ",g"
+        # remains a simple direct macro. If you want to avoid single operation
+        # for macros intended only for tagged operation, then use
+        # <tag-prefix-cond>...<end-cond> around every <function> called which
+        # needs it. See also /Actions about tagging for further clues.
+
+    # Advanced usage
+
+        # See ConfigTricks and MacroSamples.
+
+        # With the self-defined variables in mutt-1.5.12 and later you can save
+        # variable states before you change them:
+
+        # macro index,pager <f1> '<enter-command>set
+        # my_wait_key=$wait_key<enter><enter-command>unset
+        # wait_key<enter><shell-escape>less
+        # /usr/local/doc/mutt/manual.txt<enter><enter-command>set
+        # wait_key=$my_wait_key<enter>'
+
+        # This way you can simply restore the previous state and don't have to
+        # set an assumed value. This is even more useful with nonbool vars think
+        # $index_format or $from.
+
+        # Here's another example how to use self-defined variables:
+
+        # ## spell checker set my_ispell="/usr/bin/aspell -c --mode=email
+        # --lang=en_GB" set my_german_ispell="/usr/bin/aspell -c --mode=email
+        # --lang=de_DE"
+
+        # # default (english) ispell set ispell=$my_ispell
+
+        # # german aspell macro compose I '<enter-command>set
+        # ispell=$my_german_ispell<enter><ispell><enter-command>set
+        # ispell=$my_ispell<enter>'
+
+# }}}
 
 # \e = Esc , \c = Ctrl
 
