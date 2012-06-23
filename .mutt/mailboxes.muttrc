@@ -35,6 +35,8 @@ mailboxes =Vim/dev
 mailboxes =Vim/anon
 mailboxes =Vim/vimwiki
 
+mailboxes =Stack\ Exchange
+
 mailboxes =Ruby
 mailboxes =Ruby/talk
 mailboxes =Ruby/core
