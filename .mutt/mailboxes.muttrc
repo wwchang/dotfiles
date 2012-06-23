@@ -25,6 +25,7 @@ mailboxes =Send
 mailboxes =Important
 
 mailboxes =Emacs
+mailboxes =Emacs/help
 mailboxes =Emacs/devel
 mailboxes =Emacs/anon
 mailboxes =Emacs/Evil
