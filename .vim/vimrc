@@ -4115,7 +4115,7 @@ syntax on
         " [ Last Modified ] {{{
             " lastmod
                 " Usage: :LastModUpdate
-                let g:lastmod_loaded = 0
+                let g:lastmod_loaded = 1
                 let g:lastmod_lines = 20 " look at the first n lines of file.
                 let g:lastmod_format = '%a %Y-%m-%d %H:%M:%S (%z)'
                 let g:lastmod_prefix = 'Last Modified: '
