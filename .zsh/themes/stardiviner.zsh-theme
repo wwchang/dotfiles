@@ -65,12 +65,11 @@ ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[blue]%}) %{$fg_bold[yellow]%}✗%{$fg_bold[bla
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[blue]%}) %{$fg_bold[green]%}✓%{$fg_bold[black]%}|%{$reset_color%}"
 ## git status
 ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%} ✚"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[blue]%} ∓"
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[cyan]%} ∓"
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[magenta]%} ➜"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ⌥"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ⚡"
-# ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[yellow]%} ⭠"
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[yellow]%} ➜"
+ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ≠"
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[white]%} ⌂"
 # }}}
 
 # {{{ hg PROMPT (Mercurial)
