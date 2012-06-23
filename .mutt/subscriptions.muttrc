@@ -119,6 +119,7 @@ subscribe microsoft.public.security microsoft.public.security.G <microsoft.publi
 # ------- softwares -------------
 # Emacs
 subscribe emacs Emacs-help <help-gnu-emacs@gnu.org>
+subscribe emacs-devel Emacs-devel <emacs-devel@gnu.org>
 subscribe emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
 subscribe Evil Emacs-Evil <implementations-list@lists.ourproject.org>
 # Vim

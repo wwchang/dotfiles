@@ -355,6 +355,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*help-gnu-emacs\.gnu\.org
     Emacs/
     :0
+    * ^List-Id: .*emacs-devel\.gnu\.org
+    Emacs/devel/
+    :0
     * ^List-Id: .*info-gnu-emacs\.gnu\.org
     Emacs/anon/
     :0
