@@ -40,8 +40,9 @@ application/msword; wvHtml --charset=gb2312 %s - | lynx --dump -stdin; nametempl
 # application/x-vcard; abook
 
 # [ image ]
+# add "; copiousoutput" behind "command" will auto open image attachments.
 # image/*; feh %s >/dev/null
-image/*; sxiv %s >/dev/null; copiousoutput
+image/*; sxiv %s >/dev/null
 # image/*; true; copiousoutput
 
 # [ video ]
