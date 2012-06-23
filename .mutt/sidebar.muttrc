@@ -4,8 +4,7 @@
 # set up the sidebar, default not visible
 set sidebar_width=25
 set sidebar_visible=yes
-set sidebar_delim='│' 
-# set sidebar_delim='|'
+set sidebar_delim=' ┤·'
 
 # which mailboxes to list in the sidebar
 # mailboxes =inbox =ml
@@ -50,7 +49,7 @@ macro pager <F11> '<enter-command>toggle sidebar_visible<enter>'
 # Mario Holbe suggests:
 # macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
 # macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
-# 
+#
 
 set sidebar_shortpath=yes
 set sidebar_sort=no
@@ -60,39 +59,39 @@ set sidebar_sort=no
 #
 # sidebar_width (number)
 # Width of the sidebar.
-# 
+#
 # sidebar_visible (boolean)
 # Whether or not the sidebar is visible.
-# 
+#
 # sidebar_delim (string)
 # Specifies the delimiter between the sidebar and other screens
 #
 # sidebar_shortpath (boolean)
 # When using IMAP, a '.' is often used as a separator. This option
 # allows to shorten the folder name to the part after the last dot.
-# 
+#
 # sidebar_sort (boolean)
 # Sorts the folders in the sidebar alphabetically.
 #
 # color sidebar_new [fg] [bg]
 # The foreground (fg) and background (bg) color of folders that contain new
 # mail.
-# 
+#
 # sidebar-prev
 # Mutt's name for the operation that selects the previous folder.
-# 
+#
 # sidebar-next
 # Mutt's name for the operation that selects the next folder.
-# 
+#
 # sidebar-open
 # Mutt's name for the operation that opens the currently selected folder.
-# 
+#
 # sidebar-scroll-up
 # Only useful if you have more folders than lines in your terminal: scrolls one
 # page up through the list of folders.
-# 
+#
 # sidebar-scroll-down
 # Only useful if you have more folders than lines in your terminal: scrolls one
-# page down through the list of folders. 
+# page down through the list of folders.
 #
 # vim:ft=muttrc
