@@ -185,6 +185,7 @@ alias ranger Ranger <ranger-users@nongnu.org>
 alias mc midnight commannder <mc@gnome.org>
 # git
 alias git Git <git@vger.kernel.org>
+alias git-user git-user <git-users@googlegroups.com>
 # getmail
 alias getmail getmail <getmail@lists.pyropus.ca>
 # pwmt.org ( jumanji, zathura )
