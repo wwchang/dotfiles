@@ -253,11 +253,11 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # Programming Language {{{
     # [ Python ] {{{
     :0
-    * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
-    Python/comp-lang-py/
-    :0
     * ^List-Id: .*python-list\.python\.org
     Python/python/
+    :0
+    * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
+    Python/comp-lang-py/
     :0
     * ^List-Id: .*django-users\.googlegroups\.com
     Python/Django/
