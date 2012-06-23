@@ -83,19 +83,32 @@ macro index,pager A "|abook --add-email --config $HOME/.mutt/abook/abookrc --dat
 # -n -> register as ham
 # -S -> undo prior spam registration
 # -N -> undo prior ham registration
-# use -sN to do spam and undo ham
-# use -Sn to do ham and undo spam
 #
+# {maildir}
+#   (initial)
+#       $ bogofilter -s -B ~/Mails/spam/
+#       $ bogofilter -n -B ~/Mails/NonSpam/
+#   (corrective)
 # change "<save-message>=spam/\n" into "<save-message>=spam/<enter><enter>" to do not
 # ask when move to spam/
-macro index S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -sN\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
-macro pager S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -sN\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
-macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -Sn\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
-macro pager H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -Sn\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
+macro index S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -s -B\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
+macro pager S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -s -B\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
+macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -n -B\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
+macro pager H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -n -B\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
 #macro index S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -Ns"
 #macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -Sn"
 # To automatically mark for deletion everything in the spam folder when it is viewed, I placed this line at the bottom of the /etc/Muttrc file:
 folder-hook spam push 'D.\n'
+#
+# {mbox}
+#   (initial)
+#       $ bogofilter -M -s -I ~/Mails/spam/
+#       $ bogofilter -M -n -I ~/Mails/NonSpam/
+#   (corrective)
+# macro index S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Ns -I\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
+# macro pager S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Ns -I\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
+# macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Sn -I\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
+# macro pager H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Sn -I\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
 
 # see HTML attachments with lynx
 # macro pager l "<pipe-entry>lynx -stdin -force_html<enter>"
