@@ -3748,7 +3748,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ special editing ] {{{
+    " [ REPL: Read-Eval-Print Loop ] {{{
         " Screen {{{ (vim + gnu screen/tmux) ['Screen_vim__gnu_screentmux']
             " simulate an embedded shell in vim by allowing you convert vim
             " session into one running in Screen or Tmux with a split window.
@@ -3793,6 +3793,42 @@ syntax on
                 "augroup ScreenShellExit
                     "autocmd User * call <SID>ScreenShellListener()
                 "augroup END
+        " }}}
+
+        " vimux {{{ Easily interact with tmux from vim.
+            " Usage:
+            " - :VimuxRunCommand("command")
+            " - :VimuxRunLastCommand
+            " - :VimuxCloseRunner
+            " - :VimuxClosePanes
+            " - :VimuxCloseWindows
+            " - :VimuxInspectRunner
+            " - :VimuxInterruptRunner
+            " - :VimuxPromptCommand
+            " - :VimuxClearRunnerHistory
+
+            let g:VimuxHeight = "25"
+            let g:VimuxOrientation = "h" " h: horizontal, v: vertical
+            let VimuxUseNearestPane = 0 " if found, use existing tmux pane.
+            let VimuxUseNearestPane = "q C-u"
+
+            " Run the current file with rspec
+            map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+            " Prompt for a command to run
+            map <Leader>rp :VimuxPromptCommand<CR>
+            " Run last command executed by VimuxRunCommand
+            map <Leader>rl :VimuxRunLastCommand<CR>
+            " Inspect runner pane
+            map <Leader>ri :VimuxInspectRunner<CR>
+            " Close all other tmux panes in current window
+            map <Leader>rx :VimuxClosePanes<CR>
+            " Close vim tmux runner opened by VimuxRunCommand
+            map <Leader>rq :VimuxCloseRunner<CR>
+            " Interrupt any command running in the runner pane
+            map <Leader>rs :VimuxInterruptRunner<CR>
+
+            " vimux-ruby-test {{{
+            " }}}
         " }}}
 
         " inline_edit {{{ Edit code that's embedded within other code.
