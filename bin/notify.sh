@@ -41,7 +41,7 @@ if [[ $(pgrep awesome) != "" ]]; then
             # mplayer ~/Music/sounds/voice-incoming-transmission.wav
             `echo \
             'naughty.notify({\
-            timeout = 30, position = "bottom_left", \
+            timeout = 25, position = "bottom_left", \
             width = 500, height = nil, \
             border_color = "lightblue", border_width = 5, \
             title = "<span color=\"lightblue\">┌─[  ' "$1" '  ]</span>", \
@@ -52,7 +52,7 @@ if [[ $(pgrep awesome) != "" ]]; then
             # mplayer ~/Music/sounds/voice-incoming-transmission.wav
             `echo \
             'naughty.notify({\
-            timeout = 30, position = "bottom_left", \
+            timeout = 25, position = "bottom_left", \
             width = nil, height = nil, \
             border_color = "gray", border_width = 5, \
             title = "<span color=\"lightblue\">┌─[  ' "$1" '  ]</span>", \
