@@ -372,11 +372,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*vim_dev\.googlegroups\.com
     Vim/dev/
-
-    :0
-    * ^List-Id: .*vim-cn\.googlegroups\.com
-    Vim/cn/
-
     :0
     * ^List-Id: .*vim-announce\.vim\.org
     Vim/anon/
