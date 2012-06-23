@@ -144,6 +144,27 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     | lbdb-fetchaddr
 # }}}
 
+# spam (bogofilter) {{{ spam detect should put at last
+    # deliver mail through bogofilter
+    :0fw
+    | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
+    # ongoing train bogofilter with -u option.
+
+    :0e
+    { EXITCODE=75 HOST }
+
+    #Put mail bogofilter deems as spam in spam folder
+    :0:
+    * ^X-Bogosity: Spam, tests=bogofilter
+    # * ^X-Spam-Flag: YES
+    spam/
+
+    #Put mail bogofilter deems as unsure in unsure folder
+    :0:
+    * ^X-Bogosity: Unsure, tests=bogofilter
+    unsure/
+# }}}
+
 # notify my emails {{{
     # execute a script without affect delivering.
 
@@ -427,6 +448,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Post: .*@mutt\.org
     apps/Mutt/
     :0
+    * ^List-Post: .*procmail-dev\.cuci\.nl
+    apps/procmail/
+    :0
     * List-Id: .*conky-users\.lists\.sourceforge\.net
     apps/Conky/
     :0
@@ -563,6 +587,140 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     # Security/
 # }}}
 
+# Stack Exchange {{{
+    # FIXME : procmail recipe can not use whitespace on destination path.
+    # (location)
+
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # Stack Exchange/Android/
+    # * ^Subject: .*Android
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Apple/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Ask Ubuntu/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Bicycles/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Code Golf/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Cognitive Sciences/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Computational Science/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Computer Science/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Cross Validated/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Database Administrators/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Drupal/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/English/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/GIS/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Mathematica/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Mathematics/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Meta/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Poker/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Programmers/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Server Fault/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Stack Overflow/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Super User/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Theoretical Computer Science/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Travel/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Unix and Linux/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/User Experience/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Web Applications/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Webmasters/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/The Great Outdoors/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Philosophy/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Skeptics/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # # * ^Subject: .*
+    # Stack Exchange/Cryptography/
+    # :0
+    # * ^From: .*do-not-reply@stackexchange\.com
+    # * ^Subject: .*
+    # Stack Exchange/Martial Art/
+# }}}
+
 # rss2email {{{
 :0
 * ^User-Agent: rss2email
@@ -578,27 +736,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     RSS/Solidot/
 
 }
-# }}}
-
-# spam (bogofilter) {{{ spam detect should put at last
-    # deliver mail through bogofilter
-    :0fw
-    | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
-    # ongoing train bogofilter with -u option.
-
-    :0e
-    { EXITCODE=75 HOST }
-
-    #Put mail bogofilter deems as spam in spam folder
-    :0:
-    * ^X-Bogosity: Spam, tests=bogofilter
-    # * ^X-Spam-Flag: YES
-    spam/
-
-    #Put mail bogofilter deems as unsure in unsure folder
-    :0:
-    * ^X-Bogosity: Unsure, tests=bogofilter
-    unsure/
 # }}}
 
 # vim:foldmethod=marker:ft=procmail
