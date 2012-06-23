@@ -35,9 +35,10 @@ mailboxes =Vim/cn
 mailboxes =Vim/vimwiki
 
 mailboxes =Ruby
-mailboxes =Ruby/Talk
-mailboxes =Ruby/Core
-mailboxes =Ruby/Doc
+mailboxes =Ruby/talk
+mailboxes =Ruby/core
+mailboxes =Ruby/doc
+mailboxes =Ruby/cvs
 mailboxes =Ruby/Rails
 
 mailboxes =Lisp
