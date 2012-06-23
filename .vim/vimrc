@@ -1128,6 +1128,7 @@ endif
         "call vam#ActivateAddons(['Clam'])
             " special editing
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
+        call vam#ActivateAddons(['vimux'])
         call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
             " vimwiki & note
         call vam#ActivateAddons(['vimwiki'])
@@ -2964,6 +2965,9 @@ syntax on
                 "cwindow
             "endfunction
             "autocmd BufWrite *.{py} :call Pylint()
+            " }}}
+
+            " pytest {{{ A simple way of running your tests from within VIM.
             " }}}
         " }}}
 
