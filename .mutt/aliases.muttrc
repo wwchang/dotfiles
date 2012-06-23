@@ -88,6 +88,8 @@ alias ruby.core Ruby-Core <ruby-core@ruby-lang.org>
 alias ruby.core.ctl Ruby-Core-ctl <ruby-core-ctl@ruby-lang.org>
 alias ruby.doc  Ruby-Doc  <ruby-doc@ruby-lang.org>
 alias ruby.doc.ctl Ruby-Doc-ctl <ruby-doc-ctl@ruby-lang.org>
+alias ruby.cvs Ruby-CVS <ruby-cvs@ruby-lang.org>
+alias ruby.cvs.ctl Ruby-CVS-ctl <ruby-cvs-ctl@ruby-lang.org>
 # Java
 alias java.G comp.lang.Java <comp.lang.java.programmer@googlegroups.com>
 # C
