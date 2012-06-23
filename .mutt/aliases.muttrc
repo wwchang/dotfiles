@@ -171,7 +171,8 @@ alias mairix mairix <mairix-users@lists.sourceforge.net>
 # procmail
 alias procmail-users.notActive procmail-users.notActive <procmail-users@procmail.org>
 alias procmail procmail <procmail@informatik.rwth-aachen.de>
-alias procmail-an Procmail-an <procmail-announce@procmail.org>
+alias procmail-anon Procmail-anon <procmail-announce@procmail.org>
+alias procmail-dev Procmail-dev <procmail-dev@procmail.org>
 # bogofilter
 alias bogofilter bogofilter <bogofilter@bogofilter.org>
 # screen & tmux
