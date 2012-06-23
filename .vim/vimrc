@@ -1212,6 +1212,8 @@ endif
         call vam#ActivateAddons(['LargeFile'])
             " Motions
         call vam#ActivateAddons(['EasyMotion'])
+            " timestamp
+        call vam#ActivateAddons(['lastmod'])
             " ASCII draw
         "call vam#ActivateAddons(['DrawIt'])
             " small tools
@@ -4106,6 +4108,20 @@ syntax on
             "   - :Spit[Up/Down]
             "   - :[V/W]spit[Left/Right]
             let g:loaded_SpitVspit = 0 " =1 to disable load script.
+        " }}}
+    " }}}
+
+    " [ timestamp ] {{{
+        " [ Last Modified ] {{{
+            " lastmod
+                " Usage: :LastModUpdate
+                let g:lastmod_loaded = 0
+                let g:lastmod_lines = 20 " look at the first n lines of file.
+                let g:lastmod_format = '%a %Y-%m-%d %H:%M:%S (%z)'
+                let g:lastmod_prefix = 'Last Modified: '
+                let g:lastmod_suffix = ''
+                let g:lastmod_commented = 1 " whole line be commented.
+            " Last_Modified
         " }}}
     " }}}
 
