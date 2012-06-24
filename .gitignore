@@ -5,7 +5,7 @@
 *.pyo
 tags
 
-.mutt/bogofilter/wordlist.db
+# .mutt/bogofilter/wordlist.db
 .mutt/getmail/log
 .mutt/history_file
 .mutt/cache
@@ -44,6 +44,7 @@ tags
 !.config/luakit/
 !.config/ranger/
 !.config/zathura/
+!.config/gtk-3.0
 # --------------
 .config/jumanji/sessions*
 .config/jumanji/history
@@ -73,8 +74,8 @@ tags
 .subversion/
 Firefox\ Recovery\ Key.html
 account.txt
-install.sh
 linux_passwd.txt
+sudo.pass
 others/
 push.sh
 system.conf/ddclient.conf
