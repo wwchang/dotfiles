@@ -147,6 +147,7 @@ subscribe mldonkey MLdonkey <mldonkey-users@nongnu.org>
 subscribe ranger ranger-users <ranger-users@nongnu.org>
 # git
 subscribe git git <git@vger.kernel.org>
+subscribe gotgit GotGit <got-user@googlegroups.com>
 subscribe gotgit GotGit <gotgit@googlegroups.com>
 # getmail
 subscribe getmail getmail <getmail@lists.pyropus.ca>

@@ -426,6 +426,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*git\.vger\.kernel\.org
     Git/
     :0
+    * ^List-Id: .*git-user\.googlegroups\.com
+    Git/user/
+    :0
     * ^List-Id: .*gotgit\.googlegroups\.com
     Git/GotGit/
 
