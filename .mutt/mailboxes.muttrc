@@ -55,8 +55,8 @@ mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
 
 mailboxes =Go
-mailboxes =Go/golang-nuts
-mailboxes =Go/golang-china
+mailboxes =Go/go-nuts
+mailboxes =Go/go-china
 
 mailboxes =Dart
 mailboxes =Dart/misc

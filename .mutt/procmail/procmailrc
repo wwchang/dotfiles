@@ -275,10 +275,10 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     # [ Go ] {{{
     :0
     * ^List-Id: .*golang-nuts\.googlegroups\.com
-    Go/golang-nuts/
+    Go/go-nuts/
     :0
     * ^List-ID: .*golang-china\.googlegroups\.com
-    Go/golang-china/
+    Go/go-china/
     # }}}
 
     # [ Ruby ] {{{
