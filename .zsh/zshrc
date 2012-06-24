@@ -73,7 +73,7 @@ fi
 # define CD Base directory
 # used to command 'cd' directory.
 # e.g. cd mail -> /etc/mail
-export CDPATH=.:/etc:/var:/media
+export CDPATH=.:/media
 
 # powerful redirection.
 # redirect stdout and stderr to file: command |& > file
