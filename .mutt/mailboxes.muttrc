@@ -62,7 +62,7 @@ mailboxes =Dart
 mailboxes =Dart/misc
 
 mailboxes =Git
-mailboxes =Git/user
+mailboxes =Git/users
 mailboxes =Git/GotGit
 
 mailboxes =Arch
