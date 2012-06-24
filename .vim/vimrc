@@ -657,10 +657,10 @@ endif
     " }}}
 
     " windows navigation
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
+    " nnoremap <C-h> <C-w>h
+    " nnoremap <C-j> <C-w>j
+    " nnoremap <C-k> <C-w>k
+    " nnoremap <C-l> <C-w>l
     " window resize [ <C-w>(-,+,<,>), Mouse ]
     nnoremap - <c-w>-
     nnoremap + <c-w>+
@@ -2744,27 +2744,26 @@ syntax on
             let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
         " }}}
 
-        " minibufexplorer: {{{ <Leader>mbe
-            let g:miniBufExplSplitBelow=0  " MBE at bottom or top.
-            let g:miniBufExplSplitToEdge = 1
-            let g:miniBufExplorerMoreThanOne=1 " open when more than one.
-            let g:miniBufExplMapWindowNavVim = 0 " Ctrl + h/j/k/l
-            let g:miniBufExplMapWindowNavArrows = 1 " Ctrl + Arrow keys
+        " minibufexplorer: {{{
+            let g:miniBufExplSplitBelow = 0  " position at bottom or top.
+            let g:miniBufExplSplitToEdge = 1 " force MBR to open at the edge of screen
+            let g:miniBufExplorerMoreThanOne = 1 " open when more than one.
+            let g:miniBufExplMapWindowNavVim = 1 " Ctrl + h/j/k/l
+            let g:miniBufExplMapWindowNavArrows = 0 " Ctrl + Arrow keys
             let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
             let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
             let g:miniBufExplUseSingleClick = 1 " single click or tabs.
             let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
-            let g:miniBufExplCloseOnSelect = 1 " close after select buffer.
+            let g:miniBufExplCloseOnSelect = 0 " close after select buffer.
             let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
             let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
             " let g:miniBufExplForceSyntaxEnable = 1 " when no highlight
             let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
             let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
-            " Horizontal mode
             let g:miniBufExplMaxSize = 0
             let g:miniBufExplMinSize = 1
             " Vertical mode
-            " let g:miniBufExplVSplit = 20   " column width in chars
+            " let g:miniBufExplVSplit = 20   " column width in chars in virtical.
             " let g:miniBufExplMaxSize = <max width: default 0>
             " let g:miniBufExplMinSize = <min width: default 1>
             " MiniBufExpl Colors
