@@ -995,9 +995,10 @@ endif
         "call vam#ActivateAddons(['LustyJuggler'])
             " tab manager
         "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
-            " file/project manager
+            " file/buffer/project manager
         call vam#ActivateAddons(['The_NERD_tree'])
         call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
+        call vam#ActivateAddons(['minibufexplorer'])
             " compile
         call vam#ActivateAddons(['SingleCompile'])
             " syntax checker
@@ -2743,7 +2744,7 @@ syntax on
             let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
         " }}}
 
-        " Minibufexplorer: {{{ <Leader>mbe
+        " minibufexplorer: {{{ <Leader>mbe
             let g:miniBufExplSplitBelow=0  " MBE at bottom or top.
             let g:miniBufExplSplitToEdge = 1
             let g:miniBufExplorerMoreThanOne=1 " open when more than one.
