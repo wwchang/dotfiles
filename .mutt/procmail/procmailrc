@@ -176,6 +176,18 @@ PMSRC = ${HOME}/.mutt/procmail/lib
         * ^To: .*\/[^<]*
         | export DISPLAY=:0 ; $NOTIFY "Email: Your Email to $MATCH send successed" "Subject: $SUBJECT"
     }
+
+    # emails from GitHub comment notify
+    :0 c
+    * ^From: .*reply.*@reply\.github\.com
+    * ^Subject:.*\/.*
+    {
+        SUBJECT=$MATCH
+
+        :0 ih
+        * ^From: .*\/[^<]*
+        | export DISPLAY=:0 ; $NOTIFY "Email: From GitHub $MATCH" "Subject: $SUBJECT"
+    }
 # }}}
 
 # [ convert ] {{{
