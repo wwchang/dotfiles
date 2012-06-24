@@ -1288,7 +1288,8 @@ syntax on
 " [ Program ] {{{
 
     " [ syntax ] {{{
-        " TagHighlight:
+        " TagHighlight: highlights names of classes, variables, types etc in code.
+
             " highlights names of classes, variables, types etc in source code.
             " [ embeded code ] {{{
             " }}}
@@ -2023,8 +2024,6 @@ syntax on
             "TagListComment  - Used for comments
             "TagListFileName - Used for filenames
         " }}}
-
-        " TagHighlight: highlights names of classes, variables, types etc in code.
 
         " Tag_Signature_Balloons:
             let g:loaded_tag_signature = 1
