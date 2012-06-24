@@ -706,9 +706,6 @@ endif
 " Vimscript functions must start with a capital letter if they are unscoped!
 " you can call function with ":source file.vim" then ":call"
 
-    " delete trailing whitespaces
-    " autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
-
     " [ execute mode ] {{{
     "function! ScriptExecute()
         ":!chmod u+x %
@@ -1185,7 +1182,7 @@ endif
         " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['utl'])
         " call vam#ActivateAddons(['open-browser'])
-        call vam#ActivateAddons(['DeleteTrailingWhitespace'])
+        call vam#ActivateAddons(['trailing-whitespace'])
             " write & spell checker & speak
         " call vam#ActivateAddons(['Engspchk'])
         "call vam#ActivateAddons(['SpellCheck'])
@@ -4057,22 +4054,6 @@ syntax on
         " vim-ocaml-conceal
     " }}}
 
-    " [ Trailing Whitespace ] {{{
-        " DeleteTrailingWhitespace: " automatically when the buffer is saved
-            " '[range]:DeleteTrailingWhitespace'
-            let g:DeleteTrailingWhitespace = 1
-                " let b:DeleteTrailingWhitespace = 1 " for buffer, filetype
-            let g:DeleteTrailingWhitespace_Action = 'ask' " 'delete', 'ask'
-            let g:DeleteTrailingWhitespace_ChoiceAffectsHighlighting = 1
-
-        " ShowTrailingWhitespace:
-            let g:ShowTrailingWhitespace = 1
-            "highlight ShowTrailingWhitespace Error ctermbg=Red guibg=Red
-            "let g:ShowTrailingWhitespace_FilterFunc = ''
-
-        " JumpToTrailingWhitespace:
-    " }}}
-
     " [ complete ] {{{
         " CompleteHelper: {{{ 'completefunc', i_CTRL-X_CTRL-U,
             " Functions: {{{
@@ -4126,6 +4107,12 @@ syntax on
             " Last_Modified
         " }}}
     " }}}
+
+    " trailing-whitespace
+        " Usage:
+        " - highlight trailing whitespace in red color.
+        " - :FixWhitespace to fix whitespace errors.
+        " - [range]FixWhitespace to visual select range to pass.
 
     " [ Vim FAQ / Tips ] {{{
         " tips.vim {{{ show vim tips everytime when you enter vim.
