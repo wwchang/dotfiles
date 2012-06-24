@@ -3,28 +3,125 @@
 source! /home/chris/.vimperatorrc.local
 
 " options {{{
-    " [ for Vimperator ] {{{
-    " set runtimepath=
-    " ISSUE set tabnumbers=true
-    " for useing customize stylesheet.
-    set usermode=true
-    set gui=noaddons,bookmarks,nomenu,navigation,tabs
-    set noscrollbars
-    set showstatuslinks=2
-    set focuscontent
-    set status=input,tabcount,position
-    set verbose=9
-    let mapleader='\'
-        " S search engine suggest
-    set complete=slf
-    set newtab=all
+
+    " runtimepath
+    set runtimepath=~/.vimperator
+
+    " [ style ] {{{
+        " for useing customize stylesheet.
+        set usermode=true
+        set gui=noaddons,bookmarks,nomenu,navigation,tabs
+        set smallicons
+            " show current mode in the command line.
+        set showmode
+        set focuscontent
+        set verbose=9
+        let mapleader='\'
+        set animations
+
+        " encoding
+        set encoding="UTF-8"
+        set fileencoding="UTF-8"
+
+        " scroll
+        set noscrollbars
+        set scroll=0
+
+        " online / offline
+        set online
+
+        set focuscontent
+            " Focus the content after a page has loaded. This is useful if you
+            " always want to stay in Normal mode when browsing between web sites.
+            " When on, it blurs any textbox which often is automatically focused
+            " on page load.  If you usually like 'focuscontent' but sometimes
+            " you'd like to focus the first input field, you can use gi to jump to
+            " it.
+
+        " statusline
+        set status=input,location,bookmark,history,tabcount,position
+        set showstatuslinks=2
+
+        " fullscreen
+        set nofullscreen
+
+        " Next Page and Previous Page
+        " set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+        " set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+    " }}}
+
+    " [ completion ] {{{
+        set autocomplete
+            " S search engine suggest
+        set complete=sblf
+        set wildmode=list:full
+
+        " case
+        set smartcase
+        set ignorecase
+
+        " path
+        set cdpath=,,
+
+        " [ search engines ] {{{
+            set defsearch=duckduckgoSSL
+            set suggestengines=duckduckgo
+                " highlight previous search pattern matches.
+            set hlsearch
+                " show where the search pattern matches as it is typed.
+            set incsearch
+        " }}}
+    " }}}
+
+    " [ hints ] {{{
+        set followhints=0
+        set hintchars=0123456789
+        set hintinputs=label,value
+        set hintmatching=contains
+        " set hinttags
+        set hinttimeout=0
+    " }}}
+
+    " [ insert ] {{{
+            " use insert mode as the default for text areas.
+            " this is useful if you want to use the known firefox interface for
+            " editing text areas. Input fields default to this behaviour
+            " irrespective of this option's setting.
+            " Textarea mode can be entered with <C-t> from Insert mode.
+        set insertmode
+    " }}}
+
+    " [ tab / popup ] {{{
+        set newtab=all
+        set notabnumbers
+
+        set popups=tab
+    " }}}
+
+    " [ history ] {{{
+        set history=500
+    " }}}
+
+    " [ private ] {{{
+        set noprivate
     " }}}
 
     " [ for about:config ] {{{
     set! ui.key.generalAccesskey=0
-    "Next Page and Previous Page
-    set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
-    set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+    " }}}
+
+    " [ plugins ] {{{
+            " load plugins when starting up.
+        set loadplugins
+    " }}}
+
+    " [ message ] {{{
+        set messagetimeout=5000
+    " }}}
+
+    " [ shell ] {{{
+        set shell=_$SHELL_
+        set shellcmdflag=-c
     " }}}
 " }}}
 
