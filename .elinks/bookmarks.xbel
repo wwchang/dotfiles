@@ -37,85 +37,27 @@
 
     </folder>
 
+    <separator/>
+
     <folder folded="no">
-        <title>Lua</title>
-            <bookmark href="http://www.lua.org/">
-                <title>The Programming Language Lua</title>
+        <title>Hack</title>
+            <bookmark href="http://www.phrack.org/issues.html">
+                <title>.:: Phrack Magazine ::.</title>
             </bookmark>
 
     </folder>
 
     <folder folded="yes">
-        <title>Perl</title>
-    </folder>
-
-    <folder folded="yes">
-        <title>Haskell</title>
-    </folder>
-
-    <folder folded="yes">
-        <title>Java</title>
-    </folder>
-
-    <separator/>
-
-    <folder folded="yes">
-        <title>C</title>
-    </folder>
-
-    <folder folded="yes">
-        <title>Hack</title>
-    </folder>
-
-    <folder folded="yes">
-        <title>Crack</title>
-    </folder>
-
-    <separator/>
-
-    <folder folded="yes">
-        <title>Ubuntu</title>
-    </folder>
-
-    <bookmark href="https://help.ubuntu.com/">
-        <title>ubuntu help</title>
-    </bookmark>
-
-    <folder folded="yes">
         <title>Archlinux</title>
     </folder>
+
+    <bookmark href="http://linux.die.net/">
+        <title>Linux Documentation</title>
+    </bookmark>
 
     <bookmark href="http://www.archlinux.org/">
         <title>Arch Linux</title>
     </bookmark>
-
-    <folder folded="yes">
-        <title>Maemo</title>
-    </folder>
-
-    <folder folded="yes">
-        <title>HELP</title>
-    </folder>
-
-    <bookmark href="http://www.latex-project.org/">
-        <title>LaTeX – A document preparation system</title>
-    </bookmark>
-
-    <separator/>
-
-    <folder folded="yes">
-        <title>Mine</title>
-    </folder>
-
-    <bookmark href="http://stardiviner.tumblr.com/">
-        <title>Tumblr Blog</title>
-    </bookmark>
-
-    <bookmark href="http://stardiviner.dyndns-blog.com/">
-        <title>stardiviner Homepage</title>
-    </bookmark>
-
-    <separator/>
 
     <folder folded="yes">
         <title>Session snapshot - Jun 9 16:09</title>
@@ -125,16 +67,16 @@
 
     </folder>
 
-    <bookmark href="http://linux.die.net/">
-        <title>Linux Documentation</title>
+    <bookmark href="http://www.phrack.org/issues.html">
+        <title>.:: Phrack Magazine ::.</title>
     </bookmark>
 
     <folder folded="yes">
-        <title>Auto saved session</title>
-            <bookmark href="http://www.google.com/">
-                <title>Google</title>
-            </bookmark>
+        <title>Session snapshot - Jun 9 13:36</title>
+    </folder>
 
+    <folder folded="yes">
+        <title>Auto saved session</title>
     </folder>
 
 
