@@ -2552,7 +2552,7 @@ syntax on
                 " :[range]Gbrowse[!] -- if remote for current branch is on GitHub.
 
                 " auto open quickfix window for :Ggrep.
-                autocmd QuickFixCmdPost *grep* cwindow
+                autocmd QuickFixCmdPost grep cwindow
         " }}}
 
         " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
