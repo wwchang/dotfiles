@@ -144,27 +144,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     | lbdb-fetchaddr
 # }}}
 
-# spam (bogofilter) {{{ spam detect should put at last
-    # deliver mail through bogofilter
-    :0fw
-    | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
-    # ongoing train bogofilter with -u option.
-
-    :0e
-    { EXITCODE=75 HOST }
-
-    #Put mail bogofilter deems as spam in spam folder
-    :0:
-    * ^X-Bogosity: Spam, tests=bogofilter
-    # * ^X-Spam-Flag: YES
-    spam/
-
-    #Put mail bogofilter deems as unsure in unsure folder
-    :0:
-    * ^X-Bogosity: Unsure, tests=bogofilter
-    unsure/
-# }}}
-
 # notify my emails {{{
     # execute a script without affect delivering.
 
@@ -449,7 +428,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     apps/Mutt/
     :0
     * ^List-Post: .*procmail-dev\.cuci\.nl
-    apps/procmail/
+    apps/procmail/dev/
     :0
     * List-Id: .*conky-users\.lists\.sourceforge\.net
     apps/Conky/
@@ -736,6 +715,27 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     RSS/Solidot/
 
 }
+# }}}
+
+# spam (bogofilter) {{{ spam detect should put at last
+    # deliver mail through bogofilter
+    :0fw
+    | /usr/bin/bogofilter -uep -c ~/.mutt/bogofilter/bogofilter.cf
+    # ongoing train bogofilter with -u option.
+
+    :0e
+    { EXITCODE=75 HOST }
+
+    #Put mail bogofilter deems as spam in spam folder
+    :0:
+    * ^X-Bogosity: Spam, tests=bogofilter
+    # * ^X-Spam-Flag: YES
+    spam/
+
+    #Put mail bogofilter deems as unsure in unsure folder
+    :0:
+    * ^X-Bogosity: Unsure, tests=bogofilter
+    unsure/
 # }}}
 
 # vim:foldmethod=marker:ft=procmail
