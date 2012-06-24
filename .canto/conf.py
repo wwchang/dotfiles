@@ -43,7 +43,8 @@ default_rate(500)
 add("http://groups.google.com/group/vim_announce/feeds", tags=[None, "Vim", "release"]) # Vim announce
 add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "Ruby", "lang"]) # Ruby language
 add("https://getfirebug.com/wiki/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "firebug", "tool", "software"]) # Firebug extensions
-add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "BackTrack", "Linux", "distro", "Crack", "Hack"]) # BackTrack Linux Atom 3
+add("http://www.backtrack-linux.org/feed/", tags=[None, "hack", "BackTrack"]) # BackTrack official blog.
+# add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "BackTrack", "Linux", "distro", "Crack", "Hack"]) # BackTrack Linux Atom 3
 # add("http://www.backtrack-linux.org/feed/", tags=[None, "BackTrack", "Linux", "distro", "Crack", "Hack"]) # BackTrack Linux RSS 2
 add("http://awesome.naquadah.org/w/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "Awesome", "WM"]) # Awesome Wiki Updates
 add("http://blog.getfirebug.com/feed/", tags=[None, "firebug"]) # Firebug
@@ -62,7 +63,6 @@ add("http://dev.weechat.org/feed/atom", tags=[None, "update"]) # "~weechat dev a
 add("http://feeds2.feedburner.com/css3", tags=[None, "CSS3", "CSS", "Web"]) # CSS3 .info
 add("http://gitit.net/_feed/", tags=[None, "update", "git", "feature"]) # gitit
 add("http://dev.mutt.org/hg/mutt/rss-log", tags=[None, "update"]) # "~Mutt dev"
-add("http://www.backtrack-linux.org/feed/", tags=[None, "hack", "BackTrack"]) # BackTrack official blog.
 add("http://www.backbox.org/blog/feed", tags=[None, "distro"]) # backbox: ubuntu based hacker distro.
 add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "ipv6"]) # Miredo
 add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # "~Tor announce"
@@ -117,6 +117,7 @@ add("http://www.gregsexton.org/feed/", tags=[None, "blog"]) # gregsexton.org
 
 default_rate(100)
 # Podcasts {{{
+add("http://www.youtube.com/user/OfficialyAnonymous/feed", tags=[None, "anonymous", "podcast", "youtube", "video"]) # YouTube Officially Anonymous
 add("http://usesthis.com/feed/", tags=[None, "geek", "program", "software", "computer", "setup", "config"]) # The Setup
 add("http://setup.xiuxiu.de/feed/", tags=[None, "geek", "computer", "setup", "config"]) # The Setup (Chinese)
 add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # "~Vimcasts OGG Feed"
@@ -151,7 +152,7 @@ add("http://feed.feedsky.com/aqee-net", tags=[None, "program"]) # 外刊 IT 评�
 default_rate(60)
 # NEWS {{{
 # add("http://news.ycombinator.com/rss", tags=[None, "news", "hack"]) # "~Hacker News"
-add("http://rss.slashdot.org/slashdot/Slashdot", keep=200, tags=[None, "news", "Slashdot"]) # "~Slashdot"
+# add("http://rss.slashdot.org/slashdot/Slashdot", keep=200, tags=[None, "news", "Slashdot"]) # "~Slashdot"
 # add("http://slashdot.org/index.rss", tags=[None, "news", "slashdot"]) # Slashdot
 # add("http://reddit.com/.rss", tags=[None, "news", "reddit"]) # Reddit
 add("http://feeds2.feedburner.com/solidot", tags=[None, "news", "Solidot"]) # Solidot
@@ -195,6 +196,7 @@ add("http://homepages.tu-darmstadt.de/~p_larbig/wlan/", tags=[None, "crack", "ha
 default_rate(600)
 # ebooks {{{
 add("http://www.ppurl.com/feed", tags=[None, "ebook", "IT"]) # "PiPi ebooks.
+add("http://feeds.feedburner.com/FreeComputerBooks", tags=[None, "ebook", "program"]) # OnlineProgrammingBooks.com
 add("http://book.zi5.me/feed", tags=[None, "ebook"]) # "~ZhiJian book house ("eBook")"
 add("http://feeds.feedburner.com/RaphaelHertzogCom", tags=[None, "debian", "admin"]) # debian handbook
 # }}}
