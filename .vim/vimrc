@@ -998,7 +998,7 @@ endif
             " file/buffer/project manager
         call vam#ActivateAddons(['The_NERD_tree'])
         call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
-        call vam#ActivateAddons(['minibufexplorer'])
+        " call vam#ActivateAddons(['minibufexplorer'])
             " compile
         call vam#ActivateAddons(['SingleCompile'])
             " syntax checker
