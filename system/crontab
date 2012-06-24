@@ -50,6 +50,7 @@
 
 # For more information see the manual pages of crontab(5) and cron(8)
 
+# FIXME variable $HOME problem, apply $HOME into all of bellowing settings.
 # VARIABLES => HOME LOGNAME PATH SHELL
 HOME=/home/chris
 SHELL=/bin/zsh
@@ -78,14 +79,14 @@ XAUTHORITY=/home/chris/.Xauthority
 1   8   1,21 9  6   notify-send "Festival" "Today is [Software Freedom Day] !"
 
 # alert morning / siesta / night
-2   6   *   *   *   alarm.sh &>/dev/null
-2   22  *   *   *   alarm.sh &>/dev/null
+# 2   6   *   *   *   alarm.sh &>/dev/null
+# 2   22  *   *   *   alarm.sh &>/dev/null
 16  22  *   *   *   notify-send "Time-plan" "You should go to bed to sleep now "
 31  12  *   *   *   notify-send "siesta" "You should have a siesta now"
-
-1   */1.5   *   *   1-5  notify-send "rest" "You should has a rest now "
-1   */1     *   *   6,0  notify-send "rest" "You should has a rest now "
 1   8   *   *   6   notify-send "action" "cut finger nail now, help you press keyboard"
+
+# Pomodoro time manage.
+*/30    12-20   *   *   *   notify-send "Pomodoro" "Time up"
 
 # backup
 # 0   9   *   *   *   git_push.sh
@@ -99,7 +100,7 @@ XAUTHORITY=/home/chris/.Xauthority
 # 0   4   *   *   *   getmail -q -a -l >/dev/null
 */5     *      *   *   * getmail -q -n -l --getmaildir=/home/chris/.mutt/getmail
 # 3       */5    *   *   *   on_ac_power && mu index -q
-0   19  *   *   6   rm -rf /home/chris/Mails/Trash/{cur,new}/*
+0   19  *   *   6   rm -rf "$HOME"/Mails/Trash/{cur,new}/*
 
 # invoke gui software in crontab
 # */2 * * * * export DISPLAY=:0 && /usr/bin/chromium-browser google.com
@@ -119,7 +120,8 @@ XAUTHORITY=/home/chris/.Xauthority
 #30 5 * * 1-5 /usr/bin/task | /usr/bin/lp
 
 # Canto receive updates must be run often.
-*   */6   *   *   * canto-fetch
+# 0   1   *   *   * nice -n 15 canto-fetch
 
 # clean old files
-0   19  25  */2 *   find /home/chris/backup-vim/ -mtime 60 -o -atime 60 -delete
+0   19  25  */2 *   find /home/chris/.backup-vim/ -mtime 60 -o -atime 60 -delete
+1   19  24  *   *   echo "" > /home/chris/.procmail.log
