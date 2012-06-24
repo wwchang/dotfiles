@@ -2757,7 +2757,7 @@ syntax on
             let g:miniBufExplCloseOnSelect = 0 " close after select buffer.
             let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
             let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
-            " let g:miniBufExplForceSyntaxEnable = 1 " when no highlight
+            " let g:miniBufExplForceSyntaxEnable = 1 " conflict with Powerline.
             let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
             let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
             let g:miniBufExplMaxSize = 0
