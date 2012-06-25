@@ -49,7 +49,7 @@ mailboxes =Lisp/Lisp-cn
 
 mailboxes =Python
 mailboxes =Python/python
-mailboxes =Python/comp-lang-py
+# mailboxes =Python/comp-lang-py
 mailboxes =Python/Django
 mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
