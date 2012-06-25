@@ -14,7 +14,7 @@ set cpo&vim
 
 " vimTodo: contains common special-notices for comments {{{2
 " Use the vimCommentGroup cluster to add your own.
-syn keyword vimTodo contained	COMBAK	FIXME	TODO	XXX
+syn keyword vimTodo contained	COMBAK FIXME TODO	XXX NOTE FEATURE
 syn cluster vimCommentGroup	contains=vimTodo,@Spell
 
 " regular vim commands {{{2
