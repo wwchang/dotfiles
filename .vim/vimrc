@@ -1425,6 +1425,7 @@ syntax on
             let g:viewdoc_openempty = 0 " do not open anything if not found tag.
             let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
             "let g:viewdoc_man_cmd = "/usr/bin/man"
+            let g:ViewDoc_DEFAULT = 'ViewDoc_help'
 
             " customize {{{
             "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
@@ -1442,16 +1443,16 @@ syntax on
                     " synid = Syntax id for requested topic as returned by synID().
                     " Can be non-zero only if |:ViewDoc| was called with <cword>.
                     " have_context : true if we've context.
-                    " The function must return Dictionary with these keys. (all optional)
+                    " The function return Dictionary with these keys. (all optional)
                     " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
 
-            "function ViewDoc_pydoc(topic, ...)
-                "return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
-                            "\ 'ft':	'pydoc',
-                            "\ }
-            "endfunction
-            "let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
-            "let g:ViewDoc_python = function('ViewDoc_pydoc')
+            function ViewDoc_pydoc(topic, ...)
+                return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
+                            \ 'ft':	'pydoc',
+                            \ }
+            endfunction
+            " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
+            let g:ViewDoc_python = function('ViewDoc_pydoc')
             " }}}
 
             " help_custom {{{ ~/.vim/ftdoc/{filetype}
