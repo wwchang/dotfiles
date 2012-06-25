@@ -3605,7 +3605,9 @@ syntax on
 
     " [ position & session & mark ] {{{
         " restore_view : automatically restoring file's cursor position and folding
+            " view info in ~/.vim/view/*
             set viewoptions=cursor,folds,slash,unix
+            let g:loaded_restore_view = 1 " 1: use restore_view.
             " let g:skipview_files = ['*\.vim']
 
         " Recover: {{{ A diff buffer way to see diff between recover and on disk files.
