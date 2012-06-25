@@ -1424,7 +1424,7 @@ syntax on
             let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
             let g:viewdoc_prevtabonclose = 1
             let g:viewdoc_openempty = 0 " do not open anything if not found tag.
-            let g:viewdoc_dontswitch = 1 " immaculately switch to opened document.
+            let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
             "let g:viewdoc_man_cmd = "/usr/bin/man"
             " let g:ViewDoc_DEFAULT = 'ViewDoc_help'
 
