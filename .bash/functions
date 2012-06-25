@@ -42,21 +42,21 @@ sleeper(){ while `ps -p $1 &>/dev/null`; do echo -n "${2:-.}"; sleep ${3:-1}; do
 # last run command, which is saved here as the variable PI, then sleeper is called with the process id of the gpg task (PI), and sleeper is also specified to output : instead
 # of the default . every 3 seconds instead of the default 1. So a shorter version would be sleeper $!;
 # The wait is also used here, though it may not be needed on your system.
-# echo ">>> ENCRYPTING SQL BACKUP" gpg --output archive.tgz.asc --encrypt archive.tgz 1>/dev/null & PI=$!; sleeper $PI ":" 3; wait $PI && rm archive.tgz &>/dev/null 
+# echo ">>> ENCRYPTING SQL BACKUP" gpg --output archive.tgz.asc --encrypt archive.tgz 1>/dev/null & PI=$!; sleeper $PI ":" 3; wait $PI && rm archive.tgz &>/dev/null
 # Previously to get around the $! not always being available, I would instead check for the existance of the process ID by checking if the directory /proc/$PID existed,
 # but not everyone uses proc anymore. That version is currently the one at http://www.askapache.com/linux-unix/bash_profile-functions-advanced-shell.html but I plan on
 # upgrading to this new version soon.
 
-# backup Gmail IMAP folder 
+# backup Gmail IMAP folder
 # backuped in ~/Gmail/  and labels are stored as one text file .
 Gmail_backup () {
 mailutil transfer {imap.gmail.com/ssl/user=numbchild@gmail.com} Gmail/
 }
 
-# search engine ; so that you can start browser in terminal 
-# use $@ to replace %s in search engine link 
+# search engine ; so that you can start browser in terminal
+# use $@ to replace %s in search engine link
 google_lucky() {
-    url=$(echo "http://www.google.com/search?hl=en&q=$@&btnI=I%27m+Feeling+Lucky&aq=f&oq=" | sed 's/ /+/g'); jumanji $url; 
+    url=$(echo "http://www.google.com/search?hl=en&q=$@&btnI=I%27m+Feeling+Lucky&aq=f&oq=" | sed 's/ /+/g'); jumanji $url;
 }
 
 blekko() {
@@ -80,7 +80,7 @@ google-code() {
 }
 
 google(){
-    url=$(echo "http://www.google.com/search?q=$@" | sed 's/ /+/g' ); jumanji $url; 
+    url=$(echo "http://www.google.com/search?q=$@" | sed 's/ /+/g' ); jumanji $url;
 }
 
 wiki() {
@@ -88,17 +88,17 @@ wiki() {
 }
 
 wiki-sec() {
-    url=$(echo "https://secure.wikimedia.org/wikipedia/en/w/index.php?search=$@" | sed 's/ /+/g' ); jumanji $url; 
+    url=$(echo "https://secure.wikimedia.org/wikipedia/en/w/index.php?search=$@" | sed 's/ /+/g' ); jumanji $url;
 }
 
 google_linux() {
-    url=$(echo "http://www.google.com/linux?hl=en&safe=off&q=$@" | sed 's/ /+/g' ); jumanji $url; 
+    url=$(echo "http://www.google.com/linux?hl=en&safe=off&q=$@" | sed 's/ /+/g' ); jumanji $url;
 }
 baidu() {
-    url=$(echo "http://www.baidu.com/s?wd=$@" | sed 's/ /+/g' ); jumanji $url; 
+    url=$(echo "http://www.baidu.com/s?wd=$@" | sed 's/ /+/g' ); jumanji $url;
 }
 
-# for ranger 
+# for ranger
 function ranger-cd {
   ranger --choosedir=/tmp/chosen
   if [ -f /tmp/chosen -a "$(cat /tmp/chosen)" != "$(pwd | tr -d "\n")" ]; then
@@ -107,10 +107,10 @@ function ranger-cd {
   rm -f /tmp/chosen
 }
 bind '"\C-o":"ranger-cd\C-m"'
-# this would make you change the directory of your parent shell after exiting ranger 
-ranger() { 
-    command ranger --fail-unless-cd $@ && 
-    cd "$(grep \^\' ~/.config/ranger/bookmarks | cut -b3-)" 
+# this would make you change the directory of your parent shell after exiting ranger
+ranger() {
+    command ranger --fail-unless-cd $@ &&
+    cd "$(grep \^\' ~/.config/ranger/bookmarks | cut -b3-)"
 }
 
 # Use VIm as man pager
