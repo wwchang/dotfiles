@@ -6,4 +6,25 @@ prev_word   '^'
 
     ${0}
 
+snippet     func
+abbr        function NAME () {...}
+prev_word   '^'
+    function ${1:NAME} () {
+    	${2:compound commands}
+    }
 
+snippet     if
+abbr        if ...; then ..; fi
+prev_word   '^'
+    if ${1:condition} ; then
+        ${2:compound commands}
+    fi
+
+snippet     ifel
+abbr        if ..; then ..; else ..; fi
+prev_word   '^'
+    if ${1:condition} ; then
+        ${2:compound commands}
+    else
+        ${2:compound commands}
+    fi
