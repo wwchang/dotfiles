@@ -1446,13 +1446,13 @@ syntax on
                     " The function return Dictionary with these keys. (all optional)
                     " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
 
-            function ViewDoc_pydoc(topic, ...)
-                return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
-                            \ 'ft':	'pydoc',
-                            \ }
-            endfunction
+            " function ViewDoc_pydoc(topic, ...)
+            "     return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
+            "                 \ 'ft':	'pydoc',
+            "                 \ }
+            " endfunction
             " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
-            let g:ViewDoc_python = function('ViewDoc_pydoc')
+            " let g:ViewDoc_python = function('ViewDoc_pydoc')
             " }}}
 
             " help_custom {{{ ~/.vim/ftdoc/{filetype}
