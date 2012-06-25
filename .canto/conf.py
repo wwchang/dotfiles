@@ -157,7 +157,7 @@ default_rate(60)
 # add("http://reddit.com/.rss", tags=[None, "news", "reddit"]) # Reddit
 add("http://feeds2.feedburner.com/solidot", tags=[None, "news", "Solidot"]) # Solidot
 add("http://linuxtoy.org/feed/", tags=[None, "news"]) # "~LinuxToy"
-add("http://feeds.geekpark.net/", tags=[None, "news"]) # 极客公园
+# add("http://feeds.geekpark.net/", tags=[None, "news"]) # 极客公园
 # add("http://kerneltrap.org/node/feed", tags=[None, "kernel"]) # kerneltrap
 add("http://feeds.feedburner.com/Command-line-fu", tags=[None, "linux", "commandline"]) # "~Command-line-fu"
 #add("http://feeds.feedburner.com/Command-line-fu?format=xml", tags=[None, "linux", "commandline"]) # "~Command Line Fu"
