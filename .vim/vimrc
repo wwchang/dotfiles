@@ -510,9 +510,9 @@ endif
 
     " [ tab ] {{{
     set expandtab " expandtab: use spaces to insert a <Tab>.
-    set tabstop=4
-    set shiftwidth=4
-    set softtabstop=4
+    set tabstop=4 " number of spaces that a <Tab> counts for.
+    set softtabstop=4 " number of spaces that a <Tab> counts for
+    set shiftwidth=4 " number of spaces to use for each step of (auto)indent.
     set smarttab
     " }}}
 
@@ -1862,7 +1862,6 @@ syntax on
 
         " SnipMate: {{{
             " :SnipMateOpenSnippetFiles, create snippet on the fly.
-            " don't set 'expandtab' in vimrc, you always can use <C-V> <Tab> to input it.
             " <C-R><Tab> show list of available snippets.
             " XX<Tab> show list or expand if match.
             " <shift-tab> to jump tab stops in reverse order.
@@ -2851,16 +2850,6 @@ syntax on
 
 " [ languages ] {{{
     " [ Python ] {{{
-        " [ Python options ] {{{
-            let python_highlight_all = 1
-            let python_slow_sync = 1 " for fast machines
-        augroup PythonSettings
-            au!
-            au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
-            au FileType python setlocal foldmethod=indent foldlevel=99
-        augroup END
-        " }}}
-
         " [ IDE ] {{{
             " Python-mode-klen: {{{ Python IDE.
                 " K: doc <C-space>: Rope autocomp
