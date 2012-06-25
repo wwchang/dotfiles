@@ -98,21 +98,6 @@ baidu() {
     url=$(echo "http://www.baidu.com/s?wd=$@" | sed 's/ /+/g' ); jumanji $url;
 }
 
-# for ranger
-function ranger-cd {
-  ranger --choosedir=/tmp/chosen
-  if [ -f /tmp/chosen -a "$(cat /tmp/chosen)" != "$(pwd | tr -d "\n")" ]; then
-    cd "$(cat /tmp/chosen)"
-  fi
-  rm -f /tmp/chosen
-}
-bind '"\C-o":"ranger-cd\C-m"'
-# this would make you change the directory of your parent shell after exiting ranger
-ranger() {
-    command ranger --fail-unless-cd $@ &&
-    cd "$(grep \^\' ~/.config/ranger/bookmarks | cut -b3-)"
-}
-
 # Use VIm as man pager
 vman () {
     export PAGER="/bin/sh -c \"unset PAGER;col -b -x | \
@@ -124,4 +109,3 @@ vman () {
     # we muse unset the PAGER, so regular man pager is used afterwards
     unset PAGER
 }
-
