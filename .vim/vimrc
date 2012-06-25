@@ -1415,6 +1415,7 @@ syntax on
                 " - :doc[!] <cword> [{filetype}]
                 " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
                 "   :perldoc, :ViewDocPerl.
+                " - e.g. :ViewDoc string.split in Python filetype.
             "let g:no_viewdoc_abbrev
             "let g:no_plugin_abbrev
             "let g:no_viewdoc_maps
