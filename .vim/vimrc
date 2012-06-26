@@ -941,7 +941,7 @@ endif
         call vam#ActivateAddons(['tlib'])
         call vam#ActivateAddons(['AsyncCommand'])
             " statusline
-        call vam#ActivateAddons(['Powerline'])
+        " call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
             " CVS
         call vam#ActivateAddons(['fugitive'])
@@ -4144,6 +4144,7 @@ syntax on
             "   * code block syntax highlighting.
             " There are global and per-wiki (local) options available to tune vimwiki.
                 " 'syntax': default, media, markdown,
+
             let g:vimwiki_list = [
                 \ {
                     \ 'path': '~/vimwiki/wiki',
@@ -4158,17 +4159,12 @@ syntax on
                     \ 'maxhi': 0,
                     \ 'list_margin': -1,
                     \ 'nested_syntaxes': {
-                        \ 'python': 'python', 'ruby': 'ruby', 'perl': 'perl',
-                        \ 'bash': 'sh', 'zsh': 'zsh', 'awk': 'awk', 'sed': 'sed',
-                        \ 'javascript': 'javascript', 'dart': 'dart', 'php': 'php',
-                        \ 'html': 'html', 'css': 'css', 'xml': 'xml', 'json': 'json',
+                        \ 'python': 'python', 'ruby': 'ruby',
+                        \ 'bash': 'sh', 'vim': 'vim',
+                        \ 'javascript': 'javascript', 'dart': 'dart',
+                        \ 'c': 'c', 'go': 'go',
                         \ 'lisp': 'lisp', 'scheme': 'scheme',
-                        \ 'c': 'c', 'make': 'make', 'go': 'go', 'lua': 'lua',
-                        \ 'haskell': 'haskell',
-                        \ 'markdown': 'markdown', 'tex': 'tex',
-                        \ 'git': 'git',
-                        \ 'snippets': 'snippets', 'snippet': 'snippet',
-                        \ 'man': 'man', 'help': 'help', 'conf': 'conf', 'vim': 'vim'
+                        \ 'git': 'git', 'diff': 'diff'
                     \ }
                 \ },
                 \ {
