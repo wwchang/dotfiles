@@ -941,7 +941,7 @@ endif
         call vam#ActivateAddons(['tlib'])
         call vam#ActivateAddons(['AsyncCommand'])
             " statusline
-        " call vam#ActivateAddons(['Powerline'])
+        call vam#ActivateAddons(['Powerline'])
         call vam#ActivateAddons(['current-func-info'])
             " CVS
         call vam#ActivateAddons(['fugitive'])
@@ -3702,10 +3702,11 @@ syntax on
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
             let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
-                "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
-                "call Pl#Theme#RemoveSegment({targetsegment})
-                "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
-                "call Pl#Segment#Create(),
+
+            "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
+            "call Pl#Theme#RemoveSegment({targetsegment})
+            "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
+            "call Pl#Segment#Create(),
         " }}}
 
         " current-func-info
