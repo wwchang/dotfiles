@@ -2581,6 +2581,13 @@ syntax on
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
             let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
             let g:Gitv_DoNotMapCtrlKey = 1
+
+            " resize gitv window.
+            augroup MyGitv
+                au!
+                au WinEnter gitv-* resize 20
+                " WinEnter, WinCreate -> two events.
+            augroup END
         " }}}
 
         " extradite: {{{ A git commit log browser that extends fugitive.vim
