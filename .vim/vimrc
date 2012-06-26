@@ -1214,6 +1214,7 @@ endif
         call vam#ActivateAddons(['lastmod'])
             " ASCII draw
         "call vam#ActivateAddons(['DrawIt'])
+        " call vam#ActivateAddons(['ditaa'])
             " small tools
         call vam#ActivateAddons(['fcitx'])
         "call vam#ActivateAddons(['bestfriend'])
@@ -4714,6 +4715,9 @@ syntax on
 
         " drawing.vim:
             " Ascii drawing primitives with mouse in vim GUI (box, arrow, line).
+
+        " ditaa {{{ convert ASCII diagrams into proper bitmap graphics.
+        " }}}
     " }}}
 
     " [ text-object ] {{{
