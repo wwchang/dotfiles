@@ -1495,7 +1495,7 @@ syntax on
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
             let g:neocomplcache_enable_insert_char_pre = 0 " TODO 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
-            let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
+            let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 1 " ambiguous searching when capital
             let g:neocomplcache_enable_underbar_completion = 1 " ambiguous searching when input _
