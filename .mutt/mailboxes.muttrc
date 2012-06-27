@@ -49,10 +49,25 @@ mailboxes =Lisp/Lisp-cn
 
 mailboxes =Python
 mailboxes =Python/python
-# mailboxes =Python/comp-lang-py
+# projects
 mailboxes =Python/Django
 mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
+# about python
+mailboxes =Python/comp-lang-py
+mailboxes =Python/python-tw
+mailboxes =Python/help
+mailboxes =Python/tutor
+mailboxes =Python/ideas
+mailboxes =Python/porting
+mailboxes =Python/speed
+mailboxes =Python/gui
+mailboxes =Python/peps
+mailboxes =Python/docs
+mailboxes =Python/doc-sig
+mailboxes =Python/dev
+mailboxes =Python/cython-user
+mailboxes =Python/cython-devel
 
 mailboxes =Go
 mailboxes =Go/go-nuts

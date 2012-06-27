@@ -262,23 +262,61 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     }
 # }}}
 
-# Programming Language {{{
+# Programming Languages {{{
     # [ Python ] {{{
     :0
     * ^List-Id: .*python-list\.python\.org
     Python/python/
     :0
+    * ^List-Id: .*python-help\.python\.org
+    Python/help/
+    :0
     * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
     Python/comp-lang-py/
+    :0
+    * ^List-Id: .*pythontw\.googlegroups\.com
+    Python/python-tw/
+    :0
+    * ^List-Id: .*tutor\.python\.org
+    Python/tutor/
+    :0
+    * ^List-Id: .*docs\.python\.org
+    Python/docs/
+    :0
+    * ^List-Id: .*doc-sig\.python\.org
+    Python/doc-sig/
+    :0
+    * ^List-Id: .*peps\.python\.org
+    Python/peps/
+    :0
+    * ^List-Id: .*speed\.python\.org
+    Python/speed/
+    :0
+    * ^List-Id: .*pygui\.python\.org
+    Python/gui/
+    :0
+    * ^List-Id: .*python-porting\.python\.org
+    Python/porting/
+    :0
+    * ^List-Id: .*python-ideas\.python\.org
+    Python/ideas/
+    :0
+    * ^List-Id: .*python-dev\.python\.org
+    Python/dev/
+    :0
+    * ^List-Id: .*cython-user\.python\.org
+    Python/cython-user/
+    :0
+    * ^List-Id: .*cython-devel\.python\.org
+    Python/cython-devel/
+
+    # projects
     :0
     * ^List-Id: .*django-users\.googlegroups\.com
     Python/Django/
     :0
     * ^List-Id: .*webpy\.googlegroups\.com
     Python/webpy/
-    :0
-    * ^List-Id: .*pythontw\.googlegroups\.com
-    Python/python-tw/
     :0
     * ^List-Id: .*sphinx-dev\.googlegroups\.com
     Python/sphinx-dev/

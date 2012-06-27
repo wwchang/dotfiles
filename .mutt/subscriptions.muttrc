@@ -36,62 +36,83 @@
 # subscribe -group security security
 
 
-# =========================================================
-# -------  Python  ------------
+# [ Python ]
 subscribe python Python <python-list@python.org>
-subscribe django Django <django-users@googlegroups.com>
 subscribe python.lang python.lang.G <comp.lang.python@googlegroups.com>
-subscribe python.linux python.linux.G <python_linux@googlegroups.com>
 subscribe python.tw python.tw <pythontw@googlegroups.com>
+subscribe python.help  <python-help@python.org>
+subscribe python.tutor  <tutor@python.org>
+subscribe python.ideas  <python-ideas@python.org>
+# porting python 2 to 3.
+subscribe python.porting  <python-porting@python.org>
+subscribe python.speed  <speed@python.org>
+subscribe python.gui  <pygui@python.org>
+subscribe python.peps  <peps@python.org>
+subscribe python.docs  <docs@python.org>
+subscribe python.doc-sig <doc-sig@python.org>
+subscribe python.dev  <python-dev@python.org>
+subscribe python.cython-devel  <cython-devel@python.org>
+subscribe python.cython-user  <cython-users@googlegroups.com>
+subscribe django Django <django-users@googlegroups.com>
 subscribe webpy web.py <webpy@googlegroups.com>
 subscribe sphinx sphinx-dev <sphinx-dev@googlegroups.com>
-# Ruby
+
+# [ Ruby ]
 subscribe ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>
 subscribe ruby.core Ruby-Core <ruby-core@ruby-lang.org>
 subscribe ruby.doc Ruby-Doc <ruby-doc@ruby-lang.org>
 subscribe ruby.rails Ruby On Rails <rubyonrails-talk@googlegroups.com>
-# Java
+
+# [ Java ]
 subscribe java.lang java.lang.G <comp.lang.java.programmer@googlegroups.com>
-# C
+
+# [ C ]
 subscribe c.lang c.lang.G <comp.lang.c@googlegroups.com>
-# Perl
+
+# [ Perl ]
 subscribe perl.beginners.G perl.beginners.G <perl.beginners@googlegroups.com>
 subscribe perl.beginner perl.beginner <beginners@perl.org>
-# HTML5
+
+# [ HTML5 ]
 subscribe html5-zh HTML5-W3-zh <public-html-ig-zh@w3.org>
 subscribe whatwg whatwg <whatwg@whatwg.org>
 subscribe whatwg.help whatwg.help <help@whatwg.org>
-# Go
+
+# [ Go ]
 subscribe golang-nuts golang-nuts <golang-nuts@googlegroups.com>
 subscribe golang-china golang-china <golang-china@googlegroups.com>
-# Dart
+
+# [ Dart ]
 subscribe Dart.misc Dart.misc <misc@dartlang.org>
 
 
-# Drupal
+# [ Drupal ]
 subscribe drupal-support Drupal-support <support-request@drupal.org>
 subscribe drupal-security Drupal-security <security-news@drupal.org>
-# Web
+# [ Web ]
 subscribe jplayer jPlayer <jplayer@googlegroups.com>
 subscribe firebug Firebug <firebug@googlegroups.com>
 
-# Maemo
+# [ Maemo ]
 subscribe maemo maemo-developers <maemo-developers@maemo.org>
-# Linux
+# [ Linux ]
 subscribe linuxuers LUG.G <linuxusersgroup@googlegroups.com>
 subscribe os.linux alt.os.linux.G <alt.os.linux@googlegroups.com>
 subscribe comp.os.linux.setup comp.os.linux.setup.G <comp.os.linux.setup@googlegroups.com>
-# LUG (Linux User Group)
+
+# [ LUG (Linux User Group) ]
 subscribe shlug ShangHai LUG <shlug@googlegroups.com>
 subscribe hzlug HangZhou LUG <hzlug@googlegroups.com>
 subscribe xidian_linux XiDian LUG <xidian_linux@googlegroups.com>
-# Ubuntu
+
+# [ Ubuntu ]
 subscribe ubuntu-users ubuntu-users <ubuntu-users@lists.ubuntu.com>
 subscribe ubuntu-mobile ubuntu-mobile <ubuntu-mobile@lists.ubuntu.com>
 subscribe ubuntu-security ubuntu-security <ubuntu-security-announce@lists.ubuntu.com>
 subscribe ubuntu-devel ubuntu-devel <ubuntu-devel@lists.ubuntu.com>
 subscribe ubutnu-server ubuntu-server <ubuntu-server@lists.ubuntu.com>
-# Arch
+
+# [ Arch ]
 subscribe arch-general Arch-general <arch-general@archlinux.org>
 subscribe arch-announce Arch-announce <arch-announce@archlinux.org>
 subscribe arch-projects Arch-projects <arch-projects@archlinux.org>
@@ -102,27 +123,24 @@ subscribe pacman Arch-pacman-dev <pacman-dev@archlinux.org>
 subscribe aur-general Arch-AUR-general <aur-general@archlinux.org>
 subscribe archlinux-cn Archlinux-cn <archlinux-cn@googlegroups.com>
 subscribe arch-releng Arch Release Engineering <arch-releng@archlinux.org>
-# Gentoo
+
+# [ Gentoo ]
 subscribe linux.gentoo.user linux.gentoo.user.G <linux.gentoo.user@googlegroups.com>
 
-# Hack
+# [ Hack ]
 subscribe alt.computer.security alt.computer.security.G <alt.computer.security@googlegroups.com>
 subscribe comp.security.unix comp.security.unix.G <comp.security.unix@googlegroups.com>
 subscribe comp.os.linux.security comp.os.linux.security.G <comp.os.linux.security@googlegroups.com>
 subscribe alt.security alt.security.G <alt.security@googlegroups.com>
 subscribe microsoft.public.security microsoft.public.security.G <microsoft.public.security@googlegroups.com>
 
-# ------- project ----------
-
-
-
 # ------- softwares -------------
-# Emacs
+# [ Emacs ]
 subscribe emacs Emacs-help <help-gnu-emacs@gnu.org>
 subscribe emacs-devel Emacs-devel <emacs-devel@gnu.org>
 subscribe emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
 subscribe Evil Emacs-Evil <implementations-list@lists.ourproject.org>
-# Vim
+# [ Vim ]
 # Announcements only: new releases and important patches
 subscribe vim-an vim-announce <vim-announce@vim.org	>
 # Help on vim and vim usage
@@ -133,49 +151,64 @@ subscribe vim-dev vim-dev <vim-dev@vim.org>
 subscribe vim-mac vim-mac <vim-mac@vim.org>
 # Vim use and development discussion specific to multibyte support
 subscribe vim-multibyte vim-multibyte <vim-multibyte@vim.org>
-# mutt
+# vimwiki
+subscribe vimwiki vimwiki <vimwiki@googlegroups.com>
+
+
+# [ Mutt ]
 subscribe mutt mutt-users <mutt-users@mutt.org>
 # mairix
 subscribe mairix mairix <mairix-users@lists.sourceforge.net>
-# weechat
-subscribe weechat weechat <weechat-support@nongnu.org>
 # procmail
 subscribe procmail procmail <procmail@informatik.RWTH-Aachen.de>
-# mldonkey
+# getmail
+subscribe getmail getmail <getmail@lists.pyropus.ca>
+
+# [ WeeChat ]
+subscribe weechat weechat <weechat-support@nongnu.org>
+
+# [ MLDonkey ]
 subscribe mldonkey MLdonkey <mldonkey-users@nongnu.org>
-# ranger
+
+# [ Ranger ]
 subscribe ranger ranger-users <ranger-users@nongnu.org>
-# git
+
+# [ Git ]
 subscribe git git <git@vger.kernel.org>
 subscribe gotgit GotGit <got-users@googlegroups.com>
 subscribe gotgit GotGit <gotgit@googlegroups.com>
-# getmail
-subscribe getmail getmail <getmail@lists.pyropus.ca>
+
 # pwmt.org ( jumanji, zathura )
 subscribe jumanji jumanji <jumanji@lists.pwmt.org>
 subscribe zathura zathura <zathura@lists.pwmt.org>
-# w3m text-based browser
+
+# text-based browser
+# [ w3m ]
 subscribe w3m w3m-dev-en <w3m-dev-en@sic.med.tohoku.ac.jp>
-# elinks text-based browser
+# [ elinks ]
 subscribe elinks elinks-users <elinks-users@linuxfromscratch.org>
-# urxvt rxvt-unicode
+# [ urxvt ] rxvt-unicode
 subscribe urxvt rxvt-unicode <rxvt-unicode@lists.schmorp.de>
-# awesome
+
+# WindowsManager
+# [ Awesome ]
 subscribe awesome Awesome <awesome@naquadah.org>
-# FVWM
+# [ FVWM ]
 subscribe fvwm FVWM <fvwm@fvwm.org>
-# tmux
-subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>
-# screen
-subscribe screen screen <screen-users@gnu.org>
-# conky
-subscribe conky Conky <conky-users@lists.sourceforge.net>
-# Wayland
+# [ Wayland ]
 subscribe wayland Wayland <wayland-devel@list.freedesktop.org>
+
+# [ tmux ]
+subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>
+# [ screen ]
+subscribe screen screen <screen-users@gnu.org>
+
+# [ Conky ]
+subscribe conky Conky <conky-users@lists.sourceforge.net>
+
 # ledger
 subscribe ledger ledger-cli <ledger-cli@googlegroups.com>
-# vimwiki
-subscribe vimwiki vimwiki <vimwiki@googlegroups.com>
+
 # jekyll
 subscribe jekyll jekyll <jekyll-rb@googlegroups.com>
 
