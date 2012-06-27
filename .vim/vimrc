@@ -2586,7 +2586,7 @@ syntax on
             " resize gitv window.
             augroup MyGitv
                 au!
-                au WinEnter gitv-* resize 20
+                au WinEnter gitv-* resize 10
                 " WinEnter, WinCreate -> two events.
             augroup END
         " }}}
