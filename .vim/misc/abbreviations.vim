@@ -25,12 +25,12 @@
 
 " [ mail ]
 " iabbr gmail numbchild@gmail.com
-iabbr Gmail [ numbchild AT gmail DOT com ]
-iabbr qqmail 348284894@qq.com
+iabbr mygmail [ numbchild AT gmail DOT com ]
+iabbr myqqmail 348284894@qq.com
 
 " [ copyright ]
-iabbr copyr Copyright 2011 stardiviner, all rights reserved.
-iabbr copyl Copyleft 2011 stardiviner. CC.
+iabbr mycopyr Copyright 2011 stardiviner, all rights reserved.
+iabbr mycopyl Copyleft 2011 stardiviner. CC.
 
 " [ fonts ]
 iabbr Comic_font        Comic Sans MS
