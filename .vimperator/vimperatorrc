@@ -10,7 +10,7 @@ source! /home/chris/.vimperatorrc.local
     " [ style ] {{{
         " for useing customize stylesheet.
         set usermode=true
-        set gui=noaddons,bookmarks,nomenu,navigation,tabs
+        set gui=nomenu,navigation,tabs,bookmarks,addons
         set smallicons
             " show current mode in the command line.
         set showmode
