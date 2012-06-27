@@ -126,7 +126,7 @@ max_message_size = 0
 # with the server. This can be useful if your network or the server is particuarly unreliable.
 # Default: 0, which means not to enable this feature.
 # =1 to mitigate the duplicates
-max_messages_per_session = 3
+max_messages_per_session = 5
 # if set, getmail adds a Delivered-To: header field to the message. If unset, it will not do so.
 # Default: True. Note that this field will contain the envelope recipient of the message if the
 # retriever in use is a multidrop retriever; otherwise it will contain the string "unknown".
