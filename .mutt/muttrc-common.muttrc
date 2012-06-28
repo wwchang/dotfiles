@@ -285,7 +285,7 @@ set mime_forward = ask-no
 # set mime_forward_decode = no
 
 # set attribution = "On %d, %n wrote:"
-set attribution   = "=> On [%{%Y-%m-%d %H:%M:%S %Z}]:\n %n Said: "
+set attribution   = "Excerpts from [ %n ] //// On [%{%Y-%m-%d %H:%M:%S %Z}]:\n"
 
 # mutt deal with doc appendix
 # you can convert doc file into HTML and insert into mutt to view.
