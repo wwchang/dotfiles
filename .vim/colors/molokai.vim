@@ -241,7 +241,7 @@ if &t_Co > 255
    hi WildMenu        ctermfg=045 ctermbg=016   cterm=bold
 
    hi Normal          ctermfg=252 ctermbg=232
-   hi Comment         ctermfg=240 cterm=italic
+   hi Comment         ctermfg=240               cterm=none
    " cursor line & column
    hi CursorLine      ctermfg=none ctermbg=233   cterm=bold
    hi CursorColumn    ctermfg=none ctermbg=233   cterm=none
@@ -304,7 +304,7 @@ endif
     " gray
     highlight TagbarComment         ctermfg=238 ctermbg=none cterm=none
     " green
-    highlight TagbarKind            ctermfg=154 ctermbg=none cterm=bold,italic
+    highlight TagbarKind            ctermfg=154 ctermbg=none cterm=bold
     " dark green
     highlight TagbarNestedKind      ctermfg=070 ctermbg=none cterm=none
     " blue

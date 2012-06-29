@@ -365,7 +365,7 @@ endif
         colorscheme molokai_xterm
     elseif $TERM == "screen-256color"
         set t_Co=256
-        colorscheme molokai_xterm
+        colorscheme molokai
     else
         colorscheme wombat256mod
     endif
