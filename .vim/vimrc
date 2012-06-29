@@ -1020,6 +1020,7 @@ endif
         call vam#ActivateAddons(['EasyGrep'])
         call vam#ActivateAddons(['ack'])
         call vam#ActivateAddons(['buffers_search_and_replace'])
+        " call vam#ActivateAddons(['SearchParty'])
             " comment
         call vam#ActivateAddons(['commentary'])
         "call vam#ActivateAddons(['tComment'])
@@ -2421,6 +2422,9 @@ syntax on
             "       - c -- current buffer
             "       - e -- exclude
             "       - f --
+        " }}}
+
+        " SearchParty {{{
         " }}}
     " }}}
 
