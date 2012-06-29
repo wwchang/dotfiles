@@ -179,7 +179,7 @@ if &t_Co > 255
    hi MatchParen      ctermfg=016  ctermbg=046 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
-   hi Operator        ctermfg=161  ctermbg=016 cterm=bold
+   hi Operator        ctermfg=161  ctermbg=232 cterm=bold
 
 " Pop complete menu   154 brightgreen  198 pink  038 light blue
    hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
