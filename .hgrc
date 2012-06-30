@@ -7,4 +7,4 @@ splice.priority = 1
 
 [extensions]
 # for zsh hg prompt.
-prompt = ~/.zsh/custom/hg-prompt/prompt.py
+# prompt = ~/.zsh/custom/hg-prompt/prompt.py
