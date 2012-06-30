@@ -1733,7 +1733,9 @@ syntax on
             " }}}
         " }}}
 
-        " Vimproc: a great asynchronous execution library for Vim.
+        " Vimproc: {{{ a great asynchronous execution library for Vim.
+            " let g:vimproc_password_pattern " this variable is used for vimshell.
+        " }}}
 
         " Vimshell: {{{ powerful shell inplemented by vim script
             "built-in functionalities that you had to set up to enable if it's on zsh.
