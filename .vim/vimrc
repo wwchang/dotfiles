@@ -3587,6 +3587,17 @@ syntax on
     " }}}
 " }}}
 
+" [ platform ] {{{
+    " [ Android ] {{{
+        " Eclim {{{ bring Eclipse functionality to Vim.
+            " The initial goal was to provide Eclipse's functionality in vim.
+            " But support for various other languages.
+            " http://eclim.org/
+            " TODO google Eclim and Vim configs. and Android development environment.
+        " }}}
+    " }}}
+" }}}
+
 " [ Vim Extension ] {{{
 
     " [ register & operation ] {{{
