@@ -669,6 +669,12 @@ endif
     nnoremap <SPACE> za
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
+    " quickfix/location list, window manipulate
+    nnoremap <Leader>qo :cindow<CR>
+    nnoremap <Leader>qc :cclose<CR>
+    nnoremap <Leader>lo :lwindow<CR>
+    nnoremap <Leader>lc :lclose<CR>
+
         " NOTICE use nonrecursive mapping.
         " Each of the *map commands has a *noremap counterpart that ignores other mappings:
         " nnoremap, vnoremap, and inoremap. onoremap(operator).
