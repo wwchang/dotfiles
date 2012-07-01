@@ -60,7 +60,8 @@ set ispell="aspell -c --mode=email"
 # set ispell="ispell --mode=email"
 set forw_format  = "Fwd: %a : %s"
 set wrap         = -3
-my_hdr From: stardiviner <numbchild@gmail.com>
+# my_hdr From: stardiviner <numbchild@gmail.com>
+my_hdr X-PGP-Key-ID: 47C32433
 set use_from = yes
 # set up mailboxes by scanning for all subfolders in $HOME/Mails/:
 # Building a list of "mailboxes" on the fly
