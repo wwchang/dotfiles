@@ -163,7 +163,8 @@ add("http://feeds.feedburner.com/Command-line-fu", tags=[None, "linux", "command
 #add("http://feeds.feedburner.com/Command-line-fu?format=xml", tags=[None, "linux", "commandline"]) # "~Command Line Fu"
 # http://ubuntuweblogs.org/rss20.xml "~ubuntu weblogs"
 # http://planet.ubuntu.com/rss20.xml "~ubuntu Blog"
-add("http://www.thegeekstuff.com/feed") # "~The Geek Stuff"
+add("http://www.thegeekstuff.com/feed", tags=[None, "computer", "geek"]) # "~The Geek Stuff"
+add("http://feeds.howtogeek.com/HowToGeek", tags=[None, "computer", "geek"]) # How To Geek
 #add("http://blog.makezine.com/index.xml") # "~MAKE"
 # add("http://seclists.org/rss/nmap-hackers.rss") # "~Nmap hackers"
 add("http://blog.jobbole.com/feed/") # "~Jobbole wordspace"

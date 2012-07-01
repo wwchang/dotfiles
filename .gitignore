@@ -19,6 +19,8 @@ tags
 .emacs.d/el-get/*
 
 .weechat/logs/*
+.weechat/ssl/stardiviner.cert
+.weechat/ssl/stardiviner.key
 
 .newsbeuter/queue
 .newsbeuter/pb-lock.pid
