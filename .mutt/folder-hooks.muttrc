@@ -28,9 +28,9 @@ folder-hook .       set sort = threads
 folder-hook . set index_format = '"%2C┆%?H?[spam]? [%4Z] ┣ %?F?%-18.18F&%-18.18L? ├ %-50.49s %> │%-16.15[%I:%M %P %b/%d]"'
 # folder-hook .       set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
-folder-hook .  ignore User-Agent:
-folder-hook .  ignore Date:
-folder-hook .  ignore To:
+# folder-hook .  ignore User-Agent:
+# folder-hook .  ignore Date:
+# folder-hook .  ignore To:
 
 folder-hook =spam   set index_format = '" ☠ %?H?[spam]? %C┆ [%4Z] ┣ %?F?%-18.18&%-10.10L? ├ %s %> %-4.4c"'
 
@@ -60,16 +60,15 @@ folder-hook ">" set sort = reverse-date-received
 
 
 # only show PGP color in INBOX
-#folder-hook "\!"    color index black brightcyan ~k
-#folder-hook =INBOX  color index black brightcyan ~k
-#folder-hook "\!"    color index black brightcyan ~g
-#folder-hook =INBOX  color index black brightcyan ~g
-#folder-hook "\!"    color index black brightred ~G
-#folder-hook =INBOX  color index black brightred ~G
-#folder-hook .       color index brightcyan default ~k
-#folder-hook .       color index brightcyan default ~g
-#folder-hook .       color index brightcyan default ~G
-
+folder-hook "\!"    color index black brightcyan ~k
+folder-hook =INBOX  color index black brightcyan ~k
+folder-hook "\!"    color index black brightcyan ~g
+folder-hook =INBOX  color index black brightcyan ~g
+folder-hook "\!"    color index black brightred ~G
+folder-hook =INBOX  color index black brightred ~G
+folder-hook .       color index brightcyan default ~k
+folder-hook .       color index brightcyan default ~g
+folder-hook .       color index brightcyan default ~G
 
 
 # when mail's header has many objects. you can set to see some objects that you want to see.
