@@ -11,6 +11,7 @@ color message       color039  default
 color search        color016  color154
     # Mutt looks color
 color status        color148  default
+    # tree:
     # `->
     #  `->
 color tree          color239  default
@@ -118,7 +119,9 @@ color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shany
 # }}}
 
 # special mails {{{
-# FIXME color index         color106    default "~h ^[SOLVED|solved]" # [SOLVED]
+color index         color208    default '~h "(released|Released|RELEASED)"' # new version released.
+color index         color226    default '~h "(SOLVED|solved)"' # [SOLVED]
+
 # you send in mailing list or replied in mailing list ( Message-ID | References | In-Reply-To )
 # FIXME
 # color index         color154    default "~i (Message-ID)"
@@ -127,15 +130,16 @@ color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shany
 # thread
 # color index         color255    default ~(~P) # all threads contains message from you.
 # color index         color040    default ~(~p) # all threads contains message to you.
-# let mailing list PGP mails normal
-#color index         color187    default ~(~k)  # contains PGP
-#color index         color178    default ~(~g)  # PGP signed
-#color index         color232    color197 ~(~G)  # PGP encrypted
-#color index         color240    default ~R     # readed messages
+
+# highlight GPG/PGP signed/encrypted emails in mailing list threads.
+# this part is in "folder-hook.muttrc" file.
+# color index         color187    default ~(~k)  # contains PGP
+# color index         color178    default ~(~g)  # PGP signed
+# color index         color232    color197 ~(~G)  # PGP encrypted
 # }}}
 
 # readed mails should be gray color.
-color index         color241    default ~R # readed
+color index         color241    default ~R     # readed messages
 
 # myself {{{
 # color index         color025    default ~p  # message only to you
