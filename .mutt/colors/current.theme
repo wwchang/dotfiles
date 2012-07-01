@@ -119,8 +119,8 @@ color index         color204    default "(~f 184145190 | ~f 243113196 | ~f shany
 # }}}
 
 # special mails {{{
-color index         color208    default '~h "(released|Released|RELEASED)"' # new version released.
-color index         color226    default '~h "(SOLVED|solved)"' # [SOLVED]
+color index         color208    default '~s "(released|Released|RELEASED)"' # new version released.
+color index         color226    default '~s "(SOLVED|solved)"' # [SOLVED]
 
 # you send in mailing list or replied in mailing list ( Message-ID | References | In-Reply-To )
 # FIXME
