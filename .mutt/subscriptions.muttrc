@@ -3,37 +3,8 @@
 # List of mailing lists I'm subscribed to.
 #
 
-
-#  subscribe mutt-user
-#  subscribe stormcock
-#  subscribe rxvt-announce
-#  subscribe lbc
-#  subscribe freshmeat-news
-#  subscribe redhat-announce
-#  subscribe redhat-watch
-#  subscribe sackheads
-#  subscribe lincs
-#  subscribe peterboro
-#  subscribe garble-users
-#  subscribe garble-devel
-#  subscribe clocc-list
-#  subscribe cclan-list
-#  subscribe debian-news
-#  subscribe debian-announce
-#  subscribe spamprobe-users
-#  subscribe ecls-list
-#  subscribe uk-lispers
-#  subscribe movitz-devel
-#  subscribe sbcl-help
-#  subscribe lispweb
-
 # group
-# ================================
-# this will lead color never work
-# ================================
-# subscribe -group Linux linux ubuntu gentoo archlinux Arch
-# subscribe -group program python perl java javascript lua c++
-# subscribe -group security security
+# subscribe -group Python python-list@python.org pythontw@googlegroups.com
 
 
 # [ Python ]
@@ -142,17 +113,17 @@ subscribe emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
 subscribe Evil Emacs-Evil <implementations-list@lists.ourproject.org>
 # [ Vim ]
 # Announcements only: new releases and important patches
-subscribe vim-an vim-announce <vim-announce@vim.org	>
+subscribe vim-an Vim-announce <vim-announce@vim.org	>
 # Help on vim and vim usage
-subscribe vim vim-help <vim@vim.org>
+subscribe -group Vim vim@vim.org vim_use@googlegroups.com
 # Discussion on current vim development
-subscribe vim-dev vim-dev <vim-dev@vim.org>
+subscribe vim-dev Vim-dev <vim-dev@vim.org>
 # Vim use and development discussion specific to mac
-subscribe vim-mac vim-mac <vim-mac@vim.org>
+subscribe vim-mac Vim-mac <vim-mac@vim.org>
 # Vim use and development discussion specific to multibyte support
-subscribe vim-multibyte vim-multibyte <vim-multibyte@vim.org>
+subscribe vim-multibyte Vim-multibyte <vim-multibyte@vim.org>
 # vimwiki
-subscribe vimwiki vimwiki <vimwiki@googlegroups.com>
+subscribe vimwiki Vim.vimwiki <vimwiki@googlegroups.com>
 
 
 # [ Mutt ]
@@ -174,9 +145,8 @@ subscribe mldonkey MLdonkey <mldonkey-users@nongnu.org>
 subscribe ranger ranger-users <ranger-users@nongnu.org>
 
 # [ Git ]
-subscribe git git <git@vger.kernel.org>
-subscribe gotgit GotGit <got-users@googlegroups.com>
-subscribe gotgit GotGit <gotgit@googlegroups.com>
+subscribe -group Git <git@vger.kernel.org>
+subscribe -group GotGit gotgit@googlegroups.com got-users@googlegroups.com
 
 # pwmt.org ( jumanji, zathura )
 subscribe jumanji jumanji <jumanji@lists.pwmt.org>
