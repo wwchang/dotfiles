@@ -52,7 +52,7 @@ subscribe python.docs  <docs@python.org>
 subscribe python.doc-sig <doc-sig@python.org>
 subscribe python.dev  <python-dev@python.org>
 subscribe python.cython-devel  <cython-devel@python.org>
-subscribe python.cython-user  <cython-users@googlegroups.com>
+subscribe python.cython-users  <cython-users@googlegroups.com>
 subscribe django Django <django-users@googlegroups.com>
 subscribe webpy web.py <webpy@googlegroups.com>
 subscribe sphinx sphinx-dev <sphinx-dev@googlegroups.com>
