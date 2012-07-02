@@ -362,7 +362,7 @@ endif
         " colorscheme molokai_transparent " for transparent urxvt.
     elseif $TERM ==? "xterm-256color"
         set t_Co=256
-        colorscheme molokai_xterm
+        colorscheme molokai
     elseif $TERM == "screen-256color"
         set t_Co=256
         colorscheme molokai
@@ -1137,12 +1137,13 @@ endif
         call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
             " vimwiki & note
         call vam#ActivateAddons(['vimwiki'])
+        call vam#ActivateAddons(['github:mattn/calendar-vim'])
+        " call vam#ActivateAddons(['vktheming'])
         call vam#ActivateAddons(['notes'])
         " call vam#ActivateAddons(['vim-pad'])
             " GTD
         " call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
-        call vam#ActivateAddons(['github:mattn/calendar-vim'])
             " outliner
         " call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
@@ -1212,7 +1213,7 @@ endif
         "call vam#ActivateAddons(['mathematic'])
         "call vam#ActivateAddons(['SudoEdit'])
         call vam#ActivateAddons(['SpitVspit'])
-        " call vam#ActivateAddons(['ZoomWin'])
+        call vam#ActivateAddons(['ZoomWin'])
         "call vam#ActivateAddons(['CompleteHelper'])
         call vam#ActivateAddons(['LargeFile'])
             " Motions
@@ -4306,6 +4307,9 @@ syntax on
             let g:calendar_datetime = 'statusline' " title, statusline, ''
         " }}}
 
+        " vktheming {{{ make vimwiki more colorful in GUI.
+        " }}}
+
         " vimgtd {{{ gtd by vim.
             " :TaskToday, :TaskAll, :TaskDoneOrDoingByDate {date}, :TaskToggle ....
             "let g:loaded_wikigtd = 1
@@ -4702,7 +4706,7 @@ syntax on
         " delimitMate: {{{ auto closing of quotes, parenthesis, brackets etc.
         " }}}
 
-        " Formatvim: {{{ convert current file to colored HTML, BBCode or whatever.
+        " formatvim: {{{ convert current file to colored HTML, BBCode or whatever.
             " :help format.txt
             " :[{range}]Format format/diffformat/list [{formatName} [{option1} {value1}]
         " }}}
