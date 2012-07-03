@@ -1139,6 +1139,7 @@ endif
         call vam#ActivateAddons(['vimwiki'])
         call vam#ActivateAddons(['github:mattn/calendar-vim'])
         " call vam#ActivateAddons(['vktheming'])
+        call vam#ActivateAddons(['viske'])
         call vam#ActivateAddons(['notes'])
         " call vam#ActivateAddons(['vim-pad'])
             " GTD
@@ -1742,19 +1743,19 @@ syntax on
 
                 " unite sources {{{ TODO
                     " start completion with unite.vim
-                        " <Plug>(neocomplcache_start_unite_complete)
-                        " <Plug>(neocomplcache_start_unite_quick_match)
-                        "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-                        "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                    " <Plug>(neocomplcache_start_unite_complete)
+                    " <Plug>(neocomplcache_start_unite_quick_match)
+                    " imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+                    " imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
                 " }}}
             " }}}
         " }}}
 
-        " Vimproc: {{{ a great asynchronous execution library for Vim.
+        " vimproc: {{{ a great asynchronous execution library for Vim.
             " let g:vimproc_password_pattern " this variable is used for vimshell.
         " }}}
 
-        " Vimshell: {{{ powerful shell inplemented by vim script
+        " vimshell: {{{ powerful shell inplemented by vim script
             "built-in functionalities that you had to set up to enable if it's on zsh.
             " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
             let g:vimshell_prompt = "vimshell%"
@@ -4318,6 +4319,23 @@ syntax on
         " }}}
 
         " vktheming {{{ make vimwiki more colorful in GUI.
+        " }}}
+
+        " viske {{{ manage your daily schedule on vim with timeline calendar.
+            " Usage:
+            "   - :Viske
+            let g:ViskeDir = '$HOME/Schedule/'
+            let g:ViskeSubWinHeight = 7 " height of the Sub-Window
+            let g:ViskeCalWinWidth = 25 " width of the calendar-window
+            let g:ViskecutDownMsg = 1 " Trim the summary of tasks or not
+            let g:ViskeStartTime = 7 " Start time of a day.
+            let g:ViskeEndTime = 21 " End time of a day.
+            let g:ViskeWidthFuzzy = 4 " Acceptable length that run over a screen.
+            let g:ViskeLang = "us,cn,jp" " Language setting
+            let g:ViskeTaskTypeLabel = ['\ ', 'seminar', 'circle',
+                        \ 'part time job', 'family', 'TODO'
+                        \ ]
+            let g:ViskeDayLabel = ['S', 'M', 'Tu', 'W', 'Th', 'F', 'S']
         " }}}
 
         " vimgtd {{{ gtd by vim.
