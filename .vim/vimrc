@@ -1478,8 +1478,8 @@ syntax on
         " }}}
     " }}}
 
-    " [ Completion ] {{{
-        " NeoComplcache: {{{ Ultimate auto Completion system for Vim.
+    " [ completion ] {{{
+        " neoComplcache: {{{ Ultimate auto Completion system for Vim.
             " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
@@ -1659,6 +1659,7 @@ syntax on
                 inoremap <expr><C-g> neocomplcache#undo_completion()
                 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
                 inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
                 inoremap <expr><C-l> neocomplcache#complete_common_string()
 
                 " ------------------------------------------------------------
@@ -1683,29 +1684,38 @@ syntax on
                     "   - expand '.' snippet.
                     " force_jump too.
                 " ----------------------------------------------
-                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
-                "         \ "\<Plug>(neocomplcache_snippets_expand)"
-                "         \ : pumvisible() ? "\<C-n>"
-                "         \ : <SID>check_back_space() ? "\<TAB>"
-                "         \ : "\<C-x>\<C-u>"
-                " ----------------------------------------------
                 " neocomplcache snippet
                 "   -> neocomplcache complete
                 "       -> check backspace
                 "           -> <Tab> to expand snippet.
                 "               -> User defined complete.
-                "                   -> <C-j/k> next/prev placeholder or complete
+                "                   -> <C-j/k> next/prev placeholder
                 "                   -> <C-n/p> next/prev complete item.
-                imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
-                        \ "\<Plug>(neocomplcache_snippets_expand)"
-                        \ : <SID>check_back_space() ? "\<TAB>"
-                        \ : "\<C-x>\<C-u>"
-                imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable() ?
-                        \ "\<Plug>(neocomplcache_snippets_jump)"
-                        \ : pumvisible() ? "\<C-n>" : "\<Tab>"
-                imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable() ?
-                        \ "\<Plug>(neocomplcache_snippets_jump)"
-                        \ : pumvisible() ? "\<C-p>"
+                " ----------------------------------------------
+                " ternary operator:  x = y > 0 ? 5 : 10 =>
+                " then x will be 5 or 10 depending on whether y is above zero or not.
+                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
+                "         \ "\<Plug>(neocomplcache_snippets_expand)"
+                "         \ : pumvisible() ? "\<C-n>"
+                "         \ : <SID>check_back_space() ? "\<TAB>"
+                "         \ : "\<C-x>\<C-u>"
+                " \ : "" (here "" is empty string)
+                " ----------------------------------------------
+                " if neocomplcache#sources#snippets_complete#jumpable()
+                "     inoremap <expr> <C-j> "\<Plug>(neocomplcache_snippets_jump)"
+                "     inoremap <expr> <C-k> "\<Plug>(neocomplcache_snippets_jump)"
+                " endif
+                " ----------------------------------------------
+                imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                            \ ?  "\<Plug>(neocomplcache_snippets_expand)"
+                            \ : <SID>check_back_space() ? "\<TAB>"
+                            \ : "\<C-x>\<C-u>"
+                imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable()
+                            \ ? "\<Plug>(neocomplcache_snippets_jump)"
+                            \ : ""
+                imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable()
+                            \ ? "\<Plug>(neocomplcache_snippets_jump)"
+                            \ : ""
                 imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
                 imap <expr><C-p> pumvisible() ? "\<C-p>"
                 " }}}
