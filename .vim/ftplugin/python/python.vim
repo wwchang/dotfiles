@@ -9,6 +9,14 @@ setlocal shiftwidth=4
 setlocal softtabstop=4
 setlocal smarttab
 
+" indent
+setlocal autoindent
+
 " fold
+setlocal foldenable
 setlocal foldmethod=indent
 setlocal foldlevel=99
+
+" character, signs, keyword
+" the words with bellowing characters does not been wrapped line and split.
+setlocal iskeyword+=_,$,@,%,#,-
