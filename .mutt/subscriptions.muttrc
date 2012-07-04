@@ -50,8 +50,10 @@ subscribe whatwg whatwg <whatwg@whatwg.org>
 subscribe whatwg.help whatwg.help <help@whatwg.org>
 
 # [ Go ]
-subscribe golang-nuts golang-nuts <golang-nuts@googlegroups.com>
-subscribe golang-china golang-china <golang-china@googlegroups.com>
+subscribe golang-nuts Go-nuts <golang-nuts@googlegroups.com>
+subscribe golang-anon Go-anon <golang-announce@googlegroups.com>
+subscribe golang-dev Go-dev <golang-dev@googlegroups.com>
+subscribe golang-china Go-china <golang-china@googlegroups.com>
 
 # [ Dart ]
 subscribe Dart.misc Dart.misc <misc@dartlang.org>

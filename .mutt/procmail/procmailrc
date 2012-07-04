@@ -304,8 +304,8 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*python-dev\.python\.org
     Python/dev/
     :0
-    * ^List-Id: .*cython-user\.python\.org
-    Python/cython-user/
+    * ^List-Id: .*cython-users\.googlegroups\.com
+    Python/cython-users/
     :0
     * ^List-Id: .*cython-devel\.python\.org
     Python/cython-devel/
@@ -329,6 +329,12 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-ID: .*golang-china\.googlegroups\.com
     Go/go-china/
+    :0
+    * ^List-Id: .*golang-announce\.googlegroups\.com
+    Go/go-anon/
+    :0
+    * ^List-Id: .*golang-dev\.googlegroups\.com
+    Go/go-dev/
     # }}}
 
     # [ Ruby ] {{{
@@ -481,7 +487,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     apps/Mutt/
     :0
     * ^List-Post: .*procmail-dev\.cuci\.nl
-    apps/procmail/dev/
+    apps/procmail/
     :0
     * List-Id: .*conky-users\.lists\.sourceforge\.net
     apps/Conky/
@@ -540,11 +546,14 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
 # GNU {{{
     :0
+    * ^List-Id: .*info-gnu\.gnu\.org
+    GNU/gnu/
+    :0
     * ^List-Id: .*parallel\.gnu\.org
     GNU/parallel/
     :0
-    * ^List-Id: .*info-gnu\.gnu\.org
-    GNU/gnu/
+    * ^List-Id: .*www-zh-cn-hackers\.gnu\.org
+    GNU/zh-cn-hackers/
 # }}}
 
 # Arch Linux {{{
@@ -623,134 +632,115 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     # FIXME : procmail recipe can not use whitespace on destination path.
     # (location)
 
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # Stack Exchange/Android/
-    # * ^Subject: .*Android
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Apple/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Ask Ubuntu/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Bicycles/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Code Golf/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Cognitive Sciences/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Computational Science/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Computer Science/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Cross Validated/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Database Administrators/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Drupal/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/English/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/GIS/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Mathematica/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Mathematics/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Meta/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Poker/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Programmers/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Server Fault/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Stack Overflow/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Super User/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Theoretical Computer Science/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Travel/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Unix and Linux/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/User Experience/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Web Applications/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Webmasters/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/The Great Outdoors/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Philosophy/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Skeptics/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # # * ^Subject: .*
-    # Stack Exchange/Cryptography/
-    # :0
-    # * ^From: .*do-not-reply@stackexchange\.com
-    # * ^Subject: .*
-    # Stack Exchange/Martial Art/
+    :0
+    * ^From: .*do-not-reply@stackexchange\.com
+    {
+        :0
+        * ^Subject: .*Android\ Enthusiasts\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Android/
+        :0
+        * ^Subject: .*Ask\ Different\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Apple/
+        :0
+        * ^Subject: .*Ask\ Ubuntu\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Ask\ Ubuntu/
+        :0
+        * ^Subject: .*Bicycles\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Bicycles/
+        :0
+        * ^Subject: .*Code\ Golf\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Code\ Golf/
+        :0
+        * ^Subject: .*Code\ Review\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Code\ Review/
+        :0
+        * ^Subject: .*Cognitive\ Sciences\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Cognitive\ Sciences/
+        :0
+        * ^Subject: .*Computational\ Science\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Computational\ Science/
+        :0
+        * ^Subject: .*Computer\ Science\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Computer\ Science/
+        :0
+        * ^Subject: .*Cross\ Validated\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Cross\ Validated/
+        :0
+        * ^Subject: .*Database\ Administrators\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Database\ Administrators/
+        :0
+        * ^Subject: .*Drupal\ Answers\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Drupal/
+        :0
+        * ^Subject: .*English\ Language\ and\ Usage\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/English/
+        :0
+        * ^Subject: .*GIS\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/GIS/
+        :0
+        * ^Subject: .*Mathematica\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Mathematica/
+        :0
+        * ^Subject: .*Mathematics\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Mathematics/
+        :0
+        * ^Subject: .*Meta\ Stack\ Overflow\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Meta/
+        :0
+        * ^Subject: .*Poker\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Poker/
+        :0
+        * ^Subject: .*Programmers\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Programmers/
+        :0
+        * ^Subject: .*Server\ Fault\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Server\ Fault/
+        :0
+        * ^Subject: .*Stack\ Overflow\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Stack\ Overflow/
+        :0
+        * ^Subject: .*Super\ User\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Super\ User/
+        :0
+        * ^Subject: .*Theoretical\ Computer\ Science\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Theoretical\ Computer\ Science/
+        :0
+        * ^Subject: .*Travel\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Travel/
+        :0
+        * ^Subject: .*Unix\ and\ Linux\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Unix\ and\ Linux/
+        :0
+        * ^Subject: .*User\ Experience\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/User\ Experience/
+        :0
+        * ^Subject: .*Web\ Applications\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Web\ Applications/
+        :0
+        * ^Subject: .*Webmasters\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Webmasters/
+        :0
+        * ^Subject: .*The\ Great\ Outdoors\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/The\ Great\ Outdoors/
+        :0
+        * ^Subject: .*Philosophy\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Philosophy/
+        :0
+        * ^Subject: .*Skeptics\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Skeptics/
+        :0
+        * ^Subject: .*Cryptography\ Weekly\ Newsletter\ -\ .*
+        Stack\ Exchange/Cryptography/
+        # :0
+        # * ^Subject: .*  Weekly\ Newsletter\ -\ .*
+        # Stack\ Exchange/Martial\ Art/
+    }
+# }}}
+
+# censorship {{{
+    :0
+    * ^List-ID: .*gfw-blog\.googlegroups\.com
+    censorship/
 # }}}
 
 # rss2email {{{

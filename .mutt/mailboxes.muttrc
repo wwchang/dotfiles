@@ -72,6 +72,8 @@ mailboxes =Python/cython-devel
 mailboxes =Go
 mailboxes =Go/go-nuts
 mailboxes =Go/go-china
+mailboxes =Go/go-anon
+mailboxes =Go/go-dev
 
 mailboxes =Dart
 mailboxes =Dart/misc
