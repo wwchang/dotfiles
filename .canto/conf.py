@@ -30,12 +30,18 @@ never_discard("unread") # you can specify a tag like "Slashdot"
 add("http://codezen.org/canto/feeds/latest", tags=[None, "update", "Canto"]) # Canto update News
 
 default_rate(100)
-add("https://github.com/numbchild.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f", tags=[None, "github", "git", "update"]) # my personal feeds
+# Program {{{
+add("https://github.com/numbchild.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f", tags=[None, "github", "git", "update"]) # my personal GitHub feeds
+# }}}
 
-default_rate(300)
-# Arch Linux {{{
-add("http://www.archlinuxcn.org/feed/", tags=[None, "Arch", "changes"]) # Arch homepage updates
-# add("https://wiki.archlinux.org/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "wiki", "Arch", "changes"]) # Arch Linux wiki Recent changes
+default_rate(600)
+# Python {{{
+add("http://www.pythonware.com/daily/rss.xml", tags=[None, "program", "Python"]) # Daily Python-URL!
+add("http://pythonnotes.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "program", "Python"]) # Python Notes
+# }}}
+
+# Go Lang {{{
+add("http://feeds.feedburner.com/GoLangTutorials", tags=[None, "program", "Go"]) # GoLang Tutorials
 # }}}
 
 default_rate(500)
@@ -68,6 +74,12 @@ add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "ipv6"]) # 
 add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # "~Tor announce"
 # https://blog.torproject.org/crss "~Tor Blog"
 add("http://blog.dota2.com/feed/", tags=[None, "Dota", "Dota2", "Game"]) # Dota2 official Blog
+# }}}
+
+default_rate(300)
+# Arch Linux {{{
+add("http://www.archlinuxcn.org/feed/", tags=[None, "Arch", "changes"]) # Arch homepage updates
+# add("https://wiki.archlinux.org/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "wiki", "Arch", "changes"]) # Arch Linux wiki Recent changes
 # }}}
 
 default_rate(300)
