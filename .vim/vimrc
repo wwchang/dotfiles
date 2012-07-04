@@ -1129,7 +1129,7 @@ endif
             " Perl
         "call vam#ActivateAddons(['perlomni'])
             " simulate : Tmux & Screen
-        call vam#ActivateAddons(['vimshell'])
+        " call vam#ActivateAddons(['vimshell'])
         "call vam#ActivateAddons(['Clam'])
             " special editing
         call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
@@ -1480,12 +1480,10 @@ syntax on
     " }}}
 
     " [ completion ] {{{
-        " neoComplcache: {{{ Ultimate auto Completion system for Vim.
+        " neocomplcache: {{{ Ultimate auto Completion system for Vim.
             " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
-            " Require: unite.vim
-            " Require: vimshell.vim
             " with vimproc, neocomplcache creates the cache asynchronously.
             " :neocomplcacheEditSnippets -- you can open with vertically or tab.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
