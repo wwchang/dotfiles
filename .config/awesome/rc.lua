@@ -47,7 +47,7 @@ require("bashets")
         - wibox
         - Titlebar
 
-    What keys: 1,2,3,4,5 means ?
+    What keys: mouse 1,2,3,4,5 means ?
         1 -- left click
         2 -- middle click
         3 -- right click
@@ -1135,18 +1135,20 @@ root.buttons(awful.util.table.join(
         -- }}}
 
         -- volume [ Mod4-(PageUp/PageDown) ] {{{
+        -- amixer [set/sset] Master [2+/2-/mute/unmute/toggle/]
+        -- amixer -q set PCM [2dB+/2dB-/]
         awful.key({ modkey, "Shift" }, "Up",  function ()
             awful.util.spawn("amixer set Master 2+", false)
         end),
         awful.key({ modkey, "Shift" }, "Down",  function ()
             awful.util.spawn("amixer set Master 2-", false)
         end),
-        awful.key({ modkey, "Shift" }, "Left",  function ()
-            awful.util.spawn("amixer set Master toggle", false)
-        end),
-        awful.key({ modkey, "Shift" }, "Right",  function ()
-            awful.util.spawn("amixer set Master toggle", false)
-        end),
+        -- awful.key({ modkey, "Shift" }, "Left",  function ()
+        --     awful.util.spawn("amixer set Master mute", false)
+        -- end),
+        -- awful.key({ modkey, "Shift" }, "Right",  function ()
+        --     awful.util.spawn("amixer set Master unmute", false)
+        -- end),
         -- }}}
 
         -- ncmpcpp & MPD {{{
