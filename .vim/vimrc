@@ -248,6 +248,10 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     set errorbells         " error bells
     set visualbell         " visual bells
     " }}}
+
+    " [ filetype ] {{{
+    filetype plugin indent on " combine three into one.
+    " }}}
 " }}}
 
 " [[ Gvim ]] {{{
@@ -296,13 +300,17 @@ endif
 " [[ looks ]] {{{
 
     " [ basic looks ] {{{
-    set number         " show number
-    " set relativenumber " show relative number
-    set numberwidth=2 " minimal number of columns for line number.
     set linespace=1 " 1 for Win32 GUI, space for underline.
+    set lazyredraw
+    " }}}
+
+    " [ scroll ] {{{
     set sidescroll=1
     set scrolloff=999  " N: lines up and down of cursor, 999: cursor always in middle.
         " let cursor line in middle will make popup menu have enough space to display.
+    " }}}
+
+    " [ listchars ] {{{
     set magic " magic/nomagic: changes special chars that can be used in search patterns
         " use \v and \V to switch char special meaning on or off.
         " \v: this will make every following character except a-zA-Z0-9 and '_' have special meaning
@@ -350,7 +358,12 @@ endif
     " autocmd FileType *      call TabIndentLineToggle(1)
     " autocmd FileType python call TabIndentLineToggle(0)
         " chars to fill the statusline and vertical separators.
-    set lazyredraw
+    " }}}
+
+    " [ linenumber ] {{{
+    set number         " show number
+    " set relativenumber " show relative number
+    set numberwidth=2 " minimal number of columns for line number.
     " }}}
 
     " [ colorscheme ] {{{
@@ -435,53 +448,6 @@ endif
     augroup END
     " }}}
 
-    " [ folding ] {{{3
-    set foldenable          " enable fold
-    set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
-    set foldnestmax=3       " maximum nesting of fold
-    set foldlevel=2         " fold start from which level
-    set foldlevelstart=1    " default which foldlevel to start fold.
-    set foldmarker={{{,}}}      " fold marker
-    set foldminlines=3      " fold minlines
-    set foldcolumn=0        " colums ahead of line number.
-    set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
-
-        "set foldtext=VimrcFoldText() " {{{
-        "function! VimrcFoldText()
-            "let line = foldtext()
-            "let foldSize = 1 + v:foldend - v:foldstart
-            "let lineCount = line("$")
-            "let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
-            "" Show fold Percentage along with # of lines
-            "return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
-        "endfunction " }}}
-
-        function! VimFoldText() " {{{
-            " get first non-blank line
-            let fs = v:foldstart
-            while getline(fs) =~ '^\s*$'
-                let fs = nextnonblank(fs + 1)
-            endwhile
-            if fs > v:foldend
-                let line = getline(v:foldstart)
-            else
-                let line = getline(fs)
-            endif
-            let line = substitute(line, '/\*\|\*/\|{'.'{{\d\=', '', 'g')." "
-            let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
-            let foldSize = 1 + v:foldend - v:foldstart
-            let foldSizeStr = " " . foldSize . " lines "
-            let foldLevelStr = repeat("+--", v:foldlevel)
-            let lineCount = line("$")
-            let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
-            let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
-                " repeat"┄", repeat" ",
-            return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
-        endfunction
-        set foldtext=VimFoldText()
-        " }}}
-    " }}}
-
     " [ syntax & highlight ] {{{
     syntax enable   " enable syntax highlighting
     syntax on       " follows colorscheme to highlight.
@@ -503,10 +469,6 @@ endif
     "             +-- <BS> Normal and Visual
     " }}}
 
-    " [ filetype & fileformat ] {{{
-    filetype plugin indent on " combine three into one.
-    " }}}
-
     " [ tab ] {{{
     set expandtab " expandtab: use spaces to insert a <Tab>.
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
@@ -517,9 +479,12 @@ endif
 
     " [ format ] {{{
     set formatprg=par         " default is ""
-    set formatoptions=tcq     " vim default is "tcq".
-    "set comments
-    set commentstring=/*%s*/  " OR #%s
+    set formatoptions+=tcroqwan2m     " vim default is "tcq".
+    " }}}
+
+    " [ comment ] {{{
+    " set comments=s1:/*,mb:*,ex:*/,://,b:#,:%,:XCOMM,n:>,fb:-
+    set commentstring=#%s " #%s, /*%s*/
     " }}}
 
     " [ wrap ] {{{
@@ -638,6 +603,52 @@ endif
     " set digraph
     " }}}
 
+    " [ folding ] {{{3
+    set foldenable          " enable fold
+    set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
+    set foldnestmax=3       " maximum nesting of fold
+    set foldlevel=2         " fold start from which level
+    set foldlevelstart=1    " default which foldlevel to start fold.
+    set foldmarker={{{,}}}      " fold marker
+    set foldminlines=3      " fold minlines
+    set foldcolumn=0        " colums ahead of line number.
+    set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
+
+        "set foldtext=VimrcFoldText() " {{{
+        "function! VimrcFoldText()
+            "let line = foldtext()
+            "let foldSize = 1 + v:foldend - v:foldstart
+            "let lineCount = line("$")
+            "let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
+            "" Show fold Percentage along with # of lines
+            "return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
+        "endfunction " }}}
+
+        function! VimFoldText() " {{{4
+            " get first non-blank line
+            let fs = v:foldstart
+            while getline(fs) =~ '^\s*$'
+                let fs = nextnonblank(fs + 1)
+            endwhile
+            if fs > v:foldend
+                let line = getline(v:foldstart)
+            else
+                let line = getline(fs)
+            endif
+            let line = substitute(line, '/\*\|\*/\|{'.'{{\d\=', '', 'g')." "
+            let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
+            let foldSize = 1 + v:foldend - v:foldstart
+            let foldSizeStr = " " . foldSize . " lines "
+            let foldLevelStr = repeat("+--", v:foldlevel)
+            let lineCount = line("$")
+            let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
+            let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
+                " repeat"┄", repeat" ",
+            return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
+        endfunction
+        set foldtext=VimFoldText()
+        " }}}
+    " }}}
     " }}}
 " }}}
 
