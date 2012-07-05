@@ -299,7 +299,6 @@ endif
     set number         " show number
     " set relativenumber " show relative number
     set numberwidth=2 " minimal number of columns for line number.
-    set wrap        " how text displayed.
     set linespace=1 " 1 for Win32 GUI, space for underline.
     set sidescroll=1
     set scrolloff=999  " N: lines up and down of cursor, 999: cursor always in middle.
@@ -516,12 +515,16 @@ endif
     set softtabstop=4 " number of spaces that a <Tab> counts for
     " }}}
 
-    " [ text ] {{{
-    set textwidth=80 " =0:unlimited, =80.
+    " [ format ] {{{
     set formatprg=par         " default is ""
     set formatoptions=tcq     " vim default is "tcq".
     "set comments
     set commentstring=/*%s*/  " OR #%s
+    " }}}
+
+    " [ wrap ] {{{
+    set wrap        " wrap long length text
+    set textwidth=80 " =0:unlimited, =80.
     " }}}
 
     " [ grep ] {{{
@@ -635,8 +638,7 @@ endif
     " set digraph
     " }}}
 
-" }}}
-
+    " }}}
 " }}}
 
 " [[ key bindings ]] {{{
