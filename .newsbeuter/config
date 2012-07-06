@@ -53,7 +53,7 @@ include "~/.newsbeuter/macros"
 # === tags === 
 # "t" to select tag to show only this tag seeds,
 # ^T to clear tag to show all seeds
-include "~/.newsbeuter/tags_assigne"
+# include "~/.newsbeuter/tags_assigne"
 # === filter ===
 # define-filter <name> <filter> 
 # example: define-filter "all feeds with fun tag" "tags # \\"fun\\"" 
