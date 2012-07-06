@@ -1,8 +1,8 @@
 ## Author: stardiviner [ numbchild AT gmail DOT com ]
 
 [user]
-    name = stardiviner
-    email = numbchild@gmail.com
+	name = stardiviner\n
+	email = numbchild@gmail.com
 	signingkey = 47C32433 # GPG key ID.
 
 [github]
@@ -88,5 +88,4 @@
 	visual = !gitk
     last = log -1 HEAD
 
-    gl  = log -10 --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
-    gll = log     --color=always --all --graph --topo-order --pretty='format: %Cgreen%h%Creset %s%Cred%d%Creset%n'
+    log-pretty-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
