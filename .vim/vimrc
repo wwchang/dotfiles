@@ -479,7 +479,7 @@ endif
     " }}}
 
     " [ format ] {{{
-    set formatprg=par         " default is ""
+    set formatprg=par " external program used to format with gq operator
 
     " formatoptions: how automatic formatting is to be done.
     set formatoptions+=t " auto-wrap text using textwidth
@@ -1082,7 +1082,7 @@ endif
         " call vam#ActivateAddons(['flake8'])
         " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
         call vam#ActivateAddons(['python_match'])
-        call vam#ActivateAddons(['python_open_module'])
+        " call vam#ActivateAddons(['python_open_module'])
         "call vam#ActivateAddons(['PyREPL'])
             " Django
         " call vam#ActivateAddons(['vim-htmldjango_omnicomplete'])
@@ -1092,7 +1092,7 @@ endif
         "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
         call vam#ActivateAddons(['ZenCoding'])
-        call vam#ActivateAddons(['sparkup'])
+        " call vam#ActivateAddons(['sparkup'])
         call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['html5'])
         call vam#ActivateAddons(['HTML5_Syntax_File'])
@@ -1192,7 +1192,7 @@ endif
         call vam#ActivateAddons(['WebAPI'])
         " call vam#ActivateAddons(['wwwsearch'])
         "call vam#ActivateAddons(['weibo'])
-        call vam#ActivateAddons(['Tumble'])
+        " call vam#ActivateAddons(['Tumble'])
         "call vam#ActivateAddons(['TwitVim'])
             " color/syntax
         call vam#ActivateAddons(['colorv'])
@@ -1218,7 +1218,7 @@ endif
         " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['utl'])
         " call vam#ActivateAddons(['open-browser'])
-        call vam#ActivateAddons(['trailing-whitespace'])
+        " call vam#ActivateAddons(['trailing-whitespace'])
             " write & spell checker & speak
         " call vam#ActivateAddons(['Engspchk'])
         "call vam#ActivateAddons(['SpellCheck'])
