@@ -479,7 +479,18 @@ endif
 
     " [ format ] {{{
     set formatprg=par         " default is ""
-    set formatoptions+=tcroqwan2m     " vim default is "tcq".
+
+    " formatoptions: how automatic formatting is to be done.
+    set formatoptions+=t " auto-wrap text using textwidth
+    set formatoptions+=c " auto-wrap comments using textwidth
+    set formatoptions+=r " auto insert current comment leader after <Enter> in Insert
+    set formatoptions+=o " auto insert current comment leader after <o/O> in Normal
+    set formatoptions+=q " allow formatting of comments with "gq"
+    set formatoptions+=w " trail white space indicates paragraph continues next line
+    set formatoptions+=a " auto reformat of paragraphs when inserted or deleted
+    set formatoptions+=n " when formatting, recognize numbered lists
+    set formatoptions+=m " also break at a multi-byte character above 255
+    set formatoptions+=2 " when formatting, use second line's indent
     " }}}
 
     " [ comment ] {{{
