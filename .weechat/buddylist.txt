@@ -3,3 +3,4 @@ bitlbee.Tristan
 bitlbee.adam8157
 freenode.archl
 freenode.jiero
+freenode.vimgor
