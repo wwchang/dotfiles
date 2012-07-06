@@ -1557,6 +1557,7 @@ syntax on
             let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
             let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
             let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
+            " let g:neocomplcache_omni_patterns.python = '[^. \t]\.\w*'
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
                 " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
             let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
@@ -1568,12 +1569,22 @@ syntax on
                         \ 'vimshell' : $HOME.'/.vimshell_hist',
                         \ 'scheme' : $HOME.'/.gosh_completions'
                         \ }
-            " let g:neocomplcache_dictionary_patterns =
-            "if !exists('g:neocomplcache_context_filetype_lists')
-                "let g:neocomplcache_context_filetype_lists = {}
-            "endif
+            let g:neocomplcache_dictionary_patterns = {}
+            if !exists('g:neocomplcache_context_filetype_lists')
+                let g:neocomplcache_context_filetype_lists = {}
+            endif
+            let g:neocomplcache_context_filetype_lists.perl6 = [{
+                        \ 'filetype' : 'pir',
+                        \ 'start' : 'Q:PIR\s*{',
+                        \ 'end' : '}'
+                        \ }]
+            let g:neocomplcache_context_filetype_lists.vim = [{
+                        \ 'filetype' : 'python',
+                        \ 'start' : '^\s*python <<\s*\(\h\w*\)',
+                        \ 'end' : '^\1'
+                        \ }]
             " let g:neocomplcache_text_mode_filetypes =
-            " let g:neocomplcache_disable_select_mode_mappings = 0 " default: 1
+            let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_ctags_program = 'ctags'
             " let g:neocomplcache_ctags_arguments_list =
             " let g:neocomplcache_include_paths =
@@ -1582,14 +1593,23 @@ syntax on
             " let g:neocomplcache_include_functions =
             let g:neocomplcache_include_max_processes = 25
             " let g:neocomplcache_filename_include_exprs =
-            " let g:neocomplcache_filename_include_exts =
+            if !exists('g:neocomplcache_filename_include_exts')
+                let g:neocomplcache_filename_include_exts = {}
+            endif
+            let g:neocomplcache_filename_include_exts.cpp = [
+                        \ '', 'h', 'hpp', 'hxx'
+                        \ ]
             " let g:neocomplcache_member_prefix_patterns =
             " let g:neocomplcache_member_patterns =
-            " let g:neocomplcache_delimiter_patterns =
-            " let g:neocomplcache_omni_functions =
-            " let g:neocomplcache_vim_completefuncs =
-            " let g:neocomplcache_source_disable = {}
-            " let g:neocomplcache_source_completion_length = {}
+            if !exists('g:neocomplcache_delimiter_patterns')
+                let g:neocomplcache_delimiter_patterns= {}
+            endif
+            let g:neocomplcache_delimiter_patterns.vim = ['#']
+            let g:neocomplcache_delimiter_patterns.cpp = ['::']
+            let g:neocomplcache_omni_functions = {}
+            let g:neocomplcache_vim_completefuncs = {}
+            let g:neocomplcache_source_disable = {}
+            let g:neocomplcache_source_completion_length = {}
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
             let g:neocomplcache_use_vimproc = 1
@@ -1721,8 +1741,9 @@ syntax on
                 " ----------------------------------------------
                 " ternary operator:  x = y > 0 ? 5 : 10 =>
                 " then x will be 5 or 10 depending on whether y is above zero or not.
-                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
-                "         \ "\<Plug>(neocomplcache_snippets_expand)"
+                " imap <expr><Tab> 
+                "         neocomplcache#sources#snippets_complete#expandable()
+                "         \ ? "\<Plug>(neocomplcache_snippets_expand)"
                 "         \ : pumvisible() ? "\<C-n>"
                 "         \ : <SID>check_back_space() ? "\<TAB>"
                 "         \ : "\<C-x>\<C-u>"
