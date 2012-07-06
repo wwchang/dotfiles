@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-vimhome=$HOME/src/vim
+vimhome=$HOME/compile/vim
 if test -x $vimhome/src/vim; then
     VIMRUNTIME=$vimhome/runtime $vimhome/src/vim "$@"
 else
