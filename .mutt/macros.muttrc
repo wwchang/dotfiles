@@ -142,6 +142,7 @@
 
 # \e = Esc , \c = Ctrl
 
+# others config {{{
 # Macros for use in the index.
 # macro index "\Cx\Cb" "<change-folder>?"                                   # Folder list.
 # macro index "\Cx\Cs" "<pipe-message>cat > ~/"                             # Save message
@@ -185,28 +186,51 @@
 # macro generic "\e?" "<shell-escape>less /usr/local/doc/mutt/manual.txt<enter>"
 # macro index   "\e?" "<shell-escape>less /usr/local/doc/mutt/manual.txt<enter>"
 # macro pager   "\e?" "<shell-escape>less /usr/local/doc/mutt/manual.txt<enter>"
+# }}}
 
 # Show documentation when pressing F2
 #macro generic,pager <F2> "<shell-escape> zcat /usr/share/doc/mutt/manual.txt.gz | sensible-pager<enter>" "show Mutt documentation"
 
-folder-hook .      'macro index,pager d "<save-message>=Trash<enter>"'
-folder-hook =Trash 'macro index,pager d <delete-message>'
-
 # Add macros to make the folder browser usable by always using the mailboxes setup above:
 
+# Negative Mailboxes, Index, etc {{{
 # you can switch to locale computer user mailbox
 macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different mailbox"
 # macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
 # show the incoming mailboxes list (just like "mutt -y") and back when pressing "y"
+
+macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
+macro index gs "<change-folder>=Sent<enter>" "Go to Sent Mail"
+macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
+
+macro index <esc><tab> <next-unread-mailbox>
+# }}}
+
+# manipulate emails: view, copy, move, attach, trash, spam, ham, {{{
+# TODO
+# sync/fetch/get new mails in background.
+# macro generic $ "<shell-escape>'getmail -n -l &'<enter>"
+# macro generic $ "<sync-mailbox><shell-escape>~/.mutt/scripts/syncMail.sh &<enter>"
+
+# browser/view
 bind browser i exit
+
+# copy/move/attach emails
 # To additionally get straight to the folder browser when copying, moving and attaching mail, add the following macros:
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 
-# -------------------- alias --------------------
+# Trash
+folder-hook .      'macro index,pager d "<save-message>=Trash<enter>"'
+folder-hook =Trash 'macro index,pager d <delete-message>'
+# }}}
+
+# mail address {{{
+# mutt alias
 # macro generic,index,pager a "<creat-alias>" "creat an alias from a message sender"
-# -------------------- abook --------------------
+
+# [ abook ]
 #address book related
 #set query_command = "lbdbq '%s'"     #;$HOME/bin/mutt_ldap_query.py '%s'"
 # If <complete-query> is called instead, it will use as the search string what you have typed back to the last space or comma as for the alias completion.
@@ -215,8 +239,35 @@ macro generic,index,pager \ca "<shell-escape>abook --config $HOME/.mutt/abook/ab
 macro index,pager A "|abook --add-email --config $HOME/.mutt/abook/abookrc --datafile $HOME/.mutt/abook/addressbook<return>" "add sender to abook"
 # macro pager A "|abook --add-email-quiet\n" "Add sender to abook"
 # macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
+# }}}
 
-# [ bogofilter ]
+# attachments {{{
+# macro pager l "<pipe-entry>lynx -stdin -force_html<enter>"
+# macro attach l "<pipe-entry>lynx -stdin -force_html<enter>"
+# }}}
+
+# imitate the old search-body function
+# macro index \eb "<search>~b " "search in message bodies"
+
+# Encrypt/Decrypt: GPG, PGP {{{
+# Encrypt a message with GPG key on the fly.
+# "p" to show PGP menu: encrypt/sign(as)/clear composing message.
+
+# Verifying a message signature on the fly.
+macro index \Cv \
+          "<enter-command> set my_crypt_verify_sig=\$crypt_verify_sig<enter> \
+          <enter-command> set crypt_verify_sig=yes<enter> \
+          <display-message><enter-command> set crypt_verify_sig=\$my_crypt_verify_sig<enter>" \
+          'Verify PGP signature and open the message'
+
+macro pager \Cv \
+          "<exit><enter-command> set my_crypt_verify_sig=\$crypt_verify_sig<enter> \
+          <enter-command> set crypt_verify_sig=yes<enter> \
+          <display-message><enter-command> set crypt_verify_sig=\$my_crypt_verify_sig<enter>" \
+          'Verify PGP signature'
+# }}}
+
+# [ bogofilter ] {{{
 # -s -> register as spam
 # -n -> register as ham
 # -S -> undo prior spam registration
@@ -247,15 +298,9 @@ folder-hook spam push 'D.\n'
 # macro pager S "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Ns -I\n<save-message>=spam/\n"  "Learn as spam and undo ham, then save to junk"
 # macro index H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Sn -I\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
 # macro pager H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Sn -I\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
+# }}}
 
-# see HTML attachments with lynx
-# macro pager l "<pipe-entry>lynx -stdin -force_html<enter>"
-# macro attach l "<pipe-entry>lynx -stdin -force_html<enter>"
-
-# imitate the old search-body function
-# macro index \eb "<search>~b " "search in message bodies"
-
-# urlview
+# [ urlview ] {{{
 macro index \cb   "|urlview\n" "browse URLs"
 # macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
 # macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m'
@@ -267,31 +312,9 @@ macro index \cb   "|urlview\n" "browse URLs"
 #<pipe-message> urlview<Enter>\
 #<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
 #"call urlview to extract URLs out of a message"
+# }}}
 
-
-macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
-macro index gs "<change-folder>=Sent<enter>" "Go to Sent Mail"
-macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
-
-macro index <esc><tab> <next-unread-mailbox>
-
-# Encrypt a message with GPG key on the fly.
-# "p" to show PGP menu: encrypt/sign(as)/clear composing message.
-
-# Verifying a message signature on the fly.
-macro index \Cv \
-          "<enter-command> set my_crypt_verify_sig=\$crypt_verify_sig<enter> \
-          <enter-command> set crypt_verify_sig=yes<enter> \
-          <display-message><enter-command> set crypt_verify_sig=\$my_crypt_verify_sig<enter>" \
-          'Verify PGP signature and open the message'
-
-macro pager \Cv \
-          "<exit><enter-command> set my_crypt_verify_sig=\$crypt_verify_sig<enter> \
-          <enter-command> set crypt_verify_sig=yes<enter> \
-          <display-message><enter-command> set crypt_verify_sig=\$my_crypt_verify_sig<enter>" \
-          'Verify PGP signature'
-
-# macros for mairix
+# [ mairix ] {{{
 # macro generic ,f "<shell-escape>mairix " "search via mairix"
 
 # Search Mails
@@ -370,7 +393,9 @@ macro generic ,f "<enter-command>set my_cmd = \`/home/chris/.mutt/scripts/msearc
 # macro generic ,F "<shell-escape>nmzmail -r ~/.maildir/.Search<enter>" "search via nmzmail"
 # Load the results mailbox
 # macro generic ,,f "<change-folder><kill-line>=.Search<enter>" "load the search results mailbox"
-# Mu
+# }}}
+
+# [ Mu ] {{{
 # first macro does the search according to user query, second macro jumps to result list
 macro index <F8> "<shell-escape>mu find --clearlinks --format=links --linksdir=~/Mails/Search " "mu find"
 macro index <F9> "<change-folder-readonly>=Search" "mu find results"
@@ -378,8 +403,6 @@ macro index <F9> "<change-folder-readonly>=Search" "mu find results"
 # ##  combind them into one.
 # FIXME
 # macro index,pager <F7> "<shell-escape>[[ -d ~/.mu/results ]] && rm -r ~/.mu/results; mkdir -p ~/.mu/results/{cur,new,tmp}<change-folder-readonly>~/.mu/results<shell-escape>mu find --format=links --linksdir ~/.mu/results --clearlinks  " "mu-find"
+# }}}
 
-
-# macro generic \Cs "<shell-escape>'getmail -n -l'<enter>"
-
-# vim:ft=muttrc
+# vim: ft=muttrc: foldmethod=marker

@@ -105,7 +105,7 @@ export LESS_TERMCAP_us=$'\E[01;33m' # options
     EDITOR=vim
     export EDITOR=vim
 
-    # for syntax highlight LESS command
+    # for syntax highlight LESS command (need "source-highlight")
     PAGER='less -X -M' export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s" export LESS=' -R '
 
     # FVWM
