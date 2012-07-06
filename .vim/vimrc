@@ -1884,8 +1884,7 @@ syntax on
             " ${VISUAL}, [Trigger] <C-Tab>, <Tab> to expand trigger. <C-J/K>
             " :UltiSnipsEdit
             " :UltiSnipAddFiletypes rst.lua (merging of two filetype snippets)
-            "TODO let g:UltiSnipsUsePythonVersion = 3 " 2/3, use python version 2.X/3.X.
-                " :echo has("python3")
+            let g:UltiSnipsUsePythonVersion = 3 " 2/3 use python 2.X/3.X
             let g:UltiSnipsEditSplit = "Vertical" " normal, horizontal, Vertical.
                 "set runtimepath+=~/.vim/snippets/ " for MyUltiSnips
             let g:UltiSnipsSnippetDirectories=["UltiSnips", "MyUltiSnips"]
