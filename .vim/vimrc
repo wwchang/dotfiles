@@ -1684,7 +1684,9 @@ syntax on
                 inoremap <expr><C-g> neocomplcache#undo_completion()
                 inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
                 inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
-                inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+                inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+                " inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+                " inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
                 inoremap <expr><C-l> neocomplcache#complete_common_string()
 
                 " ------------------------------------------------------------
