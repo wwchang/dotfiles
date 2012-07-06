@@ -20,3 +20,7 @@ setlocal foldlevel=99
 " character, signs, keyword
 " the words with bellowing characters does not been wrapped line and split.
 setlocal iskeyword+=_,$,@,%,#,-
+
+" omni-complete
+" setlocal omnifunc=pythoncomplete#Complete " for Python 2.x
+setlocal omnifunc=python3complete#Complete " for Python 3.x
