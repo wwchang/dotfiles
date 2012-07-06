@@ -44,10 +44,17 @@
     ;old = red
     ;new = green
     ;whitespace = red reverse
-;[color "status"]
-    ;added = yellow
-    ;changed = green
-    ;untracked = cyan bold
+[color "status"]
+    added = green
+    changed = cyan
+    header = white ; text of status
+    nobranch = red
+    untracked = white
+    updated = cyan
+    ; --------------
+    deleted = red
+    renamed = yellow
+    unmerged = magenta
 
 [commit]
     ; template = $HOME/.gitmessage.txt
