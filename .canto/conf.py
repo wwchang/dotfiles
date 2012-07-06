@@ -103,7 +103,7 @@ default_rate(300)
 # Blog {{{
 add("http://blog.stackoverflow.com/feed/", tags=[None, "StackExchange", "Blog"]) # Stack Exchange Blog
 add("http://blog.binux.me/feed/", tags=[None, "hack"]) # Blinux.
-add("http://igfw.net/feed", tags=[None, "censorship"]) # iGFW
+# add("http://igfw.net/feed", tags=[None, "censorship"]) # iGFW
 add("http://instagram-engineering.tumblr.com/rss", tags=[None, "server"]) # Instagram Tech Blog
 add("http://blog.csdn.net/pongba/rss/list", tags=[None, "C++", "blog"]) # pngba C++ blog
 add("http://feeds.feedburner.com/codinghorror", tags=[None, "blog"]) # Coding Horror
