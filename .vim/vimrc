@@ -1091,6 +1091,7 @@ endif
         "call vam#ActivateAddons(['bash-support'])
             " Web: HTML/CSS/XML etc
         call vam#ActivateAddons(['ZenCoding'])
+        call vam#ActivateAddons(['sparkup'])
         call vam#ActivateAddons(['MatchTag'])
         call vam#ActivateAddons(['html5'])
         call vam#ActivateAddons(['HTML5_Syntax_File'])
@@ -3156,6 +3157,10 @@ syntax on
                 let g:user_zen_leader_key = '<c-y>' " prefix.
                 let g:use_zen_complete_tag = 1 " complete tags using omnifunc.
             " }}}
+
+            " Sparkup {{{ Sparkup lets you write HTML code faster.
+            " }}}
+
             " MatchTag:
             " HTML AutoCloseTag:
             " html5 {{{ HTML5 omnicomplete func and syntax for Vim.
