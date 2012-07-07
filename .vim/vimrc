@@ -1175,6 +1175,7 @@ endif
         " call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
             " TeX & LaTeX
+        " call vam#ActivateAddons(['auctex'])
         " call vam#ActivateAddons(['TeX_9'])
         " call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
         " call vam#ActivateAddons(['TeX-PDF'])
@@ -4502,6 +4503,9 @@ syntax on
         "let tex_no_error=1
         let g:tex_conceal = "admgs"
             "accents/ligatures, delimiters, math symbols, Greek, superscripts/subscripts
+
+        " auctex {{{ a large collection of LaTex macros.
+        " }}}
 
         " TeX_9 {{{ semi-automatic LaTeX ftplugin with lots of firepower !
         " }}}
