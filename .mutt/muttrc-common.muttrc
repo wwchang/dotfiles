@@ -245,7 +245,7 @@ set honor_followup_to = yes
 # ---------------------- sendmail ---------------------------------
 # sendmail default: check out with type in mutt: :set ?sendmail
 # set sendmail = "/usr/sbin/sendmail -oi -oem"
-set sendmail = "/usr/bin/msmtp"
+set sendmail = "/usr/bin/msmtp -C $HOME/.mutt/msmtprc"
 set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 # >0 : number of seconds to wait for sendmail to finish before continuing.
 # 0  : wait forever for sendmail to finish
