@@ -239,13 +239,18 @@ set pager_index_lines = 10
 set followup_to = yes
 set honor_followup_to = yes
 
+# Shell
+# set shell = /bin/zsh
+
 # ---------------------- sendmail ---------------------------------
 # sendmail default: check out with type in mutt: :set ?sendmail
-set sendmail = "/usr/sbin/sendmail -oi -oem"
+# set sendmail = "/usr/sbin/sendmail -oi -oem"
+set sendmail = "/usr/bin/msmtp"
+set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
 # >0 : number of seconds to wait for sendmail to finish before continuing.
 # 0  : wait forever for sendmail to finish
 # <0 : always put sendmail in the background without waiting.
-set sendmail_wait  = -1
+set sendmail_wait  = 3
 
 # ----------------------  folder  ---------------------------------
 set folder      = $HOME/Mails  # "+" or " = "
