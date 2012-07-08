@@ -870,42 +870,38 @@ endif
     "filetype plugin indent on
 " }}}
 
-"" [ vundle ] {{{ .vim/bundle/
-    " [ advanced way ] {{{
-    "let root = '/tmp/vundle_bundles/'
-    "let src = 'http://github.com/gmarik/vundle.git'
-    "let src = '~/.vim/bundle/vundle/.git'
-    "if !isdirectory(expand(root).'/vundle')
-        "exec '!git clone '.src.' '.root.'/vundle'
-    "endif
-    "filetype off
-    "syntax on
-    "runtime macros/matchit.vim
-    "exec 'set rtp+='.root.'/vundle'
-    "call vundle#rc(root)
-    "Bundle "gmarik/vundle"
-    " }}}
+" [ vundle ] {{{ .vim/bundle/
 
     " simple way
-    "set runtimepath+=~/.vim/bundle/vundle/
-    "call vundle#rc()
-    "" let Vundle manage Vundle
-    "Bundle 'gmarik/vundle'
+    " set runtimepath+=~/.vim/bundle/vundle/
+    " call vundle#rc()
+    " " let Vundle manage Vundle
+    " Bundle 'gmarik/vundle'
 
-    "" [ bundle list ] {{{
-    "" }}}
+    " [ advanced way ]
+    filetype off " required !
+    let root = '~/.vim/bundle'
+    let src = 'http://github.com/gmarik/vundle.git'
+    if !isdirectory(expand(root).'/vundle')
+        exec '!git clone '.src.' '.root.'/vundle'
+    endif
+    exec 'set rtp+='.root.'/vundle'
+    call vundle#rc()
 
-    "" [ vundle end ] {{{
-    "filetype plugin indent on            " required!
-    "" set wildignore+=doc,.git     " should not break helptags and clone.
-    "" }}}
-"" }}}
+    " let vundle manage vundle
+    Bundle 'gmarik/vundle'
+
+    " after update, press 'u' to see git repo changlog, (commits)
+
+    " [ bundle list ] {{{
+        Bundle 'tpope/vim-fugitive'
+    " }}}
+" }}}
 
 " [ VAM : vim addon manager ] {{{ .vim/vim-addons/
-    " [ minimal setup ] {{{
+    " [ minimal setup ]
         " set runtimepath+=$HOME/.vim/vim-addons/vim-addon-manager
         " call vam#ActivateAddons([.. list of plugin names ..], {'auto_install' : 0})
-    " }}}
 
     " [ complex setup ] {{{
     fun! EnsureVamIsOnDisk(vam_install_path)
@@ -1294,7 +1290,7 @@ endif
 
     " }}}
 
-filetype plugin indent on
+filetype plugin indent on " required !
 syntax on
 " }}}
 
