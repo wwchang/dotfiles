@@ -249,7 +249,10 @@ set honor_followup_to = yes
 # set sendmail = "/usr/sbin/sendmail -oi -oem"
 set sendmail = "/usr/bin/msmtp -C $HOME/.mutt/msmtprc"
 set from = "numbchild@gmail.com"
+set realname = "stardiviner"
+set envelope_from = yes
 set use_envelope_from # pass '-f $from' to sendmail; useful for msmtp
+set envelope_from_address= "numbchild@gmail.com"
 # >0 : number of seconds to wait for sendmail to finish before continuing.
 # 0  : wait forever for sendmail to finish
 # <0 : always put sendmail in the background without waiting.
