@@ -871,6 +871,8 @@ endif
 " }}}
 
 " [ vundle ] {{{ .vim/bundle/
+    " Usage:
+    " after update, press 'u' to see git repo changlog, (commits)
 
     " simple way
     " set runtimepath+=~/.vim/bundle/vundle/
@@ -879,22 +881,20 @@ endif
     " Bundle 'gmarik/vundle'
 
     " [ advanced way ]
-    filetype off " required !
-    let root = '~/.vim/bundle'
-    let src = 'http://github.com/gmarik/vundle.git'
-    if !isdirectory(expand(root).'/vundle')
-        exec '!git clone '.src.' '.root.'/vundle'
-    endif
-    exec 'set rtp+='.root.'/vundle'
-    call vundle#rc()
+    " filetype off " required !
+    " let root = '~/.vim/bundle'
+    " let src = 'http://github.com/gmarik/vundle.git'
+    " if !isdirectory(expand(root).'/vundle')
+    "     exec '!git clone '.src.' '.root.'/vundle'
+    " endif
+    " exec 'set rtp+='.root.'/vundle'
+    " call vundle#rc()
 
     " let vundle manage vundle
-    Bundle 'gmarik/vundle'
-
-    " after update, press 'u' to see git repo changlog, (commits)
+    " Bundle 'gmarik/vundle'
 
     " [ bundle list ] {{{
-        Bundle 'tpope/vim-fugitive'
+        " Bundle 'fugitive.vim'
     " }}}
 " }}}
 
@@ -3440,6 +3440,9 @@ syntax on
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
             " :h vimsupport.
         " }}}
+
+        " vesting {{{ vimscript test framework.
+        " }}}
     " }}}
 
     " [ C & C++ Dev Env ] {{{
@@ -3680,7 +3683,7 @@ syntax on
         " operator-user : Define your own operator easily
     " }}}
 
-    " [ position & session & mark ] {{{
+    " [ position & session & marker ] {{{
         " restore_view : automatically restoring file's cursor position and folding
             " view info in ~/.vim/view/*
             " set viewoptions=cursor,folds,slash,unix
