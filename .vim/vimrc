@@ -3545,6 +3545,14 @@ syntax on
     " }}}
 
     " [ Haskell ] {{{
+        let hs_highlight_delimiters = 1
+        let hs_highlight_boolean = 1
+        let hs_highlight_types = 1
+        let hs_highlight_more_types = 1
+        let hs_highlight_debug = 1
+        let hs_allow_hash_operator = 1
+        "let lhs_markup = tex " tex/none
+
         " neco-ghc {{{ neocomplcache complete for Haskell.
         " omnifunc=necoghc#omnifunc
         " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
@@ -3590,18 +3598,6 @@ syntax on
             let g:lua_inspect_warnings = 1 " 0: do not show warnings.
             let g:lua_inspect_internal = 1
         " }}}
-    " }}}
-
-    " [ Haskell ] {{{
-        let hs_highlight_delimiters = 1
-        let hs_highlight_boolean = 1
-        let hs_highlight_types = 1
-        let hs_highlight_more_types = 1
-        let hs_highlight_debug = 1
-        let hs_allow_hash_operator = 1
-        "let lhs_markup = tex " tex/none
-
-        " neocomplcache-ghc |
     " }}}
 
     " [ Erlang ] {{{
