@@ -4243,7 +4243,7 @@ syntax on
                     \ 'maxhi': 0,
                     \ 'list_margin': -1,
                     \ 'nested_syntaxes': {
-                        \ 'python': 'python3', 'ruby': 'ruby',
+                        \ 'python': 'python', 'ruby': 'ruby',
                         \ 'bash': 'sh', 'vim': 'vim',
                         \ 'javascript': 'javascript', 'dart': 'dart',
                         \ 'c': 'c', 'go': 'go',
