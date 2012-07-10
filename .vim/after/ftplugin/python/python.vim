@@ -22,9 +22,5 @@ setlocal foldlevel=99
 setlocal iskeyword+=_,$,@,%,#,-
 
 " omni-complete
-" FIXME this set omnifunc can not set really, the actual set is from system.
-"       :verbose set omnifunc?
-"       omnifunc=zencoding#CompleteTag
-"       Last set from /usr/share/vim/vim73/ftplugin/python.vim
 " setlocal omnifunc=pythoncomplete#Complete " for Python 2.x
 setlocal omnifunc=python3complete#Complete " for Python 3.x
