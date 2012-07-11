@@ -126,6 +126,7 @@ subscribe vim-mac Vim-mac <vim-mac@vim.org>
 subscribe vim-multibyte Vim-multibyte <vim-multibyte@vim.org>
 # vimwiki
 subscribe vimwiki Vim.vimwiki <vimwiki@googlegroups.com>
+subscribe eclim Vim.eclim <eclim-user@googlegroups.com>
 
 
 # [ Mutt ]

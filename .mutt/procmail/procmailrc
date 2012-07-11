@@ -2,7 +2,7 @@
 SHELL = /bin/sh
 PATH = ${HOME}/bin:/usr/local/bin:/usr/bin:/bin
 MAILDIR = ${HOME}/Mails
-DEFAULT = ${MAILDIR}/INBOX/
+DEFAULT = ${MAILDIR}/INBOX
 # system mail mailbox.
 ORGMAIL = $DEFAULT
 PMDIR = ${HOME}/.mutt/procmail
@@ -451,6 +451,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     #:0
     #* ^List-Id: .*vimorganizer\.googlegroups\.com
     #Vim/vimOrganizer
+    :0
+    * ^List-Id: .*eclim-user\.googlegroups\.com
+    Vim/eclim/
 
     #:0
     #* ^List-Id: .*vim_use\.googlegroups\.com
@@ -778,7 +781,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     #Put mail bogofilter deems as unsure in unsure folder
     :0:
     * ^X-Bogosity: Unsure, tests=bogofilter
-    unsure/
+    INBOX/
 # }}}
 
 # vim:foldmethod=marker:ft=procmail
