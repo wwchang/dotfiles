@@ -863,10 +863,9 @@ endif
     " }}}
 
     " [ matchit ] {{{
-        " configure % to match more than just " single characters.
-        " You can match words and even regular expressions.
-        " :help matchit-install. help matchit.txt
-        " or :runtime macros/matchit.vim to load it.
+        " '%' to match more than just single characters.
+        " %, g%, [%, ]%, a%,
+        runtime macros/matchit.vim " load system matchit.vim plugin
     " }}}
 
     " [ convert file into unix & utf-8 ] {{{
