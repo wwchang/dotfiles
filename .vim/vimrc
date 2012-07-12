@@ -608,12 +608,12 @@ endif
     " [ statusline ] {{{
     set laststatus=2 " Always show the statusline
         " Require: fugitive, current-func-info, syntastic,
-        " - fugitive:
+        " - fugitive
         "   - %{fugitive#statusline()}
         "   - %{fugitive#head(7)}
-        " - current-func-info:
+        " - current-func-info
         "   - %{cfi#get_func_name()}
-        " - syntastic:
+        " - syntastic
         "   - %{SyntasticStatuslineFlag()}
     function! SetStatusline()
         set statusline=
@@ -771,7 +771,7 @@ endif
     nnoremap <Leader>lc :lclose<CR>
 
         " NOTICE use nonrecursive mapping.
-        " Each of the *map commands has a *noremap counterpart that ignores other mappings:
+        " Each of the *map commands has a *noremap counterpart that ignores other mappings
         " nnoremap, vnoremap, and inoremap. onoremap(operator).
         " mapping a sequence of multiple keys. like: nnoremap jk dd
         " buffer-local options and mapping. like: inoremap <buffer> <Leader>d dd
@@ -837,7 +837,7 @@ endif
     " let g:html_whole_filler = 1
     let g:html_use_encoding = "UTF-8"
     " let g:html_use_xhtml = 1 " use XHTML instead of HTML.
-    " script:
+    " script
     " for f in *.[ch]; do gvim -f +"syn on" +"run! syntax/2html.vim" +"wq" +"q" $f; done
 
     " command :MyToHtml
@@ -1007,7 +1007,7 @@ endif
         " let g:vim_addon_manager['name_rewriting'] =
         " .......
 
-        " VAM install location:
+        " VAM install location
         let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
         if !EnsureVamIsOnDisk(vam_install_path)
             echohl ErrorMsg
@@ -1079,7 +1079,8 @@ endif
         call vam#ActivateAddons(['Tagbar'])
         call vam#ActivateAddons(['tagbar-phpctags'])
         "call vam#ActivateAddons(['taglist'])
-        call vam#ActivateAddons(['TagHighlight', 'Tag_Signature_Balloons'])
+        call vam#ActivateAddons(['TagHighlight'])
+        " call vam#ActivateAddons(['Tag_Signature_Balloons'])
         call vam#ActivateAddons(['AutoTag'])
         " call vam#ActivateAddons(['taggatron'])
             " cscope
@@ -1365,10 +1366,10 @@ syntax on
 " }}}
 
 " [ plugins manager ] {{{
-    " tplugin : {{{
+    " tplugin  {{{
     " }}}
 
-    " Sauce : {{{ Dynamic vimrc manager for load different settings.
+    " Sauce  {{{ Dynamic vimrc manager for load different settings.
         " a manager for multiple vimrc files, which can be used to
         " load different settings for different environments.
         " ---------------------
@@ -1383,7 +1384,7 @@ syntax on
         let g:sauce_path = "~/.vimsauce"
     " }}}
 
-    " VimLint: {{{ a correctness and sanity checker of Vim configuration
+    " VimLint {{{ a correctness and sanity checker of Vim configuration
         " Usage: :VimLint
     " }}}
 " }}}
@@ -1440,7 +1441,7 @@ syntax on
             let g:splitjoin_align = 0
         " }}}
 
-        " Align%294:
+        " Align%294
     " }}}
 
     " [ comment ] {{{
@@ -1449,7 +1450,7 @@ syntax on
         " \\u ==> uncomment
         " }}}
 
-        " tComment: {{{ An extensible & universal comment plugin
+        " tComment {{{ An extensible & universal comment plugin
             " also handles embedded filetypes.
                 " Usage:
                 "   - gc{motion}    :: toggle comments.
@@ -1488,7 +1489,7 @@ syntax on
             "let g:tcomment_types {}
         " }}}
 
-        " Nerd Commenter: {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
+        " Nerd Commenter {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
             " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
             " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
             " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
@@ -1509,7 +1510,7 @@ syntax on
     " }}}
 
     " [ doc & help "K" ] {{{
-        " Viewdoc: {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+        " Viewdoc {{{ Flexible viewer for any documentation (vim help/man/perl/python)
             " support python dot operator help.
             " e.g. module.fun|<K>ction(args)
             " TODO more customize
@@ -1570,12 +1571,12 @@ syntax on
             " }}}
         " }}}
 
-        " Manuals: {{{ An extensible help system
+        " Manuals {{{ An extensible help system
         " }}}
     " }}}
 
     " [ completion ] {{{
-        " neocomplcache: {{{ Ultimate auto Completion system for Vim.
+        " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
@@ -1867,11 +1868,11 @@ syntax on
             " }}}
         " }}}
 
-        " vimproc: {{{ a great asynchronous execution library for Vim.
+        " vimproc {{{ a great asynchronous execution library for Vim.
             " let g:vimproc_password_pattern " this variable is used for vimshell.
         " }}}
 
-        " vimshell: {{{ powerful shell inplemented by vim script
+        " vimshell {{{ powerful shell inplemented by vim script
             "built-in functionalities that you had to set up to enable if it's on zsh.
             " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
             let g:vimshell_prompt = "vimshell%"
@@ -1911,9 +1912,9 @@ syntax on
         " neco-look {{{ neocomplcache-look (/usr/bin/look)
         " }}}
 
-        " AutoComplPop:
+        " AutoComplPop
 
-        " SuperTab: {{{ <Tab> Perform all your vim insert mode completions with Tab.
+        " SuperTab {{{ <Tab> Perform all your vim insert mode completions with Tab.
             " let SuperTab decide which completion mode to use and should play
             " with OmniCompletion
             let g:SuperTabMappingTabLiteral = '<c-tab>' " insert true TAB
@@ -1972,7 +1973,7 @@ syntax on
                 "nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
         " }}}
 
-        " UltiSnips: {{{
+        " UltiSnips {{{
             " ${VISUAL}, [Trigger] <C-Tab>, <Tab> to expand trigger. <C-J/K>
             " :UltiSnipsEdit
             " :UltiSnipAddFiletypes rst.lua (merging of two filetype snippets)
@@ -1995,9 +1996,9 @@ syntax on
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
         " }}}
 
-        " Xptemplate:
+        " Xptemplate
 
-        " SnipMate: {{{
+        " SnipMate {{{
             " :SnipMateOpenSnippetFiles, create snippet on the fly.
             " <C-R><Tab> show list of available snippets.
             " XX<Tab> show list or expand if match.
@@ -2033,7 +2034,7 @@ syntax on
                         \}
         " }}}
 
-        " SnippetComplete: {{{
+        " SnippetComplete {{{
             " Insert mode completion for abbre and snippets.
             " i_CTRL-X_] : find matches for abbr that start with text in front of cursor
             " imap <C-x><Tab> <Plug>(SnippetComplete)
@@ -2042,7 +2043,7 @@ syntax on
     " }}}
 
     " [ skeleton/template ] {{{
-        " SonicTemplate: {{{ Easy and high speed coding method.
+        " SonicTemplate {{{ Easy and high speed coding method.
             " :Template <Tab>
             let g:template_vim_template_dir = [
                         \ '$HOME/.vim/template/SonicTemplate/'
@@ -2084,7 +2085,7 @@ syntax on
     " }}}
 
     " [ tags ] {{{ <F12>
-        " Tagbar: {{{ <F12> Display tags of a file ordered by scope.
+        " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
             nnoremap <F12> :TagbarToggle<CR>
             let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
@@ -2131,7 +2132,7 @@ syntax on
             let g:tagbar_phpctags_bin='$HOME/compile/phpctags/phpctags'
         " }}}
 
-        " Taglist: {{{ <F12>
+        " Taglist {{{ <F12>
             " :Tlist[AddFiles, AddFilesRecursive, Close, Debug, Lock, Messages,
             " Open, ShowPrototype, ShowTag, HighlightTag, Toggle, Undebug,
             " Unlock, Update]
@@ -2166,15 +2167,17 @@ syntax on
             "TagListFileName - Used for filenames
         " }}}
 
-        " Tag_Signature_Balloons:
+        " TagHighlight (highlight names of class, variable, type etc)
+
+        " Tag_Signature_Balloons (Tag Signatures in Balloon Tooltips)
             let g:loaded_tag_signature = 1
             let g:TagSignatureAllowFileLoading = 1
             let g:TagSignatureMaxMatches = 1
 
-        " AutoTag:
-            " updates entries in a tags file automatically when saving.
+        " AutoTag (updates entries in a tags file automatically when saving.)
+        " ~/.vim/plugin/autotag.vim
 
-        " Taggatron: {{{ A simple tag file manager for vim.
+        " Taggatron {{{ A simple tag file manager for vim.
             " allow user to setup rules for creating your tag files based on language.
             " :TagUpdate
             " let g:tagdefaults = "/path/to/other/tag.file"
@@ -2233,7 +2236,7 @@ syntax on
     " }}}
 
     " [ search ] {{{
-        " CtrlP: {{{ <C-P> :CtrlP to full path fuzzy(regex grep) file buffer and MRU.
+        " CtrlP {{{ <C-P> :CtrlP to full path fuzzy(regex grep) file buffer and MRU.
             let g:loaded_ctrlp = 0 " =1 to disable plug completely.
             let g:ctrl_map = '<c-p>' " for normal mode press Ctrl-P.
             let g:ctrlp_cmd = 'CtrlP' " default command to use when pressing mapping.
@@ -2394,7 +2397,7 @@ syntax on
                 " }}}
         " }}}
 
-        " Command-T: {{{
+        " Command-T {{{
             " <Leader>t provide fast, intuitive mechanism for opening files and buffers
             "nnoremap <silent> <Leader>t :CommandT<CR>
             "nnoremap <silent> <Leader>b :CommandTBuffer<CR>
@@ -2471,7 +2474,7 @@ syntax on
             " let g:unite_source_file_ignore_pattern
             " .............
 
-            " unite.vim extensions: {{{
+            " unite.vim extensions {{{
                 " unite-ack {{{ Unite plugin for Ack.
                     " Usage:
                     " - :Unite ack:directory:search_word<CR>
@@ -2569,7 +2572,7 @@ syntax on
     " }}}
 
     " [ syntax checker ] {{{
-        " Syntastic2: {{{
+        " Syntastic2 {{{
             "" runtime plugin/syntastic_setup.vim
             "let g:syntastic['auto_setup'] = 0 " 0=auto, 1=manually.
             "let g:syntastic.file_types['xml'] = 'disabled'
@@ -2577,7 +2580,7 @@ syntax on
             "let g:syntastic.file_types.html.ignore_regex = 'lacks "alt" attribute\|proprietary attribute'
         " }}}
 
-        " Syntastic: {{{ :w saving to check. or daemon automatic check.
+        " Syntastic {{{ :w saving to check. or daemon automatic check.
             " Commands: :Errors, :SyntasticToggleMode, :SyntasticCheck,
             " Require:  language syntax checker bins.
             "Syntastic is a syntax checking plugin that runs files through
@@ -2623,7 +2626,7 @@ syntax on
     " }}}
 
     " [ Compiler ] {{{ <F10>
-        " SingleCompile: {{{ F10 compile&run
+        " SingleCompile {{{ F10 compile&run
             " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
             let g:SingleCompile_alwayscompile = 1 " =0 to disable it.
             let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
@@ -2647,7 +2650,7 @@ syntax on
     " }}}
 
     " [ quickfix & location list ] {{{
-        " QuickfixSigns_vim: {{{ mark quickfix & location list items with signs.
+        " QuickfixSigns_vim {{{ mark quickfix & location list items with signs.
             let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
                         \ 'vcsdiff' ])
             let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
@@ -2671,7 +2674,7 @@ syntax on
         " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
         " }}}
 
-        " Unimpaired: {{{ provides several pairs of bracket maps.
+        " Unimpaired {{{ provides several pairs of bracket maps.
             " [, ],
             " a: , b: :b, l: :l, q: :c, t: tag.
             " o: alphabetically, n: SCM conflict marker.
@@ -2686,7 +2689,7 @@ syntax on
     " }}}
 
     " [ VCS ] {{{
-        " fugitive: {{{ Intuitive and Simple Git wrapper for Vim.
+        " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
             " Usage:
                 " :Git[!] [args], :Gstatus, :Gcommit, :G[l]grep/:G[l]log,
                 " :Gedit/Gsplit/Gvsplit/Gtabedit/Gpedit[!] [revision]
@@ -2735,7 +2738,7 @@ syntax on
             augroup END
         " }}}
 
-        " extradite: {{{ A git commit log browser that extends fugitive.vim
+        " extradite {{{ A git commit log browser that extends fugitive.vim
             " :Extradite | :Extradite! -- vertical.
             " nnoremap <F8> :Extradite<cr>
                 " [ mappings ] available in the Extradite buffer.
@@ -2748,7 +2751,7 @@ syntax on
                 let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
 
-        " ConflictMotions: {{{
+        " ConflictMotions {{{
             " This plugin defines movement commands and text objects to go to
             " and operate on conflicting lines, as indicated by many revision
             " control systems, like Subversion, Git, etc. The source code
@@ -2774,8 +2777,8 @@ syntax on
             let g:ConflictMotions_SectionMapping = 'z'
         " }}}
 
-        " Splice : {{{ A Vim plugin for resolving conflicts during three-way merges.
-            " Usage: {{{
+        " Splice  {{{ A Vim plugin for resolving conflicts during three-way merges.
+            " Usage {{{
             " Workflow:
             " When resolving merge conflicts your goal is:
             " - Examine the three files describing the changes being merged.
@@ -2853,7 +2856,7 @@ syntax on
     " }}}
 
     " [ FileManager ] {{{ F11
-        " NerdTree: {{{ <F11> :NERDTree [dir|bookmark-name]
+        " NerdTree {{{ <F11> :NERDTree [dir|bookmark-name]
             " let loaded_nerd_tree=1 " let vim can not load NERDTree.
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
             let NERDTreeAutoCenter = 1 " default = 1.
@@ -2881,7 +2884,7 @@ syntax on
     " }}}
 
     " [ buffers ] {{{
-        " Tagma_Buffer_Manager: {{{
+        " Tagma_Buffer_Manager {{{
             " h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
             " :MgrToggle :help TagmaBufMgr
             let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
@@ -2897,7 +2900,7 @@ syntax on
             let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
         " }}}
 
-        " minibufexplorer: {{{
+        " minibufexplorer {{{
             let g:miniBufExplSplitBelow = 0  " position at bottom or top.
             let g:miniBufExplSplitToEdge = 1 " force MBR to open at the edge of screen
             let g:miniBufExplorerMoreThanOne = 1 " open when more than one.
@@ -2928,11 +2931,11 @@ syntax on
             hi MBENormal guifg=#808080 guibg=fg
         " }}}
 
-        " LustyJuggler: {{{ <Leader>lj
+        " LustyJuggler {{{ <Leader>lj
             "set hidden
         " }}}
 
-        " Tabman: {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
+        " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
             let g:loaded_tabman = 0 " set 1 to disable plugin completely
             let g:tabman_toggle = '<leader>tm'
             let g:tabman_width = 25
@@ -2943,7 +2946,7 @@ syntax on
     " }}}
 
     " [ projects ] {{{
-        " TagmaTasks: {{{
+        " TagmaTasks {{{
             " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
             " :TagmaTasksClear, :TagmaTasksToggle
             " \tt, \tc, \tm, \tw. => [t, ]t, [T, ]T.
@@ -2959,7 +2962,7 @@ syntax on
                         \ 'COMBAK', 'ISSUE', 'ERROR', 'FUCK']
         " }}}
 
-        " TaskList: {{{ \tl ( \t map conflict with CommandT.vim )
+        " TaskList {{{ \tl ( \t map conflict with CommandT.vim )
             map <Leader>tl <Plug>TaskList
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
             let g:tlRememberPosition = 1
@@ -2987,7 +2990,7 @@ syntax on
     " }}}
 
     " [ swap value ] {{{
-        " SwapIt: {{{ <C-A>, <C-X>
+        " SwapIt {{{ <C-A>, <C-X>
             " to integrate with other incrementor scripts (such as speeddating.vim)
             " to the keys that be invoked when swapit doesn't have a proper option
             nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
@@ -3003,7 +3006,7 @@ syntax on
 " [ languages ] {{{
     " [ Python ] {{{
         " [ IDE ] {{{
-            " Python-mode-klen: {{{ Python IDE.
+            " Python-mode-klen {{{ Python IDE.
                 " K: doc <C-space>: Rope autocomp
                 " <Leader>r: run <Leader>b: set/unset breakpoint.
                 " pylint, rope, pydoc  :help Python-mode-contents Show documentation
@@ -3247,7 +3250,7 @@ syntax on
 
     " [ Web: HTML5 & CSS ] {{{
         " [ HTML5 ] {{{
-            " ZenCoding: {{{ "div#foo$*2>div.bar", "<C-Y>," || "<C-Y>n/N"
+            " ZenCoding {{{ "div#foo$*2>div.bar", "<C-Y>," || "<C-Y>n/N"
                 " The core of this plugin is a powerful abbreviation engine
                 " which allows you to expand expressions?similar to CSS
                 " selectors?into HTML code:
@@ -3258,8 +3261,8 @@ syntax on
             " Sparkup {{{ Sparkup lets you write HTML code faster.
             " }}}
 
-            " MatchTag:
-            " HTML AutoCloseTag:
+            " MatchTag
+            " HTML AutoCloseTag
             " html5 {{{ HTML5 omnicomplete func and syntax for Vim.
                 " based on the default htmlcomplete.vim.
                 " Features:
@@ -3302,12 +3305,12 @@ syntax on
             "let g:jshint_rcfile = {PATH}
         " }}}
 
-        " jsruntime: {{{ javascript runtime library in vim.
+        " jsruntime {{{ javascript runtime library in vim.
             " Interpreter: PyV8, node, cscript, spiderMonkey.
             " let g:js_interpreter = 'pyv8'
         " }}}
 
-        " jsoncodecs: {{{ Dumps lines from vim to a valid JSON string.
+        " jsoncodecs {{{ Dumps lines from vim to a valid JSON string.
         " }}}
 
         " jsbeautify : a javascript source code formatter
@@ -3393,7 +3396,7 @@ syntax on
                 " it.
             " }}}
 
-            " vim-addon-xdebug : {{{
+            " vim-addon-xdebug  {{{
                 " :XDbgStart
             " }}}
         " }}}
@@ -3487,14 +3490,14 @@ syntax on
             let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
             " }}}
 
-        " Dbext: {{{ Database extension plugin.
+        " Dbext {{{ Database extension plugin.
             " \sbp -- SQL Buffer Prompt.
             " \se  -- SQL Execute
             " \sel -- SQL Execute Line
             " Visual(V) -- linewise-visual to execute.
         " }}}
 
-        " VDBI: {{{ Database client for Vim: browsing, operation, view.
+        " VDBI {{{ Database client for Vim: browsing, operation, view.
             " :VDBI
             " viewer keys: q, <cr>, <leader>s/d/y,
             " query editor keys: q, <leader>e/r.
@@ -3610,13 +3613,13 @@ syntax on
     " }}}
 
     " [ Lisp ] {{{
-        " Slimv: {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
+        " Slimv {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
         " }}}
 
-        " Lisper: {{{ Yet Another Lisp Engine Written In Pure VimScript
+        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
         " }}}
 
-        " paredit: {{{ Paredit Mode: Structured Editing of Lisp S-expressions
+        " paredit {{{ Paredit Mode: Structured Editing of Lisp S-expressions
             " paredit.vim is a part of Slimv.vim
             " similar to paredit.el for Emacs.
         " }}}
@@ -3693,7 +3696,7 @@ syntax on
     " }}}
 
     " [ R ] {{{
-        " Vim-R-plugin: {{{ editing R code and integrate Vim with R
+        " Vim-R-plugin {{{ editing R code and integrate Vim with R
             " :help vim-r-plugin
             " Depends:
             " Tmux, vimcom(R packge), Screen(Vim plugin: vim + screen/tmux)
@@ -3742,16 +3745,16 @@ syntax on
 " [ Vim Extension ] {{{
 
     " [ register & operation ] {{{
-        " YankRing:
+        " YankRing
 
-        " Repeat: {{{ improve Vim's "."'s repeat.
+        " Repeat {{{ improve Vim's "."'s repeat.
             " support in:
             " surround.vim, speeddating.vim, abolish.vim, unimpaired.vim, commentary.vim
             " single/last/multiple/visual/complex repeats, using vim scripts.
             " `=> . @: :[range][v]g[lobal][!]/{pattern}/[cmd] V[Visual] q(record)->@
         " }}}
 
-        " Visualrepeat: {{{ Repeat command extended to visual mode.
+        " Visualrepeat {{{ Repeat command extended to visual mode.
             " Usage: {Visual}.
         " }}}
 
@@ -3765,7 +3768,7 @@ syntax on
             set viewoptions=cursor,unix
             " let g:skipview_files = ['*\.vim']
 
-        " Recover: {{{ A diff buffer way to see diff between recover and on disk files.
+        " Recover {{{ A diff buffer way to see diff between recover and on disk files.
             " :RecoverPluginDisable, :RecoverPluginEnable
             " :FinishRecovery, RecoveryPluginFinish
         " }}}
@@ -3846,7 +3849,7 @@ syntax on
     " }}}
 
     " [ statusline ] {{{
-        " Powerline: {{{
+        " Powerline {{{
             let g:Powerline_symbols = "fancy" " compatible, fancy, unicode.
             set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
             " [0x2213] ∓, [0x2b60] ⭠, [0x2b61] ⭡, [0x2b62, 0x2b63] ⭢⭣.
@@ -3886,7 +3889,7 @@ syntax on
             " the change number is.)
             " :undolist :earlier/:later [time] {time travelling}
 
-        " Gundo: {{{ Visual Vim Undo tree and list.
+        " Gundo {{{ Visual Vim Undo tree and list.
             " gundo#GundoShow(), gundo#GundoHide()
             nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
@@ -3904,7 +3907,7 @@ syntax on
     " }}}
 
     " [ simulate ] {{{
-        " Clam: {{{ A lightweight Vim plugin for working with shell commands.
+        " Clam {{{ A lightweight Vim plugin for working with shell commands.
             " :Clam ls -l, :%Clam sort, :1,10Clam python
             " :ClamVisual sort | uniq -c | sort -n
             " :ClamVisual wc -c, :'<,'>ClamVisual wc -c
@@ -4026,7 +4029,7 @@ syntax on
     " }}}
 
     " [ unicode & symble & sign ] {{{
-        " unicode : {{{ A Completion function for Unicode glyphs
+        " unicode  {{{ A Completion function for Unicode glyphs
             " e.g. type "AE", <C-X><C-U>, / <C-X><C-G>
             " <Leader>un -- swaps between unicode name and glyphs function complete.
             " Functions :
@@ -4131,28 +4134,28 @@ syntax on
     " [ color ] {{{
         let rgb_file = "/usr/X11/lib/X11/rgb.txt"
 
-        " colorv: {{{
+        " colorv {{{
         " }}}
 
-        " Colorizer: {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
+        " Colorizer {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
             " :[range]ColorHighlight[!], :ColorToggle, :ColorClear, :ColorContrast
             " :RGB2Xterm [#]RRGGBB,  " :HSL2RGB
             let g:auto_color = 1
             let g:color_x11_names = 1
         " }}}
 
-        " CSSMinister:
+        " CSSMinister
             " CSSMinister provides functions and mappings that convert any
             " hexadecimal, keyword, RGB(A) or HSL(A) color values from one format to
             " another.
 
-        " EasyColour: {{{ makes it really easy to create your own colour scheme.
+        " EasyColour {{{ makes it really easy to create your own colour scheme.
         " }}}
 
         " VIM_Color_Picker {{{ <F5>, :ColorPicker
         " }}}
 
-        " nosyntaxwords :
+        " nosyntaxwords 
             " find words that are not syntactically highlighted in current
             " buffer.
     " }}}
@@ -4167,15 +4170,15 @@ syntax on
             " - :GalaxyLoad {scheme} -- Load Galaxy scheme.
         " }}}
 
-        " ScrollColors:
+        " ScrollColors
             " :ScrollColors
             " \[n|p] to choose colorscheme
 
-        " ColorSchemeEditor: {{{ PyGTK GUI to more easily create colorschemes
+        " ColorSchemeEditor {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
         " }}}
 
-        " Lucius:
+        " Lucius
     " }}}
 
     " [ syntax for *** ] {{{
@@ -4215,7 +4218,7 @@ syntax on
     " }}}
 
     " [ complete ] {{{
-        " CompleteHelper: {{{ 'completefunc', i_CTRL-X_CTRL-U,
+        " CompleteHelper {{{ 'completefunc', i_CTRL-X_CTRL-U,
             " Functions: {{{
                 " CompleteHelper#FindMatches( matches, pattern, options )
                 " CompleteHelper#ExtractText( startPos, endPos, matchObj )
@@ -4286,7 +4289,7 @@ syntax on
 " [ tools ] {{{
 
     " [ GTD, wiki, note, outliner & calendar ] {{{
-        " vimwiki: {{{
+        " vimwiki {{{
             let g:vimwiki_list = [
                 \ {
                     \ 'path': '~/vimwiki/wiki',
@@ -4408,7 +4411,7 @@ syntax on
             " }}}
         " }}}
 
-        " Calendar: {{{
+        " Calendar {{{
             " Usage:
             "   :Calendar, :Calendar 2001 8
             let g:calendar_focus_today = 1
@@ -4523,7 +4526,7 @@ syntax on
             " pattern, action, process, transition, program, instruction etc
         " }}}
 
-        " VOoM: {{{ Vim two-pane outliner
+        " VOoM {{{ Vim two-pane outliner
             " Usage:
             "   - :Voom {MarkupMode}, :Voomhelp.
             "   - :Voomexec [vim/py], :Voomlog,
@@ -4549,7 +4552,7 @@ syntax on
 
         " Speeddating: | <C-A>, <C-X>, {Visual}<C-A/X>
 
-        " vim-pomodoro: {{{ a Vim plugin for the Pomodoro time management technique
+        " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
             " Require: AsyncCommand
         " }}}
     " }}}
@@ -4577,7 +4580,7 @@ syntax on
         " AutomaticLaTeXPlugin {{{ background compilation, completion, bib search, toc etc.
         " }}}
 
-        " tex_autoclose:
+        " tex_autoclose
         " auctex : macros for LaTeX.
     " }}}
 
@@ -4628,7 +4631,7 @@ syntax on
                 " BadWord, Dialect, RareWord,
         " }}}
 
-        " SpellCheck: {{{ populates quickfix-list spelling errors workflow.
+        " SpellCheck {{{ populates quickfix-list spelling errors workflow.
             " :[range]SpellCheck
             " :SpellCheck[!] (quickfix window), :SpellLCheck[!] (location window)
                 " auxiliary commands:
@@ -4646,7 +4649,7 @@ syntax on
             "autocmd BufWritePre /tmp/mutt-* :UpdateAndSpellCheck
         " }}}
 
-        " LanguageTool: {{{ check language grammar. en, fr, etc.
+        " LanguageTool {{{ check language grammar. en, fr, etc.
             " :LanguageToolCheck
             let g:languagetool_jar=$HOME . '/languagetool/LanguageTool.jar'
             "autocmd BufWritePre /tmp/mutt-* :LanguageToolCheck
@@ -4674,7 +4677,7 @@ syntax on
 
         " UltraBlog: local database for Blog WordPress.
 
-        " Tumble: {{{ Tumble for Vim.
+        " Tumble {{{ Tumble for Vim.
             " :[range]Tumble [draft|published]
             " :[ranger]TumbleLink
             " :TumblesList [draft|publish]
@@ -4686,7 +4689,7 @@ syntax on
             " let tumblr_http_proxy =
         " }}}
 
-        " wwwsearch: {{{ Search WWW easily from Vim.
+        " wwwsearch {{{ Search WWW easily from Vim.
             " Usage:
             " :Wwwsearch [{search-engine}] {keyword}
             " Functions:
@@ -4736,11 +4739,11 @@ syntax on
         " https://github.com/danchoi/goog
 
         " [ paste ] {{{
-            " vim-pastie:
+            " vim-pastie
                 " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
                 " :[%|visual]Pastie!
 
-            " PasteBin: {{{ <Visual>PasteBin
+            " PasteBin {{{ <Visual>PasteBin
                 " http://www.vim.org/scripts/script.php?script_id=3505
                 " http://pastebin.com/api config reference.
                 let g:pastebin_browser_command = "firefox %URL% &"
@@ -4752,7 +4755,7 @@ syntax on
                     " N:Never, 1H: 1 Hour, 1D: 1 Day, 1M: 1 Month
             " }}}
 
-            " Gist: {{{ GitHub paste server.
+            " Gist {{{ GitHub paste server.
                 " Requires: curl, webapi-vim, git command.
                 " :'<,'>Gist -- visual
                 " :Gist -- post current buffer to gist.
@@ -4778,9 +4781,9 @@ syntax on
             " }}}
         " }}}
 
-        " WebAPI: {{{
+        " WebAPI {{{
         " }}}
-        " TwitVim: {{{ Vim Twitter client.
+        " TwitVim {{{ Vim Twitter client.
             let twitvim_login = "numbchild:numbchild324"
             "let twitvim_proxy = "proxyhost:proxyport"
             let twitvim_browser_cmd = 'firefox'
@@ -4799,7 +4802,7 @@ syntax on
     " }}}
 
     " [ format ] {{{
-        " Tabular: {{{ flexible, intuitive text aligning.
+        " Tabular {{{ flexible, intuitive text aligning.
             " Usage:
             " /{char} -> /,
             " /{char}/[range] -> /,/r0 -> [range]: l,r,c => left, right, center.
@@ -4810,19 +4813,19 @@ syntax on
 
         " Align%294
 
-        " Surround: {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
+        " Surround {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
             " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
             " Visual(V): S<p class="important">
             " :help surround.txt
         " }}}
 
-        " Abolish: {{{ quick find, substitute, abbreviate
+        " Abolish {{{ quick find, substitute, abbreviate
         " several variations of a word at once
             " three case variants (foo, Foo, and FOO) are operated on by every command.
             " :Abolish, :Subvert.
         " }}}
 
-        " Auto_Pairs: {{{
+        " Auto_Pairs {{{
                 " shortcuts:
                 "   <M-o> : newline with indentation
                 "   <M-a> : jump to of line
@@ -4846,17 +4849,17 @@ syntax on
             let g:AutoPairsFlyMode = 0
         " }}}
 
-        " delimitMate: {{{ auto closing of quotes, parenthesis, brackets etc.
+        " delimitMate {{{ auto closing of quotes, parenthesis, brackets etc.
         " }}}
 
-        " formatvim: {{{ convert current file to colored HTML, BBCode or whatever.
+        " formatvim {{{ convert current file to colored HTML, BBCode or whatever.
             " :help format.txt
             " :[{range}]Format format/diffformat/list [{formatName} [{option1} {value1}]
         " }}}
     " }}}
 
     " [ ASCII Draw ] {{{
-        " DrawIt: {{{ Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
+        " DrawIt {{{ Ascii drawing plugin: lines, ellipses, arrows, fills, and more!
             " \di to start DrawIt, \ds to stop DrawIt.
             " <left>, <right>, <up>, <down>, -- move and draw left
             " <shift-left> <shift-....> -- move left ...
@@ -4877,14 +4880,14 @@ syntax on
                             " to be transparent
         " }}}
 
-        " boxdraw:
+        " boxdraw
             " Draw diagrams and tables using boxdrawing characters
 
-        " sketch.vim:
+        " sketch.vim
             " Draw with mouse: boxes, arrows, lines, fills.
             " Transparent/opaque drag and drop.
 
-        " drawing.vim:
+        " drawing.vim
             " Ascii drawing primitives with mouse in vim GUI (box, arrow, line).
 
         " ditaa {{{ convert ASCII diagrams into proper bitmap graphics.
@@ -4899,7 +4902,7 @@ syntax on
     " }}}
 
     " [ open with \o ] {{{ open: URL, preview doc: markdown, TeX, etc.
-        " Utl: {{{ :Utl to open links, files.
+        " Utl {{{ :Utl to open links, files.
             nnoremap <leader>o :Utl<CR>
                 " Syntax: no need to escape 'spaces'.
                 " use '' contain filename(url) strings. e.g. = ":silent !evince '%p' &"
@@ -4964,7 +4967,7 @@ syntax on
             let g:utl_cfg_hdl_mt_application_msword = ":silent !libreoffice '%p' &"
         " }}}
 
-        " Elinks: {{{ <Leader>o/<leader>O, <C-j>/<C-k> :[n]LMarks :[n]LHist
+        " Elinks {{{ <Leader>o/<leader>O, <C-j>/<C-k> :[n]LMarks :[n]LHist
             " Require: must have Elinks already running in another Terminal
             " window or Tmux/Screen pane.  The plugin talks to the running
             " instance of ELinks.  If you want to change the keybindings, just
@@ -4985,11 +4988,11 @@ syntax on
     " }}}
 
     " [ speak ] {{{
-        " VimSpeak: {{{ call Microsoft Windows AGENT and speaks (range) selected text.
+        " VimSpeak {{{ call Microsoft Windows AGENT and speaks (range) selected text.
             " [range]VimSpeak
         " }}}
 
-        " VimSpeak function: {{{
+        " VimSpeak function {{{
             function! VimSpeak() range
                 " Concatenate input string.
                 let curline = a:firstline
@@ -5060,7 +5063,7 @@ syntax on
             " let g:GPGHomedir =
         " }}}
 
-        " TGpg: {{{
+        " TGpg {{{
             " :TGpgEncrypt || encrypting files with GPG. symmetric encryption(default)
             let g:tgpg_gpg_cmd = '/usr/bin/gpg'
             let g:tgpg_gpg_md5_check = 'md5sum'. g:tgpg_gpg_cmd " calculate md5 checksum
