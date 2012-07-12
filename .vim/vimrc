@@ -748,8 +748,11 @@ endif
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
     " window resize [ <C-w>(-,+,<,>), Mouse ]
-    nnoremap - <c-w>-
-    nnoremap + <c-w>+
+     nmap         <C-W>+     <C-W>+<SID>winheight
+     nmap         <C-W>-     <C-W>-<SID>winheight
+     nn <script>  <SID>winheight+   <C-W>+<SID>winheight
+     nn <script>  <SID>winheight-   <C-W>-<SID>winheight
+     nmap         <SID>winheight    <Nop>
 
     " toggle fold
     nnoremap <SPACE> za
