@@ -4943,7 +4943,7 @@ syntax on
             " let g:utl_cfg_hdl_mt_text_directory = ':silent !nautilus "%p" &'
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
-            let g:utl_cfg_hdl_mt_application_pdf = ":silent !evince '%p' &"
+            let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
             " application/chm
             " let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
             " application/doc
