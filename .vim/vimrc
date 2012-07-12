@@ -305,6 +305,12 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " [ filetype ] {{{
     filetype plugin indent on " combine three into one.
     " }}}
+
+    " [ encrypt ] {{{
+    " :X to encrypt.
+    " :set key=  to reset the 'key' option to an empty value.
+    set cryptmethod=blowfish " zip, blowfish.
+    " }}}
 " }}}
 
 " [[ Gvim ]] {{{
