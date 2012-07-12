@@ -313,6 +313,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " :set key=  to reset the 'key' option to an empty value.
     set cryptmethod=blowfish " zip, blowfish.
     " }}}
+
     " [ maps ] {{{
     set timeout
     set timeoutlen=3000 " 3 seconds
@@ -731,7 +732,7 @@ endif
     " }}}
 " }}}
 
-" [[ key bindings ]] {{{
+" [[ mappings ]] {{{
 
     " F1~12 {{{
     fun ShowFuncKeys(bang)
@@ -753,12 +754,16 @@ endif
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
-    " window resize [ <C-w>(-,+,<,>), Mouse ]
-     nmap         <C-W>+     <C-W>+<SID>winheight
-     nmap         <C-W>-     <C-W>-<SID>winheight
-     nn <script>  <SID>winheight+   <C-W>+<SID>winheight
-     nn <script>  <SID>winheight-   <C-W>-<SID>winheight
-     nmap         <SID>winheight    <Nop>
+    " resize window continuously [ <C-w>(-,+,<,>), Mouse ]
+     nmap         <C-W>+     <C-W>+<SID>winsize
+     nmap         <C-W>-     <C-W>-<SID>winsize
+     nmap         <C-W><     <C-W><<SID>winsize
+     nmap         <C-W>>     <C-W>><SID>winsize
+     nnoremap <script>  <SID>winsize+   <C-W>+<SID>winsize
+     nnoremap <script>  <SID>winsize-   <C-W>-<SID>winsize
+     nnoremap <script>  <SID>winsize<   <C-W><<SID>winsize
+     nnoremap <script>  <SID>winsize>   <C-W>><SID>winsize
+     nmap         <SID>winsize      <Nop>
 
     " toggle fold
     nnoremap <SPACE> za
@@ -1321,7 +1326,7 @@ endif
         "call vam#ActivateAddons(['DrawIt'])
         " call vam#ActivateAddons(['ditaa'])
             " small tools
-        call vam#ActivateAddons(['fcitx'])
+        " call vam#ActivateAddons(['fcitx'])
         "call vam#ActivateAddons(['bestfriend'])
         " }}}
 
