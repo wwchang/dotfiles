@@ -1069,6 +1069,7 @@ endif
         " call vam#ActivateAddons(['template'])
             " Tags : taglist-plus,
         call vam#ActivateAddons(['Tagbar'])
+        call vam#ActivateAddons(['tagbar-phpctags'])
         "call vam#ActivateAddons(['taglist'])
         call vam#ActivateAddons(['TagHighlight', 'Tag_Signature_Balloons'])
         call vam#ActivateAddons(['AutoTag'])
@@ -2115,6 +2116,11 @@ syntax on
                 highlight TagbarAccessPublic ctermfg=Green
                 highlight TagbarAccessProtected ctermfg=Blue
                 highlight TagbarAccessPrivate ctermfg=Red
+        " }}}
+
+        " tagbar-phpctags {{{
+            " Require: phpctags https://github.com/techlivezheng/phpctags
+            let g:tagbar_phpctags_bin='$HOME/compile/phpctags/phpctags'
         " }}}
 
         " Taglist: {{{ <F12>
