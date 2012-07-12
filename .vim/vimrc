@@ -313,6 +313,12 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " :set key=  to reset the 'key' option to an empty value.
     set cryptmethod=blowfish " zip, blowfish.
     " }}}
+    " [ maps ] {{{
+    set timeout
+    set timeoutlen=3000 " 3 seconds
+    set ttimeout
+    set ttimeoutlen=-1
+    " }}}
 " }}}
 
 " [[ Gvim ]] {{{
