@@ -303,6 +303,8 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     " }}}
 
     " [ filetype ] {{{
+    " ~/.vim/ftplugin/ " source first, then load system files.
+    " ~/.vim/after/ftplugin/ " source later, after load system files.
     filetype plugin indent on " combine three into one.
     " }}}
 
@@ -631,6 +633,7 @@ endif
                     \\ \%#StatusPercent#\%P
     endfunction
 
+    " if Powerline is not available, use my custom statusline settings.
     if !exists('g:Powerline_loaded')
         call SetStatusline()
     endif
@@ -1075,7 +1078,8 @@ endif
         " call vam#ActivateAddons(['CCTree'])
             " call vam#ActivateAddons(['github:brookhong/cscope.vim'])
             " buffers
-        " call vam#ActivateAddons(['Tagma_Buffer_Manager'])
+        call vam#ActivateAddons(['Tagma_Buffer_Manager'])
+        " call vam#ActivateAddons(['minibufexplorer'])
         "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
         "call vam#ActivateAddons(['LustyJuggler'])
             " tab manager
@@ -1083,7 +1087,6 @@ endif
             " file/buffer/project manager
         call vam#ActivateAddons(['The_NERD_tree'])
         call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
-        " call vam#ActivateAddons(['minibufexplorer'])
             " compile
         call vam#ActivateAddons(['SingleCompile'])
             " syntax checker
@@ -2864,7 +2867,7 @@ syntax on
     " }}}
 
     " [ buffers ] {{{
-        " TagmaBufMgr: {{{
+        " Tagma_Buffer_Manager: {{{
             " h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
             " :MgrToggle :help TagmaBufMgr
             let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
@@ -4269,24 +4272,7 @@ syntax on
 " [ tools ] {{{
 
     " [ GTD, wiki, note, outliner & calendar ] {{{
-        " vimwiki: {{{ TODO use Txtfmt to enhance vimwiki.
-            " TODO write template and style.css for vimwiki.
-            " Wiki: \ws, [count][\ww,\wt],
-            " Diary: [count][\wi, \w\w, \w\t], <C-Up/Down>,
-            " WikiLink: <CR>, <S-CR>(split and follow), <C-CR>(vsplit and follow).
-            "           <Backspace>, <Tab>, <S-Tab>,
-            "           \wd, \wr, <C-Space>,
-            "           =, -, +,
-            "           glm, gll, gl[*,#,-,1], gqq/gww, <A-Left/Right>,
-            " Text Objects: [operation:v,d,y,c][ah,ih],
-            " Search: :VimwikiSearch /pattern/ ,
-            " Syntax:
-            "   * mathematical formulae rendered in HTML using engine MathJax.
-            "   FIXME test index. :Vimwiki2HTMLBrowse
-            "   * code block syntax highlighting.
-            " There are global and per-wiki (local) options available to tune vimwiki.
-                " 'syntax': default, media, markdown,
-
+        " vimwiki: {{{
             let g:vimwiki_list = [
                 \ {
                     \ 'path': '~/vimwiki/wiki',
