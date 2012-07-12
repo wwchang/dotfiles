@@ -17,12 +17,11 @@
 # mailboxes =INBOX
 
 
-mailboxes /var/mail/chris
 mailboxes !
 mailboxes =unsure
 mailboxes =Drafts
-mailboxes =Send
-mailboxes =Important
+
+mailboxes /var/mail/chris
 
 mailboxes =Emacs
 mailboxes =Emacs/help
@@ -153,7 +152,9 @@ mailboxes =censorship
 mailboxes =RSS
 # Send Draft Junk Viruses Spam
 # mbox is for sended and received mails
+mailboxes =Important
 mailboxes =mbox
+mailboxes =Send
 mailboxes =Trash
 mailboxes =spam
 mailboxes $MAIL
