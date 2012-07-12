@@ -135,9 +135,61 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
 
-    " [ tags ] {{{
-    set tags=tags/help,doc/tags,./.tags       " walk directory tree upto $HOME looking for tags
     set backspace=2        " more powerful backspace
+
+    " [ tags ] {{{
+    " C-], [count]C-T, {Visual}g], {Visual}g C-],
+    " :tag, :tags, :[count]tnext/tprevious,
+    set tags=./tags,tags,./.tags " filename for tag command
+    set taglength=0 " number(N): up to this number of characters.
+    set tagrelative
+    " }}}
+
+    " [ cscope ] {{{
+    " C-], [count]C-T, {Visual}g], {Visual}g C-],
+    " :cscope, :cs, :scscope(split) :lcscope, :cstag,
+    " ------------
+    " $ cscope -b       > build up cscope database for source code.
+    " :cscope add cscope.out > add database to vim. establishes a connection.
+    if has("cscope")
+        set cscopeprg=cscope " cscope program.
+        " find {querytype}: + append, - clear, 0/absence -> don't use quickfix.
+        set nocscopetag " always search cscope database instead of tags file.
+        set cscopetagorder=0 " 0: cscope -> tags file, 1: tags file -> cscope
+        " set cscoperelative
+        set cscopequickfix=s-,c-,d-,i-,t-,e- " use quickfix to show result
+        set cscopepathcomp=3 " how many components of a file's path to display
+
+        set nocscopeverbose " work with bellowing verbose setting.
+        " add any database in current directory
+        if filereadable("cscope.out")
+            cscope add cscope.out
+            " else add database pointed to by environment
+        elseif $CSCOPE_DB != ""
+            cscope add $CSCOPE_DB
+        endif
+        set cscopeverbose " print message indicate success or failure.
+
+        " keep regular tag behavior and have a different shortcut access :cstag
+        map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+        " following scheme.
+        " s: Find this C symbol
+        " g: Find this definition
+        " d: Find functions called by this function
+        " c: Find functions calling this function
+        " t: Find this text string
+        " e: Find this egrep pattern
+        " f: Find this file
+        " i: Find files #including this file
+        nnoremap <C-_>s :cscope find s <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-_>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-_>c :cscope find c <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-_>t :cscope find t <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-_>e :cscope find e <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-_>f :cscope find f <C-R>=expand("<cfile>")<CR><CR>
+        nnoremap <C-_>i :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+        nnoremap <C-_>d :cscope find d <C-R>=expand("<cword>")<CR><CR>
+    endif
     " }}}
 
     " [ search & match ] {{{
