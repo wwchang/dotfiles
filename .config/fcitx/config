@@ -72,7 +72,7 @@ RemindModeDisablePaging=True
 # True False
 SendTextWhenSwitchEng=True
 # Candidate Word Number
-CandidateWordNumber=5
+CandidateWordNumber=3
 # Give the tips of Phrase
 # Available Value:
 # True False
@@ -80,7 +80,7 @@ PhraseTips=True
 # Do not commit preedit text when unfocus a window
 # Available Value:
 # True False
-DontCommitPreeditWhenUnfocus=False
+DontCommitPreeditWhenUnfocus=True
 
 [Appearance]
 # Show Input Window After Trigger Input Mode
