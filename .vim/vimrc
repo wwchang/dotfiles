@@ -1397,11 +1397,33 @@ syntax on
 " [ Program ] {{{
 
     " [ syntax ] {{{
-        " TagHighlight: highlights names of classes, variables, types etc in code.
+        " TagHighlight {{{ highlight names of class, variable, types in code.
+            " Usage: :UpdateTypesFile
+            if !exists('g:TagHighlightSettings')
+                let g:TagHighlightSettings = {}
+            endif
+            let g:TagHighlightSettings['TagFileName'] = 'tags'
+            let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
+            let g:TagHighlightSettings['CtagsVariant'] = 'exuberant'
+            let g:TagHighlightSettings['CtagsArguments'] = []
+            let g:TagHighlightSettings['CtagsExtraArguments'] = []
+            let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
+            let g:TagHighlightSettings['PythonVariantPriority'] =
+                        \ ["if_pyth3", "if_pyth", "python", "compiled"]
 
-            " highlights names of classes, variables, types etc in source code.
-            " [ embeded code ] {{{
-            " }}}
+            " Integration other plugins.
+            let g:TagHighlightSettings['LanguageDetectionMethods'] =
+                        \ ['FileType', 'Extension']
+            " Tagbar Integration
+            " let g:TagHighlightSettings['FileTypeLanguageOverrides'] =
+            "             \ {'tagbar': 'c'}
+            " Git Integration
+            " let g:TagHighlightSettings['FileTypeLanguageOverrides'] =
+            "             \ {'gitcommit': 'python'}
+
+            " Standard Library
+            " TODO Android, JDK, PySide, Qt4, wxpython, wxWidgets, etc.
+        " }}}
     " }}}
 
     " [ indent & align ] {{{
@@ -2171,8 +2193,6 @@ syntax on
             "TagListComment  - Used for comments
             "TagListFileName - Used for filenames
         " }}}
-
-        " TagHighlight (highlight names of class, variable, type etc)
 
         " Tag_Signature_Balloons (Tag Signatures in Balloon Tooltips)
             let g:loaded_tag_signature = 1
