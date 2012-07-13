@@ -26,7 +26,6 @@ alias lsa='ls -lah'
 #alias l='ls -la'
 alias l='ls++' # use ls-- custom plugin.
 alias ll='ls -l'
-alias sl=ls # often screw this up
 #alias ps='ps aux --forest | sort -nk +4 | tail'
 alias rm='rm -i -v'
 alias killall='killall -i'
