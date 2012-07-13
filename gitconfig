@@ -85,6 +85,7 @@
 	t  = tag
 	ut = rm -r --cached
 	unstage = reset HEAD
+    undo-last-commit = reset HEAD^
 	visual = !gitk
     last = log -1 HEAD
 
