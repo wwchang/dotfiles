@@ -45,11 +45,11 @@ if [ $? != 0 ]; then
     # [ 3 GTD ]
     tmux new-window -t $session1 -n tasks 'vim ~/vimwiki/wiki/plan.wiki'
     tmux split-window -t $session1:3.1 -h -p 50 \
-        'vim "+set nospell" \ ~/vimwiki/wiki/Dreams/Dreams.wiki'
+        'vim "-c set nospell" ~/vimwiki/wiki/Dreams/Dreams.wiki'
     tmux split-window -t $session1:3.2 -v \
-        'vim "+set nospell" \ ~/vimwiki/wiki/Ideas/Ideas.wiki'
+        'vim "-c set nospell" ~/vimwiki/wiki/Ideas/Ideas.wiki'
     tmux split-window -t $session1:3.1 -v \
-        'vim "+set nospell" \ ~/vimwiki/wiki/Business/Business.wiki'
+        'vim "-c set nospell" ~/vimwiki/wiki/Business/Business.wiki'
     tmux select-pane -t $session1:3.1
     #split-window -h -p 35 'task shell' # taskwarrior shell
 
