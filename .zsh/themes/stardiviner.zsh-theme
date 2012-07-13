@@ -41,10 +41,9 @@ else
     # user_prompt="»"
 fi
 
-# sign_prompt="%{$fg[black]%}{%{$fg_bold[red]%}妖%{$reset_color%}%{$fg[black]%}}%{$reset_color%}"
-# sign_prompt="%{$fg[black]%}{%{$fg_bold[red]%}ハック%{$reset_color%}%{$fg[black]%}}%{$reset_color%}"
-
-sign_prompt="%{$fg_bold[black]%}{ %{$fg_bold[red]%}三つ目がとおる %{$fg_bold[black]%}}%{$reset_color%}"
+sign_prompt1="%{$fg_bold[black]%}{ %{$fg_bold[red]%}三つ目がとおる %{$fg_bold[black]%}}%{$reset_color%}"
+sign_prompt2="%{$fg[black]%}{%{$fg_bold[red]%}妖%{$reset_color%}%{$fg[black]%}}%{$reset_color%}"
+sign_prompt3="%{$fg_bold[red]%}</>%{$reset_color%}"
 # mpd status
 if [ -n "`mpc status | grep playing`" ]; then
     music_prompt="%{$fg_bold[black]%}| %{$fg_bold[cyan]%}♪%{$reset_color%}"
@@ -92,12 +91,12 @@ ZSH_THEME_SVN_PROMPT_CLEAN="%{$fg_bold[green]%} ✔%{$reset_color%}"
 # }}}
 
 # {{{ locale variables
-local full_path='%{$fg[cyan]%}%~%{$reset_color%}'
+local full_path='%{$fg[black]%}[ %{$fg[white]%}%~ %{$fg[black]%}]%{$reset_color%}'
 local base_path='%{$fg_bold[cyan]%}%c%{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%} $user_prompt %{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.$) %{$reset_color%}'
-# local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#./>) %{$reset_color%}'
-local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#.➜) %{$reset_color%}'
+# local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#.➜) %{$reset_color%}'
+local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#.</>) %{$reset_color%}'
 local return_code='%(?..%{$fg[red]%}%? ↵%{$reset_color%})'
 
 local username='%{$fg_bold[green]%}%n%{$reset_color%}'
@@ -114,12 +113,13 @@ local male='%{$fg_bold[cyan]%}♂%{$reset_color%}'
 local female='%{$fg[green]%}♀%{$reset_color%}'
 local fuck='%{$fg[yellow]%}fuck%{$reset_color%}'
 
-local right_sign='%{$fg_bold[white]%} ⑆ %{$reset_color%}'
+# local right_sign='%{$fg_bold[white]%} ⑆ %{$reset_color%}'
+local right_sign='%{$fg_bold[white]%} [妖] %{$reset_color%}'
 
 if [ "$(whoami) == 'chris'" -a "$(hostname) == 'stardiviner'" ]; then
-    local ssh_info='%{$fg[green]%}$(whoami) %{$fg[cyan]%}§ %{$fg[yellow]%}localhost %{$reset_color%}'
+    local ssh_info='%{$fg[green]%}$(whoami)%{$fg[cyan]%}@%{$fg[yellow]%}localhost %{$reset_color%}'
 else
-    local ssh_info='%{$fg[green]%}$(whoami) %{$fg[cyan]%}§ %{$fg[red]%}$(hostname) %{$reset_color%}'
+    local ssh_info='%{$fg[green]%}$(whoami)%{$fg[cyan]%}@%{$fg[red]%}$(hostname) %{$reset_color%}'
 fi
 
 local separator_1='%{$fg[cyan]%}§'
@@ -176,13 +176,13 @@ local separator_5='%{$fg[cyan]%}/'
 
 # left side PROMPT
 PROMPT="
- ${separator_5}${separator_4}${separator_5} ${sign_prompt}${prompt_separator_1} [ ${full_path} ]
-${git_branch}${git_status}${svn_info}${rvm_info} ${pre_prompt}"
+ ${full_path} ${separator_1}
+${git_branch}${git_status}${svn_info}${rvm_info} ${pre_prompt} "
 # PS1="${return_code}"
 
 # right side PROMPT
 # RPROMPT="${return_code} ${female} ${fuck} ${male} %T "
-RPROMPT="${return_code} ${ssh_info} ${right_sign}"
+RPROMPT="${return_code} ${right_sign}"
 # RPS1="${return_code}"
 
 # vim:ft=zsh:fdm=marker
