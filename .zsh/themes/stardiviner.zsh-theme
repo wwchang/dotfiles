@@ -177,7 +177,7 @@ local separator_5='%{$fg[cyan]%}/'
 # left side PROMPT
 PROMPT="
  ${full_path} ${separator_1}
-${git_branch}${git_status}${svn_info}${rvm_info} ${pre_prompt} "
+${pre_prompt} ${git_branch}${git_status}${svn_info}${rvm_info} "
 # PS1="${return_code}"
 
 # right side PROMPT
