@@ -35,42 +35,40 @@ if [ $? != 0 ]; then
     # new-session -d -s Daily "elinks http://www.phrack.org/issues.html"
     tmux split-window -t $session1 -h
     # split-window -h 'cat ~/Git/dotfiles/sudo.pass | sudo -t nethogs -d 3 ppp0'
-    tmux select-pane -t $session1:1
+    tmux select-pane -t $session1:+1
     # select-layout main-horizontal
 
     # [ 2 IRC & bitlbee ]
     tmux new-window -t $session1 -n irc 'online.sh && weechat-curses'
-    #split-window -v -p 10 zsh
     tmux set-window-option -t $session1:2 monitor-activity on
 
     # [ 3 GTD ]
     tmux new-window -t $session1 -n tasks 'vim ~/vimwiki/wiki/plan.wiki'
-    tmux split-window -t $session1 -h -p 50 'vim ~/vimwiki/wiki/Ideas/Ideas.wiki'
-    tmux split-window -t $session1 -v 'vim ~/vimwiki/wiki/Dreams/Dreams.wiki'
-    tmux select-pane -t $session1:1
-    tmux split-window -t $session1 -v 'vim ~/vimwiki/wiki/Business/Business.wiki'
+    tmux split-window -t $session1:3.1 -h -p 50 \
+        'vim "+set nospell" \ ~/vimwiki/wiki/Dreams/Dreams.wiki'
+    tmux split-window -t $session1:3.2 -v \
+        'vim "+set nospell" \ ~/vimwiki/wiki/Ideas/Ideas.wiki'
+    tmux split-window -t $session1:3.1 -v \
+        'vim "+set nospell" \ ~/vimwiki/wiki/Business/Business.wiki'
+    tmux select-pane -t $session1:3.1
     #split-window -h -p 35 'task shell' # taskwarrior shell
 
     # [ 4 mail & news ]
     tmux new-window -t $session1 -n msg mutt
-    tmux split-window -t $session1 -h -p 10 'canto-fetch ; canto'
-    tmux select-pane -t $session1:1
+    tmux split-window -t $session1:4.1 -h -p 35 'canto'
+    tmux select-pane -t $session1:4.1
     tmux set-window-option -t $session1:4 monitor-activity on
-
-    # [ 6 radar & monitor ]
 
     # [ 5 books ]
     tmux new-window -t $session1 -n book 'ranger /media/backup/Chris/Data/Computer/'
-    tmux split-window -t $session1 -h 'ranger /media/backup/Chris/Data/'
-    tmux split-window -t $session1 -v 'ranger ~/Downloads/'
-    tmux select-pane -t $session1:1
-    tmux split-window -t $session1 -v 'ranger /media/backup/Work/'
+    tmux split-window -t $session1:5.1 -h 'ranger /media/backup/Chris/Data/'
+    tmux split-window -t $session1:5.2 -v 'ranger ~/Downloads/'
+    tmux split-window -t $session1:5.1 -v 'ranger /media/backup/Work/'
 
-    # [ 7 music ]
+    # [ 6 music ]
     tmux new-window -t $session1 -n music ncmpcpp
-    tmux split-window -t $session1 -v alsamixer
-    tmux select-pane -t $session1:1
-    tmux select-window -t $session1:3.1
+    tmux split-window -t $session1:6.1 -h alsamixer
+    tmux select-pane -t $session1:6.1
 
 fi
 # }}}
