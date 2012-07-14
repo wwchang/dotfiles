@@ -1,29 +1,171 @@
 # Genertics: {
+# set <option> <value>
+
 set smooth_scrolling true
+
 # set history=10
+
 set browser=/usr/bin/firefox
+
 set labels true
+
 set save_position save_zoom_level true
 # }
 
 # Interface: {
 set font DejaVu Sans Mono normal 9
+
 set transparency true
+
 # set height 580
 # set width 1024
-# set adjust_open [bestfit|width|noadjust]
-set adjust_open width
+
 set scrollbars false
+
 set show_statusbar true
+
 set show_inputbar false
+
 # inverting colors
-# set recolor true
-# set recolor_darkcolor #BDE090
-# set recolor_lightcolor #000000
+# En/Disables recoloring
+set recolor false
+
+# Defines the color value that is used to represent dark colors in recoloring 
+# mode
+set recolor-darkcolor "#FFFFFF"
+
+# Defines the color value that is used to represent light colors in recoloring 
+# mode
+set recolor-lightcolor "#000000"
+
+# Defines the color that is used for highlighting parts of the document (e.g.: 
+# show search results)
+set highlight-color "#9FBC00"
+
+# Defines the color that is used to show the current selected highlighted 
+# element (e.g: current search result)
+set highlight-active-color "#00BC00"
+
+# Defines the opacity of a highlighted element.
+set highlight-transparency 0.5
+# }
+
+# page {
+# Defines which auto adjustment mode should be used if a document is loaded.  
+# Possible options are “best-fit” and “width”.
+# set adjust-open [best-fit|width|noadjust]
+set adjust-open best-fit
+
+# The page padding defines the gap in pixels between each rendered page.
+set page-padding 2
+
+# Pages that are not visible get unloaded after some time. Every page that has 
+# not been visible for page-store-treshold seconds will be unloaded.
+set page-store-threshold 30
+
+# Defines the amount of seconds between the check to unload invisible pages.
+set page-store-interval 30
+
+# Defines the number of pages that are rendered next to each other in a row.
+set page-per-row 1
+
+# defines if the number of pages per row should be honored when advancing a page
+set advance-pages-per-row flase
+
+# Defines if the search results should be cleared on abort.
+set abort-clear-search true
+
+# Defines if the “Loading…” text should be displayed if a page is rendered.
+set render-loading true
+# }
+
+# scroll {
+# Defines the step size of scrolling by calling the scroll command once
+set scroll-step 40
+
+# Defines if the last/first page should be wrapped
+set scroll-wrap false
+# }
+
+# zoom {
+# Defines the maximum percentage that the zoom level can be
+set zoom-max 1000
+
+# Defines the minimum percentage that the zoom level can be
+set zoom-min 10
+
+# Defines the amount of percent that is zoomed in or out on each comand.
+set zoom-step 10
 # }
 
 # maps {
+# map [mode] <binding> <shortcut function> <argument>
+# unmap [mode] <binding>
+#
+# [mode]
+#   - normal (default)
+#   - visual
+#   - insert
+#   - index
+# binding
+#   - A - Alt
+#   - C - Control
+#   - S - Shift
+#   - Esc - Escape
+#   - F1 - F1
+#   - Space - Space
+#   - Super - Windows button
+#   - Tab - Tab
+#   e.g. <C-a>
+# Mouse:
+#   - Button1 -- Mouse button 1
+#   ....
+#   - Button5 -- Mouse button 5
+# shortcut functions:
+#   - abort -- switch back to normal mode.
+#   - adjust_window -- adjust page width.
+#   - change_mode -- change current mode.
+#   - follow -- follow a link.
+#   - focus_inputbar -- focus inputbar.
+#   - goto -- Go to a certain page.
+#   - index_navigate -- navigate through the index.
+#   - navigate -- navigate to the next/previous page.
+#   - quit -- quit zathura.
+#   - recolor -- recolor the pages.
+#   - reload -- reload the document.
+#   - rotate -- rotate the page.
+#   - scroll -- scroll.
+#   - search -- search next/previous item.
+#   - set -- set an option.
+#   - toggle_fullscreen -- toggle fullscreen.
+#   - toggle_index -- show or hide index.
+#   - toggle_inputbar -- show or hide inputbar.
+#   - toggle_statusbar -- show or hide statusbar.
+#   - zoom -- zoom in or out.
+# arguments:
+#   - bottom
+#   - default
+#   - down
+#   - full-down
+#   - full-up
+#   - half-down
+#   - half-up
+#   - in
+#   - left
+#   - next
+#   - out
+#   - previous
+#   - right
+#   - specific
+#   - top
+#   - up
+#   - best-fit
+#   - width
+#   - rotate-cw
+#   - rotate-ccw
+
 map + zoom in
 map - zoom out
+
 map <C-q> quit
 # }
