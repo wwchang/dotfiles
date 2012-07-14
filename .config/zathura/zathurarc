@@ -1,30 +1,23 @@
 # Genertics: {
 # set <option> <value>
 
-set smooth_scrolling true
-
+# [ old version options ]
+# set smooth_scrolling true
 # set history=10
-
-set browser=/usr/bin/firefox
-
-set labels true
-
-set save_position save_zoom_level true
+# set browser=/usr/bin/firefox
+# set labels true
+# set transparency true
+# set height 580
+# set width 1024
+# set scrollbars false
+# set show_statusbar true
+# set show_inputbar false
+# set save_position true
+# set save_zoom_level true
 # }
 
 # Interface: {
-set font DejaVu Sans Mono normal 9
-
-set transparency true
-
-# set height 580
-# set width 1024
-
-set scrollbars false
-
-set show_statusbar true
-
-set show_inputbar false
+set font "DejaVu Sans Mono normal 9"
 
 # inverting colors
 # En/Disables recoloring
@@ -67,10 +60,10 @@ set page-store-threshold 30
 set page-store-interval 30
 
 # Defines the number of pages that are rendered next to each other in a row.
-set page-per-row 1
+# set page-per-row 1
 
 # defines if the number of pages per row should be honored when advancing a page
-set advance-pages-per-row flase
+set advance-pages-per-row false
 
 # Defines if the search results should be cleared on abort.
 set abort-clear-search true
