@@ -60,15 +60,21 @@ if [ $? != 0 ]; then
     tmux set-window-option -t $session1:4 monitor-activity on
 
     # [ 5 books ]
-    tmux new-window -t $session1 -n book 'ranger /media/backup/Chris/Data/Computer/'
-    tmux split-window -t $session1:5.1 -h 'ranger /media/backup/Chris/Data/'
-    tmux split-window -t $session1:5.2 -v 'ranger ~/Downloads/'
-    tmux split-window -t $session1:5.1 -v 'ranger /media/backup/Work/'
+    tmux new-window -t $session1 -n book \
+        'ranger /media/backup/Chris/Data/Computer/'
+    tmux split-window -t $session1:5.1 -h \
+        'ranger /media/backup/Chris/Data/'
+    tmux split-window -t $session1:5.2 -v \
+        'ranger ~/Downloads/'
+    tmux split-window -t $session1:5.1 -v \
+        'ranger /media/backup/Work/'
 
     # [ 6 music ]
     tmux new-window -t $session1 -n music ncmpcpp
     tmux split-window -t $session1:6.1 -h alsamixer
     tmux select-pane -t $session1:6.1
+
+    tmux select-window -t $session1:3.1
 
 fi
 # }}}
@@ -79,15 +85,20 @@ if [ $? != 0 ]; then
 
     # [ vimwiki ]
     # [ Python ]
-    tmux new-session -d -s $session2 'vim ~/vimwiki/wiki/program/Python/Python.wiki'
+    tmux new-session -d -s $session2 -n python \
+        'vim ~/vimwiki/wiki/program/Python/Python.wiki'
     # [ Program ]
-    tmux new-window -t $session2 -n program 'vim ~/vimwiki/wiki/program/program.wiki'
+    tmux new-window -t $session2 -n program \
+        'vim ~/vimwiki/wiki/program/program.wiki'
     # [ Languages ]
-    tmux new-window -t $session2 -n lang 'vim ~/vimwiki/wiki/program/Languages.wiki'
+    tmux new-window -t $session2 -n lang \
+        'vim ~/vimwiki/wiki/program/Languages.wiki'
     # [ Linux ]
-    tmux new-window -t $session2 -n linux 'vim ~/vimwiki/wiki/Linux/Linux.wiki'
+    tmux new-window -t $session2 -n linux \
+        'vim ~/vimwiki/wiki/Linux/Linux.wiki'
     # [ others ]
     tmux new-window -t $session2 -n misc
+
     tmux select-window -t $session2:1
 
 fi
