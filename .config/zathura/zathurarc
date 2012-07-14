@@ -2,18 +2,18 @@
 # set <option> <value>
 
 # [ old version options ]
-# set smooth_scrolling true
-# set history=10
-# set browser=/usr/bin/firefox
-# set labels true
-# set transparency true
-# set height 580
-# set width 1024
-# set scrollbars false
-# set show_statusbar true
-# set show_inputbar false
-# set save_position true
-# set save_zoom_level true
+set smooth_scrolling true
+set history=10
+set browser=/usr/bin/firefox
+set labels true
+set transparency true
+set height 580
+set width 1024
+set scrollbars false
+set show_statusbar true
+set show_inputbar false
+set save_position true
+set save_zoom_level true
 # }
 
 # Interface: {
