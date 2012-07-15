@@ -35,7 +35,7 @@ if [ $? != 0 ]; then
     # new-session -d -s Daily "elinks http://www.phrack.org/issues.html"
     tmux split-window -t $session1 -h
     # split-window -h 'cat ~/Git/dotfiles/sudo.pass | sudo -t nethogs -d 3 ppp0'
-    tmux select-pane -t $session1:+1
+    tmux select-pane -t $session1:1.1
     # select-layout main-horizontal
 
     # [ 2 IRC & bitlbee ]
@@ -44,18 +44,18 @@ if [ $? != 0 ]; then
 
     # [ 3 GTD ]
     tmux new-window -t $session1 -n tasks 'vim ~/vimwiki/wiki/plan.wiki'
-    tmux split-window -t $session1:3.1 -h -p 50 \
+    tmux split-window -t $session1:3.1 -h -p 30 \
         'vim "-c set nospell" ~/vimwiki/wiki/Dreams/Dreams.wiki'
-    tmux split-window -t $session1:3.2 -v \
+    tmux split-window -t $session1:3.2 -v -p 60 \
         'vim "-c set nospell" ~/vimwiki/wiki/Ideas/Ideas.wiki'
-    tmux split-window -t $session1:3.1 -v \
+    tmux split-window -t $session1:3.1 -v -p 30 \
         'vim "-c set nospell" ~/vimwiki/wiki/Business/Business.wiki'
     tmux select-pane -t $session1:3.1
     #split-window -h -p 35 'task shell' # taskwarrior shell
 
     # [ 4 mail & news ]
     tmux new-window -t $session1 -n msg mutt
-    tmux split-window -t $session1:4.1 -h -p 35 'canto'
+    tmux split-window -t $session1:4.1 -h -p 30 'canto'
     tmux select-pane -t $session1:4.1
     tmux set-window-option -t $session1:4 monitor-activity on
 
@@ -64,9 +64,9 @@ if [ $? != 0 ]; then
         'ranger /media/backup/Chris/Data/Computer/'
     tmux split-window -t $session1:5.1 -h \
         'ranger /media/backup/Chris/Data/'
-    tmux split-window -t $session1:5.2 -v \
+    tmux split-window -t $session1:5.2 -v -p 40 \
         'ranger ~/Downloads/'
-    tmux split-window -t $session1:5.1 -v \
+    tmux split-window -t $session1:5.1 -v -p 40 \
         'ranger /media/backup/Work/'
 
     # [ 6 music ]
