@@ -316,7 +316,7 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
 
     " [ maps ] {{{
     set timeout
-    set timeoutlen=3000 " 3 seconds
+    set timeoutlen=2500 " 2.5 seconds
     set ttimeout
     set ttimeoutlen=-1
     " }}}
