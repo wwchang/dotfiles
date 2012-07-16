@@ -74,7 +74,7 @@ if [ $? != 0 ]; then
     tmux split-window -t $session1:6.1 -h alsamixer
     tmux select-pane -t $session1:6.1
 
-    tmux select-window -t $session1:3.1
+    tmux select-pane -t $session1:3.1
 
 fi
 # }}}
@@ -99,7 +99,7 @@ if [ $? != 0 ]; then
     # [ others ]
     tmux new-window -t $session2 -n misc
 
-    tmux select-window -t $session2:1
+    tmux select-pane -t $session2:1
 
 fi
 # }}}
