@@ -183,7 +183,12 @@ URxvt.fading: 30%
 
 URxvt.termName: rxvt-256color
 URxvt.imLocale: en_US.UTF-8
-URxvt.scrollBar: false
+
+! scrollbar
+URxvt.scrollBar: False
+! rxvt, plain, next, xterm
+URxvt.scrollstyle: plain
+
 URxvt.saveLines: 5000
 URxvt.perl-lib:        /usr/lib/urxvt/perl
 URxvt.perl-ext-common: default,matcher
@@ -197,7 +202,7 @@ URxvt.urlLauncher: firefox
 
 URxvt.matcher.button: 1
 URxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt.geometry: 90x10
+URxvt.geometry: 90x50
 
 !URxvt*font:                 xft:Monaco for Powerline:regular:size=10
 !URxvt*imFont:               xft:Monaco for Powerline:regular:size=10
@@ -215,6 +220,7 @@ URxvt.bolditalicFont: xft:DejaVu Sans Mono for Powerline:bold:italic:pixelsize=1
 URxvt*urgentOnBell:     true
 ! true will lead weechat flash when youre highlighted
 URxvt*visualBell:       false
+URxvt*mapAlert:         True
 
 URxvt*dynamicColors: on
 !URxvt*background: #202428
