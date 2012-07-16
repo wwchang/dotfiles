@@ -25,7 +25,7 @@ folder-hook . push "<delete-pattern>~=<enter>"
 
 # for mailing list
 folder-hook .       set sort = threads
-folder-hook . set index_format = '"%2C┆%?H?[spam]? [%4Z] ┣ %?F?%-18.18F&%-18.18L? ├ %-50.49s %> │%-16.15[%I:%M %P %b/%d]"'
+folder-hook . set index_format = '"%2C┆%?H?[spam]? [%4Z] ┣ %?F?%-18.18F&%-18.18L? ├ %-55.54s %> │%-16.15[%I:%M %P %b/%d]"'
 # folder-hook .       set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
 # folder-hook .  ignore User-Agent:
@@ -40,9 +40,9 @@ folder-hook =INBOX  set sort = score # for macro "gi", because spoolfile is diff
 
 # for INBOX
 # %?<sequence_char>?<if_string>&<else_string>?
-folder-hook "\!"    set index_format = '"%2C┆%?H?[spam]? Σ%N [%4Z] ┣ %?F?%-15.15F&%-10.10L? ☞☜ %-50.49s %> │%-16.15[%I:%M %P %b.%d]"'
-folder-hook =INBOX  set index_format = '"%2C┆%?H?[spam]? Σ%N [%4Z] ┣ %?F?%-15.15F&%-10.10L? ☞☜ %-50.49s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
-folder-hook 'unsure|Drafts|Send' set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-50.49s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
+folder-hook "\!"    set index_format = '"%2C┆%?H?[spam]? Σ%N [%4Z] ┣ %?F?%-15.15F&%-10.10L? ☞☜ %-55.54s %> │%-16.15[%I:%M %P %b.%d]"'
+folder-hook =INBOX  set index_format = '"%2C┆%?H?[spam]? Σ%N [%4Z] ┣ %?F?%-15.15F&%-10.10L? ☞☜ %-55.54s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
+folder-hook 'unsure|Drafts|Send' set index_format = '"%2C┆%?H?[spam]&%N? [%4Z] %?F?%-15.15F&%-10.10L? ➜ %-55.54s %> │%-16.15[%I:%M %P %b.%d]"' # for macro "gi"
 #folder-hook "\!"    set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 #folder-hook =INBOX  set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
