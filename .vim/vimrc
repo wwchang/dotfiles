@@ -4418,12 +4418,7 @@ syntax on
                         \ }
 
             " [ extra ] {{{
-            " FIXME
-            " function! VimwikiLinkHandler(link)
-            "     let browser = 'firefox'
-            "     " let link = vimwiki#base#resolve_scheme(link, 0)
-            "     execute 'silent !xdg-open "'.browser.'" ' . a:link
-            " endfunction
+                au FileType vimwiki setlocal concealcursor=v
 
             " Schemes:
             "   - [[file:///...]]
