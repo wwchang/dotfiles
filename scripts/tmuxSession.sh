@@ -44,7 +44,7 @@ if [ $? != 0 ]; then
 
     # [ 3 GTD ]
     tmux new-window -t $session1 -n tasks 'vim ~/vimwiki/wiki/plan.wiki'
-    tmux split-window -t $session1:3.1 -h -p 30 \
+    tmux split-window -t $session1:3.1 -h -p 40 \
         'vim "-c set nospell" ~/vimwiki/wiki/Dreams/Dreams.wiki'
     tmux split-window -t $session1:3.2 -v -p 60 \
         'vim "-c set nospell" ~/vimwiki/wiki/Ideas/Ideas.wiki'
@@ -68,11 +68,12 @@ if [ $? != 0 ]; then
         'ranger ~/Downloads/'
     tmux split-window -t $session1:5.1 -v -p 40 \
         'ranger /media/backup/Work/'
+    tmux select-pane -t $session1:5.1
 
     # [ 6 music ]
-    tmux new-window -t $session1 -n music ncmpcpp
-    tmux split-window -t $session1:6.1 -h alsamixer
-    tmux select-pane -t $session1:6.1
+    # tmux new-window -t $session1 -n music ncmpcpp
+    # tmux split-window -t $session1:6.1 -h alsamixer
+    # tmux select-pane -t $session1:6.1
 
     tmux select-pane -t $session1:3.1
 
@@ -99,7 +100,7 @@ if [ $? != 0 ]; then
     # [ others ]
     tmux new-window -t $session2 -n misc
 
-    tmux select-pane -t $session2:1
+    tmux select-pane -t $session2:1.1
 
 fi
 # }}}
