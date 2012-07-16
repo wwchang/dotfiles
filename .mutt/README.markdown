@@ -90,6 +90,9 @@ C-T -- complete when input address in new composed mail.
 C-i -- open mailboxes list, and jump(search) to Stack Exchange folder to access
 sub-mailboxes.
 
+default keys and functions (macros) can reference here:
+http://www.mutt.org/doc/devel/manual.html#functions
+
 # add at same time ( sync )
 
 `/usr/share/mutt/example/`
