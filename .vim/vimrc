@@ -638,6 +638,7 @@ endif
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
                     \\ \%#StatusPercent#\%P
+        set statusline+=\ \%{VirtualEnvStatusline()}
     endfunction
 
     " if Powerline is not available, use my custom statusline settings.
@@ -1153,6 +1154,8 @@ endif
         " call vam#ActivateAddons(['github:jbking/vim-pep8'])
         " call vam#ActivateAddons(['flake8'])
         " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
+        call vam#ActivateAddons(['virtualenv'])
+        " call vam#ActivateAddons(['vim-python-virtualenv'])
         call vam#ActivateAddons(['python_match'])
         " call vam#ActivateAddons(['python_open_module'])
         "call vam#ActivateAddons(['PyREPL'])
@@ -3188,6 +3191,24 @@ syntax on
                 " cycle through:
                 " if/elif/else, try/except/catch,
                 " for/continue/break, while/continue/break,
+        " }}}
+
+        " [ virtualenv ] {{{
+            " virtualenv {{{ activate/deactivate a virtualenv within Vim.
+                " Usage:
+                    " statusline: %{VirtualEnvStatusline()}
+                    " Commands:
+                        " :VirtualEnvList
+                        " :VirtualEnvDeactivate
+                        " :VirtualEnvActivate [name]
+                let g:virtualenv_loaded = 0
+                let g:virtualenv_directory = "~/.virtualenvs"
+                let g:virtualenv_auto_activate = 1
+                let g:virtualenv_stl_format = '[%n]'
+            " }}}
+
+            " vim-python-virtualenv {{{
+            " }}}
         " }}}
 
         " [ other: open & jump, module ] {{{
