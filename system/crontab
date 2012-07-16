@@ -98,9 +98,9 @@ XAUTHORITY=/home/chris/.Xauthority
 
 # mutt & getmail & maildir-utils
 # 0   4   *   *   *   getmail -q -a -l >/dev/null
-*/5     *      *   *   * getmail -q -n -l --getmaildir=/home/chris/.mutt/getmail
+*/5 9-21 *   *   * getmail -q -n -l --getmaildir=$HOME/.mutt/getmail
 # 3       */5    *   *   *   on_ac_power && mu index -q
-0   19  *   *   6   rm -rf "$HOME"/Mails/Trash/{cur,new}/*
+0   19  *   *   6   rm -rf $HOME/Mails/Trash/{cur,new}/*
 
 # invoke gui software in crontab
 # */2 * * * * export DISPLAY=:0 && /usr/bin/chromium-browser google.com
@@ -123,5 +123,6 @@ XAUTHORITY=/home/chris/.Xauthority
 # 0   1   *   *   * nice -n 15 canto-fetch
 
 # clean old files
-0   19  25  */2 *   find /home/chris/.backup-vim/ -mtime 60 -o -atime 60 -delete
-1   19  24  *   *   echo "" > /home/chris/.procmail.log
+0   19  25  */2 *   find $HOME/.backup-vim/ -mtime 60 -o -atime 60 -delete
+1   19  24  *   *   echo "" > $HOME/.procmail.log
+1   20  24  *   *   echo "" > $HOME/.mutt/getmail/log
