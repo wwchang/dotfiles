@@ -638,7 +638,7 @@ endif
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
                     \\ \%#StatusPercent#\%P
-        set statusline+=\ \%{VirtualEnvStatusline()}
+        " set statusline+=\ \%{VirtualEnvStatusline()}
     endfunction
 
     " if Powerline is not available, use my custom statusline settings.
@@ -1154,7 +1154,7 @@ endif
         " call vam#ActivateAddons(['github:jbking/vim-pep8'])
         " call vam#ActivateAddons(['flake8'])
         " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
-        call vam#ActivateAddons(['virtualenv'])
+        " call vam#ActivateAddons(['virtualenv'])
         " call vam#ActivateAddons(['vim-python-virtualenv'])
         call vam#ActivateAddons(['python_match'])
         " call vam#ActivateAddons(['python_open_module'])
@@ -1243,7 +1243,7 @@ endif
         call vam#ActivateAddons(['vikitasks'])
         " call vam#ActivateAddons(['vktheming'])
         call vam#ActivateAddons(['viske'])
-        call vam#ActivateAddons(['notes'])
+        " call vam#ActivateAddons(['notes'])
         " call vam#ActivateAddons(['vim-pad'])
             " GTD
         " call vam#ActivateAddons(['VimOrganizer'])
