@@ -96,7 +96,7 @@ local base_path='%{$fg_bold[cyan]%}%c%{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%} $user_prompt %{$reset_color%}'
 # local pre_prompt='%{$fg_bold[$CARETCOLOR]%}%(!.#.$) %{$reset_color%}'
 # local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#.➜) %{$reset_color%}'
-local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#.</>) %{$reset_color%}'
+local pre_prompt=' %{$fg_bold[$CARETCOLOR]%}%(!.#.</>)%{$reset_color%}'
 local return_code='%(?..%{$fg[red]%}%? ↵%{$reset_color%})'
 
 local username='%{$fg_bold[green]%}%n%{$reset_color%}'
