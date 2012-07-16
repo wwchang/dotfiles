@@ -12,11 +12,12 @@ fi
 
 # check whether already in tmux.
 if [ -n "$TMUX" ]; then # if terminal is Tmux.
-    echo "Now, you're already in tmux."
-    exit 0
+    echo "Now, you're 'already' in tmux. be careful with nested tmux session"
+    echo "please exit current tmux session to execute this script."
+    exit 1
 elif [ -n "$SCREEN" ]; then
     echo "Now, you're already in screen"
-    exit 0
+    exit 1
 fi
 
 # session name
