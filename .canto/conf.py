@@ -38,6 +38,7 @@ default_rate(600)
 # Python {{{
 add("http://www.pythonware.com/daily/rss.xml", tags=[None, "program", "Python"]) # Daily Python-URL!
 add("http://pythonnotes.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "program", "Python"]) # Python Notes
+add("http://neopythonic.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "Python"]) # Neopythonic -> Python's BDFL (Guido van Rossum)
 # }}}
 
 # Go Lang {{{
@@ -46,6 +47,7 @@ add("http://feeds.feedburner.com/GoLangTutorials", tags=[None, "program", "Go"])
 
 default_rate(500)
 # projects release {{{
+add("http://pwmt.org/rss.xml", tags=[None, "pwmt"]) # pwmt.org
 add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "Ruby", "lang"]) # Ruby language
 add("http://blog.golang.org/feeds/posts/default", tags=[None, "Go", "lang"]) # Go lang
 add("http://feeds.feedburner.com/dartosphere", tags=[None, "Dart", "lang"]) # Dart lang
@@ -59,7 +61,8 @@ add("http://feed43.com/vim-scripts.xml", tags=[None, "vim", "script", "plugin"])
 add("http://definitely-awesome.posterous.com/rss.xml", tags=[None, "Awesome"]) # definitely Awesome
 add("http://blog.conky.be/feed/", tags=[None, "update"]) # Conky Blog
 add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat update
-add("http://dev.weechat.org/feed/atom", tags=[None, "update"]) # " weechat dev annonce"
+add("http://dev.weechat.org/feed/atom", tags=[None, "update"]) # weechat dev annonce
+add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat scripts
 add("http://dev.mutt.org/hg/mutt/rss-log", tags=[None, "update"]) # " Mutt dev"
 add("http://feeds2.feedburner.com/css3", tags=[None, "CSS3", "CSS", "Web"]) # CSS3 .info
 add("http://www.backbox.org/blog/feed", tags=[None, "distro"]) # BackBox
@@ -90,7 +93,7 @@ add("http://dev.open.taobao.com/bbs/rss.php?fid=2", tags=[None, "work", "taobao"
 add("http://ued.taobao.com/blog/feed/", tags=[None, "work", "taobao", "News"]) # TaoBao UED
 add("http://hacks.mozilla.org/feed/", tags=[None, "web", "mozilla"]) # " hacks.mozilla"
 add("https://github.com/blog.atom", tags=[None, "update", "git", "feature", "blog"]) # " Github Blog"
-# add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # " maemo latest # news
+# add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # " maemo latest news
 # add("http://maemo.org/news/items.xml", tags=[None, "maemo"]) # " maemo news"
 # add("http://feeds.feedburner.com/37signals_podcast") # " 37singles Podcast"
 add("http://www.hackthissite.org/pages/hts.rss.php", tags=[None, "hack"]) # " hackthissite RSS"
@@ -101,7 +104,8 @@ add("http://feed.feedsky.com/aqee-net", tags=[None, "program"]) # 外刊 IT 评�
 
 default_rate(300)
 # Blog {{{
-add("http://blog.stackoverflow.com/feed/", tags=[None, "StackExchange", "Blog"]) # Stack Exchange Blog
+add("http://www.altdevblogaday.com/feed/", tags=[None, "blog"]) # altdevblogaday
+add("http://blog.stackoverflow.com/feed/", tags=[None, "StackExchange", "blog"]) # Stack Exchange Blog
 add("http://blog.binux.me/feed/", tags=[None, "hack"]) # Blinux.
 # add("http://igfw.net/feed", tags=[None, "censorship"]) # iGFW
 add("http://instagram-engineering.tumblr.com/rss", tags=[None, "server"]) # Instagram Tech Blog
@@ -167,6 +171,7 @@ add("http://www.ok.net.cn/blog/rss.php", tags=[None, "SEO"]) # 电子商务博�
 
 default_rate(600)
 # Crack {{{
+add("http://www.breakthesecurity.com/feeds/posts/default?alt=rss", tags=[None, "crack"]) # Ethical Hacking Tutorials |Penetration Testing Lab | Learn How to Hack
 add("http://pcsci3nce.info/?feed=rss2", tags=[None, "crack", "hack"]) # " pcsci3nce"
 add("http://feeds.feedburner.com/HackingWifi", tags=[None, "crack", "hack"]) # " Hacking Wifi"
 add("http://www.dc949.org/news/rss.php", tags=[None, "crack", "blog"]) # DC949 News
