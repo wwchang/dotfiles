@@ -1084,7 +1084,7 @@ endif
         call vam#ActivateAddons(['Tagbar'])
         call vam#ActivateAddons(['tagbar-phpctags'])
         "call vam#ActivateAddons(['taglist'])
-        call vam#ActivateAddons(['TagHighlight'])
+        " call vam#ActivateAddons(['TagHighlight'])
         " call vam#ActivateAddons(['Tag_Signature_Balloons'])
         call vam#ActivateAddons(['AutoTag'])
         " call vam#ActivateAddons(['taggatron'])
@@ -1093,7 +1093,7 @@ endif
         " call vam#ActivateAddons(['CCTree'])
             " call vam#ActivateAddons(['github:brookhong/cscope.vim'])
             " buffers
-        call vam#ActivateAddons(['Tagma_Buffer_Manager'])
+        " call vam#ActivateAddons(['Tagma_Buffer_Manager'])
         " call vam#ActivateAddons(['minibufexplorer'])
         "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
         "call vam#ActivateAddons(['LustyJuggler'])
@@ -1171,9 +1171,9 @@ endif
         call vam#ActivateAddons(['Better_CSS_Syntax_for_Vim'])
         " call vam#ActivateAddons(['css3_mod'])
             " JavaScript
-        call vam#ActivateAddons(['jsflakes%4057'])
-        call vam#ActivateAddons(['jsruntime'])
-        call vam#ActivateAddons(['jsoncodecs'])
+        " call vam#ActivateAddons(['jsflakes%4057'])
+        " call vam#ActivateAddons(['jsruntime'])
+        " call vam#ActivateAddons(['jsoncodecs'])
         "call vam#ActivateAddons(['jsbeautify'])
         "call vam#ActivateAddons(['sourcebeautify'])
         "call vam#ActivateAddons(['javaScriptLint'])
@@ -1279,7 +1279,7 @@ endif
         "call vam#ActivateAddons(['VIM_Color_Picker'])
         "call vam#ActivateAddons(['nosyntaxwords'])
             " colorschemes
-        call vam#ActivateAddons(['galaxy'])
+        " call vam#ActivateAddons(['galaxy'])
             " mark & position & session
                 " mark several words in different colors simultaneously.
         " call vam#ActivateAddons(['DynamicSigns'])
@@ -1958,7 +1958,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ snippets ] {{{ <Tab> / Ctrl-j/k ??
+    " [ snippets ] {{{ <Ctrl-j/k> | <Tab>
         " neocomplcache-snippets_complete {{{ snippets using neocomplcache complete.
             "This source analyzes snippet files for completion. The source offer
             "a function similar with snipMate.vim and snippetsEmu.vim. Because
@@ -1988,7 +1988,7 @@ syntax on
             "let g:neocomplcache_snippets_dir='~/.vim/snippets/dir2,~/.vim/snippets/dir2'
             let g:neocomplcache_snippets_dir='~/.vim/snippets/neco-snippets'
             let g:neocomplcache_disable_select_mode_mappings = 1
-                " usful to avoid conflicting snippets.
+                " 1: not load runtime snippets. avoid conflicting snippets.
             let g:neocomplcache_snippets_disable_runtime_snippets = 0
 
                 function! EditNeoSnippets()
@@ -2744,6 +2744,7 @@ syntax on
             "       - -G<regex>
             " Key Maps:
             " <CR>, oOs, i, q, u, co, D, S, m, git, x, X, r, R, P.
+            " <leader>m (merge branch)
             nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
@@ -2756,11 +2757,11 @@ syntax on
             let g:Gitv_DoNotMapCtrlKey = 1
 
             " resize gitv window.
-            augroup MyGitv
-                au!
-                au WinEnter gitv-* resize 10
-                " WinEnter, WinCreate -> two events.
-            augroup END
+            " augroup MyGitv
+            "     au!
+            "     au WinEnter gitv-* resize 20
+            "     " WinEnter, WinCreate -> two events.
+            " augroup END
         " }}}
 
         " extradite {{{ A git commit log browser that extends fugitive.vim
@@ -3030,6 +3031,12 @@ syntax on
 
 " [ languages ] {{{
     " [ Python ] {{{
+        " if has('python3')
+        "     echo 'there is Python 3.x'
+        " elseif has('python')
+        "     echo 'there is Python 2.x'
+        " endif
+
         " [ IDE ] {{{
             " Python-mode-klen {{{ Python IDE.
                 " K: doc <C-space>: Rope autocomp
@@ -3953,6 +3960,7 @@ syntax on
             " [Visual]:ScreenSend Send code from a vim buffer to the shell.
             " :ScreenQuit or :qa Quit the screen session return to vim session.
             " --- :ScreenShellVertical [cmd], :IPython
+            " :ScreenShellReopen command for tmux.
             let g:ScreenImpl = 'Tmux' " 'GnuScreen' , 'Tmux'
             " Note: With tmux, :ScreenShellAttach is currently not supported.
             "let g:ScreenShellScreenInitArgs =
@@ -4530,11 +4538,14 @@ syntax on
             " Usage:
             "   - :ListPads (`Ctrl-Esc`, <Leader><Esc>) <Plug>PadListPads.
             "       - <Enter> to open pad in list.
-            "       - <Del> to delete.
+            "       - dd, <Del> to delete.
             "       - <Esc> to close buffer.
             "       - <Shift-F> to search.
+            "       - <Shift-S> select sort.
+            "   - in a note: <Leader>dd will delete note file.
+            "   - in a note: <Leader>+m to ask for filetype and insert modeline.
             "   - (`<Leader>s`) <Plug>PadSearchPads.
-            "   - :OpenPad (`Shift-Esc` <Leader>n) <Plug>PadOpenPad.
+            "   - :OpenPad (<Leader>n) <Plug>PadOpenPad. create new note
             let g:pad_dir = "~/vimwiki/vim-pad/"
             let g:pad_format = "markdown" " markdown,pandoc,
             let g:pad_modeline_position = "bottom" " bottom, top,
@@ -5008,7 +5019,7 @@ syntax on
     " [ smalltools ] {{{
         " fcitx
             " for set small delay
-            set timeoutlen=600
+            " set timeoutlen=600
             " Screen: maptimeout, Tmux: escape-time options.
     " }}}
 
