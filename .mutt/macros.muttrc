@@ -216,9 +216,6 @@ macro index <esc><tab> <next-unread-mailbox>
 # macro generic $ "<shell-escape>'getmail -n -l &'<enter>"
 # macro generic $ "<sync-mailbox><shell-escape>~/.mutt/scripts/syncMail.sh &<enter>"
 
-# browser/view
-bind browser i exit
-
 # copy/move/attach emails
 # To additionally get straight to the folder browser when copying, moving and attaching mail, add the following macros:
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
@@ -245,15 +242,13 @@ macro index,pager A "|abook --add-email --config $HOME/.mutt/abook/abookrc --dat
 # macro index,pager A "<pipe-message>abook --add-email<return>" "add the sender address to abook"
 # }}}
 
-# attachments {{{
-# macro pager l "<pipe-entry>lynx -stdin -force_html<enter>"
-# macro attach l "<pipe-entry>lynx -stdin -force_html<enter>"
-# }}}
+# attachments: press "v" to view attachment list, press "Enter" to view them with mailcap.
 
 # imitate the old search-body function
 # macro index \eb "<search>~b " "search in message bodies"
 
 # Encrypt/Decrypt: GPG, PGP {{{
+
 # Encrypt a message with GPG key on the fly.
 # "p" to show PGP menu: encrypt/sign(as)/clear composing message.
 
@@ -304,19 +299,9 @@ folder-hook spam push 'D.\n'
 # macro pager H "|bogofilter -c ~/.mutt/bogofilter/bogofilter.cf -M -Sn -I\n<save-message>=INBOX/\n"          "Learn as ham and undo spam, then save to index"
 # }}}
 
-# [ urlview ] {{{
-macro index \cb   "|urlview\n" "browse URLs"
-# macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
-# macro pager \cb <pipe-entry>'w3m'<enter> 'Follow links in w3m'
-# macro index,pager \cb |urlview\n
-
-# simulate the old url menu
-#macro index,pager,attach,compose \cb "\
-#<enter-command> set my_pipe_decode=\$pipe_decode pipe_decode<Enter>\
-#<pipe-message> urlview<Enter>\
-#<enter-command> set pipe_decode=\$my_pipe_decode; unset my_pipe_decode<Enter>" \
-#"call urlview to extract URLs out of a message"
-# }}}
+# [ urlview ]
+macro pager \cb   "|urlview\n" "browse URLs"
+# macro pager \cb   <pipe-entry>'urlview'<enter> "browse URLs"
 
 # [ mairix ] {{{
 # macro generic ,f "<shell-escape>mairix " "search via mairix"
