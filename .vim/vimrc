@@ -210,7 +210,8 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
     augroup END
     set spelllang=en " en: all, en_gb: Great Britain.
     set spellsuggest=best " default and fast list.
-    set spellfile=~/.vim/spell/en.utf-8.add " 'zg' add to this file.
+    set spellfile=~/.vim/spell/en.utf-8.add " 'zg': add, 'zw': remove.
+        " :mkspell command to generate a vim spell file from word lists.
     nnoremap <silent> <Leader>sc :set spell!<CR>
     " }}}
 
@@ -285,6 +286,14 @@ set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
                 let g:ftplugin_sql_omni_key = '<C-c>'
                 " <C-c>[akfoTsvclLR]
         augroup END
+
+        " use syntaxcomplete omnifunc for other unknow filetypes.
+        if has("autocmd") && exists("+omnifunc")
+            autocmd FileType *
+                        \ if &omnifunc == "" |
+                        \   setlocal omnifunc=syntaxcomplete#Complete |
+                        \ endif
+        endif
         " }}}
     " }}}
 
