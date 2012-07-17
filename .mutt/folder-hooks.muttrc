@@ -63,6 +63,9 @@ folder-hook ">" set sort = reverse-date-received
 # always collapse all threads
 folder-hook . "push <collapse-all>"
 
+# automatically delete all duplicated mails when change mailbox or quit.
+folder-hook . "push <delete-pattern>~=<enter>"
+
 
 # only show PGP color in INBOX
 folder-hook "\!"    color index black brightcyan ~k
