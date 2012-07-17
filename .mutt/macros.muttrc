@@ -387,7 +387,13 @@ macro generic ,f "<enter-command>set my_cmd = \`/home/chris/.mutt/scripts/msearc
 # [ Mu ] {{{
 # first macro does the search according to user query, second macro jumps to result list
 macro index <F8> "<shell-escape>mu find --clearlinks --format=links --linksdir=~/Mails/Search " "mu find"
-macro index <F9> "<change-folder-readonly>=Search" "mu find results"
+macro index <F7> "<change-folder-readonly>=Search" "mu find results"
+
+# rebuild database:
+# $ mu index --rebuild --maildir=~/Mails
+# search recipes:
+# $ man mu-find
+# e.g. $ mu find subject:snow from:john
 
 # ##  combind them into one.
 # FIXME
