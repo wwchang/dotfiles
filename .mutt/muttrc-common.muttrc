@@ -168,9 +168,10 @@ set recall    = ask-yes
 # recall = yes is meanless if postpone = no
 
 # [ collapse of thread ]
-set collapse_unread = yes
+set collapse_unread = no
 # yes: collapse "even" has unread message in thread. message status: n
-# no:  "no" collapse "when" has unread message in thread.
+# no:  "no" collapse "when" has unread message in thread. only collapse old 
+# thread which has no new messages. so easy to find new reply on thread.
 # mutt not collapse a thread if it contains any unread messages.
 set uncollapse_jump = yes
 # yes: jump to the unread message, if any, when the current thread is uncollapsed.
