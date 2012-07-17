@@ -1,3 +1,0 @@
-This folder "ftdetect" should under ~/.vim/ftdetect 
-
-* NOTE this folder will lead vim can detect filetype for program language. 
