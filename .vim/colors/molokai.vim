@@ -263,12 +263,14 @@ if &t_Co > 255
    hi link htmlLink         Underlined
    hi link pythonFunction   Identifier
 
-    "if has("spell")
-        "hi SpellBad       ctermfg=016 ctermbg=197
-        "hi SpellCap       ctermfg=016 ctermbg=203
-        "hi SpellLocal     ctermfg=none ctermbg=117
-        "hi SpellRare      ctermfg=none ctermbg=214
-    "endif
+   " spell
+   hi SpellBad       ctermfg=016  ctermbg=196 cterm=undercurl,bold
+   " word should start with a capital.
+   hi SpellCap       ctermfg=016  ctermbg=125 cterm=undercurl
+   " word is recognized as one that is used in another region.
+   hi SpellLocal     ctermfg=none ctermbg=117
+   " word is hardly ever used.
+   hi SpellRare      ctermfg=none ctermbg=105
 
 end
 
