@@ -25,5 +25,9 @@ setlocal iskeyword+=_,$,@,%,#,-
 setlocal spell
 
 " omni-complete
-" setlocal omnifunc=pythoncomplete#Complete " for Python 2.x
-setlocal omnifunc=python3complete#Complete " for Python 3.x
+" if has('python3/dyn') || has('python/dyn') || has('python3') || has('python')
+if has('python3/dyn') || has('python3')
+    setlocal omnifunc=python3complete#Complete " for Python 3.x
+elseif has('python/dyn') || has('python')
+    setlocal omnifunc=pythoncomplete#Complete " for Python 2.x
+endif
