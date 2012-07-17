@@ -1,30 +1,45 @@
 # build up
                                                   /-- encrypt : gpg.
                                                  /    (after write email,
-                                                /     press "p"
+                                                /     press "p" to
                                                /     show up encrypt/sign/clear menu)
-                                              /-- aliases.muttrc & abook & lbdb
-                                             /-- Send : sendmail
-                         bogofilter         /
+                                              /-- aliases.muttrc & abook & lbdb (A, C-a)
+                                             /-- Send : sendmail/msmtp (m)
+                                            /       C-t -- address/query complete
+                                            /   `-  m --> compose a new message.
+                                            /       r --> reply to sender
+                                            /       g -- reply to allrecipients
+                                            /       L --> replay to mailing list
+                                            /       f --> forward message
+                                            /       b --> bounce(remail) message
+                                            /   Esc k --> mail a PGP key to someone
+                         bogofilter        / -- get help: "?" or "F1"
     getmail -> procmail ----------> INBOX -> Read.
-                                           |    `- bogofilter for spam
-                                           |    `- urlview & mailcap
+                                           |    `- bogofilter for spam/ham (S/H)
+                                           |    `- urlview & mailcap (C-b)
                                            |      `- hooks & macros
                                            |      `- theme, format, and looks.
                                            |      `- key binds.
                                            |      `- score
                                            |      `- filter
-                                           |      `- sidebar
+                                           |      `- sidebar (C-n/p)
                                            |      `- multiple accounts.
                                            |      `- signature
                                            |      `- SMTP, POP3, IMAP ...
                                            |      `-
-                                           \__ Search : Mairix,
+                                           \__ View:
+                                           |    - thread mode:
+                                           |        - <Esc>v/V collapse (all) thread
+                                           \__ Search :
+                                           |    - Mairix: (,f)
+                                           |    - Mu: <F8> search, <F7> result
                                            \__ Notify :
                                            |
                                             \__ Write : Vim
                                             \__ attachment : press "p" (on PDF)
-                                             to choose printer to print. (PDF file)
+                                           |     to choose printer to print. (PDF file)
+                                            \- save/move/copy/delete/bounce/attach
+                                                \ s/M/C/D(d)/B/A
 
 NOTE:
     1. store password with encrypt instead of plain text.
@@ -32,56 +47,18 @@ NOTE:
 
 
 # key binds & macros
-S -- spam (bogofilter)
-H -- non-spam (bogofilter)
-d -- delete
-m -- write mail
-r -- reply mail
-L -- reply to mailing list address
-CC:  -- Group replies
-f -- forward message.
-b -- bounce (remail) message.
+NOTE: <esc>key  is usually about thread or reverse meaning.
 E-k -- mail a PGP public key to someone.
 ^K -- extra public key from message, and add them into your public key ring.
-## compose mail
-    Table 2.9. Most commonly used Compose Menu Bindings
-    Key 	Function 	            Description
-    a 	    <attach-file> 	        attach a file
-    A 	    <attach-message> 	    attach message(s) to the message
-    E-k 	<attach-key> 	        attach a PGP public key
-    d 	    <edit-description> 	    edit description on attachment
-    D 	    <detach-file> 	        detach a file
-    t 	    <edit-to> 	            edit the To field
-    E-f 	<edit-from> 	        edit the From field
-    r 	    <edit-reply-to> 	    edit the Reply-To field
-    c 	    <edit-cc> 	            edit the Cc field
-    b 	    <edit-bcc> 	            edit the Bcc field
-    y 	    <send-message> 	        send the message
-    s 	    <edit-subject> 	        edit the Subject
-    S 	    <smime-menu> 	        select S/MIME options
-    f 	    <edit-fcc> 	            specify an ``Fcc'' mailbox
-    p 	    <pgp-menu> 	            select PGP options
-    P 	    <postpone-message> 	    postpone this message until later
-    q 	    <quit> 	quit (abort)    sending the message
-    w 	    <write-fcc> 	        write the message to a folder
-    i 	    <ispell> 	            check spelling (if available on your system)
-    C-F 	<forget-passphrase> 	wipe passphrase(s) from memory
 R -- re-call postponed mail.
 A -- add send to abook (abook)
 C-a -- launch abook (abook)
 ,f -- search mail with mairix (mairix)
-$ -- sync mailboxes
-C-n -- next mailbox in sidebar (sidebar)
-C-p -- previous mailbox in sidebar (sidebar)
 y -- show mailboxes list.
 c -- show mailboxes list (mutt)
-C-b -- browse URLs (urlview)
-F8 -- search mail with mu (mu)
-F9 -- show found mails (mu)
 C-v -- virify a message signature (gpg)
 gi -- go to INBOX (mutt)
 gd -- go to Draft (mutt)
-tab -- next unread/new
 space -- next page
 ## address
 ### query
