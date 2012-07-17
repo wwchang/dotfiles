@@ -75,7 +75,7 @@ bind    pager   l   next-entry
 # comment "index R" because index R to recall postponed mail draft
 bind    index,pager   r   reply
 bind    pager   R   group-reply
-bind    pager   g   group-reply
+# bind    pager   g   group-reply # conflict with "gg"
 bind    pager   L   list-reply
 bind    index,pager     f   forward-message
 bind    index,pager     b   bounce-message
