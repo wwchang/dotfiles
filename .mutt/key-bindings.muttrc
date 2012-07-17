@@ -4,11 +4,22 @@
 #
 # set as Vim like key bindings
 
-# this is from davep config
-# Generic key bindings.
+# bind {{{
+# syntax:
+# bind map1,map2,... key function
+# This command binds the given key for the given map  or  maps  to
+# the given function. Multiple maps may be specified by separating
+# them with commas (no whitespace is allowed).
 
-# In addition, key may consist of:
-#  \t              tab
+# Valid maps are: generic, alias, attach, browser, editor,	index,
+#       compose, pager, pgp, postpone, mix.
+
+#       For  more  information on keys and functions, please consult the
+#       Mutt Manual. Note that the function  name  is  to  be  specified
+#       without angle brackets.
+
+# key code list:
+# \t              tab
 # <tab>           tab
 # \r              carriage return
 # \n              newline
@@ -30,30 +41,14 @@
 # <space>         Space bar
 # <f1>            function key 1
 # <f10>           function key 10
+# }}}
 
-
-# OLD
-# emacs-like bindings
-# bind editor    "\e<delete>"    kill-word
-# bind editor    "\e<backspace>" kill-word
 
 # map delete-char to a sane value
-bind editor <delete>  delete-char
-bind editor <space> noop
-
-# move marked delete mails into Trash when you press "d"
-# you only need to save save-message function into your Trash. like $HOME/Mails/Trash , mail will auto be marked with "D" , in order let "d"
-# to save mails to Trash, you can bind a macro for "d".
-# if you want to delete mails in Trash, this is a loop. so you need to recover delete-message function of "d" in Trash, and use "d" in other mailboxes.
-# folder-hook . 'macro index d "$HOME/Mails/trash\r"'
-# folder-hook $HOME/Mails/trash 'bind index d delete-message'
-
-# macro index d "<save-message>=.Trash\n"
-# macro pager d "<save-message>=.Trash\n"
+bind    editor  <delete>    delete-char
+bind    editor  <space>     noop
 
 # vim like bindings
-# bind    index   *       flag-message
-bind    pager   q       exit
 bind    index   gg      first-entry
 bind    index   G       last-entry
 bind    index   \cf     next-page
