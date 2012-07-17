@@ -1282,7 +1282,7 @@ endif
         " call vam#ActivateAddons(['Tumble'])
         "call vam#ActivateAddons(['TwitVim'])
             " color/syntax
-        call vam#ActivateAddons(['colorv'])
+        " call vam#ActivateAddons(['colorv'])
         "call vam#ActivateAddons(['Colorizer'])
         "call vam#ActivateAddons(['CSSMinister'])
         "call vam#ActivateAddons(['ScrollColors'])
