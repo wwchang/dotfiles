@@ -155,6 +155,7 @@ set reverse_alias = yes # display chris not numbchild@gmail.com
 
 # urgent notifycation trigger
 set beep_new         = yes
+# remail a message to another user.
 set bounce           = yes
 set bounce_delivered = yes
 # unset bounce_delivered # bounce : without putting you in "From"
@@ -166,12 +167,16 @@ set postpone  = ask-yes
 set recall    = ask-yes
 # recall = yes is meanless if postpone = no
 
+# [ collapse of thread ]
 set collapse_unread = yes
-# unset collapse_unread
+# yes: collapse "even" has unread message in thread. message status: n
+# no:  "no" collapse "when" has unread message in thread.
 # mutt not collapse a thread if it contains any unread messages.
-set uncollapse_jump = no
-# Default is No, When set, Mutt will jump to the next unread message, if any, when the current thread is uncollapsed.
-# auto next
+set uncollapse_jump = yes
+# yes: jump to the unread message, if any, when the current thread is uncollapsed.
+set digest_collapse = yes
+# If this option is set, mutt's revattach menu will not show the subparts of individual messages in a digest. To see these subparts, press 'v' on that menu. default is yes
+
 
 # printer when you press "p"
 set print           = ask-yes
@@ -194,9 +199,6 @@ set delete       = ask-yes
 set delete_untag = yes
 # If this option is set, mutt will untag messages when marking them for deletion. This applies when you either explicitly delete a message, or when you save it to another
 # folder. Default is yes
-
-set digest_collapse = yes
-# If this option is set, mutt's revattach menu will not show the subparts of individual messages in a digest. To see these subparts, press 'v' on that menu. default is yes
 
 
 set imap_check_subscribed=yes
