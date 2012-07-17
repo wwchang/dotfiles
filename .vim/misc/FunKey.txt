@@ -1,9 +1,0 @@
-    F1  -- pyref
-    F2  -- vim internal help.
-    F3  -- QuickFix
-    F4  -- Location List
-    F8  -- Gundo Toggle
-    F9  -- SingleCompile
-    F10 -- :make / SingleCompileRun
-    F11 -- NERDTree Toggle
-    F12 -- Taglist
