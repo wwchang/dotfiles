@@ -207,7 +207,20 @@ macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index gs "<change-folder>=Sent<enter>" "Go to Sent Mail"
 macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 
-macro index <esc><tab> <next-unread-mailbox>
+# jump to next unread mailbox/folder
+# macro index <esc><tab> <next-unread-mailbox>
+
+# TODO jump to my thread's new reply. {{{
+# macro index <Tab> ????<key sequence>
+# "~x .*@stardiviner" # I'm in the References list.
+# "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
+# <next-new-then-unread>
+# <search> -- search for a regular expression.
+# <jump> -- jump to index number.
+# use "<change-mailbox>?" "?" to show up a list of mailboxes.
+#
+macro index <Tab> "<search>~N (~x .*@stardiviner)<enter>"
+# macro index <Tab> "<search>~h 'In-[Rr]eply-[Tt]o: .*@stardiviner'<enter>"
 # }}}
 
 # manipulate emails: view, copy, move, attach, trash, spam, ham, {{{
@@ -221,8 +234,13 @@ macro index <esc><tab> <next-unread-mailbox>
 macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
 macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
+macro index B "<bounce-message>?<toggle-mailboxes>" "bounce a message to another user"
 
 # Trash
+# move marked delete mails into Trash when you press "d"
+# you only need to save save-message function into your Trash. like $HOME/Mails/Trash , mail will auto be marked with "D" , in order let "d"
+# to save mails to Trash, you can bind a macro for "d".
+# if you want to delete mails in Trash, this is a loop. so you need to recover delete-message function of "d" in Trash, and use "d" in other mailboxes.
 folder-hook .      'macro index,pager d "<save-message>=Trash<enter>"'
 folder-hook =Trash 'macro index,pager d <delete-message>'
 # }}}
