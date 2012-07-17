@@ -22,10 +22,6 @@ bind pager \Cp sidebar-prev
 bind pager \Cn sidebar-next
 bind pager \Co sidebar-open
 
-# do not list many sub-mailboxes, just display a main mailbox.
-# then use a macro to to open the main folder(mailbox) to access sub-mailboxes
-macro index,pager \Ci "<change-folder>?<search>Stack\ Exchange<enter>"
-
 # Alt-*
 #bind index \ek sidebar-prev
 #bind index \ej sidebar-next
@@ -41,9 +37,6 @@ macro index,pager \Ci "<change-folder>?<search>Stack\ Exchange<enter>"
 # b toggles sidebar visibility
 macro index <F11> '<enter-command>toggle sidebar_visible<enter>'
 macro pager <F11> '<enter-command>toggle sidebar_visible<enter>'
-
-# Remap bounce-message function to "B"
-# bind index B bounce-message
 
 #
 # Mario Holbe suggests:
