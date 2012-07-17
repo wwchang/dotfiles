@@ -245,7 +245,7 @@ macro index,pager A "|abook --add-email --config $HOME/.mutt/abook/abookrc --dat
 # attachments: press "v" to view attachment list, press "Enter" to view them with mailcap.
 
 # imitate the old search-body function
-# macro index \eb "<search>~b " "search in message bodies"
+macro index \eb "<search>~b " "search in message bodies"
 
 # Encrypt/Decrypt: GPG, PGP {{{
 
