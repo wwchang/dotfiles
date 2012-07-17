@@ -66,6 +66,9 @@ folder-hook . "push <collapse-all>"
 # automatically delete all duplicated mails when change mailbox or quit.
 folder-hook . "push <delete-pattern>~=<enter>"
 
+# automatically jump to my thread's new reply.
+folder-hook . "push <search>~N (~x .*@stardiviner)<enter>"
+
 
 # only show PGP color in INBOX
 folder-hook "\!"    color index black brightcyan ~k
