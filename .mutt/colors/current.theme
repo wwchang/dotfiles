@@ -3,8 +3,7 @@
 
 color hdrdefault    color241  default
 color signature     color039  default
-# color indicator     color232  color204 # pink
-color indicator     color233  color159
+color indicator     color016  color190
 color attachment    color123  default
 color error         color232  color196
 color message       color039  default
