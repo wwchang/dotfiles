@@ -2,6 +2,11 @@
 #
 # Macros {{{
 
+# macro map key sequence [ description ]
+#     This command binds the given sequence of keys to the  given  key
+#     in  the given map or maps.  For valid maps, see bind. To specify
+#     multiple maps, put only a comma between the maps.
+
 # Macros, what is it all about?
 
     # This is a short introduction to writing macros. As you will see they are
@@ -193,12 +198,11 @@
 
 # Add macros to make the folder browser usable by always using the mailboxes setup above:
 
-# Negative Mailboxes, Index, etc {{{
-# you can switch to locale computer user mailbox
-macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different mailbox"
-# macro pager c "<change-folder>?<toggle-mailboxes>" "open a different folder"
-# show the incoming mailboxes list (just like "mutt -y") and back when pressing "y"
+# Negative Mailboxes, Index, etc
+# toggle mailbox/folder list.
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different mailbox/folder"
 
+# quick jump to mailbox/folder
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
 macro index gs "<change-folder>=Sent<enter>" "Go to Sent Mail"
 macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
