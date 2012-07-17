@@ -1,5 +1,6 @@
 # NOTE
 # This settings should follow Procmailrc 's settings.
+# save sent emails to local mailboxs.
 
 fcc-save-hook "~t 'fuhemeng.*@(qq|yahoo|gmail)\.(com|cn)'"                      =Important
 fcc-save-hook "~t '(184145190|243113196|shanyingqing).*@(qq|yeah)\.(com|net)'"  =Important
@@ -12,8 +13,8 @@ fcc-save-hook "~t '(numbchild|blackredwhore|348284894).*@(gmail|qq|hotmail)\.(co
 #fcc-save-hook "~t '.*rubyonrails-talk@googlegroups\.com'" =Rails
 #fcc-save-hook "~t '.*@perl\.org'" =Perl
 #fcc-save-hook "~t '.*perl@googlegroups\.com'" =Perl
-#fcc-save-hook "~t '.*@archlinux\.(com|org)'" =Arch 
-#fcc-save-hook "~t '.*@maemo\.org'" =Maemo 
+#fcc-save-hook "~t '.*@archlinux\.(com|org)'" =Arch
+#fcc-save-hook "~t '.*@maemo\.org'" =Maemo
 #fcc-save-hook "~t 'ubuntu-.*@lists\.ubuntu\.com'" =ubuntu
 #fcc-save-hook "~t '.*@vim\.org'" =Vim
 #fcc-save-hook "~t 'vim.*@googlegroups\.com'" =Vim
