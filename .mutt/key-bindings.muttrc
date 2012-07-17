@@ -141,5 +141,6 @@ bind    index   <esc>t  tag-thread
 bind    index   F       flag-message
 # bind    index           \cT     untag-messages # FIXME function name.
 bind    index,pager     u   undelete-message
+bind    index,pager     N   toggle-new
 
 # vim:ft=muttrc
