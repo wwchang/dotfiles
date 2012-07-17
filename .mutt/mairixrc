@@ -19,8 +19,8 @@
 # $ mairix -f ~/.mairixrc
 
 base=~/Mails
-mfolder=Search
 database=~/.mairix/mairixdb
+mfolder=Search
 # maildir=.
 # maildir=INBOX
 maildir=Send
