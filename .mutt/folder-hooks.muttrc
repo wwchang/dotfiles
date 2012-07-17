@@ -57,7 +57,11 @@ folder-hook "<" set sort = reverse-date-sent
 # mbox ">" +mbox mailbox
 folder-hook ">" set sort = reverse-date-received
 
-# folder-hook /var/mail/ set mbox_type = mbox
+# automatically delete all mails has [signoff] in message header.
+# FIXME folder-hook =general push "<delete-pattern>~h '\[signoff\]'<enter>"
+
+# always collapse all threads
+folder-hook . "push <collapse-all>"
 
 
 # only show PGP color in INBOX
