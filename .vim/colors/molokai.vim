@@ -243,7 +243,7 @@ if &t_Co > 255
    hi Normal          ctermfg=252 ctermbg=232
    hi Comment         ctermfg=240               cterm=none
    " (current line/column) cursor line & column
-   hi CursorLine      ctermfg=none ctermbg=233   cterm=bold
+   hi CursorLine      ctermfg=none ctermbg=234   cterm=none
    hi CursorColumn    ctermfg=none ctermbg=233   cterm=none
 
    " line number
