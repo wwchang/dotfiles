@@ -279,7 +279,7 @@ set envelope_from_address= "numbchild@gmail.com"
 # >0 : number of seconds to wait for sendmail to finish before continuing.
 # 0  : wait forever for sendmail to finish
 # <0 : always put sendmail in the background without waiting.
-set sendmail_wait  = 3
+set sendmail_wait  = 0
 
 # ----------------------  folder  ---------------------------------
 set folder      = $HOME/Mails  # "+" or " = "
