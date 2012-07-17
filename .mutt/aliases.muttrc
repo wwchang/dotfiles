@@ -60,7 +60,6 @@ alias lemonhall lemonhall <lemonhall@gmail.com>
 alias microcai microcai <microcai@fedoraproject.org> # RedHat
 alias grawity Mantas Mikulėnas <grawity@gmail.com> # system manager
 alias TVBeGone Simon Budig <simon@budig.de>
-alias vimwiki vimwiki-author <habamax@gmail.com> # vimwiki(script)
 alias steve Steve Losh <steve@stevelosh.com> # vim scripter
 alias TimPope Tim Pope <website@tpope.org> # vim scripter
 alias Scrooloose Scrooloose <martin.grenfell@gmail.com> # vim scripter
@@ -71,46 +70,66 @@ alias Tristan Tristan <Tristan.J.Huang@gmail.com> # C / C++
 
 # Vimer
 alias marcweber MarcWeber <marco-oweber@gmx.de>
+alias vimwiki vimwiki-author <habamax@gmail.com> # vimwiki(script)
 
 # program
 alias qualityprogramming Quality Programming <qualityprogramming@googlegroups.com>
 # Python
 alias python Python.list <python-list@python.org>
-alias django.G django.user <django-users@googlegroups.com>
-alias python.lang.G comp.lang.Py <comp.lang.python@googlegroups.com>
+alias python.lang.G comp.lang.py <comp.lang.python@googlegroups.com>
 alias python_linux.G Py.linux <python_linux@googlegroups.com>
-alias python-cn Py-cn <python-chinese@lists.python.cn>
-alias python.tw Py.tw <pythontw@googlegroups.com>
+alias python.tw Python-tw <pythontw@googlegroups.com>
+alias python-cn Python-cn <python-chinese@lists.python.cn>
+alias python.lang.cn cn.lang.python <cn.bbs.comp.lang.python@googlegroups.com>
+alias cython.users cython-users <cython-users@googlegroups.com>
+alias django.G django.user <django-users@googlegroups.com>
+alias web.py web.py <webpy@googlegroups.com>
+alias sphinx.dev sphinx-dev <sphinx-dev@googlegroups.com>
 # Ruby
 alias ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>
 alias ruby.talk.ctl Ruby-Talk-ctl <ruby-talk-ctl@ruby-lang.org>
 alias ruby.core Ruby-Core <ruby-core@ruby-lang.org>
 alias ruby.core.ctl Ruby-Core-ctl <ruby-core-ctl@ruby-lang.org>
+alias ruby.core.G Ruby-core-G <ruby-core-google@googlegroups.com>
 alias ruby.doc  Ruby-Doc  <ruby-doc@ruby-lang.org>
 alias ruby.doc.ctl Ruby-Doc-ctl <ruby-doc-ctl@ruby-lang.org>
 alias ruby.cvs Ruby-CVS <ruby-cvs@ruby-lang.org>
 alias ruby.cvs.ctl Ruby-CVS-ctl <ruby-cvs-ctl@ruby-lang.org>
+alias ruby.G comp.lang.ruby <comp.lang.ruby@googlegroups.com>
+alias rubyonrails Ruby on Rails <rubyonrails-talk@googlegroups.com>
+# JavaScript
+alias javascript comp.lang.javascript <comp.lang.javascript@googlegroups.com>
+alias javascript.alt.lang JavaScript.alt.comp.lang <alt.comp.lang.javascript@googlegroups.com>
+# Lisp
+alias lisp.G comp.lang.lisp <comp.lang.lisp@googlegroups.com>
+alias lisp.user.G comp.org.lisp-users <comp.org.lisp-users@googlegroups.com>
+alias lisp.cn lisp-cn <lisp-cn@googlegroups.com>
+alias lisp.china lisp-china <lisp-china@googlegroups.com>
+# Scheme
+alias scheme comp.lang.scheme <comp.lang.scheme@googlegroups.com>
 # Java
 alias java.G comp.lang.Java <comp.lang.java.programmer@googlegroups.com>
 # C
 alias c.G comp.lang.C <comp.lang.c@googlegroups.com>
 # C++
-alias c-c++.lang.G comp.lang.C-C++ <alt.comp.lang.learn.c-c++@googlegroups.com>
+alias cpp comp.lang.c++ <comp.lang.c++@googlegroups.com>
 # Perl
 alias perl.beginners.G Perl.beginners.G <perl.beginners@googlegroups.com>
 alias perl.beginner Perl.beginner <beginners@perl.org>
 # Web
 alias mdc-dev Mozilla.Developer.Center <dev-mdc@lists.mozilla.org>
-alias jplayer jPlayer <jplayer@googlegroups.com>
 alias html5-zh HTML5-W3-zh <public-html-ig-zh@w3.org>
 alias whatwg whatwg <whatwg@whatwg.org>
 alias whatwg.help whatwg.help <help@whatwg.org>
 alias webdesign_programming Web design & programming <webdesign-outsource@googlegroups.com>
 alias firebug Firebug <firebug@googlegroups.com>
-# Vim plugins scripts
-alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>
-# Go
+alias jplayer jPlayer <jplayer@googlegroups.com>
+# Vimperator
+alias vimperator vimperator <vimperator@mozdev.org>
+# Go lang
 alias golang-nuts Go nuts <golang-nuts@googlegroups.com>
+alias golang-anon Go anon <golang-announce@googlegroups.com>
+alias go-lang-dev Go dev <golang-dev@googlegroups.com>
 alias golang-china Go China <golang-china@googlegroups.com>
 # Dart
 alias dart.misc Dart.misc <misc@dartlang.org>
@@ -119,16 +138,14 @@ alias dart.misc Dart.misc <misc@dartlang.org>
 alias prey Prey <prey-security@googlegroups.com>
 # TLF ( ncurses-based Ham Radio stuff )
 alias tlf TLF.devel <tlf-devel@nongnu.org>
-# Maemo
-alias maemo maemo.user <maemo-users@maemo.org>
-alias maemo-dev maemo.dev <maemo-developers@maemo.org>
-alias maemo-an maemo.an <maemo-announce@maemo.org>
 # Jekyll-Bootstrap
 alias jekyll Jekyll-Bootstrap <plusjade@gmail.com>
+# pandoc
+alias pandoc pandoc <pandoc-discuss@googlegroups.com>
 
 # linux
-alias linuxusersgroup LinuxUsersGroup <linuxusersgroup@googlegroups.com>
-alias linuxdevelopers Linux-Developers <linux-developers@googlegroups.com>
+alias linux.usersgroup LinuxUsersGroup <linuxusersgroup@googlegroups.com>
+alias linux.developers Linux-Developers <linux-developers@googlegroups.com>
 # ubuntu
 alias ubuntu-users ubuntu.users <ubuntu-users@lists.ubuntu.com>
 alias ubuntu-mobile ubuntu.mobile <ubuntu-mobile@lists.ubuntu.com>
@@ -144,20 +161,40 @@ alias arch-releng arch.releng <arch-releng@archlinux.org>
 alias gentoo.user.G Gentoo.user.G <linux.gentoo.user@googlegroups.com>
 alias gentoo.china.G Gentoo.china.G <gentoo-china@googlegroups.com>
 alias Gentoo.china.G.noreply Gentoo.china.G.noreply <gentoo-china+noreply@googlegroups.com>
+# Maemo
+alias maemo maemo.user <maemo-users@maemo.org>
+alias maemo-dev maemo.dev <maemo-developers@maemo.org>
+alias maemo-an maemo.an <maemo-announce@maemo.org>
+
+
 # Emacs
 alias emacs Emacs-help <help-gnu-emacs@gnu.org>
 alias emacs-anon Emacs-anon <info-gnu-emacs@gnu.org>
+alias emacs.sources Emacs-sources <gnu.emacs.sources@googlegroups.com>
 alias Evil Emacs-Evil <implementations-list@lists.ourproject.org>
+
 # Vim
 # Help on vim and vim usage
-alias vim_use.G Vim.use.G <vim_use@googlegroups.com>
+alias vim.use.G Vim-use-G <vim_use@googlegroups.com>
+alias vim.anon.G Vim-anon-G <vim_announce@googlegroups.com>
+alias vim.dev.G Vim-dev-G <vim_dev@googlegroups.com>
 alias vim.org Vim <vim@vim.org>
 # Discussion on current vim development
-alias vim-dev Vim.dev <vim-dev@vim.org>
+alias vim.dev Vim-dev <vim-dev@vim.org>
 # Vim use and development discussion specific to mac
-alias vim-mac Vim.mac <vim-mac@vim.org>
+alias vim.mac Vim-Mac <vim-mac@vim.org>
 # Announcements only: new releases and important patches
-alias vim-an Vim.an <vim-announce@vim.org>
+alias vim.anon Vim-anon <vim-announce@vim.org>
+# plugins
+alias vim.vimwiki vimwiki <vimwiki@googlegroups.com>
+alias vim.organizer VimOrganizer <vimorganizer@googlegroups.com>
+alias vim.eclim Eclim <eclim-user@googlegroups.com>
+alias vim.vimim vimim <vimim@googlegroups.com>
+
+# Vim plugins scripts
+alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>
+
+
 # parallel
 alias parallel parallel <parallel@gnu.org>
 # FVWM
@@ -188,6 +225,8 @@ alias mc midnight commannder <mc@gnome.org>
 # git
 alias git Git <git@vger.kernel.org>
 alias git-user git-user <git-users@googlegroups.com>
+alias gitit gitit <gitit-discuss@googlegroups.com>
+alias gotgit GotGit <gotgit@googlegroups.com>
 # getmail
 alias getmail getmail <getmail@lists.pyropus.ca>
 # pwmt.org ( jumanji, zathura )
@@ -210,10 +249,10 @@ alias canto Canto <canto-reader@codezen.org>
 alias task taskwarrior <support@taskwarrior.org>
 # Tux2live
 alias tux2live Tux2live <tux2live@googlegroups.com>
-# Vimperator
-alias vimperator vimperator <vimperator@mozdev.org>
 # mosh (Mobile Shell)
 alias mosh Mobile Shell <mosh-users@mit.edu>
+# ledger
+alias ledger ledger <ledger-cli@googlegroups.com>
 
 
 # Students & Teacher
@@ -288,7 +327,9 @@ alias HeTing 何挺 <htskii1988@gmail.com>
 alias CaiFeng CaiFeng <caifeng0404@163.com>
 
 
-# Break Wall (censorship)
+# censorship
+alias gfw-blog gfw-blog <gfw-blog@googlegroups.com>
+alias gfw.nogfw NoGFW <nogfw@googlegroups.com>
 alias bypassgfw bypassgfw <bypassgfwdiscussions@googlegroups.com>
 # Tor get bridget , send a message Subject: get tor bridges
 alias tor.getbridges Tor-GetBridges <bridges@torproject.org>
@@ -297,7 +338,8 @@ alias tor Tor-talk <tor-talk@lists.torproject.org>
 alias dtwip DongTaiWang <dtwip001@gmail.com>, <dtwip002@gmail.com>, <dtwip003@gmail.com>
 alias psiphon3 psiphon3 <get@psiphon3.com>
 
-# Hack The Future
+# Hack
 alias HackTheFuture Hack The Future <sean@hackthefuture.org>
+alias ph4nt0m ph4nt0m <ph4nt0m@googlegroups.com>
 
 # vim:ft=muttrc
