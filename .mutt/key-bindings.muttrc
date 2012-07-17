@@ -51,25 +51,95 @@ bind    editor  <space>     noop
 # vim like bindings
 bind    index   gg      first-entry
 bind    index   G       last-entry
+bind    index   =       first-entry
+bind    index   *       last-entry
 bind    index   \cf     next-page
 bind    index   \cb     previous-page
-# comment this index R because index R to recall postponed mail draft
-bind    pager   R       group-reply
+
+bind    pager   q       exit
+bind    pager   gg      top
+bind    pager   G       bottom
 bind    pager   j       next-line
 bind    pager   k       previous-line
 bind    pager   <Up>    previous-line
 bind    pager   <Down>  next-line
-bind    pager   gg      top
-bind    pager   G       bottom
-bind    pager   /       search
-bind    pager   h       previous-entry
-bind    pager   l       next-entry
-bind    index,pager   <tab>   next-unread
-bind    index,pager   <esc><tab> previous-unread
-# bind    index,pager <tab> next-new-then-unread
-# bind    index,pager <esc><tab> previous-new-then-unread
-# bind    pager   <space>     next-page
-# bind    pager   <esc><space>    previous-page
-bind    index,pager   \cw       display-toggle-weed
+
+# browser/view
+bind    browser i   exit
+
+# h/l previous/next mail.
+bind    pager   h   previous-entry
+bind    pager   l   next-entry
+
+# [ reply/send ]
+# comment "index R" because index R to recall postponed mail draft
+bind    index,pager   r   reply
+bind    pager   R   group-reply
+bind    pager   g   group-reply
+bind    pager   L   list-reply
+bind    index,pager     f   forward-message
+bind    index,pager     b   bounce-message
+bind    index,pager     ,k      what-key
+bind    index,pager     <esc>k  mail-key # mail a PGP public key
+bind    index,pager     \ck     extract-keys
+
+# most common [ compose ] menu keys.
+# bind    compose     e   edit # FIXME no such function.
+bind    compose     a   attach-file
+bind    compose     A   attach-message
+bind    compose     <esc>k  attach-key # attach a public PGP/GPG key.
+bind    compose     r   edit-reply-to
+bind    compose     c   edit-cc
+bind    compose     b   edit-bcc
+bind    compose     f   edit-fcc
+bind    compose     y   send-message
+bind    compose     s   edit-subject
+bind    compose     p   pgp-menu
+bind    compose     P   postpone-message
+bind    compose     q   exit
+bind    compose     w   write-fcc # write the message to a folder.
+bind    compose     i   ispell
+bind    compose     \cf  forget-passphrase
+
+# PGP key menu flags
+# R     -- the key has been revoked and can't be used.
+# X     -- the key is expired and can't be used.
+# d     -- you have marked the key as disabled.
+# c     -- there are unknow critical self-signature packets.
+
+bind    index,pager   /         search
+# "?" conflict with "help"
+bind    index,pager   <esc>/    search-opposite
+# bind    index       \   toggle-highlight-search # FIXME function name.
+
+bind    index     <tab>       next-new-then-unread
+bind    index     <esc><tab>  previous-new-then-unread
+
+bind    index     \cw     display-toggle-weed
+
+# [ thread ] thread mode: most common thread mode keys.
+bind    index     \cD     delete-thread
+bind    index     \cU     undelete-thread
+bind    index     \cN     next-thread
+bind    index     \cP     previous-thread
+bind    index     \cR     read-thread
+# subthread
+bind    index     <esc>d  delete-subthread
+bind    index     <esc>u  undelete-subthread
+bind    index     <esc>n  next-subthread
+bind    index     <esc>p  previous-subthread
+bind    index     <esc>r  read-subthread
+# collapse
+# bind    index,pager     <esc>t  tag-thread # FIXME no such function in map.
+bind    index     <esc>v  collapse-thread # FIXME
+bind    index     <esc>V  collapse-all # FIXME
+bind    index     P       parent-message # parent(upper) message of current message
+
+
+# bind    index   t       tag-message # FIXME no such function in map.
+bind    index   <esc>t  tag-thread
+bind    index   F       flag-message
+# bind    index           \cT     untag-messages # FIXME function name.
+bind    index,pager     u   undelete-message
 
 # vim:ft=muttrc
