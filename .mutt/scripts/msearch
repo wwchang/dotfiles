@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 read_from_config() {
   local key="$1" config="$HOME/.mutt/mairixrc"
