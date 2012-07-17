@@ -2,7 +2,9 @@
 #
 # Fine tune mutt depending on which folder I'm viewing.
 # Usage: folder-hook [!]regexp command
-#
+#   command:
+#       - use functions:
+#           e.g. "push <collapse-thread>"
 # It is often desirable to change settings based on which mailbox you are reading. The folder-hook command provides a method by which you can
 # execute any configuration command. pattern is a regular expression specifying in which mailboxes to execute command before loading. If a mailbox
 # matches multiple folder-hook's, they are executed in the order given in the muttrc.
@@ -10,33 +12,33 @@
 # Note: if you use the ``!'' shortcut for $spoolfile at the beginning of the pattern, you must place it inside of double or single quotes in order
 # to distinguish it from the logical not operator for the expression.
 
+# NOTE: folder-hooks are executed in order
+
 # format
 # %?<sequence_char>?<if_string>&<else_string>?
 
-# automatically delete all duplicated mails when change mailbox or quit.
-folder-hook . push "<delete-pattern>~=<enter>"
-
-# automatically delete all mails has [signoff] in message header.
-# FIXME folder-hook =general push "<delete-pattern>~h '\[signoff\]'<enter>"
-
+# for all mailboxes like: mailing list
 # folder-hook '='     set sort=threads # folder
+folder-hook .   set sort = threads
+# sort:
+    # ‐ date or date-sent
+    # ‐ date-received
+    # ‐ from
+    # ‐ mailbox-order (unsorted)
+    # ‐ score
+    # ‐ size
+    # ‐ spam
+    # ‐ subject
+    # ‐ threads
+    # ‐ to
+# - sort_aux: [reverse-|last-] [any in "sort" except "thread"]
+# set sort_aux for mailing list when "set sort=threads"
+folder-hook .   set sort_aux = date-received
 
-# folder-hooks are executed in order
-
-# for mailing list
-folder-hook .       set sort = threads
-folder-hook . set index_format = '"%2C┆%?H?[spam]? [%4Z] ┣ %?F?%-18.18F&%-18.18L? ├ %-55.54s %> │%-16.15[%I:%M %P %b/%d]"'
-# folder-hook .       set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
-
-# folder-hook .  ignore User-Agent:
-# folder-hook .  ignore Date:
-# folder-hook .  ignore To:
+folder-hook .   set index_format = '"%2C┆%?H?[spam]? [%4Z] %2M-┣ %?F?%-18.18F&%-18.18L? ├ %-55.54s %> │%-16.15[%I:%M %P %b/%d]"'
+# folder-hook . set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
 folder-hook =spam   set index_format = '" ☠ %?H?[spam]? %C┆ [%4Z] ┣ %?F?%-18.18&%-10.10L? ├ %s %> %-4.4c"'
-
-# for INBOX
-folder-hook "\!"    set sort = score # spoolfile
-folder-hook =INBOX  set sort = score # for macro "gi", because spoolfile is different with INBOX
 
 # for INBOX
 # %?<sequence_char>?<if_string>&<else_string>?
@@ -46,10 +48,9 @@ folder-hook 'unsure|Drafts|Send' set index_format = '"%2C┆%?H?[spam]&%N? [%4Z]
 #folder-hook "\!"    set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 #folder-hook =INBOX  set index_format="/home/chris/.mutt/scripts/index_format.sh '%[%s]' '%<%s>' |"
 
-folder-hook .       set sort_aux = date-sent # for mailing list thread
-# folder-hook .       set sort_aux = reverse-date-received
-# folder-hook .       set sort_aux = last-date-received
-# folder-hook .       set sort_aux = reverse-last-date-received
+# for INBOX
+folder-hook "\!"    set sort = score # spoolfile
+folder-hook =INBOX  set sort = score # for macro "gi", because spoolfile is different with INBOX
 
 # record "<" +Send mailbox
 folder-hook "<" set sort = reverse-date-sent
