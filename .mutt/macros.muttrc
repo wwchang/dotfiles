@@ -315,7 +315,11 @@ macro pager \cb   "|urlview\n" "browse URLs"
 ######################
 # macro index ,f "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
 #### macro index,pager,browser ,f "<toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter>"
-macro generic ,f "<enter-command>set my_cmd = \`/home/chris/.mutt/scripts/msearch\`<return><enter-command>push \$my_cmd<return>" "search messages"
+# macro generic ,f "<enter-command>set my_cmd = \`/home/chris/.mutt/scripts/msearch\`<return>\
+#     <enter-command>push \$my_cmd<return>" "search messages"
+macro generic ,f "<enter-command>set my_cmd=\`$HOME/.mutt/scripts/msearch\`<return>\
+    <enter-command>push \$my_cmd<return>" "search messages"
+
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Useful searches
 #
