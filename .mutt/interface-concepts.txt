@@ -1,0 +1,110 @@
+1. Core Concepts
+
+Mutt is a text-based application which interacts with users through different 
+menus which are mostly line-/entry-based or page-based. A line-based menu is the 
+so-called “index” menu (listing all messages of the currently opened folder) or 
+the “alias” menu (allowing you to select recipients from a list). Examples for 
+page-based menus are the “pager” (showing one message at a time) or the “help” 
+menu listing all available key bindings.
+
+The user interface consists of a context sensitive help line at the top, the 
+menu's contents followed by a context sensitive status line and finally the 
+command line. The command line is used to display informational and error 
+messages as well as for prompts and for entering interactive commands.
+
+Mutt is configured through variables which, if the user wants to permanently use 
+a non-default value, are written to configuration files. Mutt supports a rich 
+config file syntax to make even complex configuration files readable and 
+commentable.
+
+Because Mutt allows for customizing almost all key bindings, there are so-called 
+“functions” which can be executed manually (using the command line) or in 
+macros. Macros allow the user to bind a sequence of commands to a single key or 
+a short key sequence instead of repeating a sequence of actions over and over.
+
+Many commands (such as saving or copying a message to another folder) can be 
+applied to a single message or a set of messages (so-called “tagged” messages). 
+To help selecting messages, Mutt provides a rich set of message patterns (such 
+as recipients, sender, body contents, date sent/received, etc.) which can be 
+combined into complex expressions using the boolean and and or operations as 
+well as negating. These patterns can also be used to (for example) search for 
+messages or to limit the index to show only matching messages.
+
+Mutt supports a “hook” concept which allows the user to execute arbitrary 
+configuration commands and functions in certain situations such as entering a 
+folder, starting a new message or replying to an existing one. These hooks can 
+be used to highly customize Mutt's behavior including managing multiple 
+identities, customizing the display for a folder or even implementing 
+auto-archiving based on a per-folder basis and much more.
+
+Besides an interactive mode, Mutt can also be used as a command-line tool only 
+send messages. It also supports a mailx(1)-compatible interface, see Table 9.1, 
+“Command line options” for a complete list of command-line options.
+2. Screens and Menus
+2.1. Index
+
+The index is the screen that you usually see first when you start Mutt. It gives 
+an overview over your emails in the currently opened mailbox. By default, this 
+is your system mailbox. The information you see in the index is a list of 
+emails, each with its number on the left, its flags (new email, important email, 
+email that has been forwarded or replied to, tagged email, ...), the date when 
+email was sent, its sender, the email size, and the subject. Additionally, the 
+index also shows thread hierarchies: when you reply to an email, and the other 
+person replies back, you can see the other person's email in a "sub-tree" below. 
+This is especially useful for personal email between a group of people or when 
+you've subscribed to mailing lists.
+2.2. Pager
+
+The pager is responsible for showing the email content. On the top of the pager 
+you have an overview over the most important email headers like the sender, the 
+recipient, the subject, and much more information. How much information you 
+actually see depends on your configuration, which we'll describe below.
+
+Below the headers, you see the email body which usually contains the message. If 
+the email contains any attachments, you will see more information about them 
+below the email body, or, if the attachments are text files, you can view them 
+directly in the pager.
+
+To give the user a good overview, it is possible to configure Mutt to show 
+different things in the pager with different colors. Virtually everything that 
+can be described with a regular expression can be colored, e.g. URLs, email 
+addresses or smileys.
+2.3. File Browser
+
+The file browser is the interface to the local or remote file system. When 
+selecting a mailbox to open, the browser allows custom sorting of items, 
+limiting the items shown by a regular expression and a freely adjustable format 
+of what to display in which way. It also allows for easy navigation through the 
+file system when selecting file(s) to attach to a message, select multiple files 
+to attach and many more.
+2.4. Help
+
+The help screen is meant to offer a quick help to the user. It lists the current 
+configuration of key bindings and their associated commands including a short 
+description, and currently unbound functions that still need to be associated 
+with a key binding (or alternatively, they can be called via the Mutt command 
+prompt).
+2.5. Compose Menu
+
+The compose menu features a split screen containing the information which really 
+matter before actually sending a message by mail: who gets the message as what 
+(recipients and who gets what kind of copy). Additionally, users may set 
+security options like deciding whether to sign, encrypt or sign and encrypt a 
+message with/for what keys. Also, it's used to attach messages, to re-edit any 
+attachment including the message itself.
+2.6. Alias Menu
+
+The alias menu is used to help users finding the recipients of messages. For 
+users who need to contact many people, there's no need to remember addresses or 
+names completely because it allows for searching, too. The alias mechanism and 
+thus the alias menu also features grouping several addresses by a shorter 
+nickname, the actual alias, so that users don't have to select each single 
+recipient manually.
+2.7. Attachment Menu
+
+As will be later discussed in detail, Mutt features a good and stable MIME 
+implementation, that is, it supports sending and receiving messages of arbitrary 
+MIME types. The attachment menu displays a message's structure in detail: what 
+content parts are attached to which parent part (which gives a true tree 
+structure), which type is of what type and what size. Single parts may saved, 
+deleted or modified to offer great and easy access to message's internals. 
