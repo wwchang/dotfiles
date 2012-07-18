@@ -1063,7 +1063,9 @@ endif
         " call vam#ActivateAddons(['extradite'])
         call vam#ActivateAddons(['quickfixsigns'])
         " call vam#ActivateAddons(['svndiff%1881'])
-        call vam#ActivateAddons(['Splice', 'ConflictMotions'])
+        call vam#ActivateAddons(['Splice'])
+        call vam#ActivateAddons(['ConflictMotions'])
+        " call vam#ActivateAddons(['ConflictDetection'])
             " Github
         call vam#ActivateAddons(['vim-github'])
         call vam#ActivateAddons(['github:tpope/vim-rhubarb'])
@@ -2792,33 +2794,8 @@ syntax on
                 let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
 
-        " ConflictMotions {{{
-            " This plugin defines movement commands and text objects to go to
-            " and operate on conflicting lines, as indicated by many revision
-            " control systems, like Subversion, Git, etc. The source code
-            " management system inserts conflict markers such as <<<<<<<,
-            " =======, and >>>>>>> on merges to indicate that the automatic
-            " resolution failed; this plugin helps you with locating and
-            " resolving these conflicts.
-            " USAGE:
-            " ]x ]X [x [X v_]x v_]X v_[x v_[X o_]x o_]X o_[x o_[X
-            " ax az iz
-            " ]x Go to [count] next start of a conflict.
-            " ]X Go to [count] next end of a conflict.
-            " [x Go to [count] previous start of a conflict.
-            " [X Go to [count] previous end of a conflict.
-            " ]z Go to [count] next conflict marker.
-            " [z Go to [count] previous conflict marker.
-            " To change the default motion mappings, use:
-            let g:ConflictMotions_ConflictBeginMapping = 'x'
-            let g:ConflictMotions_ConflictEndMapping = 'X'
-            let g:ConflictMotions_MarkerMapping = 'z'
-            " To change the default text object mappings, use:
-            let g:ConflictMotions_ConflictMapping = 'x'
-            let g:ConflictMotions_SectionMapping = 'z'
-        " }}}
-
-        " Splice  {{{ A Vim plugin for resolving conflicts during three-way merges.
+        " Splice  {{{ A Vim plugin for resolving conflicts during three-way 
+        "     merges.
             " Usage {{{
             " Workflow:
             " When resolving merge conflicts your goal is:
@@ -2892,6 +2869,46 @@ syntax on
         " }}}
 
         " gf-diff : open code file in 'diff' output with 'gf'.
+
+        " ConflictDetection {{{ highlight markers >>>>>> <<<<<<< =========
+            let g:ConflictDetection_WarnEvents = 'BufWritePost'
+            " let g:ConflictDetection_AutoDetectEvents = ''
+                " empty to disable auto detect
+            " highlight def link conflictOurs                     guibg=Green
+            " highlight def link conflictBase                     guibg=Brown
+            " highlight def link conflictTheirs                   guibg=Red
+            " highlight def link conflictSeparatorMarkerSymbol    guifg=Black
+            " highlight def conflictOursMarker                    guifg=Green
+            " highlight def conflictBaseMarker                    guifg=Brown
+            " highlight def conflictTheirsMarker                  guifg=Red
+        " }}}
+
+        " ConflictMotions {{{
+            " This plugin defines movement commands and text objects to go to
+            " and operate on conflicting lines, as indicated by many revision
+            " control systems, like Subversion, Git, etc. The source code
+            " management system inserts conflict markers such as <<<<<<<,
+            " =======, and >>>>>>> on merges to indicate that the automatic
+            " resolution failed; this plugin helps you with locating and
+            " resolving these conflicts.
+            " USAGE:
+            " ]x ]X [x [X v_]x v_]X v_[x v_[X o_]x o_]X o_[x o_[X
+            " ax az iz
+            " ]x Go to [count] next start of a conflict.
+            " ]X Go to [count] next end of a conflict.
+            " [x Go to [count] previous start of a conflict.
+            " [X Go to [count] previous end of a conflict.
+            " ]z Go to [count] next conflict marker.
+            " [z Go to [count] previous conflict marker.
+            " To change the default motion mappings, use:
+            let g:ConflictMotions_ConflictBeginMapping = 'x'
+            let g:ConflictMotions_ConflictEndMapping = 'X'
+            let g:ConflictMotions_MarkerMapping = 'z'
+            " To change the default text object mappings, use:
+            let g:ConflictMotions_ConflictMapping = 'x'
+            let g:ConflictMotions_SectionMapping = 'z'
+        " }}}
+
 
         " patchreview : allows easy single or multipatch code or diff reviews.
     " }}}
