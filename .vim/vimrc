@@ -8,26 +8,21 @@
 " [[ vimrc structure ]] {{{
 " .vimrc -- global settings
 " .vim/
-"   after/      -- files that are loaded at the very end.
+"   after/  -- files that are loaded after sourced system plugins. override 
+"               system settings.
 "       ftplugin/
 "       plugin/
 "       syntax/
 "       ...
-"   autoload/   -- automatically loaded scripts.
-"   colors/     -- custom color schemes.
-"   doc/        -- plugin documentation.
-"   ftdetect/   -- filetype detection scripts.
-"   ftplugin/   -- filetype plugins.
-"   indent/     -- indent scripts.
-"   plugin/     -- plugins.
-"   syntax/     -- syntax scripts.
+"   autoload/ -- automatically loaded scripts.
+"   colors/   -- custom color schemes.
+"   doc/      -- plugin documentation.
+"   ftdetect/ -- filetype detection scripts.
+"   ftplugin/ -- filetype plugins (load before system files, override by system)
+"   indent/   -- indent scripts.
+"   plugin/   -- plugins.
+"   syntax/   -- syntax scripts.
 "
-" }}}
-
-" [ vimrc howto ] {{{
-    " boolean value settings (:help :set)
-    "   e.g.: 'previewwindow' 'pvw'	boolean (default off)
-    "       => set no<option> => set nopreviewwindow.
 " }}}
 
 " [[ vim Settings ]] {{{
@@ -1614,7 +1609,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ completion ] {{{
+    " [ completion: omni ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " Conflict: need to comment 'set complete='
@@ -3043,10 +3038,8 @@ syntax on
 
 " [ languages ] {{{
     " [ Python ] {{{
-        " if has('python3')
-        "     echo 'there is Python 3.x'
-        " elseif has('python')
-        "     echo 'there is Python 2.x'
+        " if has('python3/dyn') || has('python/dyn')
+        "             \ || has('python3') || has('python')
         " endif
 
         " [ IDE ] {{{
@@ -3346,7 +3339,7 @@ syntax on
         " }}}
 
         " [ CSS ] {{{
-            " ~/.vim/syntax/css3.vim
+            " ~/.vim/after/syntax/css3.vim
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
         " }}}
 
