@@ -13,7 +13,7 @@ delete_dup_msgids = True
 server = pop.qq.com
 port = 110
 username = 348284894@qq.com
-password = PASSWORD
+password = stardiviner324
 # }}}
 
 # SMTP {{{
@@ -41,5 +41,16 @@ path = /usr/bin/procmail
 arguments = ("-f", "%(sender)", "-m", "/home/chris/.mutt/procmail/procmailrc")
 # arguments = ("-f", "%(sender)")
 # }}}
+
+[options]
+verbose = 1
+read_all = False
+delete = False
+delete_after = 0
+max_bytes_per_session = 0
+max_message_size = 0
+max_messages_per_session = 10
+delivered_to = True
+received = True
 
 # vim:ft=conf:fdm=marker
