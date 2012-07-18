@@ -32,6 +32,9 @@ require("aweror")
 require("minitray")
 -- bash powerful widgets
 require("bashets")
+
+-- show keybindings with module keydoc.lua
+local keydoc = require("keydoc")
 -- }}}
 
 -- About Awesome {{{
@@ -1076,24 +1079,30 @@ root.buttons(awful.util.table.join(
         aweror.genkeys(modkey),
 
         -- toggle client floating [ Mod4-Shift-f ]
-        awful.key({ modkey, "Shift" }, "f",  awful.client.floating.toggle ),
+        keydoc.group("Window-specific bindings"),
+        awful.key({ modkey, "Shift" }, "f",  awful.client.floating.toggle, "Fullscreen window" ),
 
         -- toggle titlebar visiblity [ Mod4-Shift-T ]
+        keydoc.group("Window-specific bindings"),
         awful.key({ modkey, "Shift" }, "t",
             function (c)
                 if c.titlebar then awful.titlebar.remove(c)
                 else awful.titlebar.add(c, { modkey = modkey }) end
-            end
+            end,
+            "toggle titlebar visiblity"
         ),
 
-        -- minitray.lua [ Mod4-CTRL-L ] {{{
-        awful.key({ modkey, "Control" }, "t",   function()  minitray.toggle() end ),
+        -- minitray.lua [ Mod4-CTRL-T ] {{{
+        awful.key({ modkey, "Control" }, "t",   function() minitray.toggle() end,
+            "minitray.lua toggle" ),
         -- }}}
 
-        -- Mouseless [ Mod4-CTRL-m ]
+        -- Mouseless [ Mod4-CTRL-M ]
         awful.key({ modkey, "Control" }, "m", function()
-            moveMouse(saftCoords.x, saftCoords.y)
-        end),
+                moveMouse(saftCoords.x, saftCoords.y)
+            end,
+            "move mouse to corner"
+        ),
 
         -- Screensaver lock  [ Mod4-CTRL-l ] {{{
         -- awful.key({ modkey, "Control" }, "l",
@@ -1110,12 +1119,16 @@ root.buttons(awful.util.table.join(
         -- }}}
 
         -- client lists that minimized windows cycle/restore, [ Mod4-; ] {{{
+        keydoc.group("Window-specific bindings"),
         awful.key( { modkey }, ";", function()
             awful.menu.clients({ width = 250 }, { keygrabber = true } )
-        end ),
+        end,
+        "list all windows include minimized"
+        ),
         -- }}}
 
         -- unminimize all windows on current tag. [ Mod4-Shift-N ] {{{
+        keydoc.group("Window-specific bindings"),
         awful.key({ modkey, "Shift" }, "n",
         function()
             local tag = awful.tag.selected()
@@ -1123,26 +1136,29 @@ root.buttons(awful.util.table.join(
                 tag:clients()[i].minimized=false
                 tag:clients()[i]:redraw()
             end
-        end),
+        end, "unminimized all windows"),
         -- }}}
 
+        keydoc.group("Functions"),
         -- Screenshot [Prt Src] {{{
         awful.key({ }, "Print", function ()
             awful.util.spawn("scrot -e 'mv $f ~ 2>/dev/null'")
             os.execute("sleep 0.5")
             naughty.notify({ title="Screenshot", text="The focused window captured" })
-        end),
+        end, "take a screenshot"),
         -- }}}
 
         -- volume [ Mod4-(PageUp/PageDown) ] {{{
         -- amixer [set/sset] Master [2+/2-/mute/unmute/toggle/]
         -- amixer -q set PCM [2dB+/2dB-/]
+        keydoc.group("Volume manipulation"),
         awful.key({ modkey, "Shift" }, "Up",  function ()
             awful.util.spawn("amixer set Master 2+", false)
-        end),
+        end, "increase volume"),
+        keydoc.group("Volume manipulation"),
         awful.key({ modkey, "Shift" }, "Down",  function ()
             awful.util.spawn("amixer set Master 2-", false)
-        end),
+        end, "decrease volume"),
         -- awful.key({ modkey, "Shift" }, "Left",  function ()
         --     awful.util.spawn("amixer set Master mute", false)
         -- end),
@@ -1153,20 +1169,24 @@ root.buttons(awful.util.table.join(
 
         -- ncmpcpp & MPD {{{
         -- toggle ncmpcpp play [ Mod4-p ]
-        awful.key({ modkey,           }, "p",
+        keydoc.group("Music player manipulation"),
+        awful.key({ modkey }, "p",
         function ()
             awful.util.spawn_with_shell( "ncmpcpp toggle" )
-        end),
+        end, "toggle ncmpcpp"),
         -- [ Mod4-(,/.) ] play previouse/next ncmpcpp song.
+        keydoc.group("Music player manipulation"),
         awful.key({ modkey }, "period",  function ()
             awful.util.spawn("mpc next", false)
-        end),
+        end, "ncmpcpp: next song"),
+        keydoc.group("Music player manipulation"),
         awful.key({ modkey }, "comma",  function ()
             awful.util.spawn("mpc prev", false)
-        end),
+        end, "ncmpcpp: previouse song"),
         -- }}}
 
         -- sdcv/stardict [ Mod4-(d/Shift-d) ] {{{
+        keydoc.group("Functions"),
         awful.key({ modkey }, "d", function ()
             local f = io.popen("xsel -o")
             local new_word = f:read("*a")
@@ -1235,8 +1255,9 @@ root.buttons(awful.util.table.join(
                 )
             end
 
-        end),
+        end, "sdcv: translate select word"),
 
+        keydoc.group("Functions"),
         awful.key({ modkey, "Shift" }, "d", function ()
             awful.prompt.run(
                 {prompt = "Dict: "},
@@ -1299,7 +1320,7 @@ root.buttons(awful.util.table.join(
                 end,
                 nil, awful.util.getdir("cache").."/dict"
             )
-        end),
+        end, "sdcv: input word to translate"),
         -- }}}
 
         -- naughty manipulation {{{ [ Mod4-i ]
@@ -1313,42 +1334,54 @@ root.buttons(awful.util.table.join(
         -- }}}
 
         -- client manipulation [ Mod4-(j/k/u/Tab) ] [ Mod4-(Shift/Control)-(j/k) ] {{{
+        keydoc.group("Client manipulation"),
         awful.key({ modkey,           }, "j",
             function ()
                 awful.client.focus.byidx( 1)
                 if client.focus then client.focus:raise() end
-            end
+            end, "select next client(window)"
         ),
+        keydoc.group("Client manipulation"),
         awful.key({ modkey,           }, "k",
             function ()
                 awful.client.focus.byidx(-1)
                 if client.focus then client.focus:raise() end
-            end
+            end, "select previouse client(window)"
         ),
+        keydoc.group("Client manipulation"),
         awful.key({ modkey,           }, "u",
-            awful.client.urgent.jumpto
+            awful.client.urgent.jumpto,
+            "jump to urgent tag"
         ),
+        keydoc.group("Client manipulation"),
         awful.key({ modkey,           }, "Tab",
             function ()
                 awful.client.focus.history.previous()
                 if client.focus then
                     client.focus:raise()
                 end
-            end
+            end,
+            "cycle through clients(windows)"
         ),
 
+        keydoc.group("Client manipulation"),
         awful.key({ modkey, "Shift"   }, "j",
             function () awful.client.swap.byidx(  1)
-            end
+            end,
+            "move current client(window) to next position"
         ),
+        keydoc.group("Client manipulation"),
         awful.key({ modkey, "Shift"   }, "k",
             function () awful.client.swap.byidx( -1)
-            end
+            end,
+            "move current client(window) to previouse position"
         ),
+        keydoc.group("Client manipulation"),
         awful.key({ modkey, "Control" }, "j",
             function () awful.screen.focus_relative( 1)
             end
         ),
+        keydoc.group("Client manipulation"),
         awful.key({ modkey, "Control" }, "k",
             function () awful.screen.focus_relative(-1)
             end
@@ -1384,6 +1417,7 @@ root.buttons(awful.util.table.join(
         -- awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
         -- dmenu prompt
+        keydoc.group("Functions"),
         awful.key({ modkey }, "r",
             function ()
                 awful.util.spawn("dmenu_run -i -p 'Run command:' \
@@ -1393,16 +1427,19 @@ root.buttons(awful.util.table.join(
                 -sf '" .. beautiful.fg_focus .. "' \
                 -fn '" .. beautiful.font .. "' \
                 ")
-            end
+            end,
+            "dmenu prompt"
         ),
 
+        keydoc.group("Functions"),
         awful.key({ modkey }, "x",
             function ()
                 awful.prompt.run({ prompt = "Run Lua code: " },
                 mypromptbox[mouse.screen].widget,
                 awful.util.eval, nil,
                 awful.util.getdir("cache") .. "/history_eval")
-            end
+            end,
+            "run Lua code"
         )
         -- }}}
     )
@@ -1469,6 +1506,9 @@ root.buttons(awful.util.table.join(
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
     -- }}}
+
+    -- keydoc module end
+    awful.key({ modkey }, "F1", keydoc.display )
 
     -- Set keys
     root.keys(globalkeys)
