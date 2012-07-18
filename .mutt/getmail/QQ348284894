@@ -1,0 +1,45 @@
+[retriever]
+
+# POP3 {{{
+# POP3: pop.qq.com  110
+# type = SimplePOP3Retriever
+# port = 110
+# POP3 SSL: pop.qq.com  995
+# type = SimplePOP3SSLRetriever
+# port = 995
+
+type = SimplePOP3Retriever
+delete_dup_msgids = True
+server = pop.qq.com
+port = 110
+username = 348284894@qq.com
+password = PASSWORD
+# }}}
+
+# SMTP {{{
+# SMTP: smtp.qq.com  25
+# SMTP SSL: smtp.qq.com  465 or 587
+# server = smtp.qq.com
+# port = 25
+# }}}
+
+# IMAP {{{
+# IMAP: imap.qq.com
+# IMAP SSL: imap.qq.com 993
+# }}}
+
+[destination]
+
+# Maildir {{{
+type = Maildir
+path = ~/Mails
+# }}}
+
+# use procmail {{{
+type = MDA_external
+path = /usr/bin/procmail
+arguments = ("-f", "%(sender)", "-m", "/home/chris/.mutt/procmail/procmailrc")
+# arguments = ("-f", "%(sender)")
+# }}}
+
+# vim:ft=conf:fdm=marker

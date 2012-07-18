@@ -54,6 +54,9 @@
 # delete_dup_msgids (boolean) — if set to True, and the POP3 server identifies multiple messages as having the same "unique" identifier, all but the
 # first will be deleted without retrieving them.
 
+# multiple accounts:
+# getmail --rcfile getmailrc0 --rcfile getmailrc1 ....
+
 # =======================================================================
 
 [retriever]
