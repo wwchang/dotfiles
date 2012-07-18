@@ -245,9 +245,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
         * ^From: .*(fuhemeng|569040931)@(qq|gmail|yahoo)\.(com|cn)
         INBOX/
         :0
-        * ^From: .*email@eurovpn\.org
-        /dev/null
-        :0
         QQ/
     }
     :0
