@@ -23,6 +23,7 @@ theme.border_marked = "#91231c"
 
 theme_dir = awful.util.getdir("config") .. "/themes/"
 theme_icons = awful.util.getdir("config") .. "/themes/icons/"
+theme_wallpapers = awful.util.getdir("config") .. "/themes/wallpapers/"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -77,8 +78,7 @@ theme.titlebar_maximized_button_focus_inactive  = theme_dir .. "default/titlebar
 theme.titlebar_maximized_button_normal_active = theme_dir .. "default/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = theme_dir .. "default/titlebar/maximized_focus_active.png"
 
--- You can use your own command to set your wallpaper
-theme.wallpaper_cmd = { "awsetbg /home/chris/.config/awesome/themes/default/cool_monitor.jpg" }
+theme.wallpaper_cmd = { "awsetbg " .. os.getenv("HOME") .. "/.config/awesome/themes/wallpapers/formula.jpg" }
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = theme_dir .. "default/layouts/fairhw.png"
