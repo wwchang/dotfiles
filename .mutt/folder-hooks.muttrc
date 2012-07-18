@@ -84,6 +84,15 @@ folder-hook /var/mail/chris set mbox_type = mbox
 # folder-hook "\!"    color index black brightred ~G
 # folder-hook =INBOX  color index black brightred ~G
 
+# categorize different old date messages with descending colors.
+folder-hook "\!"    color index color255 default "~d <1d" # in one day
+folder-hook =INBOX  color index color255 default "~d <1d" # in one day
+folder-hook "\!"    color index color250 default "~d <1w" # in one week
+folder-hook =INBOX  color index color250 default "~d <1w" # in one week
+folder-hook "\!"    color index color244 default "~d >1w" # one week ago
+folder-hook =INBOX  color index color244 default "~d >1w" # one week ago
+folder-hook "\!"    color index color238 default "~d >1m" # one month ago
+folder-hook =INBOX  color index color238 default "~d >1m" # one month ago
 
 # when mail's header has many objects. you can set to see some objects that you want to see.
 # ignore to do no see, unignore to recover to see.
