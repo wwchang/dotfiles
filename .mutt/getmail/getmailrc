@@ -117,6 +117,8 @@ arguments = ("-f", "%(sender)", "-m", "/home/chris/.mutt/procmail/procmailrc")
 
 # options {{{
 verbose = 1
+# Log messages to syslog instead of stdout.
+message_log_syslog = True
 # if set, getmail retrieves all available messages. If unset, getmail only 
 # retrieves messages it
 # has not seen before. Default: True.
