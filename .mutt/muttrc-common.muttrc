@@ -225,15 +225,17 @@ set use_8bitmime = no
 
 # send_charset
 # support one by one.
-set send_charset = "utf-8:us-ascii:iso-8859-1:gb2312:big5"
-set attach_charset = "utf-8:us-ascii:iso-8859-1:gb2312:big5"
+set send_charset    = "utf-8:us-ascii:iso-8859-1:gb2312:gb18030:gbk:big5"
+set attach_charset  = "utf-8:us-ascii:iso-8859-1:gb2312:gb18030:gbk:big5"
 #use rfc2047 standard instead of rfc2231, solve the chinese attachment name issue
 set rfc2047_parameters = yes
 # if chinese mail display with ????
-# press "h" to see mail header, becase some sender without setting charset
+# press <C-w> to see mail header, becase some sender without setting charset
 # Content-Type: text/plain , without charset = "GB2312"? , so mutt will use
 # charset us-ascii, if you want to displlay correctly, you need to alias
 # us-asicc with:   charset-hook ^us-ascii$ gb2312
+# charset-hook ^us-ascii$ gb2312
+# charset-hook !UTF-8     gb2312
 
 # wait_key
 # whether ask user to press a key to return when outside program quit.

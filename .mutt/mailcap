@@ -6,7 +6,8 @@
 text/plain; less %s
 
 # [ html ]
-text/html; elinks %s; nametemplate=%s.html; copiousoutput
+text/html; w3m -T text/html -I %{charset} -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
+# text/html; elinks %s; nametemplate=%s.html; copiousoutput
 # text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
 # text/html; w3m -I %{charset} -T text/html; copiousoutput;
 # text/html; /usr/bin/elinks -force-html %s

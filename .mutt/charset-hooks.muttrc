@@ -1,0 +1,2 @@
+charset-hook ^us-ascii$ gb2312
+charset-hook !UTF-8     gb2312
