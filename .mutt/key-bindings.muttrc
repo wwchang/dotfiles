@@ -115,7 +115,7 @@ bind    index,pager   <esc>/    search-opposite
 bind    index     <tab>       next-new-then-unread
 bind    index     <esc><tab>  previous-new-then-unread
 
-bind    index     \cw     display-toggle-weed
+bind    index,pager \cw     display-toggle-weed
 
 # [ thread ] thread mode: most common thread mode keys.
 bind    index     \cD     delete-thread
@@ -141,6 +141,5 @@ bind    index   <esc>t  tag-thread
 bind    index   F       flag-message
 # bind    index           \cT     untag-messages # FIXME function name.
 bind    index,pager     u   undelete-message
-bind    index,pager     N   toggle-new
 
 # vim:ft=muttrc
