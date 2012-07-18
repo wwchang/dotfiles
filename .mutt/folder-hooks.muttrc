@@ -69,17 +69,20 @@ folder-hook . "push <delete-pattern>~=<enter>"
 # automatically jump to my thread's new reply.
 folder-hook . "push <search>~N (~x .*@stardiviner)<enter>"
 
+# FIXME can not work.
+folder-hook /var/mail/chris set mbox_type = mbox
+
 
 # only show PGP color in INBOX
-folder-hook "\!"    color index black brightcyan ~k
-folder-hook =INBOX  color index black brightcyan ~k
-folder-hook "\!"    color index black brightcyan ~g
-folder-hook =INBOX  color index black brightcyan ~g
-folder-hook "\!"    color index black brightred ~G
-folder-hook =INBOX  color index black brightred ~G
-folder-hook .       color index brightcyan default ~k
-folder-hook .       color index brightcyan default ~g
-folder-hook .       color index brightcyan default ~G
+# folder-hook .       color index brightcyan default ~k
+# folder-hook .       color index brightcyan default ~g
+# folder-hook .       color index brightcyan default ~G
+# folder-hook "\!"    color index black brightcyan ~k
+# folder-hook =INBOX  color index black brightcyan ~k
+# folder-hook "\!"    color index black brightcyan ~g
+# folder-hook =INBOX  color index black brightcyan ~g
+# folder-hook "\!"    color index black brightred ~G
+# folder-hook =INBOX  color index black brightred ~G
 
 
 # when mail's header has many objects. you can set to see some objects that you want to see.
