@@ -16,6 +16,7 @@ tags
 .vim/view/*
 .vim/cache/*
 .vim/viminfo
+.vim/.VimballRecord
 .vim/.netrwhist
 
 .emacs.d/el-get/*

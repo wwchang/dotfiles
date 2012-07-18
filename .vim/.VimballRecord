@@ -1,5 +1,0 @@
-vimwiki-1-1-1.vba: call delete('/home/sprite/.vim/autoload/vimwiki.vim')|call delete('/home/sprite/.vim/autoload/vimwiki_diary.vim')|call delete('/home/sprite/.vim/autoload/vimwiki_html.vim')|call delete('/home/sprite/.vim/autoload/vimwiki_lst.vim')|call delete('/home/sprite/.vim/autoload/vimwiki_tbl.vim')|call delete('/home/sprite/.vim/doc/vimwiki.txt')|call delete('/home/sprite/.vim/ftplugin/vimwiki.vim')|call delete('/home/sprite/.vim/plugin/vimwiki.vim')|call delete('/home/sprite/.vim/syntax/vimwiki.vim')|call delete('/home/sprite/.vim/syntax/vimwiki_default.vim')|call delete('/home/sprite/.vim/syntax/vimwiki_media.vim')
-supertab.vba: call delete('/home/sprite/.vim/doc/supertab.txt')|call delete('/home/sprite/.vim/plugin/supertab.vim')
-snippy_plugin.vba: call delete('/home/sprite/.vim/plugin/snippetsEmu.vim')|call delete('/home/sprite/.vim/doc/snippets_emu.txt')
-tagbar.vba: call delete('/home/chris/.vim/plugin/tagbar.vim')|call delete('/home/chris/.vim/syntax/tagbar.vim')|call delete('/home/chris/.vim/doc/tagbar.txt')
-IndGuide.vba: call delete('/home/chris/.vim/plugin/IndGuidePlugin.vim')|call delete('/home/chris/.vim/autoload/IndGuide.vim')

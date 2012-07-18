@@ -8,21 +8,22 @@
 # set smtp_url = "smtp://numbchild@smtp.gmail.com:587/"
 # set smtp_pass = "chrisM.sprite324"
 
-# If it's unset (the default) mutt will try all available methods, in order from most-secure to least-secure.
-# set imap_authenticators = "gssapi:cram-md5:login" 
+# If it's unset (the default) mutt will try all available methods, in order from 
+# most-secure to least-secure.
+# set imap_authenticators = "gssapi:cram-md5:login"
 # imap[s]://[user@]hostname[:port]/mailbox
 # imap://username@mail.example.com/
 # imaps://username@mail.example.com/
 # set imaps://numbchild@imap.gmail.com:993/INBOX
 set imap_user = "numbchild@gmail.com"
-set imap_pass = "chrisM.sprite324"
-# set imap_check_subscribed = no 
+set imap_pass = "PASSWORD"
+# set imap_check_subscribed = no
 # set imap_list_subscribed = no
 set imap_keepalive = 900
 set imap_idle = no
 set timeout = 600
-set imap_delim_chars = "/." 
-# set imap_headers = 
+set imap_delim_chars = "/."
+# set imap_headers =
 set header_cache =$HOME/.mutt/cache/headers
 set message_cachedir = $HOME/.mutt/cache/bodies
 set certificate_file = $HOME/.mutt/certificates
@@ -41,8 +42,8 @@ set postponed ="+[Gmail]/Drafts"
 set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
 
 
-# load Gmail key bindings 
-source ~/.mutt/Gmail 
+# load Gmail key bindings
+source ~/.mutt/Gmail
 
 
 
