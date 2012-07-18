@@ -26,9 +26,17 @@
 " }}}
 
 " [[ vim Settings ]] {{{
-    " :echo $MYVIMRC
-set nocompatible " not vim compatible. must be first one, will affect other options
-set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
+    " vimrc set options howto
+    " :help options.txt, :options/:browse set, to show all setted options.
+
+    set nocompatible " not vim compatible. must be first one, will affect other options
+
+    " [ tty ] {{{
+    " set ttytype " default from $TERM
+    set ttybuiltin " on: the builtin termcaps are searched before external ones.
+    set ttyscroll=100 " small number to speed up displaying.
+    set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
+    " }}}
 
     " [ updating vimrc file on the fly ] {{{
     if has("autocmd")
