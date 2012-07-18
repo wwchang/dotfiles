@@ -34,6 +34,7 @@ theme_icons = awful.util.getdir("config") .. "/themes/icons/"
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
+theme.taglist_font          = "sans 9"
 -- Display the taglist squares
 theme.taglist_squares_sel   = theme_dir .. "default/taglist/squarefw2.png"
 theme.taglist_squares_unsel = theme_dir .. "default/taglist/squarew.png"

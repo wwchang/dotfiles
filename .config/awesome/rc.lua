@@ -91,7 +91,7 @@ local keydoc = require("keydoc")
     -- beautiful.init("/home/chris/.config/awesome/themes/linkinPark/theme.lua")
 
     local configdir = awful.util.getdir ("config")
-    beautiful.init(configdir .. "/themes/black/theme.lua")
+    beautiful.init(configdir .. "/themes/default/theme.lua")
 -- }}}
 
 -- [ Error handling ] {{{
@@ -1001,7 +1001,7 @@ end
         -- }}}
 
         -- top wibox {{{
-        mywibox[s] = awful.wibox({ position = "top", height = "20", screen = s })
+        mywibox[s] = awful.wibox({ position = "top", height = "18", screen = s })
 
         -- add widgets to the wibox - order matters
         mywibox[s].widgets = {
