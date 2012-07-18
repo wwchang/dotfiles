@@ -125,7 +125,7 @@ read_all = False
 # delivering them. If
 # unset, getmail will leave messages on the server after retrieving them. 
 # Default: False.
-delete = False
+delete = True
 # if set, getmail will delete messages this number of days after first seeing 
 # them, if they have
 # been retrieved and delivered. This, in effect, leaves messages on the server 
