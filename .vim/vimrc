@@ -3817,14 +3817,10 @@ syntax on
     " }}}
 " }}}
 
-" [ platforms ] {{{
-    " [ Android ] {{{
-        " Eclim {{{ bring Eclipse functionality to Vim.
-            " The initial goal was to provide Eclipse's functionality in vim.
-            " But support for various other languages.
-            " http://eclim.org/
-            " TODO google Eclim and Vim configs. and Android development environment.
-        " }}}
+" [ Android ] {{{
+    " Eclim {{{ bring Eclipse functionality to Vim support various languages
+        " code complete: <C-X><C-U>
+        " :Validate/:w to check syntax error.
     " }}}
 " }}}
 
