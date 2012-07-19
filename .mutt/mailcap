@@ -6,12 +6,17 @@
 text/plain; less %s
 
 # [ html ]
-text/html; w3m -T text/html -I %{charset} -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
-# text/html; elinks %s; nametemplate=%s.html; copiousoutput
+# elinks
+text/html; elinks -dump-charset %{charset} -dump %s; nametemplate=%s.html; copiousoutput
+# text/html; elinks -force-html %s
+# lynx
 # text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+# w3m
 # text/html; w3m -I %{charset} -T text/html; copiousoutput;
-# text/html; /usr/bin/elinks -force-html %s
+# text/html; w3m -T text/html -I %{charset} -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
+# text/html; w3m -T text/html -I %{charset} -O %{charset} -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
 # text/html; w3m -v -F -T text/html %s; nametemplate=%s.html; needsterminal
+# mozilla
 # text/html; mozilla %s; test=test -n "$DISPLAY"; nametemplate=%s.html
 # muttHtml command:
 # enconv|elinks -force-html -dump -dump-color-mode 1 -eval "set document.css.stylesheet='$HOME/etc/mail.css'" /dev/stdin
