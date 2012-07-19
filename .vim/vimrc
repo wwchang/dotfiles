@@ -2028,7 +2028,7 @@ syntax on
             endif
             let g:UltiSnipsEditSplit = "Vertical" " normal, horizontal, Vertical.
                 "set runtimepath+=~/.vim/snippets/ " for MyUltiSnips
-            let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/MyUltiSnips"]
+            let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             let g:UltiSnipsDontReverseSearchPath = 1 " traverse runtimepath
             " Triggers:
             " The g:UltiSnipsExpandTrigger and g:UltiSnipsJumpForwardTrigger can
