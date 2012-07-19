@@ -2042,6 +2042,8 @@ syntax on
             let g:UltiSnipsDoHash = 1 " check and reload new snip file.
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
+
+            nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
         " }}}
 
         " Xptemplate
