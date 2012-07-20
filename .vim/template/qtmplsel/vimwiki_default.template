@@ -1,6 +1,0 @@
-Author: stardiviner, Email: [numbchild A/T G/mail dot com]
-Filename: @{@expand('%:t')@}@
-Date: @{@strftime('%Y-%m-%d')@}@
-Last Change: @{@strftime('%Y-%m-%d %H:%M')@}@
-
-
