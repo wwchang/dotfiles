@@ -31,8 +31,10 @@ augroup filetypedetect
     " PostgreSQL
     au BufRead,BufNewFile *.psql set filetype=psql
 
-    " UltiSnips.vim & SnipMate
+    " UltiSnips
     au BufRead,BufNewFile *.snippets set filetype=snippets
+    " neocomplcache-snippets-complete
+    au BufRead,BufNewFile *.snip set filetype=snipppet
 
     " Taskwarrior data files
     au BufRead,BufNewFile {pending,completed,undo}.data	set filetype=taskdata
