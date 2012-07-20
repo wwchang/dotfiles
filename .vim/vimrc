@@ -2640,9 +2640,9 @@ syntax on
             let g:syntastic_loc_list_height = 10
                 " fine tune when automatic syntax checking is done.
             let g:syntastic_mode_map = { 'mode': 'active',
-                        \ "active_filetypes": [],
-                        \ "passive_filetypes": [] }
-            let g:syntastic_quiet_warnings=0 " only care about syntax errors not warning
+                        \ "active_filetypes": ['ruby', 'python', 'php', 'c'],
+                        \ "passive_filetypes": ['html'] }
+            let g:syntastic_quiet_warnings = 0 " 1: care syntax errors not warning
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
         " }}}
 
