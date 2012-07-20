@@ -274,38 +274,11 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*pythontw\.googlegroups\.com
     Python/python-tw/
     :0
-    * ^List-Id: .*tutor\.python\.org
-    Python/tutor/
-    :0
-    * ^List-Id: .*docs\.python\.org
-    Python/docs/
-    :0
-    * ^List-Id: .*doc-sig\.python\.org
-    Python/doc-sig/
-    :0
-    * ^List-Id: .*peps\.python\.org
-    Python/peps/
-    :0
-    * ^List-Id: .*speed\.python\.org
-    Python/speed/
-    :0
-    * ^List-Id: .*pygui\.python\.org
-    Python/gui/
-    :0
-    * ^List-Id: .*python-porting\.python\.org
-    Python/porting/
-    :0
-    * ^List-Id: .*python-ideas\.python\.org
-    Python/ideas/
-    :0
     * ^List-Id: .*python-dev\.python\.org
     Python/dev/
     :0
-    * ^List-Id: .*cython-users\.googlegroups\.com
-    Python/cython-users/
-    :0
-    * ^List-Id: .*cython-devel\.python\.org
-    Python/cython-devel/
+    * ^List-Id: .*speed\.python\.org
+    INBOX/
 
     # projects
     :0
@@ -328,7 +301,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Go/go-china/
     :0
     * ^List-Id: .*golang-announce\.googlegroups\.com
-    Go/go-anon/
+    INBOX/
     :0
     * ^List-Id: .*golang-dev\.googlegroups\.com
     Go/go-dev/
@@ -343,14 +316,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*ruby-core.*\.ruby-lang\.org
     Ruby/core
-    # Ruby-Doc
-    :0
-    * ^List-Id: .*ruby-doc.*\.ruby-lang\.org
-    Ruby/doc
-    # Ruby-CVS
-    :0
-    * ^List-Id: .*ruby-cvs.*\.ruby-lang\.org
-    Ruby/cvs
     # Ruby on Rails
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
@@ -412,7 +377,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Emacs/devel/
     :0
     * ^List-Id: .*info-gnu-emacs\.gnu\.org
-    Emacs/anon/
+    INBOX/
     :0
     * ^List-Id: .*implementations-list\.lists\.ourproject\.org
     Emacs/Evil/
@@ -434,10 +399,10 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Vim/dev/
     :0
     * ^List-Id: .*vim-announce\.vim\.org
-    Vim/anon/
+    INBOX/
     :0
     * ^List-Id: .*vim_announce\.googlegroups\.com
-    Vim/anon/
+    INBOX/
 
     :0
     * ^List-Id: .*vimwiki\.googlegroups\.com
@@ -487,7 +452,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     apps/Mutt/
     :0
     * ^List-Post: .*procmail-dev\.cuci\.nl
-    apps/procmail/
+    INBOX/
     :0
     * List-Id: .*conky-users\.lists\.sourceforge\.net
     apps/Conky/
@@ -504,9 +469,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * To: .*mldonkey-users@nongnu\.org
     apps/MLDonkey/
     :0
-    * ^List-ID: .*prey-security\.googlegroups\.com
-    apps/prey/
-    :0
     * ^List-Id: .*screen-users\.gnu\.org
     apps/screen/
     :0
@@ -516,17 +478,11 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*rxvt-unicode\.lists\.schmorp\.de
     apps/urxvt/
     :0
-    * ^From: .*elinks-users.*@linuxfromscratch\.org
-    apps/elinks/
-    :0
-    * ^List-Id: .*bogofilter\.bogofilter\.org
-    apps/bogofilter/
-    :0
     * ^List-Id: .*pandoc-discuss\.googlegroups\.com
     apps/pandoc/
-    :0
-    * ^List-Id: .*canto-reader.*@codezen\.org
-    apps/Canto/
+    # :0
+    # * ^List-Id: .*canto-reader.*@codezen\.org
+    # apps/Canto/
     :0
     * ^List-Id: .*gitit-discuss\.googlegroups\.com
     apps/gitit/
@@ -534,14 +490,8 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*mosh-users\.mit\.edu
     apps/mosh/
     :0
-    * ^List-Id: .*wayland-devel\.lists\.freedesktop\.org
-    apps/Wayland/
-    :0
     * ^List-Id: .*ledger-cli\.googlegroups\.com
     apps/ledger/
-    :0
-    * ^List-Id: .*jekyll-rb\.googlegroups\.com
-    apps/jekyll/
 # }}}
 
 # GNU {{{
@@ -562,7 +512,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Arch/general/
     :0
     * ^List-Id: .*arch-announce\.archlinux\.org
-    Arch/announce/
+    INBOX/
     :0
     * ^List-Id: .*arch-projects\.archlinux\.org
     Arch/projects/
@@ -605,9 +555,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*linuxusersgroup\.googlegroups\.com
     Linux/
-    :0
-    * ^List-ID: .*comp\.os\.linux\.security\.googlegroups\.com
-    Linux/security/
 
     # LUG ( Linux User Group ) {{{
     :0

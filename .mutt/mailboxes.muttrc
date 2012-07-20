@@ -23,15 +23,15 @@ mailboxes =Drafts
 
 mailboxes /var/mail/chris
 
+mailboxes =QQ
+
 mailboxes =Emacs
 mailboxes =Emacs/help
 mailboxes =Emacs/devel
-mailboxes =Emacs/anon
 mailboxes =Emacs/Evil
 
 mailboxes =Vim
 mailboxes =Vim/dev
-mailboxes =Vim/anon
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
 
@@ -40,7 +40,6 @@ mailboxes =Stack\ Exchange
 mailboxes =Ruby
 mailboxes =Ruby/talk
 mailboxes =Ruby/core
-mailboxes =Ruby/doc
 mailboxes =Ruby/cvs
 mailboxes =Ruby/Rails
 
@@ -49,34 +48,25 @@ mailboxes =Lisp/Lisp-cn
 
 mailboxes =Python
 mailboxes =Python/python
+mailboxes =Python/help
+mailboxes =Python/dev
+mailboxes =Python/comp-lang-py
+mailboxes =Python/python-tw
 # projects
 mailboxes =Python/Django
 mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
-# about python
-mailboxes =Python/comp-lang-py
-mailboxes =Python/python-tw
-mailboxes =Python/help
-mailboxes =Python/tutor
-mailboxes =Python/ideas
-mailboxes =Python/porting
-mailboxes =Python/speed
-mailboxes =Python/gui
 # mailboxes =Python/peps
-mailboxes =Python/docs
-mailboxes =Python/doc-sig
-mailboxes =Python/dev
-mailboxes =Python/cython-users
-mailboxes =Python/cython-devel
 
 mailboxes =Go
 mailboxes =Go/go-nuts
 mailboxes =Go/go-china
-mailboxes =Go/go-anon
 mailboxes =Go/go-dev
 
 mailboxes =Dart
 mailboxes =Dart/misc
+
+mailboxes =C
 
 mailboxes =Git
 mailboxes =Git/users
@@ -84,9 +74,7 @@ mailboxes =Git/GotGit
 
 mailboxes =Arch
 mailboxes =Arch/general
-mailboxes =Arch/announce
 mailboxes =Arch/projects
-mailboxes =Arch/events
 mailboxes =Arch/dev-public
 mailboxes =Arch/pacman-dev
 mailboxes =Arch/aur-general
@@ -94,11 +82,6 @@ mailboxes =Arch/archlinux-cn
 mailboxes =Arch/releng
 
 mailboxes =Linux
-mailboxes =Linux/security
-# mailboxes =Linux/LUG
-# mailboxes =Linux/LUG/ShangHai
-# mailboxes =Linux/LUG/HangZhou
-# mailboxes =Linux/LUG/XiDian
 
 mailboxes =Drupal
 mailboxes =Drupal/support
@@ -126,24 +109,17 @@ mailboxes =apps
 mailboxes =apps/Awesome
 mailboxes =apps/FVWM
 mailboxes =apps/Mutt
-mailboxes =apps/procmail
 mailboxes =apps/tmux
 mailboxes =apps/screen
 mailboxes =apps/weechat
-mailboxes =apps/jekyll
 mailboxes =apps/Conky
-mailboxes =apps/Canto
+# mailboxes =apps/Canto
 mailboxes =apps/ranger
 mailboxes =apps/ledger
-mailboxes =apps/prey
 mailboxes =apps/pandoc
 mailboxes =apps/mosh
 mailboxes =apps/urxvt
 mailboxes =apps/gitit
-mailboxes =apps/Wayland
-mailboxes =apps/elinks
-mailboxes =apps/bogofilter
-mailboxes =apps/MLDonkey
 
 mailboxes =censorship
 
