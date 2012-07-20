@@ -2030,8 +2030,7 @@ syntax on
             " let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             " do not use snippets come with UltiSnips.
             let g:UltiSnipsSnippetDirectories=["snippets/UltiSnips"]
-            let g:UltiSnipsDontReverseSearchPath = 1 " traverse runtimepath
-            " Triggers :
+            let g:UltiSnipsDontReverseSearchPath = 0 " traverse runtimepath
             let g:UltiSnipsExpandTrigger="<tab>"
             let g:UltiSnipsListSnippets="<tab>" " <c-tab> / <Tab>
             let g:UltiSnipsJumpForwardTrigger="<c-j>" " jump to next placeholder.
