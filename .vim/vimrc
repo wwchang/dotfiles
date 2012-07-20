@@ -1638,7 +1638,7 @@ syntax on
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
-            let g:neocomplcache_enable_insert_char_pre = 0 " TODO 'InsertCharPre' event
+            let g:neocomplcache_enable_insert_char_pre = 0 " 1: 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
@@ -2033,10 +2033,10 @@ syntax on
             let g:UltiSnipsDontReverseSearchPath = 1 " traverse runtimepath
             " Triggers :
             let g:UltiSnipsExpandTrigger="<tab>"
-            let g:UltiSnipsListSnippets="<c-tab>" " or same with expandTrigger <Tab>
+            let g:UltiSnipsListSnippets="<tab>" " <c-tab> / <Tab>
             let g:UltiSnipsJumpForwardTrigger="<c-j>" " jump to next placeholder.
             let g:UltiSnipsJumpBackwardTrigger="<c-k>" " jump to previous placeholder.
-            " let g:UltiSnipsDontReverseSearchPath="1"
+            " let g:UltiSnipsDontReverseSearchPath = 1
             let g:UltiSnipsDoHash = 1 " check and reload new snip file.
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
