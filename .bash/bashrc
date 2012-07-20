@@ -236,7 +236,7 @@ fi
 # $ lynx $blog
 
 # vim like key bind
-set -o vi
+# set -o vi
 
 # set mailbox spool
 MAIL=/var/spool/mail/chris && export MAIL
