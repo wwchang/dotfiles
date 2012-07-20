@@ -33,7 +33,6 @@ augroup filetypedetect
 
     " UltiSnips.vim & SnipMate
     au BufRead,BufNewFile *.{snip,snippets,snippet}   set filetype=snippet
-    au BufRead,BufNewFile *.snip   set filetype=snippet
 
     " Taskwarrior data files
     au BufRead,BufNewFile {pending,completed,undo}.data	set filetype=taskdata
