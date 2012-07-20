@@ -2015,27 +2015,27 @@ syntax on
                 "nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
         " }}}
 
-        " UltiSnips {{{
-            " ${VISUAL}, [Trigger] <C-Tab>, <Tab> to expand trigger. <C-J/K>
+        " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
             " :UltiSnipsEdit
-            " :UltiSnipAddFiletypes rst.lua (merging of two filetype snippets)
+            " :UltiSnipAddFiletypes
+            "       cuda.cpp.c (merging of two filetypes snippets)
+            " UltiSnips_AddSnippet(trigger, value, description, options, ...)
+            " UltiSnips_Anon(value, ...) 'anonymous snippet'
             if has('python3')
                 let g:UltiSnipsUsePythonVersion = 3 " use python 3.X
             elseif has('python')
                 let g:UltiSnipsUsePythonVersion = 2 " use python 2.X
             endif
             let g:UltiSnipsEditSplit = "Vertical" " normal, horizontal, Vertical.
-                "set runtimepath+=~/.vim/snippets/ " for MyUltiSnips
             let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
+            " do not use snippets come with UltiSnips.
+            " let g:UltiSnipsSnippetDirectories=["snippets/UltiSnips"]
             let g:UltiSnipsDontReverseSearchPath = 1 " traverse runtimepath
-            " Triggers:
-            " The g:UltiSnipsExpandTrigger and g:UltiSnipsJumpForwardTrigger can
-            " be set to the same value. To simulate TextMate behavior, add the
-            " following lines to your
+            " Triggers :
             let g:UltiSnipsExpandTrigger="<tab>"
-            let g:UltiSnipsListSnippets="<c-tab>"
-            let g:UltiSnipsJumpForwardTrigger="<c-j>" " same with expandTrigger map
-            let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+            let g:UltiSnipsListSnippets="<c-tab>" " or same with expandTrigger <Tab>
+            let g:UltiSnipsJumpForwardTrigger="<c-j>" " jump to next placeholder.
+            let g:UltiSnipsJumpBackwardTrigger="<c-k>" " jump to previous placeholder.
             " let g:UltiSnipsDontReverseSearchPath="1"
             let g:UltiSnipsDoHash = 1 " check and reload new snip file.
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
