@@ -1337,8 +1337,6 @@ endif
         call vam#ActivateAddons(['LargeFile'])
             " Motions
         call vam#ActivateAddons(['EasyMotion'])
-            " timestamp
-        call vam#ActivateAddons(['lastmod'])
             " ASCII draw
         "call vam#ActivateAddons(['DrawIt'])
         " call vam#ActivateAddons(['ditaa'])
@@ -4341,17 +4339,6 @@ syntax on
     " }}}
 
     " [ timestamp ] {{{
-        " [ Last Modified ] {{{
-            " lastmod
-                " Usage: :LastModUpdate
-                let g:lastmod_loaded = 1
-                let g:lastmod_lines = 20 " look at the first n lines of file.
-                let g:lastmod_format = '%a %Y-%m-%d %H:%M:%S (%z)'
-                let g:lastmod_prefix = 'Last Modified: '
-                let g:lastmod_suffix = ''
-                let g:lastmod_commented = 1 " whole line be commented.
-            " Last_Modified
-        " }}}
     " }}}
 
     " trailing-whitespace
