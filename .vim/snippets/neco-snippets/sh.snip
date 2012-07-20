@@ -20,11 +20,39 @@ prev_word   '^'
         ${2:compound commands}
     fi
 
-snippet     ifel
+snippet     ifelse
 abbr        if ..; then ..; else ..; fi
 prev_word   '^'
-    if ${1:condition} ; then
+    if ${1:condition}; then
         ${2:compound commands}
     else
-        ${2:compound commands}
+        ${3:compound commands}
     fi
+
+snippet     ifelif
+abbr        if ..; then ..; else ..; fi
+prev_word   '^'
+    if ${1:condition}; then
+        ${2:compound commands}
+    elif
+        ${3:compound commands}
+    fi
+
+snippet     else
+abbr        else ..;
+prev_word   '^'
+    else
+        ${1:compound commands}
+
+snippet     elif
+abbr        elif ..;
+prev_word   '^'
+    elif
+        ${1:compound commands}
+
+snippet     help
+abbr        cat << EOF ...
+prev_word   '^'
+    cat << EOF
+    	${1}
+    EOF
