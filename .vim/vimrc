@@ -2033,9 +2033,8 @@ syntax on
             let g:UltiSnipsDontReverseSearchPath = 0 " traverse runtimepath
             let g:UltiSnipsExpandTrigger = "<tab>"
             let g:UltiSnipsListSnippets = "<c-tab>"
-            let g:UltiSnipsJumpForwardTrigger="<c-j>" " jump to next placeholder.
-            let g:UltiSnipsJumpBackwardTrigger="<c-k>" " jump to previous placeholder.
-            " let g:UltiSnipsDontReverseSearchPath = 1
+            let g:UltiSnipsJumpForwardTrigger = "<c-j>" " jump to next tabstop.
+            let g:UltiSnipsJumpBackwardTrigger = "<c-k>" " previous tabstop.
             let g:UltiSnipsDoHash = 1 " check and reload new snip file.
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
