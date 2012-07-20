@@ -32,7 +32,7 @@ augroup filetypedetect
     au BufRead,BufNewFile *.psql set filetype=psql
 
     " UltiSnips.vim & SnipMate
-    au BufRead,BufNewFile *.{snip,snippets,snippet}   set filetype=snippet
+    au BufRead,BufNewFile *.snippets set filetype=snippets
 
     " Taskwarrior data files
     au BufRead,BufNewFile {pending,completed,undo}.data	set filetype=taskdata
