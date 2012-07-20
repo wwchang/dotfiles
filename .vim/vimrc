@@ -2626,22 +2626,18 @@ syntax on
 
         " Syntastic {{{ :w saving to check. or daemon automatic check.
             " Commands: :Errors, :SyntasticToggleMode, :SyntasticCheck,
-            " Require:  language syntax checker bins.
-            "Syntastic is a syntax checking plugin that runs files through
-            "external syntax checkers.  This can be done on demand, or
-            "automatically as files are saved and opened.  If syntax errors are
-            "detected, the user is notified and is happy because they didn't
-            "have to compile their code or execute their script to find them.
-            let g:syntastic_check_on_open=0 " checks when buffers are first loaded/save.
-            let g:syntastic_echo_current_error=1 " error associated with lines.
-            let g:syntastic_enable_signs=1 " use :sign interface to mark syntax errors.
-            let g:syntastic_enable_balloons = 1
-                " whether display error messages in balloons when mouse is
-                " hovered over erroneous lines.  need '+balloon_eval'
-            let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors.
-            let g:syntastic_auto_jump=1 " jump to first detected error
-            let g:syntastic_auto_loc_list=2 " 0/1/2: auto open and,or close location-list
-            let g:syntastic_loc_list_height=10
+            let g:syntastic_check_on_open = 0 " check when buffers first loaded/save
+            let g:syntastic_echo_current_error = 1 " error associated with lines
+            let g:syntastic_enable_signs = 1 " :sign interface to mark syntax errors
+            let g:syntastic_error_symbol = '✗'
+            let g:syntastic_style_error_symbol = 'S✗'
+            let g:syntastic_warning_symbol = '⚠'
+            let g:syntastic_style_warning_symbol = 'S⚠'
+            let g:syntastic_enable_balloons = 1 " mouse hover, need '+balloon_eval'
+            let g:syntastic_enable_highlighting = 1 " syntax highlighting to mark errors
+            let g:syntastic_auto_jump = 0 " jump to first detected error
+            let g:syntastic_auto_loc_list = 2 " 0/1/2: auto open/close error window
+            let g:syntastic_loc_list_height = 10
                 " fine tune when automatic syntax checking is done.
             let g:syntastic_mode_map = { 'mode': 'active',
                         \ "active_filetypes": [],
