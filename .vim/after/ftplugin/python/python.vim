@@ -3,7 +3,8 @@ let python_highlight_all=1
 let python_slow_sync=1 " for fast machines
 
 " Tab
-setlocal expandtab " In insert mode, use appropriate number of spaces to insert a <Tab>
+setlocal expandtab " Insert mode, use appropriate spaces to replace a <Tab>
+" indent with 4 spaces.
 setlocal tabstop=4
 setlocal shiftwidth=4
 setlocal softtabstop=4
