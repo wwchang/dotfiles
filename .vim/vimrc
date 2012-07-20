@@ -4429,44 +4429,6 @@ syntax on
 
             " [ extra ] {{{
                 au FileType vimwiki setlocal concealcursor=v
-
-            " Schemes:
-            "   - [[file:///...]]
-            "   - [[wiki#:this is a link|describ]]
-            "   - [[local:../path/|desc]]
-            " FIXME use utl.vim at here. :Utl.
-            " function! VimwikiWeblinkHandler(weblink)
-            "     let browser = 'firefox'
-            "     execute 'silent !"'.browser.'" ' . shellescape(a:weblink, 1) . '&'
-            " endfunction
-            " call VimwikiWeblinkHandler(expand("<cWORD>"))
-
-            " TODO
-            " function! VimwikiLastChangeTimeStamp()
-            " endfunction
-            " autocmd FileType vimwiki :call VimwikiLastChangeTimeStamp()
-
-            au FileType vimwiki setlocal concealcursor=v
-
-            " add/update "Last Change" time stamp in vimwiki
-            " Check no more than 30 lines from start for 'Last Change:'
-            " and update it with the current datetime.
-            function! LastChangeUpdate()
-                for linenr in range(1, min([30, line('$')]))
-                    let line = getline(linenr)
-                    if line =~ 'Last Change:'
-                        let line = substitute(line, 'Last Change:.*$',
-                                \ 'Last Change: '.strftime("%Y-%m-%d %H:%M"), '')
-                        call setline(linenr, line)
-                        break
-                    " add create timestamp
-                    " else
-                    "     call setline(1, strftime("%Y-%m-%d %H:%M"))
-                    endif
-                endfor
-            endfunction
-            au BufWritePre *.wiki call LastChangeUpdate()
-
             " }}}
         " }}}
 
