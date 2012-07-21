@@ -70,6 +70,7 @@ mailboxes =Dart/misc
 mailboxes =C
 
 mailboxes =Git
+mailboxes =Git/help
 mailboxes =Git/users
 mailboxes =Git/GotGit
 

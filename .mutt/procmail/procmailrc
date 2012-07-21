@@ -433,7 +433,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # Apps: Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{
     :0
     * ^List-Id: .*git\.vger\.kernel\.org
-    Git/
+    Git/help/
     :0
     * ^List-Id: .*git-users\.googlegroups\.com
     Git/users/
