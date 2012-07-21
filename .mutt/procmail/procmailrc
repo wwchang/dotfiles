@@ -386,10 +386,10 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # Vim {{{
     :0
     * ^List-Id: .*vim\.vim\.org
-    Vim/
+    Vim/help/
     :0
     * ^List-Id: .*vim_use\.googlegroups\.com
-    Vim/
+    Vim/help/
 
     :0
     * ^List-Id: .*vim-dev\.vim\.org

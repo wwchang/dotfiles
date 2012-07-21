@@ -25,17 +25,18 @@ mailboxes /var/mail/chris
 
 mailboxes =QQ
 
+mailboxes =Stack\ Exchange
+
 mailboxes =Emacs
 mailboxes =Emacs/help
 mailboxes =Emacs/devel
 mailboxes =Emacs/Evil
 
 mailboxes =Vim
+mailboxes =Vim/help
 mailboxes =Vim/dev
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
-
-mailboxes =Stack\ Exchange
 
 mailboxes =Ruby
 mailboxes =Ruby/talk
