@@ -92,11 +92,10 @@ mailboxes =Drupal/security
 mailboxes =Perl
 
 mailboxes =Maemo
-mailboxes =Maemo/update
-mailboxes =Maemo/update/N900
-mailboxes =Maemo/update/Development
 mailboxes =Maemo/users
 mailboxes =Maemo/devel
+mailboxes =Maemo/update/N900
+mailboxes =Maemo/update/Development
 
 mailboxes =Web
 mailboxes =Web/whatwg
