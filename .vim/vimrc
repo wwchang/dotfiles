@@ -1261,6 +1261,7 @@ endif
             " GTD
         " call vam#ActivateAddons(['VimOrganizer'])
         call vam#ActivateAddons(['speeddating'])
+        call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
             " outliner
         " call vam#ActivateAddons(['HyperList'])
         call vam#ActivateAddons(['VOoM'])
@@ -1980,11 +1981,11 @@ syntax on
             let g:SuperTabCrMapping = 0 " 1: cancel completion mode.
             let g:SuperTabClosePreviewOnPopupClose = 0 " close preview window ?
 
-            autocmd FileType *
-                        \ if &omnifunc != '' |
-                        \   call SuperTabChain(&omnifunc, "<c-p>") |
-                        \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
-                        \ endif
+            " autocmd FileType *
+            "             \ if &omnifunc != '' |
+            "             \   call SuperTabChain(&omnifunc, "<c-p>") |
+            "             \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+            "             \ endif
 
             " [ extra ]
             function MyTagContext()
