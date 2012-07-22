@@ -26,7 +26,7 @@
                                            |      `- multiple accounts.
                                            |      `- signature
                                            |      `- SMTP, POP3, IMAP ...
-                                           |      `-
+                                           |      `- ",f" to execute getmail.sh script.
                                            \__ View:
                                            |    - thread mode:
                                            |        - <Esc>v/V collapse (all) thread

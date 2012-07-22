@@ -321,6 +321,10 @@ folder-hook spam push 'D.\n'
 macro pager \cb   "|urlview\n" "browse URLs"
 # macro pager \cb   <pipe-entry>'urlview'<enter> "browse URLs"
 
+# [ fetch new emails ]
+macro index ,f  <sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/getmail.sh<enter><sync-mailbox>
+
+
 # [ mairix ] {{{
 # macro generic ,f "<shell-escape>mairix " "search via mairix"
 
