@@ -1084,7 +1084,7 @@ endif
         call vam#ActivateAddons(['neocomplcache', 'vimproc'])
         call vam#ActivateAddons(['neco-look'])
         " call vam#ActivateAddons(['AutoComplPop'])
-        " call vam#ActivateAddons(['SuperTab_continued.'])
+        call vam#ActivateAddons(['github:ervandew/supertab'])
             " snippet
         " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
         call vam#ActivateAddons(['UltiSnips'])
@@ -1956,20 +1956,48 @@ syntax on
 
         " AutoComplPop
 
-        " SuperTab {{{ <Tab> Perform all your vim insert mode completions with Tab.
-            " let SuperTab decide which completion mode to use and should play
-            " with OmniCompletion
-            let g:SuperTabMappingTabLiteral = '<c-tab>' " insert true TAB
-            let g:SuperTabDefaultCompletionType = "context" "
+        " SuperTab {{{ <Tab> perform all your insert completions.
+            " context, <c-n>, <c-p>,
+            " <c-x><c-o> (omni), <c-x><c-u> (user defined func), <c-x><c-]>
+            let g:SuperTabDefaultCompletionType = "context"
+            " when upper option is 'context'
             let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-            " let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
-            " let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
-            " let g:SuperTabContextDiscoverDiscovery =
-                " \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
-            " let g:SuperTabMappingForword = '<c-space>' " replace default <Tab>
-            let g:SuperTabLongestEnhanced = 1 " when you have 'longest' in completeopt
-            let g:SuperTabLongestHighlight = 0 " highlight first one in popup menu
-            let g:SuperTabCrMapping = 1 " <Enter> will not jump to next line.
+
+            let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+            let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
+            let g:SuperTabContextDiscoverDiscovery =
+                \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
+
+            " how long the time retains: completion, insert, session
+            let g:SuperTabRetainCompletionDuration = 'insert'
+            " prevent completion after ...
+            let g:SuperTabNoCompleteBefore = []
+            let g:SuperTabNoCompleteAfter = ['^', '\s', ',']
+            let g:SuperTabMappingForword = '<c-space>' " <tab>, <c-space>, <nul>
+            let g:SuperTabMappingBackward = '<s-tab>' " <s-tab>, <s-c-space>, <s-nul>
+            let g:SuperTabMappingTabLiteral = '<c-tab>' " insert true TAB
+            let g:SuperTabLongestEnhanced = 0 " if 'longest' in completeopt
+            let g:SuperTabLongestHighlight = 1 " highlight first one in popup menu
+            let g:SuperTabCrMapping = 0 " 1: cancel completion mode.
+            let g:SuperTabClosePreviewOnPopupClose = 0 " close preview window ?
+
+            autocmd FileType *
+                        \ if &omnifunc != '' |
+                        \   call SuperTabChain(&omnifunc, "<c-p>") |
+                        \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
+                        \ endif
+
+            " [ extra ]
+            function MyTagContext()
+                if filereadable(expand('%:p:h') . '/tags')
+                    return "\<c-x>\<c-]>"
+                endif
+                " no return will result in the evaluation of the next
+                " configured context
+            endfunction
+
+            let g:SuperTabCompletionContexts =
+                        \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
         " }}}
     " }}}
 
