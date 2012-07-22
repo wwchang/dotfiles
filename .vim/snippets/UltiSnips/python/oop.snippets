@@ -11,16 +11,19 @@ endsnippet
 
 snippet defattribute "define class attribute" !b
 def __${1:attribute}__(self${2}):
+    ${3}
     $0
 endsnippet
 
 snippet defproperty "define class property" !b
 @property
 def ${1:attribute}(self${2}):
+    ${3}
     $0
 endsnippet
 
 snippet defmethod "define class method" !b
 def ${1:Method}(self${2}):
+    ${3}
     $0
 endsnippet
