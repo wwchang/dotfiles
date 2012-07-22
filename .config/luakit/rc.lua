@@ -130,6 +130,11 @@ require "go_input"
 require "go_next_prev"
 require "go_up"
 
+--------------------------
+-- user custom settings --
+--------------------------
+require "userconfig.lua"
+
 -----------------------------
 -- End user script loading --
 -----------------------------
