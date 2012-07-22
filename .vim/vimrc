@@ -413,7 +413,7 @@ endif
         " showbreak: "↪ ", "> ", "+++ ",
         " ------------------------------------------
     set fillchars=vert:│,fold:┄,diff:×
-    set list listchars=tab:\ \ ,trail:\·,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠
+    set list listchars=tab:\ \ ,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠,trail:\·,eol:¶
     nnoremap <silent> <Leader>lc :set nolist!<CR>
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
@@ -424,10 +424,10 @@ endif
             let g:TabIndentLine = 1
             hi SpecialKey      ctermfg=237 ctermbg=NONE cterm=none
             set noexpandtab
-            set listchars=tab:\┆\ ,
+            set listchars=tab:\┆\ ,eol:¶
             :IndentGuidesDisable
-	    " elseif (a:toggle_vertline == 0)
-	    else
+        " elseif (a:toggle_vertline == 0)
+        else
             let g:TabIndentLine = 0
             set expandtab
             set listchars=tab:\ \ ,
