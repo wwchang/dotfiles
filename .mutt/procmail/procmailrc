@@ -442,6 +442,16 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Git/GotGit/
 
     :0
+    * ^List-Id: .*zsh-users\.zsh\.org
+    Zsh/users/
+    :0
+    * ^List-Id: .*zsh-workers\.zsh\.org
+    Zsh/workers/
+    :0
+    * ^List-Id: .*zsh-announce\.zsh\.org
+    INBOX/
+
+    :0
     * ^List-Id: .*awesome\.naquadah\.org
     apps/Awesome/
     :0

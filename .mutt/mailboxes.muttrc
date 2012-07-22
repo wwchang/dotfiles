@@ -83,6 +83,10 @@ mailboxes =Arch/aur-general
 mailboxes =Arch/archlinux-cn
 mailboxes =Arch/releng
 
+mailboxes =Zsh
+mailboxes =Zsh/users
+mailboxes =Zsh/workers
+
 mailboxes =Linux
 
 mailboxes =Drupal
