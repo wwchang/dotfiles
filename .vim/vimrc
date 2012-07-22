@@ -1084,7 +1084,7 @@ endif
         call vam#ActivateAddons(['neocomplcache', 'vimproc'])
         call vam#ActivateAddons(['neco-look'])
         " call vam#ActivateAddons(['AutoComplPop'])
-        call vam#ActivateAddons(['github:ervandew/supertab'])
+        " call vam#ActivateAddons(['github:ervandew/supertab'])
             " snippet
         call vam#ActivateAddons(['UltiSnips'])
         " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
@@ -3070,6 +3070,9 @@ syntax on
             "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
             "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
         " }}}
+    " }}}
+
+    " endwise {{{ end certain structures automatically. if, do, def ...
     " }}}
 
     " [ swap value ] {{{
