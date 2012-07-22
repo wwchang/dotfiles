@@ -139,13 +139,16 @@ mailboxes =RSS
 # Send Draft Junk Viruses Spam
 # mbox is for sended and received mails
 mailboxes =Important
+
 mailboxes =mbox
+mailboxes =Draft
 mailboxes =Send
-mailboxes =Trash
-mailboxes =spam
 mailboxes $MAIL
+mailboxes =Trash
+
 mailboxes =Search
-# mailboxes =Draft
+
+mailboxes =spam
 # mailboxes =Junk
 # mailboxes =Viruses
 
