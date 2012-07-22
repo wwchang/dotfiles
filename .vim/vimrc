@@ -413,7 +413,7 @@ endif
         " showbreak: "↪ ", "> ", "+++ ",
         " ------------------------------------------
     set fillchars=vert:│,fold:┄,diff:×
-    set list listchars=tab:\ \ ,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠,trail:\·,eol:¶
+    set list listchars=tab:\ \ ,trail:\·,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠
     nnoremap <silent> <Leader>lc :set nolist!<CR>
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
