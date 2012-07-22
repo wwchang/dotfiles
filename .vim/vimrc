@@ -1086,15 +1086,12 @@ endif
         " call vam#ActivateAddons(['AutoComplPop'])
         call vam#ActivateAddons(['github:ervandew/supertab'])
             " snippet
-        " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
         call vam#ActivateAddons(['UltiSnips'])
+        " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
         "call vam#ActivateAddons(['snipmate'])
-        "call vam#ActivateAddons(['snipmate', 'tlib', 'vim-addon-mw-utils', 'snipmate-snippets'])
         "call vam#ActivateAddons(['SnippetComplete'])
             " skeleton / template
-        call vam#ActivateAddons(['SonicTemplate'])
-        " call vam#ActivateAddons(['qtmplsel'])
-        " call vam#ActivateAddons(['template'])
+        " call vam#ActivateAddons(['SonicTemplate'])
             " Tags : taglist-plus,
         call vam#ActivateAddons(['Tagbar'])
         call vam#ActivateAddons(['tagbar-phpctags'])
