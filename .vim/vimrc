@@ -1157,6 +1157,8 @@ endif
         call vam#ActivateAddons(['Gundo'])
             " other small functions
         " call vam#ActivateAddons(['TagmaLast'])
+            "
+        call vam#ActivateAddons(['endwise'])
             " Swap True False etc
         call vam#ActivateAddons(['SwapIt'])
             " Author info & License
