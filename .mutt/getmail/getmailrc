@@ -68,7 +68,7 @@ delete_dup_msgids = True
 server = pop.gmail.com
 port = 995
 username = numbchild@gmail.com
-password = sqhlsflsspssbiqy
+password = PASSWORD
 # }}}
 
 # [ IMAP Retriver ] {{{

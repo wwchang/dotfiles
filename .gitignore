@@ -9,7 +9,7 @@ tags
 .mutt/getmail/log
 .mutt/history_file
 .mutt/cache
-.mutt/getmail/oldmail-pop.gmail.com-995-numbchild@gmail.com
+.mutt/getmail/oldmail-*
 
 .vim/vim-addons/*
 .vim/bundle/*

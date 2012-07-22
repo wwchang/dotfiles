@@ -13,7 +13,7 @@ delete_dup_msgids = True
 server = pop.qq.com
 port = 110
 username = 348284894@qq.com
-password = stardiviner324
+password = PASSWORD
 # }}}
 
 # SMTP {{{
