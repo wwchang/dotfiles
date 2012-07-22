@@ -199,7 +199,8 @@ if os.getenv("TERM") == "linux":
     link_handler("elinks \"%u\"", text=True) # for curses browser.
     image_handler("fbi \"%u\"", text=True, fetch=True)
 else:
-    link_handler("firefox \"%u\"") # open URL with firefox.
+    # link_handler("firefox \"%u\"") # open URL with firefox.
+    link_handler("luakit \"%u\"") # open URL with luakit
     # image_handler("fbv \"%u\"", text=True, fetch=True) # Curses image show.
     image_handler("feh \"%u\"", fetch=True) # Curses image show.
     link_handler("mplayer \"%u\"", ext="mp3") # music
