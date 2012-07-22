@@ -4605,7 +4605,21 @@ syntax on
             " let g:voom_create_devel_commands
         " }}}
 
-        " Speeddating: | <C-A>, <C-X>, {Visual}<C-A/X>
+        " Speeddating : <C-A>, <C-X>, {Visual}<C-A/X>
+
+        " Vomodoro {{{ facilitates planning, tracking and archiving Pomodoros.
+            " Usage:
+            "   - :PomodoroOpenArchive -- open the archived Pomodoros.
+            "   - :PomodoroPerformArchive --- copy todo list to Pomodoros.
+            "   - :PomodoroToDoToday -- open the todo list buffer.
+            " keys:
+            "   - <esc>/q   -- close buffer window.
+            "   - <CR>      -- add a check box to current line.
+            "   - <space>   -- check off a box on the current line.
+            "   - -         -- check of the remaining boxes on line using dashes
+            let g:Pomo_ArchiveFilePath = "$HOME/vimwiki/Vomodoro/todotoday"
+            let g:Pomo_ToDoTodayFilePath = "$HOME/vimwiki/Vomodoro/archive"
+        " }}}
 
         " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
             " Require: AsyncCommand
