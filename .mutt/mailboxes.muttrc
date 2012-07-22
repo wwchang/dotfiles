@@ -67,6 +67,11 @@ mailboxes =Go/go-dev
 mailboxes =Dart
 mailboxes =Dart/misc
 
+mailboxes =PHP
+mailboxes =PHP/comp-lang/
+mailboxes =PHP/alt-comp-lang/
+mailboxes =PHP/general/
+
 mailboxes =C
 
 mailboxes =Git
