@@ -326,21 +326,19 @@ macro index ,f  <sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/getmai
 
 
 # [ mairix ] {{{
-# macro generic ,f "<shell-escape>mairix " "search via mairix"
-
 # Search Mails
-# macro index <f8> "<sync-mailbox><toggle-write><shell-escape>mairix \
-# \"$@\"<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
-# macro pager <f8> "<sync-mailbox><toggle-write><shell-escape>mairix \
-# \"$@\"<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
-# macro index ,f "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+# macro generic ,f "<shell-escape>mairix " "search via mairix"
+# macro generic,index ,s "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+# macro generic,index ,s "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
+macro generic,index ,s "<enter-command>set my_cmd=\`$HOME/.mutt/scripts/msearch\`<return><enter-command>push \$my_cmd<return>" "search messages"
+
+########################
+# screen: prompt for mairix search parameters
+#macro index,pager,browser ,f "\
+#<enter-command> set my_wait_key=\$wait_key wait_key=no<enter>\
+#<shell-escape>screen -X screen -t 'mutt search' sh -c 'mairixquery && mutt -f =search'<enter>\
+#<enter-command>set wait_key=\$my_wait_key &my_wait_key<enter>" "mairix query"
 ######################
-# macro index ,f "<sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter><sync-mailbox>"
-#### macro index,pager,browser ,f "<toggle-write><shell-escape>~/.mutt/scripts/mymairix<enter><change-folder>=Search<enter><sort>t<delete-pattern>~=<enter>"
-# macro generic ,f "<enter-command>set my_cmd = \`/home/chris/.mutt/scripts/msearch\`<return>\
-#     <enter-command>push \$my_cmd<return>" "search messages"
-macro generic ,f "<enter-command>set my_cmd=\`$HOME/.mutt/scripts/msearch\`<return>\
-    <enter-command>push \$my_cmd<return>" "search messages"
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Useful searches
@@ -395,19 +393,6 @@ macro generic ,f "<enter-command>set my_cmd=\`$HOME/.mutt/scripts/msearch\`<retu
 #                 of the matched word.
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-########################
-# screen: prompt for mairix search parameters
-#macro index,pager,browser ,f "\
-#<enter-command> set my_wait_key=\$wait_key wait_key=no<enter>\
-#<shell-escape>screen -X screen -t 'mutt search' sh -c 'mairixquery && mutt -f =search'<enter>\
-#<enter-command>set wait_key=\$my_wait_key &my_wait_key<enter>" "mairix query"
-######################
-# Mairix
-# macro generic ,f "<shell-escape>mairix " "search via mairix"
-# Namazu/nmzmail
-# macro generic ,F "<shell-escape>nmzmail -r ~/.maildir/.Search<enter>" "search via nmzmail"
-# Load the results mailbox
-# macro generic ,,f "<change-folder><kill-line>=.Search<enter>" "load the search results mailbox"
 # }}}
 
 # [ Mu ] {{{

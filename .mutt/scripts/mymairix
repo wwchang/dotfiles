@@ -33,7 +33,7 @@ if test "x${FIRST}x" != "x-Ffmmx" ; then
     test ${MATCHES} -eq 0 && { echo "No hits.  Search something else." ; exit ; }
 fi
 
-mairix ${MATCH}
+mairix --rcfile ~/.mutt/mairixrc ${MATCH}
 
 
 exit 0

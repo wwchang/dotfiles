@@ -139,7 +139,7 @@ mailboxes =Send
 mailboxes =Trash
 mailboxes =spam
 mailboxes $MAIL
-# mailboxes =Search
+mailboxes =Search
 # mailboxes =Draft
 # mailboxes =Junk
 # mailboxes =Viruses

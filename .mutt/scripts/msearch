@@ -37,7 +37,7 @@ tput sc          # save cursor position
 tput cup "$1" 0  # go to last line of the screen
 tput ed          # clear and write prompt
 tput sgr0
-printf 'Mairix search for: '
+printf 'Mairix search for (f:word): '
 
 # read from the terminal. We can't use "read" because, there won't be
 # any NL in the input as <return> is eof.
@@ -46,7 +46,7 @@ search=$(dd count=1 2>/dev/null)
 # clear the folder and execute a fresh search
 ( rm -rf "$searchdir"
   mairix -p
-  mairix $search
+  mairix --rcfile ~/.mutt/mairixrc $search
 ) &>/dev/null
 
 # fix the terminal
