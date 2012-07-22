@@ -5,6 +5,14 @@ snippet #! "shebang env for python/3" !b
 ${0}
 endsnippet
 
+snippet ifmain "if __name__ == "__main__": " !b
+def main():
+    ${1}
+
+if __name__ == "__main__":
+    main()
+endsnippet
+
 snippet p "print() function shortcut"
 print(${1})$0
 endsnippet
