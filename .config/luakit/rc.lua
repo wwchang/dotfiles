@@ -133,7 +133,7 @@ require "go_up"
 --------------------------
 -- user custom settings --
 --------------------------
-require "userconfig.lua"
+require "userconfig"
 
 -----------------------------
 -- End user script loading --
