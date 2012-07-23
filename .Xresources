@@ -174,7 +174,7 @@ Xcursor*theme: Buuf-cursor
 ! (more exactly, the contents of Xorgs root window)
 urxvt*transparent: true
 ! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
-urxvt*shading: 90
+urxvt*shading: 60
 ! NOTE: comment URxvt.tintColor and URxvt.inheritPixmap when fake transparency.
 !URxvt.tintColor: #000000
 !URxvt.inheritPixmap: False
