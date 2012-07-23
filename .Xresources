@@ -172,9 +172,9 @@ Xcursor*theme: Buuf-cursor
 ! for fake transparency:
 ! A "fake" transparency, that copies the wallpaper to the background of the terminal.
 ! (more exactly, the contents of Xorgs root window)
-urxvt*transparent: false
+urxvt*transparent: true
 ! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
-urxvt*shading: 7
+urxvt*shading: 90
 ! NOTE: comment URxvt.tintColor and URxvt.inheritPixmap when fake transparency.
 !URxvt.tintColor: #000000
 !URxvt.inheritPixmap: False
