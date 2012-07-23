@@ -1,6 +1,6 @@
 # shebang header env for python 2/3
 snippet #! "shebang env for python/3" !b
-#!/usr/bin/env python${1:3}
+#!/usr/bin/env python3
 # encoding: utf-8
 
 
@@ -15,11 +15,8 @@ def ${8:function}(${9:arguments}):
 endsnippet
 
 snippet ifmain "if __name__ == '__main__': " !b
-def main():
-    ${1}
-
 if __name__ == "__main__":
-    main()
+    ${1:execute something}
 endsnippet
 
 snippet p "print() function shortcut"
