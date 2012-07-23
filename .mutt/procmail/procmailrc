@@ -336,14 +336,17 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
     # [ PHP ] {{{
     :0
-    * ^List-Id: .*comp\.lang\.php\.googlegroups\.com
-    PHP/comp-lang/
-    :0
-    * ^List-Id: .*alt\.comp\.lang\.php\.googlegroups\.com
-    PHP/alt-comp-lang/
-    :0
-    * ^List-Id: .*php\.general\.googlegroups\.com
+    * ^List-Id: .*php-general\.lists\.php\.net
     PHP/general/
+    # :0
+    # * ^List-Id: .*php\.general\.googlegroups\.com
+    # PHP/general/
+    # :0
+    # * ^List-Id: .*comp\.lang\.php\.googlegroups\.com
+    # PHP/comp-lang/
+    # :0
+    # * ^List-Id: .*alt\.comp\.lang\.php\.googlegroups\.com
+    # PHP/alt-comp-lang/
     # }}}
 
     # [ Perl ] {{{

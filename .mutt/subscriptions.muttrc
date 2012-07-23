@@ -40,6 +40,9 @@ subscribe java.lang java.lang.G <comp.lang.java.programmer@googlegroups.com>
 # [ C ]
 subscribe c.lang c.lang.G <comp.lang.c@googlegroups.com>
 
+# [ PHP ]
+subscribe php   PHP-general <php-general@lists.php.net>
+
 # [ Perl ]
 subscribe perl.beginners.G perl.beginners.G <perl.beginners@googlegroups.com>
 subscribe perl.beginner perl.beginner <beginners@perl.org>
