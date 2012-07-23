@@ -1683,6 +1683,14 @@ root.buttons(awful.util.table.join(
                 switchtotag = true
             }
         },
+        -- luakit
+        {
+            rule = { class = "luakit", instance = "luakit" },
+            properties = {
+                tag = tags[1][7],
+                floating = false
+            }
+        }
 
     }
 
