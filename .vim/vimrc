@@ -4660,7 +4660,7 @@ syntax on
     " [ markup & write ] {{{
         " preview%3344 {{{
             " <Leader>P => preview markup: markdown, rdoc, textile, html, rst
-            let g:PreviewBrowsers='firefox,luakit,chromium-browser'
+            let g:PreviewBrowsers='luakit,firefox,chromium-browser'
             " let g:PreviewCSSPath='/path/to/css/file'
             let g:PreviewMarkdownExt='markdown,md,mkd,mkdn,mdown'
             let g:PreviewTextileExt='textile,txt'
