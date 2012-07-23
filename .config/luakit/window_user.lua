@@ -22,17 +22,17 @@
 -- end
 
 -- progress indicator:
-window.methods.update_progress = function (w, view, p)
-    if not view then view = w:get_current() end
-    if not p then p = view:get_prop("progress") end
-    local loaded = w.sbar.l.loaded
-    if not view:loading() or p == 1 then
-        loaded:hide()
-    else
-        loaded:show()
-        local pbar2 = {"▁","▂","▃","▄","▅","▆","▇","█"}
-        local pchar = pbar2[(math.floor(p*100)%#pbar2)+1]
-        local text = string.format("(%d%% %s)", p * 100, pchar)
-        if loaded.text ~= text then loaded.text = text end
-    end
-end
+-- window.methods.update_progress = function (w, view, p)
+--     if not view then view = w:get_current() end
+--     if not p then p = view:get_prop("progress") end
+--     local loaded = w.sbar.l.loaded
+--     if not view:loading() or p == 1 then
+--         loaded:hide()
+--     else
+--         loaded:show()
+--         local pbar2 = {"▁","▂","▃","▄","▅","▆","▇","█"}
+--         local pchar = pbar2[(math.floor(p*100)%#pbar2)+1]
+--         local text = string.format("(%d%% %s)", p * 100, pchar)
+--         if loaded.text ~= text then loaded.text = text end
+--     end
+-- end

@@ -1,12 +1,14 @@
--- Play embedded video in external player.
-key({}, "v", function (w)
-    local view = w:get_current()
-    local uri = view.hovered_uri or view.uri
-    if uri then
-        luakit.spawn(string.format("urxvt -e cclive -f best --filename-format '%%t.%%s' "
-        .. "--output-dir %q --exec='mplayer \"%%f\"' %q", os.getenv("HOME"), uri))
-    end
-end)
+-- Play embedded video in external player. {{{
+
+-- key({}, "v", function (w)
+--     local view = w:get_current()
+--     local uri = view.hovered_uri or view.uri
+--     if uri then
+--         luakit.spawn(string.format("urxvt -e cclive -f best --filename-format '%%t.%%s' "
+--         .. "--output-dir %q --exec='mplayer \"%%f\"' %q", os.getenv("HOME"), uri))
+--     end
+-- end)
+
 -- This assumes you are using urxvt as a terminal, cclive to download videos and 
 -- mplayer to play them, but should be pretty easy to adjust for other tools.
 --
@@ -17,3 +19,6 @@ end)
 --
 -- One of the benefits of using cclive is that once the video is downloaded, 
 -- pressing 'v' again will simply play the movie, without downloading it again.
+-- }}}
+
+-- vim:fdm=marker
