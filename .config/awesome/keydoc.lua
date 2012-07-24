@@ -51,7 +51,7 @@ local function key2str(key)
    if not key.modifiers or #key.modifiers == 0 then return sym end
    local result = ""
    local translate = {
-      [modkey] = "⊞",
+      modkey = "⊞",
       Shift    = "⇧",
       Control  = "Ctrl",
    }
