@@ -1093,11 +1093,13 @@ root.buttons(awful.util.table.join(
         ),
 
         -- minitray.lua [ Mod4-CTRL-T ] {{{
+        keydoc.group("Functions"),
         awful.key({ modkey, "Control" }, "t",   function() minitray.toggle() end,
             "minitray.lua toggle" ),
         -- }}}
 
         -- Mouseless [ Mod4-CTRL-M ]
+        keydoc.group("Functions"),
         awful.key({ modkey, "Control" }, "m", function()
                 moveMouse(saftCoords.x, saftCoords.y)
             end,
@@ -1105,6 +1107,7 @@ root.buttons(awful.util.table.join(
         ),
 
         -- Screensaver lock  [ Mod4-CTRL-l ] {{{
+        -- keydoc.group("Functions"),
         -- awful.key({ modkey, "Control" }, "l",
         --     function ()
         --         awful.util.spawn("xscreensaver-command -lock")
@@ -1112,6 +1115,7 @@ root.buttons(awful.util.table.join(
         -- ),
 
         -- xlock
+        -- keydoc.group("Functions"),
         awful.key({ modkey, "Control" }, "l", function ()
             awful.util.spawn("xlock -mode blank -dpmsoff 5 -font -misc-fixed-*-*-*-*-20-*-*-*-*-*-*")
         end),
@@ -1139,8 +1143,8 @@ root.buttons(awful.util.table.join(
         end, "unminimized all windows"),
         -- }}}
 
-        keydoc.group("Functions"),
         -- Screenshot [Prt Src] {{{
+        keydoc.group("Functions"),
         awful.key({ }, "Print", function ()
             awful.util.spawn("scrot -e 'mv $f ~ 2>/dev/null'")
             os.execute("sleep 0.5")
@@ -1324,6 +1328,7 @@ root.buttons(awful.util.table.join(
         -- }}}
 
         -- naughty manipulation {{{ [ Mod4-i ]
+        -- keydoc.group("Awesome functions"),
         -- FIXME awful.key({ modkey, }, "i", naughty.resume() ),
         -- }}}
 
