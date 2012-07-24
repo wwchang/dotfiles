@@ -1445,8 +1445,11 @@ root.buttons(awful.util.table.join(
                 awful.util.getdir("cache") .. "/history_eval")
             end,
             "run Lua code"
-        )
+        ),
         -- }}}
+
+        -- keydoc module end
+        awful.key({ modkey }, "F1", keydoc.display )
     )
 
     -- client {{{
@@ -1511,9 +1514,6 @@ root.buttons(awful.util.table.join(
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
     -- }}}
-
-    -- keydoc module end
-    awful.key({ modkey }, "F1", keydoc.display )
 
     -- Set keys
     root.keys(globalkeys)
