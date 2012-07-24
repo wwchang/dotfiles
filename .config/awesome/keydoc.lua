@@ -7,7 +7,7 @@ local pairs     = pairs
 local math      = math
 local string    = string
 local type      = type
-local modkey    = modkey
+local modkey    = "Mod4"
 local beautiful = require("beautiful")
 local naughty   = require("naughty")
 local capi      = {
@@ -51,7 +51,7 @@ local function key2str(key)
    if not key.modifiers or #key.modifiers == 0 then return sym end
    local result = ""
    local translate = {
-      modkey = "⊞",
+      [modkey] = "⊞",
       Shift    = "⇧",
       Control  = "Ctrl",
    }
