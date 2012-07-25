@@ -38,7 +38,7 @@
             autocmd bufwritepost .vimrc source $MYVIMRC
         augroup END
     endif
-    nnoremap <Leader>ev :vsplit $MYVIMRC<CR>
+    nnoremap <Leader>ev :split $MYVIMRC<CR>
     nnoremap <Leader>tv :tabedit $MYVIMRC<CR>
     nnoremap <Leader>sv :source $MYVIMRC<CR>
     " }}}
