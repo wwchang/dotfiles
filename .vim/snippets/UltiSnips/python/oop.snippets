@@ -1,7 +1,7 @@
 # Python Object-Oriented Programming (OOP)
 
 snippet class "class definition" !b
-class ${1:ClassName}(${2:#object}):
+class ${1:ClassName}(${2:object, multiple inherite}):
     """${3:Docstring for class $1 }"""
 
     def __init__(self${4}):
@@ -10,20 +10,20 @@ class ${1:ClassName}(${2:#object}):
 endsnippet
 
 snippet defattribute "define class attribute" !b
-def __${1:attribute}__(self${2}):
+def __${1:attribute}__(self${2:, inheritance}):
     ${3}
     $0
 endsnippet
 
 snippet defproperty "define class property" !b
 @property
-def ${1:attribute}(self${2}):
+def ${1:attribute}(self${2:, arguments}):
     ${3}
     $0
 endsnippet
 
 snippet defmethod "define class method" !b
-def ${1:Method}(self${2}):
+def ${1:Method}(self${2:, arguments}):
     ${3}
     $0
 endsnippet
