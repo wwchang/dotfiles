@@ -3666,7 +3666,8 @@ syntax on
             let g:clang_periodic_quickfix = 0 " periodically update quickfix
                 " you can use g:ClangUpdateQuickFix() with a mapping to do this.
             let g:clang_snippets = 1
-            let g:clang_snippets_engine = "clang_complete" " clang_complete, snipmate, ultisnips
+            " clang_complete, snipmate, ultisnips
+            let g:clang_snippets_engine = "ultisnips"
             let g:clang_conceal_snippets = 1
             let g:clang_close_preview = 0 " auto close preview window after completion.
             let g:clang_exec = "clang" " name or path of clang executable.
