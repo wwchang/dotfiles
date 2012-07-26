@@ -210,7 +210,7 @@ macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 # jump to next unread mailbox/folder
 # macro index <esc><tab> <next-unread-mailbox>
 
-# TODO jump to my thread's new reply. {{{
+# directly jump to my thread's new reply when into a mailbox. {{{
 # macro index <Tab> ????<key sequence>
 # "~x .*@stardiviner" # I'm in the References list.
 # "~h \"^In-[Rr]eply-[Tt]o: .*@stardiviner\" " # only my mail is replied by others in thread
@@ -224,10 +224,6 @@ macro index <Tab> "<search>~N (~x .*@stardiviner)<enter>"
 # }}}
 
 # manipulate emails: view, copy, move, attach, trash, spam, ham, {{{
-# TODO
-# sync/fetch/get new mails in background.
-# macro generic $ "<shell-escape>'getmail -n -l &'<enter>"
-# macro generic $ "<sync-mailbox><shell-escape>~/.mutt/scripts/syncMail.sh &<enter>"
 
 # copy/move/attach emails
 # To additionally get straight to the folder browser when copying, moving and attaching mail, add the following macros:
@@ -322,6 +318,9 @@ macro pager \cb   "|urlview\n" "browse URLs"
 # macro pager \cb   <pipe-entry>'urlview'<enter> "browse URLs"
 
 # [ fetch new emails ]
+# sync/fetch/get new mails in background.
+# macro generic ,f "<shell-escape>'getmail -n -l &'<enter>"
+# macro generic ,f "<sync-mailbox><shell-escape>~/.mutt/scripts/syncMail.sh &<enter>"
 macro index ,f  <sync-mailbox><toggle-write><shell-escape>~/.mutt/scripts/getmail.sh<enter><toggle-write><sync-mailbox>
 
 
