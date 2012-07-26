@@ -1,0 +1,24 @@
+snippet autocmd "autocommand" !b
+autocmd ${1:Event} ${2:pattern} ${3:commands}
+endsnippet
+
+snippet autocmdft "autocommand for FileType" !b
+autocmd FileType ${1:filetype} ${2:commands}
+endsnippet
+
+snippet augroup "grouping autocommands" !b
+augroup ${1:group name}
+    autocmd!
+    autocmd ${2:Event} ${3:pattern} ${4:commands}
+    ${5:second autocmd}
+augroup END
+$0
+endsnippet
+
+snippet augroup "visual autocmds with augroup"
+augroup ${1:group name}
+    autocmd!
+    ${VISUAL:inside text}
+augroup END
+$0
+endsnippet
