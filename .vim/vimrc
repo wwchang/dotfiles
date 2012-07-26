@@ -4434,9 +4434,11 @@ syntax on
             let g:vimwiki_hl_headers = 1 " use VimwikiHeader1-6
             let g:vimwiki_hl_cb_checked = 1 " checked list items
             let g:vimwiki_global_ext = 1 " make temporary wiki in dir.
-            let g:vimwiki_ext2syntax = {'md': 'markdown',
-                        \ 'mkd': 'markdown',
-                        \ 'wiki': 'default'}
+            let g:vimwiki_ext2syntax = {
+                        \ 'wiki': 'default',
+                        \ 'md': 'markdown',
+                        \ 'mkd': 'markdown'
+                        \ }
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
