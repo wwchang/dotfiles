@@ -2,5 +2,5 @@
 # WeeChat crontab for script cron.py
 # format: min hour monthday month weekday repeat buffer command args
 #
-0 14 */10 * * * core.weechat command /weeget update ; /weeget list ; /weechat upgrade
 0 14 */3 * * * irc.server.freenode command /purgelogs size 100 delete
+0 11 */10 * * * core.weechat command /weeget update ; /weeget upgrade
