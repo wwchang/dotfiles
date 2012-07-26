@@ -278,7 +278,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Python/dev/
     :0
     * ^List-Id: .*speed\.python\.org
-    INBOX/
+    Python/help/
 
     # projects
     :0
