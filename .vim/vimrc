@@ -701,7 +701,7 @@ endif
     set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
     set foldnestmax=3       " maximum nesting of fold
     set foldlevel=2         " fold start from which level
-    set foldlevelstart=1    " default which foldlevel to start fold.
+    set foldlevelstart=0    " which level start fold. 0: all folds closed.
     set foldmarker={{{,}}}      " fold marker
     set foldminlines=3      " fold minlines
     set foldcolumn=0        " colums ahead of line number.
