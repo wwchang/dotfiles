@@ -16,6 +16,7 @@ setlocal autoindent
 " fold
 setlocal foldenable
 setlocal foldmethod=indent
+setlocal foldlevelstart=0
 setlocal foldlevel=99
 
 " character, signs, keyword
