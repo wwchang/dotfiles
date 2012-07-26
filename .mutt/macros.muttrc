@@ -219,8 +219,11 @@ macro index gd "<change-folder>=Drafts<enter>" "Go to drafts"
 # <jump> -- jump to index number.
 # use "<change-mailbox>?" "?" to show up a list of mailboxes.
 #
-macro index <Tab> "<search>~N (~x .*@stardiviner)<enter>"
+# check out folder-hooks.muttrc file about automatically jump to my thread.
+# macro index <Tab> "<search>~N (~x .*@stardiviner)<enter>"
 # macro index <Tab> "<search>~h 'In-[Rr]eply-[Tt]o: .*@stardiviner'<enter>"
+
+macro index <Tab> "<search>~U<enter>" "jump to first unread mail"
 # }}}
 
 # manipulate emails: view, copy, move, attach, trash, spam, ham, {{{
