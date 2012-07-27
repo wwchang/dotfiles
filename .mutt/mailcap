@@ -11,10 +11,11 @@ text/plain; less %s
 # text/html; elinks -force-html %s
 # lynx
 # text/html; lynx -dump %s; nametemplate=%s.html; copiousoutput
+text/html; lynx -assume_charset=%{charset} -display_charset=%{charset} -dump %s; nametemplate=%s.html; copiousoutput
 # w3m
 # text/html; w3m -I %{charset} -T text/html; copiousoutput;
 # text/html; w3m -T text/html -I %{charset} -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
-text/html; w3m -T text/html -I %{charset} -O %{charset} -graph -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
+# text/html; w3m -T text/html -I %{charset} -O %{charset} -graph -dump %s ; nametemplate=%s.html ; needsterminal; copiousoutput
 # text/html; w3m -v -F -T text/html %s; nametemplate=%s.html; needsterminal
 # mozilla
 # text/html; mozilla %s; test=test -n "$DISPLAY"; nametemplate=%s.html
