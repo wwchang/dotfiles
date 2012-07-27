@@ -169,14 +169,13 @@ if &t_Co > 255
    hi Function        ctermfg=118               cterm=bold
    hi Identifier      ctermfg=208               cterm=bold
    hi Ignore          ctermfg=244 ctermbg=232
-   hi IncSearch       ctermfg=196 ctermbg=016
 
    hi Keyword         ctermfg=161               cterm=bold
    hi Label           ctermfg=229               cterm=none
    hi Macro           ctermfg=193               cterm=none
 
    " brackets match color
-   hi MatchParen      ctermfg=016  ctermbg=046 cterm=bold
+   hi MatchParen      ctermfg=233  ctermbg=046 cterm=bold
    hi ModeMsg         ctermfg=229
    hi MoreMsg         ctermfg=229
    hi Operator        ctermfg=161  ctermbg=232 cterm=bold
@@ -192,7 +191,10 @@ if &t_Co > 255
    hi PreProc         ctermfg=118
    hi Question        ctermfg=081
    hi Repeat          ctermfg=161               cterm=bold
-   hi Search          ctermfg=234 ctermbg=154   cterm=bold
+
+    " search
+   hi Search          ctermfg=234 ctermbg=051   cterm=none
+   hi IncSearch       ctermfg=196 ctermbg=016
 
    " marks column
    hi SignColumn      ctermfg=161 ctermbg=none
