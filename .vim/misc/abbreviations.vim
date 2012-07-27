@@ -23,22 +23,27 @@
 
 " iabbr <expr> date strftime("%c")
 
-" [ mail ]
+" [ mails ] {{{
 " iabbr gmail numbchild@gmail.com
 iabbr mygmail [ numbchild AT gmail DOT com ]
 iabbr myqqmail 348284894@qq.com
+" }}}
 
-" [ copyright ]
+" [ copyright ] {{{
 iabbr mycopyr Copyright 2011 stardiviner, all rights reserved.
 iabbr mycopyl Copyleft 2011 stardiviner. CC.
+" }}}
 
-" [ fonts ]
+" [ fonts ] {{{
 iabbr Comic_font        Comic Sans MS
 iabbr DejaVu_font       DejaVu Sans Mono
 iabbr WaWa_font         DFPWaWaW5-GB
 iabbr ShaoNv_font       DFPShaoNvW5-GB
 iabbr DeathNote_font    Death Note
 iabbr Evanescence_font  Evanescent
+" }}}
 
 iabbr oreilly O'Reilly
 iabbr latex LaTeX
+
+" vim:fdm=marker
