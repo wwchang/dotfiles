@@ -1653,7 +1653,7 @@ syntax on
                 " ----------------------------------------------
                 " ternary operator:  x = y > 0 ? 5 : 10 =>
                 " then x will be 5 or 10 depending on whether y is above zero or not.
-                " imap <expr><Tab> 
+                " imap <expr><Tab>
                 "         neocomplcache#sources#snippets_complete#expandable()
                 "         \ ? "\<Plug>(neocomplcache_snippets_expand)"
                 "         \ : pumvisible() ? "\<C-n>"
@@ -1666,18 +1666,16 @@ syntax on
                 "     inoremap <expr> <C-k> "\<Plug>(neocomplcache_snippets_jump)"
                 " endif
                 " ----------------------------------------------
-                imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
-                            \ ?  "\<Plug>(neocomplcache_snippets_expand)"
-                            \ : <SID>check_back_space() ? "\<TAB>"
-                            \ : "\<C-x>\<C-u>"
-                imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable()
-                            \ ? "\<Plug>(neocomplcache_snippets_jump)"
-                            \ : ""
-                imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable()
-                            \ ? "\<Plug>(neocomplcache_snippets_jump)"
-                            \ : ""
-                imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
-                imap <expr><C-p> pumvisible() ? "\<C-p>"
+                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                "             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
+                "             \ : <SID>check_back_space() ? "\<TAB>"
+                "             \ : "\<C-x>\<C-u>"
+                " imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable()
+                "             \ ? "\<Plug>(neocomplcache_snippets_jump)"
+                "             \ : ""
+                " imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable()
+                "             \ ? "\<Plug>(neocomplcache_snippets_jump)"
+                "             \ : ""
                 " }}}
 
                 " { UltiSnips } {{{
