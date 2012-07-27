@@ -1411,212 +1411,6 @@ syntax on
 
 " [ Program ] {{{
 
-    " [ syntax ] {{{
-        " TagHighlight {{{ highlight names of class, variable, types in code.
-            " Usage: :UpdateTypesFile
-            if !exists('g:TagHighlightSettings')
-                let g:TagHighlightSettings = {}
-            endif
-            let g:TagHighlightSettings['TagFileName'] = 'tags'
-            let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
-            let g:TagHighlightSettings['CtagsVariant'] = 'exuberant'
-            let g:TagHighlightSettings['CtagsArguments'] = []
-            let g:TagHighlightSettings['CtagsExtraArguments'] = []
-            let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
-            let g:TagHighlightSettings['PythonVariantPriority'] =
-                        \ ["if_pyth3", "if_pyth", "python", "compiled"]
-
-            " Integration other plugins.
-            let g:TagHighlightSettings['LanguageDetectionMethods'] =
-                        \ ['FileType', 'Extension']
-            " Tagbar Integration
-            " let g:TagHighlightSettings['FileTypeLanguageOverrides'] =
-            "             \ {'tagbar': 'c'}
-            " Git Integration
-            " let g:TagHighlightSettings['FileTypeLanguageOverrides'] =
-            "             \ {'gitcommit': 'python'}
-
-            " Standard Library
-            " TODO Android, JDK, PySide, Qt4, wxpython, wxWidgets, etc.
-        " }}}
-    " }}}
-
-    " [ indent & align ] {{{
-        " Indent_Guide {{{ <Leader>ig, :IndentGuidesToggle
-            let g:indent_guides_enable_on_vim_startup = 1
-            let g:indent_guides_start_level = 2
-            let g:indent_guides_indent_levels = 7
-            let g:indent_guides_color_change_percent = 100 " 0~100
-            let g:indent_guides_guide_size = 1 " indent vertical lines width.
-            let g:indent_guides_space_guides = 1 " consider spaces as indention.
-                let g:indent_guides_auto_colors = 0
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
-                " alternately
-                "hi IndentGuidesOdd  guibg=red   ctermbg=3
-                "hi IndentGuidesEven guibg=green ctermbg=4
-            if &background == "dark"
-                hi IndentGuidesEven ctermbg=darkgrey    guibg=#6F7500
-                hi IndentGuidesOdd  ctermbg=black       guibg=#6F7500
-            elseif &background == "light"
-                "molokai's background = light, guibg for peachpuff
-                hi IndentGuidesEven ctermbg=233 guibg=LightRed
-                hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
-            endif
-        " }}}
-
-        " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
-            " scans through a file when it's opened and attempts to guess which
-            " style of indentation is being used. It then overrides your
-            " preferences so that you match the style of the file.
-        " }}}
-
-        " Indent_Highlight
-
-        " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
-            " {{{ switching between a single-line statement and a multi-line one.
-            nmap <Leader>sj :SplitjoinJoin<cr>
-            nmap <Leader>ss :SplitjoinSplit<cr>
-            "let b:splitjoin_join_callbacks
-            "let b:splitjoin_split_callbacks
-            let g:splitjoin_normalize_whitespace = 0
-            let g:splitjoin_align = 0
-        " }}}
-
-        " Align%294
-    " }}}
-
-    " [ comment ] {{{
-        " commentary {{{
-        " \\{motion}, \\\, {Visual}\\ ==> comment
-        " \\u ==> uncomment
-        " }}}
-
-        " tComment {{{ An extensible & universal comment plugin
-            " also handles embedded filetypes.
-                " Usage:
-                "   - gc{motion}    :: toggle comments.
-                "   - gcc           :: toggle comment for current line.
-                "   - gC{motion}    :: Comment region.
-                "   - gCc           :: Comment the current line.
-                "   - <C-_>...      :: :TComment ...
-                "   - <Leader>...   :: :TComment ...
-                "   - :[range]TComment[!] ?ARGS
-                "   - :[range]TCommentAs[!] [commenttype] ?ARGS
-                " tcomment#DefineType() to override defualt choice.
-            let g:tcommentMapLeader1 = '<c-_>'
-            let g:tcommentMapLeader2 = '<Leader>_'
-            let g:tcommentMapLeaderOp1 = 'gc'
-            let g:tcommentMapLeaderOp2 = 'gC'
-            let g:tcommentBlankLines = 1 " comment blank lines too.
-            let g:tcommentOpModeExtra = '' " '>' move cursor to end of comment
-            let g:tcommentOptions = {}
-            let g:tcomment#ignore_char_type = 1
-            let g:tcommentGuessFileType = 1 " default: 0
-            let g:tcommentGuessFileType_dsl = 'xml'
-            let g:tcommentGuessFileType_php = 'html'
-            let g:tcommentGuessFileType_html = 1
-            let g:tcommentGuessFileType_tskeleton = 1
-            let g:tcommentGuessFileType_vim = 1
-            let g:tcommentGuessFileType_django = 1
-            let g:tcommentIgnoreTypes_php = 'sql'
-            "let g:tcomment#syntax_substitute = {}
-            "let g:tcommentSyntaxMap = {}
-            "let g:tcomment#replacements_c = {}
-            "let g:tcommentBlockC = {}
-            "let g:tcommentBlockC2 = {}
-            "let g:tcommentInlineC = g:tcommentLineC
-            "let g:tcommentBlockXML = "<!--%s-->\n  "
-            "let g:tcommentInlineXML = "<!-- %s -->"
-            "let g:tcomment_types {}
-        " }}}
-
-        " Nerd Commenter {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
-            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
-            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
-            " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
-            " let loaded_nerd_comments=1 " turn off this script.
-        " }}}
-
-        " vim-addon-commenting {{{ features: ( fork from commentary.vim )
-            " - \ for commenting and uncommenting using selection or movement
-            " - pays attention col of cursor so that you can indent at col 0 or
-            "   indentation level
-            " - n\\ comment n lines - prefer simple comemnts (// in C/C++ case)
-            "   without configuration
-            " work for repeat.vim
-            " https://github.com/MarcWeber/vim-addon-commenting
-            "let g:vim_addon_commenting = {'force_filetype_comments':
-                        "\ {'php': ['#',''], 'c' : ['/*','*/']} }
-        " }}}
-    " }}}
-
-    " [ doc & help "K" ] {{{
-        " Viewdoc {{{ Flexible viewer for any documentation (vim help/man/perl/python)
-            " support python dot operator help.
-            " e.g. module.fun|<K>ction(args)
-            " TODO more customize
-            " Usage:
-                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
-                "   q (close), <Tab> completion.
-                " - :doc[!] {topic} [{filetype}]
-                " - :doc[!] <cword> [{filetype}]
-                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
-                "   :perldoc, :ViewDocPerl.
-                " - e.g. :ViewDoc string.split in Python filetype.
-            "let g:no_viewdoc_abbrev
-            "let g:no_plugin_abbrev
-            "let g:no_viewdoc_maps
-            "let g:no_plugin_maps
-            let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
-            let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
-            let g:viewdoc_prevtabonclose = 1
-            let g:viewdoc_openempty = 0 " do not open anything if not found tag.
-            let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
-            "let g:viewdoc_man_cmd = "/usr/bin/man"
-            " let g:ViewDoc_DEFAULT = 'ViewDoc_help'
-
-            " customize {{{
-            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
-
-            " Functions:
-                " - ViewDoc({target}, {topic}, {filetype})
-                " - ViewDoc({target}, {topic})
-                " - ViewDoc({target}, <cword>, {filetype})
-                " - ViewDoc({target}, <cword>)
-                    " This function handle all |viewdoc-commands|.
-            " Handlers:
-                " to add documentation handler for new {filetype}, it's enough
-                " to create on function in ~/.vimrc (or some plugin):
-                " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
-                    " synid = Syntax id for requested topic as returned by synID().
-                    " Can be non-zero only if |:ViewDoc| was called with <cword>.
-                    " have_context : true if we've context.
-                    " The function return Dictionary with these keys. (all optional)
-                    " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
-
-            " function ViewDoc_pydoc(topic, ...)
-            "     return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
-            "                 \ 'ft':	'pydoc',
-            "                 \ }
-            " endfunction
-            " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
-            " let g:ViewDoc_python = function('ViewDoc_pydoc')
-            " }}}
-
-            " help_custom {{{ ~/.vim/ftdoc/{filetype}
-            " example:
-                " ~/.vim/ftdoc/css/css21.txt
-                " :helptags ~/.vim/ftdoc/css/
-                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
-            autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
-            " }}}
-        " }}}
-
-        " Manuals {{{ An extensible help system
-        " }}}
-    " }}}
-
     " [ completion: omni ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
@@ -2004,6 +1798,212 @@ syntax on
 
             let g:SuperTabCompletionContexts =
                         \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+        " }}}
+    " }}}
+
+    " [ syntax ] {{{
+        " TagHighlight {{{ highlight names of class, variable, types in code.
+            " Usage: :UpdateTypesFile
+            if !exists('g:TagHighlightSettings')
+                let g:TagHighlightSettings = {}
+            endif
+            let g:TagHighlightSettings['TagFileName'] = 'tags'
+            let g:TagHighlightSettings['CtagsExecutable'] = 'ctags'
+            let g:TagHighlightSettings['CtagsVariant'] = 'exuberant'
+            let g:TagHighlightSettings['CtagsArguments'] = []
+            let g:TagHighlightSettings['CtagsExtraArguments'] = []
+            let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
+            let g:TagHighlightSettings['PythonVariantPriority'] =
+                        \ ["if_pyth3", "if_pyth", "python", "compiled"]
+
+            " Integration other plugins.
+            let g:TagHighlightSettings['LanguageDetectionMethods'] =
+                        \ ['FileType', 'Extension']
+            " Tagbar Integration
+            " let g:TagHighlightSettings['FileTypeLanguageOverrides'] =
+            "             \ {'tagbar': 'c'}
+            " Git Integration
+            " let g:TagHighlightSettings['FileTypeLanguageOverrides'] =
+            "             \ {'gitcommit': 'python'}
+
+            " Standard Library
+            " TODO Android, JDK, PySide, Qt4, wxpython, wxWidgets, etc.
+        " }}}
+    " }}}
+
+    " [ indent & align ] {{{
+        " Indent_Guide {{{ <Leader>ig, :IndentGuidesToggle
+            let g:indent_guides_enable_on_vim_startup = 1
+            let g:indent_guides_start_level = 2
+            let g:indent_guides_indent_levels = 7
+            let g:indent_guides_color_change_percent = 100 " 0~100
+            let g:indent_guides_guide_size = 1 " indent vertical lines width.
+            let g:indent_guides_space_guides = 1 " consider spaces as indention.
+                let g:indent_guides_auto_colors = 0
+                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
+                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
+                " alternately
+                "hi IndentGuidesOdd  guibg=red   ctermbg=3
+                "hi IndentGuidesEven guibg=green ctermbg=4
+            if &background == "dark"
+                hi IndentGuidesEven ctermbg=darkgrey    guibg=#6F7500
+                hi IndentGuidesOdd  ctermbg=black       guibg=#6F7500
+            elseif &background == "light"
+                "molokai's background = light, guibg for peachpuff
+                hi IndentGuidesEven ctermbg=233 guibg=LightRed
+                hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
+            endif
+        " }}}
+
+        " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
+            " scans through a file when it's opened and attempts to guess which
+            " style of indentation is being used. It then overrides your
+            " preferences so that you match the style of the file.
+        " }}}
+
+        " Indent_Highlight
+
+        " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
+            " {{{ switching between a single-line statement and a multi-line one.
+            nmap <Leader>sj :SplitjoinJoin<cr>
+            nmap <Leader>ss :SplitjoinSplit<cr>
+            "let b:splitjoin_join_callbacks
+            "let b:splitjoin_split_callbacks
+            let g:splitjoin_normalize_whitespace = 0
+            let g:splitjoin_align = 0
+        " }}}
+
+        " Align%294
+    " }}}
+
+    " [ comment ] {{{
+        " commentary {{{
+        " \\{motion}, \\\, {Visual}\\ ==> comment
+        " \\u ==> uncomment
+        " }}}
+
+        " tComment {{{ An extensible & universal comment plugin
+            " also handles embedded filetypes.
+                " Usage:
+                "   - gc{motion}    :: toggle comments.
+                "   - gcc           :: toggle comment for current line.
+                "   - gC{motion}    :: Comment region.
+                "   - gCc           :: Comment the current line.
+                "   - <C-_>...      :: :TComment ...
+                "   - <Leader>...   :: :TComment ...
+                "   - :[range]TComment[!] ?ARGS
+                "   - :[range]TCommentAs[!] [commenttype] ?ARGS
+                " tcomment#DefineType() to override defualt choice.
+            let g:tcommentMapLeader1 = '<c-_>'
+            let g:tcommentMapLeader2 = '<Leader>_'
+            let g:tcommentMapLeaderOp1 = 'gc'
+            let g:tcommentMapLeaderOp2 = 'gC'
+            let g:tcommentBlankLines = 1 " comment blank lines too.
+            let g:tcommentOpModeExtra = '' " '>' move cursor to end of comment
+            let g:tcommentOptions = {}
+            let g:tcomment#ignore_char_type = 1
+            let g:tcommentGuessFileType = 1 " default: 0
+            let g:tcommentGuessFileType_dsl = 'xml'
+            let g:tcommentGuessFileType_php = 'html'
+            let g:tcommentGuessFileType_html = 1
+            let g:tcommentGuessFileType_tskeleton = 1
+            let g:tcommentGuessFileType_vim = 1
+            let g:tcommentGuessFileType_django = 1
+            let g:tcommentIgnoreTypes_php = 'sql'
+            "let g:tcomment#syntax_substitute = {}
+            "let g:tcommentSyntaxMap = {}
+            "let g:tcomment#replacements_c = {}
+            "let g:tcommentBlockC = {}
+            "let g:tcommentBlockC2 = {}
+            "let g:tcommentInlineC = g:tcommentLineC
+            "let g:tcommentBlockXML = "<!--%s-->\n  "
+            "let g:tcommentInlineXML = "<!-- %s -->"
+            "let g:tcomment_types {}
+        " }}}
+
+        " Nerd Commenter {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
+            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
+            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
+            " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
+            " let loaded_nerd_comments=1 " turn off this script.
+        " }}}
+
+        " vim-addon-commenting {{{ features: ( fork from commentary.vim )
+            " - \ for commenting and uncommenting using selection or movement
+            " - pays attention col of cursor so that you can indent at col 0 or
+            "   indentation level
+            " - n\\ comment n lines - prefer simple comemnts (// in C/C++ case)
+            "   without configuration
+            " work for repeat.vim
+            " https://github.com/MarcWeber/vim-addon-commenting
+            "let g:vim_addon_commenting = {'force_filetype_comments':
+                        "\ {'php': ['#',''], 'c' : ['/*','*/']} }
+        " }}}
+    " }}}
+
+    " [ doc & help "K" ] {{{
+        " Viewdoc {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+            " support python dot operator help.
+            " e.g. module.fun|<K>ction(args)
+            " TODO more customize
+            " Usage:
+                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
+                "   q (close), <Tab> completion.
+                " - :doc[!] {topic} [{filetype}]
+                " - :doc[!] <cword> [{filetype}]
+                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
+                "   :perldoc, :ViewDocPerl.
+                " - e.g. :ViewDoc string.split in Python filetype.
+            "let g:no_viewdoc_abbrev
+            "let g:no_plugin_abbrev
+            "let g:no_viewdoc_maps
+            "let g:no_plugin_maps
+            let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
+            let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
+            let g:viewdoc_prevtabonclose = 1
+            let g:viewdoc_openempty = 0 " do not open anything if not found tag.
+            let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
+            "let g:viewdoc_man_cmd = "/usr/bin/man"
+            " let g:ViewDoc_DEFAULT = 'ViewDoc_help'
+
+            " customize {{{
+            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
+
+            " Functions:
+                " - ViewDoc({target}, {topic}, {filetype})
+                " - ViewDoc({target}, {topic})
+                " - ViewDoc({target}, <cword>, {filetype})
+                " - ViewDoc({target}, <cword>)
+                    " This function handle all |viewdoc-commands|.
+            " Handlers:
+                " to add documentation handler for new {filetype}, it's enough
+                " to create on function in ~/.vimrc (or some plugin):
+                " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
+                    " synid = Syntax id for requested topic as returned by synID().
+                    " Can be non-zero only if |:ViewDoc| was called with <cword>.
+                    " have_context : true if we've context.
+                    " The function return Dictionary with these keys. (all optional)
+                    " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
+
+            " function ViewDoc_pydoc(topic, ...)
+            "     return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
+            "                 \ 'ft':	'pydoc',
+            "                 \ }
+            " endfunction
+            " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
+            " let g:ViewDoc_python = function('ViewDoc_pydoc')
+            " }}}
+
+            " help_custom {{{ ~/.vim/ftdoc/{filetype}
+            " example:
+                " ~/.vim/ftdoc/css/css21.txt
+                " :helptags ~/.vim/ftdoc/css/
+                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
+            autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
+            " }}}
+        " }}}
+
+        " Manuals {{{ An extensible help system
         " }}}
     " }}}
 
