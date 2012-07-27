@@ -1252,8 +1252,8 @@ endif
             " vimwiki & note
         call vam#ActivateAddons(['vimwiki'])
         call vam#ActivateAddons(['github:mattn/calendar-vim'])
-        call vam#ActivateAddons(['VikiDeplate'])
-        call vam#ActivateAddons(['vikitasks'])
+        " call vam#ActivateAddons(['VikiDeplate'])
+        " call vam#ActivateAddons(['vikitasks'])
         " call vam#ActivateAddons(['vktheming'])
         call vam#ActivateAddons(['viske'])
         " call vam#ActivateAddons(['notes'])
@@ -1287,7 +1287,7 @@ endif
         " call vam#ActivateAddons(['Tumble'])
         "call vam#ActivateAddons(['TwitVim'])
             " color/syntax
-        " call vam#ActivateAddons(['colorv'])
+        call vam#ActivateAddons(['colorv'])
         "call vam#ActivateAddons(['Colorizer'])
         "call vam#ActivateAddons(['CSSMinister'])
         "call vam#ActivateAddons(['ScrollColors'])
