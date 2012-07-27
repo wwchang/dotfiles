@@ -5,6 +5,12 @@ if ${1:condition}
 endif
 $0
 endsnippet
+snippet for "for .. endfor" !b
+for ${1:item} in ${2:iterator}
+    ${3:code block}
+endfor
+$0
+endsnippet
 
 # function
 snippet func "function Name(*args)" !b
