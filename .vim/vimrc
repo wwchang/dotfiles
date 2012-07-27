@@ -1700,12 +1700,17 @@ syntax on
                             "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
                 " }}}
 
-                " unite sources {{{ TODO
-                    " start completion with unite.vim
-                    " <Plug>(neocomplcache_start_unite_complete)
-                    " <Plug>(neocomplcache_start_unite_quick_match)
-                    " imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-                    " imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                " [ unite ] {{{ TODO
+                " completion with unite.vim
+                " <Plug>(neocomplcache_start_unite_complete)
+                " <Plug>(neocomplcache_start_unite_quick_match)
+                " imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+                " imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                " ----------------------------------------------------------
+                " imap <expr> - pumvisible() ? "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
+                " imap <expr> <C-Space> pumvisible()
+                "             \ ? "\<Plug>(neocomplcache_start_unite_complete)"
+                "             \ : "\<C-Space>"
                 " }}}
             " }}}
         " }}}
