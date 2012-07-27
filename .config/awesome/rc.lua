@@ -266,6 +266,7 @@ run_once("urxvtd -q -o -f")
 run_once("mpd")
 run_once("mlnet")
 run_once("nm-applet")
+run_once("unclutter -idle 10 -root")
 
 -- TODO what does this screen argument means.
 -- run_once("luakit", nil, nil, 6)
@@ -286,6 +287,11 @@ run_once("nm-applet")
         if moveMouseOnStartup then
             moveMouse(saftCoords.x, saftCoords.y)
         end
+
+        -- doesn't move the cursor but temporarily hides it after a period of 
+        -- inactivity, and also offers the ability to instantly hide the cursor 
+        -- while typing, you could try the program 'unclutter'.
+        -- $ unclutter -idle 10
     -- }}}
 -- }}}
 
