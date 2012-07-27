@@ -1,11 +1,11 @@
 DEFAULT_SESSION=awesome
 
 case $1 in
-fvwm*)
-    exec ck-launch-session fvwm
-    ;;
 awesome)
     exec ck-launch-session awesome
+    ;;
+fvwm*)
+    exec ck-launch-session fvwm
     ;;
 *)
     exec ck-launch-session $DEFAULT_SESSION
