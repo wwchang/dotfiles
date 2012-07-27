@@ -5,7 +5,7 @@ if &filetype ==? "vimwiki"
     " hyperlink,
     hi Underlined      ctermfg=033                cterm=underline
     " un-existed hyperlink
-    hi Normal          ctermfg=244 ctermbg=232
+    hi Normal          ctermfg=253 ctermbg=232
 endif
 " vimwiki header
 " red: 124, orange: 202, blue: 039,
