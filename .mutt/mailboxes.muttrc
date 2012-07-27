@@ -20,12 +20,18 @@
 mailboxes !
 mailboxes =unsure
 mailboxes =Drafts
+# mbox is for sended and received mails
+mailboxes =mbox
+mailboxes =Send
+mailboxes $MAIL
 
 mailboxes /var/mail/chris
 
 mailboxes =QQ
 
 mailboxes =Stack\ Exchange
+
+mailboxes =Important
 
 mailboxes =Emacs
 mailboxes =Emacs/help
@@ -137,13 +143,6 @@ mailboxes =censorship
 # mailboxes `echo ~/Mails/ubuntu/*`
 mailboxes =RSS
 # Send Draft Junk Viruses Spam
-# mbox is for sended and received mails
-mailboxes =Important
-
-mailboxes =mbox
-mailboxes =Draft
-mailboxes =Send
-mailboxes $MAIL
 mailboxes =Trash
 
 mailboxes =Search
