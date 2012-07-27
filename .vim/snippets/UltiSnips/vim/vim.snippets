@@ -1,3 +1,4 @@
+# control
 snippet if "if .. endif" !b
 if ${1:condition}
     ${2:commands}
@@ -5,6 +6,15 @@ endif
 $0
 endsnippet
 
+# function
+snippet func "function Name(*args)" !b
+function! ${1:name}(${2:arguments/.../args})
+    ${3:code block}
+endfunction
+$0
+endsnippet
+
+# autocmd & augroup
 snippet autocmd "autocommand" !b
 autocmd ${1:Event} ${2:pattern} ${3:commands}
 endsnippet
