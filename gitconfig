@@ -74,21 +74,19 @@
     trustExitCode = true
 
 [alias]
-	s  = status
-	a  = add
-	b  = branch
-	c  = commit
-	co = checkout
-    d  = difftool
-	l  = log --graph
-	m  = mergetool
-	t  = tag
-	ut = rm -r --cached
-	unstage = reset HEAD
-    undo-last-commit = reset HEAD^
-	visual = !gitk
-    last = log -1 HEAD
+	s   = status
+	br  = branch
+	ci  = commit
+	co  = checkout
 
+	ut = rm -r --cached
+	l  = log --graph
+	unstage = reset HEAD --
+    # with ! to use external command.
+	visual = !gitk
+	last = log -1 HEAD
+
+    undo-last-commit = reset HEAD^
     add-delete = ls-files --deleted | xargs git rm
 
     log-graph = log --color --pretty=format:'%s %an, %ar' --graph
