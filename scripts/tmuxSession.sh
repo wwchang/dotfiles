@@ -79,6 +79,10 @@ if [ $? != 0 ]; then
 
     tmux select-pane -t $session1:3.1
 
+    echo "Session $session1 has been created."
+else
+    echo "Session $session1 does not exist."
+
 fi
 # }}}
 
@@ -103,6 +107,10 @@ if [ $? != 0 ]; then
     tmux new-window -t $session2 -n misc
 
     tmux select-pane -t $session2:1.1
+
+    echo "Session $session2 has been created."
+else
+    echo "Session $session2 does not exist."
 
 fi
 # }}}
