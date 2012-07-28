@@ -196,8 +196,10 @@
     " }}}
 
     " [ search & match ] {{{
-    set incsearch hlsearch wrapscan " do incremental searching, wrapscan used for ]s and [s spelling mistake.
-    set ignorecase smartcase " smartcase will override ignorecase when type with upper case characters.
+    set hlsearch incsearch " highlight all searching, incremental searching.
+    set wrapscan " wrapscan used for ]s and [s spelling mistake.
+    " smartcase will override ignorecase when type with upper case characters.
+    set ignorecase smartcase
     set showmatch
     set matchpairs+=<:>
     set modeline " local to buffer
