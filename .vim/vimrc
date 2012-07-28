@@ -195,15 +195,29 @@
     endif
     " }}}
 
-    " [ search & match ] {{{
-    set hlsearch incsearch " highlight all searching, incremental searching.
-    set wrapscan " wrapscan used for ]s and [s spelling mistake.
-    " smartcase will override ignorecase when type with upper case characters.
-    set ignorecase smartcase
-    set showmatch
-    set matchpairs+=<:>
-    set modeline " local to buffer
-    set modelines=5
+    " [ search ] {{{
+        " [ regex ]
+        " magic/nomagic: changes special chars that can be used in search patterns
+        set magic
+            " use \v and \V to switch char special meaning on or off.
+            " \v: this will make every following character except a-zA-Z0-9 and 
+            " '_' have special meaning
+            " \V: preceded by \ to activate their special meaning.
+            " \m, \M
+
+        " [ search ]
+        set hlsearch incsearch " highlight all searching, incremental searching
+        set wrapscan " wrapscan used for ]s and [s spelling mistake.
+        " smartcase will override ignorecase when type with upper case characters
+        set ignorecase smartcase
+
+        " [ grep ]
+        set grepprg="grep -n $* /dev/null"
+
+        " [ match ]
+        set showmatch
+        set matchpairs+=<:>
+        " }}}
     " }}}
 
     " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
@@ -393,12 +407,6 @@ endif
     " }}}
 
     " [ listchars ] {{{
-    set magic " magic/nomagic: changes special chars that can be used in search patterns
-        " use \v and \V to switch char special meaning on or off.
-        " \v: this will make every following character except a-zA-Z0-9 and '_' have special meaning
-        " \V: preceded by \ to activate their special meaning.
-        " \m, \M
-        " ------------------------------------------
         " use `:digraphs` command in vim to display.
         " vert: \|, \┆, \│, \ ,
         " fold: ┄, -,
@@ -583,10 +591,6 @@ endif
     " [ wrap ] {{{
     set wrap        " wrap long length text
     set textwidth=80 " =0:unlimited, =80.
-    " }}}
-
-    " [ grep ] {{{
-    set grepprg="grep -n $* /dev/null"
     " }}}
 
     " [ conceal ] {{{
