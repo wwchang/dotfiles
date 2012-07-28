@@ -44,7 +44,8 @@ if [ $? != 0 ]; then
     tmux set-window-option -t $session1:2 monitor-activity on
 
     # [ 3 GTD ]
-    tmux new-window -t $session1 -n tasks 'vim ~/vimwiki/wiki/plan.wiki'
+    tmux new-window -t $session1 -n tasks \
+        'vim "-c set nospell" ~/vimwiki/wiki/plan.wiki'
     tmux split-window -t $session1:3.1 -h -p 40 \
         'vim "-c set nospell" ~/vimwiki/wiki/Dreams/Dreams.wiki'
     tmux split-window -t $session1:3.2 -v -p 60 \
