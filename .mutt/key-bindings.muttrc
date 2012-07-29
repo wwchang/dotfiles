@@ -66,6 +66,8 @@ bind    pager   <Down>  next-line
 
 # browser/view
 bind    browser i   exit
+bind    browser \cf next-page
+bind    browser \cb previous-page
 
 # h/l previous/next mail.
 bind    pager   h   previous-entry
