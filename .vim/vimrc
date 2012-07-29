@@ -1179,6 +1179,7 @@ endif
         call vam#ActivateAddons(['python_match'])
         " call vam#ActivateAddons(['python_open_module'])
         "call vam#ActivateAddons(['PyREPL'])
+        call vam#ActivateAddons(['selfdot'])
             " Django
         " call vam#ActivateAddons(['vim-htmldjango_omnicomplete'])
         " call vam#ActivateAddons(['vim-django-support'])
@@ -3313,6 +3314,8 @@ syntax on
                 " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
             " }}}
         " }}}
+
+        " selfdot lets you type 'self.' by pressing '.' in Python files.
 
         " [ Django ] {{{
             " vim-django-support {{{ Django omni completion.
