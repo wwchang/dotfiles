@@ -212,7 +212,8 @@
         set ignorecase smartcase
 
         " [ grep ]
-        set grepprg="grep -n $* /dev/null"
+        set grepprg="internal"
+        " set grepprg="grep -n $* /dev/null"
 
         " [ match ]
         set showmatch
