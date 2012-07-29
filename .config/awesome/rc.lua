@@ -618,7 +618,11 @@ end
                 "City: " .. args["{city}"] ..
                 "\nWeather: " .. args["{weather}"] ..
                 "\nTempc" .. args["{tempc}"] .. "°C" ..
-                "\nWind: " .. args["{windkmh}"] .. "km/h " .. args["{wind}"] ..
+                "\nTempf" .. args["{tempf}"] .. "°F" ..
+                "\nWind: " .. args["{wind}"] ..
+                "\nWindkmh: " .. args["{windkmh}"] .. "km/h" ..
+                "\nWindmph: " .. args["{windmph}"] .. "mp/h" ..
+                "\nPress" .. args["{press}"] ..
                 "\nSky: " .. args["{sky}"] ..
                 "\nHumidity: " .. args["{humid}"]
             )
