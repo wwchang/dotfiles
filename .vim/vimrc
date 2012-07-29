@@ -3675,19 +3675,20 @@ syntax on
         " }}}
 
         " clang_complete {{{ :h clang_complete.txt
-            let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu.
+            let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
             let g:clang_complete_auto = 1 " auto complete after -> . ::
-            let g:clang_complete_copen = 1 " 1: open quickfix window on error.
+            let g:clang_complete_copen = 1 " 1: open quickfix window on error
             let g:clang_hl_errors = 1 " highlight warnings and errors
             let g:clang_periodic_quickfix = 0 " periodically update quickfix
-                " you can use g:ClangUpdateQuickFix() with a mapping to do this.
+                " you can use g:ClangUpdateQuickFix() with a mapping to do this
             let g:clang_snippets = 1
             " clang_complete, snipmate, ultisnips
             let g:clang_snippets_engine = "ultisnips"
             let g:clang_conceal_snippets = 1
-            let g:clang_close_preview = 0 " auto close preview window after completion.
+            let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
+            let g:clang_close_preview = 0 " auto close preview window after completion
             let g:clang_exec = "clang" " name or path of clang executable.
-            let g:clang_user_options = "" " useful if you want filter result or others.
+            let g:clang_user_options = "" " useful if you want filter result or others
             "let g:clang_auto_user_options = "path, .clang_complete, gcc"
             let g:clang_use_library = 1
             let g:clang_library_path = "/usr/lib/"
