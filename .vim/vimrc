@@ -1319,6 +1319,7 @@ endif
         " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['utl'])
         " call vam#ActivateAddons(['open-browser'])
+        call vam#ActivateAddons(['bad-whitespace'])
         " call vam#ActivateAddons(['trailing-whitespace'])
             " write & spell checker & speak
         " call vam#ActivateAddons(['Engspchk'])
@@ -4393,6 +4394,13 @@ syntax on
 
     " [ timestamp ] {{{
     " }}}
+
+    " bad-whitespace highlight bad whitespace, but disable in insert mode.
+        " Usage:
+        " - EraseBadWhitespace
+        " - ShowBadWhitespace
+        " - HideBadWhitespace
+        " - ToggleBadWhitespace
 
     " trailing-whitespace
         " Usage:
