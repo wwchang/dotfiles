@@ -214,8 +214,7 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-        set grepprg="internal"
-        " set grepprg="grep -n $* /dev/null"
+        set grepprg="grep -n $* /dev/null" " 'internal', 'grep -n $* /dev/null'
 
         " [ match ]
         set showmatch
