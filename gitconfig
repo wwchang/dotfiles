@@ -5,6 +5,15 @@
 	email = numbchild@gmail.com
 	signingkey = 47C32433 # GPG key ID.
 
+[credential]
+	username = numbchild
+    ; find a helper -> $ git help -a | grep credential-
+    ; helper = "$helper $options"
+    helper = "credential-store"
+
+[credential "https://github.com"]
+	username = numbchild
+
 [github]
 	user = numbchild
     ; password = 'PASSWORD'
