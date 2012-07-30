@@ -9,7 +9,7 @@
 	username = numbchild
     ; find a helper -> $ git help -a | grep credential-
     ; helper = "$helper $options"
-    helper = "credential-store"
+	helper = credential-store
 
 [credential "https://github.com"]
 	username = numbchild
