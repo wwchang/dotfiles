@@ -72,7 +72,7 @@ add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "up
 
 default_rate(300)
 # Arch Linux {{{
-add("http://www.archlinuxcn.org/feed/", tags=[None, "Arch", "changes"]) # Archlinux
+# add("http://www.archlinuxcn.org/feed/", tags=[None, "Arch", "changes"]) # Archlinux
 # }}}
 
 default_rate(100)
@@ -83,7 +83,11 @@ add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # " Vimcasts
 add("http://feeds.feedburner.com/voa", tags=[None, "podcast", "english"]) # VOA special English Podcasts"
 add("http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg", tags=[None, "podcast"]) # " Fosscasts Podcasts"
 add("http://feeds.feedburner.com/tedtalks_video", tags=[None, "podcast", "TED"]) # " TED Talks"
-add("http://feeds2.feedburner.com/ShowmedoBlog", tags=[None, "podcast"]) # " Show Me Do"
+# add("http://feeds2.feedburner.com/ShowmedoBlog", tags=[None, "podcast"]) # ShowMeDo
+add("http://showmedo.com/latestVideoFeed/rss2.0", tags=[None, "podcast"]) # ShowMeDo
+# add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Python", tags=[None, "podcast"]) # ShowMeDo Python
+# add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Ruby", tags=[None, "podcast"]) # ShowMeDo Ruby
+# add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Beginner_Programming", tags=[None, "podcast"]) # ShowMeDo Beginner Programming
 add("http://xkcd.com/rss.xml", tags=[None, "xkcd", "comic"]) # xkcd.com
 # }}}
 
@@ -133,12 +137,8 @@ add("http://feeds.feedburner.com/softwaretechandmore", tags=[None, "blog"]) # SK
 add("http://blog.nguyenvq.com/feed/", tags=[None, "blog"]) # " Super Nerdy Cool"
 add("http://feed.feedsky.com/taoofsource", tags=[None, "blog"]) #
 add("https://www.hackbloc.org/rss.xml", tags=[None, "blog"]) # hackbloc.org
-add("http://blog.sina.com.cn/rss/1197191492.xml", tags=[None, "blog"]) # Tamia Liu (LiuTao) 's sina blog.
-add("http://blog.sina.com.cn/rss/menglikeer.xml", tags=[None, "blog"]) # Picture
-add("http://blog.sina.com.cn/rss/wings.xml", tags=[None, "blog"]) # Picture
-add("http://blog.sina.com.cn/rss/1710887475.xml", tags=[None, "blog"]) # Picture
-add("http://blog.chinaunix.net/u/rss.php?id=22178", tags=[None, "blog"]) #
-add("http://confusedfly.yo2.cn/feed", tags=[None, "blog"]) #
+add("http://blog.chinaunix.net/u/rss.php?id=22178", tags=[None, "blog"]) # china unix
+add("http://confusedfly.yo2.cn/feed", tags=[None, "blog"])
 add("http://LaTex.yo2.cn/feed", tags=[None, "blog"]) # " LaTex chinese Blog"
 add("http://feeds.feedburner.com/lainme", tags=[None, "blog"]) # " lainme Blog"
 add("http://blog.ibeini.com/feed", tags=[None, "blog"]) # "ibeini Blog ("hack")"
@@ -161,12 +161,12 @@ add("http://www.thegeekstuff.com/feed", tags=[None, "computer", "geek"]) # " The
 add("http://feeds.howtogeek.com/HowToGeek", tags=[None, "computer", "geek"]) # How To Geek
 add("http://blog.jobbole.com/feed/", tags=[None, "news", "geek"]) # " Jobbole
 add("http://feeds.feedburner.com/emule-fans", tags=[None, "news"]) # eMule Fans
+add("http://lwn.net/headlines/newrss", tags=[None, "linux", "news"]) # LWN.net
 # }}}
 
 default_rate(500)
 # SEO {{{
 add("http://feed.feedsky.com/stuseo", tags=[None, "SEO"]) # SEO 学习博客
-add("http://www.ok.net.cn/blog/rss.php", tags=[None, "SEO"]) # 电子商务博客 - OK网旗下博客
 # }}}
 
 default_rate(600)
@@ -701,4 +701,4 @@ if os.getenv("TERM") == "rxvt-unicode-256color" or os.getenv("TERM") == "xterm-2
 # closes.
 # }}}
 
-# vim: foldmethod=marker
+# vim:foldmethod=marker:textwidth=200
