@@ -212,8 +212,9 @@
         set ignorecase smartcase
 
         " [ grep ]
-        set grepprg="internal"
-        " set grepprg="grep -n $* /dev/null"
+        " internal(vimgrep) : use Vim search patterns, slower(read into memory)
+        " external(grep) : used when the vim grep does not do what you want.
+        set grepprg="grep -n $* /dev/null" " 'internal', 'grep -n $* /dev/null'
 
         " [ match ]
         set showmatch
@@ -1179,6 +1180,7 @@ endif
         call vam#ActivateAddons(['python_match'])
         " call vam#ActivateAddons(['python_open_module'])
         "call vam#ActivateAddons(['PyREPL'])
+        call vam#ActivateAddons(['selfdot'])
             " Django
         " call vam#ActivateAddons(['vim-htmldjango_omnicomplete'])
         " call vam#ActivateAddons(['vim-django-support'])
@@ -1317,6 +1319,7 @@ endif
         " call vam#ActivateAddons(['delimitMate'])
         call vam#ActivateAddons(['utl'])
         " call vam#ActivateAddons(['open-browser'])
+        call vam#ActivateAddons(['bad-whitespace'])
         " call vam#ActivateAddons(['trailing-whitespace'])
             " write & spell checker & speak
         " call vam#ActivateAddons(['Engspchk'])
@@ -2623,7 +2626,7 @@ syntax on
             " :Replace [target] [replacement], :Replace /[target]/[re]/
             " :ReplaceUndo, :ResultListOpen
             let g:EasyGrepMode = 2 " 0 all file 1 opened buffer 2 track current extension
-            let g:EasyGrepCommand = 0 " 0: vimgrep, 1: grep (follows grepprg).
+            let g:EasyGrepCommand = 1 " 0: vimgrep, 1: grep (follows grepprg).
             let g:EasyGrepRecursive = 1
             let g:EasyGrepIgnoreCase = 1
             let g:EasyGrepHidden = 1 " hidden files
@@ -3314,6 +3317,8 @@ syntax on
             " }}}
         " }}}
 
+        " selfdot lets you type 'self.' by pressing '.' in Python files.
+
         " [ Django ] {{{
             " vim-django-support {{{ Django omni completion.
             " }}}
@@ -3675,19 +3680,20 @@ syntax on
         " }}}
 
         " clang_complete {{{ :h clang_complete.txt
-            let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu.
+            let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
             let g:clang_complete_auto = 1 " auto complete after -> . ::
-            let g:clang_complete_copen = 1 " 1: open quickfix window on error.
+            let g:clang_complete_copen = 1 " 1: open quickfix window on error
             let g:clang_hl_errors = 1 " highlight warnings and errors
             let g:clang_periodic_quickfix = 0 " periodically update quickfix
-                " you can use g:ClangUpdateQuickFix() with a mapping to do this.
+                " you can use g:ClangUpdateQuickFix() with a mapping to do this
             let g:clang_snippets = 1
             " clang_complete, snipmate, ultisnips
             let g:clang_snippets_engine = "ultisnips"
             let g:clang_conceal_snippets = 1
-            let g:clang_close_preview = 0 " auto close preview window after completion.
+            let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
+            let g:clang_close_preview = 0 " auto close preview window after completion
             let g:clang_exec = "clang" " name or path of clang executable.
-            let g:clang_user_options = "" " useful if you want filter result or others.
+            let g:clang_user_options = "" " useful if you want filter result or others
             "let g:clang_auto_user_options = "path, .clang_complete, gcc"
             let g:clang_use_library = 1
             let g:clang_library_path = "/usr/lib/"
@@ -4388,6 +4394,13 @@ syntax on
 
     " [ timestamp ] {{{
     " }}}
+
+    " bad-whitespace highlight bad whitespace, but disable in insert mode.
+        " Usage:
+        " - EraseBadWhitespace
+        " - ShowBadWhitespace
+        " - HideBadWhitespace
+        " - ToggleBadWhitespace
 
     " trailing-whitespace
         " Usage:
