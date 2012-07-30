@@ -58,6 +58,7 @@ tags
 .config/ranger/tagged
 .config/ranger/bookmarks
 .config/ibus/
+.config/gtk-3.0/bookmarks
 
 .canto/feeds/
 .canto/log
@@ -70,6 +71,9 @@ tags
 .bash/history
 
 .elinks/cookies
+.elinks/globhist
+.elinks/gotohist
+.elinks/searchhist
 
 .fonts/fonts.dir
 
