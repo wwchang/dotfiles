@@ -1,21 +1,21 @@
 ## Author: stardiviner [ numbchild AT gmail DOT com ]
 
 [user]
-	name = stardiviner\n
+	name = stardiviner
 	email = numbchild@gmail.com
 	signingkey = 47C32433 # GPG key ID.
 
 [credential]
-	username = numbchild
+	username = NagatoPain
     ; find a helper -> $ git help -a | grep credential-
     ; helper = "$helper $options"
 	helper = credential-store
 
 [credential "https://github.com"]
-	username = numbchild
+	username = NagatoPain
 
 [github]
-	user = numbchild
+	user = NagatoPain
     ; password = 'PASSWORD'
     ; token = TOKEN
 
