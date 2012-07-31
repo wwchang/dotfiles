@@ -2092,6 +2092,7 @@ syntax on
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
 
             nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
+            nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
         " }}}
 
         " Xptemplate
