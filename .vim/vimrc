@@ -1972,27 +1972,21 @@ syntax on
                 " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
                 "   :perldoc, :ViewDocPerl.
                 " - e.g. :ViewDoc string.split in Python filetype.
-            "let g:no_viewdoc_abbrev
-            "let g:no_plugin_abbrev
-            "let g:no_viewdoc_maps
-            "let g:no_plugin_maps
             let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
             let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
             let g:viewdoc_prevtabonclose = 1
             let g:viewdoc_openempty = 0 " do not open anything if not found tag.
             let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
-            "let g:viewdoc_man_cmd = "/usr/bin/man"
-            " let g:ViewDoc_DEFAULT = 'ViewDoc_help'
+            let g:viewdoc_man_cmd = "/usr/bin/man"
+            let g:ViewDoc_DEFAULT = 'ViewDoc_man' " ViewDoc_man, ViewDoc_help
 
-            " customize {{{
-            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
-
+            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go, 
+            " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
                 " - ViewDoc({target}, {topic})
                 " - ViewDoc({target}, <cword>, {filetype})
                 " - ViewDoc({target}, <cword>)
-                    " This function handle all |viewdoc-commands|.
             " Handlers:
                 " to add documentation handler for new {filetype}, it's enough
                 " to create on function in ~/.vimrc (or some plugin):
@@ -2010,13 +2004,8 @@ syntax on
             " endfunction
             " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
             " let g:ViewDoc_python = function('ViewDoc_pydoc')
-            " }}}
 
-            " help_custom {{{ ~/.vim/ftdoc/{filetype}
-            " example:
-                " ~/.vim/ftdoc/css/css21.txt
-                " :helptags ~/.vim/ftdoc/css/
-                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
+            " help_custom ~/.vim/ftdoc/{filetype}
             autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
             " }}}
         " }}}
