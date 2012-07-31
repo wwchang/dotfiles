@@ -2812,7 +2812,9 @@ syntax on
             "       - -G<regex>
             " Key Maps:
             " <CR>, oOs, i, q, u, co, D, S, m, git, x, X, r, R, P.
+            " <C-n/p> to navigate revisions.
             " <leader>m (merge branch)
+            " yc (copy hash of commit)
             nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
