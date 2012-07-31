@@ -5,6 +5,11 @@ endsnippet
 snippet link "[[link|describe]]" !
 [[${VISUAL}${1:link,URL}|${2:alternate text}]]
 endsnippet
+
+snippet img "image link" !
+{{local:${VISUAL}${1:relative\/path\/to\/file}}}$0
+endsnippet
+
 snippet code "{{{code ... }}}" !b
 {{{${1:code/vim/python/ruby/etc}
 ${2:code block}
