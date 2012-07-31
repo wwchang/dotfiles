@@ -89,3 +89,9 @@ snippet span "<span> tag" !b
 </span>
 endsnippet
 
+snippet form "<form> tag" !b
+<form${1:method="${2:post/get/..}"${3: action="${4:ACTION}"}}>
+    ${VISUAL}$0
+</form>
+endsnippet
+
