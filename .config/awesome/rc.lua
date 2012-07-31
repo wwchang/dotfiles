@@ -1038,7 +1038,7 @@ end
         mywibox[s].widgets = {
             {
                 foursquare,
-                mytextword,
+                mytextword, separator_sign,
                 mypromptbox[s], separator_sign,
                 musictext, mpdwidget,
                 -- osinfowidget,
