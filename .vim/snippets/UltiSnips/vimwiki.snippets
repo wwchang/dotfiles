@@ -21,3 +21,13 @@ snippet syntax "surround with code syntax" !
 ${VISUAL}$0
 }}}
 endsnippet
+
+snippet formulae "inline math, short formulae" !b
+$ ${VISUAL}$0 $
+endsnippet
+
+snippet formula "formula {{..}}" !b
+{{$${1:%${2:align}%}
+${VISUAL}$0
+}}$
+endsnippet
