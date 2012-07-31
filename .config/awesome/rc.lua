@@ -1019,7 +1019,6 @@ end
                 foursquare,
                 mylauncher,
                 mytaglist[s], separator_sign,
-                mypromptbox[s], separator_sign,
                 layout = awful.widget.layout.horizontal.leftright
             },
             foursquare,
@@ -1039,7 +1038,8 @@ end
         mywibox[s].widgets = {
             {
                 foursquare,
-                mytextword,
+                mytextword, separator_sign,
+                mypromptbox[s], separator_sign,
                 musictext, mpdwidget,
                 -- osinfowidget,
                 -- mailbox, separator_sign,

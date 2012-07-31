@@ -1,0 +1,102 @@
+snippet comment "HTML comment" !
+<!-- ${1:comment} -->$0
+endsnippet
+
+snippet html5 "HTML5 Template" !b
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>${1:title}</title>
+        <meta charset="utf-8" />
+    </head>
+    <body>
+        <header>
+            ${2:header}
+        </header>
+        <content>
+            ${3:content}
+        </content>
+        <footer>
+            ${4:footer}
+        </footer>
+    </body>
+</html>
+endsnippet
+
+snippet doct5 "<!DOCTYPE html>" !b
+<!DOCTYPE html>
+$0
+endsnippet
+
+snippet html "<html> tag" !b
+<html>
+    ${VISUAL}$0
+</html>
+endsnippet
+
+snippet head "<head> tag" !b
+<head>
+    ${VISUAL}$0
+</head>
+endsnippet
+
+snippet title "<title> tag" !b
+<title>${VISUAL}$0</title>
+endsnippet
+
+snippet meta "<meta ..> tag" !b
+<meta ${1:charset="utf-8"} />
+$0
+endsnippet
+
+snippet body "<body> tag" !b
+<body>
+    ${VISUAL}$0
+</body>
+endsnippet
+
+snippet header "<header> tag" !b
+<header>
+    ${VISUAL}$0
+</header>
+endsnippet
+
+snippet content "<content> tag" !b
+<content>
+    ${VISUAL}$0
+</content>
+endsnippet
+
+snippet footer "<footer> tag" !b
+<footer>
+    ${VISUAL}$0
+</footer>
+endsnippet
+
+snippet p "<p> tag" !
+<p${1: class="${2:?}"}>${VISUAL}$0</p>
+endsnippet
+
+snippet div "<div> tag" !b
+<div${1:class="${2:CLASS}"}>
+    ${VISUAL}$0
+</div>
+endsnippet
+
+snippet span "<span> tag" !b
+<span>
+    ${VISUAL}$0
+</span>
+endsnippet
+
+snippet form "<form> tag" !b
+<form${1:method="${2:post/get/..}"${3: action="${4:ACTION}"}}>
+    ${VISUAL}$0
+</form>
+endsnippet
+
+snippet script "<script> tag" !b
+<script type="text/javascript"${1: src="${2:path/url}"}>
+    ${VISUAL}$0
+</script>
+endsnippet

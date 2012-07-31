@@ -1362,7 +1362,7 @@ endif
     " load lazily:
     " let ft_addons = {
     "   \ '^\%(c\|cpp\)$': [ 'plugin-for-c-development' ],
-    "   \ 'javascript': [ 'plugin-for-javascript' ]
+    "   \ 'javascript': [ 'plugin-for-javascript' ],
     " \ }
     " au FileType * for l in values(filter(copy(ft_addons), string(expand('<amatch>')).' =~ v:key')) | call vam#ActivateAddons(l, {'force_loading_plugins_now':1}) | endfor
 
@@ -1485,7 +1485,7 @@ syntax on
             let g:neocomplcache_dictionary_filetype_lists = {
                         \ 'default' : '',
                         \ 'vimshell' : $HOME.'/.vimshell_hist',
-                        \ 'scheme' : $HOME.'/.gosh_completions'
+                        \ 'scheme' : $HOME.'/.gosh_completions',
                         \ }
             let g:neocomplcache_dictionary_patterns = {}
             if !exists('g:neocomplcache_context_filetype_lists')
@@ -1494,12 +1494,12 @@ syntax on
             let g:neocomplcache_context_filetype_lists.perl6 = [{
                         \ 'filetype' : 'pir',
                         \ 'start' : 'Q:PIR\s*{',
-                        \ 'end' : '}'
+                        \ 'end' : '}',
                         \ }]
             let g:neocomplcache_context_filetype_lists.vim = [{
                         \ 'filetype' : 'python',
                         \ 'start' : '^\s*python <<\s*\(\h\w*\)',
-                        \ 'end' : '^\1'
+                        \ 'end' : '^\1',
                         \ }]
             " let g:neocomplcache_text_mode_filetypes =
             let g:neocomplcache_disable_select_mode_mappings = 1
@@ -1534,7 +1534,7 @@ syntax on
                 " for composite file type (only use one completion)
             let g:neocomplcache_ignore_composite_filetype_lists = {
                         \ 'python.unit' : 'python',
-                        \ 'ruby.spec' : 'ruby'
+                        \ 'ruby.spec' : 'ruby',
                         \ }
 
             " [ priority ] {{{
@@ -1552,7 +1552,7 @@ syntax on
                 "             \ 'omni_complete' : 300,
                 "             \ 'other plugin sources' : 5,
                 "             \ 'other completefunc sources' : 10,
-                "             \ 'other ftplugin sources' : 100
+                "             \ 'other ftplugin sources' : 100,
                 "             \ }
 
             " }}}
@@ -1972,27 +1972,21 @@ syntax on
                 " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
                 "   :perldoc, :ViewDocPerl.
                 " - e.g. :ViewDoc string.split in Python filetype.
-            "let g:no_viewdoc_abbrev
-            "let g:no_plugin_abbrev
-            "let g:no_viewdoc_maps
-            "let g:no_plugin_maps
             let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
             let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
             let g:viewdoc_prevtabonclose = 1
             let g:viewdoc_openempty = 0 " do not open anything if not found tag.
             let g:viewdoc_dontswitch = 0 " immaculately switch to opened document.
-            "let g:viewdoc_man_cmd = "/usr/bin/man"
-            " let g:ViewDoc_DEFAULT = 'ViewDoc_help'
+            let g:viewdoc_man_cmd = "/usr/bin/man"
+            let g:ViewDoc_DEFAULT = 'ViewDoc_man' " ViewDoc_man, ViewDoc_help
 
-            " customize {{{
-            "autocmd VimEnter * let g:ViewDoc_DEFAULT = function('ViewDoc_help')
-
+            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go, 
+            " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
                 " - ViewDoc({target}, {topic})
                 " - ViewDoc({target}, <cword>, {filetype})
                 " - ViewDoc({target}, <cword>)
-                    " This function handle all |viewdoc-commands|.
             " Handlers:
                 " to add documentation handler for new {filetype}, it's enough
                 " to create on function in ~/.vimrc (or some plugin):
@@ -2010,13 +2004,8 @@ syntax on
             " endfunction
             " let g:ViewDoc_pydoc  = function('ViewDoc_pydoc')
             " let g:ViewDoc_python = function('ViewDoc_pydoc')
-            " }}}
 
-            " help_custom {{{ ~/.vim/ftdoc/{filetype}
-            " example:
-                " ~/.vim/ftdoc/css/css21.txt
-                " :helptags ~/.vim/ftdoc/css/
-                " autocmd VimEnter * let g:ViewDoc_css = function('ViewDoc_help_custom')
+            " help_custom ~/.vim/ftdoc/{filetype}
             autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
             " }}}
         " }}}
@@ -2081,7 +2070,7 @@ syntax on
             let g:UltiSnipsEditSplit = "horizontal" " normal, horizontal, vertical.
             " let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             " do not use snippets come with UltiSnips.
-            let g:UltiSnipsSnippetDirectories=["snippets/UltiSnips"]
+            let g:UltiSnipsSnippetDirectories = ["snippets/UltiSnips"]
             let g:UltiSnipsDontReverseSearchPath = 0 " traverse runtimepath
             let g:UltiSnipsExpandTrigger = "<tab>"
             let g:UltiSnipsListSnippets = "<c-tab>"
@@ -2092,6 +2081,7 @@ syntax on
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
 
             nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
+            nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
         " }}}
 
         " Xptemplate
@@ -2201,7 +2191,7 @@ syntax on
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
             " let g:tagbar_type_javascript = {
-            "             \ 'ctagsbin' : '/usr/local/bin/jsctags'
+            "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
             "             \ }
 
             " automatically opening tagbar.
@@ -2280,7 +2270,7 @@ syntax on
             " let g:taggatron_verbose = 1 " debug
             let g:tagcommands = {
                         \ "php" : {"tagfile":".php.tags","args":"-R"},
-                        \ "javascript" : {"tagfile":".js.tags","args":"-R"}
+                        \ "javascript" : {"tagfile":".js.tags","args":"-R"},
                         \ }
         " }}}
 
@@ -2753,7 +2743,7 @@ syntax on
                         \ 'sign': '*quickfixsigns#vcsdiff#Signs',
                         \ 'get': 'quickfixsigns#vcsdiff#GetList(%s)',
                         \ 'event': [ 'BufEnter', 'BufLeave', 'BufWritePost'],
-                        \ 'level': 6
+                        \ 'level': 6,
                         \ }
             let g:quickfixsigns_balloon = 1
             let g:quickfixsigns_max = 500 " don't display signs if longer than this.
@@ -2812,7 +2802,9 @@ syntax on
             "       - -G<regex>
             " Key Maps:
             " <CR>, oOs, i, q, u, co, D, S, m, git, x, X, r, R, P.
+            " <C-n/p> to navigate revisions.
             " <leader>m (merge branch)
+            " yc (copy hash of commit)
             nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
@@ -4440,8 +4432,8 @@ syntax on
                         \ 'javascript': 'javascript', 'dart': 'dart',
                         \ 'c': 'c', 'go': 'go',
                         \ 'lisp': 'lisp', 'scheme': 'scheme',
-                        \ 'git': 'git', 'diff': 'diff'
-                    \ }
+                        \ 'git': 'git', 'diff': 'diff',
+                    \ },
                 \ },
                 \ {
                     \ 'path': '~/vimwiki/personal/',
@@ -4450,13 +4442,13 @@ syntax on
                     \ 'css_name': 'style.css', 'syntax': 'default',
                     \ 'template_path': '~/vimwiki/templates/personal/',
                     \ 'template_default': 'default',
-                    \ 'template_ext': '.template'
+                    \ 'template_ext': '.template',
                 \ },
                 \ {
                     \ 'diary_rel_path': 'Diary/',
                     \ 'diary_index': 'diary',
                     \ 'diary_header': 'Diary',
-                    \ 'diary_sort': 'desc'
+                    \ 'diary_sort': 'desc',
                 \ },
             \ ]
             let g:vimwiki_hl_headers = 1 " use VimwikiHeader1-6
@@ -4465,7 +4457,7 @@ syntax on
             let g:vimwiki_ext2syntax = {
                         \ 'wiki': 'default',
                         \ 'md': 'markdown',
-                        \ 'mkd': 'markdown'
+                        \ 'mkd': 'markdown',
                         \ }
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
@@ -4493,7 +4485,7 @@ syntax on
                         \ 1: 'January', 2: 'February', 3: 'March',
                         \ 4: 'April', 5: 'May', 6: 'June',
                         \ 7: 'July', 8: 'August', 9: 'September',
-                        \ 10: 'October', 11: 'November', 12: 'December'
+                        \ 10: 'October', 11: 'November', 12: 'December',
                         \ }
 
             " [ extra ] {{{
