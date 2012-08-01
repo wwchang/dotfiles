@@ -4254,8 +4254,8 @@ syntax on
             " let g:sudoAuth = "ssh" " first try to use this tool before falling back
             " let g:sudoAuthArg = "root@localhost"
                 " example: for su, use g:sudoAuthArg="-c",
-            let g:sudo_askpass = '/usr/lib/openssh/gnome-ssh-askpass'
-            "let g:sudo_no_gui = 1 " disable upper askpass.
+            let g:sudo_askpass = '/usr/bin/ssh-askpass'
+            let g:sudo_no_gui = 1 " disable GUI
         " }}}
     " }}}
 
