@@ -626,7 +626,7 @@ end
                 "\nSky: " .. args["{sky}"] ..
                 "\nHumidity: " .. args["{humid}"]
             )
-            return " Weather: " .. args["{city}"] .. " > " .. args["{tempc}"] .. "°C" .. " | " .. args["{weather}"]
+            return " weather: " .. args["{city}"] .. " > " .. args["{tempc}"] .. "°C"
         end,
         3600, "ZSHC"
     )
