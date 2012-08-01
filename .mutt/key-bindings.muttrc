@@ -63,6 +63,8 @@ bind    pager   j       next-line
 bind    pager   k       previous-line
 bind    pager   <Up>    previous-line
 bind    pager   <Down>  next-line
+bind    pager   \cf     next-page
+# bind    pager   \cb     previous-page # conflict with urlview macro.
 
 # browser/view
 bind    browser i   exit
