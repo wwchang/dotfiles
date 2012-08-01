@@ -10,6 +10,8 @@ tags
 .mutt/history_file
 .mutt/cache
 .mutt/getmail/oldmail-*
+.mutt/lbdb/m_inmail.list
+.mutt/lbdb/m_inmail.list.dirty
 
 .vim/vim-addons/*
 .vim/bundle/*
