@@ -1340,7 +1340,8 @@ endif
         "call vam#ActivateAddons(['exjumplist'])
         "call vam#ActivateAddons(['unicode'])
         "call vam#ActivateAddons(['mathematic'])
-        "call vam#ActivateAddons(['SudoEdit'])
+        call vam#ActivateAddons(['SudoEdit'])
+        " call vam#ActivateAddons(['sudo'])
         call vam#ActivateAddons(['SpitVspit'])
         call vam#ActivateAddons(['ZoomWin'])
         "call vam#ActivateAddons(['CompleteHelper'])
@@ -4244,8 +4245,17 @@ syntax on
 
     " [ session ] {{{
         " LargeFile: disable some option to speed up on time.
-        " SudoEdit {{{ Edit Files using Sudo/su.
+
+        " sudo.vim
+            " Usage: put it in plugin directory.
+            "  - (command line): $ vim sudo:/etc/passwd
+            "  - (within vim): :e sudo:/etc/passwd
             " Commands:
+            "   - SudoRead
+            "   - SudoWrite
+
+        " SudoEdit {{{ Edit Files using Sudo/su.
+            " Usage:
             " <Tab>
             " :SudoRead[!] [file] ---> :r !sudo cat file.
             " :e sudo:/etc/fstab ---> compatibility with the old sudo.vim.
