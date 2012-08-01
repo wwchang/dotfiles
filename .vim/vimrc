@@ -4250,8 +4250,9 @@ syntax on
             " :SudoRead[!] [file] ---> :r !sudo cat file.
             " :e sudo:/etc/fstab ---> compatibility with the old sudo.vim.
             " :[range]SudoWrite[!] [file] ---> :w !sudo tee >/dev/null file.
-            "let g:sudoAuth = "ssh" " first try to use this tool before falling back
-            let g:sudoAuthArg = "root@localhost"
+
+            " let g:sudoAuth = "ssh" " first try to use this tool before falling back
+            " let g:sudoAuthArg = "root@localhost"
                 " example: for su, use g:sudoAuthArg="-c",
             let g:sudo_askpass = '/usr/lib/openssh/gnome-ssh-askpass'
             "let g:sudo_no_gui = 1 " disable upper askpass.
