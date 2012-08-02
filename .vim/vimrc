@@ -3413,13 +3413,13 @@ syntax on
                 " enable WAI-ARIA attribute support:
                 let g:html5_aria_attributes_complete = 1
             " }}}
+
             " HTML5_Syntax_File : HTML5 syntax file.
         " }}}
 
         " [ CSS ] {{{
             " ~/.vim/after/syntax/css3.vim
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
-        " }}}
 
         " Better_CSS_Syntax_for_Vim {{{
             " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
@@ -3427,6 +3427,8 @@ syntax on
         " }}}
 
         " css3_mod
+
+        " }}}
     " }}}
 
     " [ JavaScript ] {{{
