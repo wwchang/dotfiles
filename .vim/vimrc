@@ -1504,7 +1504,9 @@ syntax on
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
-            " :neocomplcacheEditSnippets -- you can open with vertically or tab.
+            " Usage:
+            " - :set ft=html.python to use compound filetype.
+            "   so you can complete HTML and Python as same time.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0
