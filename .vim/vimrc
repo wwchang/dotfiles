@@ -1191,6 +1191,7 @@ endif
         call vam#ActivateAddons(['ZenCoding'])
         " call vam#ActivateAddons(['sparkup'])
         call vam#ActivateAddons(['MatchTag'])
+        call vam#ActivateAddons(['HTML_AutoCloseTag'])
         call vam#ActivateAddons(['html5'])
         call vam#ActivateAddons(['HTML5_Syntax_File'])
         call vam#ActivateAddons(['Better_CSS_Syntax_for_Vim'])
@@ -3392,7 +3393,9 @@ syntax on
             " }}}
 
             " MatchTag
-            " HTML AutoCloseTag
+
+            " HTML_AutoCloseTag
+
             " html5 {{{ HTML5 omnicomplete func and syntax for Vim.
                 " based on the default htmlcomplete.vim.
                 " Features:
