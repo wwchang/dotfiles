@@ -288,33 +288,6 @@
 
             " inoremap <Tab> <C-R>=SuperCleverTab()<cr>
             " }}}
-
-        augroup FileTypeOmniCompletion
-            au!
-            " au FileType python          setlocal omnifunc=pythoncomplete#Complete
-            au FileType python          setlocal omnifunc=python3complete#Complete
-            au FileType c               setlocal omnifunc=ccomplete#Complete
-            au FileType cpp,hpp         setlocal omnifunc=omni#cpp#complete#Main
-            au FileType html,markdown   setlocal omnifunc=htmlcomplete#CompleteTags
-            au FileType css             setlocal omnifunc=csscomplete#CompleteCSS
-            au FileType javascript      setlocal omnifunc=javascriptcomplete#CompleteJS
-            au FileType ruby            setlocal omnifunc=rubycomplete#Complete
-            au FileType xml             setlocal omnifunc=xmlcomplete#CompleteTags
-            au FileType php             setlocal omnifunc=phpcomplete#CompletePHP
-            au FileType sql             setlocal omnifunc=sqlcomplete#Map('sqlKeyword')
-            au FileType go              setlocal omnifunc=gocomplete#Complete
-            au Filetype haskell         setlocal omnifunc=necoghc#omnifunc
-                let g:ftplugin_sql_omni_key = '<C-c>'
-                " <C-c>[akfoTsvclLR]
-        augroup END
-
-        " use syntaxcomplete omnifunc for other unknow filetypes.
-        if has("autocmd") && exists("+omnifunc")
-            autocmd FileType *
-                        \ if &omnifunc == "" |
-                        \   setlocal omnifunc=syntaxcomplete#Complete |
-                        \ endif
-        endif
         " }}}
     " }}}
 
@@ -1604,7 +1577,22 @@ syntax on
             endif
             let g:neocomplcache_delimiter_patterns.vim = ['#']
             let g:neocomplcache_delimiter_patterns.cpp = ['::']
-            let g:neocomplcache_omni_functions = {}
+            " if the key is '_', used for all filetypes.
+            let g:neocomplcache_omni_functions = {
+                        \ '_': 'syntaxcomplete#Complete',
+                        \ 'python': 'python3complete#Complete',
+                        \ 'ruby': 'rubycomplete#Complete',
+                        \ 'c': 'ccomplete#Complete',
+                        \ 'go': 'gocomplete#Complete',
+                        \ 'cpp,hpp': 'omni#cpp#complete#Main',
+                        \ 'html,markdown': 'htmlcomplete#CompleteTags',
+                        \ 'css': 'csscomplete#CompleteCSS',
+                        \ 'javascript': 'javascriptcomplete#CompleteJS',
+                        \ 'xml': 'xmlcomplete#CompleteTags',
+                        \ 'php': 'phpcomplete#CompletePHP',
+                        \ 'sql': 'sqlcomplete#Map("sqlkeyword")',
+                        \ 'haskell': 'necoghc#omnifunc',
+                        \ }
             let g:neocomplcache_vim_completefuncs = {}
             let g:neocomplcache_source_disable = {}
             let g:neocomplcache_source_completion_length = {}
