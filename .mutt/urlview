@@ -1,10 +1,9 @@
 REGEXP (((http|https|ftp|gopher)|mailto)[.:][^ >"\t]*|www\.[-a-z0-9.]+)[^ .,;\t>">\):]
-# COMMAND firefox %s
+COMMAND firefox %s
 # COMMAND chromium-browser %s
 # COMMAND lynx %s
 # COMMAND elinks %s
-COMMAND luakit %s
-# COMMAND firefox %s
+# COMMAND luakit %s
 #
 # Sample urlview(1) configuration file
 #

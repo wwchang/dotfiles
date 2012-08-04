@@ -31,7 +31,7 @@ add("http://codezen.org/canto/feeds/latest", tags=[None, "update", "Canto"]) # C
 
 default_rate(100)
 # Program {{{
-add("https://github.com/numbchild.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f", tags=[None, "github", "git", "update"]) # my personal GitHub feeds
+add("https://github.com/NagatoPain.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f", tags=[None, "github", "git", "update"]) # my personal GitHub feeds
 # }}}
 
 default_rate(600)
@@ -199,8 +199,8 @@ if os.getenv("TERM") == "linux":
     link_handler("elinks \"%u\"", text=True) # for curses browser.
     image_handler("fbi \"%u\"", text=True, fetch=True)
 else:
-    # link_handler("firefox \"%u\"") # open URL with firefox.
-    link_handler("luakit \"%u\"") # open URL with luakit
+    link_handler("firefox \"%u\"") # open URL with firefox.
+    # link_handler("luakit \"%u\"") # open URL with luakit
     # image_handler("fbv \"%u\"", text=True, fetch=True) # Curses image show.
     image_handler("feh \"%u\"", fetch=True) # Curses image show.
     link_handler("mplayer \"%u\"", ext="mp3") # music
