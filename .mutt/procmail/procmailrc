@@ -260,6 +260,21 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # }}}
 
 # Programming Languages {{{
+    # [ Guile ] {{{
+    :0
+    * ^List-Id: .*guile-user\.gnu\.org
+    Guile/user/
+    :0
+    * ^List-Id: .*guile-devel\.gnu\.org
+    Guile/devel/
+    :0
+    * ^List-Id: .*guile-sources\.gnu\.org
+    Guile/sources/
+    :0
+    * ^List-Id: .*bug-guile\.gnu\.org
+    Guile/bug/
+    # }}}
+
     # [ Python ] {{{
     :0
     * ^List-Id: .*python-list\.python\.org

@@ -74,6 +74,11 @@ alias vimwiki vimwiki-author <habamax@gmail.com> # vimwiki(script)
 
 # program
 alias qualityprogramming Quality Programming <qualityprogramming@googlegroups.com>
+# Guile
+alias guile.user Guile-user <guile-user@gnu.org>
+alias guile.devel Guile-devel <guile-devel@gnu.org>
+alias guile.bug Guile-bug <guile-bug@gnu.org>
+alias guile.sources Guile-sources <guile-sources@gnu.org>
 # Python
 alias python Python.list <python-list@python.org>
 alias python.lang.G comp.lang.py <comp.lang.python@googlegroups.com>

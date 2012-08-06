@@ -44,6 +44,12 @@ mailboxes =Vim/dev
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
 
+mailboxes =Guile
+mailboxes =Guile/user
+mailboxes =Guile/devel
+mailboxes =Guile/sources
+# mailboxes =Guile/bug
+
 mailboxes =Ruby
 mailboxes =Ruby/talk
 mailboxes =Ruby/core

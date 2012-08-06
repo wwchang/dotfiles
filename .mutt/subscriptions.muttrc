@@ -6,6 +6,11 @@
 # group
 # subscribe -group Python python-list@python.org pythontw@googlegroups.com
 
+# [ Guile ]
+subscribe Guile.user <guile-user@gnu.org>
+subscribe Guile.devel <guile-devel@gnu.org>
+subscribe Guile.bug <guile-bug@gnu.org>
+subscribe Guile-sources <guile-sources@gnu.org>
 
 # [ Python ]
 subscribe python Python <python-list@python.org>
