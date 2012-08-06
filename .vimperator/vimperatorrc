@@ -136,8 +136,12 @@ nnoremap <C-j>      :downloads<cr>
 nnoremap <Leader>eu :set encoding=UTF-8<cr>
 nnoremap <Leader>eg :set encoding=GB2312<cr>
 
-command dict -nargs=* tabopen http://dict.cn/<args>
-map w :dict
+" [ dictionary lookup/translate ]
+" command dict -nargs=* tabopen http://dict.cn/<args>
+" map w :dict
+" command gtranslate -nargs=* tabopen http://translate.google.cn/?hl=en#ja/zh-CN/<args>
+command youdao -nargs=* tabopen http://dict.youdao.com/search?q=<args>&keyfrom=dict.index
+map w :youdao
 
 " Map for plugins or scripts
 map <silent> <F2> :js toggle_bar()<CR>
