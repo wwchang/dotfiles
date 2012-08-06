@@ -178,6 +178,20 @@ autocmd LocationChange .* js modes.passAllKeys = /.*(web\.qq\.com).*/.test(buffe
 "autocmd LocationChange .* :set editor=gvim -f
 "autocmd LocationChange mail\\.google\\.com :set editor=gvim -f -c 'set ft=mail'
 " }}}
+
+" [ Commands ] {{{
+    " set Firebug internals with 'set!' (NOTE: must has ! )
+    " command! useragent set! general.useragent.extra.firefox?
+    " Firebug extension
+    " Web developer extension
+    command! webdev js webdeveloper_toggleToolbar();
+    " localhost
+    command! localhost open http://localhost
+    " Pin current tab as App Tab.
+    command! app set apptab!
+" }}}
+
+" [ JavaScript ] {{{
 js << EOF
 
 // Toggle menubar and toolbar {{{
