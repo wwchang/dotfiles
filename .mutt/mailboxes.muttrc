@@ -48,7 +48,6 @@ mailboxes =Lisp
 mailboxes =Lisp/Lisp
 mailboxes =Lisp/comp-lang
 mailboxes =Lisp/cn
-mailboxes =Lisp/hug
 
 mailboxes =Guile
 mailboxes =Guile/user

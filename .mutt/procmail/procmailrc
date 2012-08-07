@@ -356,9 +356,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*lisp-cn\.googlegroups\.com
     Lisp/cn/
-    :0
-    * ^From: .*majordomo@lispworks\.com
-    Lisp/comp-lang/
     # }}}
 
     # [ PHP ] {{{

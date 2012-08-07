@@ -15,7 +15,6 @@ subscribe Guile-sources <guile-sources@gnu.org>
 # [ Lisp ]
 subscribe comp.lang.lisp comp.lang.lisp <comp.lang.lisp@googlegroups.com>
 subscribe lisp-cn lisp-cn <lisp-cn@googlegroups.com>
-subscribe lisp-hug lisp-hug <majordomo@lispworks.com>
 
 # [ Python ]
 subscribe python Python <python-list@python.org>
