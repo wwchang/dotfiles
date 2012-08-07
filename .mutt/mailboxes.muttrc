@@ -33,16 +33,22 @@ mailboxes =Stack\ Exchange
 
 mailboxes =Important
 
-mailboxes =Emacs
-mailboxes =Emacs/help
-mailboxes =Emacs/devel
-mailboxes =Emacs/Evil
-
 mailboxes =Vim
 mailboxes =Vim/help
 mailboxes =Vim/dev
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
+
+mailboxes =Emacs
+mailboxes =Emacs/help
+mailboxes =Emacs/devel
+mailboxes =Emacs/Evil
+
+mailboxes =Lisp
+mailboxes =Lisp/Lisp
+mailboxes =Lisp/comp-lang
+mailboxes =Lisp/cn
+mailboxes =Lisp/hug
 
 mailboxes =Guile
 mailboxes =Guile/user
@@ -56,14 +62,11 @@ mailboxes =Ruby/core
 mailboxes =Ruby/cvs
 mailboxes =Ruby/Rails
 
-mailboxes =Lisp
-mailboxes =Lisp/Lisp-cn
-
 mailboxes =Python
 mailboxes =Python/python
 mailboxes =Python/help
 mailboxes =Python/dev
-mailboxes =Python/comp-lang-py
+mailboxes =Python/comp-lang
 mailboxes =Python/python-tw
 # projects
 mailboxes =Python/Django

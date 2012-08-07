@@ -3,6 +3,7 @@
 # tools with email.
 alias wordpress WordpressPost <cera013qaja@post.wordpress.com>
 alias tumblr tumblr. <955flothauzb@tumblr.com>
+alias github GitHub <notifications@github.com>
 
 # myself
 alias stardiviner stardiviner <numbchild@gmail.com>
@@ -106,10 +107,11 @@ alias rubyonrails Ruby on Rails <rubyonrails-talk@googlegroups.com>
 alias javascript comp.lang.javascript <comp.lang.javascript@googlegroups.com>
 alias javascript.alt.lang JavaScript.alt.comp.lang <alt.comp.lang.javascript@googlegroups.com>
 # Lisp
-alias lisp.G comp.lang.lisp <comp.lang.lisp@googlegroups.com>
+alias lisp.comp.lang.G comp.lang.lisp <comp.lang.lisp@googlegroups.com>
 alias lisp.user.G comp.org.lisp-users <comp.org.lisp-users@googlegroups.com>
 alias lisp.cn lisp-cn <lisp-cn@googlegroups.com>
 alias lisp.china lisp-china <lisp-china@googlegroups.com>
+alias lisp.hug lisp-hug <majordomo@lispworks.com>
 # Scheme
 alias scheme comp.lang.scheme <comp.lang.scheme@googlegroups.com>
 # Java
