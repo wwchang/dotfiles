@@ -987,7 +987,7 @@ endif
             endif
         endfunction " }}}
 
-        function! SetupVAM() " {{{
+        function! SetupVAM() " {{{ options, custom. addons.
             " [ options ] {{{
             let g:vim_addon_manager = {
                         \ 'shell_commands_run_method': 'system',
@@ -997,7 +997,7 @@ endif
                         \ 'log_to_buf': 0,
                         \ 'log_buffer_name': '/tmp/vam_install.log',
                         \ 'debug_activation': 0,
-                        \ 'addon_completion_lhs': 1,
+                        \ 'addon_completion_lhs': 0,
                         \ }
             " }}}
 
@@ -1135,7 +1135,7 @@ endif
                 " session & undo & history
             call vam#ActivateAddons(['restore_view'])
             call vam#ActivateAddons(['recover'])
-            call vam#ActivateAddons(['github:tungd/unite-session'])
+            " call vam#ActivateAddons(['github:tungd/unite-session'])
             call vam#ActivateAddons(['Gundo'])
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
@@ -1197,8 +1197,8 @@ endif
             "call vam#ActivateAddons(['vim-addon-xdebug'])
             " call vam#ActivateAddons(['phpqa'])
             "call vam#ActivateAddons(['PHPUnit_QF'])
-            " call vam#ActivateAddons(['PIV'])
-            " call vam#ActivateAddons(['github:tobyS/vip'])
+            call vam#ActivateAddons(['PIV'])
+            call vam#ActivateAddons(['phpcomplete'])
             "call vam#ActivateAddons(['pdv-standalone'])
             "call vam#ActivateAddons(['cakephp'])
             "call vam#ActivateAddons(['cake'])
@@ -3583,6 +3583,13 @@ syntax on
 
         " [ Integration ] {{{
             " PIV {{{ PHP Integration for Vim.
+                " Usage:
+                "   - K --> doc
+            " }}}
+        " }}}
+
+        " [ completion ] {{{
+            " phpcomplete {{{ Improved PHP omnicompletion.
             " }}}
         " }}}
 
@@ -3600,9 +3607,6 @@ syntax on
                 " please set it as follows.
                 let g:cakephp_enable_auto_mode = 1
             " }}}
-        " }}}
-
-        " https://github.com/tobyS/vip.git {{{
         " }}}
 
         " pdv-standalone {{{ standalone version of phpDocumentor for Vim plugin.
@@ -3830,6 +3834,19 @@ syntax on
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
 
+        " vim-signature {{{ toggle, display and navigate marks.
+            let g:SignatureDefaultMappings = 1
+            " let g:SignatureIncludeMarks =
+            let g:SignatureWrapJumps = 1
+            let g:SignatureMarkLeader = m
+            let g:SignatureLcMarkStr = "\p\m"
+            let g:SignatureUcMarkStr = "\p\m"
+            let g:SignatureMarkerLeader = m
+            " let g:SignatureIncludeMarkers =
+            let g:SignatureDisableMenu = 0
+            let g:SignatureMenuStruct = "P&lugins.&Signature"
+        " }}}
+
         " vmark.vim_Visual_Bookmarking {{{
             " Toggle visual bookmarking and jump through bookmarks
             " Usage:
@@ -3909,7 +3926,7 @@ syntax on
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
-            let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
+            let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
 
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
             "call Pl#Theme#RemoveSegment({targetsegment})
@@ -4331,6 +4348,11 @@ syntax on
         " - :FixWhitespace to fix whitespace errors.
         " - [range]FixWhitespace to visual select range to pass.
 
+    " TUI (Text User Interface) {{{
+        " forms {{{ A Vim TUI library.
+        " }}}
+    " }}}
+
     " [ Vim FAQ / Tips ] {{{
         " tips.vim {{{ show vim tips everytime when you enter vim.
             " :NextTip
@@ -4394,10 +4416,9 @@ syntax on
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
             let g:vimwiki_use_mouse=0 " disable mouse.
-            let g:vimwiki_folding = 0 " disable folding. speed up file.
-            let g:vimwiki_fold_lists = 0 " enable list subitem's folding.
+            let g:vimwiki_folding = 1 " disable folding. speed up file.
+            let g:vimwiki_fold_lists = 1 " enable list subitem's folding.
             let g:vimwiki_list_ignore_newline = 0
-            let g:vimwiki_use_calendar = 1
             let g:vimwiki_table_mappings = 0 " disable Table mapping
                 " to disbale vimwiki <Tab> map
             let g:vimwiki_table_auto_fmt = 0
@@ -4418,6 +4439,7 @@ syntax on
                         \ 7: 'July', 8: 'August', 9: 'September',
                         \ 10: 'October', 11: 'November', 12: 'December',
                         \ }
+            let g:vimwiki_use_calendar = 1
 
             " [ extra ] {{{
                 au FileType vimwiki setlocal concealcursor=v
@@ -4992,6 +5014,8 @@ syntax on
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
             let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
+            " FIXME application/djvu
+            let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm
             " let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
             " application/doc
