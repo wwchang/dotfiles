@@ -3275,6 +3275,59 @@ syntax on
         " }}}
     " }}}
 
+    " [ Ruby ] {{{
+        let ruby_operators = 1 " highlight operations
+        let ruby_space_errors = 1 " highlight space errors
+        let ruby_fold = 1
+        "let ruby_no_comment_fold = 1
+
+        " vim-ruby {{{
+            " https://github.com/vim-ruby/vim-ruby
+            " https://github.com/MarcWeber/vim-ruby
+
+            " autocmd FileType ruby compiler ruby
+
+            " syntax
+            let ruby_no_expensive = 1 " smart end color etc
+            let ruby_operators = 1 " highlight operators
+            let ruby_space_errors = 0 " highlight whitespace erros
+                " disable this, because use other script
+
+            " completion CTRL-X CTRL-O
+                " Ruby completion will parse your buffer on demand in order to
+                " provide a list of completions.
+            let g:rubycomplete_buffer_loading = 0 " this will cause some code execute
+            let g:rubycomplete_classes_in_global = 1
+            let g:rubycomplete_rails = 1
+        " }}}
+
+        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
+            " Requires:
+            "   - Ruby 1.9.3
+            "   - gem install methodfinder
+        " }}}
+
+        " rails {{{ Ruby on Rails
+            " easy file navigation, enhanced syntax highlighting, and more
+        " }}}
+
+        " RbREPL {{{ Rub a Ruby REPL in Vim.
+        " }}}
+    " }}}
+
+    " [ Lisp ] {{{
+        " Slimv {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
+        " }}}
+
+        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
+        " }}}
+
+        " paredit {{{ Paredit Mode: Structured Editing of Lisp S-expressions
+            " paredit.vim is a part of Slimv.vim
+            " similar to paredit.el for Emacs.
+        " }}}
+    " }}}
+
     " [ Shell ] {{{
         " vim shell settings :
             let g:is_sh = 1 " default: Bourne shell.
@@ -3286,6 +3339,80 @@ syntax on
             "let g:sh_noisk = 1
 
         " bash-support {{{ Bash Support implements a bash-IDE for Vim/gVim.
+        " }}}
+    " }}}
+
+    " [ VimL ] {{{
+        let g:vimsyn_embed = "mpPr" " embed script highlight: perl,python,ruby,tcl
+        let g:vimsyn_folding = 'afmpPr' " augroup, function, perl, python, ruby
+        let g:vimsyn_noerror = 1 " suppress error highlighting.
+
+        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
+            " :h vimsupport.
+        " }}}
+
+        " vesting {{{ vimscript test framework.
+        " }}}
+
+        " runVimTests {{{ A testing framework for Vim.
+        " }}}
+
+        " Self {{{ Vim prototype object system.
+        " }}}
+    " }}}
+
+    " [ SQL ] {{{
+        " :h ft_sql.txt,
+            let msql_sql_query = 1 " like SQL highlighting inside Strings.
+            let msql_minlines = 200 " for syncing, minlines defaults to 100.
+        let g:sql_type_default = 'mysql' " or 'sqlanywhere'
+
+            " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
+                " [ static mode ] {{{
+                " All, Statement, Functions, Keywords, Options, Types.
+                let g:ftplugin_sql_omni_key = '<C-C>'
+                imap <buffer> <C-C>a <C-\><C-O>:call sqlcomplete#Map('syntax')<CR><C-X><C-O>
+                imap <buffer> <C-C>k <C-\><C-O>:call sqlcomplete#Map('sqlKeyword')<CR><C-X><C-O>
+                imap <buffer> <C-C>f <C-\><C-O>:call sqlcomplete#Map('sqlFunction')<CR><C-X><C-O>
+                imap <buffer> <C-C>o <C-\><C-O>:call sqlcomplete#Map('sqlOption')<CR><C-X><C-O>
+                imap <buffer> <C-C>T <C-\><C-O>:call sqlcomplete#Map('sqlType')<CR><C-X><C-O>
+                imap <buffer> <C-C>s <C-\><C-O>:call sqlcomplete#Map('sqlStatement')<CR><C-X><C-O>
+                " }}}
+
+                " [ dynamic mode ] {{{
+                "       Table List, Procedure List, View List, Column List.
+                " <C-C>     t           p               v       c
+                " Require: dbext.vim
+                    " Drilling In / Out: replace column <-> table when viewing popup window.
+                let g:ftplugin_sql_omni_key_right = '<Right>'
+                let g:ftplugin_sql_omni_key_left  = '<Left>'
+                imap <buffer> <C-C>R <C-\><C-O>:call sqlcomplete#Map('ResetCache')<CR><C-X><C-O>
+                " }}}
+
+            " Completion Customization
+            " let omni_sql_no_default_maps = 1
+            let omni_sql_ignorecase = 1
+            let omni_sql_include_owner = 1
+            let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
+            " }}}
+
+        " Dbext {{{ Database extension plugin.
+            " \sbp -- SQL Buffer Prompt.
+            " \se  -- SQL Execute
+            " \sel -- SQL Execute Line
+            " Visual(V) -- linewise-visual to execute.
+        " }}}
+
+        " VDBI {{{ Database client for Vim: browsing, operation, view.
+            " :VDBI
+            " viewer keys: q, <cr>, <leader>s/d/y,
+            " query editor keys: q, <leader>e/r.
+            " Datasource Viewer keys: q, <cr>
+        " }}}
+
+        " SQLUtilities: | Formatting, generate - columns lists, procedures for databases
+            " [ functions ] {{{
+            " automatically captilize all SQL keywords and statements.
         " }}}
     " }}}
 
@@ -3498,72 +3625,8 @@ syntax on
         " }}}
     " }}}
 
-    " [ SQL ] {{{
-        " :h ft_sql.txt,
-            let msql_sql_query = 1 " like SQL highlighting inside Strings.
-            let msql_minlines = 200 " for syncing, minlines defaults to 100.
-        let g:sql_type_default = 'mysql' " or 'sqlanywhere'
-
-            " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
-                " [ static mode ] {{{
-                " All, Statement, Functions, Keywords, Options, Types.
-                let g:ftplugin_sql_omni_key = '<C-C>'
-                imap <buffer> <C-C>a <C-\><C-O>:call sqlcomplete#Map('syntax')<CR><C-X><C-O>
-                imap <buffer> <C-C>k <C-\><C-O>:call sqlcomplete#Map('sqlKeyword')<CR><C-X><C-O>
-                imap <buffer> <C-C>f <C-\><C-O>:call sqlcomplete#Map('sqlFunction')<CR><C-X><C-O>
-                imap <buffer> <C-C>o <C-\><C-O>:call sqlcomplete#Map('sqlOption')<CR><C-X><C-O>
-                imap <buffer> <C-C>T <C-\><C-O>:call sqlcomplete#Map('sqlType')<CR><C-X><C-O>
-                imap <buffer> <C-C>s <C-\><C-O>:call sqlcomplete#Map('sqlStatement')<CR><C-X><C-O>
-                " }}}
-
-                " [ dynamic mode ] {{{
-                "       Table List, Procedure List, View List, Column List.
-                " <C-C>     t           p               v       c
-                " Require: dbext.vim
-                    " Drilling In / Out: replace column <-> table when viewing popup window.
-                let g:ftplugin_sql_omni_key_right = '<Right>'
-                let g:ftplugin_sql_omni_key_left  = '<Left>'
-                imap <buffer> <C-C>R <C-\><C-O>:call sqlcomplete#Map('ResetCache')<CR><C-X><C-O>
-                " }}}
-
-            " Completion Customization
-            " let omni_sql_no_default_maps = 1
-            let omni_sql_ignorecase = 1
-            let omni_sql_include_owner = 1
-            let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
-            " }}}
-
-        " Dbext {{{ Database extension plugin.
-            " \sbp -- SQL Buffer Prompt.
-            " \se  -- SQL Execute
-            " \sel -- SQL Execute Line
-            " Visual(V) -- linewise-visual to execute.
-        " }}}
-
-        " VDBI {{{ Database client for Vim: browsing, operation, view.
-            " :VDBI
-            " viewer keys: q, <cr>, <leader>s/d/y,
-            " query editor keys: q, <leader>e/r.
-            " Datasource Viewer keys: q, <cr>
-        " }}}
-
-        " SQLUtilities: | Formatting, generate - columns lists, procedures for databases
-            " [ functions ] {{{
-            " automatically captilize all SQL keywords and statements.
-        " }}}
-    " }}}
-
-    " [ VimL ] {{{
-        let g:vimsyn_embed = "mpPr" " embed script highlight: perl,python,ruby,tcl
-        let g:vimsyn_folding = 'afmpPr' " augroup, function, perl, python, ruby
-        let g:vimsyn_noerror = 1 " suppress error highlighting.
-
-        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
-            " :h vimsupport.
-        " }}}
-
-        " vesting {{{ vimscript test framework.
-        " }}}
+    " [ Go ] {{{
+        " https://github.com/nsf/gocode.git | autocompletion daemon for Go Language.
     " }}}
 
     " [ C & C++ Dev Env ] {{{
@@ -3610,63 +3673,6 @@ syntax on
         " }}}
 
         " c.vim {{{ C/C++ IDE
-        " }}}
-    " }}}
-
-    " [ Go ] {{{
-        " https://github.com/nsf/gocode.git | autocompletion daemon for Go Language.
-    " }}}
-
-    " [ Ruby ] {{{
-        let ruby_operators = 1 " highlight operations
-        let ruby_space_errors = 1 " highlight space errors
-        let ruby_fold = 1
-        "let ruby_no_comment_fold = 1
-
-        " vim-ruby {{{
-            " https://github.com/vim-ruby/vim-ruby
-            " https://github.com/MarcWeber/vim-ruby
-
-            " autocmd FileType ruby compiler ruby
-
-            " syntax
-            let ruby_no_expensive = 1 " smart end color etc
-            let ruby_operators = 1 " highlight operators
-            let ruby_space_errors = 0 " highlight whitespace erros
-                " disable this, because use other script
-
-            " completion CTRL-X CTRL-O
-                " Ruby completion will parse your buffer on demand in order to
-                " provide a list of completions.
-            let g:rubycomplete_buffer_loading = 0 " this will cause some code execute
-            let g:rubycomplete_classes_in_global = 1
-            let g:rubycomplete_rails = 1
-        " }}}
-
-        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
-            " Requires:
-            "   - Ruby 1.9.3
-            "   - gem install methodfinder
-        " }}}
-
-        " rails {{{ Ruby on Rails
-            " easy file navigation, enhanced syntax highlighting, and more
-        " }}}
-
-        " RbREPL {{{ Rub a Ruby REPL in Vim.
-        " }}}
-    " }}}
-
-    " [ Lisp ] {{{
-        " Slimv {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
-        " }}}
-
-        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
-        " }}}
-
-        " paredit {{{ Paredit Mode: Structured Editing of Lisp S-expressions
-            " paredit.vim is a part of Slimv.vim
-            " similar to paredit.el for Emacs.
         " }}}
     " }}}
 
