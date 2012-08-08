@@ -1273,7 +1273,6 @@ endif
             call vam#ActivateAddons(['Gist'])
             call vam#ActivateAddons(['WebAPI'])
             " call vam#ActivateAddons(['wwwsearch'])
-            "call vam#ActivateAddons(['weibo'])
             " call vam#ActivateAddons(['Tumble'])
             "call vam#ActivateAddons(['TwitVim'])
                 " color/syntax
@@ -4718,16 +4717,6 @@ syntax on
     " }}}
 
     " [ POST/Search(WWW): blog, microblog, twitter, WWW etc ] {{{
-        " weibo {{{
-            " {visual} select text, press ",at" to share,
-                " - press Enter to share directly without comment.
-                " - input <space> after ",at" and comment if you want to comment.
-            " generate g:weibo_access_token
-            "https://graph.qq.com/oauth2.0/authorize?response_type=token&client_id=100229856&redirect_uri=vimer.cn&scope=add_t
-            let g:weibo_access_token='B73959D0F27E9E556E2CA09F18A687F3'
-            let g:weibo_t_sign = 'from 小妖 Vim'
-        " }}}
-
         " UltraBlog: local database for Blog WordPress.
 
         " Tumble {{{ Tumble for Vim.
@@ -4788,8 +4777,6 @@ syntax on
                 "             \ 'http://digg.com/search?s={keyword}'
                 "             \ )
             " }}}
-
-        " https://github.com/danchoi/goog
 
         " [ paste ] {{{
             " vim-pastie
@@ -4948,10 +4935,6 @@ syntax on
     " }}}
 
     " [ text-object ] {{{
-    " }}}
-
-    " [ smooth scroll ] {{{
-        " Smooth-Scroll: <C-u>/<C-D>/<C-F>/<C-B> smooth scroll winsize.
     " }}}
 
     " [ open with \o ] {{{ open: URL, preview doc: markdown, TeX, etc.
