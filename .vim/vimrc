@@ -1197,8 +1197,8 @@ endif
             "call vam#ActivateAddons(['vim-addon-xdebug'])
             " call vam#ActivateAddons(['phpqa'])
             "call vam#ActivateAddons(['PHPUnit_QF'])
-            " call vam#ActivateAddons(['PIV'])
-            " call vam#ActivateAddons(['github:tobyS/vip'])
+            call vam#ActivateAddons(['PIV'])
+            call vam#ActivateAddons(['phpcomplete'])
             "call vam#ActivateAddons(['pdv-standalone'])
             "call vam#ActivateAddons(['cakephp'])
             "call vam#ActivateAddons(['cake'])
@@ -3583,6 +3583,11 @@ syntax on
 
         " [ Integration ] {{{
             " PIV {{{ PHP Integration for Vim.
+            " }}}
+        " }}}
+
+        " [ completion ] {{{
+            " phpcomplete {{{ Improved PHP omnicompletion.
             " }}}
         " }}}
 
