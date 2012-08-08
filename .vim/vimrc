@@ -4348,6 +4348,11 @@ syntax on
         " - :FixWhitespace to fix whitespace errors.
         " - [range]FixWhitespace to visual select range to pass.
 
+    " TUI (Text User Interface) {{{
+        " forms {{{ A Vim TUI library.
+        " }}}
+    " }}}
+
     " [ Vim FAQ / Tips ] {{{
         " tips.vim {{{ show vim tips everytime when you enter vim.
             " :NextTip
