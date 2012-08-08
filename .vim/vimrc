@@ -3914,7 +3914,7 @@ syntax on
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
-            let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
+            let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
 
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
             "call Pl#Theme#RemoveSegment({targetsegment})
