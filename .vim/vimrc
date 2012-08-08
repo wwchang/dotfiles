@@ -3835,6 +3835,19 @@ syntax on
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
 
+        " vim-signature {{{ toggle, display and navigate marks.
+            let g:SignatureDefaultMappings = 1
+            " let g:SignatureIncludeMarks =
+            let g:SignatureWrapJumps = 1
+            let g:SignatureMarkLeader = m
+            let g:SignatureLcMarkStr = "\p\m"
+            let g:SignatureUcMarkStr = "\p\m"
+            let g:SignatureMarkerLeader = m
+            " let g:SignatureIncludeMarkers =
+            let g:SignatureDisableMenu = 0
+            let g:SignatureMenuStruct = "P&lugins.&Signature"
+        " }}}
+
         " vmark.vim_Visual_Bookmarking {{{
             " Toggle visual bookmarking and jump through bookmarks
             " Usage:
