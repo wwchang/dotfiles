@@ -993,6 +993,8 @@ endif
                         \ 'do_diff': 1,
                         \ 'log_to_buf': 0,
                         \ 'log_buffer_name': '/tmp/vam_install.log',
+                        \ 'debug_activation': 0,
+                        \ 'addon_completion_lhs': 1,
                         \ }
             " }}}
 
@@ -1002,6 +1004,9 @@ endif
                 !git log --pretty=format:%s HEAD..FETCH_HEAD
             endfunction
 
+            " let g:vim_addon_manager.post_install_hook_functions
+            " let g:vim_addon_manager.pre_update_hook_functions
+            " let g:vim_addon_manager.post_scms_update_hook_functions
             let g:vim_addon_manager.post_update_hook_functions = [
                         \ "vam#install#ApplyPatch",
                         \ "VAMShowUpdates",
