@@ -4399,10 +4399,9 @@ syntax on
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
             let g:vimwiki_use_mouse=0 " disable mouse.
-            let g:vimwiki_folding = 0 " disable folding. speed up file.
-            let g:vimwiki_fold_lists = 0 " enable list subitem's folding.
+            let g:vimwiki_folding = 1 " disable folding. speed up file.
+            let g:vimwiki_fold_lists = 1 " enable list subitem's folding.
             let g:vimwiki_list_ignore_newline = 0
-            let g:vimwiki_use_calendar = 1
             let g:vimwiki_table_mappings = 0 " disable Table mapping
                 " to disbale vimwiki <Tab> map
             let g:vimwiki_table_auto_fmt = 0
@@ -4423,6 +4422,7 @@ syntax on
                         \ 7: 'July', 8: 'August', 9: 'September',
                         \ 10: 'October', 11: 'November', 12: 'December',
                         \ }
+            let g:vimwiki_use_calendar = 1
 
             " [ extra ] {{{
                 au FileType vimwiki setlocal concealcursor=v
