@@ -136,12 +136,13 @@ nnoremap <C-j>      :downloads<cr>
 nnoremap <Leader>eu :set encoding=UTF-8<cr>
 nnoremap <Leader>eg :set encoding=GB2312<cr>
 
-" [ dictionary lookup/translate ]
-" command dict -nargs=* tabopen http://dict.cn/<args>
-" map w :dict
-" command gtranslate -nargs=* tabopen http://translate.google.cn/?hl=en#ja/zh-CN/<args>
-command youdao -nargs=* tabopen http://dict.youdao.com/search?q=<args>&keyfrom=dict.index
-map w :youdao
+" FIXME
+" press <C-Tab> to insert literal Tab in insert mode.
+" inoremap <C-Tab> \t
+
+" localhost
+command! localhost -nargs=? tabopen http://localhost:<args>
+" map z :localhost 
 
 " Map for plugins or scripts
 map <silent> <F2> :js toggle_bar()<CR>
@@ -185,10 +186,15 @@ autocmd LocationChange .* js modes.passAllKeys = /.*(web\.qq\.com).*/.test(buffe
     " Firebug extension
     " Web developer extension
     command! webdev js webdeveloper_toggleToolbar();
-    " localhost
-    command! localhost open http://localhost
     " Pin current tab as App Tab.
     command! app set apptab!
+
+    " [ dictionary lookup/translate ]
+    " command dict -nargs=* tabopen http://dict.cn/<args>
+    " map w :dict
+    " command gtranslate -nargs=* tabopen http://translate.google.cn/?hl=en#ja/zh-CN/<args>
+    command youdao -nargs=* tabopen http://dict.youdao.com/search?q=<args>&keyfrom=dict.index
+    map w :youdao 
 " }}}
 
 " [ JavaScript ] {{{
