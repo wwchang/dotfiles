@@ -91,6 +91,7 @@
 	ut = rm -r --cached
 	l  = log --graph
 	unstage = reset HEAD --
+    unchange = checkout --
     # with ! to use external command.
 	visual = !gitk
 	last = log -1 HEAD
