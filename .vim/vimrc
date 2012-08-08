@@ -4430,8 +4430,9 @@ syntax on
             "let g:calendar_mruler = 'Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec'
             "let g:calendar_wruler = 'Su Mo Tu We Th Fr Sa'
             let g:calendar_monday = 1 " start with monday.
-            let g:calendar_weeknm = 2 " 1: WK01, 2: WK 1, 3: KW01, 4: KW 1.
+            let g:calendar_weeknm = 5 " 1: WK01, 2: WK 1, 3: KW01, 4: KW 1, 5: 1
             let g:calendar_datetime = 'statusline' " title, statusline, ''
+            " let g:calendar_no_mappings =
         " }}}
 
         " VikiDeplate {{{ adds wiki-like hypertext capabilities to Vim.
