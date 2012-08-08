@@ -1135,7 +1135,7 @@ endif
                 " session & undo & history
             call vam#ActivateAddons(['restore_view'])
             call vam#ActivateAddons(['recover'])
-            call vam#ActivateAddons(['github:tungd/unite-session'])
+            " call vam#ActivateAddons(['github:tungd/unite-session'])
             call vam#ActivateAddons(['Gundo'])
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
@@ -5014,6 +5014,8 @@ syntax on
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
             let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
+            " FIXME application/djvu
+            let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm
             " let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
             " application/doc
