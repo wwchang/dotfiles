@@ -1311,7 +1311,7 @@ endif
                     " 2HTML
             "call vam#ActivateAddons(['formatvim'])
                 " TUI : Text User Interface
-            call vam#ActivateAddons(['forms'])
+            " call vam#ActivateAddons(['forms'])
                 " Vim related
             " call vam#ActivateAddons(['tips'])
                 " Vimrc manager
@@ -3832,28 +3832,28 @@ syntax on
             nmap <C-M-i>  <Plug>(exjumplist-go-last)
             nmap <C-M-o>  <Plug>(exjumplist-go-first)
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
-            nmap <M-(>  <Plug>(exjumplist-previous-buffer)
-
-        " vim-signature {{{ toggle, display and navigate marks.
-            let g:SignatureDefaultMappings = 1
-            " let g:SignatureIncludeMarks =
-            let g:SignatureWrapJumps = 1
-            let g:SignatureMarkLeader = m
-            let g:SignatureLcMarkStr = "\p\m"
-            let g:SignatureUcMarkStr = "\p\m"
-            let g:SignatureMarkerLeader = m
-            " let g:SignatureIncludeMarkers =
-            let g:SignatureDisableMenu = 0
-            let g:SignatureMenuStruct = "P&lugins.&Signature"
-        " }}}
-
-        " vmark.vim_Visual_Bookmarking {{{
-            " Toggle visual bookmarking and jump through bookmarks
-            " Usage:
-            "   - mm    -- toggle visual bookmark current line.
-            "   - ma    -- remove all bookmarks
-            "   - mn    -- move to next bookmark below current line.
-            "   - mp    -- move to prev bookmark above current line.
+            nmap <M-(>  <Plug>(exjumplist-previous-buffer)                       ┌───────────────────────────┐ 
+                                                                                 │         Edit File         │ 
+        " vim-signature {{{ toggle, display and navigate marks.                  ├───────────────────────────┤ 
+            let g:SignatureDefaultMappings = 1                                   │┌─────────────────────────┐│ 
+            " let g:SignatureIncludeMarks =                                      ││                         ││ 
+            let g:SignatureWrapJumps = 1                                         │└─────────────────────────┘│ 
+            let g:SignatureMarkLeader = 'm'                                      │┌────────────┐             │ 
+            let g:SignatureLcMarkStr = "\p\m"                                    ││../         │             │ 
+            let g:SignatureUcMarkStr = "\p\m"                                    ││MyUltiSnips/│             │ 
+            let g:SignatureMarkerLeader = 'm'                                    ││after/      │             │ 
+            " let g:SignatureIncludeMarkers =                                    ││autoload/   │             │ 
+            let g:SignatureDisableMenu = 0                                       ││bundle/     │             │ 
+            let g:SignatureMenuStruct = "P&lugins.&Signature"                    ││cache/      │             │ 
+        " }}}                                                                    ││colors/     │             │ 
+                                                                                 ││compiler/   │             │ 
+        " vmark.vim_Visual_Bookmarking {{{                                       ││doc/        │             │ 
+        " Toggle visual bookmarking and jump through bookmarks                   ││ftdetect/   │             │ 
+        " Usage:                                                                 │└────────────┘             │ 
+        " - mm    -- toggle visual bookmark current line.                        │              Cancel Accept│ 
+        "   - ma    -- remove all bookmarks                                      └───────────────────────────┘ 
+        "   - mn    -- move to next bookmark below current line.                                               
+        "   - mp    -- move to prev bookmark above current line.
             "let b:vm_maxmarks " max number of bookmarks in buffer.
             "let b:vm_guifg
             "let b:vm_guibg
@@ -5155,4 +5155,4 @@ syntax on
     " }}}
 " }}}
 
-" vim: foldmethod=marker
+" vim: foldmethod=marker 
