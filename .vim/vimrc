@@ -997,7 +997,7 @@ endif
                         \ 'log_to_buf': 0,
                         \ 'log_buffer_name': '/tmp/vam_install.log',
                         \ 'debug_activation': 0,
-                        \ 'addon_completion_lhs': 1,
+                        \ 'addon_completion_lhs': 0,
                         \ }
             " }}}
 
