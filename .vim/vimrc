@@ -1011,6 +1011,10 @@ endif
                         \ "vam#install#ApplyPatch",
                         \ "VAMShowUpdates",
                         \ ]
+            let g:vim_addon_manager.post_scms_update_hook_functions = [
+                        \ "vam#install#ShowShortLog",
+                        \ ]
+            " vam#install#ShowShortLog -> show Git commit updates.
             " }}}
 
             " VAM install location {{{
