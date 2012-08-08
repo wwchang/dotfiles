@@ -999,14 +999,10 @@ endif
             " }}}
 
             " [ custom ] {{{
-            function! VAMShowUpdates() abort
-                !git fetch origin
-                !git log --pretty=format:%s HEAD..FETCH_HEAD
-            endfunction
-
             " let g:vim_addon_manager.post_install_hook_functions
-            " let g:vim_addon_manager.pre_update_hook_functions
-            " let g:vim_addon_manager.post_scms_update_hook_functions
+            let g:vim_addon_manager.pre_update_hook_functions = [
+                        \ "vam#install#CreatePatch",
+                        \ ]
             let g:vim_addon_manager.post_update_hook_functions = [
                         \ "vam#install#ApplyPatch",
                         \ "VAMShowUpdates",
