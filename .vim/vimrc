@@ -601,6 +601,9 @@ endif
 
     " [ statusline ] {{{
     set laststatus=2 " Always show the statusline
+        " %-0{minwid}.{maxwid}{item}
+        " %!expression to evaluate the expression.
+        " %{} items will be evaluated too.
         " Require: fugitive, current-func-info, syntastic,
         " - fugitive
         "   - %{fugitive#statusline()}
