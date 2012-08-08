@@ -987,7 +987,7 @@ endif
             endif
         endfunction " }}}
 
-        function! SetupVAM() " {{{
+        function! SetupVAM() " {{{ options, custom. addons.
             " [ options ] {{{
             let g:vim_addon_manager = {
                         \ 'shell_commands_run_method': 'system',
@@ -3583,6 +3583,8 @@ syntax on
 
         " [ Integration ] {{{
             " PIV {{{ PHP Integration for Vim.
+                " Usage:
+                "   - K --> doc
             " }}}
         " }}}
 
@@ -3605,9 +3607,6 @@ syntax on
                 " please set it as follows.
                 let g:cakephp_enable_auto_mode = 1
             " }}}
-        " }}}
-
-        " https://github.com/tobyS/vip.git {{{
         " }}}
 
         " pdv-standalone {{{ standalone version of phpDocumentor for Vim plugin.
