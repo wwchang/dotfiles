@@ -260,6 +260,21 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # }}}
 
 # Programming Languages {{{
+    # [ Guile ] {{{
+    :0
+    * ^List-Id: .*guile-user\.gnu\.org
+    Guile/user/
+    :0
+    * ^List-Id: .*guile-devel\.gnu\.org
+    Guile/devel/
+    :0
+    * ^List-Id: .*guile-sources\.gnu\.org
+    Guile/sources/
+    :0
+    * ^List-Id: .*bug-guile\.gnu\.org
+    Guile/bug/
+    # }}}
+
     # [ Python ] {{{
     :0
     * ^List-Id: .*python-list\.python\.org
@@ -269,7 +284,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Python/help/
     :0
     * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
-    Python/comp-lang-py/
+    Python/comp-lang/
     :0
     * ^List-Id: .*pythontw\.googlegroups\.com
     Python/python-tw/
@@ -320,6 +335,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
     Ruby/Rails/
+    :0
+    * ^To: .*rubyonrails-core@googlegroups\.com
+    Ruby/Rails/
     # }}}
 
     # [ Dart ] {{{
@@ -329,9 +347,15 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     # }}}
 
     # [ Lisp ] {{{
+    # :0
+    # * ^List-Id: .*
+    # Lisp/Lisp/
+    :0
+    * ^List-Id: .*comp\.lang\.lisp\.googlegroups\.com
+    Lisp/comp-lang/
     :0
     * ^List-Id: .*lisp-cn\.googlegroups\.com
-    Lisp/Lisp-cn/
+    Lisp/cn/
     # }}}
 
     # [ PHP ] {{{

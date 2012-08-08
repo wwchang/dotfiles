@@ -83,6 +83,7 @@ you have to add this folder in
     procmail/procmailrc
     mailboxes.muttrc
     mairixrc
+    aliases.muttrc
     subscriptions.muttrc
     scores.muttrc
     save-hooks.muttrc

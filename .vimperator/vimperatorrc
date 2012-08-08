@@ -2,7 +2,7 @@
 
 source! /home/chris/.vimperatorrc.local
 
-" options {{{
+" [ options ] {{{
 
     " runtimepath
     set runtimepath=~/.vimperator
@@ -62,14 +62,17 @@ source! /home/chris/.vimperatorrc.local
 
         " path
         set cdpath=,,
+    " }}}
 
-        " [ search engines ] {{{
-            set defsearch=duckduckgoSSL
-            set suggestengines=duckduckgo
-                " highlight previous search pattern matches.
-            set hlsearch
-                " show where the search pattern matches as it is typed.
-            set incsearch
+    " [ search engines ] {{{
+        set defsearch=duckduckgoSSL
+        set suggestengines=duckduckgo
+            " highlight previous search pattern matches.
+        set hlsearch
+            " show where the search pattern matches as it is typed.
+        set incsearch
+
+        " Search Engines {{{
         " }}}
     " }}}
 
@@ -126,14 +129,19 @@ source! /home/chris/.vimperatorrc.local
 " }}}
 
 " [ maps ] {{{
-map <leader>s :runtime _vimperatorrc<CR>
-nnoremap <Leader>a :addons<cr>
-nnoremap <Leader>d :downloads<cr>
+map     <leader>s       :runtime _vimperatorrc<CR>
+nnoremap <Leader>a  :addons<cr>
+nnoremap <Leader>d  :downloads<cr>
+nnoremap <C-j>      :downloads<cr>
 nnoremap <Leader>eu :set encoding=UTF-8<cr>
 nnoremap <Leader>eg :set encoding=GB2312<cr>
 
-command dict -nargs=* tabopen http://dict.cn/<args>
-map w :dict
+" [ dictionary lookup/translate ]
+" command dict -nargs=* tabopen http://dict.cn/<args>
+" map w :dict
+" command gtranslate -nargs=* tabopen http://translate.google.cn/?hl=en#ja/zh-CN/<args>
+command youdao -nargs=* tabopen http://dict.youdao.com/search?q=<args>&keyfrom=dict.index
+map w :youdao
 
 " Map for plugins or scripts
 map <silent> <F2> :js toggle_bar()<CR>
@@ -147,7 +155,43 @@ noremap <silent> <leader>g :set! extensions.autoproxy.proxyMode=global<CR>:echo 
 noremap <silent> <leader>d :set!  extensions.autoproxy.proxyMode=disabled<CR>:echo ':('<CR>')'
 " }}}
 
-" [ Scripts ] {{{
+" [ Theme & Style ] {{{
+    " ~/.vimperator/color/*.vimp
+
+    "highlight! StatusLine color: black; background:transparent; font-weight:bold;
+    "highlight! CmdLine color:#d8d8d8; background:#2b2b2b;
+    "highlight! ModeMsg  color:darkgreen; background: white;font-weight:bold;
+    "highlight! ErrorMsg font-weight:normal; color:red; background:white;
+    "hi! Hint font-family: monospace; font-size: 9px; text-transform: uppercase; color: white; background-color: #1E90FF; padding:1px;
+    "hi! HintElem clear
+" }}}
+
+" disable Vimperator keys on URL {{{
+" Google Gmail, Reader,
+autocmd LocationChange .* js modes.passAllKeys = /.*(mail\.google\.com|www\.google\.com\/reader).*/.test(buffer.URL)
+" Web QQ
+autocmd LocationChange .* js modes.passAllKeys = /.*(web\.qq\.com).*/.test(buffer.URL)
+" Stack Overflow
+" autocmd LocationChange .* js modes.passAllKeys = /.*(stackoverflow|superuser\.com).*/.test(buffer.URL)
+
+" Set the filetype to mail when editing email at gmail:
+"autocmd LocationChange .* :set editor=gvim -f
+"autocmd LocationChange mail\\.google\\.com :set editor=gvim -f -c 'set ft=mail'
+" }}}
+
+" [ Commands ] {{{
+    " set Firebug internals with 'set!' (NOTE: must has ! )
+    " command! useragent set! general.useragent.extra.firefox?
+    " Firebug extension
+    " Web developer extension
+    command! webdev js webdeveloper_toggleToolbar();
+    " localhost
+    command! localhost open http://localhost
+    " Pin current tab as App Tab.
+    command! app set apptab!
+" }}}
+
+" [ JavaScript ] {{{
 js << EOF
 
 // Toggle menubar and toolbar {{{
@@ -191,28 +235,6 @@ function openProfileDirectory() {
 // }}}
 
 EOF
-" }}}
-
-" [ Theme ] {{{
-    "highlight! StatusLine color: black; background:transparent; font-weight:bold;
-    "highlight! CmdLine color:#d8d8d8; background:#2b2b2b;
-    "highlight! ModeMsg  color:darkgreen; background: white;font-weight:bold;
-    "highlight! ErrorMsg font-weight:normal; color:red; background:white;
-    "hi! Hint font-family: monospace; font-size: 9px; text-transform: uppercase; color: white; background-color: #1E90FF; padding:1px;
-    "hi! HintElem clear
-" }}}
-
-" disable Vimperator keys on URL {{{
-" Google Gmail, Reader,
-autocmd LocationChange .* js modes.passAllKeys = /.*(mail\.google\.com|www\.google\.com\/reader).*/.test(buffer.URL)
-" Web QQ
-autocmd LocationChange .* js modes.passAllKeys = /.*(web\.qq\.com).*/.test(buffer.URL)
-" Stack Overflow
-" autocmd LocationChange .* js modes.passAllKeys = /.*(stackoverflow|superuser\.com).*/.test(buffer.URL)
-
-" Set the filetype to mail when editing email at gmail:
-"autocmd LocationChange .* :set editor=gvim -f
-"autocmd LocationChange mail\\.google\\.com :set editor=gvim -f -c 'set ft=mail'
 " }}}
 
 " vim: ft=vimperator foldmarker={{{,}}} foldmethod=marker

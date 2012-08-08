@@ -3,6 +3,7 @@
 # tools with email.
 alias wordpress WordpressPost <cera013qaja@post.wordpress.com>
 alias tumblr tumblr. <955flothauzb@tumblr.com>
+alias github GitHub <notifications@github.com>
 
 # myself
 alias stardiviner stardiviner <numbchild@gmail.com>
@@ -74,6 +75,11 @@ alias vimwiki vimwiki-author <habamax@gmail.com> # vimwiki(script)
 
 # program
 alias qualityprogramming Quality Programming <qualityprogramming@googlegroups.com>
+# Guile
+alias guile.user Guile-user <guile-user@gnu.org>
+alias guile.devel Guile-devel <guile-devel@gnu.org>
+alias guile.bug Guile-bug <guile-bug@gnu.org>
+alias guile.sources Guile-sources <guile-sources@gnu.org>
 # Python
 alias python Python.list <python-list@python.org>
 alias python.lang.G comp.lang.py <comp.lang.python@googlegroups.com>
@@ -101,7 +107,7 @@ alias rubyonrails Ruby on Rails <rubyonrails-talk@googlegroups.com>
 alias javascript comp.lang.javascript <comp.lang.javascript@googlegroups.com>
 alias javascript.alt.lang JavaScript.alt.comp.lang <alt.comp.lang.javascript@googlegroups.com>
 # Lisp
-alias lisp.G comp.lang.lisp <comp.lang.lisp@googlegroups.com>
+alias lisp.comp.lang.G comp.lang.lisp <comp.lang.lisp@googlegroups.com>
 alias lisp.user.G comp.org.lisp-users <comp.org.lisp-users@googlegroups.com>
 alias lisp.cn lisp-cn <lisp-cn@googlegroups.com>
 alias lisp.china lisp-china <lisp-china@googlegroups.com>
