@@ -226,8 +226,8 @@ URxvt*dynamicColors: on
 !URxvt*background: #202428
 !URxvt*foreground: #FFFFFF
 ! cursor
-URxvt*cursorColor:  #AFFF00
-URxvt*cursorColor2: #FF5F00
+URxvt*cursorColor:  #FF5F00
+URxvt*cursorColor2: #AFFF00
 URxvt*cursorBlink:  true
 URxvt*cursorUnderline: false
 ! for in Awesome with hide mouse when idle on urxvt.
