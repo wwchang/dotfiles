@@ -319,8 +319,24 @@ $0
 `!p snip.rv = "endglobal"`
 endsnippet
 
-snippet visual "${VISUAL}" i
+snippet v "${VISUAL}" i
 \$\{VISUAL:${1:${2:default}${3:/transform/}}\}
 endsnippet
 
-# vim:ft=snippets:fdm=marker
+snippet visual "${1:${VISUAL:Text}}"
+\$\{${1:1}:\$\{VISUAL:${3:default${4:/transform/}}\}\}
+endsnippet
+
+snippet transform "transform text: orig/transform/g" i
+${1:orig}/${2:transform}/${3:g}
+endsnippet
+snippet transform "one transform example" i
+\$\{$1/.+/ "/}\$\{${1:1}:${2:opt title}\}\$\{$1/.+/"/\}
+endsnippet
+
+snippet footer "vim modeline footer for marker fold" !b
+
+# vim:ft=snippets:fdm=marker:fmr={{{,}}}
+endsnippet
+
+# vim:ft=snippets:fdm=marker:fmr={{{,}}}
