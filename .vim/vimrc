@@ -1200,6 +1200,7 @@ endif
             call vam#ActivateAddons(['PIV'])
             call vam#ActivateAddons(['phpcomplete'])
             "call vam#ActivateAddons(['pdv-standalone'])
+            call vam#ActivateAddons(['Drupal'])
             "call vam#ActivateAddons(['cakephp'])
             "call vam#ActivateAddons(['cake'])
                 " Ruby & Rails
@@ -3625,6 +3626,17 @@ syntax on
             let g:pdv_cfg_Commentn = " * "
             let g:pdv_cfg_CommentTail = " */"
             let g:pdv_cfg_CommentSingle = "//"
+        " }}}
+
+        " [ Framework ] {{{
+            " [ Drupal ] {{{
+                " Drupal {{{ someone's Drupal work Vim settings, use Drush.
+                    " Usage:
+                    "  - :Hook -> Implement the named hook, where the cursor is.
+                    "  - :EditDrupal
+                    "  - :ResetVimDrupalCache
+                " }}}
+            " }}}
         " }}}
     " }}}
 
