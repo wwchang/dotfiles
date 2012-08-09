@@ -2317,6 +2317,26 @@ syntax on
                     " the order of them in statusline when using <C-f>, <C-b>
                 " }}}
 
+                " file open funcs {{{
+                let g:ctrlp_open_func = {
+                            \ 'files'     : 'CtrlPHTMLOpenFunc',
+                            \ 'buffers'   : 'Function_Name_2',
+                            \ 'mru files' : 'Function_Name_3',
+                            \ }
+
+                fun! CtrlPHTMLOpenFunc(action, line)
+                    if a:action == 't' && fnamemodify(a:line, ':e') =~? '^html\?$'
+                        let filename = fnameescape(fnamemodify(a:line, ':p'))
+                        call ctrlp#exit()
+                        silent! execute '!xdg-open' filename
+                    elseif a:action == 'x' && fnamemodify(a:line, ':e') !~? '^html\?$'
+                        call feedkeys("\<c-o>")
+                    else
+                        call call('ctrlp#acceptfile', [a:action, a:line])
+                    endif
+                endf
+                " }}}
+
                 " [ mappings ] {{{
                 " <c-p>     -- open CtrlP prompt. >>>
                 " <c-r>     -- regexp mode. r>>
