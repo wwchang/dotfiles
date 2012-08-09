@@ -2198,11 +2198,10 @@ syntax on
             let g:ctrlp_match_window_bottom = 1 " window position
             let g:ctrlp_match_window_reversed = 1 " show matching in reverse order
             let g:ctrlp_max_height = 10
-            let g:ctrlp_switch_buffer = 2 " when file opened, jump to there (tag, buffer)
-            let g:ctrlp_reuse_window = 'netrw' " not open in window created by plugins
+            let g:ctrlp_switch_buffer = 2 " when file opened, jump to (tag, buffer)
+            let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
             let g:ctrlp_working_path_mode = 'rc'
-            let g:ctrlp_working_path_mode = 2 " 0:, 1: pwd, 2: nearest ancestor VCS.
-            " let g:ctrlp_root_markers = [''] " .git, .hg, .svn, .bzr, and _darcs.
+            let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr',]
             let g:ctrlp_use_caching = 1 " 0: disable per-session caching.
             let g:ctrlp_clear_cache_on_exit = 1
             let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
