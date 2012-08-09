@@ -1,0 +1,101 @@
+snippet h1 "header 1" !b
+# ${1:header 1} #
+$0
+endsnippet
+snippet h2 "header 2" !b
+## ${1:header 2} ##
+$0
+endsnippet
+snippet h3 "header 3" !b
+### ${1:header 3} ###
+$0
+endsnippet
+snippet h4 "header 4" !b
+#### ${1:header 4} ####
+$0
+endsnippet
+
+snippet link "markdown link" !
+[${1:${VISUAL:Text}}](${3:http://${2:www.url.com}}${4/.+/ "/}${4:opt title}${4/.+/"/})$0
+endsnippet
+snippet l "simple markdown link" !
+<${1:link}>$0
+endsnippet
+
+snippet img "image link" !
+![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+endsnippet
+
+snippet id "link ID style"
+[${5:Text}][${1:ID: number/string}] $0
+[$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
+endsnippet
+snippet id "simple link ID style"
+[${2:Text}][] $0
+[$2]: ${1:URL/path}
+endsnippet
+snippet id "image id link" !b
+![${5:Text}][${1:ID: number/string}] $0
+[$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
+endsnippet
+
+snippet block "markdown blockquote" !b
+> ${1:${VISUAL:blockquote paragraph}}
+endsnippet
+
+snippet ul "unordered list" !b
+${1:*/+/-} ${2:list item}
+endsnippet
+
+snippet ol "ordered list" !b
+${1:1/2/3} ${2:list item}
+endsnippet
+
+snippet rule "horizontal rules" !b
+---------------------------
+$0
+endsnippet
+snippet rule "horizontal rules" !b
+- - -
+$0
+endsnippet
+snippet rule "horizontal rules" !b
+***************************
+$0
+endsnippet
+snippet rule "horizontal rules" !b
+* * *
+$0
+endsnippet
+
+snippet code "code block" !b
+    ${1:${VISUAL:code}}
+endsnippet
+snippet c "code block" !
+\`${1:${VISUAL:code}}\`
+endsnippet
+
+snippet em "emphasis text" !
+*${1:${VISUAL:emphasis}}*
+endsnippet
+snippet st "strong text" !
+**${1:${VISUAL:strong}}**
+endsnippet
+
+snippet copy "copyright (markdown)" !
+&copy;
+endsnippet
+
+snippet & "markdown transformed &" !
+&amp;
+endsnippet
+
+snippet < "markdown transformed <" !
+&lt;
+endsnippet
+
+snippet * "escape *" !
+\*$0
+endsnippet
+
+# vim:ft=snippets:fdm=marker:fmr={{{,}}}
