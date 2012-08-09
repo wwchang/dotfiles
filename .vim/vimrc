@@ -3945,6 +3945,15 @@ syntax on
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
             let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
+            let g:Powerline_mode_n = " N " " normal
+            let g:Powerline_mode_i = "INSERT" " insert
+            let g:Powerline_mode_R = "REPLACE" " replace
+            let g:Powerline_mode_v = "VISUAL" " visual mode
+            let g:Powerline_mode_V = "V⋅LINE" " visual line
+            let g:Powerline_mode_cv = "V⋅BLOCK" " visual block
+            let g:Powerline_mode_s = "SELECT" " select mode
+            let g:Powerline_mode_S = "S⋅LINE" " select line
+            let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
             "call Pl#Theme#RemoveSegment({targetsegment})
