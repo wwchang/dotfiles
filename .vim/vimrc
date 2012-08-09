@@ -623,7 +623,8 @@ endif
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag('[%s]', '')}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", '')}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", "", "f")}
         set statusline+=\ \%#StatusHELP#\%H
         set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusFilePath#\%<%t
@@ -2197,11 +2198,10 @@ syntax on
             let g:ctrlp_match_window_bottom = 1 " window position
             let g:ctrlp_match_window_reversed = 1 " show matching in reverse order
             let g:ctrlp_max_height = 10
-            let g:ctrlp_switch_buffer = 2 " when file opened, jump to there (tag, buffer)
-            let g:ctrlp_reuse_window = 'netrw' " not open in window created by plugins
-                " let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-            let g:ctrlp_working_path_mode = 2 " 0:, 1: pwd, 2: nearest ancestor VCS.
-            " let g:ctrlp_root_markers = [''] " .git, .hg, .svn, .bzr, and _darcs.
+            let g:ctrlp_switch_buffer = 2 " when file opened, jump to (tag, buffer)
+            let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
+            let g:ctrlp_working_path_mode = 'rc'
+            let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr',]
             let g:ctrlp_use_caching = 1 " 0: disable per-session caching.
             let g:ctrlp_clear_cache_on_exit = 1
             let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
@@ -2277,8 +2277,9 @@ syntax on
             let g:ctrlp_match_func = {} " an external fuzzy matching function.
             let g:ctrlp_buffer_func = {} " after entering and before exiting buffer
             let g:ctrlp_mruf_default_order = 0 " show only MRU files in pwd
+            let g:ctrlp_tabpage_position = 'ac'
 
-                " [ statusline ] {{{
+                " statusline {{{
                 " customize the statusline for CtrlP window.
             let g:ctrlp_status_func = {
                         \ 'main': 'Function_Name_1',
@@ -2310,10 +2311,30 @@ syntax on
                 "endf
                 " }}}
 
-                " [ extensions ] {{{
+                " extensions {{{
                 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
                             \ 'rtscript']
                     " the order of them in statusline when using <C-f>, <C-b>
+                " }}}
+
+                " file open funcs {{{
+                let g:ctrlp_open_func = {
+                            \ 'files'     : 'CtrlPHTMLOpenFunc',
+                            \ 'buffers'   : 'Function_Name_2',
+                            \ 'mru files' : 'Function_Name_3',
+                            \ }
+
+                fun! CtrlPHTMLOpenFunc(action, line)
+                    if a:action == 't' && fnamemodify(a:line, ':e') =~? '^html\?$'
+                        let filename = fnameescape(fnamemodify(a:line, ':p'))
+                        call ctrlp#exit()
+                        silent! execute '!xdg-open' filename
+                    elseif a:action == 'x' && fnamemodify(a:line, ':e') !~? '^html\?$'
+                        call feedkeys("\<c-o>")
+                    else
+                        call call('ctrlp#acceptfile', [a:action, a:line])
+                    endif
+                endf
                 " }}}
 
                 " [ mappings ] {{{
@@ -3929,7 +3950,8 @@ syntax on
     " }}}
 
     " [ statusline ] {{{
-        " Powerline {{{
+        " Powerline {{{ customize Vim statusline.
+            let g:Powerline_cache_enabled = 0
             let g:Powerline_symbols = "fancy" " compatible, fancy, unicode.
             set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
             " [0x2213] ∓, [0x2b60] ⭠, [0x2b61] ⭡, [0x2b62, 0x2b63] ⭢⭣.
@@ -3942,7 +3964,16 @@ syntax on
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
-            let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
+            let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
+            let g:Powerline_mode_n = " N " " normal
+            let g:Powerline_mode_i = "INSERT" " insert
+            let g:Powerline_mode_R = "REPLACE" " replace
+            let g:Powerline_mode_v = "VISUAL" " visual mode
+            let g:Powerline_mode_V = "V⋅LINE" " visual line
+            let g:Powerline_mode_cv = "V⋅BLOCK" " visual block
+            let g:Powerline_mode_s = "SELECT" " select mode
+            let g:Powerline_mode_S = "S⋅LINE" " select line
+            let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
             "call Pl#Theme#RemoveSegment({targetsegment})
@@ -5155,4 +5186,4 @@ syntax on
     " }}}
 " }}}
 
-" vim: foldmethod=marker 
+" vim: foldmethod=marker
