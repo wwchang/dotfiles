@@ -2200,7 +2200,7 @@ syntax on
             let g:ctrlp_max_height = 10
             let g:ctrlp_switch_buffer = 2 " when file opened, jump to there (tag, buffer)
             let g:ctrlp_reuse_window = 'netrw' " not open in window created by plugins
-                " let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
+            let g:ctrlp_working_path_mode = 'rc'
             let g:ctrlp_working_path_mode = 2 " 0:, 1: pwd, 2: nearest ancestor VCS.
             " let g:ctrlp_root_markers = [''] " .git, .hg, .svn, .bzr, and _darcs.
             let g:ctrlp_use_caching = 1 " 0: disable per-session caching.
@@ -2278,8 +2278,9 @@ syntax on
             let g:ctrlp_match_func = {} " an external fuzzy matching function.
             let g:ctrlp_buffer_func = {} " after entering and before exiting buffer
             let g:ctrlp_mruf_default_order = 0 " show only MRU files in pwd
+            let g:ctrlp_tabpage_position = 'ac'
 
-                " [ statusline ] {{{
+                " statusline {{{
                 " customize the statusline for CtrlP window.
             let g:ctrlp_status_func = {
                         \ 'main': 'Function_Name_1',
@@ -2311,7 +2312,7 @@ syntax on
                 "endf
                 " }}}
 
-                " [ extensions ] {{{
+                " extensions {{{
                 let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
                             \ 'rtscript']
                     " the order of them in statusline when using <C-f>, <C-b>
