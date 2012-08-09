@@ -623,7 +623,8 @@ endif
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag('[%s]', '')}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", '')}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", "", "f")}
         set statusline+=\ \%#StatusHELP#\%H
         set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusFilePath#\%<%t
@@ -3929,7 +3930,8 @@ syntax on
     " }}}
 
     " [ statusline ] {{{
-        " Powerline {{{
+        " Powerline {{{ customize Vim statusline.
+            let g:Powerline_cache_enabled = 0
             let g:Powerline_symbols = "fancy" " compatible, fancy, unicode.
             set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
             " [0x2213] ∓, [0x2b60] ⭠, [0x2b61] ⭡, [0x2b62, 0x2b63] ⭢⭣.
@@ -3942,7 +3944,7 @@ syntax on
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
-            let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
+            let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
 
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
             "call Pl#Theme#RemoveSegment({targetsegment})
@@ -5155,4 +5157,4 @@ syntax on
     " }}}
 " }}}
 
-" vim: foldmethod=marker 
+" vim: foldmethod=marker
