@@ -58,7 +58,7 @@
     " [ mouse ] {{{ " :help 'mouse'
     if has('mouse')
         " set mouse=""           " disable mouse
-        set mouse=v " a: all four modes. v: visual.
+        set mouse=v " a: all modes, v: visual,
         " right mouse button
         set mousemodel=popup_setpos " extends a selection. like in an xterm.
         " set mouseshape=
@@ -104,10 +104,15 @@
     set clipboard+=unnamed   " "* is the clipboard register,
     " }}}
 
-    " [ paste mode ] {{{
+    " [ diff, paste & select mode ] {{{
+    " diff mode
+    set diffopt=vertical,filler,context:5,foldcolumn:3
+    " paste mode
     " set paste " set nopaste
     nnoremap <F2> :set invpaste paste?<CR>
     set pastetoggle=<F2>
+    " select mode -> visual mode, with gh or <Ctrl-G>
+    " set selectmode=mouse
     " }}}
 
     " [ modeline ] {{{
@@ -665,10 +670,6 @@ endif
     set cmdheight=1        " cmd line height
     set ruler              " show the cursor position all the time in status line.
     set showmode           " show insert, visual, replace mode on last line.
-    " }}}
-
-    " [ diff mode ] {{{
-    set diffopt=vertical,filler,context:5,foldcolumn:3
     " }}}
 
     " [ digraph ] {{{
