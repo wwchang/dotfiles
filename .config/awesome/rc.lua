@@ -320,7 +320,7 @@ tags = {
                "4. Design ", "5. Log ", "6. Media ",
                "7. www ", "8. Temp ", "9. Do It Now. "
             },
-    layout = { layouts[11], layouts[2], layouts[5], -- tags: 1, 2, 3
+    layout = { layouts[5], layouts[2], layouts[5], -- tags: 1, 2, 3
                layouts[2], layouts[12], layouts[2], --       4, 5, 6
                layouts[2], layouts[2], layouts[10]   --       7, 8, 9
             }
