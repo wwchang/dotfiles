@@ -1192,30 +1192,32 @@ endif
                 " Web App
             " call vam#ActivateAddons(['vim-brunch'])
                 " PHP
-            "call vam#ActivateAddons(['DBGPavim'])
-            "call vam#ActivateAddons(['Xdebug'])
-            "call vam#ActivateAddons(['vim-addon-xdebug'])
+            " call vam#ActivateAddons(['DBGPavim'])
+            " call vam#ActivateAddons(['Xdebug'])
+            " call vam#ActivateAddons(['vim-addon-xdebug'])
             " call vam#ActivateAddons(['phpqa'])
-            "call vam#ActivateAddons(['PHPUnit_QF'])
+            " call vam#ActivateAddons(['PHPUnit_QF'])
             call vam#ActivateAddons(['PIV'])
             call vam#ActivateAddons(['phpcomplete'])
-            "call vam#ActivateAddons(['pdv-standalone'])
-            "call vam#ActivateAddons(['cakephp'])
-            "call vam#ActivateAddons(['cake'])
+            " call vam#ActivateAddons(['pdv-standalone'])
+            " call vam#ActivateAddons(['Drupal'])
+            " call vam#ActivateAddons(['cakephp'])
+            " call vam#ActivateAddons(['cake'])
+            " call vam#ActivateAddons(['behat.zip'])
                 " Ruby & Rails
             call vam#ActivateAddons(['vim-ruby'])
             " call vam#ActivateAddons(['neco-rubymf'])
             call vam#ActivateAddons(['neco-rake'])
             " call vam#ActivateAddons(['rails'])
             " call vam#ActivateAddons(['vroom'])
-            "call vam#ActivateAddons(['RbREPL'])
+            " call vam#ActivateAddons(['RbREPL'])
                 " Lisp
             " call vam#ActivateAddons(['slimv'])
             " call vam#ActivateAddons(['Lisper'])
             " call vam#ActivateAddons(['paredit'])
                 " Scheme
                 " VimL
-            "call vam#ActivateAddons(['Vim-Support'])
+            " call vam#ActivateAddons(['Vim-Support'])
             " call vam#ActivateAddons(['vesting'])
             call vam#ActivateAddons(['runVimTests'])
             call vam#ActivateAddons(['self'])
@@ -1273,7 +1275,6 @@ endif
             call vam#ActivateAddons(['Gist'])
             call vam#ActivateAddons(['WebAPI'])
             " call vam#ActivateAddons(['wwwsearch'])
-            "call vam#ActivateAddons(['weibo'])
             " call vam#ActivateAddons(['Tumble'])
             "call vam#ActivateAddons(['TwitVim'])
                 " color/syntax
@@ -3627,6 +3628,21 @@ syntax on
             let g:pdv_cfg_CommentTail = " */"
             let g:pdv_cfg_CommentSingle = "//"
         " }}}
+
+        " [ Framework ] {{{
+            " [ Drupal ] {{{
+                " Drupal {{{ someone's Drupal work Vim settings, use Drush.
+                    " Usage:
+                    "  - :Hook -> Implement the named hook, where the cursor is.
+                    "  - :EditDrupal
+                    "  - :ResetVimDrupalCache
+                " }}}
+            " }}}
+
+            " [ behat ] {{{
+                " vim-behat
+            " }}}
+        " }}}
     " }}}
 
     " [ Go ] {{{
@@ -3832,27 +3848,27 @@ syntax on
             nmap <C-M-i>  <Plug>(exjumplist-go-last)
             nmap <C-M-o>  <Plug>(exjumplist-go-first)
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
-            nmap <M-(>  <Plug>(exjumplist-previous-buffer)                       ┌───────────────────────────┐ 
-                                                                                 │         Edit File         │ 
-        " vim-signature {{{ toggle, display and navigate marks.                  ├───────────────────────────┤ 
-            let g:SignatureDefaultMappings = 1                                   │┌─────────────────────────┐│ 
-            " let g:SignatureIncludeMarks =                                      ││                         ││ 
-            let g:SignatureWrapJumps = 1                                         │└─────────────────────────┘│ 
-            let g:SignatureMarkLeader = 'm'                                      │┌────────────┐             │ 
-            let g:SignatureLcMarkStr = "\p\m"                                    ││../         │             │ 
-            let g:SignatureUcMarkStr = "\p\m"                                    ││MyUltiSnips/│             │ 
-            let g:SignatureMarkerLeader = 'm'                                    ││after/      │             │ 
-            " let g:SignatureIncludeMarkers =                                    ││autoload/   │             │ 
-            let g:SignatureDisableMenu = 0                                       ││bundle/     │             │ 
-            let g:SignatureMenuStruct = "P&lugins.&Signature"                    ││cache/      │             │ 
-        " }}}                                                                    ││colors/     │             │ 
-                                                                                 ││compiler/   │             │ 
-        " vmark.vim_Visual_Bookmarking {{{                                       ││doc/        │             │ 
-        " Toggle visual bookmarking and jump through bookmarks                   ││ftdetect/   │             │ 
-        " Usage:                                                                 │└────────────┘             │ 
-        " - mm    -- toggle visual bookmark current line.                        │              Cancel Accept│ 
-        "   - ma    -- remove all bookmarks                                      └───────────────────────────┘ 
-        "   - mn    -- move to next bookmark below current line.                                               
+            nmap <M-(>  <Plug>(exjumplist-previous-buffer)
+
+        " vim-signature {{{ toggle, display and navigate marks.
+            let g:SignatureDefaultMappings = 1
+            " let g:SignatureIncludeMarks =
+            let g:SignatureWrapJumps = 1
+            let g:SignatureMarkLeader = 'm'
+            let g:SignatureLcMarkStr = "\p\m"
+            let g:SignatureUcMarkStr = "\p\m"
+            let g:SignatureMarkerLeader = 'm'
+            " let g:SignatureIncludeMarkers =
+            let g:SignatureDisableMenu = 0
+            let g:SignatureMenuStruct = "P&lugins.&Signature"
+        " }}}
+
+        " vmark.vim_Visual_Bookmarking {{{
+        " Toggle visual bookmarking and jump through bookmarks
+        " Usage:
+        " - mm    -- toggle visual bookmark current line.
+        "   - ma    -- remove all bookmarks
+        "   - mn    -- move to next bookmark below current line.
         "   - mp    -- move to prev bookmark above current line.
             "let b:vm_maxmarks " max number of bookmarks in buffer.
             "let b:vm_guifg
@@ -4718,16 +4734,6 @@ syntax on
     " }}}
 
     " [ POST/Search(WWW): blog, microblog, twitter, WWW etc ] {{{
-        " weibo {{{
-            " {visual} select text, press ",at" to share,
-                " - press Enter to share directly without comment.
-                " - input <space> after ",at" and comment if you want to comment.
-            " generate g:weibo_access_token
-            "https://graph.qq.com/oauth2.0/authorize?response_type=token&client_id=100229856&redirect_uri=vimer.cn&scope=add_t
-            let g:weibo_access_token='B73959D0F27E9E556E2CA09F18A687F3'
-            let g:weibo_t_sign = 'from 小妖 Vim'
-        " }}}
-
         " UltraBlog: local database for Blog WordPress.
 
         " Tumble {{{ Tumble for Vim.
@@ -4788,8 +4794,6 @@ syntax on
                 "             \ 'http://digg.com/search?s={keyword}'
                 "             \ )
             " }}}
-
-        " https://github.com/danchoi/goog
 
         " [ paste ] {{{
             " vim-pastie
@@ -4948,10 +4952,6 @@ syntax on
     " }}}
 
     " [ text-object ] {{{
-    " }}}
-
-    " [ smooth scroll ] {{{
-        " Smooth-Scroll: <C-u>/<C-D>/<C-F>/<C-B> smooth scroll winsize.
     " }}}
 
     " [ open with \o ] {{{ open: URL, preview doc: markdown, TeX, etc.

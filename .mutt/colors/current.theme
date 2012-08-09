@@ -127,6 +127,8 @@ color index color215 default '~h "From: .*notification"'
 color index color215 default '~h "From: .*alert"'
 color index color215 default '~h "From: .*service"'
 color index color215 default '~h "From: .*update"'
+# high level notify message
+color index color197 default '~h "From: .*notifications@github.com"'
 # }}}
 
 # friends mails {{{
