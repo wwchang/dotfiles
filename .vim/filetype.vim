@@ -77,4 +77,7 @@ augroup filetypedetect
     " Ruby
     " Ruby document
     autocmd BufNewFile,BufRead *.{rd,rdoc} set filetype=rdoc
+
+    " Debian sources list
+    autocmd BufNewFile,BufRead sources.list set filetype=debsources
 augroup END
