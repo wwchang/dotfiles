@@ -1192,31 +1192,32 @@ endif
                 " Web App
             " call vam#ActivateAddons(['vim-brunch'])
                 " PHP
-            "call vam#ActivateAddons(['DBGPavim'])
-            "call vam#ActivateAddons(['Xdebug'])
-            "call vam#ActivateAddons(['vim-addon-xdebug'])
+            " call vam#ActivateAddons(['DBGPavim'])
+            " call vam#ActivateAddons(['Xdebug'])
+            " call vam#ActivateAddons(['vim-addon-xdebug'])
             " call vam#ActivateAddons(['phpqa'])
-            "call vam#ActivateAddons(['PHPUnit_QF'])
+            " call vam#ActivateAddons(['PHPUnit_QF'])
             call vam#ActivateAddons(['PIV'])
             call vam#ActivateAddons(['phpcomplete'])
-            "call vam#ActivateAddons(['pdv-standalone'])
-            call vam#ActivateAddons(['Drupal'])
-            "call vam#ActivateAddons(['cakephp'])
-            "call vam#ActivateAddons(['cake'])
+            " call vam#ActivateAddons(['pdv-standalone'])
+            " call vam#ActivateAddons(['Drupal'])
+            " call vam#ActivateAddons(['cakephp'])
+            " call vam#ActivateAddons(['cake'])
+            " call vam#ActivateAddons(['behat.zip'])
                 " Ruby & Rails
             call vam#ActivateAddons(['vim-ruby'])
             " call vam#ActivateAddons(['neco-rubymf'])
             call vam#ActivateAddons(['neco-rake'])
             " call vam#ActivateAddons(['rails'])
             " call vam#ActivateAddons(['vroom'])
-            "call vam#ActivateAddons(['RbREPL'])
+            " call vam#ActivateAddons(['RbREPL'])
                 " Lisp
             " call vam#ActivateAddons(['slimv'])
             " call vam#ActivateAddons(['Lisper'])
             " call vam#ActivateAddons(['paredit'])
                 " Scheme
                 " VimL
-            "call vam#ActivateAddons(['Vim-Support'])
+            " call vam#ActivateAddons(['Vim-Support'])
             " call vam#ActivateAddons(['vesting'])
             call vam#ActivateAddons(['runVimTests'])
             call vam#ActivateAddons(['self'])
@@ -3636,6 +3637,10 @@ syntax on
                     "  - :EditDrupal
                     "  - :ResetVimDrupalCache
                 " }}}
+            " }}}
+
+            " [ behat ] {{{
+                " vim-behat
             " }}}
         " }}}
     " }}}
