@@ -47,25 +47,33 @@ NOTE:
 
 
 # key binds & macros
-NOTE: <esc>key  is usually about thread or reverse meaning.
-E-k -- mail a PGP public key to someone.
-^K -- extra public key from message, and add them into your public key ring.
+`Ctrl-` -- for thread/page/ operations.
+`<esc>` -- for subthread/mutt/(reverse) operations.
+`,` -- for mutt/external-program/
+
+`,k` -- show the keyboard key code.
+<Esc-k> -- mail a PGP public key to someone.
+<C-k> -- extra public key from message, and add them into your public key ring.
 R -- re-call postponed mail.
 A -- add send to abook (abook)
-C-a -- launch abook (abook)
-,f -- search mail with mairix (mairix)
-y -- show mailboxes list.
+<C-a> -- launch abook (abook)
+<,f> -- fetch new messages (getmail)
+<,s> -- search mail with mairix (mairix)
+y -- show mailboxes list (mutt)
 c -- show mailboxes list (mutt)
-C-v -- virify a message signature (gpg)
+<C-v> -- virify a message signature (gpg)
+v -- collapse thread
+V -- collapse all threads
 gi -- go to INBOX (mutt)
 gd -- go to Draft (mutt)
-space -- next page
+<Space> -- next page
+<Tab> -- next new then unread
+<BackTab> -- previous new then unread
 ## address
 ### query
-Q -- query external program
-C-T -- complete when input address in new composed mail.
-C-i -- open mailboxes list, and jump(search) to Stack Exchange folder to access
-sub-mailboxes.
+<Q> -- query external program
+<C-t> -- complete when input address in new composed mail.
+<C-i> -- open mailboxes list, and jump(search) to Stack Exchange folder to access sub-mailboxes.
 
 default keys and functions (macros) can reference here:
 http://www.mutt.org/doc/devel/manual.html#functions

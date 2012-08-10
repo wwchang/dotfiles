@@ -20,7 +20,8 @@
 
 # key code list:
 # \t              tab
-# <tab>           tab
+# <Tab>           Tab
+# <BackTab>       Shift-Tab
 # \r              carriage return
 # \n              newline
 # \e              escape
@@ -65,27 +66,27 @@ bind    pager   <Up>    previous-line
 bind    pager   <Down>  next-line
 bind    pager   \cf     next-page
 # bind    pager   \cb     previous-page # conflict with urlview macro.
+# h/l previous/next mail.
+bind    pager   h   previous-entry
+bind    pager   l   next-entry
 
 # browser/view
 bind    browser i   exit
 bind    browser \cf next-page
 bind    browser \cb previous-page
 
-# h/l previous/next mail.
-bind    pager   h   previous-entry
-bind    pager   l   next-entry
-
 # [ reply/send ]
 # comment "index R" because index R to recall postponed mail draft
-bind    index,pager   r   reply
+bind    pager   r   reply
 bind    pager   R   group-reply
 # bind    pager   g   group-reply # conflict with "gg"
 bind    pager   L   list-reply
-bind    index,pager     f   forward-message
-bind    index,pager     b   bounce-message
-bind    index,pager     ,k      what-key
-bind    index,pager     <esc>k  mail-key # mail a PGP public key
+bind    pager   f   forward-message
+bind    pager   b   bounce-message
 bind    index,pager     \ck     extract-keys
+bind    index,pager     <esc>k  mail-key # mail a PGP public key
+
+bind    index,pager     ,k      what-key
 
 # most common [ compose ] menu keys.
 # bind    compose     e   edit # FIXME no such function.
@@ -104,6 +105,7 @@ bind    compose     q   exit
 bind    compose     w   write-fcc # write the message to a folder.
 bind    compose     i   ispell
 bind    compose     \cf  forget-passphrase
+bind    compose     <BackTab> forget-passphrase
 
 # PGP key menu flags
 # R     -- the key has been revoked and can't be used.
@@ -116,34 +118,36 @@ bind    index,pager   /         search
 bind    index,pager   <esc>/    search-opposite
 # bind    index       \   toggle-highlight-search # FIXME function name.
 
-bind    index     <tab>       next-new-then-unread
-bind    index     <esc><tab>  previous-new-then-unread
-
-bind    index,pager \cw     display-toggle-weed
+bind    index,pager \Cw   display-toggle-weed
 
 # [ thread ] thread mode: most common thread mode keys.
-bind    index     \cD     delete-thread
-bind    index     \cU     undelete-thread
-bind    index     \cN     next-thread
-bind    index     \cP     previous-thread
-bind    index     \cR     read-thread
+bind    index     <tab>       next-new-then-unread
+bind    index     <BackTab>  previous-new-then-unread
+bind    index     \Cn     next-thread
+bind    index     \Cp     previous-thread
+bind    index     \Cd     delete-thread
+bind    index     \Cu     undelete-thread
+bind    index     \Cr     read-thread
+bind    index     \Ct     tag-thread
 # subthread
-bind    index     <esc>d  delete-subthread
-bind    index     <esc>u  undelete-subthread
 bind    index     <esc>n  next-subthread
 bind    index     <esc>p  previous-subthread
+bind    index     <esc>d  delete-subthread
+bind    index     <esc>u  undelete-subthread
 bind    index     <esc>r  read-subthread
+bind    index     <esc>t  tag-subthread
 # collapse
 # bind    index,pager     <esc>t  tag-thread # FIXME no such function in map.
-bind    index     <esc>v  collapse-thread # FIXME
-bind    index     <esc>V  collapse-all # FIXME
-bind    index     P       parent-message # parent(upper) message of current message
+bind    index     v  collapse-thread
+bind    index     V  collapse-all
+# bind    index     P       parent-message # parent(upper) message of current message
 
 
 # bind    index   t       tag-message # FIXME no such function in map.
-bind    index   <esc>t  tag-thread
-bind    index   F       flag-message
-# bind    index           \cT     untag-messages # FIXME function name.
-bind    index,pager     u   undelete-message
+# bind    index   <esc>t  untag-messages # FIXME function name.
+bind    index,pager   F     flag-message
+bind    index,pager   u     undelete-message
+
+bind    index   c   change-folder
 
 # vim:ft=muttrc
