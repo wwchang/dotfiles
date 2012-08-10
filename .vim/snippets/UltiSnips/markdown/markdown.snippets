@@ -19,19 +19,19 @@ snippet l "simple markdown link" !
 endsnippet
 
 snippet img "image link" !
-![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+![${1:${VISUAL:pic alt}}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
 endsnippet
 
 snippet id "link ID style"
-[${5:Text}][${1:ID: number/string}] $0
+[${5:${VISUAL:Text}}][${1:ID: number/string}] $0
 [$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
 endsnippet
 snippet id "simple link ID style"
-[${2:Text}][] $0
+[${2:${VISUAL:Text}}][] $0
 [$2]: ${1:URL/path}
 endsnippet
 snippet id "image id link" !b
-![${5:Text}][${1:ID: number/string}] $0
+![${5:${VISUAL:Text}}][${1:ID: number/string}] $0
 [$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
 endsnippet
 
