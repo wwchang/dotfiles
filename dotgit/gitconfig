@@ -23,16 +23,12 @@
     editor = vim
     pager = less
     excludesfile = $HOME/.gitignore
-    ; autocrlf = true ## enable this when you are on Windows. for line break.
-	autocrlf = input
-    whitespace=fix,trailing-space,indent-with-non-tab,cr-at-eol
-        ## trailing-space: space at the end of line.
-        ## space-before-tab: space before Tab.
-        ## indent-with-non-tab: indent with non-Tab. like 8 spaces.
-        ## cr-at-eol: Carry Return at the End-Of-Line.
+    # enable "autocrlf" this when you are on Windows. for line break.
+	autocrlf = input # true, false, input, off
+    whitespace=indent-with-non-tab,space-before-tab,cr-at-eol,blank-at-eof,blank-at-eol
 
 [help]
-    ; autocorrect = 1 # when only one command matchs, this command will be executed.
+    autocorrect = 1 # when only one command matchs, this command will be executed.
 
 [color]
     ui = true # [true|always|false] let git color all terminal's output.
@@ -43,16 +39,16 @@
 ## syntax: foreground background style
 ## available colors: normal, black, red, green, yellow, blue, magenta, cyan, white.
 ## available style: bold, dim, ul, blink, reverse.
-;[color "branch"]
-    ;current = blue
-    ;local = yellow
-    ;remote = cyan
-;[color "diff"]
-    ;meta = yellow bold
-    ;frag = magenta bold
-    ;old = red
-    ;new = green
-    ;whitespace = red reverse
+[color "branch"]
+    current = white
+    local = yellow
+    remote = magenta
+[color "diff"]
+	meta = blue black bold
+    frag = magenta bold
+    old = yellow
+    new = green
+    whitespace = red reverse
 [color "status"]
     added = green
     changed = cyan
@@ -65,8 +61,9 @@
     renamed = yellow
     unmerged = magenta
 
+
 [commit]
-    ; template = $HOME/.gitmessage.txt
+	template = $HOME/Git/dotfiles/dotgit/commit.template
 [push]
     default = matching
 [diff]
@@ -77,7 +74,6 @@
     #tool = vimdiff
 	#conflictstyle = diff3
     tool = splice
-
 [mergetool "splice"]
     cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
     trustExitCode = true
@@ -99,8 +95,16 @@
     undo-last-commit = reset HEAD^
     add-delete = ls-files --deleted | xargs git rm
 
+    show-option = config --get
+
+    log-fetched = log -p HEAD..FETCH_HEAD
+    visual-fetched = !gitk HEAD...FETCH_HEAD
+    ; log-diff-origin = log -p master..ORIG_HEAD
+    log-diff-origin = log -p master..origin/master
+    log-diff-remote = log -p master..remote/master
+
     log-graph = log --color --pretty=format:'%s %an, %ar' --graph
     log-pretty-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 
 [branch "master"]
-    ; mergeoptions = --no-ff ; default disable fast forwarding on branch master.
+    mergeoptions = --no-ff ; default disable fast forwarding on branch master.
