@@ -230,10 +230,10 @@ macro index <Tab> "<search>~U<enter>" "jump to first unread mail"
 
 # copy/move/attach emails
 # To additionally get straight to the folder browser when copying, moving and attaching mail, add the following macros:
-macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
-macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index c "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index m "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+macro index b "<bounce-message>?<toggle-mailboxes>" "bounce a message to another user"
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
-macro index B "<bounce-message>?<toggle-mailboxes>" "bounce a message to another user"
 
 # Trash
 # move marked delete mails into Trash when you press "d"

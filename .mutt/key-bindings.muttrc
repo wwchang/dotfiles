@@ -91,7 +91,7 @@ bind    index,pager     ,k      what-key
 # most common [ compose ] menu keys.
 # bind    compose     e   edit # FIXME no such function.
 bind    compose     a   attach-file
-bind    compose     A   attach-message
+# bind    compose     A   attach-message # macro already is there.
 bind    compose     <esc>k  attach-key # attach a public PGP/GPG key.
 bind    compose     r   edit-reply-to
 bind    compose     c   edit-cc
@@ -147,7 +147,5 @@ bind    index     V  collapse-all
 # bind    index   <esc>t  untag-messages # FIXME function name.
 bind    index,pager   F     flag-message
 bind    index,pager   u     undelete-message
-
-bind    index   c   change-folder
 
 # vim:ft=muttrc
