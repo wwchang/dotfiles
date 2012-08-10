@@ -108,3 +108,10 @@
 
 [branch "master"]
     mergeoptions = --no-ff ; default disable fast forwarding on branch master.
+
+# for .gitattributes
+[diff "word"]
+    ; textconv = strings ; for Word *.doc files gitattributes.
+    textconv = wvText ; use program "wv"
+[diff "exif"]
+	textconv = exiftool

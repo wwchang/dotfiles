@@ -1,0 +1,19 @@
+# binary {{{
+# make Git treat JSON small database file as binary even though they are plain 
+# text.  Because they are diffcult to do diff and merge etc.
+
+# *.json -crlf -diff
+*.json binary
+
+# }}}
+
+# diff binary files {{{
+# Like Word files (*.doc). You can't directly compare two versions unless you 
+# check them out and scan them manually.  You can do this fairly well using Git 
+# attributes.
+*.doc diff=word
+# $ git config diff.word.textconv strings
+
+*.png diff=exif # show image's EXIF diff into.
+# $ git config diff.exit.textconv exiftool
+# }}}
