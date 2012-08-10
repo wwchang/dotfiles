@@ -40,11 +40,11 @@ snippet block "markdown blockquote" !b
 endsnippet
 
 snippet ul "unordered list" !b
-${1:*/+/-} ${2:list item}
+${1:*/+/-} ${2:${VISUAL:list item}}
 endsnippet
 
 snippet ol "ordered list" !b
-${1:1/2/3} ${2:list item}
+${1:1/2/3} ${2:${VISUAL:list item}}
 endsnippet
 
 snippet rule "horizontal rules -------" b
@@ -81,17 +81,14 @@ endsnippet
 snippet copy "copyright (markdown)" !
 &copy;
 endsnippet
-
 snippet & "markdown transformed &" !
 &amp;
 endsnippet
-
 snippet < "markdown transformed <" !
 &lt;
 endsnippet
-
 snippet * "escape *" !
-\*$0
+\*
 endsnippet
 
 # vim:ft=snippets:fdm=marker:fmr={{{,}}}
