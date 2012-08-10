@@ -1081,7 +1081,7 @@ endif
             call vam#ActivateAddons(['Tagbar'])
             call vam#ActivateAddons(['tagbar-phpctags'])
             "call vam#ActivateAddons(['taglist'])
-            " call vam#ActivateAddons(['TagHighlight'])
+            call vam#ActivateAddons(['TagHighlight'])
             " call vam#ActivateAddons(['Tag_Signature_Balloons'])
             call vam#ActivateAddons(['AutoTag'])
             " call vam#ActivateAddons(['taggatron'])
@@ -1396,8 +1396,9 @@ syntax on
             let g:TagHighlightSettings['CtagsArguments'] = []
             let g:TagHighlightSettings['CtagsExtraArguments'] = []
             let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
-            let g:TagHighlightSettings['PythonVariantPriority'] =
-                        \ ["if_pyth3", "if_pyth", "python", "compiled"]
+            let g:TagHighlightSettings['PythonVariantPriority'] = [
+                        \ "if_pyth3", "if_pyth", "python", "compiled",
+                        \ ]
 
             " Integration other plugins.
             let g:TagHighlightSettings['LanguageDetectionMethods'] =
