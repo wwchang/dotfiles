@@ -1175,6 +1175,8 @@ endif
             call vam#ActivateAddons(['HTML5_Syntax_File'])
             call vam#ActivateAddons(['Better_CSS_Syntax_for_Vim'])
             " call vam#ActivateAddons(['css3_mod'])
+            " call vam#ActivateAddons(['vim_less'])
+            " call vam#ActivateAddons(['vim-less'])
                 " JavaScript
             " call vam#ActivateAddons(['jsflakes%4057'])
             " call vam#ActivateAddons(['jsruntime'])
@@ -3482,13 +3484,21 @@ syntax on
             " ~/.vim/after/syntax/css3.vim
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
 
-        " Better_CSS_Syntax_for_Vim {{{
-            " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
-            " 2. Different highlight colors for properties, value, units and so on.
-        " }}}
+            " Better_CSS_Syntax_for_Vim {{{
+                " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
+                " 2. Different highlight colors for properties, value, units and so on.
+            " }}}
 
-        " css3_mod
+            " css3_mod
 
+            " vim_less {{{ support for LESS CSS.
+                " syntax highlight
+                " indent support
+                " compile the file.less to file.css if you have lessc installed
+                " and echo any errors.
+            " }}}
+
+            " vim-less : syntax support for LESS CSS.
         " }}}
     " }}}
 
