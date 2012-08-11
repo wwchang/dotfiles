@@ -2505,7 +2505,7 @@ syntax on
             " :Replace [target] [replacement], :Replace /[target]/[re]/
             " :ReplaceUndo, :ResultListOpen
             let g:EasyGrepMode = 2 " 0 all file 1 opened buffer 2 track current extension
-            let g:EasyGrepCommand = 1 " 0: vimgrep, 1: grep (follows grepprg).
+            let g:EasyGrepCommand = 0 " 0: vimgrep, 1: grep (follows grepprg).
             let g:EasyGrepRecursive = 1
             let g:EasyGrepIgnoreCase = 1
             let g:EasyGrepHidden = 1 " hidden files
