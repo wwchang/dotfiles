@@ -219,7 +219,7 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-        set grepprg="grep -n $* /dev/null" " 'internal', 'grep -n $* /dev/null'
+        set grepprg="grep -n $* /dev/null" " 'grep -n', 'grep -n $* /dev/null'
 
         " [ match ]
         set showmatch
@@ -2508,11 +2508,11 @@ syntax on
             let g:EasyGrepCommand = 0 " 0: vimgrep, 1: grep (follows grepprg).
             let g:EasyGrepRecursive = 1
             let g:EasyGrepIgnoreCase = 1
-            let g:EasyGrepHidden = 1 " hidden files
+            let g:EasyGrepHidden = 0 " search hidden files
             let g:EasyGrepAllOptionsInExplorer = 1
             let g:EasyGrepWindow = 1 " 0: quickfix, 1: location list.
             let g:EasyGrepWindowPosition = "botright" " such as topleft, botright.
-            let g:EasyGrepOpenWindowOnMatch = 1
+            let g:EasyGrepOpenWindowOnMatch = 1 " open window when has matches.
             let g:EasyGrepEveryMatch = 1 " multiple matches on same line as different
             let g:EasyGrepJumpToMatch = 1 " jump to first match.
             let g:EasyGrepSearchCurrentBufferDir = 1 " search current buffer's dir.
