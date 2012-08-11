@@ -1,0 +1,70 @@
+" :help usr_41.txt
+" :help filetype.txt
+" :help ftplugin[s]
+
+" If you placed the file in the after/ftplugin runtime directory, then Vim
+" will first source the existing filetype plugin file and then will source
+" the new file.  If you placed the file in the $VIMRTUNTIME/ftplugin runtime
+" directory, then Vim will first source the new file and then will source the
+" existing filetype plugin file.
+
+" Only do this when not done yet for this buffer
+" for user can have chance to disable it.
+if exists("b:did_ftplugin")
+  finish
+endif
+" This also needs to be used to avoid that the same plugin is executed twice for
+" the same buffer (happens when using an ':edit' command without arguments).
+
+" user can disable loading the default plugin completely by makeing a filetype
+" plugin with only this line
+let b:did_ftplugin = 1
+
+" options {{{
+" use "setlocal" to only affects the current buffer.
+setlocal
+" consider using "+=" and "-=" to keep the existing value when an option has a
+" value that is a list of flags or items.
+setlocal formatoptions& formatoptions+=ro
+" }}}
+
+" mappings {{{
+" To make sure mappings will only work in the current buffer use the >
+map <buffer>
+noremap <script>
+map <LocalLeader>
+
+" command.  This needs to be combined with the two-step mapping explained above.
+" An example of how to define functionality in a filetype plugin: >
+
+hasmapto('')
+if !hasmapto('<Plug>JavaImport')
+    map <buffer> <unique> <LocalLeader>i <Plug>JavaImport
+endif
+noremap <buffer> <unique> <Plug>JavaImport oimport ""<Left><Esc>
+" }}}
+
+" user commands {{{
+:command -buffer
+exists(":Cmd")
+:command -buffer  Make  make %:r.s
+" }}}
+
+" variables {{{
+s:var b:var
+" }}}
+
+" functions {{{
+" When defining a function, this only needs to be done once.  But the filetype
+" plugin will be sourced every time a file with this filetype will be opened.
+" This construct makes sure the function is only defined once: >
+exists("*s:Func")
+
+if !exists("*s:Func")
+    function s:Func(arg)
+        ...
+    endfunction
+endif
+" }}}
+
+" vim: ft=vim
