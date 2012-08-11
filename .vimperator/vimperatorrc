@@ -126,6 +126,10 @@ source! /home/chris/.vimperatorrc.local
         set shell=_$SHELL_
         set shellcmdflag=-c
     " }}}
+
+    " [ editor ] {{{
+        set editor=gvim -f
+    " }}}
 " }}}
 
 " [ maps ] {{{
