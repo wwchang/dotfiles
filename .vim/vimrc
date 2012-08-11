@@ -4017,6 +4017,7 @@ syntax on
             let g:gundo_tree_statusline = 'Tree'
             let g:gundo_map_move_older = "j"
             let g:gundo_map_move_newer = "k"
+            let g:gundo_close_on_revert = 0
         " }}}
     " }}}
 
