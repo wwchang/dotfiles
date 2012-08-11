@@ -1036,7 +1036,7 @@ endif
             "call vam#ActivateAddons(['tplugin'])
                 " VimLint: a correctness and sanity checker of Vim configuration
             call vam#ActivateAddons(['VimLint'])
-                " utils
+                " VimL libraries
             call vam#ActivateAddons(['L9'])
             call vam#ActivateAddons(['tlib'])
             call vam#ActivateAddons(['AsyncCommand'])
@@ -4006,7 +4006,7 @@ syntax on
             " gundo#GundoShow(), gundo#GundoHide()
             nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
-            let g:undo_prefer_python3 = 1
+            let g:gundo_prefer_python3 = 1
             let g:gundo_right = 0 " right/left position.
             let g:gundo_help = 1 " show help.
             let g:gundo_width = 45
