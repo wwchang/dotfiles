@@ -106,7 +106,7 @@
 
     " [ diff, paste & select mode ] {{{
     " diff mode
-    set diffopt=vertical,filler,context:5,foldcolumn:3
+    set diffopt=vertical,filler,context:5,foldcolumn:1
     " paste mode
     " set paste " set nopaste
     nnoremap <F2> :set invpaste paste?<CR>
@@ -219,7 +219,7 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-        set grepprg="grep -n $* /dev/null" " 'internal', 'grep -n $* /dev/null'
+        set grepprg="grep -n $* /dev/null" " 'grep -n', 'grep -n $* /dev/null'
 
         " [ match ]
         set showmatch
@@ -1036,7 +1036,7 @@ endif
             "call vam#ActivateAddons(['tplugin'])
                 " VimLint: a correctness and sanity checker of Vim configuration
             call vam#ActivateAddons(['VimLint'])
-                " utils
+                " VimL libraries
             call vam#ActivateAddons(['L9'])
             call vam#ActivateAddons(['tlib'])
             call vam#ActivateAddons(['AsyncCommand'])
@@ -1081,7 +1081,7 @@ endif
             call vam#ActivateAddons(['Tagbar'])
             call vam#ActivateAddons(['tagbar-phpctags'])
             "call vam#ActivateAddons(['taglist'])
-            " call vam#ActivateAddons(['TagHighlight'])
+            call vam#ActivateAddons(['TagHighlight'])
             " call vam#ActivateAddons(['Tag_Signature_Balloons'])
             call vam#ActivateAddons(['AutoTag'])
             " call vam#ActivateAddons(['taggatron'])
@@ -1396,8 +1396,9 @@ syntax on
             let g:TagHighlightSettings['CtagsArguments'] = []
             let g:TagHighlightSettings['CtagsExtraArguments'] = []
             let g:TagHighlightSettings['ForcePythonVariant'] = 'if_pyth3'
-            let g:TagHighlightSettings['PythonVariantPriority'] =
-                        \ ["if_pyth3", "if_pyth", "python", "compiled"]
+            let g:TagHighlightSettings['PythonVariantPriority'] = [
+                        \ "if_pyth3", "if_pyth", "python", "compiled",
+                        \ ]
 
             " Integration other plugins.
             let g:TagHighlightSettings['LanguageDetectionMethods'] =
@@ -1509,14 +1510,14 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-            let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
             let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
             " let g:neocomplcache_omni_patterns.python = '[^. \t]\.\w*'
             " empty to disable auto complete especially for python.
             " let g:neocomplcache_omni_patterns.python = ''
             let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
                 " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
             let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
             " let g:neocomplcache_tags_filter_patterns =
@@ -2504,14 +2505,14 @@ syntax on
             " :Replace [target] [replacement], :Replace /[target]/[re]/
             " :ReplaceUndo, :ResultListOpen
             let g:EasyGrepMode = 2 " 0 all file 1 opened buffer 2 track current extension
-            let g:EasyGrepCommand = 1 " 0: vimgrep, 1: grep (follows grepprg).
+            let g:EasyGrepCommand = 0 " 0: vimgrep, 1: grep (follows grepprg).
             let g:EasyGrepRecursive = 1
             let g:EasyGrepIgnoreCase = 1
-            let g:EasyGrepHidden = 1 " hidden files
+            let g:EasyGrepHidden = 0 " search hidden files
             let g:EasyGrepAllOptionsInExplorer = 1
             let g:EasyGrepWindow = 1 " 0: quickfix, 1: location list.
             let g:EasyGrepWindowPosition = "botright" " such as topleft, botright.
-            let g:EasyGrepOpenWindowOnMatch = 1
+            let g:EasyGrepOpenWindowOnMatch = 1 " open window when has matches.
             let g:EasyGrepEveryMatch = 1 " multiple matches on same line as different
             let g:EasyGrepJumpToMatch = 1 " jump to first match.
             let g:EasyGrepSearchCurrentBufferDir = 1 " search current buffer's dir.
@@ -4005,6 +4006,7 @@ syntax on
             " gundo#GundoShow(), gundo#GundoHide()
             nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
+            let g:gundo_prefer_python3 = 1
             let g:gundo_right = 0 " right/left position.
             let g:gundo_help = 1 " show help.
             let g:gundo_width = 45
@@ -4015,6 +4017,7 @@ syntax on
             let g:gundo_tree_statusline = 'Tree'
             let g:gundo_map_move_older = "j"
             let g:gundo_map_move_newer = "k"
+            let g:gundo_close_on_revert = 0
         " }}}
     " }}}
 
@@ -4457,9 +4460,9 @@ syntax on
             let g:vimwiki_global_ext = 1 " make temporary wiki in dir.
             let g:vimwiki_ext2syntax = {
                         \ 'wiki': 'default',
-                        \ 'md': 'markdown',
-                        \ 'mkd': 'markdown',
                         \ }
+                        " \ 'md': 'markdown',
+                        " \ 'mkd': 'markdown',
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'

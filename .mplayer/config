@@ -24,7 +24,8 @@ osdlevel=1              # start with all osd elements enabled (time/remaining)
 #volstep=5               # step size of mixer volume changes in %
 # FIXME where comment those lines for ncmpcpp
 # ao=alsa                 # audio out
-ao=pulse                  # for crontab play sound not conflict with other sound card.
+ao=pulse                  # use pluseaudio
+    # for crontab play sound not conflict with other sound card.
 # mixer=/dev/mixer        # for ALSA mixer
 # mixer-channel="Master"  # OR =Master
 channels=2              # 2:stereo 3: surround
@@ -32,13 +33,13 @@ srate=48000             # select output sample rate to be used
 stereo=0                # stereo: type of MP2/MP3 stereo output
 
 # video prefs
-vo=xv                   # video out method with X11
+# vo=xv                   # video out method with X11
 zoom=yes                # ="1" sofware scaling
 # FIXME
 double=yes              # double buffering (recommended for subtitles)
-monitoraspect=16:9      # 16:9 or or 4:3 I'm on a widescreen laptop so keeps 4:3 content from stretching
-framedrop=1             # for slower machines
-hardframedrop=0         # toggle hard frame drop
+# monitoraspect=16:9      # 16:9 or or 4:3 I'm on a widescreen laptop so keeps 4:3 content from stretching
+# framedrop=1             # for slower machines
+# hardframedrop=0         # toggle hard frame drop
 
 # subtitle prefs
 # sub=

@@ -1,18 +1,14 @@
 snippet h1 "header 1" !b
-# ${1:header 1} #
-$0
+# ${1:${VISUAL:header 1}} #
 endsnippet
 snippet h2 "header 2" !b
-## ${1:header 2} ##
-$0
+## ${1:${VISUAL:header 2}} ##
 endsnippet
 snippet h3 "header 3" !b
-### ${1:header 3} ###
-$0
+### ${1:${VISUAL:header 3}} ###
 endsnippet
 snippet h4 "header 4" !b
-#### ${1:header 4} ####
-$0
+#### ${1:${VISUAL:header 4}} ####
 endsnippet
 
 snippet link "markdown link" !
@@ -23,19 +19,19 @@ snippet l "simple markdown link" !
 endsnippet
 
 snippet img "image link" !
-![${1:pic alt}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
+![${1:${VISUAL:pic alt}}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
 endsnippet
 
 snippet id "link ID style"
-[${5:Text}][${1:ID: number/string}] $0
+[${5:${VISUAL:Text}}][${1:ID: number/string}] $0
 [$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
 endsnippet
 snippet id "simple link ID style"
-[${2:Text}][] $0
+[${2:${VISUAL:Text}}][] $0
 [$2]: ${1:URL/path}
 endsnippet
 snippet id "image id link" !b
-![${5:Text}][${1:ID: number/string}] $0
+![${5:${VISUAL:Text}}][${1:ID: number/string}] $0
 [$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
 endsnippet
 
@@ -44,26 +40,26 @@ snippet block "markdown blockquote" !b
 endsnippet
 
 snippet ul "unordered list" !b
-${1:*/+/-} ${2:list item}
+${1:*/+/-} ${2:${VISUAL:list item}}
 endsnippet
 
 snippet ol "ordered list" !b
-${1:1/2/3} ${2:list item}
+${1:1/2/3} ${2:${VISUAL:list item}}
 endsnippet
 
-snippet rule "horizontal rules" !b
+snippet rule "horizontal rules -------" b
 ---------------------------
 $0
 endsnippet
-snippet rule "horizontal rules" !b
+snippet rule "horizontal rules - - -" b
 - - -
 $0
 endsnippet
-snippet rule "horizontal rules" !b
+snippet rule "horizontal rules *****" b
 ***************************
 $0
 endsnippet
-snippet rule "horizontal rules" !b
+snippet rule "horizontal rules * * *" b
 * * *
 $0
 endsnippet
@@ -85,17 +81,14 @@ endsnippet
 snippet copy "copyright (markdown)" !
 &copy;
 endsnippet
-
 snippet & "markdown transformed &" !
 &amp;
 endsnippet
-
 snippet < "markdown transformed <" !
 &lt;
 endsnippet
-
 snippet * "escape *" !
-\*$0
+\*
 endsnippet
 
 # vim:ft=snippets:fdm=marker:fmr={{{,}}}
