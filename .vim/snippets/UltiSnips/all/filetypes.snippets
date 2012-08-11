@@ -1,0 +1,5 @@
+# all snippets are auto apply depend on filetype.
+
+snippet commentchar "insert current filetype's comment char" !
+`!v substitute(&comments, '^\(.*,\|^\):\([^,]\+\)', '\2', '')`
+endsnippet
