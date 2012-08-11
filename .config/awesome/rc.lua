@@ -322,7 +322,7 @@ tags = {
             },
     layout = { layouts[5], layouts[2], layouts[5], -- tags: 1, 2, 3
                layouts[2], layouts[12], layouts[2], --       4, 5, 6
-               layouts[2], layouts[2], layouts[10]   --       7, 8, 9
+               layouts[2], layouts[6], layouts[10]   --       7, 8, 9
             }
 }
 

@@ -21,7 +21,7 @@
 
 *~
 *.bak
-*swp
+*.swp
 log/
 *.log
 *.[oa]
