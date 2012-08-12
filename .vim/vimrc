@@ -1938,6 +1938,7 @@ syntax on
             elseif has('python')
                 let g:UltiSnipsUsePythonVersion = 2 " use python 2.X
             endif
+            let g:snips_author = 'stardiviner'
             let g:UltiSnipsEditSplit = "horizontal" " normal, horizontal, vertical.
             " let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             " do not use snippets come with UltiSnips.
