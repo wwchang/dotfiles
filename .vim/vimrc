@@ -1335,6 +1335,7 @@ endif
             call vam#ActivateAddons(['SpitVspit'])
             call vam#ActivateAddons(['ZoomWin'])
             "call vam#ActivateAddons(['CompleteHelper'])
+            call vam#ActivateAddons(['AmbiCompletion'])
             call vam#ActivateAddons(['LargeFile'])
                 " Motions
             call vam#ActivateAddons(['EasyMotion'])
@@ -4403,6 +4404,16 @@ syntax on
 
             "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
             "" }}}
+        " }}}
+
+        " AmbiCompletion {{{ ambiguous word completion.
+            " complete a word with no only start-with match but also ends-with 
+            " and contains match.
+            if &completefunc == ''
+                set completefunc=g:AmbiCompletion
+            endif
+            let g:AmbiCompletion_richerSupportForMultibyte = 1
+            let g:AmbiCompletion_allBuffers = 1
         " }}}
     " }}}
 
