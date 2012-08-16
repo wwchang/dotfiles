@@ -3911,6 +3911,10 @@ syntax on
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
 
         " vim-signature {{{ toggle, display and navigate marks.
+            " Usage:
+            "   - <Leader>ma -- toggle the mark a.
+            "   - <Leader>m, -- place the next available mark.
+            "   - <Leader>m<Space> -- delete all marks.
             let g:SignatureDefaultMappings = 1
             " let g:SignatureIncludeMarks =
             let g:SignatureWrapJumps = 1
@@ -3921,6 +3925,7 @@ syntax on
             " let g:SignatureIncludeMarkers =
             let g:SignatureDisableMenu = 0
             let g:SignatureMenuStruct = "P&lugins.&Signature"
+            let g:SignaturePurgeConfirmation = 1
         " }}}
 
         " vmark.vim_Visual_Bookmarking {{{
