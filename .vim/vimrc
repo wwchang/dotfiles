@@ -2747,7 +2747,7 @@ syntax on
     " }}}
 
     " [ quickfix & location list ] {{{
-        " QuickfixSigns_vim {{{ mark quickfix & location list items with signs.
+        " quickfixsigns {{{ mark quickfix & location list items with signs.
             let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
                         \ 'vcsdiff' ])
             let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
@@ -2761,7 +2761,7 @@ syntax on
                         \ }
             let g:quickfixsigns_balloon = 1
             let g:quickfixsigns_max = 500 " don't display signs if longer than this.
-            let g:quickfixsigns_blacklist_buffer = '^__.*__$'
+            let g:quickfixsigns_blacklist_buffer = '^\(__.*__\|NERD_tree_.*\|-MiniBufExplorer-\)$'
             let g:quickfixsigns_icons = {}
             let g:quickfixsigns#vcsdiff#guess_type = 1
             let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
