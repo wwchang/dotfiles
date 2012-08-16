@@ -107,6 +107,7 @@
     " [ diff, paste & select mode ] {{{
     " diff mode
     set diffopt=vertical,filler,context:10,foldcolumn:1
+    set scrollbind
     " paste mode
     " set paste " set nopaste
     nnoremap <F2> :set invpaste paste?<CR>
