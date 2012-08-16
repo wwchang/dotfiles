@@ -1036,10 +1036,6 @@ endif
             "call vam#ActivateAddons(['tplugin'])
                 " VimLint: a correctness and sanity checker of Vim configuration
             call vam#ActivateAddons(['VimLint'])
-                " VimL libraries
-            call vam#ActivateAddons(['L9'])
-            call vam#ActivateAddons(['tlib'])
-            call vam#ActivateAddons(['AsyncCommand'])
                 " statusline
             call vam#ActivateAddons(['Powerline'])
             call vam#ActivateAddons(['current-func-info'])
@@ -1148,6 +1144,14 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
+                " VimL libraries
+            call vam#ActivateAddons(['L9'])
+            call vam#ActivateAddons(['tlib'])
+            call vam#ActivateAddons(['self'])
+                " Vim script
+            " call vam#ActivateAddons(['Vim-Support'])
+            " call vam#ActivateAddons(['vesting'])
+            call vam#ActivateAddons(['runVimTests'])
                 " Python
             " call vam#ActivateAddons(['Python-mode-klen'])
             " call vam#ActivateAddons(['SimpylFold'])
@@ -1220,11 +1224,6 @@ endif
             " call vam#ActivateAddons(['Lisper'])
             " call vam#ActivateAddons(['paredit'])
                 " Scheme
-                " VimL
-            " call vam#ActivateAddons(['Vim-Support'])
-            " call vam#ActivateAddons(['vesting'])
-            call vam#ActivateAddons(['runVimTests'])
-            call vam#ActivateAddons(['self'])
                 " C C++
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
@@ -1326,6 +1325,7 @@ endif
             call vam#ActivateAddons(['visualstar'])
             "call vam#ActivateAddons(['StarRange'])
             "call vam#ActivateAddons(['exjumplist'])
+            call vam#ActivateAddons(['AsyncCommand'])
                 " marks
             call vam#ActivateAddons(['vim-signature'])
             "call vam#ActivateAddons(['unicode'])
