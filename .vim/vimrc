@@ -225,7 +225,6 @@
         " [ match ]
         set showmatch
         set matchpairs+=<:>
-        " }}}
     " }}}
 
     " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
@@ -1944,7 +1943,7 @@ syntax on
             elseif has('python')
                 let g:UltiSnipsUsePythonVersion = 2 " use python 2.X
             endif
-            let g:snips_author = 'stardiviner'
+            let g:snips_author = 'stardiviner <numbchild@gmail.com>'
             let g:UltiSnipsEditSplit = "horizontal" " normal, horizontal, vertical.
             " let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             " do not use snippets come with UltiSnips.
