@@ -1658,13 +1658,14 @@ syntax on
                 endfunction
                 " ----------------------------------------------
             " Awesome EXample.
-            "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
-                    "\ "\<Plug>(neocomplcache_snippets_expand)"
+            "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                    "\ ? "\<Plug>(neocomplcache_snippets_expand)"
                     "\ : pumvisible() ? "\<C-n>"
                     "\ : <SID>check_back_space() ? "\<TAB>"
                     "\ : "\<C-x>\<C-u>"
 
-            "inoremap <expr><TAB> pumvisible() ? "\<C-n>"
+            "inoremap <expr><TAB> pumvisible()
+                        "\ ? "\<C-n>"
                         "\ : <SID>check_back_space() ? "\<TAB>"
                         "\ : "\<C-x>\<C-u>"
             " }}}
