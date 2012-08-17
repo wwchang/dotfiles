@@ -403,7 +403,13 @@ endif
         " showbreak: "↪ ", "> ", "+++ ",
         " ------------------------------------------
     set fillchars=vert:│,fold:┄,diff:×
-    set list listchars=tab:\ \ ,trail:\·,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠
+    set list
+    set listchars=tab:\ \ , " use whitespace to hide tab.
+                \trail:\·, " trailing line whitespaces
+                \extends:\◂,
+                \precedes:\▸,
+                \nbsp:\✖, " non-breakable space.
+                \conceal:≠ " conceal symbol.
     nnoremap <silent> <Leader>lc :set nolist!<CR>
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
