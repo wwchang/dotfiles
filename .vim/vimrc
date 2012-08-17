@@ -1118,6 +1118,7 @@ endif
             call vam#ActivateAddons(['ack'])
             call vam#ActivateAddons(['buffers_search_and_replace'])
             " call vam#ActivateAddons(['SearchParty'])
+            call vam#ActivateAddons(['Area_search'])
                 " comment
             call vam#ActivateAddons(['commentary'])
             "call vam#ActivateAddons(['tComment'])
@@ -2550,6 +2551,11 @@ syntax on
 
         " SearchParty {{{
         " }}}
+
+        " Area_search
+            " Usage:
+            " - :AreaSearch hello math world
+            " - ,,n -- jump to next area matching the query.
     " }}}
 
     " [ comment ] {{{
