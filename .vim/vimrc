@@ -106,7 +106,8 @@
 
     " [ diff, paste & select mode ] {{{
     " diff mode
-    set diffopt=vertical,filler,context:5,foldcolumn:1
+    set diffopt=vertical,filler,context:10,foldcolumn:1
+    " set scrollbind
     " paste mode
     " set paste " set nopaste
     nnoremap <F2> :set invpaste paste?<CR>
@@ -1036,10 +1037,6 @@ endif
             "call vam#ActivateAddons(['tplugin'])
                 " VimLint: a correctness and sanity checker of Vim configuration
             call vam#ActivateAddons(['VimLint'])
-                " VimL libraries
-            call vam#ActivateAddons(['L9'])
-            call vam#ActivateAddons(['tlib'])
-            call vam#ActivateAddons(['AsyncCommand'])
                 " statusline
             call vam#ActivateAddons(['Powerline'])
             call vam#ActivateAddons(['current-func-info'])
@@ -1108,6 +1105,8 @@ endif
                 " Debugger
             " call vam#ActivateAddons(['GdbFromVim'])
             " call vam#ActivateAddons(['gdbmgr'])
+            call vam#ActivateAddons(['Vdebug'])
+            call vam#ActivateAddons(['VimDebug'])
                 " task list
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
@@ -1121,6 +1120,7 @@ endif
             call vam#ActivateAddons(['ack'])
             call vam#ActivateAddons(['buffers_search_and_replace'])
             " call vam#ActivateAddons(['SearchParty'])
+            call vam#ActivateAddons(['Area_search'])
                 " comment
             call vam#ActivateAddons(['commentary'])
             "call vam#ActivateAddons(['tComment'])
@@ -1148,6 +1148,14 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
+                " VimL libraries
+            call vam#ActivateAddons(['L9'])
+            call vam#ActivateAddons(['tlib'])
+            call vam#ActivateAddons(['self'])
+                " Vim script
+            " call vam#ActivateAddons(['Vim-Support'])
+            " call vam#ActivateAddons(['vesting'])
+            call vam#ActivateAddons(['runVimTests'])
                 " Python
             " call vam#ActivateAddons(['Python-mode-klen'])
             " call vam#ActivateAddons(['SimpylFold'])
@@ -1220,11 +1228,6 @@ endif
             " call vam#ActivateAddons(['Lisper'])
             " call vam#ActivateAddons(['paredit'])
                 " Scheme
-                " VimL
-            " call vam#ActivateAddons(['Vim-Support'])
-            " call vam#ActivateAddons(['vesting'])
-            call vam#ActivateAddons(['runVimTests'])
-            call vam#ActivateAddons(['self'])
                 " C C++
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
@@ -1326,6 +1329,7 @@ endif
             call vam#ActivateAddons(['visualstar'])
             "call vam#ActivateAddons(['StarRange'])
             "call vam#ActivateAddons(['exjumplist'])
+            call vam#ActivateAddons(['AsyncCommand'])
                 " marks
             call vam#ActivateAddons(['vim-signature'])
             "call vam#ActivateAddons(['unicode'])
@@ -1335,6 +1339,7 @@ endif
             call vam#ActivateAddons(['SpitVspit'])
             call vam#ActivateAddons(['ZoomWin'])
             "call vam#ActivateAddons(['CompleteHelper'])
+            call vam#ActivateAddons(['AmbiCompletion'])
             call vam#ActivateAddons(['LargeFile'])
                 " Motions
             call vam#ActivateAddons(['EasyMotion'])
@@ -1656,13 +1661,14 @@ syntax on
                 endfunction
                 " ----------------------------------------------
             " Awesome EXample.
-            "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable() ?
-                    "\ "\<Plug>(neocomplcache_snippets_expand)"
+            "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                    "\ ? "\<Plug>(neocomplcache_snippets_expand)"
                     "\ : pumvisible() ? "\<C-n>"
                     "\ : <SID>check_back_space() ? "\<TAB>"
                     "\ : "\<C-x>\<C-u>"
 
-            "inoremap <expr><TAB> pumvisible() ? "\<C-n>"
+            "inoremap <expr><TAB> pumvisible()
+                        "\ ? "\<C-n>"
                         "\ : <SID>check_back_space() ? "\<TAB>"
                         "\ : "\<C-x>\<C-u>"
             " }}}
@@ -1938,6 +1944,7 @@ syntax on
             elseif has('python')
                 let g:UltiSnipsUsePythonVersion = 2 " use python 2.X
             endif
+            let g:snips_author = 'stardiviner'
             let g:UltiSnipsEditSplit = "horizontal" " normal, horizontal, vertical.
             " let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             " do not use snippets come with UltiSnips.
@@ -2546,6 +2553,11 @@ syntax on
 
         " SearchParty {{{
         " }}}
+
+        " Area_search
+            " Usage:
+            " - :AreaSearch hello math world
+            " - ,,n -- jump to next area matching the query.
     " }}}
 
     " [ comment ] {{{
@@ -2687,9 +2699,13 @@ syntax on
             let g:syntastic_auto_loc_list = 2 " 0/1/2: auto open/close error window
             let g:syntastic_loc_list_height = 10
                 " fine tune when automatic syntax checking is done.
-            let g:syntastic_mode_map = { 'mode': 'active',
-                        \ "active_filetypes": ['ruby', 'python', 'php', 'c'],
-                        \ "passive_filetypes": ['html'] }
+            let g:syntastic_mode_map = {
+                        \ "mode": "active",
+                        \ "active_filetypes":
+                            \ ['ruby', 'python', 'php', 'c', 'go', 'javascript', 'tex',],
+                        \ "passive_filetypes":
+                            \ ['html'],
+                        \ }
             let g:syntastic_quiet_warnings = 0 " 1: care syntax errors not warning
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             let g:syntastic_csslint_options = "--warning=none"
@@ -2713,6 +2729,10 @@ syntax on
 
         " gdbmgr {{{ Vim interface to gdb.
         " }}}
+
+        " Vdebug : Multi-language DBGP debugger client for Vim.
+
+        " VimDebug : Integrate your debugger with Vim.
     " }}}
 
     " [ Compiler ] {{{ <F10>
@@ -2741,7 +2761,7 @@ syntax on
     " }}}
 
     " [ quickfix & location list ] {{{
-        " QuickfixSigns_vim {{{ mark quickfix & location list items with signs.
+        " quickfixsigns {{{ mark quickfix & location list items with signs.
             let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
                         \ 'vcsdiff' ])
             let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
@@ -2755,7 +2775,7 @@ syntax on
                         \ }
             let g:quickfixsigns_balloon = 1
             let g:quickfixsigns_max = 500 " don't display signs if longer than this.
-            let g:quickfixsigns_blacklist_buffer = '^__.*__$'
+            let g:quickfixsigns_blacklist_buffer = '^\(__.*__\|NERD_tree_.*\|-MiniBufExplorer-\)$'
             let g:quickfixsigns_icons = {}
             let g:quickfixsigns#vcsdiff#guess_type = 1
             let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
@@ -3444,12 +3464,33 @@ syntax on
 
     " [ Web: HTML5 & CSS ] {{{
         " [ HTML5 ] {{{
-            " ZenCoding {{{ "div#foo$*2>div.bar", "<C-Y>," || "<C-Y>n/N"
-                " The core of this plugin is a powerful abbreviation engine
-                " which allows you to expand expressions?similar to CSS
-                " selectors?into HTML code:
+            " ZenCoding {{{ powerful abbreviation engine. "<C-Y>[,vn...]"
+                " Usage: :verbose map <c-y>  --> to show all ZenCoding mappings.
                 let g:user_zen_leader_key = '<c-y>' " prefix.
-                let g:use_zen_complete_tag = 1 " complete tags using omnifunc.
+                " define tag's behavior.
+                let g:user_zen_settings = {
+                            \ 'lang': 'en',
+                            \ 'html': {
+                            \       'filters': 'html',
+                            \       'indentation': ' ',
+                            \   },
+                            \  'php' : {
+                            \    'extends' : 'html',
+                            \    'filters' : 'html,c',
+                            \   },
+                            \  'css' : {
+                            \    'filters' : 'fc',
+                            \   },
+                            \  'javascript' : {
+                            \    'snippets' : {
+                            \      'jq' : "$(function() {\n\t${cursor}${child}\n});",
+                            \      'jq:each' : "$.each(arr, function(index, item)\n\t${child}\n});",
+                            \      'fn' : "(function() {\n\t${cursor}\n})();",
+                            \      'tm' : "setTimeout(function() {\n\t${cursor}\n}, 100);",
+                            \       },
+                            \   },
+                            \ }
+                let g:use_zen_complete_tag = 1 " complete tags with omnifunc.
             " }}}
 
             " Sparkup {{{ Sparkup lets you write HTML code faster.
@@ -3884,6 +3925,10 @@ syntax on
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
 
         " vim-signature {{{ toggle, display and navigate marks.
+            " Usage:
+            "   - <Leader>ma -- toggle the mark a.
+            "   - <Leader>m, -- place the next available mark.
+            "   - <Leader>m<Space> -- delete all marks.
             let g:SignatureDefaultMappings = 1
             " let g:SignatureIncludeMarks =
             let g:SignatureWrapJumps = 1
@@ -3894,6 +3939,7 @@ syntax on
             " let g:SignatureIncludeMarkers =
             let g:SignatureDisableMenu = 0
             let g:SignatureMenuStruct = "P&lugins.&Signature"
+            let g:SignaturePurgeConfirmation = 1
         " }}}
 
         " vmark.vim_Visual_Bookmarking {{{
@@ -4381,6 +4427,16 @@ syntax on
 
             "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
             "" }}}
+        " }}}
+
+        " AmbiCompletion {{{ ambiguous word completion.
+            " complete a word with no only start-with match but also ends-with 
+            " and contains match.
+            if &completefunc == ''
+                set completefunc=g:AmbiCompletion
+            endif
+            let g:AmbiCompletion_richerSupportForMultibyte = 1
+            let g:AmbiCompletion_allBuffers = 1
         " }}}
     " }}}
 
@@ -4874,6 +4930,12 @@ syntax on
                 " :Gist -la -- list everyone's gists.
                 " :Gist +/-1 -- star the gist.
                 " :Gist --abandon -- when have problem.
+                " GitHub auth stored in ~/.gist-vim, to revoke, just remove it
+                " To make a already opened gist buffer.
+                "   - :Gist -l
+                "   - <Enter> on a file to open a gist.
+                "   - :Gist -e git@gist.github.com:3358356.git
+                "   - :w to save and update.
                 let g:gist_clip_command = 'xclip -selection clipboard' " Linux
                 let g:gist_detect_filetype = 1 " detect filetype from the filename.
                 let g:gist_open_browser_after_post = 1 " open browser after post.
