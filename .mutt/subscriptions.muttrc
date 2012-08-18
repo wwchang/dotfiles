@@ -140,8 +140,33 @@ subscribe vim-multibyte Vim-multibyte <vim-multibyte@vim.org>
 subscribe vimwiki Vim.vimwiki <vimwiki@googlegroups.com>
 subscribe eclim Vim.eclim <eclim-user@googlegroups.com>
 
+# [ Git ]
+subscribe -group Git <git@vger.kernel.org>
+subscribe -group GotGit gotgit@googlegroups.com got-users@googlegroups.com
 
-# [ Mutt ]
+# Apps
+# tmux
+subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>
+# screen
+subscribe screen screen <screen-users@gnu.org>
+# WindowsManager
+# Awesome
+subscribe awesome Awesome <awesome@naquadah.org>
+# FVWM
+subscribe fvwm FVWM <fvwm@fvwm.org>
+# Wayland
+subscribe wayland Wayland <wayland-devel@list.freedesktop.org>
+# text-based browser
+# w3m
+subscribe w3m w3m-dev-en <w3m-dev-en@sic.med.tohoku.ac.jp>
+# elinks
+subscribe elinks elinks-users <elinks-users@linuxfromscratch.org>
+# pwmt.org ( jumanji, zathura )
+subscribe jumanji jumanji <jumanji@lists.pwmt.org>
+subscribe zathura zathura <zathura@lists.pwmt.org>
+# urxvt rxvt-unicode
+subscribe urxvt rxvt-unicode <rxvt-unicode@lists.schmorp.de>
+# Mutt
 subscribe mutt mutt-users <mutt-users@mutt.org>
 # mairix
 subscribe mairix mairix <mairix-users@lists.sourceforge.net>
@@ -149,52 +174,20 @@ subscribe mairix mairix <mairix-users@lists.sourceforge.net>
 subscribe procmail procmail <procmail@informatik.RWTH-Aachen.de>
 # getmail
 subscribe getmail getmail <getmail@lists.pyropus.ca>
-
-# [ WeeChat ]
+# WeeChat
 subscribe weechat weechat <weechat-support@nongnu.org>
-
-# [ MLDonkey ]
+# MLDonkey
 subscribe mldonkey MLdonkey <mldonkey-users@nongnu.org>
-
-# [ Ranger ]
+# Ranger
 subscribe ranger ranger-users <ranger-users@nongnu.org>
-
-# [ Git ]
-subscribe -group Git <git@vger.kernel.org>
-subscribe -group GotGit gotgit@googlegroups.com got-users@googlegroups.com
-
-# pwmt.org ( jumanji, zathura )
-subscribe jumanji jumanji <jumanji@lists.pwmt.org>
-subscribe zathura zathura <zathura@lists.pwmt.org>
-
-# text-based browser
-# [ w3m ]
-subscribe w3m w3m-dev-en <w3m-dev-en@sic.med.tohoku.ac.jp>
-# [ elinks ]
-subscribe elinks elinks-users <elinks-users@linuxfromscratch.org>
-# [ urxvt ] rxvt-unicode
-subscribe urxvt rxvt-unicode <rxvt-unicode@lists.schmorp.de>
-
-# WindowsManager
-# [ Awesome ]
-subscribe awesome Awesome <awesome@naquadah.org>
-# [ FVWM ]
-subscribe fvwm FVWM <fvwm@fvwm.org>
-# [ Wayland ]
-subscribe wayland Wayland <wayland-devel@list.freedesktop.org>
-
-# [ tmux ]
-subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>
-# [ screen ]
-subscribe screen screen <screen-users@gnu.org>
-
-# [ Conky ]
-subscribe conky Conky <conky-users@lists.sourceforge.net>
-
-# ledger
-subscribe ledger ledger-cli <ledger-cli@googlegroups.com>
-
 # jekyll
 subscribe jekyll jekyll <jekyll-rb@googlegroups.com>
+# ledger
+subscribe ledger ledger-cli <ledger-cli@googlegroups.com>
+# Conky
+subscribe conky Conky <conky-users@lists.sourceforge.net>
+# Byzantium
+subscribe Byzantium Byzantium <byzantium@hacdc.org>
+
 
 # vim:ft=muttrc

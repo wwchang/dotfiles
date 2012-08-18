@@ -144,7 +144,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     | lbdb-fetchaddr
 # }}}
 
-# notify my emails {{{
+# [ notify my emails ] {{{
     # execute a script without affect delivering.
 
     # get the subject into a variable
@@ -158,11 +158,12 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^References:.*@stardiviner
     * ^Subject:.*\/.*
     {
+        # TODO covert some chaos encoding string into correct text.
         SUBJECT=$MATCH
 
         :0 ih
         * ^From: .*\/[^<]*
-        | export DISPLAY=:0 ; $NOTIFY "Email: From $MATCH" "Subject: $SUBJECT"
+        | export DISPLAY=:0 ; $NOTIFY "Email: From $MATCH" "Subject: $SUBJECT" ; echo "$MATCH: $SUBJECT" >> ${HOME}/Templates/procmail-notify.log
     }
 
     # mail from myself (to a mailing list)
@@ -174,7 +175,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
         :0 ih
         * ^To: .*\/[^<]*
-        | export DISPLAY=:0 ; $NOTIFY "Email: Your Email to $MATCH send successed" "Subject: $SUBJECT"
+        | export DISPLAY=:0 ; $NOTIFY "Email: Your Email to $MATCH send successed" "Subject: $SUBJECT" ; echo "$MATCH: $SUBJECT" >> ${HOME}/Templates/procmail-notify.log
     }
 
     # emails from GitHub comment notify
@@ -541,6 +542,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*ledger-cli\.googlegroups\.com
     apps/ledger/
+    :0
+    * ^To: .*byzantium@hacdc\.org
+    apps/Byzantium/
 # }}}
 
 # GNU {{{
