@@ -1267,7 +1267,7 @@ endif
             call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
                 " outliner
             " call vam#ActivateAddons(['HyperList'])
-            call vam#ActivateAddons(['VOoM'])
+            " call vam#ActivateAddons(['VOoM'])
                 " TeX & LaTeX
             " call vam#ActivateAddons(['auctex'])
             " call vam#ActivateAddons(['TeX_9'])
