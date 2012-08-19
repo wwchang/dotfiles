@@ -2927,6 +2927,15 @@ syntax on
         " }}}
 
         " patchreview : allows easy single or multipatch code or diff reviews.
+            " Usage:
+            " - :DiffReview
+            "   -- reviewing current changes in your workspace.
+            " - :DiffReview git staged --no-color -U5
+            "   -- reviewing staged git changes.
+            " - :PatchReview some.patch
+            "   -- reviewing a patch.
+            " - :ReversePatchReview some.patch
+            "   -- reviewing a previously applied patch.
     " }}}
 
     " [ FileManager ] {{{ F11
