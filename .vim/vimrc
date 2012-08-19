@@ -328,6 +328,11 @@
     set ttimeout
     set ttimeoutlen=-1
     " }}}
+
+    " [ match pairs ] {{{
+    set matchpairs=(:),{:},[:]
+    set matchtime=5
+    " }}}
 " }}}
 
 " [[ Gvim ]] {{{
