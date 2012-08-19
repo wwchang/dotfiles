@@ -1229,9 +1229,9 @@ endif
             " call vam#ActivateAddons(['vroom'])
             " call vam#ActivateAddons(['RbREPL'])
                 " Lisp
-            " call vam#ActivateAddons(['slimv'])
-            " call vam#ActivateAddons(['Lisper'])
-            " call vam#ActivateAddons(['paredit'])
+            call vam#ActivateAddons(['slimv'])
+            call vam#ActivateAddons(['Lisper'])
+            call vam#ActivateAddons(['paredit'])
                 " Scheme
                 " C C++
             call vam#ActivateAddons(['clang_complete'])
