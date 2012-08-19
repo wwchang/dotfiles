@@ -143,6 +143,7 @@ mailboxes =apps/ledger
 mailboxes =apps/pandoc
 mailboxes =apps/mosh
 mailboxes =apps/urxvt
+mailboxes =apps/Byzantium
 mailboxes =apps/gitit
 
 mailboxes =censorship

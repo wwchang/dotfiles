@@ -55,6 +55,7 @@ NOTE:
 <Esc-k> -- mail a PGP public key to someone.
 <C-k> -- extra public key from message, and add them into your public key ring.
 R -- re-call postponed mail.
+a -- add sender into mutt aliases. (alias)
 A -- add send to abook (abook)
 <C-a> -- launch abook (abook)
 <,f> -- fetch new messages (getmail)

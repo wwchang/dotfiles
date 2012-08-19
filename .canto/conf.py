@@ -29,78 +29,82 @@ never_discard("unread") # you can specify a tag like "Slashdot"
 
 default_rate(100)
 # Program {{{
-add("https://github.com/NagatoPain.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f", tags=[None, "github", "git", "update"]) # my personal GitHub feeds
+add("https://github.com/NagatoPain.private.atom?token=2896ad0673745109bd5b4ed1ab31e21f", tags=[None, "github", "update"]) # my personal GitHub feeds
 # }}}
 
 default_rate(500)
 # projects release {{{
-add("http://codezen.org/canto/feeds/latest", tags=[None, "update", "Canto"]) # Canto update News
-add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "Ruby", "lang"]) # Ruby language
-add("http://blog.golang.org/feeds/posts/default", tags=[None, "Go", "lang"]) # Go lang
-add("http://feeds.feedburner.com/GoLangTutorials", tags=[None, "program", "Go"]) # GoLang Tutorials
-add("http://feeds.feedburner.com/dartosphere", tags=[None, "Dart", "lang"]) # Dart lang
-add("http://news.dartlang.org/feeds/posts/default", tags=[None, "Dart", "lang"]) # Dart news
-add("http://www.backtrack-linux.org/feed/", tags=[None, "hack", "BackTrack"]) # BackTrack official blog.
-# add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "BackTrack", "Linux", "distro", "Crack", "Hack"]) # BackTrack Linux Atom 3
-# add("http://www.backtrack-linux.org/feed/", tags=[None, "BackTrack", "Linux", "distro", "Crack", "Hack"]) # BackTrack Linux RSS 2
-add("http://awesome.naquadah.org/w/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "Awesome", "WM"]) # Awesome Wiki Updates
-add("http://blog.getfirebug.com/feed/", tags=[None, "firebug"]) # Firebug
-add("http://feed43.com/vim-scripts.xml", tags=[None, "vim", "script", "plugin"]) # Vim scripts update
-add("http://definitely-awesome.posterous.com/rss.xml", tags=[None, "Awesome"]) # definitely Awesome
+add("http://codezen.org/canto/feeds/latest", tags=[None, "update"]) # Canto update News
+add("https://github.com/blog.atom", tags=[None, "update", "github"]) # Github Blog
+add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "update", "lang"]) # Ruby language
+add("http://blog.golang.org/feeds/posts/default", tags=[None, "update", "lang"]) # Go lang
+add("http://feeds.feedburner.com/GoLangTutorials", tags=[None, "update", "Go"]) # GoLang Tutorials
+add("http://feeds.feedburner.com/dartosphere", tags=[None, "update", "lang"]) # Dart lang
+add("http://news.dartlang.org/feeds/posts/default", tags=[None, "update", "lang"]) # Dart news
+add("http://www.backtrack-linux.org/feed/", tags=[None, "update", "BackTrack"]) # BackTrack official blog.
+# add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "update", "BackTrack"]) # BackTrack Linux Atom 3
+# add("http://www.backtrack-linux.org/feed/", tags=[None, "update", "BackTrack"]) # BackTrack Linux RSS 2
+add("http://awesome.naquadah.org/w/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "update", "Awesome"]) # Awesome Wiki Updates
+add("http://definitely-awesome.posterous.com/rss.xml", tags=[None, "update", "Awesome"]) # definitely Awesome
+add("http://blog.getfirebug.com/feed/", tags=[None, "update", "firebug"]) # Firebug
+add("http://feed43.com/vim-scripts.xml", tags=[None, "update", "vim", "script", "plugin"]) # Vim scripts update
 add("http://blog.conky.be/feed/", tags=[None, "update"]) # Conky Blog
 add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat update
 add("http://dev.weechat.org/feed/atom", tags=[None, "update"]) # weechat dev annonce
 add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat scripts
 add("http://dev.mutt.org/hg/mutt/rss-log", tags=[None, "update"]) # Mutt dev
-add("http://pwmt.org/rss.xml", tags=[None, "pwmt"]) # pwmt.org
-add("http://feeds2.feedburner.com/css3", tags=[None, "CSS3", "CSS", "Web"]) # CSS3 .info
-add("http://www.backbox.org/blog/feed", tags=[None, "distro"]) # BackBox
-add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "ipv6"]) # Miredo
-# add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # " Tor announce"
+add("http://pwmt.org/rss.xml", tags=[None, "update"]) # pwmt.org
+add("http://feeds2.feedburner.com/css3", tags=[None, "update", "CSS", "Web"]) # CSS3 .info
+add("http://www.backbox.org/blog/feed", tags=[None, "update", "BackBox"]) # BackBox
+add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "update"]) # Miredo
+# add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # Tor announce
+add("http://project-byzantium.org/feed/", tags=[None, "update"]) # Project Byzantium: Ad-hoc wireless mesh networking for the zombie apocalypse.
 # }}}
 
 default_rate(600)
 # Python {{{
 add("http://www.pythonware.com/daily/rss.xml", tags=[None, "program", "Python"]) # Daily Python-URL!
 add("http://pythonnotes.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "program", "Python"]) # Python Notes
-add("http://neopythonic.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "Python"]) # Neopythonic -> Python's BDFL (Guido van Rossum)
+add("http://neopythonic.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "program", "Python"]) # Neopythonic -> Python's BDFL (Guido van Rossum)
 # }}}
 
 default_rate(100)
 # Subscribes {{{
-add("http://dev.open.taobao.com/bbs/rss.php?fid=2", tags=[None, "work", "taobao", "dev"]) # TaoBao Developer forums
-add("http://ued.taobao.com/blog/feed/", tags=[None, "work", "taobao", "News"]) # TaoBao UED
-add("http://hacks.mozilla.org/feed/", tags=[None, "web", "mozilla"]) # " hacks.mozilla"
-add("https://github.com/blog.atom", tags=[None, "update", "git", "feature", "blog"]) # " Github Blog"
-# add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # " maemo latest news
-# add("http://maemo.org/news/items.xml", tags=[None, "maemo"]) # " maemo news"
-# add("http://feeds.feedburner.com/37signals_podcast") # " 37singles Podcast"
-add("http://www.hackthissite.org/pages/hts.rss.php", tags=[None, "hack"]) # " hackthissite RSS"
-add("http://ninlands.diandian.com/rss", tags=[None, "JiuZhou", "Novel", "books"]) # 九州 点点官方
-add("http://feed.feedsky.com/heikezhi", tags=[None, "hack", "ebook"]) # " 黑客志 hack news"
+add("http://dev.open.taobao.com/bbs/rss.php?fid=2", tags=[None, "subscribe", "taobao"]) # TaoBao Developer forums
+add("http://ued.taobao.com/blog/feed/", tags=[None, "subscribe", "taobao"]) # TaoBao UED
+add("http://hacks.mozilla.org/feed/", tags=[None, "subscribe", "web", "mozilla"]) # hacks.mozilla
+# add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # maemo latest news
+# add("http://maemo.org/news/items.xml", tags=[None, "maemo"]) # maemo news
+# add("http://feeds.feedburner.com/37signals_podcast") # 37singles Podcast
+add("http://www.hackthissite.org/pages/hts.rss.php", tags=[None, "subscribe"]) # hackthissite RSS
+add("http://ninlands.diandian.com/rss", tags=[None, "subscribe"]) # 九州 点点官方
+add("http://feed.feedsky.com/heikezhi", tags=[None, "subscribe"]) # 黑客志 hack news
+# add("http://kerneltrap.org/node/feed", tags=[None, "subscribe", "kernel"]) # kerneltrap
+# add("http://www.thegeekstuff.com/feed", tags=[None, "subscribe", "geek"]) # The Geek Stuff
+# add("http://feeds.howtogeek.com/HowToGeek", tags=[None, "subscribe", "geek"]) # How To Geek
 # }}}
 
 default_rate(300)
 # Blog {{{
 add("http://www.altdevblogaday.com/feed/", tags=[None, "blog"]) # altdevblogaday
-add("http://blog.stackoverflow.com/feed/", tags=[None, "StackExchange", "blog"]) # Stack Exchange Blog
-add("http://blog.binux.me/feed/", tags=[None, "hack"]) # Blinux.
-# add("http://igfw.net/feed", tags=[None, "censorship"]) # iGFW
-add("http://instagram-engineering.tumblr.com/rss", tags=[None, "server"]) # Instagram Tech Blog
-add("http://blog.csdn.net/pongba/rss/list", tags=[None, "C++", "blog"]) # pngba C++ blog
+add("http://blog.stackoverflow.com/feed/", tags=[None, "blog"]) # Stack Exchange Blog
+add("http://blog.binux.me/feed/", tags=[None, "blog"]) # Blinux.
+# add("http://igfw.net/feed", tags=[None, "blog", "censorship"]) # iGFW
+add("http://instagram-engineering.tumblr.com/rss", tags=[None, "blog"]) # Instagram Tech Blog
+add("http://blog.csdn.net/pongba/rss/list", tags=[None, "blog"]) # pngba C++ blog
 add("http://feeds.feedburner.com/codinghorror", tags=[None, "blog"]) # Coding Horror
 add("http://feeds.feedburner.com/html5rocks", tags=[None, "blog"]) # HTML5 Rocks
 add("http://tomayko.com/feed/", tags=[None, "blog"]) # tomayko Blog
 add("http://newartisans.com/feed/", tags=[None, "blog"]) # Lost in Technopolis
 add("http://luy.li/feed/", tags=[None, "blog"]) # Lazy Bones
-add("http://pbrisbin.com/feed", tags=[None, "hack", "blog"]) # pbrisbin Blog
+add("http://pbrisbin.com/feed", tags=[None, "blog"]) # pbrisbin Blog
 add("http://apt-blog.net/feed", tags=[None, "blog"]) # apt-blog Blog cn
-add("http://feeds2.feedburner.com/WebDesignerWall", tags=[None, "web", "program"]) # Web Designer Wall
+add("http://feeds2.feedburner.com/WebDesignerWall", tags=[None, "blog"]) # Web Designer Wall
 add("http://feeds2.feedburner.com/stevelosh", tags=[None, "blog"]) # stevelosh Blog
 add("http://feeds.feedburner.com/catswhocode", tags=[None, "blog"]) # CatsWhoCode.com
 add("http://program-think.blogspot.com/feeds/posts/default", tags=[None, "blog"]) # Program Think
-add("http://feeds.feedburner.com/ruanyifeng", tags=[None, "blog"]) # " RuanYiFeng Blog"
-add("http://feed.tmdsb.com/", tags=[None, "blog"]) # " Goo Blog"
+add("http://feeds.feedburner.com/ruanyifeng", tags=[None, "blog"]) # RuanYiFeng Blog
+add("http://feed.tmdsb.com/", tags=[None, "blog"]) # Goo Blog
 add("http://www.matrix67.com/blog/feed/atom", tags=[None, "blog"]) # Matric Math
 add("http://coolshell.cn/?feed=rss2", tags=[None, "blog"]) # Cool shell
 add("http://feed.williamlong.info/", tags=[None, "blog"]) # Moonlight Blog
@@ -110,60 +114,57 @@ add("http://feeds.feedburner.com/softwaretechandmore", tags=[None, "blog"]) # SK
 add("http://feed.feedsky.com/taoofsource", tags=[None, "blog"]) #
 add("https://www.hackbloc.org/rss.xml", tags=[None, "blog"]) # hackbloc.org
 add("http://confusedfly.yo2.cn/feed", tags=[None, "blog"])
-add("http://LaTex.yo2.cn/feed", tags=[None, "blog"]) # " LaTex chinese Blog"
-add("http://blog.ibeini.com/feed", tags=[None, "blog"]) # "ibeini Blog ("hack")"
-add("https://www.csslayer.info/wordpress/feed/", tags=[None, "blog"]) # "CSSlayer Blog"
+add("http://LaTex.yo2.cn/feed", tags=[None, "blog"]) # LaTex chinese Blog
+add("http://blog.ibeini.com/feed", tags=[None, "blog"]) # ibeini Blog ("hack")
+add("https://www.csslayer.info/wordpress/feed/", tags=[None, "blog"]) # CSSlayer Blog
 add("http://whileimautomaton.net/rss.rdf", tags=[None, "blog"]) # while ("im automaton");
 add("http://www.gregsexton.org/feed/", tags=[None, "blog"]) # gregsexton.org
 # }}}
 
 default_rate(100)
 # Podcasts {{{
-add("http://usesthis.com/feed/", tags=[None, "geek", "software", "setup"]) # The Setup
-add("http://setup.xiuxiu.de/feed/", tags=[None, "geek", "setup"]) # The Setup (Chinese)
-add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast", "vim"]) # " Vimcasts OGG Feed"
-add("http://feeds.feedburner.com/voa", tags=[None, "podcast", "english"]) # VOA special English Podcasts"
-add("http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg", tags=[None, "podcast"]) # " Fosscasts Podcasts"
-add("http://feeds.feedburner.com/tedtalks_video", tags=[None, "podcast", "TED"]) # " TED Talks"
+add("http://usesthis.com/feed/", tags=[None, "podcast"]) # The Setup
+add("http://setup.xiuxiu.de/feed/", tags=[None, "podcast"]) # The Setup (Chinese)
+add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast"]) # Vimcasts OGG Feed
+add("http://feeds.feedburner.com/voa", tags=[None, "podcast"]) # VOA special English Podcasts"
+add("http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg", tags=[None, "podcast"]) # Fosscasts Podcasts
+add("http://feeds.feedburner.com/tedtalks_video", tags=[None, "podcast", "TED"]) # TED Talks
 # add("http://feeds2.feedburner.com/ShowmedoBlog", tags=[None, "podcast"]) # ShowMeDo
 add("http://showmedo.com/latestVideoFeed/rss2.0", tags=[None, "podcast"]) # ShowMeDo
 # add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Python", tags=[None, "podcast"]) # ShowMeDo Python
 # add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Ruby", tags=[None, "podcast"]) # ShowMeDo Ruby
 # add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Beginner_Programming", tags=[None, "podcast"]) # ShowMeDo Beginner Programming
-add("http://xkcd.com/rss.xml", tags=[None, "xkcd", "comic"]) # xkcd.com
+add("http://xkcd.com/rss.xml", tags=[None, "podcast", "comic"]) # xkcd.com
 # }}}
 
 default_rate(60)
 # NEWS {{{
-# add("http://news.ycombinator.com/rss", tags=[None, "news", "hack"]) # " Hacker News"
-# add("http://rss.slashdot.org/slashdot/Slashdot", keep=200, tags=[None, "news", "Slashdot"]) # " Slashdot"
+# add("http://news.ycombinator.com/rss", tags=[None, "news"]) # Hacker News
+# add("http://rss.slashdot.org/slashdot/Slashdot", keep=200, tags=[None, "news", "slashdot"]) # Slashdot
 # add("http://slashdot.org/index.rss", tags=[None, "news", "slashdot"]) # Slashdot
 # add("http://reddit.com/.rss", tags=[None, "news", "reddit"]) # Reddit
-add("http://feeds2.feedburner.com/solidot", tags=[None, "news", "Solidot"]) # Solidot
-add("http://linuxtoy.org/feed/", tags=[None, "news"]) # " LinuxToy"
+add("http://feeds2.feedburner.com/solidot", tags=[None, "news", "solidot"]) # Solidot
+add("http://linuxtoy.org/feed/", tags=[None, "news"]) # LinuxToy
 # add("http://feeds.geekpark.net/", tags=[None, "news"]) # 极客公园
-# add("http://kerneltrap.org/node/feed", tags=[None, "kernel"]) # kerneltrap
-# add("http://www.thegeekstuff.com/feed", tags=[None, "computer", "geek"]) # " The Geek Stuff"
-# add("http://feeds.howtogeek.com/HowToGeek", tags=[None, "computer", "geek"]) # How To Geek
-add("http://blog.jobbole.com/feed/", tags=[None, "news", "geek"]) # " Jobbole
+add("http://blog.jobbole.com/feed/", tags=[None, "news"]) # Jobbole 伯乐
 add("http://feeds.feedburner.com/emule-fans", tags=[None, "news"]) # eMule Fans
-# add("http://lwn.net/headlines/newrss", tags=[None, "linux", "news"]) # LWN.net
+# add("http://lwn.net/headlines/newrss", tags=[None, "news"]) # LWN.net
 # }}}
 
 default_rate(600)
 # ebooks {{{
-add("http://www.ppurl.com/feed", tags=[None, "ebook", "IT"]) # "PiPi ebooks.
-add("http://feeds.feedburner.com/FreeComputerBooks", tags=[None, "ebook", "program"]) # OnlineProgrammingBooks.com
-add("http://book.zi5.me/feed", tags=[None, "ebook"]) # " ZhiJian book house ("eBook")"
+add("http://www.ppurl.com/feed", tags=[None, "ebook"]) # PiPi ebooks.
+add("http://feeds.feedburner.com/FreeComputerBooks", tags=[None, "ebook"]) # OnlineProgrammingBooks.com
+add("http://book.zi5.me/feed", tags=[None, "ebook"]) # ZhiJian book house ("eBook")
 # }}}
 
 default_rate(600)
 # Crack {{{
 add("http://www.breakthesecurity.com/feeds/posts/default?alt=rss", tags=[None, "crack"]) # Ethical Hacking Tutorials | Learn How to Hack
-add("http://pcsci3nce.info/?feed=rss2", tags=[None, "crack", "hack"]) # pcsci3nce
-add("http://feeds.feedburner.com/HackingWifi", tags=[None, "crack", "hack"]) # Hacking Wifi
-add("http://www.dc949.org/news/rss.php", tags=[None, "crack", "blog"]) # DC949 News
-add("http://homepages.tu-darmstadt.de/~p_larbig/wlan/", tags=[None, "crack", "hack"]) # wlan inject etc dev
+add("http://pcsci3nce.info/?feed=rss2", tags=[None, "crack"]) # pcsci3nce
+add("http://feeds.feedburner.com/HackingWifi", tags=[None, "crack"]) # Hacking Wifi
+add("http://www.dc949.org/news/rss.php", tags=[None, "crack"]) # DC949 News
+add("http://homepages.tu-darmstadt.de/~p_larbig/wlan/", tags=[None, "crack"]) # wlan inject etc dev
 # }}}
 
 # ---------------------------------------------------------------
@@ -471,8 +472,11 @@ filters = [show_unread, all_of(with_tag_in("update"), show_unread), \
 #add_tag("blogs", ...parameters...)
 # These definitions can come before or after you use them in add calls.
 #add_tag("update", filters=[with_tag_in("update")])
+add_tag("news", sort=[reverse_sort(by_date)])
 add_tag("update", sort=[reverse_sort(by_date)])
-add_tag("git", sort=[reverse_sort(by_date)])
+add_tag("podcast", sort=[reverse_sort(by_date)])
+add_tag("blog", sort=[by_content])
+add_tag("ebook", sort=[reverse_sort(by_date)])
 add_tag("hack", sort=[by_content])
 add_tag("crack", sort=[by_content])
 add_tag("vim", sort=[by_content])
@@ -480,12 +484,8 @@ add_tag("program", sort=[None])
 add_tag("web", sort=[None])
 add_tag("linux", sort=[None])
 add_tag("commandline", sort=[by_content])
-add_tag("tool", sort=[by_content])
 add_tag("maemo", sort=[None])
 add_tag("english", sort=[by_content])
-add_tag("news", sort=[reverse_sort(by_date)])
-add_tag("podcast", sort=[reverse_sort(by_date)])
-add_tag("blog", sort=[by_content])
 # }}}
 
 # [ Tags Filters ] {{{

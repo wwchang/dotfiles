@@ -200,7 +200,7 @@
 
 # Negative Mailboxes, Index, etc
 # toggle mailbox/folder list.
-macro index,pager C "<change-folder>?<toggle-mailboxes>" "open a different mailbox/folder"
+macro index,pager c "<change-folder>?<toggle-mailboxes>" "open a different mailbox/folder"
 
 # quick jump to mailbox/folder
 macro index gi "<change-folder>=INBOX<enter>" "Go to inbox"
@@ -230,9 +230,9 @@ macro index <Tab> "<search>~U<enter>" "jump to first unread mail"
 
 # copy/move/attach emails
 # To additionally get straight to the folder browser when copying, moving and attaching mail, add the following macros:
-macro index c "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
-macro index m "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
-macro index b "<bounce-message>?<toggle-mailboxes>" "bounce a message to another user"
+macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+macro index S "<save-message>?<toggle-mailboxes>" "save a message to a mailbox"
+macro index B "<bounce-message>?<toggle-mailboxes>" "bounce a message to another user"
 macro compose A "<attach-message>?<toggle-mailboxes>" "attach message(s) to this message"
 
 # Trash
@@ -246,7 +246,7 @@ folder-hook =Trash 'macro index,pager d <delete-message>'
 
 # mail address {{{
 # mutt alias
-# macro generic,index,pager a "<creat-alias>" "creat an alias from a message sender"
+# macro index,pager a "<creat-alias>" "creat an alias from a message sender"
 
 # [ abook ]
 #address book related

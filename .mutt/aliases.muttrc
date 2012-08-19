@@ -348,4 +348,7 @@ alias psiphon3 psiphon3 <get@psiphon3.com>
 alias HackTheFuture Hack The Future <sean@hackthefuture.org>
 alias ph4nt0m ph4nt0m <ph4nt0m@googlegroups.com>
 
+# Apps
+alias byzantium Byzantium <byzantium@hacdc.org>
+
 # vim:ft=muttrc

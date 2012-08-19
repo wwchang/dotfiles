@@ -1669,12 +1669,20 @@ root.buttons(awful.util.table.join(
 
         -- Firefox
         {
-            rule = { class = "Firefox", instance = "Navigator" },
+            rule = { class = "Firefox", instance = "Navigator", role = "browser" },
             properties = {
                 maximized_horizontal = true,
                 maximized_vertical = true,
                 floating = false,
                 tag = tags[1][7],
+            }
+        },
+        -- Firefox extension DownloadThemAll! Scheduler auto open.
+        {
+            rule = { class = "Firefox", instance = "DTA", role = "Manager" },
+            properties = {
+                floating = false,
+                tag = tags[1][8],
             }
         },
         -- Chromium

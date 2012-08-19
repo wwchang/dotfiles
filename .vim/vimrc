@@ -225,7 +225,6 @@
         " [ match ]
         set showmatch
         set matchpairs+=<:>
-        " }}}
     " }}}
 
     " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
@@ -329,12 +328,17 @@
     set ttimeout
     set ttimeoutlen=-1
     " }}}
+
+    " [ match pairs ] {{{
+    set matchpairs=(:),{:},[:]
+    set matchtime=5
+    " }}}
 " }}}
 
 " [[ Gvim ]] {{{
 " :help gui.txt :help gui_x11.txt
     " $MYGVIMRC
-if has('gui_running')
+if has('gui') && has('gui_running')
     " [ looks ] {{{
     set guioptions+=a " autoselect for pasting
     set guioptions+=c " use vim's console dialogs.
@@ -404,7 +408,13 @@ endif
         " showbreak: "↪ ", "> ", "+++ ",
         " ------------------------------------------
     set fillchars=vert:│,fold:┄,diff:×
-    set list listchars=tab:\ \ ,trail:\·,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠
+    set list
+    set listchars=tab:\ \ , " use whitespace to hide tab.
+                \trail:\·, " trailing line whitespaces
+                \extends:\◂,
+                \precedes:\▸,
+                \nbsp:\✖, " non-breakable space.
+                \conceal:≠ " conceal symbol.
     nnoremap <silent> <Leader>lc :set nolist!<CR>
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
@@ -510,13 +520,8 @@ endif
     " }}}
 
     " [ current line ] {{{
-    augroup CursorLineColumn
-        au!
-        au InsertEnter * setlocal nocursorline cursorcolumn
-        au InsertLeave * setlocal cursorline nocursorcolumn
-        " au BufEnter * setlocal cursorline nocursorcolumn
-        " au BufLeave * setlocal nocursorline nocursorcolumn
-    augroup END
+    set cursorline
+    " plugin: ~/.vim/plugin/CursorLineCurrentWindow.vim
     " }}}
 
     " [ syntax & highlight ] {{{
@@ -582,15 +587,18 @@ endif
     " }}}
 
     " [ balloon ] {{{
-    set balloondelay=600
-    function! MyBalloonExpr()
-        return 'Cursor is at line ' . v:beval_lnum .
-                    \', column ' . v:beval_col .
-                    \ ' of file ' .  bufname(v:beval_bufnr) .
-                    \ ' on word "' . v:beval_text . '"'
-    endfunction
-    set bexpr=MyBalloonExpr()
-    set ballooneval
+    if has('balloon_eval')
+        set ballooneval
+        set balloondelay=600
+
+        function! MyBalloonExpr()
+            return 'Cursor is at line ' . v:beval_lnum .
+                        \', column ' . v:beval_col .
+                        \ ' of file ' .  bufname(v:beval_bufnr) .
+                        \ ' on word "' . v:beval_text . '"'
+        endfunction
+        set bexpr=MyBalloonExpr()
+    endif
     " }}}
 
     " [ title ] {{{
@@ -885,24 +893,6 @@ endif
     endf
     " }}}
 
-        function! ResizeWindowSize()
-            let choose_window_change = input("change window height or width: (h/w)")
-            if choose_window_change == "h"
-                let new_win_height = input("change height (".winheight(0).") into : ")
-                exec 'resize' . new_win_height
-            elseif choose_window_change == "w"
-                let new_win_width = input("change width (".winwidth(0).") into : ")
-                exec 'resize' . new_win_width
-            endif
-        endfunction
-        " nnoremap <C-w>- :call ResizeWindowSize()
-" }}}
-
-" [[ ftplugin ]] {{{
-    " ~/.vim/ftplugin/<filetype>.vim
-    " ~/.vim/ftplugin/<filetype>/<name>.vim
-    " ~/.vim/ftplugin/<filetype>_<name>.vim
-
 " }}}
 
 " [[ Misc ]] {{{
@@ -1079,7 +1069,9 @@ endif
             call vam#ActivateAddons(['tagbar-phpctags'])
             "call vam#ActivateAddons(['taglist'])
             call vam#ActivateAddons(['TagHighlight'])
-            " call vam#ActivateAddons(['Tag_Signature_Balloons'])
+            if has('gui') && has('gui_running')
+                call vam#ActivateAddons(['Tag_Signature_Balloons'])
+            endif
             call vam#ActivateAddons(['AutoTag'])
             " call vam#ActivateAddons(['taggatron'])
                 " cscope
@@ -1105,8 +1097,8 @@ endif
                 " Debugger
             " call vam#ActivateAddons(['GdbFromVim'])
             " call vam#ActivateAddons(['gdbmgr'])
-            call vam#ActivateAddons(['Vdebug'])
-            call vam#ActivateAddons(['VimDebug'])
+            " call vam#ActivateAddons(['Vdebug'])
+            " call vam#ActivateAddons(['VimDebug'])
                 " task list
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
@@ -1141,10 +1133,9 @@ endif
             call vam#ActivateAddons(['Gundo'])
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
-                "
             call vam#ActivateAddons(['endwise'])
-                " Swap True False etc
             call vam#ActivateAddons(['SwapIt'])
+            call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
@@ -1224,9 +1215,9 @@ endif
             " call vam#ActivateAddons(['vroom'])
             " call vam#ActivateAddons(['RbREPL'])
                 " Lisp
-            " call vam#ActivateAddons(['slimv'])
-            " call vam#ActivateAddons(['Lisper'])
-            " call vam#ActivateAddons(['paredit'])
+            call vam#ActivateAddons(['slimv'])
+            call vam#ActivateAddons(['Lisper'])
+            call vam#ActivateAddons(['paredit'])
                 " Scheme
                 " C C++
             call vam#ActivateAddons(['clang_complete'])
@@ -1263,7 +1254,7 @@ endif
             call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
                 " outliner
             " call vam#ActivateAddons(['HyperList'])
-            call vam#ActivateAddons(['VOoM'])
+            " call vam#ActivateAddons(['VOoM'])
                 " TeX & LaTeX
             " call vam#ActivateAddons(['auctex'])
             " call vam#ActivateAddons(['TeX_9'])
@@ -1944,7 +1935,7 @@ syntax on
             elseif has('python')
                 let g:UltiSnipsUsePythonVersion = 2 " use python 2.X
             endif
-            let g:snips_author = 'stardiviner'
+            let g:snips_author = 'stardiviner <numbchild@gmail.com>'
             let g:UltiSnipsEditSplit = "horizontal" " normal, horizontal, vertical.
             " let g:UltiSnipsSnippetDirectories=["UltiSnips", "snippets/UltiSnips"]
             " do not use snippets come with UltiSnips.
@@ -2722,6 +2713,10 @@ syntax on
     " }}}
 
     " [ Debugger ] {{{
+        " Vdebug : Multi-language DBGP protocol debugger client for Vim.
+
+        " VimDebug : Integrate your debugger with Vim.
+
         " GdbFromVim {{{ debug your applications with gdb from Vim.
             " let g:gdb_from_vim_app = 'applications'
             " let g:gdb_from_vim_args = 'arguments'
@@ -2729,10 +2724,6 @@ syntax on
 
         " gdbmgr {{{ Vim interface to gdb.
         " }}}
-
-        " Vdebug : Multi-language DBGP debugger client for Vim.
-
-        " VimDebug : Integrate your debugger with Vim.
     " }}}
 
     " [ Compiler ] {{{ <F10>
@@ -2913,6 +2904,15 @@ syntax on
         " }}}
 
         " patchreview : allows easy single or multipatch code or diff reviews.
+            " Usage:
+            " - :DiffReview
+            "   -- reviewing current changes in your workspace.
+            " - :DiffReview git staged --no-color -U5
+            "   -- reviewing staged git changes.
+            " - :PatchReview some.patch
+            "   -- reviewing a patch.
+            " - :ReversePatchReview some.patch
+            "   -- reviewing a previously applied patch.
     " }}}
 
     " [ FileManager ] {{{ F11
@@ -3005,7 +3005,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ projects ] {{{
+    " [ Tools ] {{{
         " TagmaTasks {{{
             " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
             " :TagmaTasksClear, :TagmaTasksToggle
@@ -3028,9 +3028,30 @@ syntax on
             let g:tlRememberPosition = 1
             let g:tlTokenList = ["FIXME", "BUG", "TODO", "XXX", "FUCK"]
         " }}}
-    " }}}
 
-    " [ Author Info ] {{{
+        " endwise : end certain structures automatically. if, do, def ...
+
+        " Rainbow_Parentheses_Improved {{{
+            " show different level of parentheses in different color.
+            " support 4 kinds of parentheses' highlighting:
+            " ( ), [ ], { }, < >
+            " add with: rainbow_parentheses#load(type, max)
+            " this #load() function will auto call #activate() function.
+            au syntax * cal rainbow_parentheses#activate()
+            " e.g. au syntax * call rainbow_parentheses#load('([' , 32)
+        " }}}
+
+        " SwapIt {{{ <C-A>, <C-X>
+            " to integrate with other incrementor scripts (such as speeddating.vim)
+            " to the keys that be invoked when swapit doesn't have a proper option
+            nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+            nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
+            " Multi word Swaps
+            " Filetype Swaps
+            " OmniCompletion Swaps
+            let b:swap_completefunc = 'cssswapit#CssSwapComplete'
+        " }}}
+
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
             "noremap <Leader>ai <Esc>:AuthorInfoDetect<CR>
             let g:vimrc_author = 'stardiviner'
@@ -3046,22 +3067,6 @@ syntax on
             let g:T_DATE_FORMAT = "%c"
             "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
             "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
-        " }}}
-    " }}}
-
-    " endwise {{{ end certain structures automatically. if, do, def ...
-    " }}}
-
-    " [ swap value ] {{{
-        " SwapIt {{{ <C-A>, <C-X>
-            " to integrate with other incrementor scripts (such as speeddating.vim)
-            " to the keys that be invoked when swapit doesn't have a proper option
-            nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
-            nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
-            " Multi word Swaps
-            " Filetype Swaps
-            " OmniCompletion Swaps
-            let b:swap_completefunc = 'cssswapit#CssSwapComplete'
         " }}}
     " }}}
 " }}}
@@ -3365,12 +3370,22 @@ syntax on
         " Slimv {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
         " }}}
 
-        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
+        " paredit {{{ performs Structured Editing of Lisp S-expressions in Vim.
+            " similar to paredit.el for Emacs.
+            " paredit.vim is a part of Slimv.vim
+            " let g:paredit_loaded = 0
+            let g:paredit_electric_return = 0 " electric return feature
+            " let g:paredit_leader = '\'
+            let g:paredit_matchlines = 100
+            let g:paredit_mode = 1
+            let g:paredit_shortmaps = 1 " <, >, J, O, W, S.
         " }}}
 
-        " paredit {{{ Paredit Mode: Structured Editing of Lisp S-expressions
-            " paredit.vim is a part of Slimv.vim
-            " similar to paredit.el for Emacs.
+        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
+            " Usage:
+            " - call lisper#eval() to evaluate expression.
+            " - let engine = lisper#engine() ; echo engine.eval()
+            " - Repl for Lisp -> :LisperRepl -> lisp>
         " }}}
     " }}}
 
