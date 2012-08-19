@@ -3386,6 +3386,10 @@ syntax on
         " }}}
 
         " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
+            " Usage:
+            " - call lisper#eval() to evaluate expression.
+            " - let engine = lisper#engine() ; echo engine.eval()
+            " - Repl for Lisp -> :LisperRepl -> lisp>
         " }}}
     " }}}
 
