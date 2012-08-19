@@ -898,17 +898,6 @@ endif
     endf
     " }}}
 
-        function! ResizeWindowSize()
-            let choose_window_change = input("change window height or width: (h/w)")
-            if choose_window_change == "h"
-                let new_win_height = input("change height (".winheight(0).") into : ")
-                exec 'resize' . new_win_height
-            elseif choose_window_change == "w"
-                let new_win_width = input("change width (".winwidth(0).") into : ")
-                exec 'resize' . new_win_width
-            endif
-        endfunction
-        " nnoremap <C-w>- :call ResizeWindowSize()
 " }}}
 
 " [[ Misc ]] {{{
