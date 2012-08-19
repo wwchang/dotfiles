@@ -911,13 +911,6 @@ endif
         " nnoremap <C-w>- :call ResizeWindowSize()
 " }}}
 
-" [[ ftplugin ]] {{{
-    " ~/.vim/ftplugin/<filetype>.vim
-    " ~/.vim/ftplugin/<filetype>/<name>.vim
-    " ~/.vim/ftplugin/<filetype>_<name>.vim
-
-" }}}
-
 " [[ Misc ]] {{{
 
     " [ abbreviations ] {{{
