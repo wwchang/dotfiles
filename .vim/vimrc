@@ -1110,8 +1110,8 @@ endif
                 " Debugger
             " call vam#ActivateAddons(['GdbFromVim'])
             " call vam#ActivateAddons(['gdbmgr'])
-            call vam#ActivateAddons(['Vdebug'])
-            call vam#ActivateAddons(['VimDebug'])
+            " call vam#ActivateAddons(['Vdebug'])
+            " call vam#ActivateAddons(['VimDebug'])
                 " task list
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
@@ -2727,6 +2727,10 @@ syntax on
     " }}}
 
     " [ Debugger ] {{{
+        " Vdebug : Multi-language DBGP protocol debugger client for Vim.
+
+        " VimDebug : Integrate your debugger with Vim.
+
         " GdbFromVim {{{ debug your applications with gdb from Vim.
             " let g:gdb_from_vim_app = 'applications'
             " let g:gdb_from_vim_args = 'arguments'
@@ -2734,10 +2738,6 @@ syntax on
 
         " gdbmgr {{{ Vim interface to gdb.
         " }}}
-
-        " Vdebug : Multi-language DBGP debugger client for Vim.
-
-        " VimDebug : Integrate your debugger with Vim.
     " }}}
 
     " [ Compiler ] {{{ <F10>
