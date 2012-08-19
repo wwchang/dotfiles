@@ -1146,10 +1146,9 @@ endif
             call vam#ActivateAddons(['Gundo'])
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
-                "
             call vam#ActivateAddons(['endwise'])
-                " Swap True False etc
             call vam#ActivateAddons(['SwapIt'])
+            call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
@@ -3010,7 +3009,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ projects ] {{{
+    " [ Tools ] {{{
         " TagmaTasks {{{
             " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
             " :TagmaTasksClear, :TagmaTasksToggle
@@ -3033,9 +3032,30 @@ syntax on
             let g:tlRememberPosition = 1
             let g:tlTokenList = ["FIXME", "BUG", "TODO", "XXX", "FUCK"]
         " }}}
-    " }}}
 
-    " [ Author Info ] {{{
+        " endwise : end certain structures automatically. if, do, def ...
+
+        " Rainbow_Parentheses_Improved {{{
+            " show different level of parentheses in different color.
+            " support 4 kinds of parentheses' highlighting:
+            " ( ), [ ], { }, < >
+            " add with: rainbow_parentheses#load(type, max)
+            " this #load() function will auto call #activate() function.
+            au syntax * cal rainbow_parentheses#activate()
+            " e.g. au syntax * call rainbow_parentheses#load('([' , 32)
+        " }}}
+
+        " SwapIt {{{ <C-A>, <C-X>
+            " to integrate with other incrementor scripts (such as speeddating.vim)
+            " to the keys that be invoked when swapit doesn't have a proper option
+            nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
+            nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
+            " Multi word Swaps
+            " Filetype Swaps
+            " OmniCompletion Swaps
+            let b:swap_completefunc = 'cssswapit#CssSwapComplete'
+        " }}}
+
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
             "noremap <Leader>ai <Esc>:AuthorInfoDetect<CR>
             let g:vimrc_author = 'stardiviner'
@@ -3051,22 +3071,6 @@ syntax on
             let g:T_DATE_FORMAT = "%c"
             "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
             "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
-        " }}}
-    " }}}
-
-    " endwise {{{ end certain structures automatically. if, do, def ...
-    " }}}
-
-    " [ swap value ] {{{
-        " SwapIt {{{ <C-A>, <C-X>
-            " to integrate with other incrementor scripts (such as speeddating.vim)
-            " to the keys that be invoked when swapit doesn't have a proper option
-            nmap <Plug>SwapItFallbackIncrement <Plug>SpeedDatingUp
-            nmap <Plug>SwapItFallbackDecrement <Plug>SpeedDatingDown
-            " Multi word Swaps
-            " Filetype Swaps
-            " OmniCompletion Swaps
-            let b:swap_completefunc = 'cssswapit#CssSwapComplete'
         " }}}
     " }}}
 " }}}
