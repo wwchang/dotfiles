@@ -3374,12 +3374,18 @@ syntax on
         " Slimv {{{ Super Lisp Interaction Mode for Vim. ("SLIME for Vim")
         " }}}
 
-        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
+        " paredit {{{ performs Structured Editing of Lisp S-expressions in Vim.
+            " similar to paredit.el for Emacs.
+            " paredit.vim is a part of Slimv.vim
+            " let g:paredit_loaded = 0
+            let g:paredit_electric_return = 0 " electric return feature
+            " let g:paredit_leader = '\'
+            let g:paredit_matchlines = 100
+            let g:paredit_mode = 1
+            let g:paredit_shortmaps = 1 " <, >, J, O, W, S.
         " }}}
 
-        " paredit {{{ Paredit Mode: Structured Editing of Lisp S-expressions
-            " paredit.vim is a part of Slimv.vim
-            " similar to paredit.el for Emacs.
+        " Lisper {{{ Yet Another Lisp Engine Written In Pure VimScript
         " }}}
     " }}}
 
