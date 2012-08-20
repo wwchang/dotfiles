@@ -2526,11 +2526,12 @@ syntax on
             let g:EasyGrepExtraWarnings = 1
         " }}}
 
-        " Ack {{{ a front for the Perl module App::Ack.
-            " Ack can be used as a replacement for 99% of the uses of grep.
-            " $ apt-get install ack-grep (Perl module App:Ack)
-            let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-            " nnoremap <Leader>ak <Esc>:Ack!
+        " Ack {{{ a front for the Perl module App::Ack to replace grep.
+            " Usage:
+            " - :Ack [options] {pattern} [{directory}]
+            " QucikFix window keyboard shortcuts:
+            " o, go, t, T, v, gv, q
+            let g:ackprg="ack-grep -H --nocolor --nogroup --column" " Ubuntu ack-grep
         " }}}
 
         " buffers_search_and_replace {{{ powerful buffer(s) search & replace tool.
