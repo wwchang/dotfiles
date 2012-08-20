@@ -139,6 +139,7 @@ mailboxes =apps/weechat
 mailboxes =apps/Conky
 # mailboxes =apps/Canto
 mailboxes =apps/ranger
+mailboxes =apps/greasemonkey
 mailboxes =apps/ledger
 mailboxes =apps/pandoc
 mailboxes =apps/mosh
