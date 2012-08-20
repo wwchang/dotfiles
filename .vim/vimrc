@@ -2531,7 +2531,9 @@ syntax on
             " - :Ack [options] {pattern} [{directory}]
             " QucikFix window keyboard shortcuts:
             " o, go, t, T, v, gv, q
-            let g:ackprg="ack-grep -H --nocolor --nogroup --column" " Ubuntu ack-grep
+            if !system("grep 'Ubuntu' /etc/issue") " Ubuntu ack-grep
+                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+            endif
         " }}}
 
         " buffers_search_and_replace {{{ powerful buffer(s) search & replace tool.
