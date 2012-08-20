@@ -1118,8 +1118,7 @@ endif
             "call vam#ActivateAddons(['tComment'])
             "call vam#ActivateAddons(['The_NERD_Commenter'])
                 " doc & help "K"
-            " call vam#ActivateAddons(['viewdoc'])
-            call vam#ActivateAddons(['github:powerman/vim-plugin-viewdoc'])
+            call vam#ActivateAddons(['viewdoc'])
             "call vam#ActivateAddons(['Manuals'])
                 " indent guides & indent & align & splijoin
             call vam#ActivateAddons(['Indent_Guides'])
