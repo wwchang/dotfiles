@@ -4497,7 +4497,6 @@ syntax on
 " }}}
 
 " [ tools ] {{{
-
     " [ GTD, wiki, note, outliner & calendar ] {{{
         " vimwiki {{{
             let g:vimwiki_list = [
@@ -4549,15 +4548,13 @@ syntax on
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
-            let g:vimwiki_use_mouse=0 " disable mouse.
+            let g:vimwiki_use_mouse = 0 " disable mouse.
             let g:vimwiki_folding = 1 " disable folding. speed up file.
             let g:vimwiki_fold_lists = 1 " enable list subitem's folding.
             let g:vimwiki_list_ignore_newline = 0
             let g:vimwiki_table_mappings = 0 " disable Table mapping
                 " to disbale vimwiki <Tab> map
             let g:vimwiki_table_auto_fmt = 0
-            " let g:vimwiki_w32_dir_enc = 'cp1251'
-            " let g:vimwiki_CJK_length = 0 " Vim73 users obsolete this option.
             let g:vimwiki_dir_link = '' " [[dir/]] to open directory with netrw.
             let g:vimwiki_html_header_numbering = 2
             let g:vimwiki_html_header_numbering_sym = '.'
