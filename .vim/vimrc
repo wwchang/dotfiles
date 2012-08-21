@@ -1316,6 +1316,7 @@ endif
             "call vam#ActivateAddons(['Sauce'])
                 " Vim Extension
             call vam#ActivateAddons(['repeat', 'visualrepeat', 'abolish'])
+            " call vam#ActivateAddons(['LineJuggler'])
             call vam#ActivateAddons(['visualstar'])
             "call vam#ActivateAddons(['StarRange'])
             "call vam#ActivateAddons(['exjumplist'])
