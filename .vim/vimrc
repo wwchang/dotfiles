@@ -4571,10 +4571,6 @@ syntax on
                         \ 10: 'October', 11: 'November', 12: 'December',
                         \ }
             let g:vimwiki_use_calendar = 1
-
-            " [ extra ] {{{
-                au FileType vimwiki setlocal concealcursor=v
-            " }}}
         " }}}
 
         " Calendar {{{

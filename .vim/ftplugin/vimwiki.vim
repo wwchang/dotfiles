@@ -23,3 +23,7 @@ hi VimwikiHeader5 ctermfg=202 ctermbg=232   cterm=bold
 " blue
 hi VimwikiHeader6 ctermfg=039 ctermbg=232   cterm=bold
 " }}}
+
+au FileType vimwiki setlocal concealcursor=v
+
+" TODO add date time, reference links, etc to first lines of vimwiki file.
