@@ -1087,9 +1087,10 @@ endif
             "call vam#ActivateAddons(['LustyJuggler'])
                 " tab manager
             "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
-                " file/buffer/project manager
+                " file/buffer/project manager|explorer
             call vam#ActivateAddons(['The_NERD_tree'])
             " call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
+            call vam#ActivateAddons(['vimfiler'])
                 " compile
             call vam#ActivateAddons(['SingleCompile'])
                 " syntax checker
@@ -2964,6 +2965,12 @@ syntax on
         " }}}
 
         " vim-nerdtree_plugin_collections {{{
+        " }}}
+
+        " vimfiler {{{ Powerful file explorer implemented by VimL.
+            " Usage: :VimFiler
+            " Require: unite.vim
+            let g:vimfiler_as_default_explorer = 1 " behaves as netrw
         " }}}
     " }}}
 
