@@ -1179,6 +1179,7 @@ endif
             " call vam#ActivateAddons(['vim_less'])
             " call vam#ActivateAddons(['vim-less'])
                 " JavaScript
+            call vam#ActivateAddons(['github:teramako/jscomplete-vim'])
             " call vam#ActivateAddons(['jsflakes%4057'])
             " call vam#ActivateAddons(['jsruntime'])
             " call vam#ActivateAddons(['jsoncodecs'])
@@ -3582,6 +3583,9 @@ syntax on
     " }}}
 
     " [ JavaScript ] {{{
+        " jscomplete-vim {{{ vim omnifunc for JavaScript
+        " }}}
+
         " jsflakes%4057 {{{ powerful vim plugin lint javascript code on the fly.
             " Require: jsruntime, jsoncodecs.
             " :cl, clopen
