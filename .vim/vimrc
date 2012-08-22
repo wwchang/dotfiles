@@ -2497,7 +2497,15 @@ syntax on
                 " unite-colorscheme :
                 " unite-cmdwin : put next Ex command to command-line:
                     " Usage: :Unite cmdwin
-                " unite-quickfix :
+                " unite-quickfix {{{ quickfix for unite.vim
+                    " Usage:
+                    " - :Unite quickfix
+                    " - :Unite location_list
+                    let g:unite_quickfix_filename_is_pathshorten = 1
+                    let g:unite_quickfix_is_multiline = 1
+                    " let g:Unite_quickfix_abbr_formatter =
+                    " let g:Unite_quickfix_word_formatter =
+                " }}}
             " }}}
         " }}}
 
