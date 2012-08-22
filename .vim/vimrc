@@ -1052,6 +1052,7 @@ endif
             call vam#ActivateAddons(['unimpaired'])
             call vam#ActivateAddons(['quickfixstatus'])
             " call vam#ActivateAddons(['sharefix'])
+            call vam#ActivateAddons(['unite-quickfix'])
                 " Completion <Tab>
             call vam#ActivateAddons(['neocomplcache', 'vimproc'])
             call vam#ActivateAddons(['neco-look'])
@@ -2495,6 +2496,7 @@ syntax on
                 " unite-colorscheme :
                 " unite-cmdwin : put next Ex command to command-line:
                     " Usage: :Unite cmdwin
+                " unite-quickfix :
             " }}}
         " }}}
 
