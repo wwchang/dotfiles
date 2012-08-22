@@ -3074,14 +3074,14 @@ syntax on
 
         " endwise : end certain structures automatically. if, do, def ...
 
-        " Rainbow_Parentheses_Improved {{{
-            " show different level of parentheses in different color.
-            " support 4 kinds of parentheses' highlighting:
-            " ( ), [ ], { }, < >
-            " add with: rainbow_parentheses#load(type, max)
-            " this #load() function will auto call #activate() function.
-            au syntax * cal rainbow_parentheses#activate()
-            " e.g. au syntax * call rainbow_parentheses#load('([' , 32)
+        " Rainbow_Parentheses_Improved {{{ show parentheses in different color
+            " au syntax * cal rainbow_parentheses#activate()
+            au syntax * call rainbow#load([
+                        \ ['(',')'],['\[','\]'],['{','}'],
+                        \ ['begin','end'],
+                        \ ])
+        " }}}
+
         " switch {{{ swap a pattern and substition.
         " }}}
 
