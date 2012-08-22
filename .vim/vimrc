@@ -1483,7 +1483,12 @@ syntax on
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
-            let g:neocomplcache_enable_insert_char_pre = 0 " 1: 'InsertCharPre' event
+            " 1: 'InsertCharPre' event, version >= 7.3.461
+            if v:version == 703 && has("patch461")
+                let g:neocomplcache_enable_insert_char_pre = 1
+            else
+                let g:neocomplcache_enable_insert_char_pre = 0
+            endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
