@@ -1130,6 +1130,8 @@ endif
             "call vam#ActivateAddons(['matchindent'])
             "call vam#ActivateAddons(['splitjoin'])
             " call vam#ActivateAddons(['Align%294'])
+                " REPL
+            call vam#ActivateAddons(['vim-pipe'])
                 " session & undo & history
             call vam#ActivateAddons(['restore_view'])
             call vam#ActivateAddons(['recover'])
@@ -3308,6 +3310,11 @@ syntax on
         " }}}
 
         " [ REPL ] {{{
+            " vim-pipe {{{ provides REPL-like development for other shell tools
+                " For example you can instantly send an SQL script to the 
+                " database and see the results in a temporary buffer.
+            " }}}
+
             " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
                 " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
             " }}}
