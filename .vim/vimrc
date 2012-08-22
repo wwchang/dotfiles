@@ -1105,10 +1105,10 @@ endif
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
                 " search & find
+            call vam#ActivateAddons(['unite'])
             call vam#ActivateAddons(['ctrlp'])
             "call vam#ActivateAddons(['Command-T'])
             "call vam#ActivateAddons(['FuzzyFinder'])
-            call vam#ActivateAddons(['unite'])
             call vam#ActivateAddons(['unite-ack'])
             call vam#ActivateAddons(['EasyGrep'])
             call vam#ActivateAddons(['ack'])
@@ -1785,10 +1785,12 @@ syntax on
                 " imap <C-k> <Plug>(neocomplcache_start_unite_complete)
                 " imap <C-q> <Plug>(neocomplcache_start_unite_quick_match)
                 " ----------------------------------------------------------
-                " imap <expr> - pumvisible() ? "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
-                " imap <expr> <C-Space> pumvisible()
-                "             \ ? "\<Plug>(neocomplcache_start_unite_complete)"
-                "             \ : "\<C-Space>"
+                inoremap <expr> - pumvisible()
+                    \ ? "\<Plug>(neocomplcache_start_unite_quick_match)"
+                    \ : '-'
+                inoremap <expr> <C-Space> pumvisible()
+                            \ ? "\<Plug>(neocomplcache_start_unite_complete)"
+                            \ : "\<C-Space>"
                 " }}}
             " }}}
         " }}}
