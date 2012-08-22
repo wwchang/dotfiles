@@ -4614,8 +4614,8 @@ syntax on
             " let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr'
             let g:vimwiki_user_htmls = '404.html,search.html'
             let g:vimwiki_conceallevel = 2 " vimwiki set this everytime
-            let g:vimwiki_url_mingain = 20 " min chars be gained by concealing URLs
-            let g:vimwiki_url_maxsave = 25
+            let g:vimwiki_url_mingain = 25 " min chars be gained by concealing URLs
+            let g:vimwiki_url_maxsave = 30
             let g:vimwiki_debug = 0
             let g:vimwiki_diary_months = {
                         \ 1: 'January', 2: 'February', 3: 'March',
