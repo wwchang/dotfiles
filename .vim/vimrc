@@ -1106,6 +1106,7 @@ endif
             " call vam#ActivateAddons(['TaskList'])
                 " search & find
             call vam#ActivateAddons(['unite'])
+            " call vam#ActivateAddons(['unite-ssh'])
             call vam#ActivateAddons(['ctrlp'])
             "call vam#ActivateAddons(['Command-T'])
             "call vam#ActivateAddons(['FuzzyFinder'])
@@ -2502,7 +2503,7 @@ syntax on
                 " unite-gem :
                 " unite-font :
                 " unite-colorscheme :
-                " unite-cmdwin : put next Ex command to command-line:
+                " unite-cmdwin : put next Ex command to command-line.
                     " Usage: :Unite cmdwin
                 " unite-quickfix {{{ quickfix for unite.vim
                     " Usage:
@@ -2513,6 +2514,7 @@ syntax on
                     " let g:Unite_quickfix_abbr_formatter =
                     " let g:Unite_quickfix_word_formatter =
                 " }}}
+                " unite-ssh : unite.vim for SSH source.
             " }}}
         " }}}
 
