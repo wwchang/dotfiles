@@ -1790,12 +1790,12 @@ syntax on
                 " imap <C-k> <Plug>(neocomplcache_start_unite_complete)
                 " imap <C-q> <Plug>(neocomplcache_start_unite_quick_match)
                 " ----------------------------------------------------------
-                inoremap <expr> - pumvisible()
-                    \ ? "\<Plug>(neocomplcache_start_unite_quick_match)"
-                    \ : '-'
-                inoremap <expr> <C-Space> pumvisible()
-                            \ ? "\<Plug>(neocomplcache_start_unite_complete)"
-                            \ : "\<C-Space>"
+                " inoremap <expr> - pumvisible()
+                "     \ ? "\<Plug>(neocomplcache_start_unite_quick_match)"
+                "     \ : '-'
+                " inoremap <expr> <C-Space> pumvisible()
+                "             \ ? "\<Plug>(neocomplcache_start_unite_complete)"
+                "             \ : "\<C-Space>"
                 " }}}
             " }}}
         " }}}
