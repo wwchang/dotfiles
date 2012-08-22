@@ -1140,7 +1140,8 @@ endif
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
             call vam#ActivateAddons(['endwise'])
-            call vam#ActivateAddons(['SwapIt'])
+            " call vam#ActivateAddons(['SwapIt'])
+            call vam#ActivateAddons(['switch'])
             call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
@@ -3081,6 +3082,7 @@ syntax on
             " this #load() function will auto call #activate() function.
             au syntax * cal rainbow_parentheses#activate()
             " e.g. au syntax * call rainbow_parentheses#load('([' , 32)
+        " switch {{{ swap a pattern and substition.
         " }}}
 
         " SwapIt {{{ <C-A>, <C-X>
