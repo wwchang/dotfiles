@@ -4546,12 +4546,12 @@ syntax on
         " vimwiki {{{
             let g:vimwiki_list = [
                 \ {
-                    \ 'path': '~/vimwiki/wiki',
-                    \ 'path_html': '~/vimwiki/wiki_output/',
+                    \ 'path': '~/Wiki/vimwiki/wiki/',
+                    \ 'path_html': '~/Wiki/vimwiki/output/',
                     \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
                     \ 'syntax': 'default',
                     \ 'css_name': 'style.css',
-                    \ 'template_path': '~/vimwiki/templates/wiki/',
+                    \ 'template_path': '~/Wiki/vimwiki/templates/wiki/',
                     \ 'template_default': 'default',
                     \ 'template_ext': '.html',
                     \ 'custom_wiki2html': '',
@@ -4567,11 +4567,11 @@ syntax on
                     \ },
                 \ },
                 \ {
-                    \ 'path': '~/vimwiki/personal/',
-                    \ 'path_html': '~/vimwiki/personal_output',
+                    \ 'path': '~/Wiki/vimwiki/personal/',
+                    \ 'path_html': '~/Wiki/vimwiki/personal_output/',
                     \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
                     \ 'css_name': 'style.css', 'syntax': 'default',
-                    \ 'template_path': '~/vimwiki/templates/personal/',
+                    \ 'template_path': '~/Wiki/vimwiki/templates/personal/',
                     \ 'template_default': 'default',
                     \ 'template_ext': '.template',
                 \ },
