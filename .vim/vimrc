@@ -1052,7 +1052,8 @@ endif
             call vam#ActivateAddons(['unimpaired'])
             call vam#ActivateAddons(['quickfixstatus'])
             " call vam#ActivateAddons(['sharefix'])
-            call vam#ActivateAddons(['unite-quickfix'])
+            " call vam#ActivateAddons(['unite-quickfix'])
+            call vam#ActivateAddons(['github:osyo-manga/unite-quickfix'])
                 " Completion <Tab>
             call vam#ActivateAddons(['neocomplcache', 'vimproc'])
             call vam#ActivateAddons(['neco-look'])
