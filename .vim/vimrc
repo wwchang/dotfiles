@@ -4113,10 +4113,17 @@ syntax on
             let g:Powerline_mode_S = "S⋅LINE" " select line
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
+            " Customization {{{
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
+            "{location} : 'before', 'after'
             "call Pl#Theme#RemoveSegment({targetsegment})
             "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
-            "call Pl#Segment#Create(),
+            call Pl#Theme#RemoveSegment('fileencoding')
+            call Pl#Theme#RemoveSegment('fileformat')
+            " FIXME call Pl#Theme#InsertSegment('static_str', 'before', 'filesize')
+            " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
+            call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+            " Custom files stored as separate files in autoload/Powerline/*
         " }}}
 
         " current-func-info
