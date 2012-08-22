@@ -1680,23 +1680,23 @@ syntax on
                 " <C-l> -- common string complete.
                 " <BS>  -- smart close popup.
 
-                inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
-                inoremap <expr><C-o> neocomplcache#manual_omni_complete()
-                inoremap <expr><C-l> neocomplcache#complete_common_string()
-                inoremap <expr><C-y> neocomplcache#smart_close_popup()
-                inoremap <expr><C-e> neocomplcache#cancel_popup()
-                inoremap <expr><C-g> neocomplcache#undo_completion()
-                inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-                inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr> <C-x><C-f> neocomplcache#manual_filename_complete()
+                inoremap <expr> <C-o> neocomplcache#manual_omni_complete()
+                inoremap <expr> <C-l> neocomplcache#complete_common_string()
+                inoremap <expr> <C-y> neocomplcache#smart_close_popup()
+                inoremap <expr> <C-e> neocomplcache#cancel_popup()
+                inoremap <expr> <C-g> neocomplcache#undo_completion()
+                inoremap <expr> <C-h> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr> <BS>  neocomplcache#smart_close_popup()."\<C-h>"
 
                 inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-                " inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-                " inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+                " inoremap <expr> <CR> neocomplcache#smart_close_popup() .  "\<CR>"
+                " inoremap <expr> <CR> neocomplcache#close_popup() . "\<CR>"
 
-                imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
-                imap <expr><C-p> pumvisible() ? "\<C-p>"
+                imap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
+                imap <expr> <C-p> pumvisible() ? "\<C-p>"
 
-                imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
                             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
                             \ : <SID>check_back_space() ? "\<TAB>"
                             \ : "\<C-x>\<C-u>"
@@ -1733,7 +1733,7 @@ syntax on
                 " ----------------------------------------------
                 " ternary operator:  x = y > 0 ? 5 : 10 =>
                 " then x will be 5 or 10 depending on whether y is above zero or not.
-                " imap <expr><Tab>
+                " imap <expr> <Tab>
                 "         neocomplcache#sources#snippets_complete#expandable()
                 "         \ ? "\<Plug>(neocomplcache_snippets_expand)"
                 "         \ : pumvisible() ? "\<C-n>"
@@ -1746,14 +1746,14 @@ syntax on
                 "     inoremap <expr> <C-k> "\<Plug>(neocomplcache_snippets_jump)"
                 " endif
                 " ----------------------------------------------
-                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                " imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
                 "             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
                 "             \ : <SID>check_back_space() ? "\<TAB>"
                 "             \ : "\<C-x>\<C-u>"
-                " imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable()
+                " imap <expr> <C-j> neocomplcache#sources#snippets_complete#jumpable()
                 "             \ ? "\<Plug>(neocomplcache_snippets_jump)"
                 "             \ : ""
-                " imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable()
+                " imap <expr> <C-k> neocomplcache#sources#snippets_complete#jumpable()
                 "             \ ? "\<Plug>(neocomplcache_snippets_jump)"
                 "             \ : ""
                 " }}}
@@ -1764,7 +1764,7 @@ syntax on
                 " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
                 " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
                 " ----------------------------------------------
-                "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump() ?
+                "imap <expr> <Tab> UltiSnips_ExpandSnippetOrJump() ?
                             "\ UltiSnips_ExpandSnippetOrJump()
                             "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
                 " }}}
@@ -1773,7 +1773,7 @@ syntax on
                 " FIXME snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
                 " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
                 " ----------------------------------------------
-                "imap <expr><Tab> snipMate#ShowAvailableSnips() ?
+                "imap <expr> <Tab> snipMate#ShowAvailableSnips() ?
                             "\ snipMate#
                             "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
                 " }}}
@@ -1782,8 +1782,8 @@ syntax on
                 " completion with unite.vim
                 " <Plug>(neocomplcache_start_unite_complete)
                 " <Plug>(neocomplcache_start_unite_quick_match)
-                " imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-                " imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                " imap <C-k> <Plug>(neocomplcache_start_unite_complete)
+                " imap <C-q> <Plug>(neocomplcache_start_unite_quick_match)
                 " ----------------------------------------------------------
                 " imap <expr> - pumvisible() ? "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
                 " imap <expr> <C-Space> pumvisible()
