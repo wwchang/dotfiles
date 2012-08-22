@@ -1470,8 +1470,14 @@ syntax on
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " Usage:
-            " - :set ft=html.python to use compound filetype.
+            " - Add other language completion:
+            "   :NeoComplCacheSetFileType [filetype]
+            "   this [filetype] only used inside of neocomplcache.
+            "   -- to use local compound filetype for neocomplcache
+            " - :set ft=html.python
+            "   -- to use global compound filetype.
             "   so you can complete HTML and Python as same time.
+            "   -- but this will affect other plugins which use 'filetype' too.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0
