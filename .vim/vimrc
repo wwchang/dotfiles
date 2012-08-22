@@ -643,7 +643,8 @@ endif
         set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
-        set statusline+=\ \%#StatusFileType#\%y
+        set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()}
+        " set statusline+=\ \%#StatusFileType#\%y
         set statusline+=\ %<%(\%#StatusNormal#\%{&ff}\%#StatusChar#\•
                     \\%#StatusNormal#\%{&fenc}%)
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
@@ -1472,6 +1473,7 @@ syntax on
             " Usage:
             " - Add other language completion:
             "   :NeoComplCacheSetFileType [filetype]
+            "   neocomplcache#get_context_filetype()
             "   this [filetype] only used inside of neocomplcache.
             "   -- to use local compound filetype for neocomplcache
             " - :set ft=html.python
