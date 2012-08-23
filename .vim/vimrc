@@ -1618,25 +1618,28 @@ syntax on
                         \ 'ruby.spec' : 'ruby',
                         \ }
 
-            " [ priority ] {{{
-            " control each source's completion priority.
-            " The higher value is, the higher priority.
+                " [ priority ] {{{
+                " control each source's completion priority.
+                " The higher value is, the higher priority.
 
                 " default
-                " let g:neocomplcache_source_rank = {
-                "             \ 'dictionary_complete' : 4,
-                "             \ 'buffer_complete' : 5,
-                "             \ 'syntax_complete' : 7,
-                "             \ 'include_complete' : 8,
-                "             \ 'snippets_complete' : 8,
-                "             \ 'vim_complete' : 300,
-                "             \ 'omni_complete' : 300,
-                "             \ 'other plugin sources' : 5,
-                "             \ 'other completefunc sources' : 10,
-                "             \ 'other ftplugin sources' : 100,
-                "             \ }
+                let g:neocomplcache_source_rank = {
+                            \ 'filename_complete' : 3,
+                            \ 'dictionary_complete' : 4,
+                            \ 'buffer_complete' : 5,
+                            \ 'keyword_complete' : 5,
+                            \ 'syntax_complete' : 7,
+                            \ 'include_complete' : 8,
+                            \ 'snippets_complete' : 8,
+                            \ 'member_complete' : 5,
+                            \ 'vim_complete' : 300,
+                            \ 'omni_complete' : 300,
+                            \ 'other plugin sources' : 5,
+                            \ 'other completefunc sources' : 10,
+                            \ 'other ftplugin sources' : 100,
+                            \ }
 
-            " }}}
+                " }}}
 
             "let g:AltAutoComplPop_CalcRankMaxLists
             "let g:AltAutoComplPop_CacheLineCount
