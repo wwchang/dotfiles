@@ -1334,7 +1334,7 @@ endif
             call vam#ActivateAddons(['SudoEdit'])
             " call vam#ActivateAddons(['sudo'])
             call vam#ActivateAddons(['SpitVspit'])
-            call vam#ActivateAddons(['dwm'])
+            " call vam#ActivateAddons(['dwm'])
             call vam#ActivateAddons(['ZoomWin'])
             "call vam#ActivateAddons(['CompleteHelper'])
             call vam#ActivateAddons(['AmbiCompletion'])
