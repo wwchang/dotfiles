@@ -2792,8 +2792,12 @@ syntax on
             "   - :Gitv [args]
             "   - :Gitv! [args]
             "   - [range]Gitv! [args]
-            " TODO how to enter Altering the range in command line ??
+            "   - back to working revision file
+            "       press <Enter> on top line:
+            "       -- [filename] --
             "   - Altering the range (input search regex/string)
+            "       press <C-Enter> on line below this line:
+            "       -- Showing (up to 56) commits affecting lines in the range:
             nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
