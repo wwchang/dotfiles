@@ -3001,6 +3001,8 @@ syntax on
     " }}}
 
     " [ Tools ] {{{
+        let g:TasksListTokens = ['FIXME', 'TODO', 'BUG', 'ISSUE', 'ERROR', 'XXX',]
+
         " TagmaTasks {{{
             " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
             " :TagmaTasksClear, :TagmaTasksToggle
@@ -3013,15 +3015,14 @@ syntax on
             let g:TagmaTasksMarks = 1
             let g:TagmaTasksOpen = 1
             let g:TagmaTasksPrefix = '<Leader>t'
-            let g:TagmaTasksTokens = ['FIXME', 'TODO', 'NOTE', 'XXX',
-                        \ 'COMBAK', 'ISSUE', 'ERROR', 'FUCK']
+            let g:TagmaTasksTokens = g:TasksListTokens
         " }}}
 
         " TaskList {{{ \tl ( \t map conflict with CommandT.vim )
             map <Leader>tl <Plug>TaskList
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
             let g:tlRememberPosition = 1
-            let g:tlTokenList = ["FIXME", "BUG", "TODO", "XXX", "FUCK"]
+            let g:tlTokenList = g:TasksListTokens
         " }}}
 
         " endwise : end certain structures automatically. if, do, def ...
