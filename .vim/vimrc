@@ -632,6 +632,7 @@ endif
                     \\:%n\%#StatusSeparator#\|
         set statusline+=\%#StatusReadOnly#\ \%r\ \%#StatusList#\%q
         set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
+        set statusline+=\ \%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
         set statusline+=\ \%#StatusChar#\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
@@ -1035,6 +1036,7 @@ endif
             call vam#ActivateAddons(['current-func-info'])
                 " CVS
             call vam#ActivateAddons(['fugitive'])
+            call vam#ActivateAddons(['hgrev'])
             call vam#ActivateAddons(['gitv'])
             " call vam#ActivateAddons(['extradite'])
             call vam#ActivateAddons(['quickfixsigns'])
@@ -4087,9 +4089,15 @@ syntax on
         " }}}
 
         " current-func-info
-
-        " fugitive.vim
-
+        " fugitive
+        " hgrev {{{ show current buffer's HG revision.
+            " set statusline+=%[r%{HGRev()}]
+            " set statusline+=%{HGRev()?'[r'.HGRev().']':''}
+            let g:hgrevFlags = '-nbt' " n: rev id, b: branch, t: tags.
+            let g:hgrevAddStatus = 1
+            let g:hgrevAutoUpdate = 1
+            let g:hgrevNoRepoChar = '-'
+        " }}}
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
