@@ -963,7 +963,7 @@ endif
         " }}}
     " }}}
 
-    " [ VAM : vim addon manager ] {{{ .vim/vim-addons/
+    " [ VAM : vim addon manager ] {{{ .vim/addons/
         " [ minimal setup ]
             " set runtimepath+=PATH/TO/VAM
             " call vam#ActivateAddons([list of plugins], {'auto_install' : 0})
@@ -1011,7 +1011,7 @@ endif
             " }}}
 
             " VAM install location {{{
-            let vam_install_path = expand('$HOME') . '/.vim/vim-addons'
+            let vam_install_path = expand('$HOME') . '/.vim/addons'
             if !EnsureVamIsOnDisk(vam_install_path)
                 echohl ErrorMsg ; echomsg "No VAM found!" ; echohl NONE
                 return
@@ -2151,7 +2151,6 @@ syntax on
             let g:TagSignatureMaxMatches = 1
 
         " AutoTag (updates entries in a tags file automatically when saving.)
-        " ~/.vim/plugin/autotag.vim
 
         " Taggatron {{{ A simple tag file manager for vim.
             " allow user to setup rules for creating your tag files based on language.
@@ -2484,9 +2483,9 @@ syntax on
                     let g:unite_source_ack_targetdir_shortcut = {
                             \ 'vim': '$HOME/.vim',
                             \ 'bundle': '$HOME/.vim/bundle',
-                            \ 'vam': '$HOME/.vim/vim-addons',
-                            \ 'neco': "$HOME/.vim/vim-addons/neocomplcache",
-                            \ 'unite': "$HOME/.vim/vim-addons/unite",
+                            \ 'vam': '$HOME/.vim/addons',
+                            \ 'neco': "$HOME/.vim/addons/neocomplcache",
+                            \ 'unite': "$HOME/.vim/addons/unite",
                             \ 'dot': '$HOME/Git/dotfiles',
                             \ 'gem':  '/var/lib/gems/1.8/gems',
                             \ }
@@ -4367,8 +4366,8 @@ syntax on
             "" Stop
             "map <Leader>kn :set keymap=<CR>
             "" view it's details, modify it at your convenience.
-            "map <leader>kvm :sp ~/.vim/vim-addons/mathematic/keymap/mathematic.vim<CR>
-            "let g:mathematic_user_dir = "~/.vim/vim-addons/mathematic/keymap/mathematic.vim"
+            "map <leader>kvm :sp ~/.vim/addons/mathematic/keymap/mathematic.vim<CR>
+            "let g:mathematic_user_dir = "~/.vim/addons/mathematic/keymap/mathematic.vim"
             "let g:mathematic_fuzzy_match = 1
         " }}}
     " }}}
