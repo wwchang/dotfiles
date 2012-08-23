@@ -1159,7 +1159,7 @@ endif
             " call vam#ActivateAddons(['github:jbking/vim-pep8'])
             " call vam#ActivateAddons(['flake8'])
             " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
-            " call vam#ActivateAddons(['virtualenv'])
+            call vam#ActivateAddons(['virtualenv'])
             " call vam#ActivateAddons(['vim-python-virtualenv'])
             call vam#ActivateAddons(['python_match'])
             " call vam#ActivateAddons(['python_open_module'])
@@ -3125,7 +3125,6 @@ syntax on
                 let g:pymode_breakpoint = 1 " Load breakpoints plugin
                 let g:pymode_breakpoint_key = '<LocalLeader>b' " set/unset breakpoint
                 let g:pymode_utils_whitespaces = 1 " Autoremove unused whitespaces
-                let g:pymode_virtualenv = 1 " fix vim python paths if virtualenv enabled
                 let g:pymode_options_indent = 1 " default pymode python indent options
                 let g:pymode_options_fold = 1 " Set default pymode python fold options
                 let g:pymode_options_other = 1 " Set default pymode python other options
@@ -3227,13 +3226,13 @@ syntax on
         " }}}
 
         " [ virtualenv ] {{{
-            " virtualenv {{{ activate/deactivate a virtualenv within Vim.
+            " virtualenv {{{ Python virtualenv for Vim.
                 " Usage:
-                    " statusline: %{VirtualEnvStatusline()}
-                    " Commands:
-                        " :VirtualEnvList
-                        " :VirtualEnvDeactivate
-                        " :VirtualEnvActivate [name]
+                " statusline: %{VirtualEnvStatusline()}
+                " Commands:
+                " :VirtualEnvList
+                " :VirtualEnvDeactivate
+                " :VirtualEnvActivate <Tab> [name]
                 let g:virtualenv_loaded = 0
                 let g:virtualenv_directory = "~/.virtualenvs"
                 let g:virtualenv_auto_activate = 1
@@ -4075,6 +4074,8 @@ syntax on
             " FIXME call Pl#Theme#InsertSegment('static_str', 'before', 'filesize')
             " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
             call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+            call Pl#Theme#InsertSegment('virtualenv', 'before', 'neco_ft')
+            call Pl#Theme#InsertSegment('hgrev', 'after', 'fugitive')
             " Custom files stored as separate files in autoload/Powerline/*
             call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
             " }}}
