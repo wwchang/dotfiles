@@ -1062,7 +1062,7 @@ endif
             call vam#ActivateAddons(['neco-look'])
             " call vam#ActivateAddons(['AutoComplPop'])
             " call vam#ActivateAddons(['github:ervandew/supertab'])
-            call vam#ActivateAddons(['github:mbbill/code_complete'])
+            " call vam#ActivateAddons(['github:mbbill/code_complete'])
                 " snippet
             call vam#ActivateAddons(['UltiSnips'])
             " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
