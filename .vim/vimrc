@@ -8,7 +8,7 @@
 " [[ vimrc structure ]] {{{
 " .vimrc -- global settings
 " .vim/
-"   after/  -- files that are loaded after sourced system plugins. override 
+"   after/  -- files that are loaded after sourced system plugins. override
 "               system settings.
 "       ftplugin/
 "       plugin/
@@ -206,7 +206,7 @@
         " magic/nomagic: changes special chars that can be used in search patterns
         set magic
             " use \v and \V to switch char special meaning on or off.
-            " \v: this will make every following character except a-zA-Z0-9 and 
+            " \v: this will make every following character except a-zA-Z0-9 and
             " '_' have special meaning
             " \V: preceded by \ to activate their special meaning.
             " \m, \M
@@ -2671,7 +2671,7 @@ syntax on
             let g:viewdoc_man_cmd = "/usr/bin/man"
             let g:ViewDoc_DEFAULT = 'ViewDoc_man' " ViewDoc_man, ViewDoc_help
 
-            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go, 
+            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go,
             " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
@@ -3310,7 +3310,7 @@ syntax on
 
         " [ REPL ] {{{
             " vim-pipe {{{ provides REPL-like development for other shell tools
-                " For example you can instantly send an SQL script to the 
+                " For example you can instantly send an SQL script to the
                 " database and see the results in a temporary buffer.
             " }}}
 
@@ -3607,7 +3607,7 @@ syntax on
     " [ JavaScript ] {{{
         " jscomplete-vim {{{ vim omnifunc for JavaScript
             " [Optional extensions]
-            " extension scripts under the 'autoload/js/' will be loaded with set 
+            " extension scripts under the 'autoload/js/' will be loaded with set
             " list to 'g:jscomplete_use' or 'b:jscomplete_use' in ~/.vimrc
             " dom: adding DOM keywords completion.
             " moz: Mozilla JavaScript keywords.
@@ -4423,7 +4423,7 @@ syntax on
         " VIM_Color_Picker {{{ <F5>, :ColorPicker
         " }}}
 
-        " nosyntaxwords 
+        " nosyntaxwords
             " find words that are not syntactically highlighted in current
             " buffer.
     " }}}
@@ -4527,7 +4527,7 @@ syntax on
         " }}}
 
         " AmbiCompletion {{{ ambiguous word completion.
-            " complete a word with no only start-with match but also ends-with 
+            " complete a word with no only start-with match but also ends-with
             " and contains match.
             if &completefunc == ''
                 set completefunc=g:AmbiCompletion
