@@ -1640,20 +1640,6 @@ syntax on
                             \ }
 
                 " }}}
-
-            "let g:AltAutoComplPop_CalcRankMaxLists
-            "let g:AltAutoComplPop_CacheLineCount
-            "let g:AltAutoComplPop_CalcRankCount
-            "let g:AltAutoComplPop_DictionaryLists
-            "let g:AltAutoComplPop_CalcRankCount
-            "let g:AltAutoComplPop_SlowCompleteSkip
-            "let g:AltAutoComplPop_OptimizeLevel
-            "let g:AltAutoComplPop_QuickMatch
-            "let g:AltAutoComplPop_MaxList
-            "let g:AltAutoComplPop_EnableAsterisk
-            "let g:AltAutoComplPop_OptimizeLevel
-            "let g:AltAutoComplPop_DisableAutoComplete
-            "let g:AltAutoComplPop_DeleteRank0
             " }}}
 
             " [ neocomplcache functions ] {{{
