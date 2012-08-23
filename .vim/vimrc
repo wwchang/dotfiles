@@ -1965,7 +1965,7 @@ syntax on
                         \ 'cpp': '//',
                         \ 'sh': '#',
                         \ 'python': '#'
-                        \}
+                        \ }
         " }}}
 
         " SnippetComplete {{{
@@ -4651,8 +4651,9 @@ syntax on
             let g:ViskeEndTime = 21 " End time of a day.
             let g:ViskeWidthFuzzy = 4 " Acceptable length that run over a screen.
             let g:ViskeLang = "us,cn,jp" " Language setting
-            let g:ViskeTaskTypeLabel = ['\ ', 'seminar', 'circle',
-                        \ 'part time job', 'family', 'TODO'
+            let g:ViskeTaskTypeLabel = [
+                        \ '\ ', 'seminar', 'circle',
+                        \ 'part time job', 'family', 'TODO',
                         \ ]
             let g:ViskeDayLabel = ['S', 'M', 'Tu', 'W', 'Th', 'F', 'S']
         " }}}
@@ -5211,7 +5212,7 @@ syntax on
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
             let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
-            " FIXME application/djvu
+            " TODO application/djvu
             let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm
             " let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
@@ -5258,7 +5259,7 @@ syntax on
                     endif
                     let curline = curline + 1
                 endwhile
-                " FIXME call libcall("VimSpeak.dll", "Speak", strline)
+                " TODO call libcall("VimSpeak.dll", "Speak", strline)
             endfunction
 
             command! -nargs=0 -range VimSpeak <line1>,<line2>call VimSpeak()
