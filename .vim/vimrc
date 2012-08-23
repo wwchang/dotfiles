@@ -1019,13 +1019,15 @@ endif
             exec 'set runtimepath+=' . vam_install_path . '/vim-addon-manager'
             " }}}
 
-            " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers.
+            " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers
             " call vam#ActivateAddons({addons}[, {opts}])
-
-            " addon name rewriting internally, see vam#install#RewriteName()
-
                 " vim plugin manager
             "call vam#ActivateAddons(['tplugin'])
+                " VimL libraries
+            call vam#ActivateAddons(['L9'])
+            call vam#ActivateAddons(['tlib'])
+            call vam#ActivateAddons(['self'])
+            call vam#ActivateAddons(['WebAPI'])
                 " VimLint: a correctness and sanity checker of Vim configuration
             call vam#ActivateAddons(['VimLint'])
                 " statusline
@@ -1146,10 +1148,6 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
-                " VimL libraries
-            call vam#ActivateAddons(['L9'])
-            call vam#ActivateAddons(['tlib'])
-            call vam#ActivateAddons(['self'])
                 " Vim script
             " call vam#ActivateAddons(['Vim-Support'])
             " call vam#ActivateAddons(['vesting'])
@@ -1279,7 +1277,6 @@ endif
                 " post/paste/www micro-blog/twitter/code/text/www
             call vam#ActivateAddons(['PasteBin'])
             call vam#ActivateAddons(['Gist'])
-            call vam#ActivateAddons(['WebAPI'])
             " call vam#ActivateAddons(['wwwsearch'])
             " call vam#ActivateAddons(['Tumble'])
             "call vam#ActivateAddons(['TwitVim'])
