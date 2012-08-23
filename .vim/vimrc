@@ -4121,6 +4121,8 @@ syntax on
             " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
             call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
             " Custom files stored as separate files in autoload/Powerline/*
+            call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
+            " }}}
         " }}}
 
         " current-func-info
