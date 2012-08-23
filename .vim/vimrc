@@ -3027,11 +3027,12 @@ syntax on
         " endwise : end certain structures automatically. if, do, def ...
 
         " Rainbow_Parentheses_Improved {{{ show parentheses in different color
-            " au syntax * cal rainbow_parentheses#activate()
-            au syntax * call rainbow#load([
-                        \ ['(',')'],['\[','\]'],['{','}'],
-                        \ ['begin','end'],
-                        \ ])
+            " Usage: :RainbowToggle, rainbow#toggle()
+            " au syntax * call rainbow#load([
+            "             \ ['(',')'],['\[','\]'],['{','}'],
+            "             \ ['begin','end'],
+            "             \ ])
+            au syntax * call rainbow#activate()
         " }}}
 
         " switch {{{ swap a pattern and substition.
