@@ -545,6 +545,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^To: .*byzantium@hacdc\.org
     apps/Byzantium/
+    :0
+    * ^List-Id: .*greasemonkey-dev\.googlegroups\.com
+    apps/greasemonkey/
 # }}}
 
 # GNU {{{

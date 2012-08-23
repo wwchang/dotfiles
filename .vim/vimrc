@@ -8,7 +8,7 @@
 " [[ vimrc structure ]] {{{
 " .vimrc -- global settings
 " .vim/
-"   after/  -- files that are loaded after sourced system plugins. override 
+"   after/  -- files that are loaded after sourced system plugins. override
 "               system settings.
 "       ftplugin/
 "       plugin/
@@ -206,7 +206,7 @@
         " magic/nomagic: changes special chars that can be used in search patterns
         set magic
             " use \v and \V to switch char special meaning on or off.
-            " \v: this will make every following character except a-zA-Z0-9 and 
+            " \v: this will make every following character except a-zA-Z0-9 and
             " '_' have special meaning
             " \V: preceded by \ to activate their special meaning.
             " \m, \M
@@ -562,8 +562,8 @@ endif
     set formatoptions+=r " auto insert current comment leader after <Enter> in Insert
     set formatoptions+=o " auto insert current comment leader after <o/O> in Normal
     set formatoptions+=q " allow formatting of comments with "gq"
-    set formatoptions+=w " trail white space indicates paragraph continues next line
-    set formatoptions+=a " auto reformat of paragraphs when inserted or deleted
+    set formatoptions-=w " trail white space indicates paragraph continues next line
+    set formatoptions-=a " auto reformat of paragraphs when inserted or deleted
     set formatoptions+=n " when formatting, recognize numbered lists
     set formatoptions+=m " also break at a multi-byte character above 255
     set formatoptions+=2 " when formatting, use second line's indent
@@ -643,7 +643,8 @@ endif
         set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
-        set statusline+=\ \%#StatusFileType#\%y
+        set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()}
+        " set statusline+=\ \%#StatusFileType#\%y
         set statusline+=\ %<%(\%#StatusNormal#\%{&ff}\%#StatusChar#\•
                     \\%#StatusNormal#\%{&fenc}%)
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
@@ -1018,13 +1019,15 @@ endif
             exec 'set runtimepath+=' . vam_install_path . '/vim-addon-manager'
             " }}}
 
-            " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers.
+            " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers
             " call vam#ActivateAddons({addons}[, {opts}])
-
-            " addon name rewriting internally, see vam#install#RewriteName()
-
                 " vim plugin manager
             "call vam#ActivateAddons(['tplugin'])
+                " VimL libraries
+            call vam#ActivateAddons(['L9'])
+            call vam#ActivateAddons(['tlib'])
+            call vam#ActivateAddons(['self'])
+            call vam#ActivateAddons(['WebAPI'])
                 " VimLint: a correctness and sanity checker of Vim configuration
             call vam#ActivateAddons(['VimLint'])
                 " statusline
@@ -1052,6 +1055,8 @@ endif
             call vam#ActivateAddons(['unimpaired'])
             call vam#ActivateAddons(['quickfixstatus'])
             " call vam#ActivateAddons(['sharefix'])
+            " call vam#ActivateAddons(['unite-quickfix'])
+            call vam#ActivateAddons(['github:osyo-manga/unite-quickfix'])
                 " Completion <Tab>
             call vam#ActivateAddons(['neocomplcache', 'vimproc'])
             call vam#ActivateAddons(['neco-look'])
@@ -1085,9 +1090,10 @@ endif
             "call vam#ActivateAddons(['LustyJuggler'])
                 " tab manager
             "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
-                " file/buffer/project manager
+                " file/buffer/project manager|explorer
             call vam#ActivateAddons(['The_NERD_tree'])
             " call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
+            call vam#ActivateAddons(['vimfiler'])
                 " compile
             call vam#ActivateAddons(['SingleCompile'])
                 " syntax checker
@@ -1103,10 +1109,11 @@ endif
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
                 " search & find
+            call vam#ActivateAddons(['unite'])
+            " call vam#ActivateAddons(['unite-ssh'])
             call vam#ActivateAddons(['ctrlp'])
             "call vam#ActivateAddons(['Command-T'])
             "call vam#ActivateAddons(['FuzzyFinder'])
-            call vam#ActivateAddons(['unite'])
             call vam#ActivateAddons(['unite-ack'])
             call vam#ActivateAddons(['EasyGrep'])
             call vam#ActivateAddons(['ack'])
@@ -1118,14 +1125,15 @@ endif
             "call vam#ActivateAddons(['tComment'])
             "call vam#ActivateAddons(['The_NERD_Commenter'])
                 " doc & help "K"
-            " call vam#ActivateAddons(['viewdoc'])
-            call vam#ActivateAddons(['github:powerman/vim-plugin-viewdoc'])
+            call vam#ActivateAddons(['viewdoc'])
             "call vam#ActivateAddons(['Manuals'])
                 " indent guides & indent & align & splijoin
             call vam#ActivateAddons(['Indent_Guides'])
             "call vam#ActivateAddons(['matchindent'])
             "call vam#ActivateAddons(['splitjoin'])
             " call vam#ActivateAddons(['Align%294'])
+                " REPL
+            call vam#ActivateAddons(['vim-pipe'])
                 " session & undo & history
             call vam#ActivateAddons(['restore_view'])
             call vam#ActivateAddons(['recover'])
@@ -1134,15 +1142,12 @@ endif
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
             call vam#ActivateAddons(['endwise'])
-            call vam#ActivateAddons(['SwapIt'])
+            " call vam#ActivateAddons(['SwapIt'])
+            call vam#ActivateAddons(['switch'])
             call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
-                " VimL libraries
-            call vam#ActivateAddons(['L9'])
-            call vam#ActivateAddons(['tlib'])
-            call vam#ActivateAddons(['self'])
                 " Vim script
             " call vam#ActivateAddons(['Vim-Support'])
             " call vam#ActivateAddons(['vesting'])
@@ -1177,6 +1182,7 @@ endif
             " call vam#ActivateAddons(['vim_less'])
             " call vam#ActivateAddons(['vim-less'])
                 " JavaScript
+            call vam#ActivateAddons(['github:teramako/jscomplete-vim'])
             " call vam#ActivateAddons(['jsflakes%4057'])
             " call vam#ActivateAddons(['jsruntime'])
             " call vam#ActivateAddons(['jsoncodecs'])
@@ -1271,7 +1277,6 @@ endif
                 " post/paste/www micro-blog/twitter/code/text/www
             call vam#ActivateAddons(['PasteBin'])
             call vam#ActivateAddons(['Gist'])
-            call vam#ActivateAddons(['WebAPI'])
             " call vam#ActivateAddons(['wwwsearch'])
             " call vam#ActivateAddons(['Tumble'])
             "call vam#ActivateAddons(['TwitVim'])
@@ -1317,6 +1322,7 @@ endif
             "call vam#ActivateAddons(['Sauce'])
                 " Vim Extension
             call vam#ActivateAddons(['repeat', 'visualrepeat', 'abolish'])
+            " call vam#ActivateAddons(['LineJuggler'])
             call vam#ActivateAddons(['visualstar'])
             "call vam#ActivateAddons(['StarRange'])
             "call vam#ActivateAddons(['exjumplist'])
@@ -1328,6 +1334,7 @@ endif
             call vam#ActivateAddons(['SudoEdit'])
             " call vam#ActivateAddons(['sudo'])
             call vam#ActivateAddons(['SpitVspit'])
+            " call vam#ActivateAddons(['dwm'])
             call vam#ActivateAddons(['ZoomWin'])
             "call vam#ActivateAddons(['CompleteHelper'])
             call vam#ActivateAddons(['AmbiCompletion'])
@@ -1465,8 +1472,15 @@ syntax on
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " Usage:
-            " - :set ft=html.python to use compound filetype.
+            " - Add other language completion:
+            "   :NeoComplCacheSetFileType [filetype]
+            "   neocomplcache#get_context_filetype()
+            "   this [filetype] only used inside of neocomplcache.
+            "   -- to use local compound filetype for neocomplcache
+            " - :set ft=html.python
+            "   -- to use global compound filetype.
             "   so you can complete HTML and Python as same time.
+            "   -- but this will affect other plugins which use 'filetype' too.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0
@@ -1481,7 +1495,12 @@ syntax on
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
-            let g:neocomplcache_enable_insert_char_pre = 0 " 1: 'InsertCharPre' event
+            " 1: 'InsertCharPre' event, version >= 7.3.461
+            if v:version == 703 && has("patch461")
+                let g:neocomplcache_enable_insert_char_pre = 1
+            else
+                let g:neocomplcache_enable_insert_char_pre = 0
+            endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
@@ -1688,8 +1707,8 @@ syntax on
                 inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
 
                 inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-                " inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-                " inoremap <expr><CR>  neocomplcache#close_popup() . "\<CR>"
+                " inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+                " inoremap <expr><CR> neocomplcache#close_popup() . "\<CR>"
 
                 imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
                 imap <expr><C-p> pumvisible() ? "\<C-p>"
@@ -1780,11 +1799,13 @@ syntax on
                 " completion with unite.vim
                 " <Plug>(neocomplcache_start_unite_complete)
                 " <Plug>(neocomplcache_start_unite_quick_match)
-                " imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-                " imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+                " imap <C-k> <Plug>(neocomplcache_start_unite_complete)
+                " imap <C-q> <Plug>(neocomplcache_start_unite_quick_match)
                 " ----------------------------------------------------------
-                " imap <expr> - pumvisible() ? "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
-                " imap <expr> <C-Space> pumvisible()
+                " inoremap <expr> - pumvisible()
+                "     \ ? "\<Plug>(neocomplcache_start_unite_quick_match)"
+                "     \ : '-'
+                " inoremap <expr> <C-Space> pumvisible()
                 "             \ ? "\<Plug>(neocomplcache_start_unite_complete)"
                 "             \ : "\<C-Space>"
                 " }}}
@@ -2493,8 +2514,18 @@ syntax on
                 " unite-gem :
                 " unite-font :
                 " unite-colorscheme :
-                " unite-cmdwin : put next Ex command to command-line:
+                " unite-cmdwin : put next Ex command to command-line.
                     " Usage: :Unite cmdwin
+                " unite-quickfix {{{ quickfix for unite.vim
+                    " Usage:
+                    " - :Unite quickfix
+                    " - :Unite location_list
+                    let g:unite_quickfix_filename_is_pathshorten = 1
+                    let g:unite_quickfix_is_multiline = 1
+                    " let g:Unite_quickfix_abbr_formatter =
+                    " let g:Unite_quickfix_word_formatter =
+                " }}}
+                " unite-ssh : unite.vim for SSH source.
             " }}}
         " }}}
 
@@ -2526,11 +2557,14 @@ syntax on
             let g:EasyGrepExtraWarnings = 1
         " }}}
 
-        " Ack {{{ a front for the Perl module App::Ack.
-            " Ack can be used as a replacement for 99% of the uses of grep.
-            " $ apt-get install ack-grep (Perl module App:Ack)
-            let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-            " nnoremap <Leader>ak <Esc>:Ack!
+        " Ack {{{ a front for the Perl module App::Ack to replace grep.
+            " Usage:
+            " - :Ack [options] {pattern} [{directory}]
+            " QucikFix window keyboard shortcuts:
+            " o, go, t, T, v, gv, q
+            if !system("grep 'Ubuntu' /etc/issue") " Ubuntu ack-grep
+                let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+            endif
         " }}}
 
         " buffers_search_and_replace {{{ powerful buffer(s) search & replace tool.
@@ -2637,7 +2671,7 @@ syntax on
             let g:viewdoc_man_cmd = "/usr/bin/man"
             let g:ViewDoc_DEFAULT = 'ViewDoc_man' " ViewDoc_man, ViewDoc_help
 
-            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go, 
+            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go,
             " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
@@ -2941,6 +2975,12 @@ syntax on
 
         " vim-nerdtree_plugin_collections {{{
         " }}}
+
+        " vimfiler {{{ Powerful file explorer implemented by VimL.
+            " Usage: :VimFiler
+            " Require: unite.vim
+            let g:vimfiler_as_default_explorer = 1 " behaves as netrw
+        " }}}
     " }}}
 
     " [ buffers ] {{{
@@ -3031,14 +3071,15 @@ syntax on
 
         " endwise : end certain structures automatically. if, do, def ...
 
-        " Rainbow_Parentheses_Improved {{{
-            " show different level of parentheses in different color.
-            " support 4 kinds of parentheses' highlighting:
-            " ( ), [ ], { }, < >
-            " add with: rainbow_parentheses#load(type, max)
-            " this #load() function will auto call #activate() function.
-            au syntax * cal rainbow_parentheses#activate()
-            " e.g. au syntax * call rainbow_parentheses#load('([' , 32)
+        " Rainbow_Parentheses_Improved {{{ show parentheses in different color
+            " au syntax * cal rainbow_parentheses#activate()
+            au syntax * call rainbow#load([
+                        \ ['(',')'],['\[','\]'],['{','}'],
+                        \ ['begin','end'],
+                        \ ])
+        " }}}
+
+        " switch {{{ swap a pattern and substition.
         " }}}
 
         " SwapIt {{{ <C-A>, <C-X>
@@ -3268,6 +3309,11 @@ syntax on
         " }}}
 
         " [ REPL ] {{{
+            " vim-pipe {{{ provides REPL-like development for other shell tools
+                " For example you can instantly send an SQL script to the
+                " database and see the results in a temporary buffer.
+            " }}}
+
             " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
                 " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
             " }}}
@@ -3559,6 +3605,22 @@ syntax on
     " }}}
 
     " [ JavaScript ] {{{
+        " jscomplete-vim {{{ vim omnifunc for JavaScript
+            " [Optional extensions]
+            " extension scripts under the 'autoload/js/' will be loaded with set
+            " list to 'g:jscomplete_use' or 'b:jscomplete_use' in ~/.vimrc
+            " dom: adding DOM keywords completion.
+            " moz: Mozilla JavaScript keywords.
+            " xpcom: Mozilla XPCOM component keywords.
+            " es6th: ECMAScript keywords.
+            let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th',]
+            " :JSCompleteUse for loading jscomplete's extensions.
+            " :JSCompleteUse [<pluginName>, ...]
+            " show loaded and non-loaded extensions if omitted arguments
+            "   + => loaded extensions.
+            "   - => non-loaded extensions.
+        " }}}
+
         " jsflakes%4057 {{{ powerful vim plugin lint javascript code on the fly.
             " Require: jsruntime, jsoncodecs.
             " :cl, clopen
@@ -4048,10 +4110,19 @@ syntax on
             let g:Powerline_mode_S = "S⋅LINE" " select line
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
+            " Customization {{{
             "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
+            "{location} : 'before', 'after'
             "call Pl#Theme#RemoveSegment({targetsegment})
             "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
-            "call Pl#Segment#Create(),
+            call Pl#Theme#RemoveSegment('fileencoding')
+            call Pl#Theme#RemoveSegment('fileformat')
+            " FIXME call Pl#Theme#InsertSegment('static_str', 'before', 'filesize')
+            " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
+            call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+            " Custom files stored as separate files in autoload/Powerline/*
+            call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
+            " }}}
         " }}}
 
         " current-func-info
@@ -4352,7 +4423,7 @@ syntax on
         " VIM_Color_Picker {{{ <F5>, :ColorPicker
         " }}}
 
-        " nosyntaxwords 
+        " nosyntaxwords
             " find words that are not syntactically highlighted in current
             " buffer.
     " }}}
@@ -4404,6 +4475,17 @@ syntax on
     " }}}
 
     " [ window ] {{{
+        " dwm.vim {{{ Tiled Window Management for Vim inspired from dwm.
+            " Usage:
+            " - Ctrl-N => creates a new window and place it in the area [M],
+            "   stacks all previous windows in the [S] areas.
+            " - Ctrl-C => close the current window if no unsaved changes.
+            " - Ctrl-J => jumps to next window (clockwise)
+            " - Ctrl-K => jumps to previous window (anti-clockwise)
+            " - Ctrl-F => focus the current window, that is, place it in the [M]
+            "   area & stacks all other windows in the [S] areas.
+        " }}}
+
         " ZoomWin {{{ <c-w>o :ZoomWin, :call ZoomWin() to zoom window.
             let g:zoomwin_preserve_taglist = 1
             let g:zoomwin_preserve_winmanager = 1
@@ -4445,7 +4527,7 @@ syntax on
         " }}}
 
         " AmbiCompletion {{{ ambiguous word completion.
-            " complete a word with no only start-with match but also ends-with 
+            " complete a word with no only start-with match but also ends-with
             " and contains match.
             if &completefunc == ''
                 set completefunc=g:AmbiCompletion
@@ -4495,17 +4577,16 @@ syntax on
 " }}}
 
 " [ tools ] {{{
-
     " [ GTD, wiki, note, outliner & calendar ] {{{
         " vimwiki {{{
             let g:vimwiki_list = [
                 \ {
-                    \ 'path': '~/vimwiki/wiki',
-                    \ 'path_html': '~/vimwiki/wiki_output/',
+                    \ 'path': '~/Wiki/vimwiki/wiki/',
+                    \ 'path_html': '~/Wiki/vimwiki/output/',
                     \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
                     \ 'syntax': 'default',
                     \ 'css_name': 'style.css',
-                    \ 'template_path': '~/vimwiki/templates/wiki/',
+                    \ 'template_path': '~/Wiki/vimwiki/templates/wiki/',
                     \ 'template_default': 'default',
                     \ 'template_ext': '.html',
                     \ 'custom_wiki2html': '',
@@ -4521,11 +4602,11 @@ syntax on
                     \ },
                 \ },
                 \ {
-                    \ 'path': '~/vimwiki/personal/',
-                    \ 'path_html': '~/vimwiki/personal_output',
+                    \ 'path': '~/Wiki/vimwiki/personal/',
+                    \ 'path_html': '~/Wiki/vimwiki/personal_output/',
                     \ 'auto_export': 0, 'index': 'index', 'ext': '.wiki',
                     \ 'css_name': 'style.css', 'syntax': 'default',
-                    \ 'template_path': '~/vimwiki/templates/personal/',
+                    \ 'template_path': '~/Wiki/vimwiki/templates/personal/',
                     \ 'template_default': 'default',
                     \ 'template_ext': '.template',
                 \ },
@@ -4547,23 +4628,21 @@ syntax on
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
-            let g:vimwiki_use_mouse=0 " disable mouse.
+            let g:vimwiki_use_mouse = 0 " disable mouse.
             let g:vimwiki_folding = 1 " disable folding. speed up file.
             let g:vimwiki_fold_lists = 1 " enable list subitem's folding.
             let g:vimwiki_list_ignore_newline = 0
             let g:vimwiki_table_mappings = 0 " disable Table mapping
                 " to disbale vimwiki <Tab> map
             let g:vimwiki_table_auto_fmt = 0
-            " let g:vimwiki_w32_dir_enc = 'cp1251'
-            " let g:vimwiki_CJK_length = 0 " Vim73 users obsolete this option.
             let g:vimwiki_dir_link = '' " [[dir/]] to open directory with netrw.
             let g:vimwiki_html_header_numbering = 2
             let g:vimwiki_html_header_numbering_sym = '.'
             " let g:vimwiki_valid_html_tags = 'b,i,s,u,sub,sup,kbd,br,hr'
             let g:vimwiki_user_htmls = '404.html,search.html'
             let g:vimwiki_conceallevel = 2 " vimwiki set this everytime
-            let g:vimwiki_url_mingain = 20 " min chars be gained by concealing URLs
-            let g:vimwiki_url_maxsave = 25
+            let g:vimwiki_url_mingain = 25 " min chars be gained by concealing URLs
+            let g:vimwiki_url_maxsave = 30
             let g:vimwiki_debug = 0
             let g:vimwiki_diary_months = {
                         \ 1: 'January', 2: 'February', 3: 'March',
@@ -4572,10 +4651,6 @@ syntax on
                         \ 10: 'October', 11: 'November', 12: 'December',
                         \ }
             let g:vimwiki_use_calendar = 1
-
-            " [ extra ] {{{
-                au FileType vimwiki setlocal concealcursor=v
-            " }}}
         " }}}
 
         " Calendar {{{

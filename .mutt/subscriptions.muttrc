@@ -188,6 +188,8 @@ subscribe ledger ledger-cli <ledger-cli@googlegroups.com>
 subscribe conky Conky <conky-users@lists.sourceforge.net>
 # Byzantium
 subscribe Byzantium Byzantium <byzantium@hacdc.org>
+# greasemonkey
+subscribe greasemonkey greasemonkey <greasemonkey@googlegroups.com>
 
 
 # vim:ft=muttrc
