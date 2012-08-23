@@ -1805,45 +1805,7 @@ syntax on
             " let g:vimproc_password_pattern " this variable is used for vimshell.
         " }}}
 
-        " vimshell {{{ powerful shell inplemented by vim script
-            "built-in functionalities that you had to set up to enable if it's on zsh.
-            " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
-            let g:vimshell_prompt = "vimshell%"
-            let g:vimshell_user_prompt = "getcwd()\n"
-            "let g:vimshell_right_prompt =
-            let g:vimshell_no_default_keymappings = 0 " disable all key mapping in vimshell
-            let g:vimshell_use_terminal_command = "urxvt -e"
-            "let g:vimshell_temporary_directory = "expand('~/.vimshell')"
-            let g:vimshell_max_command_history = 1000
-            let g:vimshell_max_directory_stack = 100
-            "let g:vimshell_vimshrc_path = "expand('~/.vimshrc')"
-            "let g:vimshell_escape_colors =
-            let g:vimshell_disable_escape_highlight = 0
-            let g:vimshell_cat_command = "cat" " $PAGER command path
-            "let g:vimshell_editor_command = " $EDITOR command path
-            let g:vimshell_environment_term = "rxvt-unicode-256color" " $TERM env
-            let g:vimshell_split_command = "nicely" " nicely, tabnew, vsplit
-            let g:vimshell_popup_command = ""
-            let g:vimshell_popup_height = 30
-            let g:vimshell_cd_command = "lcd"
-            let g:vimshell_no_save_history_commands = {'history' : 1, 'h' : 1, 'histdel' : 1}
-            let g:vimshell_scrollback_limit = 1000
-            let g:vimshell_interactive_no_save_history_commands = {}
-            let g:vimshell_interactive_update_time = 500
-            "let g:vimshell_interactive_command_options
-            "let g:vimshell_interactive_interpreter_commands =
-            "let g:vimshell_interactive_encodings =
-            "let g:vimshell_interactive_echoback_commands =
-            let g:vimshell_terminal_cursor = 'i:block-Cursor/lCursor'
-            "let g:vimshell_terminal_commands =
-            "let g:vimshell_interactive_cygwin_commands =
-            let g:vimshell_interactive_cygwin_path = 'c:/cygwin/bin'
-            let g:vimshell_interactive_cygwin_home = ''
-            "let g:unite_source_vimshell_external_history_path =
-        " }}}
-
-        " neco-look {{{ neocomplcache-look (/usr/bin/look)
-        " }}}
+        " neco-look : neocomplcache-look (/usr/bin/look)
 
         " AutoComplPop
 
@@ -4802,6 +4764,45 @@ syntax on
 
         " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
             " Require: AsyncCommand
+        " }}}
+    " }}}
+
+    " [ shell ] {{{
+        " vimshell {{{ powerful shell inplemented by vim script
+            "built-in functionalities that you had to set up to enable if it's on zsh.
+            " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
+            let g:vimshell_prompt = "vimshell%"
+            let g:vimshell_user_prompt = "getcwd()\n"
+            "let g:vimshell_right_prompt =
+            let g:vimshell_no_default_keymappings = 0 " disable all key mapping in vimshell
+            let g:vimshell_use_terminal_command = "urxvt -e"
+            "let g:vimshell_temporary_directory = "expand('~/.vimshell')"
+            let g:vimshell_max_command_history = 1000
+            let g:vimshell_max_directory_stack = 100
+            "let g:vimshell_vimshrc_path = "expand('~/.vimshrc')"
+            "let g:vimshell_escape_colors =
+            let g:vimshell_disable_escape_highlight = 0
+            let g:vimshell_cat_command = "cat" " $PAGER command path
+            "let g:vimshell_editor_command = " $EDITOR command path
+            let g:vimshell_environment_term = "rxvt-unicode-256color" " $TERM env
+            let g:vimshell_split_command = "nicely" " nicely, tabnew, vsplit
+            let g:vimshell_popup_command = ""
+            let g:vimshell_popup_height = 30
+            let g:vimshell_cd_command = "lcd"
+            let g:vimshell_no_save_history_commands = {'history' : 1, 'h' : 1, 'histdel' : 1}
+            let g:vimshell_scrollback_limit = 1000
+            let g:vimshell_interactive_no_save_history_commands = {}
+            let g:vimshell_interactive_update_time = 500
+            "let g:vimshell_interactive_command_options
+            "let g:vimshell_interactive_interpreter_commands =
+            "let g:vimshell_interactive_encodings =
+            "let g:vimshell_interactive_echoback_commands =
+            let g:vimshell_terminal_cursor = 'i:block-Cursor/lCursor'
+            "let g:vimshell_terminal_commands =
+            "let g:vimshell_interactive_cygwin_commands =
+            let g:vimshell_interactive_cygwin_path = 'c:/cygwin/bin'
+            let g:vimshell_interactive_cygwin_home = ''
+            "let g:unite_source_vimshell_external_history_path =
         " }}}
     " }}}
 
