@@ -2693,6 +2693,7 @@ syntax on
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             let g:syntastic_csslint_options = "--warning=none"
             " let g:syntastic_c_compiler
+            let loaded_sh_syntax_checker = 0 " FIXME sh checker error
         " }}}
 
         " checksyntax {{{
