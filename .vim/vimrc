@@ -1153,6 +1153,8 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
+                " regexp
+            " call vam#ActivateAddons(['VimRegEx'])
                 " Vim script
             " call vam#ActivateAddons(['Vim-Support'])
             " call vam#ActivateAddons(['vesting'])
@@ -3080,6 +3082,14 @@ syntax on
 " }}}
 
 " [ languages ] {{{
+    " [ regexp ] {{{ Regular Expression
+        " VimRegEx {{{ Regular Expression Developer for Vim
+            " Usage:
+            " :Vimrex -- opens within the current vim session.
+            " :VimRegEx -- starts a new vim.
+        " }}}
+    " }}}
+
     " [ Python ] {{{
         " if has('python3/dyn') || has('python/dyn')
         "             \ || has('python3') || has('python')
