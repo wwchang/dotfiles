@@ -4083,10 +4083,12 @@ syntax on
             " FIXME call Pl#Theme#InsertSegment('static_str', 'before', 'filesize')
             " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
             call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
-            call Pl#Theme#InsertSegment('virtualenv', 'before', 'neco_ft')
             call Pl#Theme#InsertSegment('hgrev', 'after', 'fugitive')
+            call Pl#Theme#InsertSegment('virtualenv', 'after', 'hgrev')
+            call Pl#Theme#InsertSegment('syntastic', 'after', 'filename')
+            call Pl#Theme#InsertSegment('tagbar', 'after', 'syntastic')
             " Custom files stored as separate files in autoload/Powerline/*
-            call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
+            " FIXME call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
             " }}}
         " }}}
 
