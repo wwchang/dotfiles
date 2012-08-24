@@ -4052,7 +4052,7 @@ syntax on
             let g:Powerline_cache_enabled = 0
             let g:Powerline_symbols = "fancy" " compatible, fancy, unicode.
             set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-            " [0x2213] ∓, [0x2b60] ⭠, [0x2b61] ⭡, [0x2b62, 0x2b63] ⭢⭣.
+            " ∓ [0x2213], ⭠ [0x2b60], ⭡ [0x2b61], ⭢⭣ [0x2b62, 0x2b63].
             let g:Powerline_symbols_override = {
                         \ 'BRANCH': [0x2b60],
                         \ 'RO'    : [0x2b64],
@@ -4063,14 +4063,14 @@ syntax on
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
             let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
-            let g:Powerline_mode_n = " N " " normal
-            let g:Powerline_mode_i = "INSERT" " insert
-            let g:Powerline_mode_R = "REPLACE" " replace
-            let g:Powerline_mode_v = "VISUAL" " visual mode
-            let g:Powerline_mode_V = "V⋅LINE" " visual line
+            let g:Powerline_mode_n  = " N " " normal
+            let g:Powerline_mode_i  = "INSERT" " insert
+            let g:Powerline_mode_R  = "REPLACE" " replace
+            let g:Powerline_mode_v  = "VISUAL" " visual mode
+            let g:Powerline_mode_V  = "V⋅LINE" " visual line
             let g:Powerline_mode_cv = "V⋅BLOCK" " visual block
-            let g:Powerline_mode_s = "SELECT" " select mode
-            let g:Powerline_mode_S = "S⋅LINE" " select line
+            let g:Powerline_mode_s  = "SELECT" " select mode
+            let g:Powerline_mode_S  = "S⋅LINE" " select line
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             " Customization {{{
@@ -4092,7 +4092,6 @@ syntax on
             " }}}
         " }}}
 
-        " current-func-info
         " fugitive
         " hgrev {{{ show current buffer's HG revision.
             " set statusline+=%[r%{HGRev()}]
@@ -4102,6 +4101,7 @@ syntax on
             let g:hgrevAutoUpdate = 1
             let g:hgrevNoRepoChar = '-'
         " }}}
+        " current-func-info
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
