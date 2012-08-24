@@ -1302,7 +1302,8 @@ endif
             "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
             "call vam#ActivateAddons(['Mark%2666'])
                 " format
-            call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
+            " call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
+            " call vam#ActivateAddons(['HybridText'])
             call vam#ActivateAddons(['Tabular'])
             call vam#ActivateAddons(['surround'])
             call vam#ActivateAddons(['Auto_Pairs'])
@@ -4434,10 +4435,10 @@ syntax on
     " }}}
 
     " [ syntax for *** ] {{{
-        " Txtfmt-The-Vim-Highlighter {{{ "Rich text" highlighting formatted with Vim
+        " Txtfmt_The_Vim_Highlighter {{{ "Rich text" highlighting formatted with Vim
             " modeline: vim:ft=txtfmt || ft=c.txtfmt (mix)
             " token(define, concealed), attributes,
-            au! filetypedetect BufRead,BufNewFile *.txt setfiletype txtfmt
+            " au! filetypedetect BufRead,BufNewFile *.txt setfiletype txtfmt
             " nested region
             "augroup filetypedetect
                 "au!
@@ -4452,6 +4453,10 @@ syntax on
             let g:txtfmtUndercurl = 1
             "let g:txtfmtUsermap{}
         " }}}
+
+        " HybridText : Hybrid of useful syntax for general use in text files.
+            " ~/.vim/after/syntax/hybrid.vim
+            au! BufRead,BufNewFile *.txt set syntax=txt
 
         " Bundle 'mutewinter/nginx.vim.git'
 
