@@ -1142,7 +1142,8 @@ endif
             call vam#ActivateAddons(['restore_view'])
             call vam#ActivateAddons(['recover'])
             " call vam#ActivateAddons(['github:tungd/unite-session'])
-            call vam#ActivateAddons(['Gundo'])
+            " call vam#ActivateAddons(['Gundo'])
+            call vam#ActivateAddons(['undotree'])
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
             call vam#ActivateAddons(['endwise'])
@@ -4133,6 +4134,16 @@ syntax on
             let g:gundo_map_move_older = "j"
             let g:gundo_map_move_newer = "k"
             let g:gundo_close_on_revert = 0
+        " }}}
+
+        " undotree {{{ Display your undo history in a graph.
+            " Usage:
+            " ?, u, <C-r>, g+, g-, :earlier, :later.
+            nnoremap <F9> :UndotreeToggle<CR>
+            " if has("presistent_undo")
+            "     set undodir='~/.undo/'
+            "     set undofile
+            " endif
         " }}}
     " }}}
 
