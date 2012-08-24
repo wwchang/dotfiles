@@ -1305,7 +1305,7 @@ endif
             "call vam#ActivateAddons(['Mark%2666'])
                 " format
             " call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
-            " call vam#ActivateAddons(['HybridText'])
+            call vam#ActivateAddons(['HybridText'])
             call vam#ActivateAddons(['Tabular'])
             call vam#ActivateAddons(['surround'])
             call vam#ActivateAddons(['Auto_Pairs'])
