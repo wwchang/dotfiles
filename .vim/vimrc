@@ -1149,7 +1149,7 @@ endif
             call vam#ActivateAddons(['endwise'])
             " call vam#ActivateAddons(['SwapIt'])
             call vam#ActivateAddons(['switch'])
-            call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
+            " call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
