@@ -3045,7 +3045,7 @@ syntax on
             "             \ ['(',')'],['\[','\]'],['{','}'],
             "             \ ['begin','end'],
             "             \ ])
-            au syntax * call rainbow#activate()
+            " au syntax * call rainbow#activate()
         " }}}
 
         " switch {{{ swap a pattern and substition.
