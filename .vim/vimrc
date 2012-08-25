@@ -4151,6 +4151,13 @@ syntax on
             " Usage:
             " ?, u, <C-r>, g+, g-, :earlier, :later.
             nnoremap <F9> :UndotreeToggle<CR>
+            let g:undotree_SetFocusWhenToggle = 1
+            let g:undotree_SplitLocation = 'topleft'
+            let g:undotree_SplitWidth = 30
+            let g:undotree_diffAutoOpen = 1
+            let g:undotree_diffpanelHeight = 25
+            let g:undotree_RelativeTimestamp = 1
+            let g:undotree_TreeNodeShape = '*'
             " if has("presistent_undo")
             "     set undodir='~/.undo/'
             "     set undofile
