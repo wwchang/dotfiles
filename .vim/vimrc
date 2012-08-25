@@ -147,9 +147,9 @@
     set backspace=2        " more powerful backspace
 
     " [ tags ] {{{
-    " C-], [count]C-T, {Visual}g], {Visual}g C-],
+    " C-], [count]C-T, {Visual}g], {Visual}g C-], <C-w><C-]>,
     " :tag, :tags, :[count]tnext/tprevious,
-    set tags=./tags,tags,./.tags " filename for tag command
+    set tags=./tags,tags " filename for tag command
     set taglength=0 " number(N): up to this number of characters.
     set tagrelative
     " }}}
@@ -632,9 +632,12 @@ endif
                     \\:%n\%#StatusSeparator#\|
         set statusline+=\%#StatusReadOnly#\ \%r\ \%#StatusList#\%q
         set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
+        set statusline+=\ \%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
+        set statusline+=\ \%{virtualenv#statusline()}
         set statusline+=\ \%#StatusChar#\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
+        " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", '')}
@@ -650,7 +653,6 @@ endif
         set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
                     \\ \%#StatusPercent#\%P
-        " set statusline+=\ \%{VirtualEnvStatusline()}
     endfunction
 
     " if Powerline is not available, use my custom statusline settings.
@@ -1035,6 +1037,7 @@ endif
             call vam#ActivateAddons(['current-func-info'])
                 " CVS
             call vam#ActivateAddons(['fugitive'])
+            call vam#ActivateAddons(['hgrev'])
             call vam#ActivateAddons(['gitv'])
             " call vam#ActivateAddons(['extradite'])
             call vam#ActivateAddons(['quickfixsigns'])
@@ -1062,6 +1065,7 @@ endif
             call vam#ActivateAddons(['neco-look'])
             " call vam#ActivateAddons(['AutoComplPop'])
             " call vam#ActivateAddons(['github:ervandew/supertab'])
+            " call vam#ActivateAddons(['github:mbbill/code_complete'])
                 " snippet
             call vam#ActivateAddons(['UltiSnips'])
             " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
@@ -1138,7 +1142,8 @@ endif
             call vam#ActivateAddons(['restore_view'])
             call vam#ActivateAddons(['recover'])
             " call vam#ActivateAddons(['github:tungd/unite-session'])
-            call vam#ActivateAddons(['Gundo'])
+            " call vam#ActivateAddons(['Gundo'])
+            call vam#ActivateAddons(['undotree'])
                 " other small functions
             " call vam#ActivateAddons(['TagmaLast'])
             call vam#ActivateAddons(['endwise'])
@@ -1148,6 +1153,8 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
+                " regexp
+            " call vam#ActivateAddons(['VimRegEx'])
                 " Vim script
             " call vam#ActivateAddons(['Vim-Support'])
             " call vam#ActivateAddons(['vesting'])
@@ -1158,7 +1165,7 @@ endif
             " call vam#ActivateAddons(['github:jbking/vim-pep8'])
             " call vam#ActivateAddons(['flake8'])
             " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
-            " call vam#ActivateAddons(['virtualenv'])
+            call vam#ActivateAddons(['virtualenv'])
             " call vam#ActivateAddons(['vim-python-virtualenv'])
             call vam#ActivateAddons(['python_match'])
             " call vam#ActivateAddons(['python_open_module'])
@@ -1297,7 +1304,8 @@ endif
             "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
             "call vam#ActivateAddons(['Mark%2666'])
                 " format
-            call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
+            " call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
+            call vam#ActivateAddons(['HybridText'])
             call vam#ActivateAddons(['Tabular'])
             call vam#ActivateAddons(['surround'])
             call vam#ActivateAddons(['Auto_Pairs'])
@@ -1515,7 +1523,11 @@ syntax on
             let g:neocomplcache_disable_caching_file_path_pattern = '' " pattern of buffer un-cache
             let g:neocomplcache_lock_buffer_name_pattern = '' " pattern of buffer do not auto-complete
             let g:neocomplcache_compare_function = 'neocomplcache#compare_rank'
-            let g:neocomplcache_enable_prefetch = 0 " TODO this has side effect.
+            if v:version > 703 || v:version == 703 && has('patch519')
+                let g:neocomplcache_enable_prefetch = 0
+            elseif has('gui_running') && has('xim')
+                let g:neocomplcache_enable_prefetch = 1
+            endif
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
             let g:neocomplcache_temporary_dir = '~/.neocon'
 
@@ -1805,45 +1817,7 @@ syntax on
             " let g:vimproc_password_pattern " this variable is used for vimshell.
         " }}}
 
-        " vimshell {{{ powerful shell inplemented by vim script
-            "built-in functionalities that you had to set up to enable if it's on zsh.
-            " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
-            let g:vimshell_prompt = "vimshell%"
-            let g:vimshell_user_prompt = "getcwd()\n"
-            "let g:vimshell_right_prompt =
-            let g:vimshell_no_default_keymappings = 0 " disable all key mapping in vimshell
-            let g:vimshell_use_terminal_command = "urxvt -e"
-            "let g:vimshell_temporary_directory = "expand('~/.vimshell')"
-            let g:vimshell_max_command_history = 1000
-            let g:vimshell_max_directory_stack = 100
-            "let g:vimshell_vimshrc_path = "expand('~/.vimshrc')"
-            "let g:vimshell_escape_colors =
-            let g:vimshell_disable_escape_highlight = 0
-            let g:vimshell_cat_command = "cat" " $PAGER command path
-            "let g:vimshell_editor_command = " $EDITOR command path
-            let g:vimshell_environment_term = "rxvt-unicode-256color" " $TERM env
-            let g:vimshell_split_command = "nicely" " nicely, tabnew, vsplit
-            let g:vimshell_popup_command = ""
-            let g:vimshell_popup_height = 30
-            let g:vimshell_cd_command = "lcd"
-            let g:vimshell_no_save_history_commands = {'history' : 1, 'h' : 1, 'histdel' : 1}
-            let g:vimshell_scrollback_limit = 1000
-            let g:vimshell_interactive_no_save_history_commands = {}
-            let g:vimshell_interactive_update_time = 500
-            "let g:vimshell_interactive_command_options
-            "let g:vimshell_interactive_interpreter_commands =
-            "let g:vimshell_interactive_encodings =
-            "let g:vimshell_interactive_echoback_commands =
-            let g:vimshell_terminal_cursor = 'i:block-Cursor/lCursor'
-            "let g:vimshell_terminal_commands =
-            "let g:vimshell_interactive_cygwin_commands =
-            let g:vimshell_interactive_cygwin_path = 'c:/cygwin/bin'
-            let g:vimshell_interactive_cygwin_home = ''
-            "let g:unite_source_vimshell_external_history_path =
-        " }}}
-
-        " neco-look {{{ neocomplcache-look (/usr/bin/look)
-        " }}}
+        " neco-look : neocomplcache-look (/usr/bin/look)
 
         " AutoComplPop
 
@@ -1889,6 +1863,10 @@ syntax on
 
             let g:SuperTabCompletionContexts =
                         \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+        " }}}
+
+        " code_complete {{{ function parameter complete, code snippets, etc
+            " Usage: <A-D> to raise up completion popup menu.
         " }}}
     " }}}
 
@@ -1998,7 +1976,7 @@ syntax on
                         \ 'cpp': '//',
                         \ 'sh': '#',
                         \ 'python': '#'
-                        \}
+                        \ }
         " }}}
 
         " SnippetComplete {{{
@@ -2723,6 +2701,7 @@ syntax on
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             let g:syntastic_csslint_options = "--warning=none"
             " let g:syntastic_c_compiler
+            let loaded_sh_syntax_checker = 0 " FIXME sh checker error
         " }}}
 
         " checksyntax {{{
@@ -2825,8 +2804,12 @@ syntax on
             "   - :Gitv [args]
             "   - :Gitv! [args]
             "   - [range]Gitv! [args]
-            " TODO how to enter Altering the range in command line ??
+            "   - back to working revision file
+            "       press <Enter> on top line:
+            "       -- [filename] --
             "   - Altering the range (input search regex/string)
+            "       press <C-Enter> on line below this line:
+            "       -- Showing (up to 56) commits affecting lines in the range:
             nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
@@ -3034,6 +3017,8 @@ syntax on
     " }}}
 
     " [ Tools ] {{{
+        let g:TasksListTokens = ['FIXME', 'TODO', 'BUG', 'ISSUE', 'ERROR', 'XXX',]
+
         " TagmaTasks {{{
             " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
             " :TagmaTasksClear, :TagmaTasksToggle
@@ -3046,25 +3031,25 @@ syntax on
             let g:TagmaTasksMarks = 1
             let g:TagmaTasksOpen = 1
             let g:TagmaTasksPrefix = '<Leader>t'
-            let g:TagmaTasksTokens = ['FIXME', 'TODO', 'NOTE', 'XXX',
-                        \ 'COMBAK', 'ISSUE', 'ERROR', 'FUCK']
+            let g:TagmaTasksTokens = g:TasksListTokens
         " }}}
 
         " TaskList {{{ \tl ( \t map conflict with CommandT.vim )
             map <Leader>tl <Plug>TaskList
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
             let g:tlRememberPosition = 1
-            let g:tlTokenList = ["FIXME", "BUG", "TODO", "XXX", "FUCK"]
+            let g:tlTokenList = g:TasksListTokens
         " }}}
 
         " endwise : end certain structures automatically. if, do, def ...
 
         " Rainbow_Parentheses_Improved {{{ show parentheses in different color
-            " au syntax * cal rainbow_parentheses#activate()
-            au syntax * call rainbow#load([
-                        \ ['(',')'],['\[','\]'],['{','}'],
-                        \ ['begin','end'],
-                        \ ])
+            " Usage: :RainbowToggle, rainbow#toggle()
+            " au syntax * call rainbow#load([
+            "             \ ['(',')'],['\[','\]'],['{','}'],
+            "             \ ['begin','end'],
+            "             \ ])
+            " au syntax * call rainbow#activate()
         " }}}
 
         " switch {{{ swap a pattern and substition.
@@ -3101,6 +3086,14 @@ syntax on
 " }}}
 
 " [ languages ] {{{
+    " [ regexp ] {{{ Regular Expression
+        " VimRegEx {{{ Regular Expression Developer for Vim
+            " Usage:
+            " :Vimrex -- opens within the current vim session.
+            " :VimRegEx -- starts a new vim.
+        " }}}
+    " }}}
+
     " [ Python ] {{{
         " if has('python3/dyn') || has('python/dyn')
         "             \ || has('python3') || has('python')
@@ -3158,7 +3151,6 @@ syntax on
                 let g:pymode_breakpoint = 1 " Load breakpoints plugin
                 let g:pymode_breakpoint_key = '<LocalLeader>b' " set/unset breakpoint
                 let g:pymode_utils_whitespaces = 1 " Autoremove unused whitespaces
-                let g:pymode_virtualenv = 1 " fix vim python paths if virtualenv enabled
                 let g:pymode_options_indent = 1 " default pymode python indent options
                 let g:pymode_options_fold = 1 " Set default pymode python fold options
                 let g:pymode_options_other = 1 " Set default pymode python other options
@@ -3260,14 +3252,13 @@ syntax on
         " }}}
 
         " [ virtualenv ] {{{
-            " virtualenv {{{ activate/deactivate a virtualenv within Vim.
+            " virtualenv {{{ Python virtualenv for Vim.
                 " Usage:
-                    " statusline: %{VirtualEnvStatusline()}
-                    " Commands:
-                        " :VirtualEnvList
-                        " :VirtualEnvDeactivate
-                        " :VirtualEnvActivate [name]
-                let g:virtualenv_loaded = 0
+                " statusline: %{virtualenv#statusline()}
+                " Commands:
+                " :VirtualEnvList
+                " :VirtualEnvDeactivate
+                " :VirtualEnvActivate <Tab> [name]
                 let g:virtualenv_directory = "~/.virtualenvs"
                 let g:virtualenv_auto_activate = 1
                 let g:virtualenv_stl_format = '[%n]'
@@ -4077,7 +4068,7 @@ syntax on
             let g:Powerline_cache_enabled = 0
             let g:Powerline_symbols = "fancy" " compatible, fancy, unicode.
             set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-            " [0x2213] ∓, [0x2b60] ⭠, [0x2b61] ⭡, [0x2b62, 0x2b63] ⭢⭣.
+            " ∓ [0x2213], ⭠ [0x2b60], ⭡ [0x2b61], ⭢⭣ [0x2b62, 0x2b63].
             let g:Powerline_symbols_override = {
                         \ 'BRANCH': [0x2b60],
                         \ 'RO'    : [0x2b64],
@@ -4088,14 +4079,14 @@ syntax on
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
             let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
-            let g:Powerline_mode_n = " N " " normal
-            let g:Powerline_mode_i = "INSERT" " insert
-            let g:Powerline_mode_R = "REPLACE" " replace
-            let g:Powerline_mode_v = "VISUAL" " visual mode
-            let g:Powerline_mode_V = "V⋅LINE" " visual line
+            let g:Powerline_mode_n  = " N " " normal
+            let g:Powerline_mode_i  = "INSERT" " insert
+            let g:Powerline_mode_R  = "REPLACE" " replace
+            let g:Powerline_mode_v  = "VISUAL" " visual mode
+            let g:Powerline_mode_V  = "V⋅LINE" " visual line
             let g:Powerline_mode_cv = "V⋅BLOCK" " visual block
-            let g:Powerline_mode_s = "SELECT" " select mode
-            let g:Powerline_mode_S = "S⋅LINE" " select line
+            let g:Powerline_mode_s  = "SELECT" " select mode
+            let g:Powerline_mode_S  = "S⋅LINE" " select line
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             " Customization {{{
@@ -4108,15 +4099,25 @@ syntax on
             " FIXME call Pl#Theme#InsertSegment('static_str', 'before', 'filesize')
             " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
             call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+            call Pl#Theme#InsertSegment('hgrev', 'after', 'fugitive')
+            call Pl#Theme#InsertSegment('virtualenv', 'after', 'hgrev')
+            call Pl#Theme#InsertSegment('syntastic', 'after', 'filename')
+            call Pl#Theme#InsertSegment('tagbar', 'after', 'syntastic')
             " Custom files stored as separate files in autoload/Powerline/*
-            call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
+            " FIXME call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
             " }}}
         " }}}
 
+        " fugitive
+        " hgrev {{{ show current buffer's HG revision.
+            " set statusline+=%[r%{HGRev()}]
+            " set statusline+=%{HGRev()?'[r'.HGRev().']':''}
+            let g:hgrevFlags = '-nbt' " n: rev id, b: branch, t: tags.
+            let g:hgrevAddStatus = 1
+            let g:hgrevAutoUpdate = 1
+            let g:hgrevNoRepoChar = '-'
+        " }}}
         " current-func-info
-
-        " fugitive.vim
-
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
@@ -4148,6 +4149,23 @@ syntax on
             let g:gundo_map_move_older = "j"
             let g:gundo_map_move_newer = "k"
             let g:gundo_close_on_revert = 0
+        " }}}
+
+        " undotree {{{ Display your undo history in a graph.
+            " Usage:
+            " ?, u, <C-r>, g+, g-, :earlier, :later.
+            nnoremap <F9> :UndotreeToggle<CR>
+            let g:undotree_SetFocusWhenToggle = 1
+            let g:undotree_SplitLocation = 'topleft'
+            let g:undotree_SplitWidth = 30
+            let g:undotree_diffAutoOpen = 1
+            let g:undotree_diffpanelHeight = 25
+            let g:undotree_RelativeTimestamp = 1
+            let g:undotree_TreeNodeShape = '*'
+            " if has("presistent_undo")
+            "     set undodir='~/.undo/'
+            "     set undofile
+            " endif
         " }}}
     " }}}
 
@@ -4438,10 +4456,10 @@ syntax on
     " }}}
 
     " [ syntax for *** ] {{{
-        " Txtfmt-The-Vim-Highlighter {{{ "Rich text" highlighting formatted with Vim
+        " Txtfmt_The_Vim_Highlighter {{{ "Rich text" highlighting formatted with Vim
             " modeline: vim:ft=txtfmt || ft=c.txtfmt (mix)
             " token(define, concealed), attributes,
-            au! filetypedetect BufRead,BufNewFile *.txt setfiletype txtfmt
+            " au! filetypedetect BufRead,BufNewFile *.txt setfiletype txtfmt
             " nested region
             "augroup filetypedetect
                 "au!
@@ -4456,6 +4474,10 @@ syntax on
             let g:txtfmtUndercurl = 1
             "let g:txtfmtUsermap{}
         " }}}
+
+        " HybridText : Hybrid of useful syntax for general use in text files.
+            " ~/.vim/after/syntax/hybrid.vim
+            au! BufRead,BufNewFile *.txt set syntax=txt
 
         " Bundle 'mutewinter/nginx.vim.git'
 
@@ -4678,8 +4700,9 @@ syntax on
             let g:ViskeEndTime = 21 " End time of a day.
             let g:ViskeWidthFuzzy = 4 " Acceptable length that run over a screen.
             let g:ViskeLang = "us,cn,jp" " Language setting
-            let g:ViskeTaskTypeLabel = ['\ ', 'seminar', 'circle',
-                        \ 'part time job', 'family', 'TODO'
+            let g:ViskeTaskTypeLabel = [
+                        \ '\ ', 'seminar', 'circle',
+                        \ 'part time job', 'family', 'TODO',
                         \ ]
             let g:ViskeDayLabel = ['S', 'M', 'Tu', 'W', 'Th', 'F', 'S']
         " }}}
@@ -4802,6 +4825,45 @@ syntax on
 
         " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
             " Require: AsyncCommand
+        " }}}
+    " }}}
+
+    " [ shell ] {{{
+        " vimshell {{{ powerful shell inplemented by vim script
+            "built-in functionalities that you had to set up to enable if it's on zsh.
+            " :VimShell[Create,Tab,Pop,Interactive,....] [{options}...] [{path}]
+            let g:vimshell_prompt = "vimshell%"
+            let g:vimshell_user_prompt = "getcwd()\n"
+            "let g:vimshell_right_prompt =
+            let g:vimshell_no_default_keymappings = 0 " disable all key mapping in vimshell
+            let g:vimshell_use_terminal_command = "urxvt -e"
+            "let g:vimshell_temporary_directory = "expand('~/.vimshell')"
+            let g:vimshell_max_command_history = 1000
+            let g:vimshell_max_directory_stack = 100
+            "let g:vimshell_vimshrc_path = "expand('~/.vimshrc')"
+            "let g:vimshell_escape_colors =
+            let g:vimshell_disable_escape_highlight = 0
+            let g:vimshell_cat_command = "cat" " $PAGER command path
+            "let g:vimshell_editor_command = " $EDITOR command path
+            let g:vimshell_environment_term = "rxvt-unicode-256color" " $TERM env
+            let g:vimshell_split_command = "nicely" " nicely, tabnew, vsplit
+            let g:vimshell_popup_command = ""
+            let g:vimshell_popup_height = 30
+            let g:vimshell_cd_command = "lcd"
+            let g:vimshell_no_save_history_commands = {'history' : 1, 'h' : 1, 'histdel' : 1}
+            let g:vimshell_scrollback_limit = 1000
+            let g:vimshell_interactive_no_save_history_commands = {}
+            let g:vimshell_interactive_update_time = 500
+            "let g:vimshell_interactive_command_options
+            "let g:vimshell_interactive_interpreter_commands =
+            "let g:vimshell_interactive_encodings =
+            "let g:vimshell_interactive_echoback_commands =
+            let g:vimshell_terminal_cursor = 'i:block-Cursor/lCursor'
+            "let g:vimshell_terminal_commands =
+            "let g:vimshell_interactive_cygwin_commands =
+            let g:vimshell_interactive_cygwin_path = 'c:/cygwin/bin'
+            let g:vimshell_interactive_cygwin_home = ''
+            "let g:unite_source_vimshell_external_history_path =
         " }}}
     " }}}
 
@@ -5199,7 +5261,7 @@ syntax on
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
             let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
-            " FIXME application/djvu
+            " TODO application/djvu
             let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm
             " let g:utl_cfg_hdl_mt_application_chm = ":silent !chmsee '%p' &"
@@ -5246,7 +5308,7 @@ syntax on
                     endif
                     let curline = curline + 1
                 endwhile
-                " FIXME call libcall("VimSpeak.dll", "Speak", strline)
+                " TODO call libcall("VimSpeak.dll", "Speak", strline)
             endfunction
 
             command! -nargs=0 -range VimSpeak <line1>,<line2>call VimSpeak()

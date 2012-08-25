@@ -543,7 +543,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*ledger-cli\.googlegroups\.com
     apps/ledger/
     :0
-    * ^To: .*byzantium@hacdc\.org
+    * ^List-Id: .*byzantium\.hacdc\.org
     apps/Byzantium/
     :0
     * ^List-Id: .*greasemonkey-dev\.googlegroups\.com
