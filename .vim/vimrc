@@ -279,14 +279,16 @@
             " SuperCleverTab() for omni-completion or insert <Tab> {{{
             function! SuperCleverTab()
                 if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-                    return "\"
+                    return "\<Tab>"
                 else
+                    " use omnifunc
                     if &omnifunc != ''
-                        return "\\"
+                        return "\<C-X>\<C-O>"
+                    " use dictionary option with /usr/share/dict/words
                     elseif &dictionary != ''
-                        return "\"
+                        return "<C-X>\<C-K>"
                     else
-                        return "\"
+                        return "\<C-X>\<C-N>"
                     endif
                 endif
             endfunction
