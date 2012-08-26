@@ -630,31 +630,37 @@ endif
         "   - %{SyntasticStatuslineFlag()}
     function! SetStatusline()
         set statusline=
-        set statusline+=\%#StatusSeparator#\|\%#StatusBufferNumber#\b
-                    \\:%n\%#StatusSeparator#\|
-        set statusline+=\%#StatusReadOnly#\ \%r\ \%#StatusList#\%q
+        " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
+        set statusline+=\%#StatusBufferNumber#\b:%n
+        " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
+        set statusline+=\%#StatusReadOnly#\%r\%#StatusList#\%q
         set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
-        set statusline+=\ \%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
+        set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
         set statusline+=\ \%{virtualenv#statusline()}
-        set statusline+=\ \%#StatusChar#\»
+        set statusline+=\%#StatusChar#\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
-        " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
+        " FIXME set statusline+=\ \%{ConflictCheck()}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
+        set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", '')}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", "", "f")}
-        set statusline+=\ \%#StatusHELP#\%H
-        set statusline+=\ %=\%#StatusSeparator#\|\%#StatusStop#
-        set statusline+=\ \%#StatusFilePath#\%<%t
-        set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
-        set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()}
-        " set statusline+=\ \%#StatusFileType#\%y
-        set statusline+=\ %<%(\%#StatusNormal#\%{&ff}\%#StatusChar#\•
-                    \\%#StatusNormal#\%{&fenc}%)
-        set statusline+=\ \%#StatusSeparator#\|\%#StatusStop#
-        set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
-                    \\ \%#StatusPercent#\%P
+        set statusline+=\%#StatusHELP#\%H
+        " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
+        set statusline+=\%=
+        " FIXME invalid expression.
+        " set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()=~%y?'':neocomplcache#get_context_filetype()}
+        " set statusline+=\%#StatusChar#\%{neocomplcache#get_context_filetype()=~%y?'':'•'}
+        set statusline+=\%#StatusFileType#\%Y
+        " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
+        set statusline+=\ \%<%(\%#StatusNormal#\%{&ff=~'unix'?'':&ff}%)
+        set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc=~'utf-8'?'':'•'}
+        set statusline+=\%#StatusNormal#\%{&fenc=~'utf-8'?'':&fenc}
+        " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
+        " set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
+        set statusline+=\ \%#StatusLineNumber#\%-(L:%l\ C:%c%V%)
+        set statusline+=\ \%#StatusPercent#\%P
     endfunction
 
     " if Powerline is not available, use my custom statusline settings.
