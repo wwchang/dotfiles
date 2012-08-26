@@ -620,6 +620,9 @@ endif
         " %-0{minwid}.{maxwid}{item}
         " %!expression to evaluate the expression.
         " %{} items will be evaluated too.
+        "   NOTE: in %{}, Unclosed expression sequence:
+        "   - you can not has space in %{}
+        "   - you can not use double quote in %{}, use single quote instead.
         " Require: fugitive, current-func-info, syntastic,
         " - fugitive
         "   - %{fugitive#statusline()}
@@ -644,15 +647,13 @@ endif
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", '')}
-        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("%s", "", "f")}
+        set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%s]", "", "f")}
         set statusline+=\%#StatusHELP#\%H
-        " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\%=
-        " FIXME invalid expression.
-        " set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()=~%y?'':neocomplcache#get_context_filetype()}
-        " set statusline+=\%#StatusChar#\%{neocomplcache#get_context_filetype()=~%y?'':'•'}
-        set statusline+=\%#StatusFileType#\%Y
+        set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'':neocomplcache#get_context_filetype()}
+        set statusline+=\%#StatusChar#\%{neocomplcache#get_context_filetype()==#&ft?'':'•'}
+        set statusline+=\%#StatusFileType#\%y
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%<%(\%#StatusNormal#\%{&ff=~'unix'?'':&ff}%)
         set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc=~'utf-8'?'':'•'}
