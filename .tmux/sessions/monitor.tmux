@@ -41,6 +41,8 @@
     split-window -v -p 35 'dstat'
     select-pane -t 1
     split-window -v -p 30 'echo "PASSWORD" | sudo -S iotop"'
+    # ---
+    new-window -n load 'ttyload'
     # [ log ]
     new-window -n log 'multitail -i /var/log/apache2/error.log -i /var/log/apache2/access.log -i /var/log/mail.err -i ~/.procmail.log'
     # [ network ]
