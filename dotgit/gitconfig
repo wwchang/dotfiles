@@ -106,6 +106,12 @@
     ; log-graph = log --color --pretty=format:'%s %an, %ar' --graph
     log-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 
+    ; temporarily ignoring files
+    ignore = !git update-index --assume-unchanged
+    unignore = !git update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]" ; for zsh
+    ; ignored = !git ls-files -v | grep ^[a-z] ; for bash
+
 [branch "master"]
     mergeoptions = --no-ff ; default disable fast forwarding on branch master.
 
