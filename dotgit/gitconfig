@@ -97,11 +97,11 @@
 
     show-option = config --get
 
-    log-fetched = log -p HEAD..FETCH_HEAD
-    visual-fetched = !gitk HEAD...FETCH_HEAD
-    ; log-diff-origin = log -p master..ORIG_HEAD
-    log-diff-origin = log -p master..origin/master
-    log-diff-remote = log -p master..remote/master
+    diff-fetched = log -p --pretty=format:%s HEAD..FETCH_HEAD
+    diff-visual-fetched = !gitk HEAD...FETCH_HEAD
+    ; diff-origin = log -p master..ORIG_HEAD
+    diff-origin = log -p master..origin/master
+    diff-remote = log -p master..remote/master
 
     log-graph = log --color --pretty=format:'%s %an, %ar' --graph
     log-pretty-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
