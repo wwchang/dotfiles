@@ -1541,6 +1541,8 @@ syntax on
             let g:neocomplcache_temporary_dir = '~/.neocon'
 
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
+            " NOTE you can see neocomplcache default value of option by command:
+            " :echo g:neocomplcache_*
             if !exists('g:neocomplcache_keyword_patterns')
                 let g:neocomplcache_keyword_patterns = {}
             endif
@@ -1558,52 +1560,95 @@ syntax on
             let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
                 " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
             let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-            " let g:neocomplcache_tags_filter_patterns =
-            " let g:neocomplcache_same_filetype_lists =
-            " Define dictionary.
+            if !exists('g:neocomplcache_tags_filter_patterns')
+                let g:neocomplcache_tags_filter_patterns = {}
+            endif
+            " let g:neocomplcache_tags_filter_patterns.c = 'v:val.word !~ ''^[~_]'''
+            if !exists('g:neocomplcache_same_filetype_lists')
+                let g:neocomplcache_same_filetype_lists = {}
+            endif
+            let g:neocomplcache_same_filetype_lists.markdown = 'markdown'
             let g:neocomplcache_dictionary_filetype_lists = {
                         \ 'default' : '',
                         \ 'vimshell' : $HOME.'/.vimshell_hist',
                         \ 'scheme' : $HOME.'/.gosh_completions',
                         \ }
-            let g:neocomplcache_dictionary_patterns = {}
-            " a dictionary to define context filetypes.
+            if !exists('g:neocomplcache_dictionary_patterns')
+                let g:neocomplcache_dictionary_patterns = {}
+            endif
+            " context filetypes (one filetype in another filetype)
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            let g:neocomplcache_context_filetype_lists.perl6 = [{
-                        \ 'filetype' : 'pir',
-                        \ 'start' : 'Q:PIR\s*{',
-                        \ 'end' : '}',
-                        \ }]
             let g:neocomplcache_context_filetype_lists.vim = [{
-                        \ 'filetype' : 'python',
-                        \ 'start' : '^\s*python <<\s*\(\h\w*\)',
-                        \ 'end' : '^\1',
+                        \ 'filetype': 'python',
+                        \ 'start': '^\s*python <<\s*\(\h\w*\)',
+                        \ 'end': '^\1',
                         \ }]
-            " let g:neocomplcache_text_mode_filetypes =
+            " FIXME
+            " let g:neocomplcache_context_filetype_lists.vim = [{
+            "             \ 'filetype': 'ruby',
+            "             \ }]
+            let g:neocomplcache_context_filetype_lists.perl6 = [{
+                        \ 'filetype': 'pir',
+                        \ 'start': 'Q:PIR\s*{',
+                        \ 'end': '}',
+                        \ }]
+            if exists('g:neocomplcache_text_mode_filetypes')
+                let g:neocomplcache_text_mode_filetypes = {}
+            endif
+            let g:neocomplcache_text_mode_filetypes = {
+                        \ 'help': 1,
+                        \ 'tex': 1,
+                        \ 'text': 1,
+                        \ 'gitcommit': 1,
+                        \ 'vcs-commit': 1,
+                        \ }
             let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_ctags_program = 'ctags'
-            " let g:neocomplcache_ctags_arguments_list =
-            " let g:neocomplcache_include_paths =
-            " let g:neocomplcache_include_exprs =
-            " let g:neocomplcache_include_patterns =
-            " let g:neocomplcache_include_functions =
+            if !exists('g:neocomplcache_ctags_arguments_list')
+                let g:neocomplcache_ctags_arguments_list = {}
+            endif
+            " let g:neocomplcache_ctags_arguments_list.python =
+            if !exists('g:neocomplcache_include_paths')
+                let g:neocomplcache_include_paths = {}
+            endif
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            " FIXME let g:neocomplcache_include_exprs.python =
+            if !exists('g:neocomplcache_include_patterns')
+                let g:neocomplcache_include_patterns = {}
+            endif
+            let g:neocomplcache_include_patterns.python = '^import'
+            if !exists('g:neocomplcache_include_functions')
+                let g:neocomplcache_include_functions = {}
+            endif
+            " FIXME let g:neocomplcache_include_functions.python =
             let g:neocomplcache_include_max_processes = 25
-            " let g:neocomplcache_filename_include_exprs =
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
             if !exists('g:neocomplcache_filename_include_exts')
                 let g:neocomplcache_filename_include_exts = {}
             endif
-            let g:neocomplcache_filename_include_exts.cpp = [
-                        \ '', 'h', 'hpp', 'hxx',
-                        \ ]
-            " let g:neocomplcache_member_prefix_patterns =
-            " let g:neocomplcache_member_patterns =
+            let g:neocomplcache_filename_include_exts.python = ['py']
+            let g:neocomplcache_filename_include_exts.cpp = ['', 'h', 'hpp', 'hxx']
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
+            endif
+            if !exists('g:neocomplcache_member_patterns')
+                let g:neocomplcache_member_patterns = {}
+            endif
+            " let g:neocomplcache_member_patterns.default = '\h\w*\%(()\|\[\h\w*\]\)\?'
             if !exists('g:neocomplcache_delimiter_patterns')
                 let g:neocomplcache_delimiter_patterns = {}
             endif
-            let g:neocomplcache_delimiter_patterns.vim = ['#']
-            let g:neocomplcache_delimiter_patterns.cpp = ['::']
+            let g:neocomplcache_delimiter_patterns = {
+                        \ 'vim': ['#'],
+                        \ 'python': ['.'],
+                        \ 'cpp': ['::'],
+                        \ }
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
@@ -1627,13 +1672,26 @@ syntax on
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete'
             endif
-            let g:neocomplcache_vim_completefuncs = {}
-            let g:neocomplcache_source_disable = {}
-            let g:neocomplcache_source_completion_length = {}
+            if exists('g:neocomplcache_vim_completefuncs')
+                let g:neocomplcache_vim_completefuncs = {}
+            endif
+            if exists('g:neocomplcache_source_disable')
+                let g:neocomplcache_source_disable = {}
+            endif
+            if exists('g:neocomplcache_source_completion_length')
+                let g:neocomplcache_source_completion_length = {}
+            endif
+            let g:neocomplcache_source_completion_length = {
+                        \ 'member_complete': 0,
+                        \ 'keyword_complete': 2,
+                        \ 'filename_complete': 2,
+                        \ 'buffer_complete': 2,
+                        \ 'look': 3,
+                        \ }
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
             let g:neocomplcache_use_vimproc = 1
-                " for composite file type (only use one completion)
+            " for composite file type (only use one completion)
             let g:neocomplcache_ignore_composite_filetype_lists = {
                         \ 'python.unit' : 'python',
                         \ 'ruby.spec' : 'ruby',
