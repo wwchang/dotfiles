@@ -262,11 +262,11 @@ function run_once(prg,arg_string,pname,screen)
     end
 end
 
-run_once("urxvtd -q -o -f")
-run_once("mpd")
-run_once("mlnet")
-run_once("nm-applet")
-run_once("unclutter -idle 10 -root")
+-- run_once("urxvtd -q -o -f")
+-- run_once("mpd")
+-- run_once("mlnet")
+-- run_once("nm-applet")
+-- run_once("unclutter -idle 10 -root")
 
 -- TODO what does this screen argument means.
 -- run_once("luakit", nil, nil, 6)
@@ -277,19 +277,22 @@ run_once("unclutter -idle 10 -root")
 
 -- [ other user custom settings ] {{{
     -- Mouseless {{{ move mouse to corner
-        -- set the desired pixel coordinates:
-        -- if your screen is 1024x768 -->> local saftCoords = {x=1024, y=768}
-        local saftCoords = {x=1920, y=1080}
+        mouse.screen = awful.util.cycle(screen.count(), mouse.screen)
+        local geo = screen[mouse.screen].geometry
+        mouse.coords({ x = geo.x + geo.width , y = geo.y + geo.height })
+
         local moveMouseOnStartup = true -- tell Awesome to do this at startup
+
         local function moveMouse(x_co, y_co)
             mouse.coords({ x=x_co, y=y_co })
         end
+
         if moveMouseOnStartup then
-            moveMouse(saftCoords.x, saftCoords.y)
+            moveMouse(geo.x, geo.y)
         end
 
-        -- doesn't move the cursor but temporarily hides it after a period of 
-        -- inactivity, and also offers the ability to instantly hide the cursor 
+        -- doesn't move the cursor but temporarily hides it after a period of
+        -- inactivity, and also offers the ability to instantly hide the cursor
         -- while typing, you could try the program 'unclutter'.
         -- $ unclutter -idle 10
     -- }}}
@@ -1111,7 +1114,7 @@ root.buttons(awful.util.table.join(
         -- Mouseless [ Mod4-CTRL-M ]
         keydoc.group("Functions"),
         awful.key({ modkey, "Control" }, "m", function()
-                moveMouse(saftCoords.x, saftCoords.y)
+                moveMouse(geo.x, geo.y)
             end,
             "move mouse to corner"
         ),

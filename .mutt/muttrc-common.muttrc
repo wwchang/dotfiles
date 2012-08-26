@@ -49,7 +49,7 @@ set mailcap_path   = $HOME/.mutt/mailcap:/usr/local/etc/mailcap:/etc/mailcap
 
 set nomove  # hold messages in $MAIL
 
-set pager="vim" # builtin, (vim, make "mail" ftplugin file more smart)
+set pager="builtin" # builtin, (vim, make "mail" ftplugin file more smart)
 
 # Query menu.
 # press "C-T" to complete and display query menu result.
@@ -128,7 +128,6 @@ set reply_to = ask-yes
 # excludes you from list
 unset metoo
 unset reply_self
-# set reply_regexp = "^(re([\[0-9\]+])*|aw|回复|答复|Reply)(:[ \t]|：)"
 set reply_regexp="^(re([\[0-9\]+])*|aw|回复|答复)[:：][ \t]*"
 
 # resolve

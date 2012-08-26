@@ -98,7 +98,8 @@ XAUTHORITY=/home/chris/.Xauthority
 
 # mutt & getmail & maildir-utils
 # 0   4   *   *   *   getmail -q -a -l >/dev/null
-*/5 9-21 *   *   * getmail -q -n -l --getmaildir=$HOME/.mutt/getmail --rcfile getmailrc --rcfile QQ348284894rc
+*/10 9-21 *   *   * getmail -q -n -l --getmaildir=$HOME/.mutt/getmail --rcfile getmailrc
+10    10  *   *   * getmail -q -n -l --getmaildir=$HOME/.mutt/getmail --rcfile QQ348284894rc
 # 3       */5    *   *   *   on_ac_power && mu index -q
 
 # invoke gui software in crontab

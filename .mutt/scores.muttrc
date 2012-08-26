@@ -3,33 +3,46 @@
 # examples: score ~fbetamail@microsoft\.com 1
 # ~f alice ~s 'subject' !~f mama
 
-# important
+# important {{{
 score "~P" +5 # only to me
-score "~f fuhemeng@gmail.com" +5
-score "~f 568734625@qq.com" +5
-score "~f zmnlb1106@gmail.com" +3
+score "~f fuhemeng@gmail.com" +30
+score "~f 568734625@qq.com" +30
+score "~f zmnlb1106@gmail.com" +30
+# }}}
 
-# new & old
-score "~N" +5 # new
-score "~Q" -3 # replied
-score "~O" -1 # old message
+# new & old & deleted {{{
+score "~N" +30 # new
+score "~Q" -20 # replied
+score "~O" -5 # old message
+score "~D" -50 # deleted
+# }}}
 
-# notice
-score "~f 'Cron Daemon.*'" +3
-score "~s notice" +4
-score "~s birthday" +5
+# notice {{{
+score "~f 'Cron Daemon.*'" +5
+score "~s notice" +10
+score "~s birthday" +30
+# }}}
 
 # sex
-score "~s love" +2
-score "~s sex" +2
-score "~s gay" +2
+score "~s love" -2
+score "~s sex" -2
+score "~s gay" -2
 
-score "~D" -5 # deleted
+# mailing list {{{
+# }}}
 
-# mailing list
+# subscribe update & notify {{{
+# pattern match
+score "~f .*noreply.*@.*" +2
+score "~f .*noreply.*@.*" +2
+score "~f update.*@.*" +2
 
-# subscribe update & notify
-score "~f '.*noreply.*@.*'" -2
-score "~f '.*noreply.*@.*'" -2
+score "~f notifications@github.com" +30
+score "~f do-not-reply@stackexchange.com" +10
+score "~f digest-noreply@quora.com" +10
+# }}}
 
-# vim:ft=muttrc
+# bullshit
+score "~f newsletter@360buy.com" -50
+
+# vim:ft=muttrc:fdm=marker

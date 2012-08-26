@@ -1,7 +1,7 @@
-## Author: stardiviner [ numbchild AT gmail DOT com ]
+## Author: NagatoPain [ numbchild AT gmail DOT com ]
 
 [user]
-	name = stardiviner
+	name = NagatoPain
 	email = numbchild@gmail.com
 	signingkey = 47C32433 # GPG key ID.
 
@@ -62,8 +62,8 @@
     unmerged = magenta
 
 
-[commit]
-	template = $HOME/Git/dotfiles/dotgit/commit.template
+; [commit]
+; 	template = $HOME/Git/dotfiles/dotgit/commit.template
 [push]
     default = matching
 [diff]
@@ -97,14 +97,20 @@
 
     show-option = config --get
 
-    log-fetched = log -p HEAD..FETCH_HEAD
-    visual-fetched = !gitk HEAD...FETCH_HEAD
-    ; log-diff-origin = log -p master..ORIG_HEAD
-    log-diff-origin = log -p master..origin/master
-    log-diff-remote = log -p master..remote/master
+    diff-fetched = log -p --pretty=format:%s HEAD..FETCH_HEAD
+    diff-visual-fetched = !gitk HEAD...FETCH_HEAD
+    ; diff-origin = log -p master..ORIG_HEAD
+    diff-origin = log -p master..origin/master
+    diff-remote = log -p master..remote/master
 
-    log-graph = log --color --pretty=format:'%s %an, %ar' --graph
-    log-pretty-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    ; log-graph = log --color --pretty=format:'%s %an, %ar' --graph
+    log-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+
+    ; temporarily ignoring files
+    ignore = !git update-index --assume-unchanged
+    unignore = !git update-index --no-assume-unchanged
+    ignored = !git ls-files -v | grep "^[[:lower:]]" ; for zsh
+    ; ignored = !git ls-files -v | grep ^[a-z] ; for bash
 
 [branch "master"]
     mergeoptions = --no-ff ; default disable fast forwarding on branch master.
