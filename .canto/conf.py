@@ -103,7 +103,7 @@ add("http://feeds2.feedburner.com/WebDesignerWall", tags=[None, "blog"]) # Web D
 add("http://feeds2.feedburner.com/stevelosh", tags=[None, "blog"]) # stevelosh Blog
 add("http://feeds.feedburner.com/catswhocode", tags=[None, "blog"]) # CatsWhoCode.com
 add("http://program-think.blogspot.com/feeds/posts/default", tags=[None, "blog"]) # Program Think
-add("http://feeds.feedburner.com/ruanyifeng", tags=[None, "blog"]) # RuanYiFeng Blog
+# add("http://feeds.feedburner.com/ruanyifeng", tags=[None, "blog"]) # RuanYiFeng Blog
 add("http://feed.tmdsb.com/", tags=[None, "blog"]) # Goo Blog
 add("http://www.matrix67.com/blog/feed/atom", tags=[None, "blog"]) # Matric Math
 add("http://coolshell.cn/?feed=rss2", tags=[None, "blog"]) # Cool shell
@@ -123,17 +123,13 @@ add("http://www.gregsexton.org/feed/", tags=[None, "blog"]) # gregsexton.org
 
 default_rate(100)
 # Podcasts {{{
-add("http://usesthis.com/feed/", tags=[None, "podcast"]) # The Setup
-add("http://setup.xiuxiu.de/feed/", tags=[None, "podcast"]) # The Setup (Chinese)
+# add("http://usesthis.com/feed/", tags=[None, "podcast"]) # The Setup
+# add("http://setup.xiuxiu.de/feed/", tags=[None, "podcast"]) # The Setup (Chinese)
 add("http://vimcasts.org/feeds/ogg", tags=[None, "podcast"]) # Vimcasts OGG Feed
 add("http://feeds.feedburner.com/voa", tags=[None, "podcast"]) # VOA special English Podcasts"
 add("http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg", tags=[None, "podcast"]) # Fosscasts Podcasts
 add("http://feeds.feedburner.com/tedtalks_video", tags=[None, "podcast", "TED"]) # TED Talks
-# add("http://feeds2.feedburner.com/ShowmedoBlog", tags=[None, "podcast"]) # ShowMeDo
 add("http://showmedo.com/latestVideoFeed/rss2.0", tags=[None, "podcast"]) # ShowMeDo
-# add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Python", tags=[None, "podcast"]) # ShowMeDo Python
-# add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Ruby", tags=[None, "podcast"]) # ShowMeDo Ruby
-# add("http://showmedo.com/latestVideoFeed/rss2.0?tag=Beginner_Programming", tags=[None, "podcast"]) # ShowMeDo Beginner Programming
 add("http://xkcd.com/rss.xml", tags=[None, "podcast", "comic"]) # xkcd.com
 # }}}
 
