@@ -130,7 +130,7 @@
     " [ buffer ] {{{
     " set autowrite                    " auto write when changed
     " set autowriteall
-    set autochdir
+    " set autochdir
     set autoread                     " auto read changed files
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
     set confirm                      " confirm current buffer.
