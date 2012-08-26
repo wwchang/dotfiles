@@ -4098,20 +4098,24 @@ syntax on
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             " Customization {{{
-            "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
-            "{location} : 'before', 'after'
-            "call Pl#Theme#RemoveSegment({targetsegment})
-            "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
-            call Pl#Theme#RemoveSegment('fileencoding')
-            call Pl#Theme#RemoveSegment('fileformat')
-            call Pl#Theme#InsertSegment('static_str', 'before', 'neco_ft')
-            " FIXME seems this replacement does not work.
-            call Pl#Theme#ReplaceSegment('hgrev', "%{HGRev()?'[r'.HGRev().']':''}")
-            " FIXME whether is this function to show on statusline.
-            call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
-            " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
-            call Pl#Theme#InsertSegment('neco_ft', 'before', 'filetype')
-            call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+            if exists('g:Powerline_loaded')
+                "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
+                "{location} : 'before', 'after'
+                "call Pl#Theme#RemoveSegment({targetsegment})
+                "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
+                call Pl#Theme#RemoveSegment('fileencoding')
+                call Pl#Theme#RemoveSegment('fileformat')
+                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
+                " FIXME seems this replacement does not work.
+                call Pl#Theme#ReplaceSegment('hgrev', "%{HGRev()?'[r'.HGRev().']':''}")
+                " FIXME whether is this function to show on statusline.
+                call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
+                " FIXME this seems display nothing.
+                " call Pl#Theme#InsertSegment('currhigroup', 'before', 'filetype')
+                call Pl#Theme#InsertSegment('%{neocomplcache#get_context_filetype()}', 'before', 'filetype')
+                call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+            endif
             " }}}
         " }}}
 
