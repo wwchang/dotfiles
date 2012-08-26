@@ -4168,7 +4168,7 @@ syntax on
             nnoremap <F9> :UndotreeToggle<CR>
             let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_SplitLocation = 'topleft'
-            let g:undotree_SplitWidth = 30
+            let g:undotree_SplitWidth = 35
             let g:undotree_diffAutoOpen = 1
             let g:undotree_diffpanelHeight = 25
             let g:undotree_RelativeTimestamp = 1
