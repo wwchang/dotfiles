@@ -655,9 +655,9 @@ endif
         set statusline+=\%#StatusChar#\%{neocomplcache#get_context_filetype()==#&ft?'':'•'}
         set statusline+=\%#StatusFileType#\%y
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
-        set statusline+=\ \%<%(\%#StatusNormal#\%{&ff=~'unix'?'':&ff}%)
-        set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc=~'utf-8'?'':'•'}
-        set statusline+=\%#StatusNormal#\%{&fenc=~'utf-8'?'':&fenc}
+        set statusline+=\ \%<%(\%#StatusNormal#\%{&ff==#'unix'?'':&ff}%)
+        set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc==#'utf-8'?'':'•'}
+        set statusline+=\%#StatusNormal#\%{&fenc==#'utf-8'?'':&fenc}
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         " set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
         set statusline+=\ \%#StatusLineNumber#\%-(L:%l\ C:%c%V%)
@@ -2710,7 +2710,6 @@ syntax on
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             let g:syntastic_csslint_options = "--warning=none"
             " let g:syntastic_c_compiler
-            let loaded_sh_syntax_checker = 0 " FIXME sh checker error
         " }}}
 
         " checksyntax {{{
