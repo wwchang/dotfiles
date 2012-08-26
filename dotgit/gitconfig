@@ -62,8 +62,8 @@
     unmerged = magenta
 
 
-[commit]
-	template = $HOME/Git/dotfiles/dotgit/commit.template
+; [commit]
+; 	template = $HOME/Git/dotfiles/dotgit/commit.template
 [push]
     default = matching
 [diff]
