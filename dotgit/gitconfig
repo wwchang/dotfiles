@@ -103,8 +103,8 @@
     diff-origin = log -p master..origin/master
     diff-remote = log -p master..remote/master
 
-    log-graph = log --color --pretty=format:'%s %an, %ar' --graph
-    log-pretty-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
+    ; log-graph = log --color --pretty=format:'%s %an, %ar' --graph
+    log-graph = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --
 
 [branch "master"]
     mergeoptions = --no-ff ; default disable fast forwarding on branch master.
