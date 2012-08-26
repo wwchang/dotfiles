@@ -128,7 +128,6 @@ set reply_to = ask-yes
 # excludes you from list
 unset metoo
 unset reply_self
-# set reply_regexp = "^(re([\[0-9\]+])*|aw|回复|答复|Reply)(:[ \t]|：)"
 set reply_regexp="^(re([\[0-9\]+])*|aw|回复|答复)[:：][ \t]*"
 
 # resolve
