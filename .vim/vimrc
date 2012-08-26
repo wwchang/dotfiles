@@ -1100,7 +1100,7 @@ endif
             " call vam#ActivateAddons(['Tagma_Buffer_Manager'])
             " call vam#ActivateAddons(['minibufexplorer'])
             "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
-            "call vam#ActivateAddons(['LustyJuggler'])
+            " call vam#ActivateAddons(['LustyJuggler'])
                 " tab manager
             "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
                 " file/buffer/project manager|explorer
@@ -3010,8 +3010,18 @@ syntax on
             hi MBENormal guifg=#808080 guibg=fg
         " }}}
 
-        " LustyJuggler {{{ <Leader>lj
-            "set hidden
+        " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
+            " Usage:
+            " :LustyFilesystemExplorer
+            " :LustyFilesystemExplorerFromHere
+            " :LustyBufferExplorer
+            " :LustyBufferGrep (for searching through all open buffers)
+            " <Leader>lf  - Opens filesystem explorer.
+            " <Leader>lr  - Opens filesystem explorer at the directory of the current file.
+            " <Leader>lb  - Opens buffer explorer.
+            " <Leader>lg  - Opens buffer grep.
+            " <Leader>lj  - Launch the juggler.
+            set hidden
         " }}}
 
         " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
