@@ -44,17 +44,6 @@ mailboxes =Emacs/help
 mailboxes =Emacs/devel
 mailboxes =Emacs/Evil
 
-mailboxes =Lisp
-mailboxes =Lisp/Lisp
-mailboxes =Lisp/comp-lang
-mailboxes =Lisp/cn
-
-mailboxes =Guile
-mailboxes =Guile/user
-mailboxes =Guile/devel
-mailboxes =Guile/sources
-# mailboxes =Guile/bug
-
 mailboxes =Ruby
 mailboxes =Ruby/talk
 mailboxes =Ruby/core
@@ -73,10 +62,28 @@ mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
 # mailboxes =Python/peps
 
+mailboxes =Guile
+mailboxes =Guile/user
+mailboxes =Guile/devel
+mailboxes =Guile/sources
+# mailboxes =Guile/bug
+
+mailboxes =Lisp
+mailboxes =Lisp/Lisp
+mailboxes =Lisp/comp-lang
+mailboxes =Lisp/cn
+
 mailboxes =Go
 mailboxes =Go/go-nuts
 mailboxes =Go/go-china
 mailboxes =Go/go-dev
+
+mailboxes =C
+
+mailboxes =Web
+mailboxes =Web/whatwg
+mailboxes =Web/firebug
+mailboxes =Web/jplayer
 
 mailboxes =Dart
 mailboxes =Dart/misc
@@ -86,12 +93,17 @@ mailboxes =PHP/general/
 # mailboxes =PHP/comp-lang/
 # mailboxes =PHP/alt-comp-lang/
 
-mailboxes =C
+mailboxes =Perl
 
-mailboxes =Git
-mailboxes =Git/help
-mailboxes =Git/users
-mailboxes =Git/GotGit
+mailboxes =Zsh
+mailboxes =Zsh/users
+mailboxes =Zsh/workers
+
+mailboxes =Maemo
+mailboxes =Maemo/users
+mailboxes =Maemo/devel
+mailboxes =Maemo/update/N900
+mailboxes =Maemo/update/Development
 
 mailboxes =Arch
 mailboxes =Arch/general
@@ -102,28 +114,16 @@ mailboxes =Arch/aur-general
 mailboxes =Arch/archlinux-cn
 mailboxes =Arch/releng
 
-mailboxes =Zsh
-mailboxes =Zsh/users
-mailboxes =Zsh/workers
-
 mailboxes =Linux
+
+mailboxes =Git
+mailboxes =Git/help
+mailboxes =Git/users
+mailboxes =Git/GotGit
 
 mailboxes =Drupal
 mailboxes =Drupal/support
 mailboxes =Drupal/security
-
-mailboxes =Perl
-
-mailboxes =Maemo
-mailboxes =Maemo/users
-mailboxes =Maemo/devel
-mailboxes =Maemo/update/N900
-mailboxes =Maemo/update/Development
-
-mailboxes =Web
-mailboxes =Web/whatwg
-mailboxes =Web/firebug
-mailboxes =Web/jplayer
 
 mailboxes =GNU
 mailboxes =GNU/parallel
