@@ -703,7 +703,7 @@ endif
     " set digraph
     " }}}
 
-    " [ folding ] {{{3
+    " [ folding ] {{{
     set foldenable          " enable fold
     set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
     set foldnestmax=3       " maximum nesting of fold
@@ -1121,6 +1121,8 @@ endif
                 " task list
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
+            " call vam#ActivateAddons(['GrepTasks'])
+            call vam#ActivateAddons(['TaskMotions'])
                 " search & find
             call vam#ActivateAddons(['unite'])
             " call vam#ActivateAddons(['unite-ssh'])
@@ -1358,6 +1360,7 @@ endif
             call vam#ActivateAddons(['LargeFile'])
                 " Motions
             call vam#ActivateAddons(['EasyMotion'])
+            call vam#ActivateAddons(['CountJump'])
                 " ASCII draw
             "call vam#ActivateAddons(['DrawIt'])
             " call vam#ActivateAddons(['ditaa'])
@@ -2864,7 +2867,7 @@ syntax on
             autocmd QuickFixCmdPost grep cwindow
         " }}}
 
-        " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
+        " Gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
             " [Browser/File] mode
             " Usage:
             "   - :Gitv [args]
@@ -3115,6 +3118,18 @@ syntax on
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
             let g:tlRememberPosition = 1
             let g:tlTokenList = g:TasksListTokens
+        " }}}
+
+        " GrepTasks {{{ Grep for tasks and todo markers.
+        " }}}
+
+        " TaskMotions {{{ Motions to task and todo markers.
+            " Require: CountJump
+            " Usage:
+            " ]t -- go to [count] next start of a task or todo marker.
+            " [t -- .... previous start of ...
+            let g:TaskMotions_Pattern = '\<TODO:'
+            let g:TaskMotions_Mapping = 't'
         " }}}
 
         " endwise : end certain structures automatically. if, do, def ...
@@ -4115,6 +4130,19 @@ syntax on
             "nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
         " }}}
 
+        " gf-user: extend 'gf' operation to open code file.
+
+        " DynamicSigns {{{ Use Signs for different things.
+            let g:Signs_IndentationLevel = 1 " numeric indentation level.
+            let g:SignsMixedIndentation = 1 " mixed indentation
+            let g:Signs_Bookmarks = 1 " display marks
+            let g:Signs_QFList = 1 " display quickfix items signs.
+            let g:Signs_Diff = 1 " display signs for viewing changes to the buffer
+            let g:Signs_Alternate = 1 " alternating colors
+        " }}}
+    " }}}
+
+    " [ Motions ] {{{
         " EasyMotion {{{ provide a much simpler way to use some motion in vim.
             " <Leader><Leader>w -- trigger "word" motion w.
             " <Leader><Leader>f{char} -- trigger "f" motion.
@@ -4127,15 +4155,7 @@ syntax on
             "let g:EasyMotion_mapping_{motion} = {mapping}
         " }}}
 
-        " gf-user: extend 'gf' operation to open code file.
-
-        " DynamicSigns {{{ Use Signs for different things.
-            let g:Signs_IndentationLevel = 1 " numeric indentation level.
-            let g:SignsMixedIndentation = 1 " mixed indentation
-            let g:Signs_Bookmarks = 1 " display marks
-            let g:Signs_QFList = 1 " display quickfix items signs.
-            let g:Signs_Diff = 1 " display signs for viewing changes to the buffer
-            let g:Signs_Alternate = 1 " alternating colors
+        " CountJump {{{
         " }}}
     " }}}
 
@@ -5361,7 +5381,7 @@ syntax on
             " let g:utl_cfg_hdl_mt_text_directory = ':silent !nautilus "%p" &'
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
-            let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
+            let g:utl_cfg_hdl_mt_application_pdf = ":silent !evince '%p' &"
             " TODO application/djvu
             let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm
