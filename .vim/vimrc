@@ -4487,7 +4487,29 @@ syntax on
     " [ color ] {{{
         let rgb_file = "/usr/X11/lib/X11/rgb.txt"
 
-        " colorv {{{
+        " colorv {{{ Easier colors handling - HEX, RGB, W3C, X11,
+            " View, Edit, Preview, Generate, Pick, Mark ... Colors and more.
+            " Usage:
+            " - ? -- show tips
+            " - H -- show help document
+            " - q -- quit colorv
+            " - <leader>cv -- :ColorV -- ColorV Window
+            " - <leader>ce -- :ColorEdit on cursor color.
+            " - <Space>/<Enter>/+/- -- view and edit color in window on items.
+            " - <leader>cn -- :ColorVName -- Colornames list (W3C)
+            " - <leader>cw -- :ColorVView -- View color-text.
+            " - <leader>cd -- :ColorVPicker -- A GUI colorpicker.
+            let g:colorv_no_global_map = 1 " disable global mappings.
+            " let g:colorv_global_leader
+            let g:colorv_win_pos = "bot" " bot, top
+            let g:colorv_gen_space = "hsv" " hsv, yiq
+            let g:colorv_preview_name = 1
+            let g:colorv_preview_area = 0 " preview color-text with same fg/bg
+            let g:colorv_preview_ftype = 'css,html,javascript'
+            let g:colorv_max_preview = 200 " max line when preview color-text
+            let g:colorv_debug = 3 " 3: +python3, 2: +python, 0: no python.
+            " let g:colorv_has_python = 0 " use 0 to disable use of python.
+            let g:colorv_cache_file = '$HOME/.vim_colorv_cache'
         " }}}
 
         " Colorizer {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
