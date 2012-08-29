@@ -4849,17 +4849,17 @@ syntax on
             " - C-X_C-U, C-X_C-O for completing,
             " - embed filetype: embed highlighting, {{{type ...}}}
             " - bullets: <Tab>, <S-Tab>, <Alt-Left>, <Alt-Right>
-            let g:notes_directory = '~/vimwiki/Notes'
+            let g:notes_directory = '~/Wiki/Notes/'
             let g:notes_suffix = '.note'
             let g:notes_title_sync = 'prompt' " prompt, change_title, rename_file, no
             let g:notes_smart_quotes = 1
             let g:notes_ruler_text = '* * *'
             let g:notes_list_bullets = "['•', '◦', '▸', '▹', '▪', '▫']"
             "let g:notes_list_bullets = '['*', '-', '+']'
-            let g:notes_shadowdir = '~/vimwiki/Notes/vimPlugin/shadow'
-            let g:notes_indexfile = '~/vimwiki/Notes/vimPlugin/index.pickle'
+            let g:notes_shadowdir = '~/Wiki/Notes/vimPlugin/shadow'
+            let g:notes_indexfile = '~/Wiki/Notes/vimPlugin/index.pickle'
             "let g:notes_indexscript =
-            let g:notes_tagsindex = '~/vimwiki/Notes/vimPlugin/tags.txt'
+            let g:notes_tagsindex = '~/Wiki/Notes/vimPlugin/tags.txt'
             " Make the C-] combination search for @tags:
             "imap <C-]> <C-o>:SearchNotes<CR>
             "nmap <C-]> :SearchNotes<CR>
@@ -4888,7 +4888,7 @@ syntax on
             "   - in a note: <Leader>+m to ask for filetype and insert modeline.
             "   - (`<Leader>s`) <Plug>PadSearchPads.
             "   - :OpenPad (<Leader>n) <Plug>PadOpenPad. create new note
-            let g:pad_dir = "~/vimwiki/vim-pad/"
+            let g:pad_dir = "~/Wiki/vim-pad/"
             let g:pad_format = "markdown" " markdown,pandoc,
             let g:pad_modeline_position = "bottom" " bottom, top,
             let g:pad_window_height = 20
@@ -4940,8 +4940,8 @@ syntax on
             "   - <CR>      -- add a check box to current line.
             "   - <space>   -- check off a box on the current line.
             "   - -         -- check of the remaining boxes on line using dashes
-            let g:Pomo_ArchiveFilePath = "$HOME/vimwiki/Vomodoro/todotoday"
-            let g:Pomo_ToDoTodayFilePath = "$HOME/vimwiki/Vomodoro/archive"
+            let g:Pomo_ArchiveFilePath = "$HOME/Wiki/Vomodoro/todotoday"
+            let g:Pomo_ToDoTodayFilePath = "$HOME/Wiki/Vomodoro/archive"
         " }}}
 
         " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
