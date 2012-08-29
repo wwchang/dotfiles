@@ -789,6 +789,9 @@ endif
     nnoremap <SPACE> za
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
+    " toggle highlight search
+    nnoremap <Leader>ths :set hlsearch! hlsearch?<CR>
+
     " quickfix/location list, window manipulate
     nnoremap <Leader>qo :cindow<CR>
     nnoremap <Leader>qc :cclose<CR>
