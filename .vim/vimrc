@@ -4289,6 +4289,11 @@ syntax on
             let g:undotree_diffpanelHeight = 25
             let g:undotree_RelativeTimestamp = 1
             let g:undotree_TreeNodeShape = '*'
+            let g:undotree_HighlightChangedText = 1 " highlight changed text line
+            function g:undotree_CustomMap()
+                map <C-n> J
+                map <C-p> K
+            endfunction
             " if has("presistent_undo")
             "     set undodir='~/.undo/'
             "     set undofile
