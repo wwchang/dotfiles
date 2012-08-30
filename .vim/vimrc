@@ -3913,7 +3913,7 @@ syntax on
             let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
             let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
             let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-            let g:neocomplcache_clang_auto_options = "path, .clang_complete"
+            let g:neocomplcache_clang_auto_options = "path, .clang_complete, gcc"
             let g:neocomplcache_clang_user_options = "" " user clang options
             let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
