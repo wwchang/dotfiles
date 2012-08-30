@@ -149,7 +149,8 @@
     " [ tags ] {{{
     " C-], [count]C-T, {Visual}g], {Visual}g C-], <C-w><C-]>,
     " :tag, :tags, :[count]tnext/tprevious,
-    set tags=./tags,tags " filename for tag command
+    set tags=./.tags;,./tags;,tags,~/.vim/tags/tags " filename for tag command
+        " ; means recurse upwards to deep under your project.
     set taglength=0 " number(N): up to this number of characters.
     set tagrelative
     " }}}
