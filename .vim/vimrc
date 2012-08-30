@@ -2916,7 +2916,7 @@ syntax on
             let g:Gitv_TruncateCommitSubjects = 0
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
             let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
-            let g:Gitv_DoNotMapCtrlKey = 1
+            let g:Gitv_DoNotMapCtrlKey = 0
 
             " resize gitv window.
             " augroup MyGitv
