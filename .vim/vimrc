@@ -130,7 +130,7 @@
     " [ buffer ] {{{
     " set autowrite                    " auto write when changed
     " set autowriteall
-    set autochdir
+    " set autochdir
     set autoread                     " auto read changed files
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
     set confirm                      " confirm current buffer.
@@ -149,7 +149,8 @@
     " [ tags ] {{{
     " C-], [count]C-T, {Visual}g], {Visual}g C-], <C-w><C-]>,
     " :tag, :tags, :[count]tnext/tprevious,
-    set tags=./tags,tags " filename for tag command
+    set tags=./.tags;,./tags;,tags,~/.vim/tags/tags " filename for tag command
+        " ; means recurse upwards to deep under your project.
     set taglength=0 " number(N): up to this number of characters.
     set tagrelative
     " }}}
@@ -166,7 +167,7 @@
         set nocscopetag " always search cscope database instead of tags file.
         set cscopetagorder=0 " 0: cscope -> tags file, 1: tags file -> cscope
         " set cscoperelative
-        set cscopequickfix=s-,c-,d-,i-,t-,e- " use quickfix to show result
+        set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i- " use quickfix to show result
         set cscopepathcomp=3 " how many components of a file's path to display
 
         set nocscopeverbose " work with bellowing verbose setting.
@@ -703,7 +704,7 @@ endif
     " set digraph
     " }}}
 
-    " [ folding ] {{{3
+    " [ folding ] {{{
     set foldenable          " enable fold
     set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
     set foldnestmax=3       " maximum nesting of fold
@@ -755,7 +756,7 @@ endif
 " [[ mappings ]] {{{
 
     " F1~12 {{{
-    fun ShowFuncKeys(bang)
+    function! ShowFuncKeys(bang)
         for i in range(1,12)
             redir! => map
             exe "silent ".(a:bang == "!" ? 'verbose' : '') . " map<F".i.">"
@@ -764,7 +765,7 @@ endif
                 echomsg map
             endif
         endfor
-    endf
+    endfunction
     com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
     ":ShowFuncKeys
     " }}}
@@ -788,6 +789,9 @@ endif
     " toggle fold
     nnoremap <SPACE> za
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
+
+    " toggle highlight search
+    nnoremap <Leader>ths :set hlsearch! hlsearch?<CR>
 
     " quickfix/location list, window manipulate
     nnoremap <Leader>qo :cindow<CR>
@@ -894,7 +898,7 @@ endif
     " }}}
 
     " [ convert file into unix & utf-8 ] {{{
-    fun ConvertFile2UnixUTF8()
+    function! ConvertFile2UnixUTF8()
         if &fileformat != 'unix' || &fileencoding != 'utf-8'
             echoerr 'your file format and encoding is not unix and utf-8'
             echohl WarningMsg
@@ -902,7 +906,7 @@ endif
             set fileformat=unix
             set fileencoding=utf-8
         endif
-    endf
+    endfunction
     " }}}
 
 " }}}
@@ -1090,6 +1094,7 @@ endif
             if has('gui') && has('gui_running')
                 call vam#ActivateAddons(['Tag_Signature_Balloons'])
             endif
+            call vam#ActivateAddons(['easytags'])
             call vam#ActivateAddons(['AutoTag'])
             " call vam#ActivateAddons(['taggatron'])
                 " cscope
@@ -1100,7 +1105,7 @@ endif
             " call vam#ActivateAddons(['Tagma_Buffer_Manager'])
             " call vam#ActivateAddons(['minibufexplorer'])
             "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
-            "call vam#ActivateAddons(['LustyJuggler'])
+            " call vam#ActivateAddons(['LustyJuggler'])
                 " tab manager
             "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
                 " file/buffer/project manager|explorer
@@ -1121,6 +1126,8 @@ endif
                 " task list
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
+            " call vam#ActivateAddons(['GrepTasks'])
+            call vam#ActivateAddons(['TaskMotions'])
                 " search & find
             call vam#ActivateAddons(['unite'])
             " call vam#ActivateAddons(['unite-ssh'])
@@ -1358,6 +1365,7 @@ endif
             call vam#ActivateAddons(['LargeFile'])
                 " Motions
             call vam#ActivateAddons(['EasyMotion'])
+            call vam#ActivateAddons(['CountJump'])
                 " ASCII draw
             "call vam#ActivateAddons(['DrawIt'])
             " call vam#ActivateAddons(['ditaa'])
@@ -1541,6 +1549,8 @@ syntax on
             let g:neocomplcache_temporary_dir = '~/.neocon'
 
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
+            " NOTE you can see neocomplcache default value of option by command:
+            " :echo g:neocomplcache_*
             if !exists('g:neocomplcache_keyword_patterns')
                 let g:neocomplcache_keyword_patterns = {}
             endif
@@ -1558,52 +1568,95 @@ syntax on
             let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
                 " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
             let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-            " let g:neocomplcache_tags_filter_patterns =
-            " let g:neocomplcache_same_filetype_lists =
-            " Define dictionary.
+            if !exists('g:neocomplcache_tags_filter_patterns')
+                let g:neocomplcache_tags_filter_patterns = {}
+            endif
+            " let g:neocomplcache_tags_filter_patterns.c = 'v:val.word !~ ''^[~_]'''
+            if !exists('g:neocomplcache_same_filetype_lists')
+                let g:neocomplcache_same_filetype_lists = {}
+            endif
+            let g:neocomplcache_same_filetype_lists.markdown = 'markdown'
             let g:neocomplcache_dictionary_filetype_lists = {
                         \ 'default' : '',
                         \ 'vimshell' : $HOME.'/.vimshell_hist',
                         \ 'scheme' : $HOME.'/.gosh_completions',
                         \ }
-            let g:neocomplcache_dictionary_patterns = {}
-            " a dictionary to define context filetypes.
+            if !exists('g:neocomplcache_dictionary_patterns')
+                let g:neocomplcache_dictionary_patterns = {}
+            endif
+            " context filetypes (one filetype in another filetype)
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            let g:neocomplcache_context_filetype_lists.perl6 = [{
-                        \ 'filetype' : 'pir',
-                        \ 'start' : 'Q:PIR\s*{',
-                        \ 'end' : '}',
-                        \ }]
             let g:neocomplcache_context_filetype_lists.vim = [{
-                        \ 'filetype' : 'python',
-                        \ 'start' : '^\s*python <<\s*\(\h\w*\)',
-                        \ 'end' : '^\1',
+                        \ 'filetype': 'python',
+                        \ 'start': '^\s*python <<\s*\(\h\w*\)',
+                        \ 'end': '^\1',
                         \ }]
-            " let g:neocomplcache_text_mode_filetypes =
+            " FIXME
+            " let g:neocomplcache_context_filetype_lists.vim = [{
+            "             \ 'filetype': 'ruby',
+            "             \ }]
+            let g:neocomplcache_context_filetype_lists.perl6 = [{
+                        \ 'filetype': 'pir',
+                        \ 'start': 'Q:PIR\s*{',
+                        \ 'end': '}',
+                        \ }]
+            if exists('g:neocomplcache_text_mode_filetypes')
+                let g:neocomplcache_text_mode_filetypes = {}
+            endif
+            let g:neocomplcache_text_mode_filetypes = {
+                        \ 'help': 1,
+                        \ 'tex': 1,
+                        \ 'text': 1,
+                        \ 'gitcommit': 1,
+                        \ 'vcs-commit': 1,
+                        \ }
             let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_ctags_program = 'ctags'
-            " let g:neocomplcache_ctags_arguments_list =
-            " let g:neocomplcache_include_paths =
-            " let g:neocomplcache_include_exprs =
-            " let g:neocomplcache_include_patterns =
-            " let g:neocomplcache_include_functions =
+            if !exists('g:neocomplcache_ctags_arguments_list')
+                let g:neocomplcache_ctags_arguments_list = {}
+            endif
+            " let g:neocomplcache_ctags_arguments_list.python =
+            if !exists('g:neocomplcache_include_paths')
+                let g:neocomplcache_include_paths = {}
+            endif
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            " FIXME let g:neocomplcache_include_exprs.python =
+            if !exists('g:neocomplcache_include_patterns')
+                let g:neocomplcache_include_patterns = {}
+            endif
+            let g:neocomplcache_include_patterns.python = '^import'
+            if !exists('g:neocomplcache_include_functions')
+                let g:neocomplcache_include_functions = {}
+            endif
+            " FIXME let g:neocomplcache_include_functions.python =
             let g:neocomplcache_include_max_processes = 25
-            " let g:neocomplcache_filename_include_exprs =
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
             if !exists('g:neocomplcache_filename_include_exts')
                 let g:neocomplcache_filename_include_exts = {}
             endif
-            let g:neocomplcache_filename_include_exts.cpp = [
-                        \ '', 'h', 'hpp', 'hxx',
-                        \ ]
-            " let g:neocomplcache_member_prefix_patterns =
-            " let g:neocomplcache_member_patterns =
+            let g:neocomplcache_filename_include_exts.python = ['py']
+            let g:neocomplcache_filename_include_exts.cpp = ['', 'h', 'hpp', 'hxx']
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
+            endif
+            if !exists('g:neocomplcache_member_patterns')
+                let g:neocomplcache_member_patterns = {}
+            endif
+            " let g:neocomplcache_member_patterns.default = '\h\w*\%(()\|\[\h\w*\]\)\?'
             if !exists('g:neocomplcache_delimiter_patterns')
                 let g:neocomplcache_delimiter_patterns = {}
             endif
-            let g:neocomplcache_delimiter_patterns.vim = ['#']
-            let g:neocomplcache_delimiter_patterns.cpp = ['::']
+            let g:neocomplcache_delimiter_patterns = {
+                        \ 'vim': ['#'],
+                        \ 'python': ['.'],
+                        \ 'cpp': ['::'],
+                        \ }
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
@@ -1627,13 +1680,26 @@ syntax on
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete'
             endif
-            let g:neocomplcache_vim_completefuncs = {}
-            let g:neocomplcache_source_disable = {}
-            let g:neocomplcache_source_completion_length = {}
+            if exists('g:neocomplcache_vim_completefuncs')
+                let g:neocomplcache_vim_completefuncs = {}
+            endif
+            if exists('g:neocomplcache_source_disable')
+                let g:neocomplcache_source_disable = {}
+            endif
+            if exists('g:neocomplcache_source_completion_length')
+                let g:neocomplcache_source_completion_length = {}
+            endif
+            let g:neocomplcache_source_completion_length = {
+                        \ 'member_complete': 0,
+                        \ 'keyword_complete': 2,
+                        \ 'filename_complete': 2,
+                        \ 'buffer_complete': 2,
+                        \ 'look': 3,
+                        \ }
             let g:neocomplcache_force_overwrite_completefunc = 0
             let g:neocomplcache_release_cache_time = 900
             let g:neocomplcache_use_vimproc = 1
-                " for composite file type (only use one completion)
+            " for composite file type (only use one completion)
             let g:neocomplcache_ignore_composite_filetype_lists = {
                         \ 'python.unit' : 'python',
                         \ 'ruby.spec' : 'ruby',
@@ -1862,7 +1928,7 @@ syntax on
             "             \ endif
 
             " [ extra ]
-            function MyTagContext()
+            function! MyTagContext()
                 if filereadable(expand('%:p:h') . '/tags')
                     return "\<c-x>\<c-]>"
                 endif
@@ -2126,6 +2192,32 @@ syntax on
             let g:TagSignatureAllowFileLoading = 1
             let g:TagSignatureMaxMatches = 1
 
+        " easytags {{{ Automated tag file generation & syntax highlighting of tags
+            " Usage:
+            " :UpdateTags[!]
+            " :UpdateTags -R ~/.vim => ctags -R ~/.vim
+            " :HighlightTags
+            let g:easytags_cmd = '/usr/bin/ctags'
+            let g:easytags_file = '~/.vim/tags/tags'
+            let g:easytags_dynamic_files = 2 " 1: use 'tags' option, 2: auto.
+            let g:easytags_by_filetype = '~/.vim/tags'
+            let g:easytags_always_enabled = 0 " this slow down Vim
+            let g:easytags_on_cursorhold = 0 " disable auto tags highlight
+            " let g:easytags_updatetime_min =
+            " let g:easytags_updatetime_autodisable = 1
+            let g:easytags_auto_update = 1
+            let g:easytags_auto_highlight = 1 " auto highlight tags
+            let g:easytags_autorecurse = 1 " recursively
+            let g:easytags_include_members = 1
+            let g:easytags_resolve_links = 1 " unix symbolic link and hard link
+            let g:easytags_suppress_ctags_warning = 1
+            " let g:easytags_ignored_syntax_groups = '.*String.*,.*Comment.*,cIncluded'
+            let g:easytags_python_enabled = 1 " use python interface to speed up
+            " let g:easytags_python_script =
+
+            " au FileType python let b:easytags_last_highlighted = 0
+        " }}}
+
         " AutoTag (updates entries in a tags file automatically when saving.)
 
         " Taggatron {{{ A simple tag file manager for vim.
@@ -2140,9 +2232,6 @@ syntax on
         " }}}
 
         " Bundle 'indexer.tar.gz'
-
-        " Bundle 'xolox/vim-easytags.git'
-            " :UpdateTags [-R /path], :HighlightTags
 
         " gtags.vim {{{
             " | http://www.vim.org/scripts/script.php?script_id=893#0.6
@@ -2806,7 +2895,7 @@ syntax on
             autocmd QuickFixCmdPost grep cwindow
         " }}}
 
-        " gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
+        " Gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
             " [Browser/File] mode
             " Usage:
             "   - :Gitv [args]
@@ -2945,7 +3034,7 @@ syntax on
             let NERDTreeShowHidden = 0 " does not show hidden files.
             let NERDTreeShowLineNumbers = 0 " do not show line numbers, default=0
             let NERDTreeWinPos = "left" " NERD-tree window position.
-            let NERDTreeWinSize = 20 " window size, default=31.
+            let NERDTreeWinSize = 25 " window size, default=31.
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
@@ -3010,8 +3099,18 @@ syntax on
             hi MBENormal guifg=#808080 guibg=fg
         " }}}
 
-        " LustyJuggler {{{ <Leader>lj
-            "set hidden
+        " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
+            " Usage:
+            " :LustyFilesystemExplorer
+            " :LustyFilesystemExplorerFromHere
+            " :LustyBufferExplorer
+            " :LustyBufferGrep (for searching through all open buffers)
+            " <Leader>lf  - Opens filesystem explorer.
+            " <Leader>lr  - Opens filesystem explorer at the directory of the current file.
+            " <Leader>lb  - Opens buffer explorer.
+            " <Leader>lg  - Opens buffer grep.
+            " <Leader>lj  - Launch the juggler.
+            set hidden
         " }}}
 
         " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
@@ -3047,6 +3146,18 @@ syntax on
             let g:tlWindowPosition = 1 " 1: bottom, 0: top.
             let g:tlRememberPosition = 1
             let g:tlTokenList = g:TasksListTokens
+        " }}}
+
+        " GrepTasks {{{ Grep for tasks and todo markers.
+        " }}}
+
+        " TaskMotions {{{ Motions to task and todo markers.
+            " Require: CountJump
+            " Usage:
+            " ]t -- go to [count] next start of a task or todo marker.
+            " [t -- .... previous start of ...
+            let g:TaskMotions_Pattern = '\<TODO:'
+            let g:TaskMotions_Mapping = 't'
         " }}}
 
         " endwise : end certain structures automatically. if, do, def ...
@@ -4047,6 +4158,19 @@ syntax on
             "nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
         " }}}
 
+        " gf-user: extend 'gf' operation to open code file.
+
+        " DynamicSigns {{{ Use Signs for different things.
+            let g:Signs_IndentationLevel = 1 " numeric indentation level.
+            let g:SignsMixedIndentation = 1 " mixed indentation
+            let g:Signs_Bookmarks = 1 " display marks
+            let g:Signs_QFList = 1 " display quickfix items signs.
+            let g:Signs_Diff = 1 " display signs for viewing changes to the buffer
+            let g:Signs_Alternate = 1 " alternating colors
+        " }}}
+    " }}}
+
+    " [ Motions ] {{{
         " EasyMotion {{{ provide a much simpler way to use some motion in vim.
             " <Leader><Leader>w -- trigger "word" motion w.
             " <Leader><Leader>f{char} -- trigger "f" motion.
@@ -4059,15 +4183,7 @@ syntax on
             "let g:EasyMotion_mapping_{motion} = {mapping}
         " }}}
 
-        " gf-user: extend 'gf' operation to open code file.
-
-        " DynamicSigns {{{ Use Signs for different things.
-            let g:Signs_IndentationLevel = 1 " numeric indentation level.
-            let g:SignsMixedIndentation = 1 " mixed indentation
-            let g:Signs_Bookmarks = 1 " display marks
-            let g:Signs_QFList = 1 " display quickfix items signs.
-            let g:Signs_Diff = 1 " display signs for viewing changes to the buffer
-            let g:Signs_Alternate = 1 " alternating colors
+        " CountJump {{{
         " }}}
     " }}}
 
@@ -4168,7 +4284,7 @@ syntax on
             nnoremap <F9> :UndotreeToggle<CR>
             let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_SplitLocation = 'topleft'
-            let g:undotree_SplitWidth = 30
+            let g:undotree_SplitWidth = 35
             let g:undotree_diffAutoOpen = 1
             let g:undotree_diffpanelHeight = 25
             let g:undotree_RelativeTimestamp = 1
@@ -4419,7 +4535,29 @@ syntax on
     " [ color ] {{{
         let rgb_file = "/usr/X11/lib/X11/rgb.txt"
 
-        " colorv {{{
+        " colorv {{{ Easier colors handling - HEX, RGB, W3C, X11,
+            " View, Edit, Preview, Generate, Pick, Mark ... Colors and more.
+            " Usage:
+            " - ? -- show tips
+            " - H -- show help document
+            " - q -- quit colorv
+            " - <leader>cv -- :ColorV -- ColorV Window
+            " - <leader>ce -- :ColorEdit on cursor color.
+            " - <Space>/<Enter>/+/- -- view and edit color in window on items.
+            " - <leader>cn -- :ColorVName -- Colornames list (W3C)
+            " - <leader>cw -- :ColorVView -- View color-text.
+            " - <leader>cd -- :ColorVPicker -- A GUI colorpicker.
+            let g:colorv_no_global_map = 1 " disable global mappings.
+            " let g:colorv_global_leader
+            let g:colorv_win_pos = "bot" " bot, top
+            let g:colorv_gen_space = "hsv" " hsv, yiq
+            let g:colorv_preview_name = 1
+            let g:colorv_preview_area = 0 " preview color-text with same fg/bg
+            let g:colorv_preview_ftype = 'css,html,javascript'
+            let g:colorv_max_preview = 200 " max line when preview color-text
+            let g:colorv_debug = 3 " 3: +python3, 2: +python, 0: no python.
+            " let g:colorv_has_python = 0 " use 0 to disable use of python.
+            let g:colorv_cache_file = '$HOME/.vim_colorv_cache'
         " }}}
 
         " Colorizer {{{ W3-Colors, X11, hex, RGB, rgb(RR,GG,BB) HVL hvl(H,V,L)
@@ -4739,17 +4877,17 @@ syntax on
             " - C-X_C-U, C-X_C-O for completing,
             " - embed filetype: embed highlighting, {{{type ...}}}
             " - bullets: <Tab>, <S-Tab>, <Alt-Left>, <Alt-Right>
-            let g:notes_directory = '~/vimwiki/Notes'
+            let g:notes_directory = '~/Wiki/Notes/'
             let g:notes_suffix = '.note'
             let g:notes_title_sync = 'prompt' " prompt, change_title, rename_file, no
             let g:notes_smart_quotes = 1
             let g:notes_ruler_text = '* * *'
             let g:notes_list_bullets = "['•', '◦', '▸', '▹', '▪', '▫']"
             "let g:notes_list_bullets = '['*', '-', '+']'
-            let g:notes_shadowdir = '~/vimwiki/Notes/vimPlugin/shadow'
-            let g:notes_indexfile = '~/vimwiki/Notes/vimPlugin/index.pickle'
+            let g:notes_shadowdir = '~/Wiki/Notes/vimPlugin/shadow'
+            let g:notes_indexfile = '~/Wiki/Notes/vimPlugin/index.pickle'
             "let g:notes_indexscript =
-            let g:notes_tagsindex = '~/vimwiki/Notes/vimPlugin/tags.txt'
+            let g:notes_tagsindex = '~/Wiki/Notes/vimPlugin/tags.txt'
             " Make the C-] combination search for @tags:
             "imap <C-]> <C-o>:SearchNotes<CR>
             "nmap <C-]> :SearchNotes<CR>
@@ -4778,7 +4916,7 @@ syntax on
             "   - in a note: <Leader>+m to ask for filetype and insert modeline.
             "   - (`<Leader>s`) <Plug>PadSearchPads.
             "   - :OpenPad (<Leader>n) <Plug>PadOpenPad. create new note
-            let g:pad_dir = "~/vimwiki/vim-pad/"
+            let g:pad_dir = "~/Wiki/vim-pad/"
             let g:pad_format = "markdown" " markdown,pandoc,
             let g:pad_modeline_position = "bottom" " bottom, top,
             let g:pad_window_height = 20
@@ -4830,8 +4968,8 @@ syntax on
             "   - <CR>      -- add a check box to current line.
             "   - <space>   -- check off a box on the current line.
             "   - -         -- check of the remaining boxes on line using dashes
-            let g:Pomo_ArchiveFilePath = "$HOME/vimwiki/Vomodoro/todotoday"
-            let g:Pomo_ToDoTodayFilePath = "$HOME/vimwiki/Vomodoro/archive"
+            let g:Pomo_ArchiveFilePath = "$HOME/Wiki/Vomodoro/todotoday"
+            let g:Pomo_ToDoTodayFilePath = "$HOME/Wiki/Vomodoro/archive"
         " }}}
 
         " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
@@ -5271,7 +5409,7 @@ syntax on
             " let g:utl_cfg_hdl_mt_text_directory = ':silent !nautilus "%p" &'
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
-            let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
+            let g:utl_cfg_hdl_mt_application_pdf = ":silent !evince '%p' &"
             " TODO application/djvu
             let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm

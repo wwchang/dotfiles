@@ -1,19 +1,18 @@
 "" ============================================================================
-""   ~/.vim/mail
-""   Cedric Duval
+""   ~/.vim/ftplugin/mail.vim
+""   stardiviner [Gmail: numbchild]
 "" ============================================================================
+
+" TODO
+" 1. hide some useless text for mutt.
+" 2. highlight some special part like git diff. like language code.
+" 3. use some cool Vim features on this. like conceal, fold. etc
 
 " Setup to write mails with vim
 " To use with Mutt, just put this line your ~/.vimrc :
 "   autocmd BufRead /tmp/mutt*      :source ~/.vim/mail
 
-
-
-"" ----------------------------------------------------------------------------
-""   Misc
-"" ----------------------------------------------------------------------------
-
-" set ft=mail             " needless to say, vim had already guessed that alone :)
+""   Spell
 set spell
 
 " Engspchk plugin.
@@ -22,45 +21,19 @@ set spell
 "     normal \ec
 " endif
 
-
-
-"" ----------------------------------------------------------------------------
 ""   Automatic line wrap
-"" ----------------------------------------------------------------------------
-
 " set textwidth=72	" max line length
 " set formatoptions=tcql
+
+" comment {{{
+set comments=n:>
 set comments+=n:\|	" '|' is a quote char.
 set comments+=n:%	" '%' as well.
-
-" * <F1> to re-format the current paragraph correctly
-" * <F2> to format a line which is too long, and go to the next line
-" * <F3> to merge the previous line with the current one, with a correct
-"        formatting (sometimes useful associated with <F2>)
-"
-" These keys might be used both in command mode and edit mode.
-"
-" <F1> might be smarter to use with the Mail_Del_Empty_Quoted() function
-" defined below
-
-nmap	<F1>	gqap
-nmap	<F2>	gqqj
-nmap	<F3>	kgqj
-map!	<F1>	<ESC>gqapi
-map!	<F2>	<ESC>gqqji
-map!	<F3>	<ESC>kgqji
+" }}}
 
 
-
-"" ----------------------------------------------------------------------------
+" functions {{{
 ""   Suppressing quoted signature(s) if any when replying
-"" ----------------------------------------------------------------------------
-
-" Thanks to Luc Hermitte for the original function
-" (http://hermitte.free.fr/vim/ressources/vimfiles/ftplugin/mail/Mail_Sig_set_vim.html)
-" Thanks to Lo颿 Minier and Martin Treusch von Buttlar who pointed out an
-" issue with the user's own sig.
-
 function! Mail_Erase_Sig_old()
     let i = line('$')
     let j = i
@@ -123,12 +96,7 @@ function! Mail_Del_Empty_Quoted()
     exe "normal :%s/^>[[:space:]\%\|\#>]\\+$//e\<CR>"
 endfunction
 
-
-
-"" ----------------------------------------------------------------------------
 ""   Moving the cursor at the begining of the mail
-"" ----------------------------------------------------------------------------
-
 function! Mail_Begining()
     exe "normal gg"
     if getline (line ('.')) =~ '^From: '
@@ -136,25 +104,22 @@ function! Mail_Begining()
         exe "normal /^$\<CR>"
     endif
 endfunction
+" }}}
 
-
-
-"" ----------------------------------------------------------------------------
-""
-""   Initializations
-""
-"" ----------------------------------------------------------------------------
-
+" initialization {{{
 " call Mail_Erase_Sig()
 call Mail_Del_Empty_Quoted()
 call Mail_Begining()
 
 au BufRead /tmp/mutt* normal :g/^> -- $/,/^$/-1d^M/^$^M^L
+" }}}
 
-"http://permalink.gmane.org/gmane.editors.vim.devel/20890
+" fold {{{
 setlocal foldmethod=expr foldlevel=1 foldminlines=2
 setlocal foldexpr=strlen(substitute(substitute(getline(v:lnum),'\\s','','g'),'[^>].*','',''))
+" }}}
 
+" lbdb function to complete {{{
 fun! LBDBCompleteFn(findstart, base)
     if a:findstart
         " locate the start of the word
@@ -178,24 +143,9 @@ fun! LBDBCompleteFn(findstart, base)
     endif
 endfun
 
-set completefunc=LBDBCompleteFn
-ino <C-n> <C-X><C-U>
-ino <C-p> <C-X><C-U>
+" set completefunc=LBDBCompleteFn
+" ino <C-n> <C-X><C-U>
+" ino <C-p> <C-X><C-U>
+" }}}
 
-
-" To be done elsewhere
-" http://dollyfish.net.nz/blog/2008-04-01/mutt-and-vim-custom-autocompletion
-":silent! lbdbq | awk '{ print  }' > /tmp/lbdict
-"setlocal dictionary+=/tmp/lbdict
-"silent! %s/\(^\([a-zA-z-]\+:\|--\)\)\@<!\s\+$//
-"silent! %s/^\(>\+\) >/\1>/g
-"silent! %s/^\(>\+\) >/\1>/g
-" map <F3> and <F4> to go to next inlined reply
-" " register save/restore
-" "autocmd FileType mail map <buffer> <F3> :/^>//^[^>]/<CR>:nohlsearch<CR>zzzv
-" autocmd FileType mail map <buffer> <F3>
-" :/^>//^\(>\)\@!\ze\s*\S/<CR>:nohlsearch<CR>zzzv
-" autocmd FileType mail map <buffer> <F4>
-" :/^>\s*>//^>\(\s*>\)\@!\ze\s*\S/<CR>:nohlsearch<CR>zzzv
-" " (doc: that's just ":/pattern1//pattern2/")
-"
+" vim:fdm=marker
