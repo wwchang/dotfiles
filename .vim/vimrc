@@ -1093,6 +1093,7 @@ endif
             if has('gui') && has('gui_running')
                 call vam#ActivateAddons(['Tag_Signature_Balloons'])
             endif
+            call vam#ActivateAddons(['easytags'])
             call vam#ActivateAddons(['AutoTag'])
             " call vam#ActivateAddons(['taggatron'])
                 " cscope
@@ -2190,6 +2191,32 @@ syntax on
             let g:TagSignatureAllowFileLoading = 1
             let g:TagSignatureMaxMatches = 1
 
+        " easytags {{{ Automated tag file generation & syntax highlighting of tags
+            " Usage:
+            " :UpdateTags[!]
+            " :UpdateTags -R ~/.vim => ctags -R ~/.vim
+            " :HighlightTags
+            let g:easytags_cmd = '/usr/bin/ctags'
+            let g:easytags_file = '~/.vim/tags/tags'
+            let g:easytags_dynamic_files = 2 " 1: use 'tags' option, 2: auto.
+            let g:easytags_by_filetype = '~/.vim/tags'
+            let g:easytags_always_enabled = 0 " this slow down Vim
+            let g:easytags_on_cursorhold = 0 " disable auto tags highlight
+            " let g:easytags_updatetime_min =
+            " let g:easytags_updatetime_autodisable = 1
+            let g:easytags_auto_update = 1
+            let g:easytags_auto_highlight = 1 " auto highlight tags
+            let g:easytags_autorecurse = 1 " recursively
+            let g:easytags_include_members = 1
+            let g:easytags_resolve_links = 1 " unix symbolic link and hard link
+            let g:easytags_suppress_ctags_warning = 1
+            " let g:easytags_ignored_syntax_groups = '.*String.*,.*Comment.*,cIncluded'
+            let g:easytags_python_enabled = 1 " use python interface to speed up
+            " let g:easytags_python_script =
+
+            " au FileType python let b:easytags_last_highlighted = 0
+        " }}}
+
         " AutoTag (updates entries in a tags file automatically when saving.)
 
         " Taggatron {{{ A simple tag file manager for vim.
@@ -2204,9 +2231,6 @@ syntax on
         " }}}
 
         " Bundle 'indexer.tar.gz'
-
-        " Bundle 'xolox/vim-easytags.git'
-            " :UpdateTags [-R /path], :HighlightTags
 
         " gtags.vim {{{
             " | http://www.vim.org/scripts/script.php?script_id=893#0.6
