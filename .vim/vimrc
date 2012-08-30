@@ -167,7 +167,7 @@
         set nocscopetag " always search cscope database instead of tags file.
         set cscopetagorder=0 " 0: cscope -> tags file, 1: tags file -> cscope
         " set cscoperelative
-        set cscopequickfix=s-,c-,d-,i-,t-,e- " use quickfix to show result
+        set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i- " use quickfix to show result
         set cscopepathcomp=3 " how many components of a file's path to display
 
         set nocscopeverbose " work with bellowing verbose setting.
