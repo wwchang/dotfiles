@@ -130,7 +130,7 @@
     " [ buffer ] {{{
     " set autowrite                    " auto write when changed
     " set autowriteall
-    " set autochdir
+    set autochdir
     set autoread                     " auto read changed files
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
     set confirm                      " confirm current buffer.
@@ -596,7 +596,7 @@ endif
 
         function! MyBalloonExpr()
             return 'Cursor is at line ' . v:beval_lnum .
-                        \', column ' . v:beval_col .
+                        \ ', column ' . v:beval_col .
                         \ ' of file ' .  bufname(v:beval_bufnr) .
                         \ ' on word "' . v:beval_text . '"'
         endfunction
@@ -1142,8 +1142,8 @@ endif
             call vam#ActivateAddons(['Area_search'])
                 " comment
             call vam#ActivateAddons(['commentary'])
-            "call vam#ActivateAddons(['tComment'])
-            "call vam#ActivateAddons(['The_NERD_Commenter'])
+            " call vam#ActivateAddons(['tComment'])
+            call vam#ActivateAddons(['The_NERD_Commenter'])
                 " doc & help "K"
             call vam#ActivateAddons(['viewdoc'])
             "call vam#ActivateAddons(['Manuals'])
@@ -2207,10 +2207,10 @@ syntax on
             " let g:easytags_updatetime_autodisable = 1
             let g:easytags_auto_update = 1
             let g:easytags_auto_highlight = 1 " auto highlight tags
-            let g:easytags_autorecurse = 1 " recursively
+            let g:easytags_autorecurse = 1 " 0: file, 1: current dir, 2: recursively
             let g:easytags_include_members = 1
             let g:easytags_resolve_links = 1 " unix symbolic link and hard link
-            let g:easytags_suppress_ctags_warning = 1
+            let g:easytags_suppress_ctags_warning = 1 " 0: no warning
             " let g:easytags_ignored_syntax_groups = '.*String.*,.*Comment.*,cIncluded'
             let g:easytags_python_enabled = 1 " use python interface to speed up
             " let g:easytags_python_script =
@@ -2218,18 +2218,20 @@ syntax on
             " au FileType python let b:easytags_last_highlighted = 0
         " }}}
 
-        " AutoTag (updates entries in a tags file automatically when saving.)
-
-        " Taggatron {{{ A simple tag file manager for vim.
+        " taggatron {{{ A simple tag file manager for vim.
             " allow user to setup rules for creating your tag files based on language.
+            " Usage:
             " :TagUpdate
             " let g:tagdefaults = "/path/to/other/tag.file"
             " let g:taggatron_verbose = 1 " debug
             let g:tagcommands = {
-                        \ "php" : {"tagfile":".php.tags","args":"-R"},
-                        \ "javascript" : {"tagfile":".js.tags","args":"-R"},
+                        \ "python" : {"tagfile": ".python.tags", "args": "-R"},
+                        \ "php" : {"tagfile": ".php.tags", "args": "-R"},
+                        \ "javascript" : {"tagfile": ".js.tags", "args": "-R"},
                         \ }
         " }}}
+
+        " AutoTag (updates entries in a tags file automatically when saving.)
 
         " Bundle 'indexer.tar.gz'
 
@@ -2727,6 +2729,8 @@ syntax on
                 " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
                 "   :perldoc, :ViewDocPerl.
                 " - e.g. :ViewDoc string.split in Python filetype.
+                " - :ViewDocMan [Man/C/...]
+                "   e.g. :ViewDocMan 3 printf -- for C Man Page.
             let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
             let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
             let g:viewdoc_prevtabonclose = 1
@@ -2827,7 +2831,7 @@ syntax on
     " [ Compiler ] {{{ <F10>
         " SingleCompile {{{ F10 compile&run
             " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
-            let g:SingleCompile_alwayscompile = 1 " =0 to disable it.
+            let g:SingleCompile_alwayscompile = 1 " 0: to disable it.
             let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
             let g:SingleCompile_autowrite = 1 " save file when compile.
             let g:SingleCompile_usequickfix = 1 " use QuickFix.
@@ -2835,7 +2839,7 @@ syntax on
             let g:SingleCompile_resultheight = 10
             let g:SingleCompile_showquickfixiferror = 1 " auto show error.
             let g:SingleCompile_showresultafterrun = 0 " show result even no error
-            let g:SingleCompile_usedialog = 1 " show dialog
+            let g:SingleCompile_usedialog = 0 " show dialog, +dialog_con, +dialog_gui
             call SingleCompile#ChooseCompiler('python', 'python3')
             call SingleCompile#ChooseCompiler('sh', 'bash')
             call SingleCompile#ChooseCompiler('bash', 'bash')
@@ -2916,7 +2920,7 @@ syntax on
             let g:Gitv_TruncateCommitSubjects = 0
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
             let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
-            let g:Gitv_DoNotMapCtrlKey = 1
+            let g:Gitv_DoNotMapCtrlKey = 0
 
             " resize gitv window.
             " augroup MyGitv
@@ -3172,6 +3176,7 @@ syntax on
         " }}}
 
         " switch {{{ swap a pattern and substition.
+            " let g:switch_no_builtins
         " }}}
 
         " SwapIt {{{ <C-A>, <C-X>
@@ -3913,7 +3918,7 @@ syntax on
             let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
             let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
             let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-            let g:neocomplcache_clang_auto_options = "path, .clang_complete"
+            let g:neocomplcache_clang_auto_options = "path, .clang_complete, gcc"
             let g:neocomplcache_clang_user_options = "" " user clang options
             let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
@@ -4289,6 +4294,11 @@ syntax on
             let g:undotree_diffpanelHeight = 25
             let g:undotree_RelativeTimestamp = 1
             let g:undotree_TreeNodeShape = '*'
+            let g:undotree_HighlightChangedText = 1 " highlight changed text line
+            function g:undotree_CustomMap()
+                map <C-n> J
+                map <C-p> K
+            endfunction
             " if has("presistent_undo")
             "     set undodir='~/.undo/'
             "     set undofile

@@ -298,6 +298,21 @@
 # Without arguments, 'clearsnippets' removes all snippets defined up to that 
 # point far for the current file type.
 
+# one placeholder with multiple lines.
+# snippet switch "switch .. case .. (switch case)" !
+# switch (${1:controlling expression}) {
+#     case ${2:constant expr}:
+#         ${3:statement};
+#         break;
+#     case ${4:constant expr}:
+#         ${5:statement};
+#         break;${6:
+#     default:
+#         ${7:statement};
+#         break;}
+# }
+# endsnippet
+
 # }}}
 
 
@@ -308,7 +323,7 @@
 # We use a little hack so that the snippet is expanded
 # and parsed correctly
 snippet snip "Snippet definition" !
-`!p snip.rv = "snippet"` ${1:Tab_trigger} "${2:Description}" ${3:!b}
+`!p snip.rv = "snippet"` ${1:trigger/"{pattern}use option r"} "${2:describe}" ${3:!bir}
 $0
 `!p snip.rv = "endsnippet"`
 endsnippet
@@ -324,7 +339,7 @@ snippet v "${VISUAL}" i
 endsnippet
 
 snippet visual "${1:${VISUAL:Text}}"
-\$\{${1:1}:\$\{VISUAL:${3:default${4:/transform/}}\}\}
+\$\{${1:1}:\$\{VISUAL${3::default${4:/transform/}}\}\}
 endsnippet
 
 snippet transform "transform text: orig/transform/g" i
