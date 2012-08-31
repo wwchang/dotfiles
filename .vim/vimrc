@@ -1142,8 +1142,8 @@ endif
             call vam#ActivateAddons(['Area_search'])
                 " comment
             call vam#ActivateAddons(['commentary'])
-            "call vam#ActivateAddons(['tComment'])
-            "call vam#ActivateAddons(['The_NERD_Commenter'])
+            " call vam#ActivateAddons(['tComment'])
+            call vam#ActivateAddons(['The_NERD_Commenter'])
                 " doc & help "K"
             call vam#ActivateAddons(['viewdoc'])
             "call vam#ActivateAddons(['Manuals'])
