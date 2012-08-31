@@ -2727,6 +2727,8 @@ syntax on
                 " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
                 "   :perldoc, :ViewDocPerl.
                 " - e.g. :ViewDoc string.split in Python filetype.
+                " - :ViewDocMan [Man/C/...]
+                "   e.g. :ViewDocMan 3 printf -- for C Man Page.
             let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
             let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
             let g:viewdoc_prevtabonclose = 1
