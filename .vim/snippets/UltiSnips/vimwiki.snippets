@@ -1,33 +1,108 @@
-snippet url "[[link|describe]]" !
-[[${VISUAL}${1:link,URL}|${2:alternate text}]]
-endsnippet
-
+# vimwiki syntax & semantic {{{
+# link {{{
 snippet link "[[link|describe]]" !
-[[${VISUAL}${1:link,URL}|${2:alternate text}]]
+[[${1:${VISUAL:link,URL}}|${2:alternate text}]]
+endsnippet
+snippet url "[[link|describe]]" !
+[[${1:${VISUAL:link,URL}}|${2:alternate text}]]
 endsnippet
 
+snippet image "image link" !
+{{local:${1:${VISUAL:relative\/path\/to\/file}}}}
+endsnippet
 snippet img "image link" !
-{{local:${VISUAL}${1:relative\/path\/to\/file}}}$0
+{{local:${1:${VISUAL:relative\/path\/to\/file}}}}
 endsnippet
+# }}}
 
+# code {{{
 snippet code "{{{code ... }}}" !b
-{{{${1:code/vim/python/ruby/etc}
-${VISUAL}$0
+{{{${1:vim/python/ruby/c/bash/etc}
+${2:${VISUAL}}
 }}}
 endsnippet
 
 snippet syntax "surround with code syntax" !
-{{{${1:code/vim/python/ruby/etc}
-${VISUAL}$0
+{{{${1:vim/python/ruby/c/bash/etc}
+${2:${VISUAL}}
 }}}
 endsnippet
+# }}}
 
+# formula {{{
 snippet formulae "inline math, short formulae" !b
-$ ${VISUAL}$0 $
+$ ${1:${VISUAL}} $
 endsnippet
 
 snippet formula "formula {{..}}" !b
 {{$${1:%${2:align}%}
-${VISUAL}$0
+${3:${VISUAL}}
 }}$
 endsnippet
+# }}}
+
+# typefaces {{{
+snippet bold "bold text" !
+*${1:bold text}*
+endsnippet
+snippet b "bold text" !
+*${1:bold text}*
+endsnippet
+
+snippet italic "italic text" !
+_${1:italic text}_
+endsnippet
+snippet i "italic text" !
+_${1:italic text}_
+endsnippet
+
+snippet strike "strikeout text" !
+~~${1:strikeout text}~~
+endsnippet
+snippet s "strikeout text" !
+~~${1:strikeout text}~~
+endsnippet
+
+snippet c "`code text`" !
+\`${1:code text}${2:(no syntax)}\`
+endsnippet
+
+snippet superscript "superscript 6⁶" !i
+^${1:superscript 6⁶}^
+endsnippet
+snippet sup "superscript 6⁶" !i
+^${1:superscript 6⁶}^
+endsnippet
+
+snippet subscript "subscript character 6₆" !i
+,,${1:subscript 6₆},,
+endsnippet
+snippet sub "subscript character 6₆" !i
+,,${1:subscript 6₆},,
+endsnippet
+# }}}
+
+# vimwiki snippets {{{
+snippet data "Data Resources list" !b
+= Date Resources =
+    == help ==
+        ${1:- [[${2:URL}|${3:Homepage}]]}
+    == books ==
+        === Newbie & Beginner ===
+        === Intermediate ===
+        === Reference Style - All Levels ===
+        === Classics / Older ===
+        === Dive In ===
+        === Advanced ===
+        === Topic ===
+        === Manual ===
+
+$0
+endsnippet
+
+snippet dir "[[dir/dir|name]]" !
+[[${1:dir}/$1|${2:name}]]$0
+endsnippet
+# }}}
+
+# vim:ft=snippets:fdm=marker:fmr={{{,}}}
