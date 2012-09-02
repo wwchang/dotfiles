@@ -1602,7 +1602,7 @@ syntax on
                         \ 'start': 'Q:PIR\s*{',
                         \ 'end': '}',
                         \ }]
-            if exists('g:neocomplcache_text_mode_filetypes')
+            if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
             let g:neocomplcache_text_mode_filetypes = {
@@ -1654,8 +1654,15 @@ syntax on
             endif
             let g:neocomplcache_delimiter_patterns = {
                         \ 'vim': ['#'],
-                        \ 'python': ['.'],
+                        \ 'help': ['#'],
+                        \ 'ruby': ['\.'],
+                        \ 'lisp': [':'],
+                        \ 'javascript': ['\.'],
+                        \ 'lua': ['\.', ':'],
                         \ 'cpp': ['::'],
+                        \ 'haskell': ['\.'],
+                        \ 'php': ['\', '::'],
+                        \ 'java': ['\.'],
                         \ }
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
@@ -1680,13 +1687,13 @@ syntax on
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete'
             endif
-            if exists('g:neocomplcache_vim_completefuncs')
+            if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
             endif
-            if exists('g:neocomplcache_source_disable')
+            if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
-            if exists('g:neocomplcache_source_completion_length')
+            if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
             let g:neocomplcache_source_completion_length = {
