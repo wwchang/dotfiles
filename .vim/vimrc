@@ -2543,7 +2543,7 @@ syntax on
             " let g:unite_source_file_ignore_pattern
             " .............
 
-            " unite.vim extensions {{{
+            " unite extensions {{{
                 " unite-ack {{{ Unite plugin for Ack.
                     " Usage:
                     " - :Unite ack:directory:search_word<CR>
@@ -2703,9 +2703,9 @@ syntax on
             "let g:tcomment_types {}
         " }}}
 
-        " Nerd Commenter {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
-            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
-            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
+        " Nerd Commenter {{{ \cc, \cu, \cs, \cm, \cn, \c$, \c<space>
+            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment, \cm: minimal.
+            " \cn: Nested, \c<space>: Toggle, \ci: Invert,
             " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
             " let loaded_nerd_comments=1 " turn off this script.
         " }}}
@@ -2844,7 +2844,7 @@ syntax on
             let g:SingleCompile_usequickfix = 1 " use QuickFix.
             let g:SingleCompile_menumode = 2 " 0 don't show menu, 1 sub menu, 2 menu bar
             let g:SingleCompile_resultheight = 10
-            let g:SingleCompile_showquickfixiferror = 1 " auto show error.
+            let g:SingleCompile_showquickfixiferror = 1 " auto show up quickfix window
             let g:SingleCompile_showresultafterrun = 0 " show result even no error
             let g:SingleCompile_usedialog = 0 " show dialog, +dialog_con, +dialog_gui
             call SingleCompile#ChooseCompiler('python', 'python3')
@@ -4410,15 +4410,17 @@ syntax on
         " inline_edit {{{ Edit code that's embedded within other code.
             " Visual select -> <Leader>e - any area that you mark.
             " JS/CSS in HTML, SQL in RUby, code in markdown, Django block in template.
-            " normal mode:
-            nnoremap <leader>e :InlineEdit<cr>
-            " visual mode:
-            xnoremap <leader>e :InlineEdit<cr>
-            " insert mode:
-            inoremap <c-e> <esc>:InlineEdit<cr>a
-            let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
+            if exists('g:loaded_inline_edit')
+                " normal mode:
+                nnoremap <leader>e :InlineEdit<cr>
+                " visual mode:
+                xnoremap <leader>e :InlineEdit<cr>
+                " insert mode:
+                inoremap <c-e> <esc>:InlineEdit<cr>a
+                let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
                 " detect <script> <style> tags like HTML
-            let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
+                let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
+            endif
         " }}}
 
         " NrrwRgn (NarrowRegion) {{{ A Narrow Region Plugin similar to Emacs
