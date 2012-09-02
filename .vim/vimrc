@@ -2865,11 +2865,21 @@ syntax on
             let g:SingleCompile_showquickfixiferror = 1 " auto show up quickfix window
             let g:SingleCompile_showresultafterrun = 0 " show result even no error
             let g:SingleCompile_usedialog = 0 " show dialog, +dialog_con, +dialog_gui
+
+            let g:SingleCompile_common_out_file = '$(FILE_TITLE)$'
+            let g:SingleCompile_common_run_command = './$(FILE_TITLE)$'
+
+            call SingleCompile#SetCompilerTemplate('c', 'gcc_custom', 'GNU C Compiler',
+                        \ 'gcc', '-std=gnu99 -Wall -g -o $(FILE_TITLE)$',
+                        \ g:SingleCompile_common_run_command
+                        \ )
+
             call SingleCompile#ChooseCompiler('python', 'python3')
             call SingleCompile#ChooseCompiler('sh', 'bash')
             call SingleCompile#ChooseCompiler('bash', 'bash')
             call SingleCompile#ChooseCompiler('zsh', 'zsh')
-            call SingleCompile#ChooseCompiler('c', 'gcc')
+            " call SingleCompile#ChooseCompiler('c', 'gcc')
+            call SingleCompile#ChooseCompiler('c', 'gcc_custom')
             call SingleCompile#ChooseCompiler('cpp', 'g++')
             call SingleCompile#ChooseCompiler('html', 'firefox')
             call SingleCompile#ChooseCompiler('javascript', 'node.js')
