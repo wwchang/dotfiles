@@ -4098,6 +4098,8 @@ syntax on
                 " Smart indentation for R and RHelp syntax.
                 " Most of the plugin's behavior is customizable.
         " }}}
+
+        " rcom : Evaluate R code via rcom, rserve, screen, or tmux
     " }}}
 
     " [ Rust ] {{{
