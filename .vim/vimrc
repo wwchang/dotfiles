@@ -1507,16 +1507,17 @@ syntax on
             "   -- to use global compound filetype.
             "   so you can complete HTML and Python as same time.
             "   -- but this will affect other plugins which use 'filetype' too.
+            " - :NeoComplCacheCachingTags command to make cache.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
-            let g:neocomplcache_disable_auto_complete = 0
+            let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
             let g:neocomplcache_max_list = 100 " number display in pop-up menu.
-            let g:neocomplcache_max_keyword_width = 50
-            let g:neocomplcache_max_menu_width = 15
+            let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
+            let g:neocomplcache_max_menu_width = 15 " popup menu width
             let g:neocomplcache_auto_completion_start_length = 2
             let g:neocomplcache_manual_completion_start_length = 0
-            let g:neocomplcache_min_keyword_length = 3
-            let g:neocomplcache_min_syntax_length = 3
+            let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
+            let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
@@ -1529,12 +1530,12 @@ syntax on
             endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
-            let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
+            let g:neocomplcache_cursor_hold_i_time = 50 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 1 " ambiguous searching when capital
             let g:neocomplcache_enable_underbar_completion = 1 " ambiguous searching when input _
-            let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy.
-            let g:neocomplcache_fuzzy_completion_start_length = 3
-            let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache.
+            let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
+            let g:neocomplcache_fuzzy_completion_start_length = 3 " fuzzy complete min length
+            let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
             let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
             let g:neocomplcache_tags_caching_limit_file_size = 500000 " tags file size
                 " use :NeoComplCacheCachingTags command to make cache.
