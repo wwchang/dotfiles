@@ -1095,8 +1095,9 @@ endif
                 call vam#ActivateAddons(['Tag_Signature_Balloons'])
             endif
             call vam#ActivateAddons(['easytags'])
-            call vam#ActivateAddons(['AutoTag'])
-            " call vam#ActivateAddons(['taggatron'])
+            call vam#ActivateAddons(['taggatron'])
+            " call vam#ActivateAddons(['AutoTag'])
+            call vam#ActivateAddons(['indexer.tar.gz'])
                 " cscope
             " call vam#ActivateAddons(['cscope'])
             " call vam#ActivateAddons(['CCTree'])
