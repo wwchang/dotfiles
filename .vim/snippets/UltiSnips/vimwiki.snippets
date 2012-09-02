@@ -29,12 +29,18 @@ ${2:${VISUAL}}
 endsnippet
 # }}}
 
-# formula {{{
-snippet formulae "inline math, short formulae" !b
+# formula & equation {{{
+snippet formula "inline math, short formulae" !b
 $ ${1:${VISUAL}} $
 endsnippet
 
 snippet formula "formula {{..}}" !b
+{{$${1:%${2:align}%}
+${3:${VISUAL}}
+}}$
+endsnippet
+
+snippet equation "Equation" !b
 {{$${1:%${2:align}%}
 ${3:${VISUAL}}
 }}$
