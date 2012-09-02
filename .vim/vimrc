@@ -1140,6 +1140,7 @@ endif
             call vam#ActivateAddons(['buffers_search_and_replace'])
             " call vam#ActivateAddons(['SearchParty'])
             call vam#ActivateAddons(['Area_search'])
+            call vam#ActivateAddons(['asyncfinder'])
                 " comment
             call vam#ActivateAddons(['commentary'])
             " call vam#ActivateAddons(['tComment'])
@@ -2501,6 +2502,18 @@ syntax on
 
         " Bundle 'FuzzyFinder'
             " buffer/file/command/tag/etc explorer with fuzzy matching.
+
+        " asyncfinder {{{ asynchronous fuzzy file finder with Python threading module
+            " Usage:
+            " :AsyncFinder [-mode={mode}] [{pattern}]
+            let g:asyncfinder_ignore_dirs = "['*.AppleDouble*','*.git*','*.hg*','*.bzr*',]"
+            let g:asyncfinder_ignore_files = "['*.swp', '*~',]"
+            let g:asyncfinder_initial_mode = "a" " a: all, b: buffer, f: files, m: mru.
+            let g:asyncfinder_initial_pattern = "*"
+            let g:asyncfinder_include_buffers = 1
+            let g:asyncfinder_include_mru_files = 1
+            let g:asyncfinder_edit_file_on_single_result = 1
+        " }}}
 
         " unite.vim {{{ search and display info from arbitrary sources like:
             " files, buffers, recently used files or registers.
