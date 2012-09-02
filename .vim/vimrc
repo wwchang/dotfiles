@@ -2121,7 +2121,6 @@ syntax on
     " [ tags ] {{{ <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
-            nnoremap <F12> :TagbarToggle<CR>
             let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
             let g:tagbar_width = 25
             let g:tagbar_compact = 0 " omitting heading help line and blank lines.
@@ -2139,6 +2138,8 @@ syntax on
             " let g:tagbar_type_javascript = {
             "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
             "             \ }
+
+            nnoremap <F12> :TagbarToggle<CR>
 
             " automatically opening tagbar.
                 " autocmd VimEnter * nested :TagbarOpen " open for any files.
@@ -2840,7 +2841,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Debugger ] {{{
+    " [ Debugger ] {{{ <F5~F8>
         " Vdebug : Multi-language DBGP protocol debugger client for Vim.
 
         " VimDebug : Integrate your debugger with Vim.
@@ -2854,8 +2855,8 @@ syntax on
         " }}}
     " }}}
 
-    " [ Compiler ] {{{ <F10>
-        " SingleCompile {{{ F10 compile&run
+    " [ Compiler ] {{{ <F5>
+        " SingleCompile {{{ <F5> compile&run
             " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
             let g:SingleCompile_alwayscompile = 1 " 0: to disable it.
             let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
@@ -2885,7 +2886,7 @@ syntax on
             call SingleCompile#ChooseCompiler('html', 'firefox')
             call SingleCompile#ChooseCompiler('javascript', 'node.js')
 
-            nnoremap <F10> :SCCompileRun<cr>
+            nnoremap <F5> :SCCompileRun<cr>
         " }}}
     " }}}
 
@@ -2928,7 +2929,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ VCS: Git, bzr, svn, ] {{{
+    " [ VCS: Git, bzr, svn, ] {{{ <F9>
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
 
             " auto open quickfix window for :Ggrep.
@@ -2947,7 +2948,6 @@ syntax on
             "   - Altering the range (input search regex/string)
             "       press <C-Enter> on line below this line:
             "       -- Showing (up to 56) commits affecting lines in the range:
-            nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
             let g:Gitv_GitExecutable = 'git'
@@ -2957,6 +2957,8 @@ syntax on
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
             let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
             let g:Gitv_DoNotMapCtrlKey = 0
+
+            nnoremap <F9> :Gitv<cr>
 
             " resize gitv window.
             " augroup MyGitv
@@ -2968,7 +2970,7 @@ syntax on
 
         " extradite {{{ A git commit log browser that extends fugitive.vim
             " :Extradite | :Extradite! -- vertical.
-            " nnoremap <F8> :Extradite<cr>
+            " nnoremap <F9> :Extradite<cr>
             " let g:extradite_width = 60
             let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
@@ -3057,7 +3059,7 @@ syntax on
             "   -- reviewing a previously applied patch.
     " }}}
 
-    " [ FileManager ] {{{ F11
+    " [ FileManager ] {{{ <F11>
         " NerdTree {{{ <F11> :NERDTree [dir|bookmark-name]
             " let loaded_nerd_tree=1 " let vim can not load NERDTree.
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
@@ -3078,6 +3080,7 @@ syntax on
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
+
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
         " }}}
 
@@ -4334,7 +4337,7 @@ syntax on
     " [ command line ] {{{
     " }}}
 
-    " [ history/undo ] {{{
+    " [ history/undo ] {{{ <F10>
         " Vim's builtin undo tree:
             " "u" -> undo
             " "<C-R>" -> redo
@@ -4344,8 +4347,6 @@ syntax on
             " :undolist :earlier/:later [time] {time travelling}
 
         " Gundo {{{ Visual Vim Undo tree and list.
-            " gundo#GundoShow(), gundo#GundoHide()
-            nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
             let g:gundo_prefer_python3 = 1
             let g:gundo_right = 0 " right/left position.
@@ -4359,12 +4360,13 @@ syntax on
             let g:gundo_map_move_older = "j"
             let g:gundo_map_move_newer = "k"
             let g:gundo_close_on_revert = 0
+
+            nnoremap <F10> :GundoToggle<CR>
         " }}}
 
         " undotree {{{ Display your undo history in a graph.
             " Usage:
             " ?, u, <C-r>, g+, g-, :earlier, :later.
-            nnoremap <F9> :UndotreeToggle<CR>
             let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_SplitLocation = 'topleft'
             let g:undotree_SplitWidth = 35
@@ -4374,6 +4376,9 @@ syntax on
             let g:undotree_TreeNodeShape = '*'
             let g:undotree_HighlightChangedText = 1 " highlight changed text line
             let g:undotree_HighlightSyntax = "UnderLined"
+
+            nnoremap <F10> :UndotreeToggle<CR>
+
             function g:undotree_CustomMap()
                 map <C-n> J
                 map <C-p> K
@@ -5023,11 +5028,10 @@ syntax on
             " pattern, action, process, transition, program, instruction etc
         " }}}
 
-        " VOoM {{{ Vim two-pane outliner
+        " VOoM {{{ <F2> Vim two-pane outliner
             " Usage:
             "   - :Voom {MarkupMode}, :Voomhelp.
             "   - :Voomexec [vim/py], :Voomlog,
-            nnoremap <F7> :Voom<CR>
             let g:voom_tree_placement = "left" " left, right, top, bottom.
             let g:voom_tree_width = 30
             let g:voom_tree_height = 12
@@ -5045,6 +5049,8 @@ syntax on
                 " let g:voom_rstrip_chars_help = " \t"
             " let g:voom_user_command
             " let g:voom_create_devel_commands
+
+            nnoremap <F2> :VoomToggle<CR>
         " }}}
 
         " Speeddating : <C-A>, <C-X>, {Visual}<C-A/X>
