@@ -1170,6 +1170,8 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
+                " projects
+            call vam#ActivateAddons(['vimprj'])
                 " regexp
             " call vam#ActivateAddons(['VimRegEx'])
                 " Vim script
@@ -3226,6 +3228,33 @@ syntax on
             let g:T_DATE_FORMAT = "%c"
             "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
             "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
+        " }}}
+    " }}}
+
+    " [ project ] {{{ different settings for every projects
+        " vimprj {{{ managing options for different projects
+            " Usage: :VimprjInfo
+            let g:vimprj_recurseUpCount = 10 " recursive directory check
+            let g:vimprj_dirNameForSearch = '.vimprj' " specific search directory
+            let g:vimprj_changeCurDirIfVimprjFound = 1
+
+            " Example:
+            " call your function SetMainDefaults just before sourcing all *.vim files from .vimprj/
+            function! <SID>SetMainDefaults()
+                " your default options goes here!
+                set tabstop=4
+                set shiftwidth=4
+                set expandtab
+            endfunction
+            call <SID>SetMainDefaults()
+
+            " initialize vimprj plugin
+            call vimprj#init()
+
+            " define a hook
+            function! g:vimprj#dHooks['SetDefaultOptions']['main_options'](dParams)
+                call <SID>SetMainDefaults()
+            endfunction
         " }}}
     " }}}
 " }}}
