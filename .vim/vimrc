@@ -1256,6 +1256,7 @@ endif
                 " C C++
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
+            " call vam#ActivateAddons(['inccomplete'])
                 " Lua
             " call vam#ActivateAddons(['lua'])
             " call vam#ActivateAddons(['lua_omni'])
@@ -4008,6 +4009,13 @@ syntax on
             let g:clang_sort_algo = "priority"
             let g:clang_complete_macros = 1
             let g:clang_complete_patterns = 1
+        " }}}
+
+        " inccomplete {{{ Vim plugin for #include directive completion
+            let g:inccomplete_addclosebracket = "always"
+            let g:inccomplete_sort = "ignorecase"
+            let g:inccomplete_showdirs = 1
+            let g:inccomplete_appendslash = 0 " append slash to directory name
         " }}}
 
         " c.vim {{{ C/C++ IDE
