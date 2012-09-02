@@ -140,7 +140,7 @@
         set backup		" keep a backup file
     endif
     set backupdir=$HOME/.backup-vim/  " backup dir
-    set backupcopy=auto             " auto, breakhardlink(for hardlink, to create separate swap)
+    set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
 
@@ -599,6 +599,7 @@ endif
                         \ ', column ' . v:beval_col .
                         \ ' of file ' .  bufname(v:beval_bufnr) .
                         \ ' on word "' . v:beval_text . '"'
+                        \ ' Error: ' . v:errmsg ? v:errmsg : ""
         endfunction
         set bexpr=MyBalloonExpr()
     endif
@@ -644,7 +645,7 @@ endif
         set statusline+=\%#StatusChar#\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
-        " FIXME set statusline+=\ \%{ConflictCheck()}
+        " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
@@ -744,7 +745,7 @@ endif
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
-                " repeat"┄", repeat" ",
+            let l:folddashes = v:folddashes
             return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
         endfunction
         set foldtext=VimFoldText()
@@ -873,20 +874,20 @@ endif
     " Now you can select a range of lines, type :MyToHtml and use the result to post your code
     " to an HTML-enabled web forum.
     function! MyToHtml(line1, line2)
-      " make sure to generate in the correct format
-      let old_css = 1
-      if exists('g:html_use_css')
-        let old_css = g:html_use_css
-      endif
-      let g:html_use_css = 0
-      " generate and delete unneeded lines
-      exec a:line1.','.a:line2.'TOhtml'
-      %g/<body/normal k$dgg
-      " convert body to a table
-      %s/<body\s*\(bgcolor="[^"]*"\)\s*text=\("[^"]*"\)\s*>/<table \1 cellPadding=0><tr><td><font color=\2>/
-      %s#</body>\(.\|\n\)*</html>#\='</font></td></tr></table>'#i
-      " restore old setting
-      let g:html_use_css = old_css
+        " make sure to generate in the correct format
+        let old_css = 1
+        if exists('g:html_use_css')
+            let old_css = g:html_use_css
+        endif
+        let g:html_use_css = 0
+        " generate and delete unneeded lines
+        exec a:line1.','.a:line2.'TOhtml'
+        %g/<body/normal k$dgg
+        " convert body to a table
+        %s/<body\s*\(bgcolor="[^"]*"\)\s*text=\("[^"]*"\)\s*>/<table \1 cellPadding=0><tr><td><font color=\2>/
+        %s#</body>\(.\|\n\)*</html>#\='</font></td></tr></table>'#i
+        " restore old setting
+        let g:html_use_css = old_css
     endfunction
     command! -range=% MyToHtml :call MyToHtml(<line1>,<line2>)
     " }}}
@@ -2025,7 +2026,7 @@ syntax on
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
 
             nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
-            nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
+            " nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
         " }}}
 
         " Xptemplate
@@ -2289,7 +2290,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ search ] {{{
+    " [ search: MRU, Text, Regex, ] {{{
         " CtrlP {{{ <C-P> :CtrlP to full path fuzzy(regex grep) file buffer and MRU.
             let g:loaded_ctrlp = 0 " =1 to disable plug completely.
             let g:ctrl_map = '<c-p>' " for normal mode press Ctrl-P.
@@ -3151,7 +3152,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Tools ] {{{
+    " [ tools ] {{{
         let g:TasksListTokens = ['FIXME', 'TODO', 'BUG', 'ISSUE', 'ERROR', 'XXX',]
 
         " TagmaTasks {{{
@@ -4105,6 +4106,9 @@ syntax on
         " let b:asmsyntax = "nasm"
         " let asmsyntax = "nasm"
     " }}}
+
+    " [ TeX ] {{{
+    " }}}
 " }}}
 
 " [ Android ] {{{
@@ -4171,6 +4175,7 @@ syntax on
             let g:SignatureDisableMenu = 0
             let g:SignatureMenuStruct = "P&lugins.&Signature"
             let g:SignaturePurgeConfirmation = 1
+            let g:SignaturePeriodicRefresh = 0 " periodic auto refresh
         " }}}
 
         " vmark.vim_Visual_Bookmarking {{{
@@ -4346,6 +4351,7 @@ syntax on
             let g:undotree_RelativeTimestamp = 1
             let g:undotree_TreeNodeShape = '*'
             let g:undotree_HighlightChangedText = 1 " highlight changed text line
+            let g:undotree_HighlightSyntax = "UnderLined"
             function g:undotree_CustomMap()
                 map <C-n> J
                 map <C-p> K
