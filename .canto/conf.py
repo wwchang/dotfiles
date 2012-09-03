@@ -35,30 +35,30 @@ add("https://github.com/NagatoPain.private.atom?token=2896ad0673745109bd5b4ed1ab
 default_rate(500)
 # projects release {{{
 add("http://codezen.org/canto/feeds/latest", tags=[None, "update"]) # Canto update News
-add("https://github.com/blog.atom", tags=[None, "update", "github"]) # Github Blog
 add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "update", "lang"]) # Ruby language
 add("http://blog.golang.org/feeds/posts/default", tags=[None, "update", "lang"]) # Go lang
 add("http://feeds.feedburner.com/GoLangTutorials", tags=[None, "update", "Go"]) # GoLang Tutorials
 add("http://feeds.feedburner.com/dartosphere", tags=[None, "update", "lang"]) # Dart lang
 add("http://news.dartlang.org/feeds/posts/default", tags=[None, "update", "lang"]) # Dart news
-add("http://www.backtrack-linux.org/feed/", tags=[None, "update", "BackTrack"]) # BackTrack official blog.
-# add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "update", "BackTrack"]) # BackTrack Linux Atom 3
-# add("http://www.backtrack-linux.org/feed/", tags=[None, "update", "BackTrack"]) # BackTrack Linux RSS 2
+add("http://feed43.com/vim-scripts.xml", tags=[None, "update", "vim", "script", "plugin"]) # Vim scripts update
+add("http://www.pyside.org/feed/", tags=[None, "update"]) # PySide.org released
 add("http://awesome.naquadah.org/w/index.php?title=Special:RecentChanges&feed=atom", tags=[None, "update", "Awesome"]) # Awesome Wiki Updates
 add("http://definitely-awesome.posterous.com/rss.xml", tags=[None, "update", "Awesome"]) # definitely Awesome
 add("http://blog.getfirebug.com/feed/", tags=[None, "update", "firebug"]) # Firebug
-add("http://feed43.com/vim-scripts.xml", tags=[None, "update", "vim", "script", "plugin"]) # Vim scripts update
-add("http://blog.conky.be/feed/", tags=[None, "update"]) # Conky Blog
 add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat update
 add("http://dev.weechat.org/feed/atom", tags=[None, "update"]) # weechat dev annonce
 add("http://www.weechat.org/feeds/news/", tags=[None, "update"]) # weechat scripts
+add("http://blog.conky.be/feed/", tags=[None, "update"]) # Conky Blog
 add("http://dev.mutt.org/hg/mutt/rss-log", tags=[None, "update"]) # Mutt dev
-add("http://pwmt.org/rss.xml", tags=[None, "update"]) # pwmt.org
 add("http://feeds2.feedburner.com/css3", tags=[None, "update", "CSS", "Web"]) # CSS3 .info
+add("http://www.backtrack-linux.org/feed/", tags=[None, "update", "BackTrack"]) # BackTrack official blog.
+# add("http://www.backtrack-linux.org/feed/atom/", tags=[None, "update", "BackTrack"]) # BackTrack Linux Atom 3
+# add("http://www.backtrack-linux.org/feed/", tags=[None, "update", "BackTrack"]) # BackTrack Linux RSS 2
 add("http://www.backbox.org/blog/feed", tags=[None, "update", "BackBox"]) # BackBox
-add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "update"]) # Miredo
-# add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # Tor announce
 add("http://project-byzantium.org/feed/", tags=[None, "update"]) # Project Byzantium: Ad-hoc wireless mesh networking for the zombie apocalypse.
+# add("http://rss.gmane.org/gmane.network.onion-routing.announce", tags=[None, "update"]) # Tor announce
+add("http://freecode.com/projects/miredo/releases.atom", tags=[None, "update"]) # Miredo
+add("http://pwmt.org/rss.xml", tags=[None, "update"]) # pwmt.org
 # }}}
 
 default_rate(600)
@@ -70,11 +70,16 @@ add("http://neopythonic.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "
 
 default_rate(100)
 # Subscribes {{{
+add("https://github.com/blog.atom", tags=[None, "update", "github"]) # Github Blog
 add("http://dev.open.taobao.com/bbs/rss.php?fid=2", tags=[None, "subscribe", "taobao"]) # TaoBao Developer forums
 add("http://ued.taobao.com/blog/feed/", tags=[None, "subscribe", "taobao"]) # TaoBao UED
 add("http://hacks.mozilla.org/feed/", tags=[None, "subscribe", "web", "mozilla"]) # hacks.mozilla
 # add("http://maemo.org/news/latest.xml", tags=[None, "maemo"]) # maemo latest news
 # add("http://maemo.org/news/items.xml", tags=[None, "maemo"]) # maemo news
+add("http://my-maemo.com/maemo.xml", tags=[None, "maemo"]) # My~Maemo
+add("http://maemoworld.org/feed/", tags=[None, "maemo"]) # Maemo World
+add("http://n900-pentesting.blogspot.com/feeds/posts/default?alt=rss", tags=[None, "maemo"]) # N900 PenTesting Tutorials
+# add("http://rss.allaboutmeego.com/aam-feed-summary.xml", tags=[None, "maemo"]) # All About MeeGo
 # add("http://feeds.feedburner.com/37signals_podcast") # 37singles Podcast
 add("http://www.hackthissite.org/pages/hts.rss.php", tags=[None, "subscribe"]) # hackthissite RSS
 add("http://ninlands.diandian.com/rss", tags=[None, "subscribe"]) # 九州 点点官方
@@ -88,6 +93,7 @@ default_rate(300)
 # Blog {{{
 add("http://www.altdevblogaday.com/feed/", tags=[None, "blog"]) # altdevblogaday
 add("http://blog.stackoverflow.com/feed/", tags=[None, "blog"]) # Stack Exchange Blog
+add("http://programmers.blogoverflow.com/feed/", tags=[None, "blog"]) # Programmers Stack Exchange Blog
 add("http://blog.binux.me/feed/", tags=[None, "blog"]) # Blinux.
 # add("http://igfw.net/feed", tags=[None, "blog", "censorship"]) # iGFW
 add("http://instagram-engineering.tumblr.com/rss", tags=[None, "blog"]) # Instagram Tech Blog
