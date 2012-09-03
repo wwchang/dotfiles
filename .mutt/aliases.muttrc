@@ -84,8 +84,9 @@ alias guile.sources Guile-sources <guile-sources@gnu.org>
 alias python Python.list <python-list@python.org>
 alias python.lang.G comp.lang.py <comp.lang.python@googlegroups.com>
 alias python_linux.G Py.linux <python_linux@googlegroups.com>
+alias python.cn Python-cn <python-cn@googlegroups.com>
 alias python.tw Python-tw <pythontw@googlegroups.com>
-alias python-cn Python-cn <python-chinese@lists.python.cn>
+alias python.chinese Python-chinese <python-chinese@lists.python.cn>
 alias python.lang.cn cn.lang.python <cn.bbs.comp.lang.python@googlegroups.com>
 alias cython.users cython-users <cython-users@googlegroups.com>
 alias django.G django.user <django-users@googlegroups.com>
