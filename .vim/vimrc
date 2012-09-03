@@ -1582,7 +1582,28 @@ syntax on
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            let g:neocomplcache_same_filetype_lists.markdown = 'markdown'
+            let g:neocomplcache_same_filetype_lists = {
+                        \ 'int-python': 'python',
+                        \ 'c': 'cpp',
+                        \ 'cpp': 'c',
+                        \ 'int-gdb': 'gdb',
+                        \ 'int-clisp': 'lisp',
+                        \ 'help': 'vim',
+                        \ 'plaintex': 'bib,plaintex',
+                        \ 'int-sh': 'sh',
+                        \ 'int-zsh': 'zsh',
+                        \ 'int-bash': 'bash',
+                        \ 'erb': 'ruby,html,xhtml',
+                        \ 'int-js': 'javascript',
+                        \ 'int-rhino': 'javascript',
+                        \ 'int-kjs': 'javascript',
+                        \ 'stylus': 'css',
+                        \ 'xhtml': 'css,stylus',
+                        \ 'scss': 'css',
+                        \ 'css': 'scss',
+                        \ 'html': 'xhtml',
+                        \ 'xml': 'xhtml',
+                        \ }
             let g:neocomplcache_dictionary_filetype_lists = {
                         \ 'default' : '',
                         \ 'vimshell' : $HOME.'/.vimshell_hist',
