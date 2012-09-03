@@ -37,6 +37,7 @@ subscribe python.cython-users  <cython-users@googlegroups.com>
 subscribe django Django <django-users@googlegroups.com>
 subscribe webpy web.py <webpy@googlegroups.com>
 subscribe sphinx sphinx-dev <sphinx-dev@googlegroups.com>
+subscribe pyside PySide <pyside@qt-project.org>
 
 # [ Ruby ]
 subscribe ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>

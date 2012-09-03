@@ -306,6 +306,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 
     # projects
     :0
+    * ^List-Id: .*pyside\.qt-project\.org
+    Python/PySide/
+    :0
     * ^List-Id: .*django-users\.googlegroups\.com
     Python/Django/
     :0

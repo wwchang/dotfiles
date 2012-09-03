@@ -92,6 +92,7 @@ alias cython.users cython-users <cython-users@googlegroups.com>
 alias django.G django.user <django-users@googlegroups.com>
 alias web.py web.py <webpy@googlegroups.com>
 alias sphinx.dev sphinx-dev <sphinx-dev@googlegroups.com>
+alias pyside PySide <pyside@qt-project.org>
 # Ruby
 alias ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>
 alias ruby.talk.ctl Ruby-Talk-ctl <ruby-talk-ctl@ruby-lang.org>
