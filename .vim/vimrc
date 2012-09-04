@@ -1732,7 +1732,8 @@ syntax on
             let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete'
             let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
             let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
-            let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS'
+            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS'
+            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " use jscomplete-vim
             let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
             let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags'
             let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS'
