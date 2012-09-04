@@ -258,6 +258,11 @@ PMSRC = ${HOME}/.mutt/procmail/lib
         :0
         QQ/
     }
+
+    :0
+    * ^From: .*10000@qq\.com
+    * ^Subject: .* 垃圾邮件隔离提醒
+    spam/
 # }}}
 
 # Programming Languages {{{
@@ -287,6 +292,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*comp\.lang\.python\.googlegroups\.com
     Python/comp-lang/
     :0
+    * ^List-Id: .*python-cn\.googlegroups\.com
+    Python/python-cn/
+    :0
     * ^List-Id: .*pythontw\.googlegroups\.com
     Python/python-tw/
     :0
@@ -297,6 +305,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Python/help/
 
     # projects
+    :0
+    * ^List-Id: .*pyside\.qt-project\.org
+    Python/PySide/
     :0
     * ^List-Id: .*django-users\.googlegroups\.com
     Python/Django/

@@ -19,6 +19,7 @@ subscribe lisp-cn lisp-cn <lisp-cn@googlegroups.com>
 # [ Python ]
 subscribe python Python <python-list@python.org>
 subscribe python.lang python.lang.G <comp.lang.python@googlegroups.com>
+subscribe python.cn python.cn <python-cn@googlegroups.com>
 subscribe python.tw python.tw <pythontw@googlegroups.com>
 subscribe python.help  <python-help@python.org>
 subscribe python.tutor  <tutor@python.org>
@@ -36,6 +37,7 @@ subscribe python.cython-users  <cython-users@googlegroups.com>
 subscribe django Django <django-users@googlegroups.com>
 subscribe webpy web.py <webpy@googlegroups.com>
 subscribe sphinx sphinx-dev <sphinx-dev@googlegroups.com>
+subscribe pyside PySide <pyside@qt-project.org>
 
 # [ Ruby ]
 subscribe ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>

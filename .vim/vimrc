@@ -140,7 +140,7 @@
         set backup		" keep a backup file
     endif
     set backupdir=$HOME/.backup-vim/  " backup dir
-    set backupcopy=auto             " auto, breakhardlink(for hardlink, to create separate swap)
+    set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
 
@@ -599,6 +599,7 @@ endif
                         \ ', column ' . v:beval_col .
                         \ ' of file ' .  bufname(v:beval_bufnr) .
                         \ ' on word "' . v:beval_text . '"'
+                        \ ' Error: ' . v:errmsg ? v:errmsg : ""
         endfunction
         set bexpr=MyBalloonExpr()
     endif
@@ -644,7 +645,7 @@ endif
         set statusline+=\%#StatusChar#\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
-        " FIXME set statusline+=\ \%{ConflictCheck()}
+        " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
@@ -744,7 +745,7 @@ endif
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
-                " repeat"┄", repeat" ",
+            let l:folddashes = v:folddashes
             return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
         endfunction
         set foldtext=VimFoldText()
@@ -873,20 +874,20 @@ endif
     " Now you can select a range of lines, type :MyToHtml and use the result to post your code
     " to an HTML-enabled web forum.
     function! MyToHtml(line1, line2)
-      " make sure to generate in the correct format
-      let old_css = 1
-      if exists('g:html_use_css')
-        let old_css = g:html_use_css
-      endif
-      let g:html_use_css = 0
-      " generate and delete unneeded lines
-      exec a:line1.','.a:line2.'TOhtml'
-      %g/<body/normal k$dgg
-      " convert body to a table
-      %s/<body\s*\(bgcolor="[^"]*"\)\s*text=\("[^"]*"\)\s*>/<table \1 cellPadding=0><tr><td><font color=\2>/
-      %s#</body>\(.\|\n\)*</html>#\='</font></td></tr></table>'#i
-      " restore old setting
-      let g:html_use_css = old_css
+        " make sure to generate in the correct format
+        let old_css = 1
+        if exists('g:html_use_css')
+            let old_css = g:html_use_css
+        endif
+        let g:html_use_css = 0
+        " generate and delete unneeded lines
+        exec a:line1.','.a:line2.'TOhtml'
+        %g/<body/normal k$dgg
+        " convert body to a table
+        %s/<body\s*\(bgcolor="[^"]*"\)\s*text=\("[^"]*"\)\s*>/<table \1 cellPadding=0><tr><td><font color=\2>/
+        %s#</body>\(.\|\n\)*</html>#\='</font></td></tr></table>'#i
+        " restore old setting
+        let g:html_use_css = old_css
     endfunction
     command! -range=% MyToHtml :call MyToHtml(<line1>,<line2>)
     " }}}
@@ -1095,8 +1096,9 @@ endif
                 call vam#ActivateAddons(['Tag_Signature_Balloons'])
             endif
             call vam#ActivateAddons(['easytags'])
-            call vam#ActivateAddons(['AutoTag'])
-            " call vam#ActivateAddons(['taggatron'])
+            call vam#ActivateAddons(['taggatron'])
+            " call vam#ActivateAddons(['AutoTag'])
+            call vam#ActivateAddons(['indexer.tar.gz'])
                 " cscope
             " call vam#ActivateAddons(['cscope'])
             " call vam#ActivateAddons(['CCTree'])
@@ -1140,6 +1142,7 @@ endif
             call vam#ActivateAddons(['buffers_search_and_replace'])
             " call vam#ActivateAddons(['SearchParty'])
             call vam#ActivateAddons(['Area_search'])
+            call vam#ActivateAddons(['asyncfinder'])
                 " comment
             call vam#ActivateAddons(['commentary'])
             " call vam#ActivateAddons(['tComment'])
@@ -1169,6 +1172,8 @@ endif
                 " Author info & License
             "call vam#ActivateAddons(['AuthorInfo'])
             "call vam#ActivateAddons(['license_loader'])
+                " projects
+            call vam#ActivateAddons(['vimprj'])
                 " regexp
             " call vam#ActivateAddons(['VimRegEx'])
                 " Vim script
@@ -1251,6 +1256,7 @@ endif
                 " C C++
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
+            " call vam#ActivateAddons(['inccomplete'])
                 " Lua
             " call vam#ActivateAddons(['lua'])
             " call vam#ActivateAddons(['lua_omni'])
@@ -1506,18 +1512,21 @@ syntax on
             "   -- to use global compound filetype.
             "   so you can complete HTML and Python as same time.
             "   -- but this will affect other plugins which use 'filetype' too.
+            " - :NeoComplCacheCachingTags command to make cache.
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
-            let g:neocomplcache_disable_auto_complete = 0
-            let g:neocomplcache_max_list = 100 " number display in pop-up menu.
-            let g:neocomplcache_max_keyword_width = 50
-            let g:neocomplcache_max_menu_width = 15
-            let g:neocomplcache_auto_completion_start_length = 2
-            let g:neocomplcache_manual_completion_start_length = 0
-            let g:neocomplcache_min_keyword_length = 3
-            let g:neocomplcache_min_syntax_length = 3
+            let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
+            let g:neocomplcache_force_overwrite_completefunc = 0
+            let g:neocomplcache_use_vimproc = 1
+            let g:neocomplcache_max_list = 100 " candidate number display in popup menu
+            let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
+            let g:neocomplcache_max_menu_width = 15 " popup menu width
+            let g:neocomplcache_auto_completion_start_length = 2 " auto complete min length
+            let g:neocomplcache_manual_completion_start_length = 0 " manually min length
+            let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
+            let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
-            let g:neocomplcache_enable_smart_case = 1 " smartcase
+            let g:neocomplcache_enable_smart_case = 1 " infercase
             let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
             " 1: 'InsertCharPre' event, version >= 7.3.461
@@ -1527,15 +1536,17 @@ syntax on
                 let g:neocomplcache_enable_insert_char_pre = 0
             endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
+            let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 1 " ambiguous searching when capital
             let g:neocomplcache_enable_underbar_completion = 1 " ambiguous searching when input _
-            let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy.
-            let g:neocomplcache_fuzzy_completion_start_length = 3
-            let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache.
+            let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
+            let g:neocomplcache_fuzzy_completion_start_length = 3 " fuzzy complete min length
+            let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
             let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
             let g:neocomplcache_tags_caching_limit_file_size = 500000 " tags file size
+            let g:neocomplcache_release_cache_time = 900
                 " use :NeoComplCacheCachingTags command to make cache.
             let g:neocomplcache_disable_caching_file_path_pattern = '' " pattern of buffer un-cache
             let g:neocomplcache_lock_buffer_name_pattern = '' " pattern of buffer do not auto-complete
@@ -1555,32 +1566,54 @@ syntax on
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+            " omni patterns
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
-            " let g:neocomplcache_omni_patterns.python = '[^. \t]\.\w*'
+            let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns['cpp'] = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns['go'] = '\h\w*\%.'
+            let g:neocomplcache_omni_patterns['python'] = '[^. \t]\.\w*'
             " empty to disable auto complete especially for python.
             " let g:neocomplcache_omni_patterns.python = ''
-            let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::'
                 " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
-            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['perl'] = '\h\w*->\h\w*\|\h\w*::'
+            " let g:neocomplcache_omni_patterns.css = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
             " let g:neocomplcache_tags_filter_patterns.c = 'v:val.word !~ ''^[~_]'''
+            " filetypes
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            let g:neocomplcache_same_filetype_lists.markdown = 'markdown'
-            let g:neocomplcache_dictionary_filetype_lists = {
-                        \ 'default' : '',
-                        \ 'vimshell' : $HOME.'/.vimshell_hist',
-                        \ 'scheme' : $HOME.'/.gosh_completions',
-                        \ }
+            " TODO
+            let g:neocomplcache_same_filetype_lists['int-python'] = 'python'
+            let g:neocomplcache_same_filetype_lists['c'] = 'cpp'
+            let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
+            let g:neocomplcache_same_filetype_lists['int-gdb'] = 'gdb'
+            let g:neocomplcache_same_filetype_lists['int-clisp'] = 'lisp'
+            let g:neocomplcache_same_filetype_lists['help'] = 'vim'
+            let g:neocomplcache_same_filetype_lists['plaintex'] = 'bib,plaintex'
+            let g:neocomplcache_same_filetype_lists['int-sh'] = 'sh'
+            let g:neocomplcache_same_filetype_lists['int-zsh'] = 'zsh'
+            let g:neocomplcache_same_filetype_lists['int-bash'] = 'bash'
+            let g:neocomplcache_same_filetype_lists['erb'] = 'ruby,html,xhtml'
+            let g:neocomplcache_same_filetype_lists['int-js'] = 'javascript'
+            let g:neocomplcache_same_filetype_lists['int-rhino'] = 'javascript'
+            let g:neocomplcache_same_filetype_lists['int-kjs'] = 'javascript'
+            let g:neocomplcache_same_filetype_lists['stylus'] = 'css'
+            let g:neocomplcache_same_filetype_lists['xhtml'] = 'css,stylus'
+            let g:neocomplcache_same_filetype_lists['scss'] = 'css'
+            let g:neocomplcache_same_filetype_lists['css'] = 'scss'
+            let g:neocomplcache_same_filetype_lists['html'] = 'xhtml'
+            let g:neocomplcache_same_filetype_lists['xml'] = 'html'
+            if !exists('g:neocomplcache_dictionary_filetype_lists')
+                let g:neocomplcache_dictionary_filetype_lists = {}
+            endif
+            let g:neocomplcache_dictionary_filetype_lists.default = ''
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
@@ -1588,51 +1621,50 @@ syntax on
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            let g:neocomplcache_context_filetype_lists.vim = [{
+            let g:neocomplcache_context_filetype_lists['vim'] = [{
                         \ 'filetype': 'python',
                         \ 'start': '^\s*python <<\s*\(\h\w*\)',
                         \ 'end': '^\1',
                         \ }]
-            " FIXME
+            " TODO
             " let g:neocomplcache_context_filetype_lists.vim = [{
             "             \ 'filetype': 'ruby',
             "             \ }]
-            let g:neocomplcache_context_filetype_lists.perl6 = [{
+            let g:neocomplcache_context_filetype_lists['perl6'] = [{
                         \ 'filetype': 'pir',
                         \ 'start': 'Q:PIR\s*{',
                         \ 'end': '}',
                         \ }]
-            if exists('g:neocomplcache_text_mode_filetypes')
+            " text mode filetypes
+            if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-            let g:neocomplcache_text_mode_filetypes = {
-                        \ 'help': 1,
-                        \ 'tex': 1,
-                        \ 'text': 1,
-                        \ 'gitcommit': 1,
-                        \ 'vcs-commit': 1,
-                        \ }
-            let g:neocomplcache_disable_select_mode_mappings = 1
+            let g:neocomplcache_text_mode_filetypes['help'] = 1
+            let g:neocomplcache_text_mode_filetypes['tex'] = 1
+            let g:neocomplcache_text_mode_filetypes['text'] = 1
+            let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+            let g:neocomplcache_text_mode_filetypes['vcs-commit'] = 1
+            " ctags
             let g:neocomplcache_ctags_program = 'ctags'
             if !exists('g:neocomplcache_ctags_arguments_list')
                 let g:neocomplcache_ctags_arguments_list = {}
             endif
             " let g:neocomplcache_ctags_arguments_list.python =
+            " include: paths, exprs, patterns, functions
             if !exists('g:neocomplcache_include_paths')
                 let g:neocomplcache_include_paths = {}
             endif
+            let g:neocomplcache_include_paths['c'] = '/usr/include'
+            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
             if !exists('g:neocomplcache_include_exprs')
                 let g:neocomplcache_include_exprs = {}
             endif
-            " FIXME let g:neocomplcache_include_exprs.python =
             if !exists('g:neocomplcache_include_patterns')
                 let g:neocomplcache_include_patterns = {}
             endif
-            let g:neocomplcache_include_patterns.python = '^import'
             if !exists('g:neocomplcache_include_functions')
                 let g:neocomplcache_include_functions = {}
             endif
-            " FIXME let g:neocomplcache_include_functions.python =
             let g:neocomplcache_include_max_processes = 25
             if !exists('g:neocomplcache_include_exprs')
                 let g:neocomplcache_include_exprs = {}
@@ -1640,8 +1672,9 @@ syntax on
             if !exists('g:neocomplcache_filename_include_exts')
                 let g:neocomplcache_filename_include_exts = {}
             endif
-            let g:neocomplcache_filename_include_exts.python = ['py']
-            let g:neocomplcache_filename_include_exts.cpp = ['', 'h', 'hpp', 'hxx']
+            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            " member patterns
             if !exists('g:neocomplcache_member_prefix_patterns')
                 let g:neocomplcache_member_prefix_patterns = {}
             endif
@@ -1649,80 +1682,107 @@ syntax on
                 let g:neocomplcache_member_patterns = {}
             endif
             " let g:neocomplcache_member_patterns.default = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            " delimiter patterns
             if !exists('g:neocomplcache_delimiter_patterns')
                 let g:neocomplcache_delimiter_patterns = {}
             endif
-            let g:neocomplcache_delimiter_patterns = {
-                        \ 'vim': ['#'],
-                        \ 'python': ['.'],
-                        \ 'cpp': ['::'],
-                        \ }
+            let g:neocomplcache_delimiter_patterns['vim'] = ['#']
+            let g:neocomplcache_delimiter_patterns['help'] = ['#']
+            let g:neocomplcache_delimiter_patterns['ruby'] = ['\.']
+            let g:neocomplcache_delimiter_patterns['lisp'] = [':']
+            let g:neocomplcache_delimiter_patterns['javascript'] = ['\.']
+            let g:neocomplcache_delimiter_patterns['lua'] = ['\.', ':']
+            let g:neocomplcache_delimiter_patterns['cpp'] = ['::']
+            let g:neocomplcache_delimiter_patterns['haskell'] = ['\.']
+            let g:neocomplcache_delimiter_patterns['php'] = ['\', '::']
+            let g:neocomplcache_delimiter_patterns['java'] = ['\.']
+            " omni functions
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
             " if the key is '_', used for all filetypes.
-            let g:neocomplcache_omni_functions = {
-                        \ '_': 'syntaxcomplete#Complete',
-                        \ 'ruby': 'rubycomplete#Complete',
-                        \ 'c': 'ccomplete#Complete',
-                        \ 'go': 'gocomplete#Complete',
-                        \ 'cpp,hpp': 'omni#cpp#complete#Main',
-                        \ 'html,markdown': 'htmlcomplete#CompleteTags',
-                        \ 'css': 'csscomplete#CompleteCSS',
-                        \ 'javascript': 'javascriptcomplete#CompleteJS',
-                        \ 'xml': 'xmlcomplete#CompleteTags',
-                        \ 'php': 'phpcomplete#CompletePHP',
-                        \ 'sql': 'sqlcomplete#Map("sqlkeyword")',
-                        \ 'haskell': 'necoghc#omnifunc',
-                        \ }
+            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete'
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete'
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete'
             endif
-            if exists('g:neocomplcache_vim_completefuncs')
+            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete'
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete'
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS'
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS'
+            let g:neocomplcache_omni_functions['xml'] = 'xmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP'
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Map("sqlkeyword")'
+            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc'
+            " completefunc
+            if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
             endif
-            if exists('g:neocomplcache_source_disable')
+
+            " [ sources ]
+            if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
-            if exists('g:neocomplcache_source_completion_length')
+            let g:neocomplcache_source_disable['dictionary_complete'] = 1
+            if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
-            let g:neocomplcache_source_completion_length = {
-                        \ 'member_complete': 0,
-                        \ 'keyword_complete': 2,
-                        \ 'filename_complete': 2,
-                        \ 'buffer_complete': 2,
-                        \ 'look': 3,
-                        \ }
-            let g:neocomplcache_force_overwrite_completefunc = 0
-            let g:neocomplcache_release_cache_time = 900
-            let g:neocomplcache_use_vimproc = 1
-            " for composite file type (only use one completion)
-            let g:neocomplcache_ignore_composite_filetype_lists = {
-                        \ 'python.unit' : 'python',
-                        \ 'ruby.spec' : 'ruby',
-                        \ }
+            let g:neocomplcache_source_completion_length['include_complete'] = 0
+            let g:neocomplcache_source_completion_length['member_complete'] = 0
+            let g:neocomplcache_source_completion_length['keyword_complete'] = 2
+            let g:neocomplcache_source_completion_length['filename_complete'] = 2
+            let g:neocomplcache_source_completion_length['buffer_complete'] = 2
+            let g:neocomplcache_source_completion_length['look'] = 3
 
-                " [ priority ] {{{
-                " control each source's completion priority.
+            " for composite file type (only use one completion)
+            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
+                let g:neocomplcache_ignore_composite_filetype_lists = {}
+            endif
+            let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
+            let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
+
+                " [ complete candidates: priority ] {{{
+                " control each source's completion candidate priority.
                 " The higher value is, the higher priority.
+
+                " abbrev_complete            -> [A]
+                " filename_complete          -> [F] {filename}
+                " dictionary_complete        -> [D] {words}
+                " member_complete            -> [M] member
+                " buffer_complete            -> [B] {buffername}
+                " syntax_complete            -> [S] {syntax-keyword}
+                " include_complete           -> [FI] or [I]
+                " snippets_complete          -> [Snip] (none placeholders) or
+                " <Snip> (contains placeholders)
+                " vim_complete               -> [vim] type
+                " omni_complete              -> [O]
+                " tags_complete              -> [T]
+                " other plugin sources       -> [plugin-name-prefix]
+                " other completefunc sources -> [plugin-name-prefix]
+                " other ftplugin sources     -> [plugin-name-prefix]
 
                 " default
                 let g:neocomplcache_source_rank = {
-                            \ 'filename_complete' : 3,
-                            \ 'dictionary_complete' : 4,
-                            \ 'member_complete' : 5,
-                            \ 'keyword_complete' : 5,
-                            \ 'buffer_complete' : 5,
-                            \ 'syntax_complete' : 7,
-                            \ 'include_complete' : 8,
-                            \ 'snippets_complete' : 8,
+                            \ 'abbrev_complete' : 500,
+                            \ 'filename_complete' : 5,
+                            \ 'dictionary_complete' : 6,
+                            \ 'member_complete' : 7,
+                            \ 'keyword_complete' : 8,
+                            \ 'buffer_complete' : 9,
+                            \ 'syntax_complete' : 10,
+                            \ 'include_complete' : 700,
+                            \ 'snippets_complete' : 400,
                             \ 'vim_complete' : 300,
                             \ 'omni_complete' : 300,
+                            \ 'tags_complete' : 350,
                             \ 'other plugin sources' : 5,
-                            \ 'other completefunc sources' : 10,
+                            \ 'other completefunc sources' : 15,
                             \ 'other ftplugin sources' : 100,
                             \ }
 
@@ -1730,7 +1790,7 @@ syntax on
             " }}}
 
             " [ neocomplcache functions ] {{{
-            " inoremap <expr><C-n>
+            " inoremap <expr> <C-n>
                 " pumvisible() ? "\<C-n>" : "\<Tab>"
                 " pumvisible() ? "\<C-j>" : "\<C-n>"
                 " pumvisible() ? "\<C-j>" : neocomplcache#...()
@@ -1747,13 +1807,13 @@ syntax on
                 endfunction
                 " ----------------------------------------------
             " Awesome EXample.
-            "imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+            "imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
                     "\ ? "\<Plug>(neocomplcache_snippets_expand)"
                     "\ : pumvisible() ? "\<C-n>"
                     "\ : <SID>check_back_space() ? "\<TAB>"
                     "\ : "\<C-x>\<C-u>"
 
-            "inoremap <expr><TAB> pumvisible()
+            "inoremap <expr> <Tab> pumvisible()
                         "\ ? "\<C-n>"
                         "\ : <SID>check_back_space() ? "\<TAB>"
                         "\ : "\<C-x>\<C-u>"
@@ -1773,21 +1833,21 @@ syntax on
                 " <C-l> -- common string complete.
                 " <BS>  -- smart close popup.
 
-                inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
-                inoremap <expr><C-o> neocomplcache#manual_omni_complete()
-                inoremap <expr><C-l> neocomplcache#complete_common_string()
-                inoremap <expr><C-y> neocomplcache#smart_close_popup()
-                inoremap <expr><C-e> neocomplcache#cancel_popup()
-                inoremap <expr><C-g> neocomplcache#undo_completion()
-                inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-                inoremap <expr><BS>  neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr> <C-x><C-f> neocomplcache#manual_filename_complete()
+                inoremap <expr> <C-o> neocomplcache#manual_omni_complete()
+                inoremap <expr> <C-l> neocomplcache#complete_common_string()
+                inoremap <expr> <C-y> neocomplcache#smart_close_popup()
+                inoremap <expr> <C-e> neocomplcache#cancel_popup()
+                inoremap <expr> <C-g> neocomplcache#undo_completion()
+                inoremap <expr> <C-h> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr> <BS>  neocomplcache#smart_close_popup()."\<C-h>"
 
                 inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-                " inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-                " inoremap <expr><CR> neocomplcache#close_popup() . "\<CR>"
+                " inoremap <expr> <CR> neocomplcache#smart_close_popup() . "\<CR>"
+                " inoremap <expr> <CR> neocomplcache#close_popup() . "\<CR>"
 
-                imap <expr><C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
-                imap <expr><C-p> pumvisible() ? "\<C-p>"
+                imap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
+                imap <expr> <C-p> pumvisible() ? "\<C-p>"
 
                 imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
                             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
@@ -1826,7 +1886,7 @@ syntax on
                 " ----------------------------------------------
                 " ternary operator:  x = y > 0 ? 5 : 10 =>
                 " then x will be 5 or 10 depending on whether y is above zero or not.
-                " imap <expr><Tab>
+                " imap <expr> <Tab>
                 "         neocomplcache#sources#snippets_complete#expandable()
                 "         \ ? "\<Plug>(neocomplcache_snippets_expand)"
                 "         \ : pumvisible() ? "\<C-n>"
@@ -1839,14 +1899,14 @@ syntax on
                 "     inoremap <expr> <C-k> "\<Plug>(neocomplcache_snippets_jump)"
                 " endif
                 " ----------------------------------------------
-                " imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
+                " imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
                 "             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
                 "             \ : <SID>check_back_space() ? "\<TAB>"
                 "             \ : "\<C-x>\<C-u>"
-                " imap <expr><C-j> neocomplcache#sources#snippets_complete#jumpable()
+                " imap <expr> <C-j> neocomplcache#sources#snippets_complete#jumpable()
                 "             \ ? "\<Plug>(neocomplcache_snippets_jump)"
                 "             \ : ""
-                " imap <expr><C-k> neocomplcache#sources#snippets_complete#jumpable()
+                " imap <expr> <C-k> neocomplcache#sources#snippets_complete#jumpable()
                 "             \ ? "\<Plug>(neocomplcache_snippets_jump)"
                 "             \ : ""
                 " }}}
@@ -1866,9 +1926,9 @@ syntax on
                 " FIXME snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
                 " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
                 " ----------------------------------------------
-                "imap <expr><Tab> snipMate#ShowAvailableSnips() ?
-                            "\ snipMate#
-                            "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " imap <expr> <Tab> snipMate#ShowAvailableSnips() ?
+                "             \ snipMate#
+                "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
                 " }}}
 
                 " [ unite ] {{{ TODO
@@ -2013,7 +2073,7 @@ syntax on
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
 
             nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
-            nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
+            " nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
         " }}}
 
         " Xptemplate
@@ -2107,7 +2167,6 @@ syntax on
     " [ tags ] {{{ <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
-            nnoremap <F12> :TagbarToggle<CR>
             let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
             let g:tagbar_width = 25
             let g:tagbar_compact = 0 " omitting heading help line and blank lines.
@@ -2125,6 +2184,8 @@ syntax on
             " let g:tagbar_type_javascript = {
             "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
             "             \ }
+
+            nnoremap <F12> :TagbarToggle<CR>
 
             " automatically opening tagbar.
                 " autocmd VimEnter * nested :TagbarOpen " open for any files.
@@ -2277,7 +2338,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ search ] {{{
+    " [ search: MRU, Text, Regex, ] {{{
         " CtrlP {{{ <C-P> :CtrlP to full path fuzzy(regex grep) file buffer and MRU.
             let g:loaded_ctrlp = 0 " =1 to disable plug completely.
             let g:ctrl_map = '<c-p>' " for normal mode press Ctrl-P.
@@ -2495,6 +2556,18 @@ syntax on
         " Bundle 'FuzzyFinder'
             " buffer/file/command/tag/etc explorer with fuzzy matching.
 
+        " asyncfinder {{{ asynchronous fuzzy file finder with Python threading module
+            " Usage:
+            " :AsyncFinder [-mode={mode}] [{pattern}]
+            let g:asyncfinder_ignore_dirs = "['*.AppleDouble*','*.git*','*.hg*','*.bzr*',]"
+            let g:asyncfinder_ignore_files = "['*.swp', '*~',]"
+            let g:asyncfinder_initial_mode = "a" " a: all, b: buffer, f: files, m: mru.
+            let g:asyncfinder_initial_pattern = "*"
+            let g:asyncfinder_include_buffers = 1
+            let g:asyncfinder_include_mru_files = 1
+            let g:asyncfinder_edit_file_on_single_result = 1
+        " }}}
+
         " unite.vim {{{ search and display info from arbitrary sources like:
             " files, buffers, recently used files or registers.
             " You can run one of defined action on a target displayed.
@@ -2536,7 +2609,7 @@ syntax on
             " let g:unite_source_file_ignore_pattern
             " .............
 
-            " unite.vim extensions {{{
+            " unite extensions {{{
                 " unite-ack {{{ Unite plugin for Ack.
                     " Usage:
                     " - :Unite ack:directory:search_word<CR>
@@ -2696,9 +2769,9 @@ syntax on
             "let g:tcomment_types {}
         " }}}
 
-        " Nerd Commenter {{{ \cc >> \cu >> \cs >> \cn >> \c$ >> \c<space>
-            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment.
-            " \cn: Nested, \c<space>: Toggle, \cm: Minimal, \ci: Invert,
+        " Nerd Commenter {{{ \cc, \cu, \cs, \cm, \cn, \c$, \c<space>
+            " \cc: Comment, \cu: Uncomment, \cs, Sexily Comment, \cm: minimal.
+            " \cn: Nested, \c<space>: Toggle, \ci: Invert,
             " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
             " let loaded_nerd_comments=1 " turn off this script.
         " }}}
@@ -2814,7 +2887,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Debugger ] {{{
+    " [ Debugger ] {{{ <F5~F8>
         " Vdebug : Multi-language DBGP protocol debugger client for Vim.
 
         " VimDebug : Integrate your debugger with Vim.
@@ -2828,8 +2901,8 @@ syntax on
         " }}}
     " }}}
 
-    " [ Compiler ] {{{ <F10>
-        " SingleCompile {{{ F10 compile&run
+    " [ Compiler ] {{{ <F5>
+        " SingleCompile {{{ <F5> compile&run
             " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
             let g:SingleCompile_alwayscompile = 1 " 0: to disable it.
             let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
@@ -2837,19 +2910,29 @@ syntax on
             let g:SingleCompile_usequickfix = 1 " use QuickFix.
             let g:SingleCompile_menumode = 2 " 0 don't show menu, 1 sub menu, 2 menu bar
             let g:SingleCompile_resultheight = 10
-            let g:SingleCompile_showquickfixiferror = 1 " auto show error.
+            let g:SingleCompile_showquickfixiferror = 1 " auto show up quickfix window
             let g:SingleCompile_showresultafterrun = 0 " show result even no error
             let g:SingleCompile_usedialog = 0 " show dialog, +dialog_con, +dialog_gui
+
+            let g:SingleCompile_common_out_file = '$(FILE_TITLE)$'
+            let g:SingleCompile_common_run_command = './$(FILE_TITLE)$'
+
+            call SingleCompile#SetCompilerTemplate('c', 'gcc_custom', 'GNU C Compiler',
+                        \ 'gcc', '-std=gnu99 -Wall -g -o $(FILE_TITLE)$',
+                        \ g:SingleCompile_common_run_command
+                        \ )
+
             call SingleCompile#ChooseCompiler('python', 'python3')
             call SingleCompile#ChooseCompiler('sh', 'bash')
             call SingleCompile#ChooseCompiler('bash', 'bash')
             call SingleCompile#ChooseCompiler('zsh', 'zsh')
-            call SingleCompile#ChooseCompiler('c', 'gcc')
+            " call SingleCompile#ChooseCompiler('c', 'gcc')
+            call SingleCompile#ChooseCompiler('c', 'gcc_custom')
             call SingleCompile#ChooseCompiler('cpp', 'g++')
             call SingleCompile#ChooseCompiler('html', 'firefox')
             call SingleCompile#ChooseCompiler('javascript', 'node.js')
 
-            nnoremap <F10> :SCCompileRun<cr>
+            nnoremap <F5> :SCCompileRun<cr>
         " }}}
     " }}}
 
@@ -2892,7 +2975,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ VCS: Git, bzr, svn, ] {{{
+    " [ VCS: Git, bzr, svn, ] {{{ <F9>
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
 
             " auto open quickfix window for :Ggrep.
@@ -2911,7 +2994,6 @@ syntax on
             "   - Altering the range (input search regex/string)
             "       press <C-Enter> on line below this line:
             "       -- Showing (up to 56) commits affecting lines in the range:
-            nnoremap <F8> :Gitv<cr>
             let g:Gitv_CommitStep = &lines
             let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
             let g:Gitv_GitExecutable = 'git'
@@ -2921,6 +3003,8 @@ syntax on
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
             let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
             let g:Gitv_DoNotMapCtrlKey = 0
+
+            nnoremap <F9> :Gitv<cr>
 
             " resize gitv window.
             " augroup MyGitv
@@ -2932,7 +3016,7 @@ syntax on
 
         " extradite {{{ A git commit log browser that extends fugitive.vim
             " :Extradite | :Extradite! -- vertical.
-            " nnoremap <F8> :Extradite<cr>
+            " nnoremap <F9> :Extradite<cr>
             " let g:extradite_width = 60
             let g:extradite_showhash = 1 " show abbre commit hashes.
         " }}}
@@ -3021,7 +3105,7 @@ syntax on
             "   -- reviewing a previously applied patch.
     " }}}
 
-    " [ FileManager ] {{{ F11
+    " [ FileManager ] {{{ <F11>
         " NerdTree {{{ <F11> :NERDTree [dir|bookmark-name]
             " let loaded_nerd_tree=1 " let vim can not load NERDTree.
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
@@ -3042,6 +3126,7 @@ syntax on
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
+
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
         " }}}
 
@@ -3127,7 +3212,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Tools ] {{{
+    " [ tools ] {{{
         let g:TasksListTokens = ['FIXME', 'TODO', 'BUG', 'ISSUE', 'ERROR', 'XXX',]
 
         " TagmaTasks {{{
@@ -3205,6 +3290,33 @@ syntax on
             let g:T_DATE_FORMAT = "%c"
             "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
             "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
+        " }}}
+    " }}}
+
+    " [ project ] {{{ different settings for every projects
+        " vimprj {{{ managing options for different projects
+            " Usage: :VimprjInfo
+            let g:vimprj_recurseUpCount = 10 " recursive directory check
+            let g:vimprj_dirNameForSearch = '.vimprj' " specific search directory
+            let g:vimprj_changeCurDirIfVimprjFound = 1
+
+            " Example:
+            " call your function SetMainDefaults just before sourcing all *.vim files from .vimprj/
+            function! <SID>SetMainDefaults()
+                " your default options goes here!
+                set tabstop=4
+                set shiftwidth=4
+                set expandtab
+            endfunction
+            call <SID>SetMainDefaults()
+
+            " initialize vimprj plugin
+            call vimprj#init()
+
+            " define a hook
+            function! g:vimprj#dHooks['SetDefaultOptions']['main_options'](dParams)
+                call <SID>SetMainDefaults()
+            endfunction
         " }}}
     " }}}
 " }}}
@@ -3918,8 +4030,9 @@ syntax on
             let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
             let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
             let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-            let g:neocomplcache_clang_auto_options = "path, .clang_complete, gcc"
-            let g:neocomplcache_clang_user_options = "" " user clang options
+            let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
+            let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
+            " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
             let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
 
@@ -3937,13 +4050,21 @@ syntax on
             let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
             let g:clang_close_preview = 0 " auto close preview window after completion
             let g:clang_exec = "clang" " name or path of clang executable.
-            let g:clang_user_options = "" " useful if you want filter result or others
-            "let g:clang_auto_user_options = "path, .clang_complete, gcc"
+            let g:clang_user_options = '-std=gnu99 -stdlib=libc'
+            " let g:clang_user_options = "-std=c++11 -stdlib=libc++"
+            let g:clang_auto_user_options = "path, .clang_complete, clang"
             let g:clang_use_library = 1
             let g:clang_library_path = "/usr/lib/"
             let g:clang_sort_algo = "priority"
             let g:clang_complete_macros = 1
             let g:clang_complete_patterns = 1
+        " }}}
+
+        " inccomplete {{{ Vim plugin for #include directive completion
+            let g:inccomplete_addclosebracket = "always"
+            let g:inccomplete_sort = "ignorecase"
+            let g:inccomplete_showdirs = 1
+            let g:inccomplete_appendslash = 0 " append slash to directory name
         " }}}
 
         " c.vim {{{ C/C++ IDE
@@ -4034,6 +4155,8 @@ syntax on
                 " Smart indentation for R and RHelp syntax.
                 " Most of the plugin's behavior is customizable.
         " }}}
+
+        " rcom : Evaluate R code via rcom, rserve, screen, or tmux
     " }}}
 
     " [ Rust ] {{{
@@ -4053,6 +4176,9 @@ syntax on
         let filetype_i = "asm" " files matching *.i could be Progress or Assembly.
         " let b:asmsyntax = "nasm"
         " let asmsyntax = "nasm"
+    " }}}
+
+    " [ TeX ] {{{
     " }}}
 " }}}
 
@@ -4120,6 +4246,7 @@ syntax on
             let g:SignatureDisableMenu = 0
             let g:SignatureMenuStruct = "P&lugins.&Signature"
             let g:SignaturePurgeConfirmation = 1
+            let g:SignaturePeriodicRefresh = 0 " periodic auto refresh
         " }}}
 
         " vmark.vim_Visual_Bookmarking {{{
@@ -4256,7 +4383,7 @@ syntax on
     " [ command line ] {{{
     " }}}
 
-    " [ history/undo ] {{{
+    " [ history/undo ] {{{ <F10>
         " Vim's builtin undo tree:
             " "u" -> undo
             " "<C-R>" -> redo
@@ -4266,8 +4393,6 @@ syntax on
             " :undolist :earlier/:later [time] {time travelling}
 
         " Gundo {{{ Visual Vim Undo tree and list.
-            " gundo#GundoShow(), gundo#GundoHide()
-            nnoremap <F9> :GundoToggle<CR>
             " let g:gundo_disable = 1 " disable Gundo.
             let g:gundo_prefer_python3 = 1
             let g:gundo_right = 0 " right/left position.
@@ -4281,12 +4406,13 @@ syntax on
             let g:gundo_map_move_older = "j"
             let g:gundo_map_move_newer = "k"
             let g:gundo_close_on_revert = 0
+
+            nnoremap <F10> :GundoToggle<CR>
         " }}}
 
         " undotree {{{ Display your undo history in a graph.
             " Usage:
             " ?, u, <C-r>, g+, g-, :earlier, :later.
-            nnoremap <F9> :UndotreeToggle<CR>
             let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_SplitLocation = 'topleft'
             let g:undotree_SplitWidth = 35
@@ -4295,6 +4421,10 @@ syntax on
             let g:undotree_RelativeTimestamp = 1
             let g:undotree_TreeNodeShape = '*'
             let g:undotree_HighlightChangedText = 1 " highlight changed text line
+            let g:undotree_HighlightSyntax = "UnderLined"
+
+            nnoremap <F10> :UndotreeToggle<CR>
+
             function g:undotree_CustomMap()
                 map <C-n> J
                 map <C-p> K
@@ -4403,15 +4533,17 @@ syntax on
         " inline_edit {{{ Edit code that's embedded within other code.
             " Visual select -> <Leader>e - any area that you mark.
             " JS/CSS in HTML, SQL in RUby, code in markdown, Django block in template.
-            " normal mode:
-            nnoremap <leader>e :InlineEdit<cr>
-            " visual mode:
-            xnoremap <leader>e :InlineEdit<cr>
-            " insert mode:
-            inoremap <c-e> <esc>:InlineEdit<cr>a
-            let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
+            if exists('g:loaded_inline_edit')
+                " normal mode:
+                nnoremap <leader>e :InlineEdit<cr>
+                " visual mode:
+                xnoremap <leader>e :InlineEdit<cr>
+                " insert mode:
+                inoremap <c-e> <esc>:InlineEdit<cr>a
+                let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
                 " detect <script> <style> tags like HTML
-            let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
+                let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
+            endif
         " }}}
 
         " NrrwRgn (NarrowRegion) {{{ A Narrow Region Plugin similar to Emacs
@@ -4942,11 +5074,10 @@ syntax on
             " pattern, action, process, transition, program, instruction etc
         " }}}
 
-        " VOoM {{{ Vim two-pane outliner
+        " VOoM {{{ <F2> Vim two-pane outliner
             " Usage:
             "   - :Voom {MarkupMode}, :Voomhelp.
             "   - :Voomexec [vim/py], :Voomlog,
-            nnoremap <F7> :Voom<CR>
             let g:voom_tree_placement = "left" " left, right, top, bottom.
             let g:voom_tree_width = 30
             let g:voom_tree_height = 12
@@ -4964,6 +5095,8 @@ syntax on
                 " let g:voom_rstrip_chars_help = " \t"
             " let g:voom_user_command
             " let g:voom_create_devel_commands
+
+            nnoremap <F2> :VoomToggle<CR>
         " }}}
 
         " Speeddating : <C-A>, <C-X>, {Visual}<C-A/X>

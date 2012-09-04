@@ -55,8 +55,10 @@ mailboxes =Python/python
 mailboxes =Python/help
 mailboxes =Python/dev
 mailboxes =Python/comp-lang
+mailboxes =Python/python-cn
 mailboxes =Python/python-tw
 # projects
+mailboxes =Python/PySide
 mailboxes =Python/Django
 mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
