@@ -273,6 +273,8 @@
     set pumheight=20 " set popup menu max items available. 0=long
     " set completefunc " actually find the matches.
 
+    set infercase " adjust ins-completion case for ..th completion.
+
         " [ omni ] {{{ complete things with "<C-X><C-O>"
         set omnifunc=syntaxcomplete#Complete " for other languages
         inoremap <C-space> <C-x><C-o>
