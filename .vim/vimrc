@@ -1498,11 +1498,12 @@ syntax on
 
     " [ completion: omni ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-            " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
+            " if exists('g:loaded_neocomplcache')
+            " endif
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
-            " Usage:
+            " Usage: {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " - Add other language completion:
             "   :NeoComplCacheSetFileType [filetype]
             "   neocomplcache#get_context_filetype()
@@ -1513,18 +1514,23 @@ syntax on
             "   so you can complete HTML and Python as same time.
             "   -- but this will affect other plugins which use 'filetype' too.
             " - :NeoComplCacheCachingTags command to make cache.
+            " }}}
+
+            " common options {{{
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
-            let g:neocomplcache_max_list = 100 " number display in pop-up menu.
+            let g:neocomplcache_force_overwrite_completefunc = 0
+            let g:neocomplcache_use_vimproc = 1
+            let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
             let g:neocomplcache_max_menu_width = 15 " popup menu width
-            let g:neocomplcache_auto_completion_start_length = 2
-            let g:neocomplcache_manual_completion_start_length = 0
+            let g:neocomplcache_auto_completion_start_length = 2 " auto complete min length
+            let g:neocomplcache_manual_completion_start_length = 0 " manually min length
             let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
             let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
-            let g:neocomplcache_enable_smart_case = 1 " smartcase
+            let g:neocomplcache_enable_smart_case = 1 " infercase
             let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
             " 1: 'InsertCharPre' event, version >= 7.3.461
@@ -1534,8 +1540,9 @@ syntax on
                 let g:neocomplcache_enable_insert_char_pre = 0
             endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
+            let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
-            let g:neocomplcache_cursor_hold_i_time = 50 " time of auto complete
+            let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 1 " ambiguous searching when capital
             let g:neocomplcache_enable_underbar_completion = 1 " ambiguous searching when input _
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
@@ -1543,6 +1550,7 @@ syntax on
             let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
             let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
             let g:neocomplcache_tags_caching_limit_file_size = 500000 " tags file size
+            let g:neocomplcache_release_cache_time = 900
                 " use :NeoComplCacheCachingTags command to make cache.
             let g:neocomplcache_disable_caching_file_path_pattern = '' " pattern of buffer un-cache
             let g:neocomplcache_lock_buffer_name_pattern = '' " pattern of buffer do not auto-complete
@@ -1554,7 +1562,9 @@ syntax on
             endif
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
             let g:neocomplcache_temporary_dir = '~/.neocon'
+            " }}}
 
+            " complex dictionary options {{{
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             " NOTE you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
@@ -1562,53 +1572,54 @@ syntax on
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+            " omni patterns
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns.go = '\h\w*\%.'
-            let g:neocomplcache_omni_patterns.python = '[^. \t]\.\w*'
+            let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns['cpp'] = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns['go'] = '\h\w*\%.'
+            let g:neocomplcache_omni_patterns['python'] = '[^. \t]\.\w*'
             " empty to disable auto complete especially for python.
             " let g:neocomplcache_omni_patterns.python = ''
-            let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::'
                 " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
-            let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['perl'] = '\h\w*->\h\w*\|\h\w*::'
+            " let g:neocomplcache_omni_patterns.css = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
             " let g:neocomplcache_tags_filter_patterns.c = 'v:val.word !~ ''^[~_]'''
+            " filetypes
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            let g:neocomplcache_same_filetype_lists = {
-                        \ 'int-python': 'python',
-                        \ 'c': 'cpp',
-                        \ 'cpp': 'c',
-                        \ 'int-gdb': 'gdb',
-                        \ 'int-clisp': 'lisp',
-                        \ 'help': 'vim',
-                        \ 'plaintex': 'bib,plaintex',
-                        \ 'int-sh': 'sh',
-                        \ 'int-zsh': 'zsh',
-                        \ 'int-bash': 'bash',
-                        \ 'erb': 'ruby,html,xhtml',
-                        \ 'int-js': 'javascript',
-                        \ 'int-rhino': 'javascript',
-                        \ 'int-kjs': 'javascript',
-                        \ 'stylus': 'css',
-                        \ 'xhtml': 'css,stylus',
-                        \ 'scss': 'css',
-                        \ 'css': 'scss',
-                        \ 'html': 'xhtml',
-                        \ 'xml': 'xhtml',
-                        \ }
-            let g:neocomplcache_dictionary_filetype_lists = {
-                        \ 'default' : '',
-                        \ 'vimshell' : $HOME.'/.vimshell_hist',
-                        \ 'scheme' : $HOME.'/.gosh_completions',
-                        \ }
+            " TODO
+            let g:neocomplcache_same_filetype_lists['int-python'] = 'python'
+            let g:neocomplcache_same_filetype_lists['c'] = 'cpp'
+            let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
+            let g:neocomplcache_same_filetype_lists['int-gdb'] = 'gdb'
+            let g:neocomplcache_same_filetype_lists['int-clisp'] = 'lisp'
+            let g:neocomplcache_same_filetype_lists['help'] = 'vim'
+            let g:neocomplcache_same_filetype_lists['plaintex'] = 'bib,plaintex'
+            let g:neocomplcache_same_filetype_lists['int-sh'] = 'sh'
+            let g:neocomplcache_same_filetype_lists['int-zsh'] = 'zsh'
+            let g:neocomplcache_same_filetype_lists['int-bash'] = 'bash'
+            let g:neocomplcache_same_filetype_lists['erb'] = 'ruby,html,xhtml'
+            let g:neocomplcache_same_filetype_lists['int-js'] = 'javascript'
+            let g:neocomplcache_same_filetype_lists['int-rhino'] = 'javascript'
+            let g:neocomplcache_same_filetype_lists['int-kjs'] = 'javascript'
+            let g:neocomplcache_same_filetype_lists['stylus'] = 'css'
+            let g:neocomplcache_same_filetype_lists['xhtml'] = 'css,stylus'
+            let g:neocomplcache_same_filetype_lists['scss'] = 'css'
+            let g:neocomplcache_same_filetype_lists['css'] = 'scss'
+            let g:neocomplcache_same_filetype_lists['html'] = 'xhtml'
+            let g:neocomplcache_same_filetype_lists['xml'] = 'html'
+            if !exists('g:neocomplcache_dictionary_filetype_lists')
+                let g:neocomplcache_dictionary_filetype_lists = {}
+            endif
+            let g:neocomplcache_dictionary_filetype_lists.default = ''
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
@@ -1616,51 +1627,50 @@ syntax on
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            let g:neocomplcache_context_filetype_lists.vim = [{
+            let g:neocomplcache_context_filetype_lists['vim'] = [{
                         \ 'filetype': 'python',
                         \ 'start': '^\s*python <<\s*\(\h\w*\)',
                         \ 'end': '^\1',
                         \ }]
-            " FIXME
+            " TODO
             " let g:neocomplcache_context_filetype_lists.vim = [{
             "             \ 'filetype': 'ruby',
             "             \ }]
-            let g:neocomplcache_context_filetype_lists.perl6 = [{
+            let g:neocomplcache_context_filetype_lists['perl6'] = [{
                         \ 'filetype': 'pir',
                         \ 'start': 'Q:PIR\s*{',
                         \ 'end': '}',
                         \ }]
+            " text mode filetypes
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-            let g:neocomplcache_text_mode_filetypes = {
-                        \ 'help': 1,
-                        \ 'tex': 1,
-                        \ 'text': 1,
-                        \ 'gitcommit': 1,
-                        \ 'vcs-commit': 1,
-                        \ }
-            let g:neocomplcache_disable_select_mode_mappings = 1
+            let g:neocomplcache_text_mode_filetypes['help'] = 1
+            let g:neocomplcache_text_mode_filetypes['tex'] = 1
+            let g:neocomplcache_text_mode_filetypes['text'] = 1
+            let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+            let g:neocomplcache_text_mode_filetypes['vcs-commit'] = 1
+            " ctags
             let g:neocomplcache_ctags_program = 'ctags'
             if !exists('g:neocomplcache_ctags_arguments_list')
                 let g:neocomplcache_ctags_arguments_list = {}
             endif
             " let g:neocomplcache_ctags_arguments_list.python =
+            " include: paths, exprs, patterns, functions
             if !exists('g:neocomplcache_include_paths')
                 let g:neocomplcache_include_paths = {}
             endif
+            let g:neocomplcache_include_paths['c'] = '/usr/include'
+            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
             if !exists('g:neocomplcache_include_exprs')
                 let g:neocomplcache_include_exprs = {}
             endif
-            " FIXME let g:neocomplcache_include_exprs.python =
             if !exists('g:neocomplcache_include_patterns')
                 let g:neocomplcache_include_patterns = {}
             endif
-            let g:neocomplcache_include_patterns.python = '^import'
             if !exists('g:neocomplcache_include_functions')
                 let g:neocomplcache_include_functions = {}
             endif
-            " FIXME let g:neocomplcache_include_functions.python =
             let g:neocomplcache_include_max_processes = 25
             if !exists('g:neocomplcache_include_exprs')
                 let g:neocomplcache_include_exprs = {}
@@ -1668,8 +1678,9 @@ syntax on
             if !exists('g:neocomplcache_filename_include_exts')
                 let g:neocomplcache_filename_include_exts = {}
             endif
-            let g:neocomplcache_filename_include_exts.python = ['py']
-            let g:neocomplcache_filename_include_exts.cpp = ['', 'h', 'hpp', 'hxx']
+            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            " member patterns
             if !exists('g:neocomplcache_member_prefix_patterns')
                 let g:neocomplcache_member_prefix_patterns = {}
             endif
@@ -1677,91 +1688,111 @@ syntax on
                 let g:neocomplcache_member_patterns = {}
             endif
             " let g:neocomplcache_member_patterns.default = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            " delimiter patterns
             if !exists('g:neocomplcache_delimiter_patterns')
                 let g:neocomplcache_delimiter_patterns = {}
             endif
-            let g:neocomplcache_delimiter_patterns = {
-                        \ 'vim': ['#'],
-                        \ 'help': ['#'],
-                        \ 'ruby': ['\.'],
-                        \ 'lisp': [':'],
-                        \ 'javascript': ['\.'],
-                        \ 'lua': ['\.', ':'],
-                        \ 'cpp': ['::'],
-                        \ 'haskell': ['\.'],
-                        \ 'php': ['\', '::'],
-                        \ 'java': ['\.'],
-                        \ }
+            let g:neocomplcache_delimiter_patterns['vim'] = ['#']
+            let g:neocomplcache_delimiter_patterns['help'] = ['#']
+            let g:neocomplcache_delimiter_patterns['ruby'] = ['\.']
+            let g:neocomplcache_delimiter_patterns['lisp'] = [':']
+            let g:neocomplcache_delimiter_patterns['javascript'] = ['\.']
+            let g:neocomplcache_delimiter_patterns['lua'] = ['\.', ':']
+            let g:neocomplcache_delimiter_patterns['cpp'] = ['::']
+            let g:neocomplcache_delimiter_patterns['haskell'] = ['\.']
+            let g:neocomplcache_delimiter_patterns['php'] = ['\', '::']
+            let g:neocomplcache_delimiter_patterns['java'] = ['\.']
+            " omni functions
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
             " if the key is '_', used for all filetypes.
-            let g:neocomplcache_omni_functions = {
-                        \ '_': 'syntaxcomplete#Complete',
-                        \ 'ruby': 'rubycomplete#Complete',
-                        \ 'c': 'ccomplete#Complete',
-                        \ 'go': 'gocomplete#Complete',
-                        \ 'cpp,hpp': 'omni#cpp#complete#Main',
-                        \ 'html,markdown': 'htmlcomplete#CompleteTags',
-                        \ 'css': 'csscomplete#CompleteCSS',
-                        \ 'javascript': 'javascriptcomplete#CompleteJS',
-                        \ 'xml': 'xmlcomplete#CompleteTags',
-                        \ 'php': 'phpcomplete#CompletePHP',
-                        \ 'sql': 'sqlcomplete#Map("sqlkeyword")',
-                        \ 'haskell': 'necoghc#omnifunc',
-                        \ }
+            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete'
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete'
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete'
             endif
+            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete'
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete'
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS'
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS'
+            let g:neocomplcache_omni_functions['xml'] = 'xmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP'
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Map("sqlkeyword")'
+            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc'
+            " completefunc
             if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
             endif
+
+            " [ sources ]
             if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
+            let g:neocomplcache_source_disable['dictionary_complete'] = 1
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
-            let g:neocomplcache_source_completion_length = {
-                        \ 'member_complete': 0,
-                        \ 'keyword_complete': 2,
-                        \ 'filename_complete': 2,
-                        \ 'buffer_complete': 2,
-                        \ 'look': 3,
-                        \ }
-            let g:neocomplcache_force_overwrite_completefunc = 0
-            let g:neocomplcache_release_cache_time = 900
-            let g:neocomplcache_use_vimproc = 1
+            let g:neocomplcache_source_completion_length['include_complete'] = 0
+            let g:neocomplcache_source_completion_length['member_complete'] = 0
+            let g:neocomplcache_source_completion_length['keyword_complete'] = 2
+            let g:neocomplcache_source_completion_length['filename_complete'] = 2
+            let g:neocomplcache_source_completion_length['buffer_complete'] = 2
+            let g:neocomplcache_source_completion_length['look'] = 3
+
             " for composite file type (only use one completion)
-            let g:neocomplcache_ignore_composite_filetype_lists = {
-                        \ 'python.unit' : 'python',
-                        \ 'ruby.spec' : 'ruby',
+            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
+                let g:neocomplcache_ignore_composite_filetype_lists = {}
+            endif
+            let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
+            let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
+            " }}}
+
+            " [ complete candidates: priority ] {{{
+            " control each source's completion candidate priority.
+            " The higher value is, the higher priority.
+
+            " abbrev_complete            -> [A]
+            " filename_complete          -> [F] {filename}
+            " dictionary_complete        -> [D] {words}
+            " member_complete            -> [M] member
+            " buffer_complete            -> [B] {buffername}
+            " syntax_complete            -> [S] {syntax-keyword}
+            " include_complete           -> [FI] or [I]
+            " snippets_complete          -> [Snip] (none placeholders) or
+            " <Snip> (contains placeholders)
+            " vim_complete               -> [vim] type
+            " omni_complete              -> [O]
+            " tags_complete              -> [T]
+            " other plugin sources       -> [plugin-name-prefix]
+            " other completefunc sources -> [plugin-name-prefix]
+            " other ftplugin sources     -> [plugin-name-prefix]
+
+            " default
+            let g:neocomplcache_source_rank = {
+                        \ 'abbrev_complete' : 500,
+                        \ 'filename_complete' : 5,
+                        \ 'dictionary_complete' : 6,
+                        \ 'member_complete' : 7,
+                        \ 'keyword_complete' : 8,
+                        \ 'buffer_complete' : 9,
+                        \ 'syntax_complete' : 10,
+                        \ 'include_complete' : 700,
+                        \ 'snippets_complete' : 400,
+                        \ 'vim_complete' : 300,
+                        \ 'omni_complete' : 300,
+                        \ 'tags_complete' : 350,
+                        \ 'other plugin sources' : 5,
+                        \ 'other completefunc sources' : 15,
+                        \ 'other ftplugin sources' : 100,
                         \ }
 
-                " [ priority ] {{{
-                " control each source's completion priority.
-                " The higher value is, the higher priority.
-
-                " default
-                let g:neocomplcache_source_rank = {
-                            \ 'filename_complete' : 3,
-                            \ 'dictionary_complete' : 4,
-                            \ 'member_complete' : 5,
-                            \ 'keyword_complete' : 5,
-                            \ 'buffer_complete' : 5,
-                            \ 'syntax_complete' : 7,
-                            \ 'include_complete' : 8,
-                            \ 'snippets_complete' : 8,
-                            \ 'vim_complete' : 300,
-                            \ 'omni_complete' : 300,
-                            \ 'other plugin sources' : 5,
-                            \ 'other completefunc sources' : 10,
-                            \ 'other ftplugin sources' : 100,
-                            \ }
-
-                " }}}
             " }}}
 
             " [ neocomplcache functions ] {{{
