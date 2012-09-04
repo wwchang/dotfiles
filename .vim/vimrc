@@ -1498,11 +1498,12 @@ syntax on
 
     " [ completion: omni ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-            " {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
+            " if exists('g:loaded_neocomplcache')
+            " endif
             " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
-            " Usage:
+            " Usage: {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " - Add other language completion:
             "   :NeoComplCacheSetFileType [filetype]
             "   neocomplcache#get_context_filetype()
@@ -1513,6 +1514,9 @@ syntax on
             "   so you can complete HTML and Python as same time.
             "   -- but this will affect other plugins which use 'filetype' too.
             " - :NeoComplCacheCachingTags command to make cache.
+            " }}}
+
+            " common options {{{
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
@@ -1558,7 +1562,9 @@ syntax on
             endif
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
             let g:neocomplcache_temporary_dir = '~/.neocon'
+            " }}}
 
+            " complex dictionary options {{{
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             " NOTE you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
@@ -1747,46 +1753,44 @@ syntax on
             let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
             let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
 
-                " [ complete candidates: priority ] {{{
-                " control each source's completion candidate priority.
-                " The higher value is, the higher priority.
+            " [ complete candidates: priority ] {{{
+            " control each source's completion candidate priority.
+            " The higher value is, the higher priority.
 
-                " abbrev_complete            -> [A]
-                " filename_complete          -> [F] {filename}
-                " dictionary_complete        -> [D] {words}
-                " member_complete            -> [M] member
-                " buffer_complete            -> [B] {buffername}
-                " syntax_complete            -> [S] {syntax-keyword}
-                " include_complete           -> [FI] or [I]
-                " snippets_complete          -> [Snip] (none placeholders) or
-                " <Snip> (contains placeholders)
-                " vim_complete               -> [vim] type
-                " omni_complete              -> [O]
-                " tags_complete              -> [T]
-                " other plugin sources       -> [plugin-name-prefix]
-                " other completefunc sources -> [plugin-name-prefix]
-                " other ftplugin sources     -> [plugin-name-prefix]
+            " abbrev_complete            -> [A]
+            " filename_complete          -> [F] {filename}
+            " dictionary_complete        -> [D] {words}
+            " member_complete            -> [M] member
+            " buffer_complete            -> [B] {buffername}
+            " syntax_complete            -> [S] {syntax-keyword}
+            " include_complete           -> [FI] or [I]
+            " snippets_complete          -> [Snip] (none placeholders) or
+            " <Snip> (contains placeholders)
+            " vim_complete               -> [vim] type
+            " omni_complete              -> [O]
+            " tags_complete              -> [T]
+            " other plugin sources       -> [plugin-name-prefix]
+            " other completefunc sources -> [plugin-name-prefix]
+            " other ftplugin sources     -> [plugin-name-prefix]
 
-                " default
-                let g:neocomplcache_source_rank = {
-                            \ 'abbrev_complete' : 500,
-                            \ 'filename_complete' : 5,
-                            \ 'dictionary_complete' : 6,
-                            \ 'member_complete' : 7,
-                            \ 'keyword_complete' : 8,
-                            \ 'buffer_complete' : 9,
-                            \ 'syntax_complete' : 10,
-                            \ 'include_complete' : 700,
-                            \ 'snippets_complete' : 400,
-                            \ 'vim_complete' : 300,
-                            \ 'omni_complete' : 300,
-                            \ 'tags_complete' : 350,
-                            \ 'other plugin sources' : 5,
-                            \ 'other completefunc sources' : 15,
-                            \ 'other ftplugin sources' : 100,
-                            \ }
-
-                " }}}
+            " default
+            let g:neocomplcache_source_rank = {
+                        \ 'abbrev_complete' : 500,
+                        \ 'filename_complete' : 5,
+                        \ 'dictionary_complete' : 6,
+                        \ 'member_complete' : 7,
+                        \ 'keyword_complete' : 8,
+                        \ 'buffer_complete' : 9,
+                        \ 'syntax_complete' : 10,
+                        \ 'include_complete' : 700,
+                        \ 'snippets_complete' : 400,
+                        \ 'vim_complete' : 300,
+                        \ 'omni_complete' : 300,
+                        \ 'tags_complete' : 350,
+                        \ 'other plugin sources' : 5,
+                        \ 'other completefunc sources' : 15,
+                        \ 'other ftplugin sources' : 100,
+                        \ }
             " }}}
 
             " [ neocomplcache functions ] {{{
