@@ -1573,20 +1573,32 @@ syntax on
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
             " omni patterns
+            if !exists('g:neocomplcache_force_omni_patterns')
+                let g:neocomplcache_force_omni_patterns = {}
+            endif
+            let g:neocomplcache_force_omni_patterns['objc'] =
+                        \ '\h\w\+\|[^.[:digit:] *\t]\%(\.\|->\)'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns['cpp'] = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns['go'] = '\h\w*\%.'
-            let g:neocomplcache_omni_patterns['python'] = '[^. \t]\.\w*'
+            let g:neocomplcache_omni_patterns['c'] =
+                        \ '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns['cpp'] =
+                        \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns['go'] =
+                        \ '\h\w*\%.'
+            let g:neocomplcache_omni_patterns['python'] =
+                        \ '[^. \t]\.\w*'
             " empty to disable auto complete especially for python.
             " let g:neocomplcache_omni_patterns.python = ''
-            let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::'
-                " for perlomni.vim settings. https://github.com/c9s/perlomni.vim
-            let g:neocomplcache_omni_patterns['perl'] = '\h\w*->\h\w*\|\h\w*::'
-            " let g:neocomplcache_omni_patterns.css = '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+            let g:neocomplcache_omni_patterns['ruby'] =
+                        \ '[^. *\t]\.\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['php'] =
+                        \ '[^. \t]->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['perl'] =
+                        \ '\h\w*->\h\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['css'] =
+                        \ '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
