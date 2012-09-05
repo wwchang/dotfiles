@@ -1303,6 +1303,7 @@ endif
             " call vam#ActivateAddons(['TeX-PDF'])
                 " markup & markdown
             call vam#ActivateAddons(['preview%3344'])
+            " call vam#ActivateAddons(['riv'])
                 " encrypt
             "call vam#ActivateAddons(['tGpg'])
             "call vam#ActivateAddons(['openssl'])
@@ -4248,6 +4249,11 @@ syntax on
     " }}}
 
     " [ TeX ] {{{
+    " }}}
+
+    " [ Markdown ] {{{
+        " riv {{{ Reading , Writing and Managing reStructuredText documents in Vim
+        " }}}
     " }}}
 " }}}
 
