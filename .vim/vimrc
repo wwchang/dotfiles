@@ -3451,6 +3451,9 @@ syntax on
                 " let g:pyref_django = '/usr/share/doc/python-django-doc/html/'
                 " let g:pyref_index =
             " }}}
+
+            " py3stdlib : ~/.vim/doc/py3stdlib.txt
+            " :help py3stdlib
         " }}}
 
         " [ debug ] {{{
