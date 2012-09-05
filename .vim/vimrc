@@ -1232,13 +1232,13 @@ endif
                 " Web App
             " call vam#ActivateAddons(['vim-brunch'])
                 " PHP
+            call vam#ActivateAddons(['phpcomplete'])
             " call vam#ActivateAddons(['DBGPavim'])
             " call vam#ActivateAddons(['Xdebug'])
             " call vam#ActivateAddons(['vim-addon-xdebug'])
             " call vam#ActivateAddons(['phpqa'])
             " call vam#ActivateAddons(['PHPUnit_QF'])
             call vam#ActivateAddons(['PIV'])
-            call vam#ActivateAddons(['phpcomplete'])
             " call vam#ActivateAddons(['pdv-standalone'])
             " call vam#ActivateAddons(['Drupal'])
             " call vam#ActivateAddons(['cakephp'])
@@ -1256,7 +1256,7 @@ endif
             call vam#ActivateAddons(['Lisper'])
             call vam#ActivateAddons(['paredit'])
                 " Scheme
-                " C C++
+                " C C++ cpp
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " call vam#ActivateAddons(['inccomplete'])
@@ -1739,7 +1739,7 @@ syntax on
             let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags'
             let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS'
             let g:neocomplcache_omni_functions['xml'] = 'xmlcomplete#CompleteTags'
-            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP'
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " phpcomplete
             let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Map("sqlkeyword")'
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc'
             " completefunc
@@ -1768,6 +1768,7 @@ syntax on
             endif
             let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
             let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
+            " }}}
 
             " [ complete candidates: priority ] {{{
             " control each source's completion candidate priority.
@@ -1869,10 +1870,10 @@ syntax on
                 imap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
                 imap <expr> <C-p> pumvisible() ? "\<C-p>"
 
-                imap <expr><Tab> neocomplcache#sources#snippets_complete#expandable()
-                            \ ?  "\<Plug>(neocomplcache_snippets_expand)"
-                            \ : <SID>check_back_space() ? "\<TAB>"
-                            \ : "\<C-x>\<C-u>"
+                " imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
+                "             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
+                "             \ : <SID>check_back_space() ? "\<TAB>"
+                "             \ : "\<C-x>\<C-u>"
 
                 " ------------------------------------------------------------
                 " { neocomplcache-snippets-complete } {{{
@@ -2910,14 +2911,15 @@ syntax on
     " [ Debugger ] {{{ <F5~F8>
         " Vdebug : Multi-language DBGP protocol debugger client for Vim.
 
-        " VimDebug : Integrate your debugger with Vim.
+        " VimDebug {{{ Integrate your debugger with Vim
+        " }}}
 
         " GdbFromVim {{{ debug your applications with gdb from Vim.
             " let g:gdb_from_vim_app = 'applications'
             " let g:gdb_from_vim_args = 'arguments'
         " }}}
 
-        " gdbmgr {{{ Vim interface to gdb.
+        " gdbmgr {{{ Vim interface to gdb
         " }}}
     " }}}
 
@@ -3321,7 +3323,7 @@ syntax on
             let g:vimprj_changeCurDirIfVimprjFound = 1
 
             " Example:
-            " call your function SetMainDefaults just before sourcing all *.vim files from .vimprj/
+            " call SetMainDefaults BEFORE sourcing all *.vim files from .vimprj/
             function! <SID>SetMainDefaults()
                 " your default options goes here!
                 set tabstop=4
@@ -3980,6 +3982,29 @@ syntax on
                 " Usage:
                 "   - K --> doc
             " }}}
+
+            " pdv-standalone {{{ standalone version of phpDocumentor for Vim plugin.
+                let g:pdv_cfg_Package = 'placeholder'
+                let g:pdv_cfg_Version = '1.0.0'
+                let g:pdv_cfg_Author = 'stardiviner <numbchild@gmail.com>'
+                "let g:pdv_cfg_Copyright =
+                "let g:pdv_cfg_License =
+                let g:pdv_cfg_ReturnVal = "void"
+                let g:pdv_cfg_Type = "mixed"
+                let g:pdv_cfg_Uses = 0
+                let g:pdv_cfg_paste = 1 " set paste before documenting
+                let g:pdv_cfg_php4always = 0
+                let g:pdv_cfg_php4guess = 1
+                let g:pdv_cfg_php4guessval = "protected"
+                let g:pdv_cfg_CommentHead = "/**"
+                let g:pdv_cfg_Comment1 = " * "
+                let g:pdv_cfg_Commentn = " * "
+                let g:pdv_cfg_CommentTail = " */"
+                let g:pdv_cfg_CommentSingle = "//"
+
+                nnoremap <K> :call PhpDocSingle()<CR>
+                vnoremap <K> :call PhpDocRange()<CR>
+            " }}}
         " }}}
 
         " [ completion ] {{{
@@ -4001,25 +4026,6 @@ syntax on
                 " please set it as follows.
                 let g:cakephp_enable_auto_mode = 1
             " }}}
-        " }}}
-
-        " pdv-standalone {{{ standalone version of phpDocumentor for Vim plugin.
-            let g:pdv_cfg_Package = 'placeholder'
-            let g:pdv_cfg_Version = '1.0.0'
-            let g:pdv_cfg_Author = 'stardiviner <numbchild@gmail.com>'
-            "let g:pdv_cfg_Copyright =
-            "let g:pdv_cfg_License =
-            let g:pdv_cfg_Type = "mixed"
-            let g:pdv_cfg_Uses = 0
-            let g:pdv_cfg_paste = 1
-            let g:pdv_cfg_php4always = 0
-            let g:pdv_cfg_php4guess = 1
-            let g:pdv_cfg_php4guessval = "protected"
-            let g:pdv_cfg_CommentHead = "/**"
-            let g:pdv_cfg_Comment1 = " * "
-            let g:pdv_cfg_Commentn = " * "
-            let g:pdv_cfg_CommentTail = " */"
-            let g:pdv_cfg_CommentSingle = "//"
         " }}}
 
         " [ Framework ] {{{
