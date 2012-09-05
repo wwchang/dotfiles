@@ -1184,6 +1184,7 @@ endif
             call vam#ActivateAddons(['runVimTests'])
                 " Python
             " call vam#ActivateAddons(['Python-mode-klen'])
+            call vam#ActivateAddons(['pyref'])
             " call vam#ActivateAddons(['SimpylFold'])
             " call vam#ActivateAddons(['github:jbking/vim-pep8'])
             " call vam#ActivateAddons(['flake8'])
@@ -3434,11 +3435,18 @@ syntax on
         " }}}
 
         " [ help ] {{{
-            " vim-pyref {{{ python and lib refence, django document,
-                " "F1" only work in python buffer.
-                " let g:pyref_mapping = 'K'
-                "let g:pyref_python = '/usr/share/doc/python2.7/html/'
-                "let g:pyref_django = '/usr/share/doc/python-django-doc/html/'
+            " pyref {{{ Python Language and Library reference, Django document.
+                " Usage:
+                " :PyRef [string]
+                " misc/spider.py index file.
+                let g:pyref_mapping = 'K'
+                " package python2.6-doc document default in
+                " /usr/share/doc/python2.6/html/
+                " if you want another location document.
+                let g:pyref_python = '/usr/share/doc/python3/html/'
+                " package python-django-doc
+                " let g:pyref_django = '/usr/share/doc/python-django-doc/html/'
+                " let g:pyref_index =
             " }}}
         " }}}
 
