@@ -3633,6 +3633,13 @@ syntax on
         let ruby_fold = 1
         "let ruby_no_comment_fold = 1
 
+        " rubycomplete() omnicomplete settings
+        let g:rubycomplete_rails = 0
+        let g:rubycomplete_buffer_loading = 1
+        let g:rubycomplete_classes_in_global = 1
+        let g:rubycomplete_include_object = 1
+        let g:rubycomplete_include_objectspace = 1
+
         " vim-ruby {{{
             " https://github.com/vim-ruby/vim-ruby
             " https://github.com/MarcWeber/vim-ruby
