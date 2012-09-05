@@ -1078,7 +1078,7 @@ endif
             call vam#ActivateAddons(['github:osyo-manga/unite-quickfix'])
                 " Completion <Tab>
             call vam#ActivateAddons(['neocomplcache', 'vimproc'])
-            call vam#ActivateAddons(['neco-look'])
+            " call vam#ActivateAddons(['neco-look'])
             " call vam#ActivateAddons(['AutoComplPop'])
             " call vam#ActivateAddons(['github:ervandew/supertab'])
             " call vam#ActivateAddons(['github:mbbill/code_complete'])
@@ -1123,10 +1123,10 @@ endif
             " call vam#ActivateAddons(['checksyntax'])
             " call vam#ActivateAddons(['flymake'])
                 " Debugger
-            " call vam#ActivateAddons(['GdbFromVim'])
-            " call vam#ActivateAddons(['gdbmgr'])
             " call vam#ActivateAddons(['Vdebug'])
             " call vam#ActivateAddons(['VimDebug'])
+            " call vam#ActivateAddons(['GdbFromVim'])
+            " call vam#ActivateAddons(['gdbmgr'])
                 " task list
             call vam#ActivateAddons(['TagmaTasks'])
             " call vam#ActivateAddons(['TaskList'])
@@ -1513,6 +1513,7 @@ syntax on
             " - Add other language completion:
             "   :NeoComplCacheSetFileType [filetype]
             "   neocomplcache#get_context_filetype()
+            "   unite#get_context_filetype()
             "   this [filetype] only used inside of neocomplcache.
             "   -- to use local compound filetype for neocomplcache
             " - :set ft=html.python
@@ -1613,7 +1614,6 @@ syntax on
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            " TODO
             let g:neocomplcache_same_filetype_lists['int-python'] = 'python'
             let g:neocomplcache_same_filetype_lists['c'] = 'cpp'
             let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
@@ -1754,7 +1754,7 @@ syntax on
             if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
-            let g:neocomplcache_source_disable['dictionary_complete'] = 1
+            " let g:neocomplcache_source_disable['dictionary_complete'] = 1
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
