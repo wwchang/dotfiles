@@ -1725,26 +1725,30 @@ syntax on
                 let g:neocomplcache_omni_functions = {}
             endif
             " if the key is '_', used for all filetypes.
-            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete'
+            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             if has('python3/dyn') || has('python3')
-                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete'
+                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
             elseif has('python/dyn') || has('python')
-                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete'
+                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
             endif
-            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " default ruby omni
             let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete'
-            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete'
+            " clang compiler front / ctags / omni complete ==> C, cpp, Go
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
+            " FIXME filetype is 'h' ?   *.h
+            " let g:neocomplcache_omni_functions['h'] = 'ccomplete#Complete' " default C omni
             let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
             let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
-            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS'
-            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " use jscomplete-vim
-            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
-            let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags'
-            let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS'
-            let g:neocomplcache_omni_functions['xml'] = 'xmlcomplete#CompleteTags'
-            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " phpcomplete
-            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Map("sqlkeyword")'
-            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc'
+            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
+            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " default html omni
+            let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags' " default html omni
+            let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS' " default css omni
+            let g:neocomplcache_omni_functions['xml'] = 'xmlcomplete#CompleteTags' " default xml omni
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Map("sqlkeyword")' " default sql omni
+            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
+            let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             " completefunc
             if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
