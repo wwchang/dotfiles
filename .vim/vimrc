@@ -1644,7 +1644,7 @@ syntax on
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
-            let g:neocomplcache_dictionary_filetype_lists.default = ''
+            let g:neocomplcache_dictionary_filetype_lists['default'] = ''
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
@@ -1657,10 +1657,11 @@ syntax on
                         \ 'start': '^\s*python <<\s*\(\h\w*\)',
                         \ 'end': '^\1',
                         \ }]
-            " TODO
-            " let g:neocomplcache_context_filetype_lists.vim = [{
-            "             \ 'filetype': 'ruby',
-            "             \ }]
+            let g:neocomplcache_context_filetype_lists['vim'] = [{
+                        \ 'filetype': 'ruby',
+                        \ 'start': '^\s*ruby <<\s*\(\h\w*\)',
+                        \ 'end': '^\1',
+                        \ }]
             let g:neocomplcache_context_filetype_lists['perl6'] = [{
                         \ 'filetype': 'pir',
                         \ 'start': 'Q:PIR\s*{',
