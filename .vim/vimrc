@@ -1256,6 +1256,8 @@ endif
             call vam#ActivateAddons(['Lisper'])
             call vam#ActivateAddons(['paredit'])
                 " Scheme
+                " Clojure
+            call vam#ActivateAddons(['VimClojure'])
                 " C C++ cpp
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
@@ -4112,6 +4114,17 @@ syntax on
         " }}}
 
         " c.vim {{{ C/C++ IDE
+        " }}}
+    " }}}
+
+    " [ Clojure ] {{{
+        " VimClojure {{{ A filetype, syntax and indent plugin for Clojure
+            " Features:
+            " contains a filetype, a syntax and an indent plugin
+            " * docstring lookup
+            " * javadoc lookup
+            " * repl in a vim buffer
+            " * omni completion
         " }}}
     " }}}
 
