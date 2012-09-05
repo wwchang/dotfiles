@@ -1580,7 +1580,7 @@ syntax on
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-            " omni patterns
+            " omni patterns {{{
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
@@ -1613,11 +1613,8 @@ syntax on
                         \ '<[^>]*'
             let g:neocomplcache_omni_patterns['css'] =
                         \ '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
-            if !exists('g:neocomplcache_tags_filter_patterns')
-                let g:neocomplcache_tags_filter_patterns = {}
-            endif
-            " let g:neocomplcache_tags_filter_patterns.c = 'v:val.word !~ ''^[~_]'''
-            " filetypes
+            " }}}
+            " filetypes {{{
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
@@ -1648,7 +1645,8 @@ syntax on
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
-            " context filetypes (one filetype in another filetype)
+            " }}}
+            " context filetypes (one filetype in another filetype) {{{
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
@@ -1667,7 +1665,8 @@ syntax on
                         \ 'start': 'Q:PIR\s*{',
                         \ 'end': '}',
                         \ }]
-            " text mode filetypes
+            " }}}
+            " text mode filetypes {{{
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
@@ -1676,13 +1675,19 @@ syntax on
             let g:neocomplcache_text_mode_filetypes['text'] = 1
             let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
             let g:neocomplcache_text_mode_filetypes['vcs-commit'] = 1
-            " ctags
+            " }}}
+            " ctags {{{
             let g:neocomplcache_ctags_program = 'ctags'
             if !exists('g:neocomplcache_ctags_arguments_list')
                 let g:neocomplcache_ctags_arguments_list = {}
             endif
-            " let g:neocomplcache_ctags_arguments_list.python =
-            " include: paths, exprs, patterns, functions
+            " let g:neocomplcache_ctags_arguments_list['python'] =
+            if !exists('g:neocomplcache_tags_filter_patterns')
+                let g:neocomplcache_tags_filter_patterns = {}
+            endif
+            " let g:neocomplcache_tags_filter_patterns['c'] = 'v:val.word !~ ''^[~_]'''
+            " }}}
+            " include: paths, exprs, patterns, functions {{{
             if !exists('g:neocomplcache_include_paths')
                 let g:neocomplcache_include_paths = {}
             endif
@@ -1706,7 +1711,8 @@ syntax on
             endif
             let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
             let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
-            " member patterns
+            " }}}
+            " member patterns {{{
             if !exists('g:neocomplcache_member_prefix_patterns')
                 let g:neocomplcache_member_prefix_patterns = {}
             endif
@@ -1714,7 +1720,8 @@ syntax on
                 let g:neocomplcache_member_patterns = {}
             endif
             " let g:neocomplcache_member_patterns.default = '\h\w*\%(()\|\[\h\w*\]\)\?'
-            " delimiter patterns
+            " }}}
+            " delimiter patterns {{{
             if !exists('g:neocomplcache_delimiter_patterns')
                 let g:neocomplcache_delimiter_patterns = {}
             endif
@@ -1728,7 +1735,8 @@ syntax on
             let g:neocomplcache_delimiter_patterns['haskell'] = ['\.']
             let g:neocomplcache_delimiter_patterns['php'] = ['\', '::']
             let g:neocomplcache_delimiter_patterns['java'] = ['\.']
-            " omni functions
+            " }}}
+            " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
@@ -1740,6 +1748,7 @@ syntax on
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
             endif
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " default ruby omni
+            " TODO let neocomplcache work with gocode complete.
             let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete'
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
             let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
@@ -1757,12 +1766,13 @@ syntax on
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
-            " completefunc
+            " }}}
+            " completefunc {{{
             if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
             endif
-
-            " [ sources ]
+            " }}}
+            " sources {{{
             if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
@@ -1776,14 +1786,21 @@ syntax on
             let g:neocomplcache_source_completion_length['filename_complete'] = 2
             let g:neocomplcache_source_completion_length['buffer_complete'] = 2
             let g:neocomplcache_source_completion_length['look'] = 3
-            let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
-
-            " for composite file type (only use one completion)
+            " FIXME seems this if expression does not work.
+            let s:TextFileType = ['text', 'mail', 'markdown',]
+            if index(s:TextFileType, &filetype) >= 0
+                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
+            else
+                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
+            endif
+            " }}}
+            " composite/compound file type (only use one completion) {{{
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
                 let g:neocomplcache_ignore_composite_filetype_lists = {}
             endif
             let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
             let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
+            " }}}
             " }}}
 
             " [ complete candidates: priority ] {{{
@@ -1838,10 +1855,10 @@ syntax on
                 " neocomplcache#close_popup
                 " neocomplcache#complete_common_string()
                 " ----------------------------------------------
-                function! s:check_back_space()
-                    let col = col('.') - 1
-                    return !col || getline('.')[col - 1] =~ '\s'
-                endfunction
+                " function! s:check_back_space()
+                "     let col = col('.') - 1
+                "     return !col || getline('.')[col - 1] =~ '\s'
+                " endfunction
                 " ----------------------------------------------
             " Awesome EXample.
             "imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
