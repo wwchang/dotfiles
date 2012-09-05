@@ -4084,8 +4084,12 @@ syntax on
             let g:clang_trailing_placeholder = 0 " for clang_complete snippet engine
             let g:clang_close_preview = 0 " auto close preview window after completion
             let g:clang_exec = "clang" " name or path of clang executable.
-            let g:clang_user_options = '-std=gnu99 -stdlib=libc'
-            " let g:clang_user_options = "-std=c++11 -stdlib=libc++"
+            let g:clang_user_options =
+                        \ '-std=gnu99' .
+                        \ '-stdlib=libc' .
+                        \ '-I /usr/include'
+            " let g:clang_user_options = '-std=gnu++0x -include malloc.h -fms-extensions -fgnu-runtime'
+            " let g:clang_user_options = '-std=c++11 -stdlib=libc++'
             let g:clang_auto_user_options = "path, .clang_complete, clang"
             let g:clang_use_library = 1
             let g:clang_library_path = "/usr/lib/"
