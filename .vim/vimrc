@@ -1655,21 +1655,56 @@ syntax on
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            let g:neocomplcache_context_filetype_lists['vim'] = [{
+            let g:neocomplcache_context_filetype_lists['vim'] = [
+                        \ {
                         \ 'filetype': 'python',
                         \ 'start': '^\s*python <<\s*\(\h\w*\)',
                         \ 'end': '^\1',
-                        \ }]
-            let g:neocomplcache_context_filetype_lists['vim'] = [{
+                        \ },
+                        \ {
                         \ 'filetype': 'ruby',
                         \ 'start': '^\s*ruby <<\s*\(\h\w*\)',
                         \ 'end': '^\1',
+                        \ },
+                        \ ]
+            let g:neocomplcache_context_filetype_lists['help'] = [{
+                        \ 'filetype': 'vim',
+                        \ 'start': '^>',
+                        \ 'end': '^<',
                         \ }]
-            let g:neocomplcache_context_filetype_lists['perl6'] = [{
-                        \ 'filetype': 'pir',
-                        \ 'start': 'Q:PIR\s*{',
-                        \ 'end': '}',
-                        \ }]
+            let g:neocomplcache_context_filetype_lists['python'] = [
+                        \ {
+                        \ 'filetype': 'vim',
+                        \ 'start': 'vim.command\s*(\([''"]\)',
+                        \ 'end': '\\\@<!\1\s*)',
+                        \ },
+                        \ {
+                        \ 'filetype': 'vim',
+                        \ 'start': 'vim.eval\s*(\([''"]\)',
+                        \ 'end': '\\\@<!\1\s*)',
+                        \ },
+                        \ ]
+            " FIXME need to improve the start pattern:
+            " like:
+            " <script src="www..." type="..." ...>
+            " </script>
+            let g:neocomplcache_context_filetype_lists['html'] = [
+                        \ {
+                        \ 'filetype': 'javascript',
+                        \ 'start': '<script type="text/javascript">',
+                        \ 'end': '</script>',
+                        \ },
+                        \ {
+                        \ 'filetype': 'coffee',
+                        \ 'start': '<script type="text/coffeescript">',
+                        \ 'end': '</script>',
+                        \ },
+                        \ {
+                        \ 'filetype': 'css',
+                        \ 'start': '<style type="text/css">',
+                        \ 'end': '</style>',
+                        \ },
+                        \ ]
             " }}}
             " text mode filetypes {{{
             if !exists('g:neocomplcache_text_mode_filetypes')
