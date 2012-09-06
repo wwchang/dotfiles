@@ -82,6 +82,8 @@ mailboxes =Go/go-dev
 
 mailboxes =C
 
+mailboxes =Clojure
+
 mailboxes =Web
 mailboxes =Web/whatwg
 mailboxes =Web/firebug

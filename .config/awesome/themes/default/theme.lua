@@ -33,7 +33,7 @@ theme_wallpapers = awful.util.getdir("config") .. "/themes/wallpapers/"
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 
-theme.taglist_font          = "sans 9"
+theme.taglist_font          = "DejaVu Sans Mono 12"
 theme.taglist_bg_normal     = "#222222"
 theme.taglist_bg_focus      = "#535D6C"
 theme.taglist_bg_urgent     = "#FF0000"

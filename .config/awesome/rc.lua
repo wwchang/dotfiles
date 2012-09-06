@@ -266,7 +266,7 @@ run_once("urxvtd -q -o -f")
 run_once("mpd")
 run_once("mlnet")
 run_once("nm-applet")
-run_once("unclutter -idle 10 -root")
+-- run_once("unclutter -idle 10 -root")
 
 -- TODO what does this screen argument means.
 -- run_once("luakit", nil, nil, 6)
@@ -316,9 +316,9 @@ layouts =
 
 -- [ tags ] {{{
 tags = {
-    names  = { " 1. shape ideas into code ", "2. Read & Fuck", "3. session",
-               "4. Design ", "5. Log ", "6. Media ",
-               "7. www ", "8. Temp ", "9. Do It Now. "
+    names  = { "1.shape ideas into code(铁甲依然在)", "2.Read(辰月)", "3.Communication(羽族)",
+               "4.Design(秘术)", "5.Log(谷玄)", "6.Media(北辰)",
+               "7.www(九州)", "8.Temp", "9.Do It Now.(天驱)"
             },
     layout = { layouts[5], layouts[2], layouts[5], -- tags: 1, 2, 3
                layouts[2], layouts[12], layouts[2], --       4, 5, 6
@@ -1011,7 +1011,7 @@ end
         -- }}}
 
         -- top wibox {{{
-        mywibox[s] = awful.wibox({ position = "top", height = "18", screen = s })
+        mywibox[s] = awful.wibox({ position = "top", height = "22", screen = s })
 
         -- add widgets to the wibox - order matters
         mywibox[s].widgets = {

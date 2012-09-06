@@ -45,6 +45,9 @@ subscribe ruby.core Ruby-Core <ruby-core@ruby-lang.org>
 subscribe ruby.doc Ruby-Doc <ruby-doc@ruby-lang.org>
 subscribe ruby.rails Ruby On Rails <rubyonrails-talk@googlegroups.com>
 
+# [ Clojure ]
+subscribe clojure Clojure <clojure@googlegroups.com>
+
 # [ Java ]
 subscribe java.lang java.lang.G <comp.lang.java.programmer@googlegroups.com>
 

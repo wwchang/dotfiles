@@ -352,6 +352,12 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Ruby/Rails/
     # }}}
 
+    # [ Clojure ] {{{
+    :0
+    * ^List-Id: .*clojure\.googlegroups\.com
+    Clojure/
+    # }}}
+
     # [ Dart ] {{{
     :0
     * ^List-Id: .*misc\.dartlang\.org
