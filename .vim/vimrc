@@ -1589,60 +1589,17 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
-            let g:neocomplcache_force_omni_patterns['objc'] =
-                        \ '\h\w\+\|[^.[:digit:] *\t]\%(\.\|->\)'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns['ruby'] =
-                        \ '[^. *\t]\.\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns['python'] =
-                        \ '[^. \t]\.\w*'
-            " empty to disable auto complete especially for python.
-            " let g:neocomplcache_omni_patterns.python = ''
-            let g:neocomplcache_omni_patterns['c'] =
-                        \ '[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns['cpp'] =
-                        \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-            let g:neocomplcache_omni_patterns['objc'] =
-                        \ '\h\w\+\|[^.[:digit:] *\t]\%(\.\|->\)'
-            let g:neocomplcache_omni_patterns['javascript'] =
-                        \ '[^. \t]\.\%(\h\w*\)\?'
-            let g:neocomplcache_omni_patterns['php'] =
-                        \ '[^. \t]->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns['perl'] =
-                        \ '\h\w*->\h\w*\|\h\w*::'
-            let g:neocomplcache_omni_patterns['html'] =
-                        \ '<[^>]*'
-            let g:neocomplcache_omni_patterns['xml'] =
-                        \ '<[^>]*'
-            let g:neocomplcache_omni_patterns['css'] =
-                        \ '^\s\+\w\+\|\w\+[):;]\?\s\+\w*\|[@!]'
+            " FIXME
+            " let g:neocomplcache_omni_patterns['coffee'] =
+            "             \
             " }}}
-            " filetypes {{{
+            " same filetypes {{{
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            let g:neocomplcache_same_filetype_lists['int-python'] = 'python'
-            let g:neocomplcache_same_filetype_lists['c'] = 'cpp'
-            let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
-            let g:neocomplcache_same_filetype_lists['int-gdb'] = 'gdb'
-            let g:neocomplcache_same_filetype_lists['int-clisp'] = 'lisp'
-            let g:neocomplcache_same_filetype_lists['help'] = 'vim'
-            let g:neocomplcache_same_filetype_lists['plaintex'] = 'bib,plaintex'
-            let g:neocomplcache_same_filetype_lists['int-sh'] = 'sh'
-            let g:neocomplcache_same_filetype_lists['int-zsh'] = 'zsh'
-            let g:neocomplcache_same_filetype_lists['int-bash'] = 'bash'
-            let g:neocomplcache_same_filetype_lists['erb'] = 'ruby,html,xhtml'
-            let g:neocomplcache_same_filetype_lists['int-js'] = 'javascript'
-            let g:neocomplcache_same_filetype_lists['int-rhino'] = 'javascript'
-            let g:neocomplcache_same_filetype_lists['int-kjs'] = 'javascript'
-            let g:neocomplcache_same_filetype_lists['stylus'] = 'css'
-            let g:neocomplcache_same_filetype_lists['xhtml'] = 'css,stylus'
-            let g:neocomplcache_same_filetype_lists['scss'] = 'css'
-            let g:neocomplcache_same_filetype_lists['css'] = 'scss'
-            let g:neocomplcache_same_filetype_lists['html'] = 'xhtml'
-            let g:neocomplcache_same_filetype_lists['xml'] = 'html'
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
@@ -1703,11 +1660,6 @@ syntax on
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-            let g:neocomplcache_text_mode_filetypes['help'] = 1
-            let g:neocomplcache_text_mode_filetypes['tex'] = 1
-            let g:neocomplcache_text_mode_filetypes['text'] = 1
-            let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
-            let g:neocomplcache_text_mode_filetypes['vcs-commit'] = 1
             " }}}
             " ctags {{{
             let g:neocomplcache_ctags_program = 'ctags'
@@ -1752,22 +1704,12 @@ syntax on
             if !exists('g:neocomplcache_member_patterns')
                 let g:neocomplcache_member_patterns = {}
             endif
-            " let g:neocomplcache_member_patterns.default = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
             " }}}
             " delimiter patterns {{{
             if !exists('g:neocomplcache_delimiter_patterns')
                 let g:neocomplcache_delimiter_patterns = {}
             endif
-            let g:neocomplcache_delimiter_patterns['vim'] = ['#']
-            let g:neocomplcache_delimiter_patterns['help'] = ['#']
-            let g:neocomplcache_delimiter_patterns['ruby'] = ['\.']
-            let g:neocomplcache_delimiter_patterns['lisp'] = [':']
-            let g:neocomplcache_delimiter_patterns['javascript'] = ['\.']
-            let g:neocomplcache_delimiter_patterns['lua'] = ['\.', ':']
-            let g:neocomplcache_delimiter_patterns['cpp'] = ['::']
-            let g:neocomplcache_delimiter_patterns['haskell'] = ['\.']
-            let g:neocomplcache_delimiter_patterns['php'] = ['\', '::']
-            let g:neocomplcache_delimiter_patterns['java'] = ['\.']
             " }}}
             " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
@@ -1780,27 +1722,19 @@ syntax on
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
             endif
-            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " default ruby omni
             " TODO let neocomplcache work with gocode complete.
-            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete'
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
             let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
-            " FIXME filetype is 'h' ?   *.h
-            " let g:neocomplcache_omni_functions['h'] = 'ccomplete#Complete' " default C omni
             let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
             let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
             " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
             let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
-            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " default html omni
-            let g:neocomplcache_omni_functions['markdown'] = 'htmlcomplete#CompleteTags' " default html omni
-            let g:neocomplcache_omni_functions['css'] = 'csscomplete#CompleteCSS' " default css omni
-            let g:neocomplcache_omni_functions['xml'] = 'xmlcomplete#CompleteTags' " default xml omni
-            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Map("sqlkeyword")' " default sql omni
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             " }}}
-            " completefunc {{{
+            " vim completefunc {{{
             if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
             endif
@@ -1815,9 +1749,9 @@ syntax on
             endif
             let g:neocomplcache_source_completion_length['include_complete'] = 0
             let g:neocomplcache_source_completion_length['member_complete'] = 0
-            let g:neocomplcache_source_completion_length['keyword_complete'] = 2
-            let g:neocomplcache_source_completion_length['filename_complete'] = 2
-            let g:neocomplcache_source_completion_length['buffer_complete'] = 2
+            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+            let g:neocomplcache_source_completion_length['filename_complete'] = 3
+            let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['look'] = 3
             " FIXME seems this if expression does not work.
             let s:TextFileType = ['text', 'mail', 'markdown',]
@@ -1831,8 +1765,8 @@ syntax on
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
                 let g:neocomplcache_ignore_composite_filetype_lists = {}
             endif
-            let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
-            let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
+            " let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
+            " let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
             " }}}
             " }}}
 
