@@ -1212,6 +1212,8 @@ endif
             " call vam#ActivateAddons(['css3_mod'])
             " call vam#ActivateAddons(['vim_less'])
             " call vam#ActivateAddons(['vim-less'])
+                " CoffeeScript
+            call vam#ActivateAddons(['vim-coffee-script'])
                 " JavaScript
             call vam#ActivateAddons(['jscomplete-vim'])
             " call vam#ActivateAddons(['jsflakes%4057'])
@@ -3888,6 +3890,29 @@ syntax on
             " }}}
 
             " vim-less : syntax support for LESS CSS.
+        " }}}
+    " }}}
+
+    " [ CoffeeScript ] {{{
+        " vim-coffee-script {{{ CoffeeScript support for Vim.
+            " Features:
+            " syntax, indenting, compiling.
+            " included eco syntax, support for CoffeeScript in Haml and HTML.
+            " Usage:
+            "   - :CoffeeMake[!] {options} -- :make
+            "   - :[range]CoffeeCompile [vertical] [{win-size}]
+            "       -- show how the current file or [range] is compiled to
+            "       JavaScript. close with "q"
+            "   - :[range]CoffeeLint[!] {options} -- run coffeelint
+            "   - :[range]CoffeeRun -- compiles file and run resulting JavaScript
+            let g:coffee_compiler = '/usr/bin/coffee'
+            let g:coffee_make_options = '--bare'
+            let g:coffee_compile_vert = 1 " split CoffeeCompile buffer vertically
+            let g:coffee_linter = '/usr/bin/coffeelint'
+            let g:coffee_lint_options = '-f lint.json'
+
+            " TODO change to command :CoffeeRun
+            au FileType coffee nnoremap <F5> :CoffeeCompile<cr>
         " }}}
     " }}}
 
