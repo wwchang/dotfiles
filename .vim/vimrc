@@ -1265,6 +1265,9 @@ endif
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " call vam#ActivateAddons(['OmniCppComplete'])
             " call vam#ActivateAddons(['inccomplete'])
+                " Go
+            " vundle compatible version gocode stand alone
+            call vam#ActivateAddons(['github:undx/vim-gocode'])
                 " Lua
             " call vam#ActivateAddons(['lua'])
             " call vam#ActivateAddons(['lua_omni'])
@@ -4113,7 +4116,9 @@ syntax on
     " }}}
 
     " [ Go ] {{{
-        " https://github.com/nsf/gocode.git | autocompletion daemon for Go Language.
+        " gocode {{{ autocompletion daemon for Go Language
+            " Features: Context-sensitive autocompletion
+        " }}}
     " }}}
 
     " [ C & C++ Dev Env ] {{{
