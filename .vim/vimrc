@@ -1705,6 +1705,49 @@ syntax on
                         \ 'end': '</style>',
                         \ },
                         \ ]
+            " TODO improve this patterns too.
+            let g:neocomplcache_context_filetype_lists['vimwiki'] = [
+                        \ {
+                        \ 'filetype': 'python',
+                        \ 'start': '^\s*{{{python$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'ruby',
+                        \ 'start': '^\s*{{{ruby$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'vim',
+                        \ 'start': '^\s*{{{vim$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'javascript',
+                        \ 'start': '^\s*{{{ruby$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'coffee',
+                        \ 'start': '^\s*{{{coffee$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'go',
+                        \ 'start': '^\s*{{{go$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'html',
+                        \ 'start': '^\s*{{{html$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
+                        \ 'filetype': 'css',
+                        \ 'start': '^\s*{{{css$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ ]
             " }}}
             " text mode filetypes {{{
             if !exists('g:neocomplcache_text_mode_filetypes')
