@@ -1038,7 +1038,6 @@ endif
             " }}}
 
             " custom source, use your own repository
-            let g:vim_addon_manager = {}
             let g:vim_addon_manager.plugin_sources = {}
             let g:vim_addon_manager.plugin_sources['viewdoc'] = {
                         \ 'type': 'git',
