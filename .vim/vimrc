@@ -1037,6 +1037,21 @@ endif
             exec 'set runtimepath+=' . vam_install_path . '/vim-addon-manager'
             " }}}
 
+            " custom source, use your own repository
+            let g:vim_addon_manager = {}
+            let g:vim_addon_manager.plugin_sources = {}
+            let g:vim_addon_manager.plugin_sources['viewdoc'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/powerman/vim-plugin-viewdoc.git',
+                        \ 'branch': 'master',
+                        \ }
+
+            let plugins = [
+                        \ 'viewdoc',
+                        \ ]
+
+            call vam#ActivateAddons(plugins, {'auto_install': 1})
+
             " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers
             " call vam#ActivateAddons({addons}[, {opts}])
                 " vim plugin manager
