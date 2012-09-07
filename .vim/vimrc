@@ -1311,12 +1311,12 @@ endif
             " call vam#ActivateAddons(['vroom'])
             " call vam#ActivateAddons(['RbREPL'])
                 " Lisp
-            call vam#ActivateAddons(['slimv'])
-            call vam#ActivateAddons(['Lisper'])
-            call vam#ActivateAddons(['paredit'])
+            " call vam#ActivateAddons(['slimv'])
+            " call vam#ActivateAddons(['Lisper'])
+            " call vam#ActivateAddons(['paredit'])
                 " Scheme
                 " Clojure
-            call vam#ActivateAddons(['VimClojure'])
+            " call vam#ActivateAddons(['VimClojure'])
                 " C C++ cpp
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
@@ -1337,22 +1337,22 @@ endif
             " call vam#ActivateAddons(['vimshell'])
             "call vam#ActivateAddons(['Clam'])
                 " special editing
-            call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
-            call vam#ActivateAddons(['vimux'])
-            call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
+            " call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
+            " call vam#ActivateAddons(['vimux'])
+            " call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
                 " vimwiki & note
             call vam#ActivateAddons(['vimwiki'])
-            call vam#ActivateAddons(['github:mattn/calendar-vim'])
+            " call vam#ActivateAddons(['github:mattn/calendar-vim'])
             " call vam#ActivateAddons(['VikiDeplate'])
             " call vam#ActivateAddons(['vikitasks'])
             " call vam#ActivateAddons(['vktheming'])
-            call vam#ActivateAddons(['viske'])
+            " call vam#ActivateAddons(['viske'])
             " call vam#ActivateAddons(['notes'])
             " call vam#ActivateAddons(['vim-pad'])
                 " GTD
             " call vam#ActivateAddons(['VimOrganizer'])
-            call vam#ActivateAddons(['speeddating'])
-            call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
+            " call vam#ActivateAddons(['speeddating'])
+            " call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
                 " outliner
             " call vam#ActivateAddons(['HyperList'])
             " call vam#ActivateAddons(['VOoM'])
@@ -1362,7 +1362,7 @@ endif
             " call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
             " call vam#ActivateAddons(['TeX-PDF'])
                 " markup & markdown
-            call vam#ActivateAddons(['preview%3344'])
+            " call vam#ActivateAddons(['preview%3344'])
             " call vam#ActivateAddons(['riv'])
                 " encrypt
             "call vam#ActivateAddons(['tGpg'])
@@ -1371,7 +1371,7 @@ endif
                 " call vam#ActivateAddons(['gnupg%3645'])
                 " call vam#ActivateAddons(['github:jamessan/vim-gnupg'])
                 " post/paste/www micro-blog/twitter/code/text/www
-            call vam#ActivateAddons(['PasteBin'])
+            " call vam#ActivateAddons(['PasteBin'])
             call vam#ActivateAddons(['Gist'])
             " call vam#ActivateAddons(['wwwsearch'])
             " call vam#ActivateAddons(['Tumble'])
@@ -1423,21 +1423,21 @@ endif
             call vam#ActivateAddons(['visualstar'])
             "call vam#ActivateAddons(['StarRange'])
             "call vam#ActivateAddons(['exjumplist'])
-            call vam#ActivateAddons(['AsyncCommand'])
+            " call vam#ActivateAddons(['AsyncCommand'])
                 " marks
             call vam#ActivateAddons(['vim-signature'])
             "call vam#ActivateAddons(['unicode'])
             "call vam#ActivateAddons(['mathematic'])
-            call vam#ActivateAddons(['SudoEdit'])
+            " call vam#ActivateAddons(['SudoEdit'])
             " call vam#ActivateAddons(['sudo'])
             call vam#ActivateAddons(['SpitVspit'])
             " call vam#ActivateAddons(['dwm'])
-            call vam#ActivateAddons(['ZoomWin'])
+            " call vam#ActivateAddons(['ZoomWin'])
             "call vam#ActivateAddons(['CompleteHelper'])
-            call vam#ActivateAddons(['AmbiCompletion'])
-            call vam#ActivateAddons(['LargeFile'])
+            " call vam#ActivateAddons(['AmbiCompletion'])
+            " call vam#ActivateAddons(['LargeFile'])
                 " Motions
-            call vam#ActivateAddons(['EasyMotion'])
+            " call vam#ActivateAddons(['EasyMotion'])
             call vam#ActivateAddons(['CountJump'])
                 " ASCII draw
             "call vam#ActivateAddons(['DrawIt'])
