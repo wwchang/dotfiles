@@ -5001,6 +5001,11 @@ syntax on
         " }}}
     " }}}
 
+    " [ key bindings ] {{{
+        " vim-addon-actions {{{ customization for key bindings
+        " }}}
+    " }}}
+
     " [ timestamp ] {{{
     " }}}
 
