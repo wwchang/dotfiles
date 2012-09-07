@@ -1075,7 +1075,12 @@ endif
                         " \ 'url': 'git://github.com/NagatoPain/vim-plugin-viewdoc',
             let g:vim_addon_manager.plugin_sources['SingleCompile'] = {
                         \ 'type': 'git',
-                        \ 'url': 'git://github.com/xuhdev/SingleCompile.git',
+                        \ 'url': 'git://github.com/xuhdev/SingleCompile',
+                        \ 'branch': 'master',
+                        \ }
+            let g:vim_addon_manager.plugin_sources['neocomplcache-clang'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/Shougo/neocomplcache-clang',
                         \ 'branch': 'master',
                         \ }
             " vundle compatible version gocode stand alone
@@ -1087,6 +1092,7 @@ endif
 
             let plugins = [
                         \ 'viewdoc',
+                        \ 'neocomplcache-clang',
                         \ 'gocode',
                         \ 'SingleCompile',
                         \ ]
@@ -1319,7 +1325,6 @@ endif
             " call vam#ActivateAddons(['VimClojure'])
                 " C C++ cpp
             call vam#ActivateAddons(['clang_complete'])
-            call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " call vam#ActivateAddons(['OmniCppComplete'])
             " call vam#ActivateAddons(['inccomplete'])
                 " Go
