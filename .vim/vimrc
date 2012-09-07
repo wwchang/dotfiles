@@ -5055,10 +5055,10 @@ syntax on
                     \ 'nested_syntaxes': {
                         \ 'python': 'python', 'ruby': 'ruby',
                         \ 'bash': 'sh', 'vim': 'vim',
-                        \ 'javascript': 'javascript', 'dart': 'dart',
+                        \ 'javascript': 'javascript', 'coffee': 'coffee',
                         \ 'c': 'c', 'go': 'go',
                         \ 'lisp': 'lisp', 'scheme': 'scheme',
-                        \ 'git': 'git', 'diff': 'diff',
+                        \ 'git': 'git', 'diff': 'diff', 'gitdiff': 'gitdiff',
                     \ },
                 \ },
                 \ {
