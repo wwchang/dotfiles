@@ -1065,19 +1065,34 @@ endif
             exec 'set runtimepath+=' . vam_install_path . '/vim-addon-manager'
             " }}}
 
-            " custom source, use your own repository
+            " custom source, use your own repository {{{
             let g:vim_addon_manager.plugin_sources = {}
             let g:vim_addon_manager.plugin_sources['viewdoc'] = {
                         \ 'type': 'git',
-                        \ 'url': 'git://github.com/powerman/vim-plugin-viewdoc.git',
+                        \ 'url': 'git://github.com/powerman/vim-plugin-viewdoc',
+                        \ 'branch': 'master',
+                        \ }
+                        " \ 'url': 'git://github.com/NagatoPain/vim-plugin-viewdoc',
+            let g:vim_addon_manager.plugin_sources['SingleCompile'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/xuhdev/SingleCompile.git',
+                        \ 'branch': 'master',
+                        \ }
+            " vundle compatible version gocode stand alone
+            let g:vim_addon_manager.plugin_sources['gocode'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/undx/vim-gocode',
                         \ 'branch': 'master',
                         \ }
 
             let plugins = [
                         \ 'viewdoc',
+                        \ 'gocode',
+                        \ 'SingleCompile',
                         \ ]
 
             call vam#ActivateAddons(plugins, {'auto_install': 1})
+            " }}}
 
             " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers
             " call vam#ActivateAddons({addons}[, {opts}])
@@ -1159,7 +1174,7 @@ endif
             " call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
             call vam#ActivateAddons(['vimfiler'])
                 " compile
-            call vam#ActivateAddons(['SingleCompile'])
+            " call vam#ActivateAddons(['SingleCompile'])
                 " syntax checker
             call vam#ActivateAddons(['Syntastic'])
             " call vam#ActivateAddons(['checksyntax'])
@@ -1192,7 +1207,7 @@ endif
             " call vam#ActivateAddons(['tComment'])
             call vam#ActivateAddons(['The_NERD_Commenter'])
                 " doc & help "K"
-            call vam#ActivateAddons(['viewdoc'])
+            " call vam#ActivateAddons(['viewdoc'])
             "call vam#ActivateAddons(['Manuals'])
                 " indent guides & indent & align & splijoin
             call vam#ActivateAddons(['Indent_Guides'])
@@ -1308,8 +1323,6 @@ endif
             " call vam#ActivateAddons(['OmniCppComplete'])
             " call vam#ActivateAddons(['inccomplete'])
                 " Go
-            " vundle compatible version gocode stand alone
-            call vam#ActivateAddons(['github:undx/vim-gocode'])
                 " Lua
             " call vam#ActivateAddons(['lua'])
             " call vam#ActivateAddons(['lua_omni'])
