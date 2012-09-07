@@ -1022,6 +1022,14 @@ endif
         endif
         call neobundle#rc(expand('~/.vim/bundle/'))
 
+        " [ options ] {{{
+        let g:neobundle_default_site = "github"
+        let g:neobundle_log_filename = "" " empty to disable output to log
+        let g:neobundle_default_git_protocol = "git"
+        let g:neobundle_default_hg_protocol = "https"
+        let g:unite_source_neobundle_install_max_processes = "5"
+        " }}}
+
         " [ bundles ] {{{
         " examples {{{
         " Original repos on github
