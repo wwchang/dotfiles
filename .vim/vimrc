@@ -840,12 +840,21 @@ endif
 " you can call function with ":source file.vim" then ":call"
 
     " [ execute mode ] {{{
-    "function! ScriptExecute()
-        ":!chmod u+x %
-        ":w
-    "endfunction
-    "autocmd BufWritePost *.sh :call ScriptExecute()
-    "autocmd BufWritePost *.pl :call ScriptExecute()
+        " [ sh / py / pl ] {{{
+            function! ScriptExecute()
+                :!chmod u+x %
+                :w
+            endfunction
+
+            augroup ScriptExecutePermission
+                autocmd!
+                autocmd BufWritePost *.sh :call ScriptExecute()
+                autocmd BufWritePost *.rb :call ScriptExecute()
+                autocmd BufWritePost *.py :call ScriptExecute()
+                autocmd BufWritePost *.pl :call ScriptExecute()
+            augroup END
+        " }}}
+
         " [ VimL ] {{{ TODO merge this three mode into one.
             " range
             function! VimLRangeSource() range
