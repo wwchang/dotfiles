@@ -977,8 +977,6 @@ endif
     " [ pathogen ] {{{ .vim/bundle/
         "" .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
         "call pathogen#infect()
-        "syntax on
-        "filetype plugin indent on
     " }}}
 
     " [ vundle ] {{{ .vim/bundle/
@@ -1011,7 +1009,9 @@ endif
 
     " [ neobundle ] {{{ NeoBundle is Vim plugin manager based on Vundle .vim/bundle/
         " Usage:
+        " :NeoBundleUpdate
         " :NeoBundleInstall or :Unite neobundle/install
+        " :Unite neobundle/search
         " :NeoBundleList          - list configured bundles
         " :NeoBundleInstall(!)    - install(update) bundles
         " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
@@ -1150,7 +1150,8 @@ endif
         NeoBundle 'SpitVspit'
         " }}}
 
-        filetype plugin indent on     " Required!
+        " FIXME
+        " call neobundle#source(plugins)
 
         " Installation check.
         if neobundle#exists_not_installed_bundles()
@@ -2185,7 +2186,7 @@ syntax on
 
         " AutoTag (updates entries in a tags file automatically when saving.)
 
-        " Bundle 'indexer.tar.gz'
+        " indexer.tar.gz
 
         " gtags.vim {{{
             " | http://www.vim.org/scripts/script.php?script_id=893#0.6
@@ -2845,6 +2846,7 @@ syntax on
                 call SingleCompile#ChooseCompiler('javascript', 'node.js')
             endif
 
+            nnoremap <F5> :SCCompileRun<cr>
         " }}}
     " }}}
 
@@ -3040,6 +3042,8 @@ syntax on
             "let NERDTreeMinimalUI =
 
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
+
+            " TODO au FileType nerdtree
         " }}}
 
         " vim-nerdtree_plugin_collections {{{
