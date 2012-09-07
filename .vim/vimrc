@@ -329,9 +329,9 @@
 
     " [ maps ] {{{
     set timeout
-    set timeoutlen=2500 " 2.5 seconds
+    set timeoutlen=1500 " 2.5 seconds, default 1000
     set ttimeout
-    set ttimeoutlen=-1
+    set ttimeoutlen=100
     " }}}
 
     " [ match pairs ] {{{
