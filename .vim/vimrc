@@ -245,7 +245,7 @@
     " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
     set cmdheight=1                  " command line height
-    set complete=".,w,b,t,i,u,k"     " completion buffers
+    " set complete=".,w,b,t,i,u,k"     " completion buffers
     "             | | | | | | |
     "             | | | | | | `-dict
     "             | | | | | `-unloaded buffers
@@ -1574,6 +1574,7 @@ syntax on
             " endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
+            " comment out :set complete option.
             " Usage: {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " - Add other language completion:
             "   :NeoComplCacheSetFileType [filetype]
