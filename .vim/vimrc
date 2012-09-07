@@ -840,12 +840,40 @@ endif
 " you can call function with ":source file.vim" then ":call"
 
     " [ execute mode ] {{{
-    "function! ScriptExecute()
-        ":!chmod u+x %
-        ":w
-    "endfunction
-    "autocmd BufWritePost *.sh :call ScriptExecute()
-    "autocmd BufWritePost *.pl :call ScriptExecute()
+        " [ sh / py / pl ] {{{
+            function! ScriptExecute()
+                :!chmod u+x %
+                :w
+            endfunction
+
+            augroup ScriptExecutePermission
+                autocmd!
+                autocmd BufWritePost *.sh :call ScriptExecute()
+                autocmd BufWritePost *.rb :call ScriptExecute()
+                autocmd BufWritePost *.py :call ScriptExecute()
+                autocmd BufWritePost *.pl :call ScriptExecute()
+            augroup END
+        " }}}
+
+        " [ VimL ] {{{ TODO merge this three mode into one.
+            " range
+            function! VimLRangeSource() range
+                let tmpsofile = tempname()
+                call writefile(getline(a:firstline, a:lastline), l:tmpsofile)
+                execute "source " . l:tmpsofile
+                call delete(l:tmpsofile)
+            endfunction
+
+            " visual
+            " V -> "ay -> :@a
+
+            command! -range VimL <line1>,<line2>call VimLRangeSource()
+            au FileType vim vnoremap <silent><buffer> <F5> <esc>:'<,'>:VimL<cr>
+
+            " file
+            " au FileType vim nnoremap <F5> :source %<cr>
+            au FileType vim nnoremap <silent><buffer> <F5> :exec 'source ' . bufname('%')<CR>
+        " }}}
     " }}}
 
     " [ skeleton/template ] {{{
@@ -1037,6 +1065,35 @@ endif
             exec 'set runtimepath+=' . vam_install_path . '/vim-addon-manager'
             " }}}
 
+            " custom source, use your own repository {{{
+            let g:vim_addon_manager.plugin_sources = {}
+            let g:vim_addon_manager.plugin_sources['viewdoc'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/powerman/vim-plugin-viewdoc',
+                        \ 'branch': 'master',
+                        \ }
+                        " \ 'url': 'git://github.com/NagatoPain/vim-plugin-viewdoc',
+            let g:vim_addon_manager.plugin_sources['SingleCompile'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/xuhdev/SingleCompile.git',
+                        \ 'branch': 'master',
+                        \ }
+            " vundle compatible version gocode stand alone
+            let g:vim_addon_manager.plugin_sources['gocode'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/undx/vim-gocode',
+                        \ 'branch': 'master',
+                        \ }
+
+            let plugins = [
+                        \ 'viewdoc',
+                        \ 'gocode',
+                        \ 'SingleCompile',
+                        \ ]
+
+            call vam#ActivateAddons(plugins, {'auto_install': 1})
+            " }}}
+
             " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers
             " call vam#ActivateAddons({addons}[, {opts}])
                 " vim plugin manager
@@ -1117,7 +1174,7 @@ endif
             " call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
             call vam#ActivateAddons(['vimfiler'])
                 " compile
-            call vam#ActivateAddons(['SingleCompile'])
+            " call vam#ActivateAddons(['SingleCompile'])
                 " syntax checker
             call vam#ActivateAddons(['Syntastic'])
             " call vam#ActivateAddons(['checksyntax'])
@@ -1150,7 +1207,7 @@ endif
             " call vam#ActivateAddons(['tComment'])
             call vam#ActivateAddons(['The_NERD_Commenter'])
                 " doc & help "K"
-            call vam#ActivateAddons(['viewdoc'])
+            " call vam#ActivateAddons(['viewdoc'])
             "call vam#ActivateAddons(['Manuals'])
                 " indent guides & indent & align & splijoin
             call vam#ActivateAddons(['Indent_Guides'])
@@ -1254,20 +1311,18 @@ endif
             " call vam#ActivateAddons(['vroom'])
             " call vam#ActivateAddons(['RbREPL'])
                 " Lisp
-            call vam#ActivateAddons(['slimv'])
-            call vam#ActivateAddons(['Lisper'])
-            call vam#ActivateAddons(['paredit'])
+            " call vam#ActivateAddons(['slimv'])
+            " call vam#ActivateAddons(['Lisper'])
+            " call vam#ActivateAddons(['paredit'])
                 " Scheme
                 " Clojure
-            call vam#ActivateAddons(['VimClojure'])
+            " call vam#ActivateAddons(['VimClojure'])
                 " C C++ cpp
             call vam#ActivateAddons(['clang_complete'])
             call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " call vam#ActivateAddons(['OmniCppComplete'])
             " call vam#ActivateAddons(['inccomplete'])
                 " Go
-            " vundle compatible version gocode stand alone
-            call vam#ActivateAddons(['github:undx/vim-gocode'])
                 " Lua
             " call vam#ActivateAddons(['lua'])
             " call vam#ActivateAddons(['lua_omni'])
@@ -1282,22 +1337,22 @@ endif
             " call vam#ActivateAddons(['vimshell'])
             "call vam#ActivateAddons(['Clam'])
                 " special editing
-            call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
-            call vam#ActivateAddons(['vimux'])
-            call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
+            " call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
+            " call vam#ActivateAddons(['vimux'])
+            " call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
                 " vimwiki & note
             call vam#ActivateAddons(['vimwiki'])
-            call vam#ActivateAddons(['github:mattn/calendar-vim'])
+            " call vam#ActivateAddons(['github:mattn/calendar-vim'])
             " call vam#ActivateAddons(['VikiDeplate'])
             " call vam#ActivateAddons(['vikitasks'])
             " call vam#ActivateAddons(['vktheming'])
-            call vam#ActivateAddons(['viske'])
+            " call vam#ActivateAddons(['viske'])
             " call vam#ActivateAddons(['notes'])
             " call vam#ActivateAddons(['vim-pad'])
                 " GTD
             " call vam#ActivateAddons(['VimOrganizer'])
-            call vam#ActivateAddons(['speeddating'])
-            call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
+            " call vam#ActivateAddons(['speeddating'])
+            " call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
                 " outliner
             " call vam#ActivateAddons(['HyperList'])
             " call vam#ActivateAddons(['VOoM'])
@@ -1307,7 +1362,7 @@ endif
             " call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
             " call vam#ActivateAddons(['TeX-PDF'])
                 " markup & markdown
-            call vam#ActivateAddons(['preview%3344'])
+            " call vam#ActivateAddons(['preview%3344'])
             " call vam#ActivateAddons(['riv'])
                 " encrypt
             "call vam#ActivateAddons(['tGpg'])
@@ -1316,7 +1371,7 @@ endif
                 " call vam#ActivateAddons(['gnupg%3645'])
                 " call vam#ActivateAddons(['github:jamessan/vim-gnupg'])
                 " post/paste/www micro-blog/twitter/code/text/www
-            call vam#ActivateAddons(['PasteBin'])
+            " call vam#ActivateAddons(['PasteBin'])
             call vam#ActivateAddons(['Gist'])
             " call vam#ActivateAddons(['wwwsearch'])
             " call vam#ActivateAddons(['Tumble'])
@@ -1368,21 +1423,21 @@ endif
             call vam#ActivateAddons(['visualstar'])
             "call vam#ActivateAddons(['StarRange'])
             "call vam#ActivateAddons(['exjumplist'])
-            call vam#ActivateAddons(['AsyncCommand'])
+            " call vam#ActivateAddons(['AsyncCommand'])
                 " marks
             call vam#ActivateAddons(['vim-signature'])
             "call vam#ActivateAddons(['unicode'])
             "call vam#ActivateAddons(['mathematic'])
-            call vam#ActivateAddons(['SudoEdit'])
+            " call vam#ActivateAddons(['SudoEdit'])
             " call vam#ActivateAddons(['sudo'])
             call vam#ActivateAddons(['SpitVspit'])
             " call vam#ActivateAddons(['dwm'])
-            call vam#ActivateAddons(['ZoomWin'])
+            " call vam#ActivateAddons(['ZoomWin'])
             "call vam#ActivateAddons(['CompleteHelper'])
-            call vam#ActivateAddons(['AmbiCompletion'])
-            call vam#ActivateAddons(['LargeFile'])
+            " call vam#ActivateAddons(['AmbiCompletion'])
+            " call vam#ActivateAddons(['LargeFile'])
                 " Motions
-            call vam#ActivateAddons(['EasyMotion'])
+            " call vam#ActivateAddons(['EasyMotion'])
             call vam#ActivateAddons(['CountJump'])
                 " ASCII draw
             "call vam#ActivateAddons(['DrawIt'])
@@ -1645,6 +1700,11 @@ syntax on
                         \ 'end': '^\s*}}}',
                         \ },
                         \ {
+                        \ 'filetype': 'c',
+                        \ 'start': '^\s*{{{c$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
                         \ 'filetype': 'html',
                         \ 'start': '^\s*{{{html$',
                         \ 'end': '^\s*}}}',
@@ -1733,6 +1793,7 @@ syntax on
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
             " }}}
             " vim completefunc {{{
             if !exists('g:neocomplcache_vim_completefuncs')
@@ -2939,22 +3000,24 @@ syntax on
             let g:SingleCompile_common_out_file = '$(FILE_TITLE)$'
             let g:SingleCompile_common_run_command = './$(FILE_TITLE)$'
 
-            call SingleCompile#SetCompilerTemplate('c', 'gcc_custom', 'GNU C Compiler',
-                        \ 'gcc', '-std=gnu99 -Wall -g -o $(FILE_TITLE)$',
-                        \ g:SingleCompile_common_run_command
-                        \ )
+            if exists('g:loaded_SingleCompile')
+                call SingleCompile#SetCompilerTemplate(
+                            \ 'c', 'gcc_custom', 'GNU C Compiler',
+                            \ 'gcc', '-std=gnu99 -Wall -g -o $(FILE_TITLE)$',
+                            \ g:SingleCompile_common_run_command
+                            \ )
 
-            call SingleCompile#ChooseCompiler('python', 'python3')
-            call SingleCompile#ChooseCompiler('sh', 'bash')
-            call SingleCompile#ChooseCompiler('bash', 'bash')
-            call SingleCompile#ChooseCompiler('zsh', 'zsh')
-            " call SingleCompile#ChooseCompiler('c', 'gcc')
-            call SingleCompile#ChooseCompiler('c', 'gcc_custom')
-            call SingleCompile#ChooseCompiler('cpp', 'g++')
-            call SingleCompile#ChooseCompiler('html', 'firefox')
-            call SingleCompile#ChooseCompiler('javascript', 'node.js')
+                call SingleCompile#ChooseCompiler('python', 'python3')
+                call SingleCompile#ChooseCompiler('sh', 'bash')
+                call SingleCompile#ChooseCompiler('bash', 'bash')
+                call SingleCompile#ChooseCompiler('zsh', 'zsh')
+                " call SingleCompile#ChooseCompiler('c', 'gcc')
+                call SingleCompile#ChooseCompiler('c', 'gcc_custom')
+                call SingleCompile#ChooseCompiler('cpp', 'g++')
+                call SingleCompile#ChooseCompiler('html', 'firefox')
+                call SingleCompile#ChooseCompiler('javascript', 'node.js')
+            endif
 
-            nnoremap <F5> :SCCompileRun<cr>
         " }}}
     " }}}
 
@@ -3878,6 +3941,11 @@ syntax on
 
             " TODO change to command :CoffeeRun
             au FileType coffee nnoremap <F5> :CoffeeCompile<cr>
+            au FileType coffee vnoremap <F5> <esc>:'<,'>:CoffeeCompile<CR>
+            " Stack Tracks
+            " :C{line number} takes you to the given line number in the
+            " compiled Javascript of the CoffeeScript file you are editing.
+            command -nargs=1 C CoffeeCompile | :<args>
         " }}}
     " }}}
 
@@ -4938,6 +5006,11 @@ syntax on
         " }}}
     " }}}
 
+    " [ key bindings ] {{{
+        " vim-addon-actions {{{ customization for key bindings
+        " }}}
+    " }}}
+
     " [ timestamp ] {{{
     " }}}
 
@@ -4987,10 +5060,10 @@ syntax on
                     \ 'nested_syntaxes': {
                         \ 'python': 'python', 'ruby': 'ruby',
                         \ 'bash': 'sh', 'vim': 'vim',
-                        \ 'javascript': 'javascript', 'dart': 'dart',
+                        \ 'javascript': 'javascript', 'coffee': 'coffee',
                         \ 'c': 'c', 'go': 'go',
                         \ 'lisp': 'lisp', 'scheme': 'scheme',
-                        \ 'git': 'git', 'diff': 'diff',
+                        \ 'git': 'git', 'diff': 'diff', 'gitdiff': 'gitdiff',
                     \ },
                 \ },
                 \ {
