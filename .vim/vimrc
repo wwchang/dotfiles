@@ -1041,6 +1041,33 @@ endif
         " NeoBundle 'git://git.wincent.com/command-t.git'
         " Non git repos
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
+
+        " plugin attributes
+        " NeoBundle 'neocomplcache.vim', {
+        "             \ 'directory': 'neocomplcache',
+        "             \ 'type': 'hg',
+        "             \ 'depends': ['vimproc',]
+        "             \ 'rtp': 'vim',
+        "             \ 'base': '~/.vim/bundle',
+        "             \ }
+
+        " revision lock
+        " NeoBundle 'neocomplcache', '3787e5'
+        " NeoBundle 'neocomplcache', 'master'
+
+        " name
+        " NeoBundleLazy 'The-NERD-tree', {'augroup': 'NERDTree'}
+        " NeoBundleSource The-NERD-tree
+
+        " build plugin
+        " NeoBundle 'Shougo/vimproc', {
+        "     \ 'build' : {
+        "         \ 'windows': 'echo "vimproc binary file does not support Windows."',
+        "         \ 'cygwin': 'make -f make_cygwin.mak',
+        "         \ 'mac': 'make -f make_mac.mak',
+        "         \ 'unix': 'make -f make_unix.mak',
+        "         \ },
+        "     \ }
         " }}}
 
         " Let NeoBundle manage NeoBundle
