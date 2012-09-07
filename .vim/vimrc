@@ -245,7 +245,7 @@
     " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
     set cmdheight=1                  " command line height
-    "set complete=".,w,b,t,i,u,k"     " completion buffers
+    " set complete=".,w,b,t,i,u,k"     " completion buffers
     "             | | | | | | |
     "             | | | | | | `-dict
     "             | | | | | `-unloaded buffers
@@ -1075,7 +1075,12 @@ endif
                         " \ 'url': 'git://github.com/NagatoPain/vim-plugin-viewdoc',
             let g:vim_addon_manager.plugin_sources['SingleCompile'] = {
                         \ 'type': 'git',
-                        \ 'url': 'git://github.com/xuhdev/SingleCompile.git',
+                        \ 'url': 'git://github.com/xuhdev/SingleCompile',
+                        \ 'branch': 'master',
+                        \ }
+            let g:vim_addon_manager.plugin_sources['neocomplcache-clang'] = {
+                        \ 'type': 'git',
+                        \ 'url': 'git://github.com/Shougo/neocomplcache-clang',
                         \ 'branch': 'master',
                         \ }
             " vundle compatible version gocode stand alone
@@ -1087,6 +1092,7 @@ endif
 
             let plugins = [
                         \ 'viewdoc',
+                        \ 'neocomplcache-clang',
                         \ 'gocode',
                         \ 'SingleCompile',
                         \ ]
@@ -1319,7 +1325,6 @@ endif
             " call vam#ActivateAddons(['VimClojure'])
                 " C C++ cpp
             call vam#ActivateAddons(['clang_complete'])
-            call vam#ActivateAddons(['github:Shougo/neocomplcache-clang'])
             " call vam#ActivateAddons(['OmniCppComplete'])
             " call vam#ActivateAddons(['inccomplete'])
                 " Go
@@ -1567,9 +1572,9 @@ syntax on
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " if exists('g:loaded_neocomplcache')
             " endif
-            " Conflict: need to comment 'set complete='
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
+            " comment out :set complete option.
             " Usage: {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
             " - Add other language completion:
             "   :NeoComplCacheSetFileType [filetype]
@@ -2031,7 +2036,6 @@ syntax on
         " }}}
 
         " vimproc {{{ a great asynchronous execution library for Vim.
-            " let g:vimproc_password_pattern " this variable is used for vimshell.
         " }}}
 
         " neco-look : neocomplcache-look (/usr/bin/look)
@@ -2975,9 +2979,27 @@ syntax on
         " VimDebug {{{ Integrate your debugger with Vim
         " }}}
 
-        " GdbFromVim {{{ debug your applications with gdb from Vim.
-            " let g:gdb_from_vim_app = 'applications'
-            " let g:gdb_from_vim_args = 'arguments'
+        " GdbFromVim {{{ debug your application with gdb from Vim relies on gdblib
+            " Usage:
+            " :GdbFromVimRun
+            " :GdbFromVimStep
+            " :GdbFromVimNext
+            " :GdbFromVimContinue
+            " :GdbFromVimAddBreakpoint
+            " :GdbFromVimDeleteBreakpoint
+            " :GdbFromVimDeleteAllBreakpoints
+            " :GdbFromVimClear
+            " :GdbFromVimPrint
+            " :GdbFromVimPrintBreakpoints
+            " :GdbFromVimClose
+            " :GdbFromVimTty
+            " :GdbFromVimRemote
+            " :GdbFromVimSymbolFile
+
+            " let g:GdbFromVim_App =
+            " let g:gdb_from_vim_app = ''
+            " let g:gdb_from_vim_args = ''
+            let g:gdb_from_vim_path = 'gdb'
         " }}}
 
         " gdbmgr {{{ Vim interface to gdb
