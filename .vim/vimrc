@@ -1700,6 +1700,11 @@ syntax on
                         \ 'end': '^\s*}}}',
                         \ },
                         \ {
+                        \ 'filetype': 'c',
+                        \ 'start': '^\s*{{{c$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
                         \ 'filetype': 'html',
                         \ 'start': '^\s*{{{html$',
                         \ 'end': '^\s*}}}',
