@@ -2035,7 +2035,6 @@ syntax on
         " }}}
 
         " vimproc {{{ a great asynchronous execution library for Vim.
-            " let g:vimproc_password_pattern " this variable is used for vimshell.
         " }}}
 
         " neco-look : neocomplcache-look (/usr/bin/look)
@@ -2979,9 +2978,27 @@ syntax on
         " VimDebug {{{ Integrate your debugger with Vim
         " }}}
 
-        " GdbFromVim {{{ debug your applications with gdb from Vim.
-            " let g:gdb_from_vim_app = 'applications'
-            " let g:gdb_from_vim_args = 'arguments'
+        " GdbFromVim {{{ debug your application with gdb from Vim relies on gdblib
+            " Usage:
+            " :GdbFromVimRun
+            " :GdbFromVimStep
+            " :GdbFromVimNext
+            " :GdbFromVimContinue
+            " :GdbFromVimAddBreakpoint
+            " :GdbFromVimDeleteBreakpoint
+            " :GdbFromVimDeleteAllBreakpoints
+            " :GdbFromVimClear
+            " :GdbFromVimPrint
+            " :GdbFromVimPrintBreakpoints
+            " :GdbFromVimClose
+            " :GdbFromVimTty
+            " :GdbFromVimRemote
+            " :GdbFromVimSymbolFile
+
+            " let g:GdbFromVim_App =
+            " let g:gdb_from_vim_app = ''
+            " let g:gdb_from_vim_args = ''
+            let g:gdb_from_vim_path = 'gdb'
         " }}}
 
         " gdbmgr {{{ Vim interface to gdb
