@@ -1009,6 +1009,49 @@ endif
         " }}}
     " }}}
 
+    " [ neobundle ] {{{ NeoBundle is Vim plugin manager based on Vundle .vim/bundle/
+        " Usage:
+        " :NeoBundleInstall or :Unite neobundle/install
+        " :NeoBundleList          - list configured bundles
+        " :NeoBundleInstall(!)    - install(update) bundles
+        " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+        filetype off " Required!
+        if has('vim_starting')
+            set runtimepath+=~/.vim/bundle/neobundle.vim/
+        endif
+
+        call neobundle#rc(expand('~/.vim/bundle/'))
+
+        " [ bundles ] {{{
+        " examples {{{
+        " Original repos on github
+        " NeoBundle 'tpope/vim-fugitive'
+        " NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
+        " vim-scripts repos
+        " NeoBundle 'L9'
+        " Non github repos
+        " NeoBundle 'git://git.wincent.com/command-t.git'
+        " Non git repos
+        " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
+        " }}}
+
+        " Let NeoBundle manage NeoBundle
+        NeoBundle 'Shougo/neobundle.vim'
+
+        " }}}
+
+        filetype plugin indent on     " Required!
+
+        " Installation check.
+        if neobundle#exists_not_installed_bundles()
+            echomsg 'Not installed bundles : ' .
+                        \ string(neobundle#get_not_installed_bundle_names())
+            echomsg 'Please execute ":NeoBundleInstall" command.'
+            "finish
+        endif
+    " }}}
+
     " [ VAM : vim addon manager ] {{{ .vim/addons/
         " [ minimal setup ]
             " set runtimepath+=PATH/TO/VAM
