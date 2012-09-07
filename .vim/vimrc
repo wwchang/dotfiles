@@ -1020,7 +1020,6 @@ endif
         if has('vim_starting')
             set runtimepath+=~/.vim/bundle/neobundle.vim/
         endif
-
         call neobundle#rc(expand('~/.vim/bundle/'))
 
         " [ bundles ] {{{
@@ -1038,7 +1037,117 @@ endif
 
         " Let NeoBundle manage NeoBundle
         NeoBundle 'Shougo/neobundle.vim'
-
+        NeoBundle 'Shougo/unite.vim'
+        NeoBundle 'Shougo/vimproc'
+        " complete
+        NeoBundle 'neocomplcache'
+        " Vim improve
+        NeoBundle 'Powerline'
+        NeoBundle 'current-func-info.vim'
+        NeoBundle 'quickfixsigns'
+        NeoBundle 'quickfixstatus.vim'
+        NeoBundle 'restore_view.vim'
+        NeoBundle 'recover.vim'
+        NeoBundle 'surround.vim'
+        NeoBundle 'unimpaired.vim'
+        " NeoBundle 'ConflictMotions'
+        " Pairs
+        NeoBundle 'Auto-Pairs'
+        NeoBundle 'endwise.vim'
+        " others
+        NeoBundle 'Switch'
+        " NeoBundle 'ConflictDetection'
+        NeoBundle 'gf-diff'
+        NeoBundle 'gf-user'
+        NeoBundle 'patchreview.vim'
+        " VCS & quickfix
+        NeoBundle 'fugitive.vim'
+        NeoBundle 'gitv'
+        NeoBundle 'hgrev'
+        " program
+        " help
+        " NeoBundle 'viewdoc'
+        NeoBundle 'powerman/vim-plugin-viewdoc'
+        " snippets
+        NeoBundle 'UltiSnips'
+        " NeoBundle 'neocomplcache-snippets_complete'
+        " tags : ctags, cscope
+        NeoBundle 'Tagbar'
+        NeoBundle 'TagHighlight'
+        NeoBundle 'easytags.vim'
+        " NeoBundle 'AutoTag'
+        NeoBundle 'indexer.tar.gz'
+        NeoBundle 'DfrankUtil'
+        NeoBundle 'vimprj'
+        " file manager
+        NeoBundle 'The-NERD-tree'
+        " compile & run
+        NeoBundle 'SingleCompile'
+        " syntax checker
+        NeoBundle 'Syntastic'
+        " search [grep, MRU, files]
+        NeoBundle 'ctrlp.vim'
+        " NeoBundle 'Command-T'
+        NeoBundle 'EasyGrep'
+        " regex
+        NeoBundle 'VimRegEx.vim'
+        NeoBundle 'vsutil.vim'
+        " syntax / indent
+        NeoBundle 'Indent-Guides'
+        " Tabular
+        NeoBundle 'Tabular'
+        NeoBundle 'filter'
+        " comment
+        NeoBundle 'The-NERD-Commenter'
+        NeoBundle 'commentary.vim'
+        NeoBundle 'mbbill/undotree'
+        " Task List
+        NeoBundle 'TagmaTasks'
+        NeoBundle 'TaskList.vim'
+        " NeoBundle 'TaskMotions'
+        " Ruby
+        NeoBundle 'ruby.vim'
+        " NeoBundle 'rubycomplete.vim'
+        NeoBundle 'ruby-matchit'
+        " Python
+        NeoBundle 'virtualenv.vim'
+        NeoBundle 'pythoncomplete'
+        " C / cpp
+        NeoBundle 'clang-complete'
+        NeoBundle 'Shougo/neocomplcache-clang'
+        " NeoBundle 'OmniCppComplete'
+        " Go
+        NeoBundle 'undx/vim-gocode'
+        " HTML
+        NeoBundle 'ZenCoding.vim'
+        NeoBundle 'MatchTag'
+        NeoBundle 'html5.vim'
+        NeoBundle 'HTML5-Syntax-File'
+        " CSS
+        NeoBundle 'Better-CSS-Syntax-for-Vim'
+        " CoffeeScript
+        " JavaScript
+        NeoBundle 'teramako/jscomplete-vim'
+        " Clojure
+        NeoBundle 'VimClojure'
+        " PHP
+        NeoBundle 'phpcomplete.vim'
+        NeoBundle 'PIV'
+        " Lisp
+        " NeoBundle 'slimv.vim'
+        " NeoBundle 'Lisper.vim'
+        " NeoBundle 'paredit.vim'
+        " Wiki / Note
+        NeoBundle 'vimwiki'
+        " Paste
+        NeoBundle 'Gist.vim'
+        " Color
+        NeoBundle 'colorv.vim'
+        " others
+        NeoBundle 'utl.vim'
+        NeoBundle 'bad-whitespace'
+        NeoBundle 'visualstar.vim'
+        NeoBundle 'SpitVspit'
         " }}}
 
         filetype plugin indent on     " Required!
@@ -1143,356 +1252,9 @@ endif
             call vam#ActivateAddons(plugins, {'auto_install': 1})
             " }}}
 
-            " Addon List: {{{ <C-X><C-P> to complete plugin names/identifiers
+            " Plugins List: {{{
             " call vam#ActivateAddons({addons}[, {opts}])
-                " vim plugin manager
-            "call vam#ActivateAddons(['tplugin'])
-                " VimL libraries
-            call vam#ActivateAddons(['L9'])
-            call vam#ActivateAddons(['tlib'])
-            call vam#ActivateAddons(['self'])
-            call vam#ActivateAddons(['WebAPI'])
-                " VimLint: a correctness and sanity checker of Vim configuration
-            call vam#ActivateAddons(['VimLint'])
-                " statusline
-            call vam#ActivateAddons(['Powerline'])
-            call vam#ActivateAddons(['current-func-info'])
-                " CVS
-            call vam#ActivateAddons(['fugitive'])
-            call vam#ActivateAddons(['hgrev'])
-            call vam#ActivateAddons(['gitv'])
-            " call vam#ActivateAddons(['extradite'])
-            call vam#ActivateAddons(['quickfixsigns'])
-            call vam#ActivateAddons(['Splice'])
-            call vam#ActivateAddons(['ConflictMotions'])
-            call vam#ActivateAddons(['ConflictDetection'])
-                " Github
-            call vam#ActivateAddons(['vim-github'])
-            call vam#ActivateAddons(['github:tpope/vim-rhubarb'])
-                " CSV & CVS
-            " call vam#ActivateAddons(['csv'])
-            " call vam#ActivateAddons(['cvsmenu'])
-                " diff
-            call vam#ActivateAddons(['gf-diff'])
-            call vam#ActivateAddons(['gf-user'])
-            call vam#ActivateAddons(['patchreview'])
-                " quickfix/location list.
-            call vam#ActivateAddons(['unimpaired'])
-            call vam#ActivateAddons(['quickfixstatus'])
-            " call vam#ActivateAddons(['sharefix'])
-            " call vam#ActivateAddons(['unite-quickfix'])
-            call vam#ActivateAddons(['github:osyo-manga/unite-quickfix'])
-                " Completion <Tab>
-            call vam#ActivateAddons(['neocomplcache', 'vimproc'])
-            " call vam#ActivateAddons(['neco-look'])
-            " call vam#ActivateAddons(['AutoComplPop'])
-            " call vam#ActivateAddons(['github:ervandew/supertab'])
-            " call vam#ActivateAddons(['github:mbbill/code_complete'])
-                " snippet
-            call vam#ActivateAddons(['UltiSnips'])
-            " call vam#ActivateAddons(['neocomplcache-snippets_complete'])
-            "call vam#ActivateAddons(['snipmate'])
-            "call vam#ActivateAddons(['SnippetComplete'])
-                " skeleton / template
-            " call vam#ActivateAddons(['SonicTemplate'])
-                " Tags : taglist-plus,
-            call vam#ActivateAddons(['Tagbar'])
-            call vam#ActivateAddons(['tagbar-phpctags'])
-            "call vam#ActivateAddons(['taglist'])
-            call vam#ActivateAddons(['TagHighlight'])
-            if has('gui') && has('gui_running')
-                call vam#ActivateAddons(['Tag_Signature_Balloons'])
-            endif
-            call vam#ActivateAddons(['easytags'])
-            call vam#ActivateAddons(['taggatron'])
-            " call vam#ActivateAddons(['AutoTag'])
-            call vam#ActivateAddons(['indexer.tar.gz'])
-                " cscope
-            " call vam#ActivateAddons(['cscope'])
-            " call vam#ActivateAddons(['CCTree'])
-                " call vam#ActivateAddons(['github:brookhong/cscope.vim'])
-                " buffers
-            " call vam#ActivateAddons(['Tagma_Buffer_Manager'])
-            " call vam#ActivateAddons(['minibufexplorer'])
-            "call vam#ActivateAddons(['github:fholgado/minibufexpl.vim'])
-            " call vam#ActivateAddons(['LustyJuggler'])
-                " tab manager
-            "call vam#ActivateAddons(['github:kien/tabman.vim.git'])
-                " file/buffer/project manager|explorer
-            call vam#ActivateAddons(['The_NERD_tree'])
-            " call vam#ActivateAddons(['github:t9md/vim-nerdtree_plugin_collections'])
-            call vam#ActivateAddons(['vimfiler'])
-                " compile
-            " call vam#ActivateAddons(['SingleCompile'])
-                " syntax checker
-            call vam#ActivateAddons(['Syntastic'])
-            " call vam#ActivateAddons(['checksyntax'])
-            " call vam#ActivateAddons(['flymake'])
-                " Debugger
-            " call vam#ActivateAddons(['Vdebug'])
-            " call vam#ActivateAddons(['VimDebug'])
-            " call vam#ActivateAddons(['GdbFromVim'])
-            " call vam#ActivateAddons(['gdbmgr'])
-                " task list
-            call vam#ActivateAddons(['TagmaTasks'])
-            " call vam#ActivateAddons(['TaskList'])
-            " call vam#ActivateAddons(['GrepTasks'])
-            call vam#ActivateAddons(['TaskMotions'])
-                " search & find
-            call vam#ActivateAddons(['unite'])
-            " call vam#ActivateAddons(['unite-ssh'])
-            call vam#ActivateAddons(['ctrlp'])
-            "call vam#ActivateAddons(['Command-T'])
-            "call vam#ActivateAddons(['FuzzyFinder'])
-            call vam#ActivateAddons(['unite-ack'])
-            call vam#ActivateAddons(['EasyGrep'])
-            call vam#ActivateAddons(['ack'])
-            call vam#ActivateAddons(['buffers_search_and_replace'])
-            " call vam#ActivateAddons(['SearchParty'])
-            call vam#ActivateAddons(['Area_search'])
-            call vam#ActivateAddons(['asyncfinder'])
-                " comment
-            call vam#ActivateAddons(['commentary'])
-            " call vam#ActivateAddons(['tComment'])
-            call vam#ActivateAddons(['The_NERD_Commenter'])
-                " doc & help "K"
-            " call vam#ActivateAddons(['viewdoc'])
-            "call vam#ActivateAddons(['Manuals'])
-                " indent guides & indent & align & splijoin
-            call vam#ActivateAddons(['Indent_Guides'])
-            "call vam#ActivateAddons(['matchindent'])
-            "call vam#ActivateAddons(['splitjoin'])
-            " call vam#ActivateAddons(['Align%294'])
-                " REPL
-            call vam#ActivateAddons(['vim-pipe'])
-                " session & undo & history
-            call vam#ActivateAddons(['restore_view'])
-            call vam#ActivateAddons(['recover'])
-            " call vam#ActivateAddons(['github:tungd/unite-session'])
-            " call vam#ActivateAddons(['Gundo'])
-            call vam#ActivateAddons(['undotree'])
-                " other small functions
-            " call vam#ActivateAddons(['TagmaLast'])
-            call vam#ActivateAddons(['endwise'])
-            " call vam#ActivateAddons(['SwapIt'])
-            call vam#ActivateAddons(['switch'])
-            " call vam#ActivateAddons(['Rainbow_Parentheses_Improved'])
-                " Author info & License
-            "call vam#ActivateAddons(['AuthorInfo'])
-            "call vam#ActivateAddons(['license_loader'])
-                " projects
-            call vam#ActivateAddons(['vimprj'])
-                " regexp
-            " call vam#ActivateAddons(['VimRegEx'])
-                " Vim script
-            " call vam#ActivateAddons(['Vim-Support'])
-            " call vam#ActivateAddons(['vesting'])
-            call vam#ActivateAddons(['runVimTests'])
-                " Python
-            " call vam#ActivateAddons(['Python-mode-klen'])
-            call vam#ActivateAddons(['pyref'])
-            " call vam#ActivateAddons(['SimpylFold'])
-            " call vam#ActivateAddons(['github:jbking/vim-pep8'])
-            " call vam#ActivateAddons(['flake8'])
-            " call vam#ActivateAddons(['github:kevinw/pyflakes-vim'])
-            call vam#ActivateAddons(['virtualenv'])
-            " call vam#ActivateAddons(['vim-python-virtualenv'])
-            call vam#ActivateAddons(['python_match'])
-            " call vam#ActivateAddons(['python_open_module'])
-            "call vam#ActivateAddons(['PyREPL'])
-            call vam#ActivateAddons(['selfdot'])
-                " Django
-            " call vam#ActivateAddons(['vim-htmldjango_omnicomplete'])
-            " call vam#ActivateAddons(['vim-django-support'])
-            " call vam#ActivateAddons(['vim-django'])
-                " Shell: Bash, Zsh
-            "call vam#ActivateAddons(['bash-support'])
-                " Web: HTML/CSS/XML etc
-            call vam#ActivateAddons(['ZenCoding'])
-            " call vam#ActivateAddons(['sparkup'])
-            call vam#ActivateAddons(['MatchTag'])
-            call vam#ActivateAddons(['HTML_AutoCloseTag'])
-            call vam#ActivateAddons(['html5'])
-            call vam#ActivateAddons(['HTML5_Syntax_File'])
-            call vam#ActivateAddons(['Better_CSS_Syntax_for_Vim'])
-            " call vam#ActivateAddons(['css3_mod'])
-            " call vam#ActivateAddons(['vim_less'])
-            " call vam#ActivateAddons(['vim-less'])
-                " CoffeeScript
-            call vam#ActivateAddons(['vim-coffee-script'])
-                " JavaScript
-            call vam#ActivateAddons(['jscomplete-vim'])
-            " call vam#ActivateAddons(['jsflakes%4057'])
-            " call vam#ActivateAddons(['jsruntime'])
-            " call vam#ActivateAddons(['jsoncodecs'])
-            "call vam#ActivateAddons(['jsbeautify'])
-            "call vam#ActivateAddons(['sourcebeautify'])
-            "call vam#ActivateAddons(['javaScriptLint'])
-            "call vam#ActivateAddons(['jshint'])
-            "call vam#ActivateAddons(['jslint'])
-            "call vam#ActivateAddons(['jQuery'])
-                " Dart
-            call vam#ActivateAddons(['Dart'])
-                " DBMS & SQL & NoSQL
-            " call vam#ActivateAddons(['dbext'])
-            " call vam#ActivateAddons(['VDBI'])
-            " call vam#ActivateAddons(['SQLUtilities'])
-                " Web App
-            " call vam#ActivateAddons(['vim-brunch'])
-                " PHP
-            call vam#ActivateAddons(['phpcomplete'])
-            " call vam#ActivateAddons(['DBGPavim'])
-            " call vam#ActivateAddons(['Xdebug'])
-            " call vam#ActivateAddons(['vim-addon-xdebug'])
-            " call vam#ActivateAddons(['phpqa'])
-            " call vam#ActivateAddons(['PHPUnit_QF'])
-            call vam#ActivateAddons(['PIV'])
-            " call vam#ActivateAddons(['pdv-standalone'])
-            " call vam#ActivateAddons(['Drupal'])
-            " call vam#ActivateAddons(['cakephp'])
-            " call vam#ActivateAddons(['cake'])
-            " call vam#ActivateAddons(['behat.zip'])
-                " Ruby & Rails
-            call vam#ActivateAddons(['vim-ruby'])
-            " call vam#ActivateAddons(['neco-rubymf'])
-            call vam#ActivateAddons(['neco-rake'])
-            " call vam#ActivateAddons(['rails'])
-            " call vam#ActivateAddons(['vroom'])
-            " call vam#ActivateAddons(['RbREPL'])
-                " Lisp
-            " call vam#ActivateAddons(['slimv'])
-            " call vam#ActivateAddons(['Lisper'])
-            " call vam#ActivateAddons(['paredit'])
-                " Scheme
-                " Clojure
-            " call vam#ActivateAddons(['VimClojure'])
-                " C C++ cpp
-            call vam#ActivateAddons(['clang_complete'])
-            " call vam#ActivateAddons(['OmniCppComplete'])
-            " call vam#ActivateAddons(['inccomplete'])
-                " Go
-                " Lua
-            " call vam#ActivateAddons(['lua'])
-            " call vam#ActivateAddons(['lua_omni'])
-            " call vam#ActivateAddons(['luainspect'])
-                " Haskell using ghc-mod
-            " call vam#ActivateAddons(['neco-ghc'])
-                " R
-            "call vam#ActivateAddons(['Vim-R-plugin'])
-                " Perl
-            "call vam#ActivateAddons(['perlomni'])
-                " simulate : Tmux & Screen
-            " call vam#ActivateAddons(['vimshell'])
-            "call vam#ActivateAddons(['Clam'])
-                " special editing
-            " call vam#ActivateAddons(['Screen_vim__gnu_screentmux'])
-            " call vam#ActivateAddons(['vimux'])
-            " call vam#ActivateAddons(['inline_edit', 'NrrwRgn', 'partedit'])
-                " vimwiki & note
-            call vam#ActivateAddons(['vimwiki'])
-            " call vam#ActivateAddons(['github:mattn/calendar-vim'])
-            " call vam#ActivateAddons(['VikiDeplate'])
-            " call vam#ActivateAddons(['vikitasks'])
-            " call vam#ActivateAddons(['vktheming'])
-            " call vam#ActivateAddons(['viske'])
-            " call vam#ActivateAddons(['notes'])
-            " call vam#ActivateAddons(['vim-pad'])
-                " GTD
-            " call vam#ActivateAddons(['VimOrganizer'])
-            " call vam#ActivateAddons(['speeddating'])
-            " call vam#ActivateAddons(['github:gregsexton/Vomodoro'])
-                " outliner
-            " call vam#ActivateAddons(['HyperList'])
-            " call vam#ActivateAddons(['VOoM'])
-                " TeX & LaTeX
-            " call vam#ActivateAddons(['auctex'])
-            " call vam#ActivateAddons(['TeX_9'])
-            " call vam#ActivateAddons(['AutomaticLaTeXPlugin'])
-            " call vam#ActivateAddons(['TeX-PDF'])
-                " markup & markdown
-            " call vam#ActivateAddons(['preview%3344'])
-            " call vam#ActivateAddons(['riv'])
-                " encrypt
-            "call vam#ActivateAddons(['tGpg'])
-            "call vam#ActivateAddons(['openssl'])
-                    " vim-gnupg
-                " call vam#ActivateAddons(['gnupg%3645'])
-                " call vam#ActivateAddons(['github:jamessan/vim-gnupg'])
-                " post/paste/www micro-blog/twitter/code/text/www
-            " call vam#ActivateAddons(['PasteBin'])
-            call vam#ActivateAddons(['Gist'])
-            " call vam#ActivateAddons(['wwwsearch'])
-            " call vam#ActivateAddons(['Tumble'])
-            "call vam#ActivateAddons(['TwitVim'])
-                " color/syntax
-            call vam#ActivateAddons(['colorv'])
-            "call vam#ActivateAddons(['Colorizer'])
-            "call vam#ActivateAddons(['CSSMinister'])
-            "call vam#ActivateAddons(['ScrollColors'])
-            "call vam#ActivateAddons(['ColorSchemeEditor'])
-            "call vam#ActivateAddons(['EasyColour'])
-            "call vam#ActivateAddons(['VIM_Color_Picker'])
-            "call vam#ActivateAddons(['nosyntaxwords'])
-                " colorschemes
-            " call vam#ActivateAddons(['galaxy'])
-                " mark & position & session
-                    " mark several words in different colors simultaneously.
-            " call vam#ActivateAddons(['DynamicSigns'])
-            "call vam#ActivateAddons(['vmark.vim_Visual_Bookmarking'])
-            "call vam#ActivateAddons(['Mark%2666'])
-                " format
-            " call vam#ActivateAddons(['Txtfmt_The_Vim_Highlighter'])
-            call vam#ActivateAddons(['HybridText'])
-            call vam#ActivateAddons(['Tabular'])
-            call vam#ActivateAddons(['surround'])
-            call vam#ActivateAddons(['Auto_Pairs'])
-            " call vam#ActivateAddons(['delimitMate'])
-            call vam#ActivateAddons(['utl'])
-            " call vam#ActivateAddons(['open-browser'])
-            call vam#ActivateAddons(['bad-whitespace'])
-            " call vam#ActivateAddons(['trailing-whitespace'])
-                " write & spell checker & speak
-            " call vam#ActivateAddons(['Engspchk'])
-            "call vam#ActivateAddons(['SpellCheck'])
-            "call vam#ActivateAddons(['LanguageTool'])
-            "call vam#ActivateAddons(['VimSpeak'])
-                " convert/format/export
-                    " 2HTML
-            "call vam#ActivateAddons(['formatvim'])
-                " TUI : Text User Interface
-            " call vam#ActivateAddons(['forms'])
-                " Vim related
-            " call vam#ActivateAddons(['tips'])
-                " Vimrc manager
-            "call vam#ActivateAddons(['Sauce'])
-                " Vim Extension
-            call vam#ActivateAddons(['repeat', 'visualrepeat', 'abolish'])
-            " call vam#ActivateAddons(['LineJuggler'])
-            call vam#ActivateAddons(['visualstar'])
-            "call vam#ActivateAddons(['StarRange'])
-            "call vam#ActivateAddons(['exjumplist'])
-            " call vam#ActivateAddons(['AsyncCommand'])
-                " marks
-            call vam#ActivateAddons(['vim-signature'])
-            "call vam#ActivateAddons(['unicode'])
-            "call vam#ActivateAddons(['mathematic'])
-            " call vam#ActivateAddons(['SudoEdit'])
-            " call vam#ActivateAddons(['sudo'])
-            call vam#ActivateAddons(['SpitVspit'])
-            " call vam#ActivateAddons(['dwm'])
-            " call vam#ActivateAddons(['ZoomWin'])
-            "call vam#ActivateAddons(['CompleteHelper'])
-            " call vam#ActivateAddons(['AmbiCompletion'])
-            " call vam#ActivateAddons(['LargeFile'])
-                " Motions
-            " call vam#ActivateAddons(['EasyMotion'])
-            call vam#ActivateAddons(['CountJump'])
-                " ASCII draw
-            "call vam#ActivateAddons(['DrawIt'])
-            " call vam#ActivateAddons(['ditaa'])
-                " small tools
-            " call vam#ActivateAddons(['fcitx'])
-            "call vam#ActivateAddons(['bestfriend'])
+            " call vam#ActivateAddons(plugins)
             " }}}
 
         endfunction " }}}
