@@ -3941,6 +3941,11 @@ syntax on
 
             " TODO change to command :CoffeeRun
             au FileType coffee nnoremap <F5> :CoffeeCompile<cr>
+            au FileType coffee vnoremap <F5> <esc>:'<,'>:CoffeeCompile<CR>
+            " Stack Tracks
+            " :C{line number} takes you to the given line number in the
+            " compiled Javascript of the CoffeeScript file you are editing.
+            command -nargs=1 C CoffeeCompile | :<args>
         " }}}
     " }}}
 
