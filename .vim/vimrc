@@ -139,7 +139,11 @@
     else
         set backup		" keep a backup file
     endif
-    set backupdir=$HOME/.backup-vim/  " backup dir
+    if isdirectory(expand("~/.backup-vim"))
+        set backupdir=$HOME/.backup-vim/  " backup dir
+    else
+        call system("mkdir " . expand("~/.backup-vim"))
+    endif
     set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
