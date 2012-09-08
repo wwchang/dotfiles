@@ -139,7 +139,11 @@
     else
         set backup		" keep a backup file
     endif
-    set backupdir=$HOME/.backup-vim/  " backup dir
+    if isdirectory(expand("~/.backup-vim"))
+        set backupdir=$HOME/.backup-vim/  " backup dir
+    else
+        call system("mkdir " . expand("~/.backup-vim"))
+    endif
     set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
@@ -1016,9 +1020,26 @@ endif
         " :NeoBundleInstall(!)    - install(update) bundles
         " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
 
+        " check neobundle installed
+        fun! InstallNeoBundle(path)
+            if isdirectory(expand(a:path))
+                return 1
+            elseif confirm("install neobundle into " . a:path . "?", "&Y\n&N") == 1
+                call mkdir(expand(a:path), 'p')
+                execute '!git clone git://github.com/Shougo/neobundle.vim '
+                            \ . expand(a:path)
+                exec 'helptags' . fnameescape(a:path . '/doc')
+                return 0
+            endif
+        endfun
+        let neobundle_path = "~/.vim/bundle/neobundle"
+        if !InstallNeoBundle(neobundle_path)
+            echohl ErrorMsg ; echomsg "No neobundle found!" ; echohl NONE
+        endif
+
         filetype off " Required!
         if has('vim_starting')
-            set runtimepath+=~/.vim/bundle/neobundle.vim/
+            set runtimepath+=~/.vim/bundle/neobundle/
         endif
         call neobundle#rc(expand('~/.vim/bundle/'))
 
@@ -1073,6 +1094,7 @@ endif
         " Let NeoBundle manage NeoBundle
         NeoBundle 'Shougo/neobundle.vim', {
                     \ 'depends': ['Shougo/unite.vim'],
+                    \ 'directory': 'neobundle',
                     \ }
         NeoBundle 'neocomplcache', {
                     \ 'depends': ['Shougo/vimproc'],
