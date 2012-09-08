@@ -1071,13 +1071,22 @@ endif
         " }}}
 
         " Let NeoBundle manage NeoBundle
-        NeoBundle 'Shougo/neobundle.vim'
-        NeoBundle 'Shougo/unite.vim'
-        NeoBundle 'Shougo/vimproc'
-        " complete
-        NeoBundle 'neocomplcache'
+        NeoBundle 'Shougo/neobundle.vim', {
+                    \ 'depends': ['Shougo/unite.vim'],
+                    \ }
+        NeoBundle 'neocomplcache', {
+                    \ 'depends': ['Shougo/vimproc'],
+                    \ }
+        NeoBundle 'Shougo/vimproc', {
+            \ 'build': {
+                \ 'windows': 'echo "vimproc binary file does not support Windows."',
+                \ 'unix': 'make -f make_unix.mak',
+                \ 'mac': 'make -f make_mac.mak',
+                \ 'cygwin': 'make -f make_cygwin.mak',
+                \ },
+            \ }
         " Vim improve
-        NeoBundle 'Powerline'
+        NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
         NeoBundle 'quickfixsigns'
         NeoBundle 'quickfixstatus.vim'
@@ -1094,7 +1103,7 @@ endif
         " NeoBundle 'ConflictDetection'
         NeoBundle 'gf-diff'
         NeoBundle 'gf-user'
-        NeoBundle 'patchreview.vim'
+        " NeoBundle 'patchreview.vim'
         " VCS & quickfix
         NeoBundle 'fugitive.vim'
         NeoBundle 'gitv'
@@ -1111,9 +1120,9 @@ endif
         NeoBundle 'TagHighlight'
         NeoBundle 'easytags.vim'
         " NeoBundle 'AutoTag'
-        NeoBundle 'indexer.tar.gz'
-        NeoBundle 'DfrankUtil'
-        NeoBundle 'vimprj'
+        NeoBundle 'indexer.tar.gz', {
+                    \ 'depends': ['DfrankUtil', 'vimprj'],
+                    \ }
         " file manager
         NeoBundle 'The-NERD-tree'
         " compile & run
@@ -1121,29 +1130,29 @@ endif
         " syntax checker
         NeoBundle 'Syntastic'
         " search [grep, MRU, files]
-        NeoBundle 'ctrlp.vim'
+        " NeoBundle 'ctrlp.vim'
         " NeoBundle 'Command-T'
         NeoBundle 'EasyGrep'
         " regex
-        NeoBundle 'VimRegEx.vim'
-        NeoBundle 'vsutil.vim'
+        NeoBundle 'VimRegEx.vim', {
+                    \ 'depends': ['vsutil.vim'],
+                    \ }
         " syntax / indent
         NeoBundle 'Indent-Guides'
         " Tabular
         NeoBundle 'Tabular'
-        NeoBundle 'filter'
+        " NeoBundle 'filter'
         " comment
         NeoBundle 'The-NERD-Commenter'
         NeoBundle 'commentary.vim'
         NeoBundle 'mbbill/undotree'
         " Task List
         NeoBundle 'TagmaTasks'
-        NeoBundle 'TaskList.vim'
+        " NeoBundle 'TaskList.vim'
         " NeoBundle 'TaskMotions'
         " Ruby
         NeoBundle 'ruby.vim'
         " NeoBundle 'rubycomplete.vim'
-        NeoBundle 'ruby-matchit'
         " Python
         NeoBundle 'virtualenv.vim'
         NeoBundle 'pythoncomplete'
@@ -1164,7 +1173,7 @@ endif
         " JavaScript
         NeoBundle 'teramako/jscomplete-vim'
         " Clojure
-        NeoBundle 'VimClojure'
+        " NeoBundle 'VimClojure'
         " PHP
         NeoBundle 'phpcomplete.vim'
         NeoBundle 'PIV'
