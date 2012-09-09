@@ -844,7 +844,7 @@ endif
 " you can call function with ":source file.vim" then ":call"
 
     " [ execute mode ] {{{
-        " [ sh / py / pl ] {{{
+        " [ sh / rb / py / pl ] {{{
             function! ScriptExecute()
                 :!chmod u+x %
                 :w
@@ -853,9 +853,9 @@ endif
             augroup ScriptExecutePermission
                 autocmd!
                 autocmd BufWritePost *.sh :call ScriptExecute()
-                autocmd BufWritePost *.rb :call ScriptExecute()
-                autocmd BufWritePost *.py :call ScriptExecute()
-                autocmd BufWritePost *.pl :call ScriptExecute()
+                " autocmd BufWritePost *.rb :call ScriptExecute()
+                " autocmd BufWritePost *.py :call ScriptExecute()
+                " autocmd BufWritePost *.pl :call ScriptExecute()
             augroup END
         " }}}
 
