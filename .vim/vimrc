@@ -4620,10 +4620,11 @@ syntax on
     " }}}
 
     " [ unicode & symble & sign ] {{{
-        " unicode  {{{ A Completion function for Unicode glyphs
+        " unicode.vim  {{{ A Completion function for Unicode glyphs
             " e.g. type "AE", <C-X><C-U>, / <C-X><C-G>
             " <Leader>un -- swaps between unicode name and glyphs function complete.
             " Functions :
+                " setlocal omnifunc=unicode#CompleteUnicode
                 " :EnableUnicodeCompletion
                 " :DisableUnicodeCompletion
                 " :UnicodeName
