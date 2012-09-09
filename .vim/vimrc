@@ -4282,9 +4282,24 @@ syntax on
 
         " vim-signature {{{ toggle, display and navigate marks.
             " Usage:
-            "   - <Leader>ma -- toggle the mark a.
-            "   - <Leader>m, -- place the next available mark.
-            "   - <Leader>m<Space> -- delete all marks.
+            " mark
+            "   - ma -- toggle the mark a.
+            "   - m<Space> -- delete all marks.
+            "   - m, -- place the next available mark.
+            "   - ]` -- Jump to next mark
+            "   - [` -- Jump to prev mark
+            "   - ]' -- Jump to start of next line containing a mark
+            "   - [' -- Jump to start of prev line containing a mark
+            "   - `] -- Jump by alpha order to next mark
+            "   - `[ -- Jump by alpha order to prev mark
+            "   - '] -- Jump by alpha order to start of next line containing a mark
+            "   - '[ -- Jump by alpha order to start of prev line containing a mark
+            " marker
+            "   - m[0-9] -- toggle the corresponding marker!@#$%^&*()
+            "   - m<S-[0-9]> -- Remove all markers of the same type
+            "   - ]=    -- Jump to next line having same marker
+            "   - ]-    -- Jump to prev line having same marker
+            "   - m<Backspace> -- Remove all markers.
             let g:SignatureDefaultMappings = 1
             " let g:SignatureIncludeMarks =
             let g:SignatureWrapJumps = 1
