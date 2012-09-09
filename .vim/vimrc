@@ -1112,7 +1112,9 @@ endif
         NeoBundle 'unimpaired.vim'
         " NeoBundle 'ConflictMotions'
         " Pairs
-        NeoBundle 'Auto-Pairs'
+        NeoBundle 'Auto-Pairs', {
+                    \ 'directory': 'AutoPairs',
+                    \ }
         NeoBundle 'endwise.vim'
         " others
         NeoBundle 'Switch'
@@ -1127,7 +1129,9 @@ endif
         " program
         " help
         " NeoBundle 'viewdoc'
-        NeoBundle 'powerman/vim-plugin-viewdoc'
+        NeoBundle 'powerman/vim-plugin-viewdoc', {
+                    \ 'directory': 'viewdoc',
+                    \ }
         " snippets
         NeoBundle 'UltiSnips'
         " NeoBundle 'neocomplcache-snippets_complete'
@@ -1140,7 +1144,9 @@ endif
                     \ 'depends': ['DfrankUtil', 'vimprj'],
                     \ }
         " file manager
-        NeoBundle 'The-NERD-tree'
+        NeoBundle 'The-NERD-tree', {
+                    \ 'directory': 'NERDTree',
+                    \ }
         " compile & run
         NeoBundle 'SingleCompile'
         " syntax checker
@@ -1173,11 +1179,14 @@ endif
         NeoBundle 'virtualenv.vim'
         NeoBundle 'pythoncomplete'
         " C / cpp
-        NeoBundle 'clang-complete'
-        NeoBundle 'Shougo/neocomplcache-clang'
+        NeoBundle 'Shougo/neocomplcache-clang', {
+                    \ 'depends': ['clang-complete',],
+                    \ }
         " NeoBundle 'OmniCppComplete'
         " Go
-        NeoBundle 'undx/vim-gocode'
+        NeoBundle 'undx/vim-gocode', {
+                    \ 'directory': 'gocode',
+                    \ }
         " HTML
         NeoBundle 'ZenCoding.vim'
         NeoBundle 'MatchTag'
@@ -1200,7 +1209,10 @@ endif
         " Wiki / Note
         NeoBundle 'vimwiki'
         " Paste
-        NeoBundle 'Gist.vim'
+        NeoBundle 'Gist.vim', {
+                    \ 'directory': 'Gist',
+                    \ 'depends': ['WebAPI.vim',],
+                    \ }
         " Color
         NeoBundle 'colorv.vim'
         " others
