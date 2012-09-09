@@ -1112,6 +1112,8 @@ endif
         NeoBundle 'surround.vim'
         NeoBundle 'unimpaired.vim'
         " NeoBundle 'ConflictMotions'
+        " Complete
+        NeoBundle 'unicode.vim'
         " Pairs
         NeoBundle 'Auto-Pairs', {
                     \ 'directory': 'AutoPairs',
