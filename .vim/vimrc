@@ -1016,6 +1016,8 @@ endif
         " :NeoBundleUpdate
         " :NeoBundleInstall or :Unite neobundle/install
         " :Unite neobundle/search
+        " :NeoBundleLog -- git updates commit messages
+        " :NeoBundleUpdatesLog -- simple version of :NeoBundleLog
         " :NeoBundleList          - list configured bundles
         " :NeoBundleInstall(!)    - install(update) bundles
         " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
