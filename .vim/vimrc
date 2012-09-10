@@ -1347,30 +1347,6 @@ filetype plugin indent on " required !
 syntax on
 " }}}
 
-" [ plugins manager ] {{{
-    " tplugin  {{{
-    " }}}
-
-    " Sauce  {{{ Dynamic vimrc manager for load different settings.
-        " a manager for multiple vimrc files, which can be used to
-        " load different settings for different environments.
-        " ---------------------
-        " Usage:
-        "   - :Sauce <name> -- Load a sauce
-        "   - :SauceNew <name> -- create a new sauce.
-        "   - :SauceEdit <name> -- Edit an existing sauce.
-        "   - :SauceCopy <name>
-        "   - :sauceDelete <name>
-        " This can be used as a simple project organiser tool.
-        " e.g. Load the MyProject sauce: :Sauce MyProject
-        let g:sauce_path = "~/.vimsauce"
-    " }}}
-
-    " VimLint {{{ a correctness and sanity checker of Vim configuration
-        " Usage: :VimLint
-    " }}}
-" }}}
-
 " [ Program ] {{{
 
     " [ syntax ] {{{
@@ -4237,6 +4213,27 @@ syntax on
 " }}}
 
 " [ Vim Extension ] {{{
+    " tplugin  {{{
+    " }}}
+
+    " Sauce  {{{ Dynamic vimrc manager for load different settings.
+        " a manager for multiple vimrc files, which can be used to
+        " load different settings for different environments.
+        " ---------------------
+        " Usage:
+        "   - :Sauce <name> -- Load a sauce
+        "   - :SauceNew <name> -- create a new sauce.
+        "   - :SauceEdit <name> -- Edit an existing sauce.
+        "   - :SauceCopy <name>
+        "   - :sauceDelete <name>
+        " This can be used as a simple project organiser tool.
+        " e.g. Load the MyProject sauce: :Sauce MyProject
+        let g:sauce_path = "~/.vimsauce"
+    " }}}
+
+    " VimLint {{{ a correctness and sanity checker of Vim configuration
+        " Usage: :VimLint
+    " }}}
 
     " [ register & operation ] {{{
         " YankRing
