@@ -104,6 +104,9 @@ USERNAME=pain
     # download
     pacman -S wget curl aria2
 
+    # Share
+    pacman -S sparklenshare
+
     # samba
     pacman -S samba
 
@@ -261,6 +264,33 @@ USERNAME=pain
     pacman -S asciidoc
 # }}}
 
+# Design {{{
+    # Image {{{
+    pacman -S gimp gimp-help-en gimp-help-zh_cn
+    pacman -S mypaint
+    # diagram
+    pacman -S calligra-flow calligra-krita calligra-l10n-zh_cn
+    # SVG
+    pacman -S inkscape
+    # RAW
+    pacman -S darktable
+    # Page Layout
+    pacman -S scribus
+    # }}}
+    # 3D Model & Animation & CAD {{{
+    pacman -S blender
+    # }}}
+    # Video {{{
+    # Editor
+    pacman -S pitivi
+    # }}}
+    # Audio {{{
+    pacman -S audacity
+    # DJ
+    pacman -S mixxx
+    # }}}
+# }}}
+
 # Input Method {{{
 pacman -S fcitx fcitx-qt
 # }}}
@@ -300,18 +330,8 @@ pacman -S moc
 
 # Picture {{{
 pacman -S feh sxiv
-# }}}
-
-# Design: Image & 3D & Animation {{{
-    # 3D & Animation
-    pacman -S blender
-
-    # Image
-    pacman -S imagemagick imagemagick-doc
-    pacman -S graphicsmagick
-    pacman -S gimp gimp-help-en gimp-help-zh_cn
-    pacman -S inkscape
-    pacman -S darktable
+pacman -S imagemagick imagemagick-doc
+pacman -S graphicsmagick
 # }}}
 
 # Browser {{{
