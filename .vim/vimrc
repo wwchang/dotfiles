@@ -1295,17 +1295,6 @@ endif
 
             " custom source, use your own repository {{{
             let g:vim_addon_manager.plugin_sources = {}
-            let g:vim_addon_manager.plugin_sources['viewdoc'] = {
-                        \ 'type': 'git',
-                        \ 'url': 'git://github.com/powerman/vim-plugin-viewdoc',
-                        \ 'branch': 'master',
-                        \ }
-                        " \ 'url': 'git://github.com/NagatoPain/vim-plugin-viewdoc',
-            let g:vim_addon_manager.plugin_sources['SingleCompile'] = {
-                        \ 'type': 'git',
-                        \ 'url': 'git://github.com/xuhdev/SingleCompile',
-                        \ 'branch': 'master',
-                        \ }
             let g:vim_addon_manager.plugin_sources['neocomplcache-clang'] = {
                         \ 'type': 'git',
                         \ 'url': 'git://github.com/Shougo/neocomplcache-clang',
@@ -1319,10 +1308,8 @@ endif
                         \ }
 
             let plugins = [
-                        \ 'viewdoc',
                         \ 'neocomplcache-clang',
                         \ 'gocode',
-                        \ 'SingleCompile',
                         \ ]
 
             call vam#ActivateAddons(plugins, {'auto_install': 1})
