@@ -1,6 +1,9 @@
-# shebang header env for python 2/3
-snippet #! "shebang env for python/3" !b
-#!/usr/bin/env python3
+
+# TODO reference python.snippets coming with UltiSnips.
+
+# shebang header env for python 2/3 {{{
+snippet #! "shebang env for python" b
+#!/usr/bin/env python
 # encoding: utf-8
 
 
@@ -13,7 +16,7 @@ def ${1:function name}(${2:parameters/*args/**dict}):
     ${VISUAL}$0
 endsnippet
 
-snippet decorator "@decorator" !b
+snippet decorator "@decorator" b
 @${1:decorator}${2:(${3:arguments})}
 ${4:@${5:second decorator}${6:(${7:arguments})}}
 def ${8:function}(${9:arguments}):
