@@ -1607,6 +1607,7 @@ syntax on
                 let g:neocomplcache_source_disable = {}
             endif
             " let g:neocomplcache_source_disable['dictionary_complete'] = 1
+            let g:neocomplcache_source_disable['clang_complete'] = 1
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
@@ -4038,6 +4039,7 @@ syntax on
 
         " clang_complete {{{ :h clang_complete.txt
             let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
+            " disable with 0 to solve neocomplcache problem
             let g:clang_complete_auto = 1 " auto complete after -> . ::
             let g:clang_complete_copen = 1 " 1: open quickfix window on error
             let g:clang_hl_errors = 1 " highlight warnings and errors
