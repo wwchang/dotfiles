@@ -1,11 +1,11 @@
 # reference:
 #   - http://www.w3.org/community/webed/wiki/HTML/Elements
-snippet comment "HTML comment" !
+snippet comment "HTML comment"
 <!-- ${1:comment} -->$0
 endsnippet
 
 # template {{{
-snippet skeleton.html5 "HTML5 skeleton" !b
+snippet skeleton.html5 "HTML5 skeleton" b
 <!DOCTYPE html>
 <html>
     <head>
@@ -28,14 +28,14 @@ endsnippet
 # }}}
 
 # DOCTYPE {{{
-snippet doct5 "<!DOCTYPE html>" !b
+snippet doct5 "<!DOCTYPE html>" b
 <!DOCTYPE html>
 $0
 endsnippet
 # }}}
 
 # root element {{{
-snippet html "<html> element" !b
+snippet html "<html> element" b
 <html>
     ${VISUAL}$0
 </html>
@@ -43,31 +43,31 @@ endsnippet
 # }}}
 
 # Document metadata {{{
-snippet head "<head> element" !b
+snippet head "<head> element" b
 <head>
     ${VISUAL}$0
 </head>
 endsnippet
 
-snippet title "<title> element" !b
+snippet title "<title> element" b
 <title>${VISUAL}$0</title>
 endsnippet
 
-snippet base "<base> element" !b
+snippet base "<base> element" b
 <base href="${1:URL}">
 $0
 endsnippet
 
-snippet link "<link ..> element" !b
+snippet link "<link ..> element" b
 <link rel="${1:alternate}" href="${2:path/to/file}"${3: hreflang/type/title}>
 endsnippet
 
-snippet meta "<meta ..> element" !b
+snippet meta "<meta ..> element" b
 <meta name="${1:author/description/keyword}" ${2:http-equiv/content/charset} />
 $0
 endsnippet
 
-snippet style "<style> element" !b
+snippet style "<style> element" b
 <style${1: media/type/scoped}>
     ${VISUAL}$0
 </style>
@@ -75,13 +75,13 @@ endsnippet
 # }}}
 
 # Scripting {{{
-snippet script "<script> element" !b
+snippet script "<script> element" b
 <script type="${1:text/application}/javascript"${2: src="${3:path/url}"}>
     ${VISUAL}$0
 </script>
 endsnippet
 
-snippet noscript "<noscript> element" !b
+snippet noscript "<noscript> element" b
 <noscript>
     ${VISUAL}$0
 </noscript>
@@ -89,72 +89,72 @@ endsnippet
 # }}}
 
 # Sections {{{
-snippet body "<body> element" !b
+snippet body "<body> element" b
 <body${1: attributes}>
     ${VISUAL}$0
 </body>
 endsnippet
 
-snippet section "<section> element" !b
+snippet section "<section> element" b
 <section>
     ${VISUAL}$0
 </section>
 endsnippet
 
-snippet nav "<nav> tag (navigation)" !b
+snippet nav "<nav> tag (navigation)" b
 <nav>
     ${VISUAL}$0
 </nav>
 endsnippet
 
-snippet article "<article> element" !b
+snippet article "<article> element" b
 <article>
     ${VISUAL}$0
 </article>
 endsnippet
 
-snippet aside "<aside> element" !b
+snippet aside "<aside> element" b
 <aside>
     ${VISUAL}$0
 </aside>
 endsnippet
 
-snippet h "<h1> element" !b
+snippet h "<h1> element" b
 <h${1:N}>${VISUAL}$0</h$1>
 endsnippet
 
-snippet hgroup "<hgroup> element" !b
+snippet hgroup "<hgroup> element" b
 <hgroup>
     ${1:<h${2:1}>${3:heading one}</h$2>}
     ${4:<h${5:2}>${6:heading two}</h$5>}
 </hgroup>
 endsnippet
 
-snippet header "<header> element" !b
+snippet header "<header> element" b
 <header>
     ${VISUAL}$0
 </header>
 endsnippet
 
-snippet footer "<footer> element" !b
+snippet footer "<footer> element" b
 <footer>
     ${VISUAL}$0
 </footer>
 endsnippet
 
-snippet content "<content> element" !b
+snippet content "<content> element" b
 <content>
     ${VISUAL}$0
 </content>
 endsnippet
 
-snippet mark "<mark> element" !b
+snippet mark "<mark> element" b
 <mark>
     ${VISUAL}$0
 </mark>
 endsnippet
 
-snippet address "<address> element" !b
+snippet address "<address> element" b
 <address>
     ${VISUAL}$0
 </address>
@@ -166,64 +166,64 @@ snippet p "<p> element" !i
 <p${1: class="${2:?}"}>${VISUAL}$0</p>
 endsnippet
 
-snippet hr "<hr> element" !b
+snippet hr "<hr> element" b
 <hr>
 $0
 endsnippet
 
-snippet pre "<pre> element" !b
+snippet pre "<pre> element" b
 <pre>
     ${VISUAL}$0
 </pre>
 endsnippet
 
-snippet blockquote "<blockquote> element" !b
+snippet blockquote "<blockquote> element" b
 <blockquote${1: cite="${2:URL}"}>
     ${VISUAL}$0
 </blockquote>
 endsnippet
 
-snippet ol "<ol> tag - ordered list" !b
+snippet ol "<ol> tag - ordered list" b
 <ol>
     ${VISUAL}$0
 </ol>
 endsnippet
 
-snippet ul "<ul> tag - un-ordered list" !b
+snippet ul "<ul> tag - un-ordered list" b
 <ul>
     ${VISUAL}$0
 </ul>
 endsnippet
 
-snippet li "<li> element" !b
+snippet li "<li> element" b
 <li${1: value="${2:VALUE}"}>${VISUAL}$0</li>
 endsnippet
 
-snippet dl "<dl> element" !b
+snippet dl "<dl> element" b
 <dl>
     ${VISUAL}$0
 </dl>
 endsnippet
 
-snippet dt "<dt> element" !b
+snippet dt "<dt> element" b
 <dt>${VISUAL}$0</dt>
 endsnippet
 
-snippet dd "<dd> element" !b
+snippet dd "<dd> element" b
 <dd>${VISUAL}$0</dd>
 endsnippet
 
-snippet figure "<figure> element" !b
+snippet figure "<figure> element" b
 <figure>
     ${VISUAL}$0
 </figure>
 endsnippet
 
-snippet figcaption "<figcaption> element" !b
+snippet figcaption "<figcaption> element" b
 <figcaption>${VISUAL}$0</figcaption>
 endsnippet
 
-snippet div "<div> element" !b
+snippet div "<div> element" b
 <div${1:class="${2:CLASS}"}>
     ${VISUAL}$0
 </div>
@@ -243,11 +243,11 @@ snippet br "<br> element" !i
 <br>$0
 endsnippet
 
-snippet cite "<cite> element" !
+snippet cite "<cite> element"
 <cite>${VISUAL}$0</cite>
 endsnippet
 
-snippet code "<code> element" !b
+snippet code "<code> element" b
 <code>
     ${VISUAL}$0
 </code>
@@ -257,23 +257,23 @@ snippet kbd "<kbd> tag - user keyboard input" !i
 <kbd>${VISUAL}$0</kbd>
 endsnippet
 
-snippet mark "<mark> element" !
+snippet mark "<mark> element"
 <mark>${VISUAL}$0</mark>
 endsnippet
 
-snippet q "<q> tag - quoted from other source." !
+snippet q "<q> tag - quoted from other source."
 <q>${VISUAL}$0</q>
 endsnippet
 
-snippet rp "<rp> tag - parentheses around ruby text" !
+snippet rp "<rp> tag - parentheses around ruby text"
 <rp>${VISUAL}$0</rp>
 endsnippet
 
-snippet rt "<rt> tag - marks ruby text" !
+snippet rt "<rt> tag - marks ruby text"
 <rt>${VISUAL}$0</rt>
 endsnippet
 
-snippet ruby "<ruby> tag - marked with ruby annotations" !
+snippet ruby "<ruby> tag - marked with ruby annotations"
 <ruby>${VISUAL}$0</ruby>
 endsnippet
 
@@ -281,11 +281,11 @@ snippet s "<s> tag - content are no longer accurate or relevant." !i
 <s>${VISUAL}$0</s>
 endsnippet
 
-snippet samp "<samp> tag - output from program or computer" !
+snippet samp "<samp> tag - output from program or computer"
 <samp>${VISUAL}$0</samp>
 endsnippet
 
-snippet span "<span> element" !b
+snippet span "<span> element" b
 <span>
     ${VISUAL}$0
 </span>
@@ -303,21 +303,21 @@ snippet sup "<sup> element" !i
 <sup>${VISUAL}$0</sup>
 endsnippet
 
-snippet time "<time> element" !
+snippet time "<time> element"
 <time${1: datetime="${2:1990-03-24}"}>${VISUAL}$0</time>
 endsnippet
 
-snippet var "<var> tag - variable" !
+snippet var "<var> tag - variable"
 <var>${VISUAL}$0</var>
 endsnippet
 # }}}
 
 # Edits {{{
-snippet ins "<ins> element" !
+snippet ins "<ins> element"
 <ins${1: cite="${2:VALUE}"${3: datetime="${4:VALUE}"}}>${VISUAL}$0</ins>
 endsnippet
 
-snippet del "<del> element" !
+snippet del "<del> element"
 <del${1: cite="${2:VALUE}"${3: datetime="${4:VALUE}"}}>${VISUAL}$0</del>
 endsnippet
 # }}}
@@ -327,73 +327,73 @@ snippet img "<img> tag - image" !i
 <img src="${1:path/to/file}"${2: alt/usemap/ismap/width/height}>
 endsnippet
 
-snippet iframe "<iframe> tag - nested browsing context" !b
+snippet iframe "<iframe> tag - nested browsing context" b
 <iframe${1: src="${2:path/to/file}"${3: name/sandbox/seamless/width/height}}>
     ${VISUAL}$0
 </iframe>
 endsnippet
 
-snippet embed "<embed> tag - integration for external app/interactive content" !b
+snippet embed "<embed> tag - integration for external app/interactive content" b
 <embed${1: src="${2:path/to/file}"${3: type/width/height}}>
     ${VISUAL}$0
 </embed>
 endsnippet
 
-snippet object "<object> tag - external source" !b
+snippet object "<object> tag - external source" b
 <object${1: type="${2:application/}"${3: data/name/usemap/form/width/height}}>
     ${VISUAL}$0
 </object>
 endsnippet
 
-snippet param "<param> tag - define parameters for plugins - object elements" !b
+snippet param "<param> tag - define parameters for plugins - object elements" b
 <param${1: value="${2:VALUE}"${3: name}}>
     ${VISUAL}$0
 </param>
 endsnippet
 
-snippet video "<video> element" !b
+snippet video "<video> element" b
 <video${1: src="${2:path/to/file}"${3: autoplay/preload/controls/height/width}}>
     ${VISUAL}$0
 </video>
 endsnippet
 
-snippet audio "<audio> element" !b
+snippet audio "<audio> element" b
 <audio${1: src="${2:path/to/file}"${2: autoplay/preload/controls/loop/mediagroup}}>
     ${VISUAL}$0
 </audio>
 endsnippet
 
-snippet source "<source> element" !b
+snippet source "<source> element" b
 <source${1: src="${2:path/to/file}"${3: type/media}}>
 endsnippet
 
-snippet track "<track> element" !b
+snippet track "<track> element" b
 <track${1: src="${2:path/to/file}"${3: kind/charset/srclang/label}}>
 endsnippet
 
-snippet canvas "<canvas> element" !b
+snippet canvas "<canvas> element" b
 <canvas${1: id="${2:ID}"${3: height/width}}>
     ${VISUAL}$0
 </canvas>
 endsnippet
 
-snippet map "<map> element" !b
+snippet map "<map> element" b
 <map${1: src="${2:path/to/file}"${3: name}}>
     ${VISUAL}$0
 </map>
 endsnippet
 
-snippet area "<area> element" !b
+snippet area "<area> element" b
 <area${1: shape="${2:SHAPE}"${3: coords/href/target/rel/hreflang/media/type}}>
 endsnippet
 
-snippet math "<math> element" !b
+snippet math "<math> element" b
 <math>
     ${VISUAL}$0
 </math>
 endsnippet
 
-snippet svg "<svg> element" !b
+snippet svg "<svg> element" b
 <svg${1: width="${2:WIDTH}"${3: height="${4:HEIGHT}"}}>
     ${VISUAL}$0
 </svg>
@@ -401,75 +401,75 @@ endsnippet
 # }}}
 
 # Tables {{{
-snippet table "<table> element" !b
+snippet table "<table> element" b
 <table${1: summary="${2:SUMMARY}"}>
     ${VISUAL}$0
 </table>
 endsnippet
 
-snippet caption "<caption> element" !b
+snippet caption "<caption> element" b
 <caption>
     ${VISUAL}$0
 </caption>
 endsnippet
 
-snippet colgroup "<colgroup> element" !b
+snippet colgroup "<colgroup> element" b
 <colgroup${1: span="${2:non-negative integer}"${3: style/..}}>
     ${VISUAL}$0
 </colgroup>
 endsnippet
 
-snippet col "<col> element" !
+snippet col "<col> element"
 <col${1: span="${2:non-negative integer}"}>${VISUAL}$0</col>
 endsnippet
 
-snippet tbody "<tbody> element" !b
+snippet tbody "<tbody> element" b
 <tbody>
     ${VISUAL}$0
 </tbody>
 endsnippet
 
-snippet thead "<thead> element" !b
+snippet thead "<thead> element" b
 <thead>
     ${VISUAL}$0
 </thead>
 endsnippet
 
-snippet tfoot "<tfoot> element" !b
+snippet tfoot "<tfoot> element" b
 <tfoot>
     ${VISUAL}$0
 </tfoot>
 endsnippet
 
-snippet tr "<tr> element" !b
+snippet tr "<tr> element" b
 <tr>
     ${VISUAL}$0
 </tr>
 endsnippet
 
-snippet td "<td> element" !
+snippet td "<td> element"
 <td${1: colspan/rowspan/headers}>${VISUAL}$0</td>
 endsnippet
 
-snippet th "<th> element" !
+snippet th "<th> element"
 <th${1: colspan/rowspan/headers/scope}>${VISUAL}$0</th>
 endsnippet
 # }}}
 
 # Forms {{{
-snippet form "<form> element" !b
+snippet form "<form> element" b
 <form${1:method="${2:post/get}"${3: action="${4:ACTION}"${5: autocomplete/name/target}}}>
     ${VISUAL}$0
 </form>
 endsnippet
 
-snippet fieldset "<fieldset> element" !b
+snippet fieldset "<fieldset> element" b
 <fieldset${1: form="${2:FORM}"${3: name/disabled}}>
     ${VISUAL}$0
 </fieldset>
 endsnippet
 
-snippet legend "<legend> element" !
+snippet legend "<legend> element"
 <legend>${VISUAL}$0</legend>
 endsnippet
 
@@ -477,73 +477,73 @@ snippet label "<label> element" !i
 <label${1: form="${2:FORM}"${3: for="${4:STRING}"}}>${VISUAL}$0</label>
 endsnippet
 
-snippet input "<input> element" !
+snippet input "<input> element"
 <input${1: type="${2:TYPE}"${3: id/name}}>
 endsnippet
 
-snippet button "<button> element" !
+snippet button "<button> element"
 <button${1: type="${2:TYPE}"${3: value="${4:VALUE}"}}>${VISUAL}$0</button>
 endsnippet
 
-snippet select "<select> element" !b
+snippet select "<select> element" b
 <select${1: name="${2:NAME}"${3: id="${4:ID}"}}>
     ${VISUAL}$0
 </select>
 endsnippet
 
-snippet datalist "<datalist> element" !b
+snippet datalist "<datalist> element" b
 <datalist${1: id="${2:ID}"}>
     ${VISUAL}$0
 </datalist>
 endsnippet
 
-snippet optgroup "<optgroup> element" !b
+snippet optgroup "<optgroup> element" b
 <optgroup${1: label="${2:LABEL}"${3: disabled=boolean}}>
     ${VISUAL}$0
 </optgroup>
 endsnippet
 
-snippet option "<option> element" !b
+snippet option "<option> element" b
 <option${1: value="${2:VALUE}"${3: label/selected/disabled}}>${VISUAL}$0</option>
 endsnippet
 
-snippet textarea "<textarea> element" !
+snippet textarea "<textarea> element"
 <textarea${1: name/autofocus/required/disabled/placeholder/cols/rows/wrap}></textarea>
 endsnippet
 
-snippet keygen "<keygen> element" !
+snippet keygen "<keygen> element"
 <keygen${1: name="${2:NAME}"${3: keytype/challenge/form/autofocus/disabled}}>
 endsnippet
 
-snippet output "<output> element" !
+snippet output "<output> element"
 <output${1: name="${2:NAME}"${3: form/for}}>${VISUAL}$0</output>
 endsnippet
 
-snippet progress "<progress> element" !
+snippet progress "<progress> element"
 <progress${1: value/max}>${VISUAL}$0</progress>
 endsnippet
 
-snippet meter "<meter> element" !
+snippet meter "<meter> element"
 <meter${1: value/min/max/low/high/optimum}>${VISUAL}$0</meter>
 endsnippet
 # }}}
 
 # Interactive {{{
-snippet details "<details> element" !b
+snippet details "<details> element" b
 <details${1: open=boolean}>
     ${VISUAL}$0
 </details>
 endsnippet
 
-snippet summary "<summary> element" !
+snippet summary "<summary> element"
 <summary>${VISUAL}$0</summary>
 endsnippet
 
-snippet command "<command> element" !
+snippet command "<command> element"
 <command${1: type="${2:TYPE}"${3: label/icon/checked/disabled/radiogroup}}>
 endsnippet
 
-snippet menu "<menu> element" !b
+snippet menu "<menu> element" b
 <menu${1: type="${2:TYPE}"${3: label="${4:LABEL}"}}>
     ${VISUAL}$0
 </menu>

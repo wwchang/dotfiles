@@ -844,7 +844,7 @@ endif
 " you can call function with ":source file.vim" then ":call"
 
     " [ execute mode ] {{{
-        " [ sh / py / pl ] {{{
+        " [ sh / rb / py / pl ] {{{
             function! ScriptExecute()
                 :!chmod u+x %
                 :w
@@ -853,9 +853,9 @@ endif
             augroup ScriptExecutePermission
                 autocmd!
                 autocmd BufWritePost *.sh :call ScriptExecute()
-                autocmd BufWritePost *.rb :call ScriptExecute()
-                autocmd BufWritePost *.py :call ScriptExecute()
-                autocmd BufWritePost *.pl :call ScriptExecute()
+                " autocmd BufWritePost *.rb :call ScriptExecute()
+                " autocmd BufWritePost *.py :call ScriptExecute()
+                " autocmd BufWritePost *.pl :call ScriptExecute()
             augroup END
         " }}}
 
@@ -1016,6 +1016,8 @@ endif
         " :NeoBundleUpdate
         " :NeoBundleInstall or :Unite neobundle/install
         " :Unite neobundle/search
+        " :NeoBundleLog -- git updates commit messages
+        " :NeoBundleUpdatesLog -- simple version of :NeoBundleLog
         " :NeoBundleList          - list configured bundles
         " :NeoBundleInstall(!)    - install(update) bundles
         " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
@@ -1042,14 +1044,6 @@ endif
             set runtimepath+=~/.vim/bundle/neobundle/
         endif
         call neobundle#rc(expand('~/.vim/bundle/'))
-
-        " [ options ] {{{
-        let g:neobundle_default_site = "github"
-        let g:neobundle_log_filename = "" " empty to disable output to log
-        let g:neobundle_default_git_protocol = "git"
-        let g:neobundle_default_hg_protocol = "https"
-        let g:unite_source_neobundle_install_max_processes = "5"
-        " }}}
 
         " [ bundles ] {{{
         " examples {{{
@@ -1111,14 +1105,19 @@ endif
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
         NeoBundle 'quickfixsigns'
-        NeoBundle 'quickfixstatus.vim'
+        NeoBundle 'kshenoy/vim-signature'
+        " NeoBundle 'quickfixstatus.vim'
         NeoBundle 'restore_view.vim'
         NeoBundle 'recover.vim'
         NeoBundle 'surround.vim'
         NeoBundle 'unimpaired.vim'
         " NeoBundle 'ConflictMotions'
+        " Complete
+        NeoBundle 'unicode.vim'
         " Pairs
-        NeoBundle 'Auto-Pairs'
+        NeoBundle 'Auto-Pairs', {
+                    \ 'directory': 'AutoPairs',
+                    \ }
         NeoBundle 'endwise.vim'
         " others
         NeoBundle 'Switch'
@@ -1133,7 +1132,9 @@ endif
         " program
         " help
         " NeoBundle 'viewdoc'
-        NeoBundle 'powerman/vim-plugin-viewdoc'
+        NeoBundle 'powerman/vim-plugin-viewdoc', {
+                    \ 'directory': 'viewdoc',
+                    \ }
         " snippets
         NeoBundle 'UltiSnips'
         " NeoBundle 'neocomplcache-snippets_complete'
@@ -1146,7 +1147,9 @@ endif
                     \ 'depends': ['DfrankUtil', 'vimprj'],
                     \ }
         " file manager
-        NeoBundle 'The-NERD-tree'
+        NeoBundle 'The-NERD-tree', {
+                    \ 'directory': 'NERDTree',
+                    \ }
         " compile & run
         NeoBundle 'SingleCompile'
         " syntax checker
@@ -1159,8 +1162,9 @@ endif
         NeoBundle 'VimRegEx.vim', {
                     \ 'depends': ['vsutil.vim'],
                     \ }
-        " syntax / indent
+        " syntax / indent / fold
         NeoBundle 'Indent-Guides'
+        NeoBundle 'vim-scripts/simplefold'
         " Tabular
         NeoBundle 'Tabular'
         " NeoBundle 'filter'
@@ -1173,17 +1177,21 @@ endif
         " NeoBundle 'TaskList.vim'
         " NeoBundle 'TaskMotions'
         " Ruby
-        NeoBundle 'ruby.vim'
+        NeoBundle 'vim-ruby/vim-ruby'
+        NeoBundle 'tpope/vim-rails'
         " NeoBundle 'rubycomplete.vim'
         " Python
         NeoBundle 'virtualenv.vim'
         NeoBundle 'pythoncomplete'
         " C / cpp
-        NeoBundle 'clang-complete'
-        NeoBundle 'Shougo/neocomplcache-clang'
+        NeoBundle 'Shougo/neocomplcache-clang', {
+                    \ 'depends': ['clang-complete',],
+                    \ }
         " NeoBundle 'OmniCppComplete'
         " Go
-        NeoBundle 'undx/vim-gocode'
+        NeoBundle 'undx/vim-gocode', {
+                    \ 'directory': 'gocode',
+                    \ }
         " HTML
         NeoBundle 'ZenCoding.vim'
         NeoBundle 'MatchTag'
@@ -1206,7 +1214,10 @@ endif
         " Wiki / Note
         NeoBundle 'vimwiki'
         " Paste
-        NeoBundle 'Gist.vim'
+        NeoBundle 'Gist.vim', {
+                    \ 'directory': 'Gist',
+                    \ 'depends': ['WebAPI.vim',],
+                    \ }
         " Color
         NeoBundle 'colorv.vim'
         " others
@@ -1286,17 +1297,6 @@ endif
 
             " custom source, use your own repository {{{
             let g:vim_addon_manager.plugin_sources = {}
-            let g:vim_addon_manager.plugin_sources['viewdoc'] = {
-                        \ 'type': 'git',
-                        \ 'url': 'git://github.com/powerman/vim-plugin-viewdoc',
-                        \ 'branch': 'master',
-                        \ }
-                        " \ 'url': 'git://github.com/NagatoPain/vim-plugin-viewdoc',
-            let g:vim_addon_manager.plugin_sources['SingleCompile'] = {
-                        \ 'type': 'git',
-                        \ 'url': 'git://github.com/xuhdev/SingleCompile',
-                        \ 'branch': 'master',
-                        \ }
             let g:vim_addon_manager.plugin_sources['neocomplcache-clang'] = {
                         \ 'type': 'git',
                         \ 'url': 'git://github.com/Shougo/neocomplcache-clang',
@@ -1310,10 +1310,8 @@ endif
                         \ }
 
             let plugins = [
-                        \ 'viewdoc',
                         \ 'neocomplcache-clang',
                         \ 'gocode',
-                        \ 'SingleCompile',
                         \ ]
 
             call vam#ActivateAddons(plugins, {'auto_install': 1})
@@ -1336,30 +1334,6 @@ endif
 
 filetype plugin indent on " required !
 syntax on
-" }}}
-
-" [ plugins manager ] {{{
-    " tplugin  {{{
-    " }}}
-
-    " Sauce  {{{ Dynamic vimrc manager for load different settings.
-        " a manager for multiple vimrc files, which can be used to
-        " load different settings for different environments.
-        " ---------------------
-        " Usage:
-        "   - :Sauce <name> -- Load a sauce
-        "   - :SauceNew <name> -- create a new sauce.
-        "   - :SauceEdit <name> -- Edit an existing sauce.
-        "   - :SauceCopy <name>
-        "   - :sauceDelete <name>
-        " This can be used as a simple project organiser tool.
-        " e.g. Load the MyProject sauce: :Sauce MyProject
-        let g:sauce_path = "~/.vimsauce"
-    " }}}
-
-    " VimLint {{{ a correctness and sanity checker of Vim configuration
-        " Usage: :VimLint
-    " }}}
 " }}}
 
 " [ Program ] {{{
@@ -1517,6 +1491,37 @@ syntax on
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+            " vim completefunc {{{
+            if !exists('g:neocomplcache_vim_completefuncs')
+                let g:neocomplcache_vim_completefuncs = {}
+            endif
+            " }}}
+            " omni functions {{{ set omni_functions will need to set omni_patterns too.
+            if !exists('g:neocomplcache_omni_functions')
+                let g:neocomplcache_omni_functions = {}
+            endif
+            " if the key is '_', used for all filetypes.
+            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
+            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " vim-ruby plugin
+            " FIXME this seems does not work with plugin vim-ruby 's omni complete <C-x><C-o>
+            if has('python3/dyn') || has('python3')
+                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
+            elseif has('python/dyn') || has('python')
+                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
+            endif
+            " TODO let neocomplcache work with gocode complete.
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
+            " clang compiler front / ctags / omni complete ==> C, cpp, Go
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
+            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
+            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
+            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
+            let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
+            " }}}
             " omni patterns {{{
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
@@ -1524,14 +1529,26 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
+            let g:neocomplcache_omni_patterns['ruby'] = '[^. \t]\.\w*'
             " FIXME
             " let g:neocomplcache_omni_patterns['coffee'] =
             "             \
             " }}}
-            " same filetypes {{{
-            if !exists('g:neocomplcache_same_filetype_lists')
-                let g:neocomplcache_same_filetype_lists = {}
+            " member patterns {{{
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
             endif
+            if !exists('g:neocomplcache_member_patterns')
+                let g:neocomplcache_member_patterns = {}
+            endif
+            " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            " }}}
+            " delimiter patterns {{{
+            if !exists('g:neocomplcache_delimiter_patterns')
+                let g:neocomplcache_delimiter_patterns = {}
+            endif
+            " }}}
+            " dictionary {{{
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
@@ -1539,6 +1556,77 @@ syntax on
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
+            " }}}
+            " ctags {{{
+            let g:neocomplcache_ctags_program = 'ctags'
+            if !exists('g:neocomplcache_ctags_arguments_list')
+                let g:neocomplcache_ctags_arguments_list = {}
+            endif
+            " let g:neocomplcache_ctags_arguments_list['python'] =
+            if !exists('g:neocomplcache_tags_filter_patterns')
+                let g:neocomplcache_tags_filter_patterns = {}
+            endif
+            " let g:neocomplcache_tags_filter_patterns['c'] = 'v:val.word !~ ''^[~_]'''
+            " }}}
+            " include: paths, exprs, patterns, functions {{{
+            if !exists('g:neocomplcache_include_paths')
+                let g:neocomplcache_include_paths = {}
+            endif
+            let g:neocomplcache_include_paths['c'] = '/usr/include'
+            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            if !exists('g:neocomplcache_include_patterns')
+                let g:neocomplcache_include_patterns = {}
+            endif
+            if !exists('g:neocomplcache_include_functions')
+                let g:neocomplcache_include_functions = {}
+            endif
+            let g:neocomplcache_include_max_processes = 25
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            if !exists('g:neocomplcache_filename_include_exts')
+                let g:neocomplcache_filename_include_exts = {}
+            endif
+            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            " }}}
+            " sources {{{
+            if !exists('g:neocomplcache_source_disable')
+                let g:neocomplcache_source_disable = {}
+            endif
+            " let g:neocomplcache_source_disable['dictionary_complete'] = 1
+            let g:neocomplcache_source_disable['clang_complete'] = 1
+            if !exists('g:neocomplcache_source_completion_length')
+                let g:neocomplcache_source_completion_length = {}
+            endif
+            let g:neocomplcache_source_completion_length['include_complete'] = 0
+            let g:neocomplcache_source_completion_length['member_complete'] = 0
+            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+            let g:neocomplcache_source_completion_length['filename_complete'] = 3
+            let g:neocomplcache_source_completion_length['buffer_complete'] = 3
+            let g:neocomplcache_source_completion_length['look'] = 3
+            " FIXME seems this if expression does not work.
+            let s:TextFileType = ['text', 'mail', 'markdown',]
+            if index(s:TextFileType, &filetype) >= 0
+                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
+            else
+                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
+            endif
+            " }}}
+            " same filetypes {{{
+            if !exists('g:neocomplcache_same_filetype_lists')
+                let g:neocomplcache_same_filetype_lists = {}
+            endif
+            " }}}
+            " composite/compound file type (only use one completion) {{{
+            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
+                let g:neocomplcache_ignore_composite_filetype_lists = {}
+            endif
+            " let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
+            " let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
             " }}}
             " context filetypes (one filetype in another filetype) {{{
             if !exists('g:neocomplcache_context_filetype_lists')
@@ -1598,114 +1686,7 @@ syntax on
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
             " }}}
-            " ctags {{{
-            let g:neocomplcache_ctags_program = 'ctags'
-            if !exists('g:neocomplcache_ctags_arguments_list')
-                let g:neocomplcache_ctags_arguments_list = {}
-            endif
-            " let g:neocomplcache_ctags_arguments_list['python'] =
-            if !exists('g:neocomplcache_tags_filter_patterns')
-                let g:neocomplcache_tags_filter_patterns = {}
-            endif
-            " let g:neocomplcache_tags_filter_patterns['c'] = 'v:val.word !~ ''^[~_]'''
-            " }}}
-            " include: paths, exprs, patterns, functions {{{
-            if !exists('g:neocomplcache_include_paths')
-                let g:neocomplcache_include_paths = {}
-            endif
-            let g:neocomplcache_include_paths['c'] = '/usr/include'
-            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
-            if !exists('g:neocomplcache_include_exprs')
-                let g:neocomplcache_include_exprs = {}
-            endif
-            if !exists('g:neocomplcache_include_patterns')
-                let g:neocomplcache_include_patterns = {}
-            endif
-            if !exists('g:neocomplcache_include_functions')
-                let g:neocomplcache_include_functions = {}
-            endif
-            let g:neocomplcache_include_max_processes = 25
-            if !exists('g:neocomplcache_include_exprs')
-                let g:neocomplcache_include_exprs = {}
-            endif
-            if !exists('g:neocomplcache_filename_include_exts')
-                let g:neocomplcache_filename_include_exts = {}
-            endif
-            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
-            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
-            " }}}
-            " member patterns {{{
-            if !exists('g:neocomplcache_member_prefix_patterns')
-                let g:neocomplcache_member_prefix_patterns = {}
-            endif
-            if !exists('g:neocomplcache_member_patterns')
-                let g:neocomplcache_member_patterns = {}
-            endif
-            " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
-            " }}}
-            " delimiter patterns {{{
-            if !exists('g:neocomplcache_delimiter_patterns')
-                let g:neocomplcache_delimiter_patterns = {}
-            endif
-            " }}}
-            " omni functions {{{
-            if !exists('g:neocomplcache_omni_functions')
-                let g:neocomplcache_omni_functions = {}
-            endif
-            " if the key is '_', used for all filetypes.
-            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            if has('python3/dyn') || has('python3')
-                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
-            elseif has('python/dyn') || has('python')
-                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
-            endif
-            " TODO let neocomplcache work with gocode complete.
-            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
-            " clang compiler front / ctags / omni complete ==> C, cpp, Go
-            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
-            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
-            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
-            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
-            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
-            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
-            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
-            let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
-            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
-            " }}}
-            " vim completefunc {{{
-            if !exists('g:neocomplcache_vim_completefuncs')
-                let g:neocomplcache_vim_completefuncs = {}
-            endif
-            " }}}
-            " sources {{{
-            if !exists('g:neocomplcache_source_disable')
-                let g:neocomplcache_source_disable = {}
-            endif
-            " let g:neocomplcache_source_disable['dictionary_complete'] = 1
-            if !exists('g:neocomplcache_source_completion_length')
-                let g:neocomplcache_source_completion_length = {}
-            endif
-            let g:neocomplcache_source_completion_length['include_complete'] = 0
-            let g:neocomplcache_source_completion_length['member_complete'] = 0
-            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
-            let g:neocomplcache_source_completion_length['filename_complete'] = 3
-            let g:neocomplcache_source_completion_length['buffer_complete'] = 3
-            let g:neocomplcache_source_completion_length['look'] = 3
-            " FIXME seems this if expression does not work.
-            let s:TextFileType = ['text', 'mail', 'markdown',]
-            if index(s:TextFileType, &filetype) >= 0
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
-            else
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
-            endif
-            " }}}
-            " composite/compound file type (only use one completion) {{{
-            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
-                let g:neocomplcache_ignore_composite_filetype_lists = {}
-            endif
-            " let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
-            " let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
-            " }}}
+
             " }}}
 
             " [ complete candidates: priority ] {{{
@@ -3277,28 +3258,6 @@ syntax on
 
     " [ project ] {{{ different settings for every projects
         " vimprj {{{ managing options for different projects
-            " Usage: :VimprjInfo
-            let g:vimprj_recurseUpCount = 10 " recursive directory check
-            let g:vimprj_dirNameForSearch = '.vimprj' " specific search directory
-            let g:vimprj_changeCurDirIfVimprjFound = 1
-
-            " Example:
-            " call SetMainDefaults BEFORE sourcing all *.vim files from .vimprj/
-            function! <SID>SetMainDefaults()
-                " your default options goes here!
-                set tabstop=4
-                set shiftwidth=4
-                set expandtab
-            endfunction
-            call <SID>SetMainDefaults()
-
-            " initialize vimprj plugin
-            call vimprj#init()
-
-            " define a hook
-            function! g:vimprj#dHooks['SetDefaultOptions']['main_options'](dParams)
-                call <SID>SetMainDefaults()
-            endfunction
         " }}}
     " }}}
 " }}}
@@ -4071,6 +4030,7 @@ syntax on
 
         " clang_complete {{{ :h clang_complete.txt
             let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
+            " disable with 0 to solve neocomplcache problem
             let g:clang_complete_auto = 1 " auto complete after -> . ::
             let g:clang_complete_copen = 1 " 1: open quickfix window on error
             let g:clang_hl_errors = 1 " highlight warnings and errors
@@ -4246,6 +4206,27 @@ syntax on
 " }}}
 
 " [ Vim Extension ] {{{
+    " tplugin  {{{
+    " }}}
+
+    " Sauce  {{{ Dynamic vimrc manager for load different settings.
+        " a manager for multiple vimrc files, which can be used to
+        " load different settings for different environments.
+        " ---------------------
+        " Usage:
+        "   - :Sauce <name> -- Load a sauce
+        "   - :SauceNew <name> -- create a new sauce.
+        "   - :SauceEdit <name> -- Edit an existing sauce.
+        "   - :SauceCopy <name>
+        "   - :sauceDelete <name>
+        " This can be used as a simple project organiser tool.
+        " e.g. Load the MyProject sauce: :Sauce MyProject
+        let g:sauce_path = "~/.vimsauce"
+    " }}}
+
+    " VimLint {{{ a correctness and sanity checker of Vim configuration
+        " Usage: :VimLint
+    " }}}
 
     " [ register & operation ] {{{
         " YankRing
@@ -4288,9 +4269,24 @@ syntax on
 
         " vim-signature {{{ toggle, display and navigate marks.
             " Usage:
-            "   - <Leader>ma -- toggle the mark a.
-            "   - <Leader>m, -- place the next available mark.
-            "   - <Leader>m<Space> -- delete all marks.
+            " mark
+            "   - ma -- toggle the mark a.
+            "   - m<Space> -- delete all marks.
+            "   - m, -- place the next available mark.
+            "   - ]` -- Jump to next mark
+            "   - [` -- Jump to prev mark
+            "   - ]' -- Jump to start of next line containing a mark
+            "   - [' -- Jump to start of prev line containing a mark
+            "   - `] -- Jump by alpha order to next mark
+            "   - `[ -- Jump by alpha order to prev mark
+            "   - '] -- Jump by alpha order to start of next line containing a mark
+            "   - '[ -- Jump by alpha order to start of prev line containing a mark
+            " marker
+            "   - m[0-9] -- toggle the corresponding marker!@#$%^&*()
+            "   - m<S-[0-9]> -- Remove all markers of the same type
+            "   - ]=    -- Jump to next line having same marker
+            "   - ]-    -- Jump to prev line having same marker
+            "   - m<Backspace> -- Remove all markers.
             let g:SignatureDefaultMappings = 1
             " let g:SignatureIncludeMarks =
             let g:SignatureWrapJumps = 1
@@ -4618,10 +4614,11 @@ syntax on
     " }}}
 
     " [ unicode & symble & sign ] {{{
-        " unicode  {{{ A Completion function for Unicode glyphs
+        " unicode.vim  {{{ A Completion function for Unicode glyphs
             " e.g. type "AE", <C-X><C-U>, / <C-X><C-G>
             " <Leader>un -- swaps between unicode name and glyphs function complete.
             " Functions :
+                " setlocal omnifunc=unicode#CompleteUnicode
                 " :EnableUnicodeCompletion
                 " :DisableUnicodeCompletion
                 " :UnicodeName

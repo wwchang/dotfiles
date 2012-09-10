@@ -1,28 +1,28 @@
-snippet h1 "header 1" !b
+snippet h1 "header 1" b
 # ${1:${VISUAL:header 1}} #
 $0
 endsnippet
-snippet h2 "header 2" !b
+snippet h2 "header 2" b
 ## ${1:${VISUAL:header 2}} ##
 $0
 endsnippet
-snippet h3 "header 3" !b
+snippet h3 "header 3" b
 ### ${1:${VISUAL:header 3}} ###
 $0
 endsnippet
-snippet h4 "header 4" !b
+snippet h4 "header 4" b
 #### ${1:${VISUAL:header 4}} ####
 $0
 endsnippet
 
-snippet link "markdown link" !
+snippet link "markdown link"
 [${1:${VISUAL:Text}}](${3:http://${2:www.url.com}}${4/.+/ "/}${4:opt title}${4/.+/"/})$0
 endsnippet
-snippet l "simple markdown link" !
+snippet l "simple markdown link"
 <${1:link}>$0
 endsnippet
 
-snippet img "image link" !
+snippet img "image link"
 ![${1:${VISUAL:pic alt}}](${2:path}${3/.+/ "/}${3:opt title}${3/.+/"/})$0
 endsnippet
 
@@ -34,20 +34,20 @@ snippet id "simple link ID style"
 [${2:${VISUAL:Text}}][] $0
 [$2]: ${1:URL/path}
 endsnippet
-snippet id "image id link" !b
+snippet id "image id link" b
 ![${5:${VISUAL:Text}}][${1:ID: number/string}] $0
 [$1]: ${2:URL/path}${3/.+/ "/}${3:opt title}${3/.+/"/}
 endsnippet
 
-snippet block "markdown blockquote" !b
+snippet block "markdown blockquote" b
 > ${1:${VISUAL:blockquote paragraph}}
 endsnippet
 
-snippet ul "unordered list" !b
+snippet ul "unordered list" b
 ${1:*/+/-} ${2:${VISUAL:list item}}
 endsnippet
 
-snippet ol "ordered list" !b
+snippet ol "ordered list" b
 ${1:1/2/3} ${2:${VISUAL:list item}}
 endsnippet
 
@@ -68,30 +68,30 @@ snippet rule "horizontal rules * * *" b
 $0
 endsnippet
 
-snippet code "code block" !b
+snippet code "code block" b
     ${1:${VISUAL:code}}
 endsnippet
-snippet c "code block" !
+snippet c "code block"
 \`${1:${VISUAL:code}}\`
 endsnippet
 
-snippet em "emphasis text" !
+snippet em "emphasis text"
 *${1:${VISUAL:emphasis}}*
 endsnippet
-snippet st "strong text" !
+snippet st "strong text"
 **${1:${VISUAL:strong}}**
 endsnippet
 
-snippet copy "copyright (markdown)" !
+snippet copy "copyright (markdown)"
 &copy;
 endsnippet
-snippet & "markdown transformed &" !
+snippet & "markdown transformed &"
 &amp;
 endsnippet
-snippet < "markdown transformed <" !
+snippet < "markdown transformed <"
 &lt;
 endsnippet
-snippet * "escape *" !
+snippet * "escape *"
 \*
 endsnippet
 
