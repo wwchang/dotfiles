@@ -1176,7 +1176,8 @@ endif
         " NeoBundle 'TaskList.vim'
         " NeoBundle 'TaskMotions'
         " Ruby
-        NeoBundle 'ruby.vim'
+        NeoBundle 'vim-ruby/vim-ruby'
+        NeoBundle 'tpope/vim-rails'
         " NeoBundle 'rubycomplete.vim'
         " Python
         NeoBundle 'virtualenv.vim'
