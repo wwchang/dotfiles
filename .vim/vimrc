@@ -1162,8 +1162,9 @@ endif
         NeoBundle 'VimRegEx.vim', {
                     \ 'depends': ['vsutil.vim'],
                     \ }
-        " syntax / indent
+        " syntax / indent / fold
         NeoBundle 'Indent-Guides'
+        NeoBundle 'vim-scripts/simplefold'
         " Tabular
         NeoBundle 'Tabular'
         " NeoBundle 'filter'
