@@ -1526,6 +1526,36 @@ syntax on
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+            " vim completefunc {{{
+            if !exists('g:neocomplcache_vim_completefuncs')
+                let g:neocomplcache_vim_completefuncs = {}
+            endif
+            " }}}
+            " omni functions {{{
+            if !exists('g:neocomplcache_omni_functions')
+                let g:neocomplcache_omni_functions = {}
+            endif
+            " if the key is '_', used for all filetypes.
+            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
+            " FIXME this seems does not work with plugin vim-ruby 's omni complete <C-x><C-o>
+            if has('python3/dyn') || has('python3')
+                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
+            elseif has('python/dyn') || has('python')
+                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
+            endif
+            " TODO let neocomplcache work with gocode complete.
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
+            " clang compiler front / ctags / omni complete ==> C, cpp, Go
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
+            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
+            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
+            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
+            let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
+            " }}}
             " omni patterns {{{
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
@@ -1537,10 +1567,21 @@ syntax on
             " let g:neocomplcache_omni_patterns['coffee'] =
             "             \
             " }}}
-            " same filetypes {{{
-            if !exists('g:neocomplcache_same_filetype_lists')
-                let g:neocomplcache_same_filetype_lists = {}
+            " member patterns {{{
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
             endif
+            if !exists('g:neocomplcache_member_patterns')
+                let g:neocomplcache_member_patterns = {}
+            endif
+            " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            " }}}
+            " delimiter patterns {{{
+            if !exists('g:neocomplcache_delimiter_patterns')
+                let g:neocomplcache_delimiter_patterns = {}
+            endif
+            " }}}
+            " dictionary {{{
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
@@ -1548,6 +1589,76 @@ syntax on
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
+            " }}}
+            " ctags {{{
+            let g:neocomplcache_ctags_program = 'ctags'
+            if !exists('g:neocomplcache_ctags_arguments_list')
+                let g:neocomplcache_ctags_arguments_list = {}
+            endif
+            " let g:neocomplcache_ctags_arguments_list['python'] =
+            if !exists('g:neocomplcache_tags_filter_patterns')
+                let g:neocomplcache_tags_filter_patterns = {}
+            endif
+            " let g:neocomplcache_tags_filter_patterns['c'] = 'v:val.word !~ ''^[~_]'''
+            " }}}
+            " include: paths, exprs, patterns, functions {{{
+            if !exists('g:neocomplcache_include_paths')
+                let g:neocomplcache_include_paths = {}
+            endif
+            let g:neocomplcache_include_paths['c'] = '/usr/include'
+            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            if !exists('g:neocomplcache_include_patterns')
+                let g:neocomplcache_include_patterns = {}
+            endif
+            if !exists('g:neocomplcache_include_functions')
+                let g:neocomplcache_include_functions = {}
+            endif
+            let g:neocomplcache_include_max_processes = 25
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            if !exists('g:neocomplcache_filename_include_exts')
+                let g:neocomplcache_filename_include_exts = {}
+            endif
+            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            " }}}
+            " sources {{{
+            if !exists('g:neocomplcache_source_disable')
+                let g:neocomplcache_source_disable = {}
+            endif
+            " let g:neocomplcache_source_disable['dictionary_complete'] = 1
+            if !exists('g:neocomplcache_source_completion_length')
+                let g:neocomplcache_source_completion_length = {}
+            endif
+            let g:neocomplcache_source_completion_length['include_complete'] = 0
+            let g:neocomplcache_source_completion_length['member_complete'] = 0
+            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+            let g:neocomplcache_source_completion_length['filename_complete'] = 3
+            let g:neocomplcache_source_completion_length['buffer_complete'] = 3
+            let g:neocomplcache_source_completion_length['look'] = 3
+            " FIXME seems this if expression does not work.
+            let s:TextFileType = ['text', 'mail', 'markdown',]
+            if index(s:TextFileType, &filetype) >= 0
+                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
+            else
+                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
+            endif
+            " }}}
+            " same filetypes {{{
+            if !exists('g:neocomplcache_same_filetype_lists')
+                let g:neocomplcache_same_filetype_lists = {}
+            endif
+            " }}}
+            " composite/compound file type (only use one completion) {{{
+            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
+                let g:neocomplcache_ignore_composite_filetype_lists = {}
+            endif
+            " let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
+            " let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
             " }}}
             " context filetypes (one filetype in another filetype) {{{
             if !exists('g:neocomplcache_context_filetype_lists')
@@ -1607,114 +1718,7 @@ syntax on
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
             " }}}
-            " ctags {{{
-            let g:neocomplcache_ctags_program = 'ctags'
-            if !exists('g:neocomplcache_ctags_arguments_list')
-                let g:neocomplcache_ctags_arguments_list = {}
-            endif
-            " let g:neocomplcache_ctags_arguments_list['python'] =
-            if !exists('g:neocomplcache_tags_filter_patterns')
-                let g:neocomplcache_tags_filter_patterns = {}
-            endif
-            " let g:neocomplcache_tags_filter_patterns['c'] = 'v:val.word !~ ''^[~_]'''
-            " }}}
-            " include: paths, exprs, patterns, functions {{{
-            if !exists('g:neocomplcache_include_paths')
-                let g:neocomplcache_include_paths = {}
-            endif
-            let g:neocomplcache_include_paths['c'] = '/usr/include'
-            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
-            if !exists('g:neocomplcache_include_exprs')
-                let g:neocomplcache_include_exprs = {}
-            endif
-            if !exists('g:neocomplcache_include_patterns')
-                let g:neocomplcache_include_patterns = {}
-            endif
-            if !exists('g:neocomplcache_include_functions')
-                let g:neocomplcache_include_functions = {}
-            endif
-            let g:neocomplcache_include_max_processes = 25
-            if !exists('g:neocomplcache_include_exprs')
-                let g:neocomplcache_include_exprs = {}
-            endif
-            if !exists('g:neocomplcache_filename_include_exts')
-                let g:neocomplcache_filename_include_exts = {}
-            endif
-            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
-            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
-            " }}}
-            " member patterns {{{
-            if !exists('g:neocomplcache_member_prefix_patterns')
-                let g:neocomplcache_member_prefix_patterns = {}
-            endif
-            if !exists('g:neocomplcache_member_patterns')
-                let g:neocomplcache_member_patterns = {}
-            endif
-            " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
-            " }}}
-            " delimiter patterns {{{
-            if !exists('g:neocomplcache_delimiter_patterns')
-                let g:neocomplcache_delimiter_patterns = {}
-            endif
-            " }}}
-            " omni functions {{{
-            if !exists('g:neocomplcache_omni_functions')
-                let g:neocomplcache_omni_functions = {}
-            endif
-            " if the key is '_', used for all filetypes.
-            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            if has('python3/dyn') || has('python3')
-                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
-            elseif has('python/dyn') || has('python')
-                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
-            endif
-            " TODO let neocomplcache work with gocode complete.
-            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
-            " clang compiler front / ctags / omni complete ==> C, cpp, Go
-            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
-            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
-            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
-            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
-            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
-            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
-            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
-            let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
-            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
-            " }}}
-            " vim completefunc {{{
-            if !exists('g:neocomplcache_vim_completefuncs')
-                let g:neocomplcache_vim_completefuncs = {}
-            endif
-            " }}}
-            " sources {{{
-            if !exists('g:neocomplcache_source_disable')
-                let g:neocomplcache_source_disable = {}
-            endif
-            " let g:neocomplcache_source_disable['dictionary_complete'] = 1
-            if !exists('g:neocomplcache_source_completion_length')
-                let g:neocomplcache_source_completion_length = {}
-            endif
-            let g:neocomplcache_source_completion_length['include_complete'] = 0
-            let g:neocomplcache_source_completion_length['member_complete'] = 0
-            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
-            let g:neocomplcache_source_completion_length['filename_complete'] = 3
-            let g:neocomplcache_source_completion_length['buffer_complete'] = 3
-            let g:neocomplcache_source_completion_length['look'] = 3
-            " FIXME seems this if expression does not work.
-            let s:TextFileType = ['text', 'mail', 'markdown',]
-            if index(s:TextFileType, &filetype) >= 0
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
-            else
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
-            endif
-            " }}}
-            " composite/compound file type (only use one completion) {{{
-            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
-                let g:neocomplcache_ignore_composite_filetype_lists = {}
-            endif
-            " let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
-            " let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
-            " }}}
+
             " }}}
 
             " [ complete candidates: priority ] {{{
