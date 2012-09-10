@@ -1496,12 +1496,13 @@ syntax on
                 let g:neocomplcache_vim_completefuncs = {}
             endif
             " }}}
-            " omni functions {{{
+            " omni functions {{{ set omni_functions will need to set omni_patterns too.
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
+            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " vim-ruby plugin
             " FIXME this seems does not work with plugin vim-ruby 's omni complete <C-x><C-o>
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
@@ -1528,6 +1529,7 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
+            let g:neocomplcache_omni_patterns['ruby'] = '[^. \t]\.\w*'
             " FIXME
             " let g:neocomplcache_omni_patterns['coffee'] =
             "             \
