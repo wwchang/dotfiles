@@ -36,6 +36,7 @@ mailboxes =Important
 mailboxes =Vim
 mailboxes =Vim/help
 mailboxes =Vim/dev
+mailboxes =Vim/vim-ruby
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
 
@@ -64,17 +65,6 @@ mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
 # mailboxes =Python/peps
 
-mailboxes =Guile
-mailboxes =Guile/user
-mailboxes =Guile/devel
-mailboxes =Guile/sources
-# mailboxes =Guile/bug
-
-mailboxes =Lisp
-mailboxes =Lisp/Lisp
-mailboxes =Lisp/comp-lang
-mailboxes =Lisp/cn
-
 mailboxes =Go
 mailboxes =Go/go-nuts
 mailboxes =Go/go-china
@@ -82,26 +72,21 @@ mailboxes =Go/go-dev
 
 mailboxes =C
 
-mailboxes =Clojure
+mailboxes =Lisp
+mailboxes =Lisp/Lisp
+mailboxes =Lisp/comp-lang
+mailboxes =Lisp/cn
+
+mailboxes =Guile
+mailboxes =Guile/user
+mailboxes =Guile/devel
+mailboxes =Guile/sources
+# mailboxes =Guile/bug
 
 mailboxes =Web
 mailboxes =Web/whatwg
 mailboxes =Web/firebug
 mailboxes =Web/jplayer
-
-mailboxes =Dart
-mailboxes =Dart/misc
-
-mailboxes =PHP
-mailboxes =PHP/general/
-# mailboxes =PHP/comp-lang/
-# mailboxes =PHP/alt-comp-lang/
-
-mailboxes =Perl
-
-mailboxes =Zsh
-mailboxes =Zsh/users
-mailboxes =Zsh/workers
 
 mailboxes =Maemo
 mailboxes =Maemo/users
@@ -117,6 +102,22 @@ mailboxes =Arch/pacman-dev
 mailboxes =Arch/aur-general
 mailboxes =Arch/archlinux-cn
 mailboxes =Arch/releng
+
+mailboxes =Clojure
+
+mailboxes =Dart
+mailboxes =Dart/misc
+
+mailboxes =PHP
+mailboxes =PHP/general/
+# mailboxes =PHP/comp-lang/
+# mailboxes =PHP/alt-comp-lang/
+
+mailboxes =Perl
+
+mailboxes =Zsh
+mailboxes =Zsh/users
+mailboxes =Zsh/workers
 
 mailboxes =Linux
 
