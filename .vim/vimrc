@@ -1607,6 +1607,7 @@ syntax on
             let g:neocomplcache_source_completion_length['keyword_complete'] = 3
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
+            let g:neocomplcache_source_completion_length['tags_complete'] = 2
             let g:neocomplcache_source_completion_length['look'] = 3
             " FIXME seems this if expression does not work.
             let s:TextFileType = ['text', 'mail', 'markdown',]
