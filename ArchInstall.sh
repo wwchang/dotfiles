@@ -430,6 +430,7 @@ pacman -S graphicsmagick
     pacman -S mutt
     pacman -S procmail getmail # (sendmail)
     pacman -S wv mairix gnupg abook bogofilter ispell
+    yaourt -S sendmail
 # }}}
 
 # RSS reader {{{
