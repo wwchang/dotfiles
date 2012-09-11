@@ -1,46 +1,53 @@
 # vimwiki syntax & semantic {{{
 # link {{{
-snippet link "[[link|describe]]" !
+snippet l "[[link|describe]]"
 [[${1:${VISUAL:link,URL}}|${2:alternate text}]]
 endsnippet
-snippet url "[[link|describe]]" !
+snippet link "[[link|describe]]"
+[[${1:${VISUAL:link,URL}}|${2:alternate text}]]
+endsnippet
+snippet url "[[link|describe]]"
 [[${1:${VISUAL:link,URL}}|${2:alternate text}]]
 endsnippet
 
-snippet image "image link" !
+snippet dir "directory link [[dir/index|desc]]"
+[[${1:directory}/$1|$1]]
+endsnippet
+
+snippet image "image link"
 {{local:${1:${VISUAL:relative\/path\/to\/file}}}}
 endsnippet
-snippet img "image link" !
+snippet img "image link"
 {{local:${1:${VISUAL:relative\/path\/to\/file}}}}
 endsnippet
 # }}}
 
 # code {{{
-snippet code "{{{code ... }}}" !b
-{{{${1:vim/python/ruby/c/bash/etc}
+snippet "code(.(\S+))?" "{{{code" br
+{{{${1:`!p snip.rv = match.group(2) if match.group(1) is not None else ""`}
 ${2:${VISUAL}}
 }}}
 endsnippet
 
-snippet syntax "surround with code syntax" !
-{{{${1:vim/python/ruby/c/bash/etc}
+snippet syntax "surround with code syntax"
+{{{${1:vim/python/ruby/c/coffee/javascript/bash/etc}
 ${2:${VISUAL}}
 }}}
 endsnippet
 # }}}
 
 # formula & equation {{{
-snippet formula "inline math, short formulae" !b
+snippet formula "inline math, short formulae" b
 $ ${1:${VISUAL}} $
 endsnippet
 
-snippet formula "formula {{..}}" !b
+snippet formula "formula {{..}}" b
 {{$${1:%${2:align}%}
 ${3:${VISUAL}}
 }}$
 endsnippet
 
-snippet equation "Equation" !b
+snippet equation "Equation" b
 {{$${1:%${2:align}%}
 ${3:${VISUAL}}
 }}$
@@ -48,28 +55,28 @@ endsnippet
 # }}}
 
 # typefaces {{{
-snippet bold "bold text" !
+snippet bold "bold text"
 *${1:bold text}*
 endsnippet
-snippet b "bold text" !
+snippet b "bold text"
 *${1:bold text}*
 endsnippet
 
-snippet italic "italic text" !
+snippet italic "italic text"
 _${1:italic text}_
 endsnippet
-snippet i "italic text" !
+snippet i "italic text"
 _${1:italic text}_
 endsnippet
 
-snippet strike "strikeout text" !
+snippet strike "strikeout text"
 ~~${1:strikeout text}~~
 endsnippet
-snippet s "strikeout text" !
+snippet s "strikeout text"
 ~~${1:strikeout text}~~
 endsnippet
 
-snippet c "`code text`" !
+snippet c "`code text`"
 \`${1:code text}${2:(no syntax)}\`
 endsnippet
 
@@ -89,24 +96,24 @@ endsnippet
 # }}}
 
 # vimwiki snippets {{{
-snippet data "Data Resources list" !b
+snippet data "Data Resources list" b
 = Date Resources =
     == help ==
-        ${1:- [[${2:URL}|${3:Homepage}]]}
+        ${2:- [[${3:URL}|${4:Homepage}]]}
     == books ==
-        === Newbie & Beginner ===
+        ${1:=== Newbie & Beginner ===
         === Intermediate ===
         === Reference Style - All Levels ===
         === Classics / Older ===
         === Dive In ===
         === Advanced ===
         === Topic ===
-        === Manual ===
+        === Manual & Tutorial ===}
 
 $0
 endsnippet
 
-snippet dir "[[dir/dir|name]]" !
+snippet dir "[[dir/dir|name]]"
 [[${1:dir}/$1|${2:name}]]$0
 endsnippet
 # }}}

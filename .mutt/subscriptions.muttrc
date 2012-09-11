@@ -144,6 +144,8 @@ subscribe vim-multibyte Vim-multibyte <vim-multibyte@vim.org>
 # vimwiki
 subscribe vimwiki Vim.vimwiki <vimwiki@googlegroups.com>
 subscribe eclim Vim.eclim <eclim-user@googlegroups.com>
+# vim-ruby
+subscribe vim-ruby vim-ruby <vim-ruby-devel@rubyforge.org>
 
 # [ Git ]
 subscribe -group Git <git@vger.kernel.org>

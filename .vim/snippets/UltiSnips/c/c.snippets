@@ -1,18 +1,18 @@
 # syntax snippets {{{
 # #ifndef, #if, #pragma, #endif {{{
-snippet def "#ifndef ... #define ... #endif" !
+snippet def "#ifndef ... #define ... #endif"
 #ifndef ${1/([A-Za-z0-9_]+).*/$1/}
 #define ${1:SYMBOL} ${2:value}
 #endif
 endsnippet
 
-snippet #if "#if #endif" !b
+snippet #if "#if #endif" b
 #if ${1:0}
 ${VISUAL:code}$0
 #endif
 endsnippet
 
-snippet mark "#pragma mark (mark)" !
+snippet mark "#pragma mark (mark)"
 #if 0
 ${1:#pragma mark -
 }#pragma mark $2
@@ -21,7 +21,7 @@ ${1:#pragma mark -
 $0
 endsnippet
 
-snippet once "Include header once only guard" !
+snippet once "Include header once only guard"
 #ifndef ${1:`!p
 if not snip.c:
 	import random, string
@@ -40,17 +40,17 @@ endsnippet
 # }}}
 
 # #include {{{
-snippet inc "#include local header (inc)" !
+snippet inc "#include local header (inc)"
 #include "${1:`!p snip.rv = snip.basename + '.h'`}"
 endsnippet
 
-snippet Inc "#include <> (Inc)" !
+snippet Inc "#include <> (Inc)"
 #include <${1:.h}>
 endsnippet
 # }}}
 
 # main() {{{
-snippet main "main() (main)" !
+snippet main "main() (main)"
 int main(int argc, char const *argv[]) {
 	${1:/* ${2:code} */}
 	return 0;
@@ -59,31 +59,31 @@ endsnippet
 # }}}
 
 # control flow {{{
-snippet for "for int loop (fori)" !
+snippet for "for int loop (fori)"
 for (${4:size_t} ${2:i} = 0; $2 < ${1:count}; ${3:++$2}) {
 	${0:/* code */}
 }
 endsnippet
 
-snippet do "do...while loop (do)" !
+snippet do "do...while loop (do)"
 do {
 	${0:/* code */}
 } while(${1:/* condition */});
 endsnippet
 
-snippet if "if .. (if)" !
+snippet if "if .. (if)"
 if (${1:/* condition */}) {
 	${0:/* code */}
 }
 endsnippet
 
-snippet else "else .. (else)" !
+snippet else "else .. (else)"
 else {
     ${1:/* code */}
 }
 endsnippet
 
-snippet elseif "else if .. (else if)" !
+snippet elseif "else if .. (else if)"
 else if {
     ${1:/* code */}
 }
@@ -91,19 +91,18 @@ endsnippet
 # }}}
 
 # data types {{{
-snippet enum "Enumeration" !
+snippet enum "Enumeration"
 enum ${1:name} { $0 };
 endsnippet
 
-snippet typedef "Typedef" !
+snippet typedef "Typedef"
 typedef ${1:int} ${2:MyCustomType};
 endsnippet
 
-snippet struct "struct" !
-struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`}
-{
-	${0:/* data */}
-};
+snippet struct "struct"
+struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`} {
+	${2:/* data */}
+}${3};
 endsnippet
 # }}}
 
@@ -119,11 +118,11 @@ endsnippet
 # }}}
 
 # small simple quick snippets for common usage {{{
-snippet c "comment /* comment */" !
+snippet c "comment /* comment */"
 /* ${1:comment} */
 endsnippet
 
-snippet p "printf() function" !
+snippet p "printf() function"
 printf($1);
 endsnippet
 # }}}

@@ -200,6 +200,7 @@ alias vim.vimwiki vimwiki <vimwiki@googlegroups.com>
 alias vim.organizer VimOrganizer <vimorganizer@googlegroups.com>
 alias vim.eclim Eclim <eclim-user@googlegroups.com>
 alias vim.vimim vimim <vimim@googlegroups.com>
+alias vim.ruby vim-ruby <vim-ruby-devel@rubyforge.org>
 
 # Vim plugins scripts
 alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>

@@ -37,75 +37,75 @@
 #   You also can use other matching characters.
 #       e.g. snippet !tab trigger! [ "description" [ options ] ]
 #       type: tab trigger
-#   Quotes can be included as part of the trigger by wrapping the trigger in 
+#   Quotes can be included as part of the trigger by wrapping the trigger in
 #   another charachter.
 #       e.g. snippet !"tab trigger"! [ "description" [ options ] ]
 #       type: "tab trigger"
 
 # "description"
-#   'description' is a string describing the trigger. It is helpful for 
-#   documenting the snippet and for distinguishing it from other snippets with 
-#   the same tab trigger. When more than one match, UltiSnips display a list of 
+#   'description' is a string describing the trigger. It is helpful for
+#   documenting the snippet and for distinguishing it from other snippets with
+#   the same tab trigger. When more than one match, UltiSnips display a list of
 #   the matching snippets with their description.
 
 # options
-#   'options' control the behavior of the snippet. Options are indicated by 
-#   single characters. The 'options' characters for a snippet are combined into 
+#   'options' control the behavior of the snippet. Options are indicated by
+#   single characters. The 'options' characters for a snippet are combined into
 #   a word without spaces.
 #   !
-#       overwrite all previously defined snippets. default is display a list of 
+#       overwrite all previously defined snippets. default is display a list of
 #       matching snippets, let user select.
 #   b
-#       Begining of line - expanded only if the tab trigger is the first word on 
-#       the line. In other words, if only whitespace precedes the tab trigger, 
+#       Begining of line - expanded only if the tab trigger is the first word on
+#       the line. In other words, if only whitespace precedes the tab trigger,
 #       expand, default is expand snippets at any position.
 #   i
-#       In-word expansion - By default a snippet is expanded only if the tab 
-#       trigger is the first word on the list or is preceded by one or more 
-#       whitespace characters. A snippet with this option is expanded regradless 
-#       of the preceding character. In other words, the snippet can be triggered 
+#       In-word expansion - By default a snippet is expanded only if the tab
+#       trigger is the first word on the list or is preceded by one or more
+#       whitespace characters. A snippet with this option is expanded regradless
+#       of the preceding character. In other words, the snippet can be triggered
 #       in the middle of a word.
 #   w
-#       Word boundary - With this option, the snippet is expanded if the tab 
-#       trigger start matches a word boundary and the tab trigger end matches a 
-#       word boundary. In other words the tab trigger must be preceded and 
-#       followed by non-word characters. Word characters are letters, digits and 
-#       underscore. Use this option, for example, to permit expansion where the 
-#       tab trigger follows punctuation without expanding suffixes of larger 
+#       Word boundary - With this option, the snippet is expanded if the tab
+#       trigger start matches a word boundary and the tab trigger end matches a
+#       word boundary. In other words the tab trigger must be preceded and
+#       followed by non-word characters. Word characters are letters, digits and
+#       underscore. Use this option, for example, to permit expansion where the
+#       tab trigger follows punctuation without expanding suffixes of larger
 #       words.
 #   r
-#       Regular expression - with this option, the tab trigger is expected to be 
-#       a python regular expression. The snippet is expanded if the recently 
-#       typed characters match the regular expression. Note: the regular 
-#       expression MUST be quoted(or surrounded with another character) like a 
-#       multi-word tab trigger (see above) whether it has spaces or not. A 
-#       resulting match is passed to any python code blocks in the snippets 
+#       Regular expression - with this option, the tab trigger is expected to be
+#       a python regular expression. The snippet is expanded if the recently
+#       typed characters match the regular expression. Note: the regular
+#       expression MUST be quoted(or surrounded with another character) like a
+#       multi-word tab trigger (see above) whether it has spaces or not. A
+#       resulting match is passed to any python code blocks in the snippets
 #       definition as the local variable "match".
 #   t
-#       Do not expand tabs - If a snippet definition includes leading tab 
-#       characters, by default UltiSnips expands the tab characters honoring the 
-#       Vim 'shiftwidth', 'softtabstop', 'expandtab' and 'tabstop' indentation 
-#       settings. (For example, if 'expandtab' is set, the tab is replaced with 
-#       spaces.) If this option is set, UltiSnips will ignore the Vim settings 
-#       and insert the tab characters as is. This option is useful for snippets 
+#       Do not expand tabs - If a snippet definition includes leading tab
+#       characters, by default UltiSnips expands the tab characters honoring the
+#       Vim 'shiftwidth', 'softtabstop', 'expandtab' and 'tabstop' indentation
+#       settings. (For example, if 'expandtab' is set, the tab is replaced with
+#       spaces.) If this option is set, UltiSnips will ignore the Vim settings
+#       and insert the tab characters as is. This option is useful for snippets
 #       involved with tab delimited formats, for example.
 
 # character escaping: \
-#   In snippet definitions, the characters `, {, $, \ and ' have special 
-#   meaning. If you want to insert one of these characters literally, escape 
+#   In snippet definitions, the characters `, {, $, \ and ' have special
+#   meaning. If you want to insert one of these characters literally, escape
 #   them with a backslash, '\'.
 
 # visual placeholder: `${VISUAL}`
-#   Snippets can contain a special placeholder called ${VISUAL}. The ${VISUAL} 
-#   variable is expanded with the text selected just prior to expanding the 
+#   Snippets can contain a special placeholder called ${VISUAL}. The ${VISUAL}
+#   variable is expanded with the text selected just prior to expanding the
 #   snippet.
-#   To see how a snippets with a ${VISUAL} placeholder works, define a snippet 
-#   with the placeholder, use Vim's Visual mode to select some text, and then 
-#   press the key you use to trigger expanding a snippet. The selected text is 
-#   deleted, and you are dropped into Insert mode. Now type the snippet tab 
-#   trigger and press the key to trigger expansion. As the snippet expands, the 
+#   To see how a snippets with a ${VISUAL} placeholder works, define a snippet
+#   with the placeholder, use Vim's Visual mode to select some text, and then
+#   press the key you use to trigger expanding a snippet. The selected text is
+#   deleted, and you are dropped into Insert mode. Now type the snippet tab
+#   trigger and press the key to trigger expansion. As the snippet expands, the
 #   previously selected text is printed in place of the ${VISUAL} placeholder.
-#   The ${VISUAL} placeholder can contain default text to use when the snippet 
+#   The ${VISUAL} placeholder can contain default text to use when the snippet
 #   has been triggered when not in Visual mode. The syntax is:
 #       ${VISUAL:default text}
 #   The ${VISUAL} placeholder can also define a transformation. The syntax is:
@@ -124,19 +124,19 @@
 #       -> this should be cool
 #       -> this <tag>is</tag> be cool
 #
-#       If you expand this snippet while not in visual mode, e.g. in Insert 
+#       If you expand this snippet while not in visual mode, e.g. in Insert
 #       mode. type: t<Tab>, you will get:
 #           <tag>inside text</tag>
 
 # Interpolation: ``
-#   Snippets can include shell code. Put a shell command in a snippet and when 
-#   the snippet is expanded, the shell command is replaced by the output 
+#   Snippets can include shell code. Put a shell command in a snippet and when
+#   the snippet is expanded, the shell command is replaced by the output
 #   produced when the command is executed. The syntax for shellcode is simple:
-#   wrap the code in backticks, '`'. When a snippet is expanded, UltiSnips runs 
-#   shellcode by first writing it to a temporary script and then executing the 
-#   script. The shellcode is replaced by the standard output. Anything you can 
-#   run as script can be used in shellcode. Include a shebang line, for example, 
-#   #!/usr/bin/perl, and your snippet has the ability to run scripts using other 
+#   wrap the code in backticks, '`'. When a snippet is expanded, UltiSnips runs
+#   shellcode by first writing it to a temporary script and then executing the
+#   script. The shellcode is replaced by the standard output. Anything you can
+#   run as script can be used in shellcode. Include a shebang line, for example,
+#   #!/usr/bin/perl, and your snippet has the ability to run scripts using other
 #   languages, perl, for example.
 #   e.g.
 #       snippet today
@@ -149,9 +149,9 @@
 #       endsnippet
 
 # VimScript: `!v `
-# You can also use Vim scripts (sometimes called VimL) in Interpolation. The 
-# syntax is similar to shellcode. Wrap the code in backticks and to distinguish 
-# it as a Vim script, start the code with '!v'. Here is an example that counts 
+# You can also use Vim scripts (sometimes called VimL) in Interpolation. The
+# syntax is similar to shellcode. Wrap the code in backticks and to distinguish
+# it as a Vim script, start the code with '!v'. Here is an example that counts
 # the indent of the current line:
 #   e.g.
 #       snippet indent
@@ -159,14 +159,14 @@
 #       endsnippet
 
 # Python: `!p `
-# By far python Interpolation is the most powerful. The syntax is similar to Vim 
-# scripts except code is start with '!p'. Python scripts can be run using the 
-# python shebang '#!/usr/bin/python', but using the '!p' format comes with some 
-# predefined objects and variable, which can simplify and shorten code. For 
-# example, a 'snip' object instance is implied in python code. Python code using 
-# the '!p' indicator differs in another way. Generally when a snippet is 
-# expanded the standard output of code replaces the code. With python code the 
-# value of the 'rv' property of the 'snip' instance replaces the code. Standard 
+# By far python Interpolation is the most powerful. The syntax is similar to Vim
+# scripts except code is start with '!p'. Python scripts can be run using the
+# python shebang '#!/usr/bin/python', but using the '!p' format comes with some
+# predefined objects and variable, which can simplify and shorten code. For
+# example, a 'snip' object instance is implied in python code. Python code using
+# the '!p' indicator differs in another way. Generally when a snippet is
+# expanded the standard output of code replaces the code. With python code the
+# value of the 'rv' property of the 'snip' instance replaces the code. Standard
 # is ignored.
 # The variables automatically defined in python code are:
 #   fn      - The current filename
@@ -206,32 +206,32 @@
 #   \end{center}
 
 # global: global .. endglobals
-# Python global functions can be stored in a python module and then imported.  
+# Python global functions can be stored in a python module and then imported.
 # This makes global functions easily accessible to all snippet files.
 # First, add the director modules are stored in to the python search path. e.g.
 # add this line to your vimrc file:
 #       py import sys; sys.path.append("/home/user/.vim/python")
-# Now, import modules from this directory using a global snippet in your snippet 
+# Now, import modules from this directory using a global snippet in your snippet
 # file.
 #       global !p
 #       from my_snippet_helpers import *
 #       endglobals
 
 # tabstops and placeholders: ${1:default text}
-# Snippets are used to quickly insert reused text into a document. Ofen the text 
-# has a fixed structure with variable components. Tabstops are used to simplify 
-# modifying the variable content. With tabstops you can easily place the cursor 
-# at the point of the variable content, enter the content you want, then jump to 
-# the next variable component, enter that content, and continue until all the 
+# Snippets are used to quickly insert reused text into a document. Ofen the text
+# has a fixed structure with variable components. Tabstops are used to simplify
+# modifying the variable content. With tabstops you can easily place the cursor
+# at the point of the variable content, enter the content you want, then jump to
+# the next variable component, enter that content, and continue until all the
 # variable components are complete.
 # The syntax for a tabstop is the dollar sign followed by a number, for example,
-# '$1'. Tabstops start at number 1 and are followed in sequential order. The 
-# '$0' tabstop is special tabstop. It is always the last tabstop in the snippet 
+# '$1'. Tabstops start at number 1 and are followed in sequential order. The
+# '$0' tabstop is special tabstop. It is always the last tabstop in the snippet
 # no matter how many tabstop are defined.
 # You can use <c-j/k> to jump forwards/backwards.
-# Many times it is useful to have some default text for a tabstop. The default 
-# text maybe a value commonly used for the variable component, or it may be a 
-# word or phrase that reminds you what is expected for the variable component.  
+# Many times it is useful to have some default text for a tabstop. The default
+# text maybe a value commonly used for the variable component, or it may be a
+# word or phrase that reminds you what is expected for the variable component.
 # To include default text, the syntax is '${1:value}'.
 # '$0' is the lastest tabstop.
 #
@@ -239,9 +239,9 @@
 #   syntax: ${1:default ${2:default2} }
 
 # Mirrors: ${1} $1
-# Mirros repeat the content of a tabstop. During snippet expansion when you 
-# enter the value for a tabstop, all mirrors of that tabstop are replaced with 
-# the same value. To mirror a tabstop simply insert the tabstop again using the 
+# Mirros repeat the content of a tabstop. During snippet expansion when you
+# enter the value for a tabstop, all mirrors of that tabstop are replaced with
+# the same value. To mirror a tabstop simply insert the tabstop again using the
 # "dollar sign followed by a number" syntax, e.g. '$1'.
 #   e.g.
 #       snippet env
@@ -251,10 +251,10 @@
 
 # transformations: ${<tab_stop_no/regular_expression/replacement/options}
 #                   replacement: (?no:text:other text)
-# Transformations are a bit diffcult to grasp so this chapter is divided into 
-# two sections. Transformations are like mirrors but instead of just copying 
-# text from the original tabstop verbatim, a regular expression is matched to 
-# the content of the referenced tabstop and a transformation is then applied to 
+# Transformations are a bit diffcult to grasp so this chapter is divided into
+# two sections. Transformations are like mirrors but instead of just copying
+# text from the original tabstop verbatim, a regular expression is matched to
+# the content of the referenced tabstop and a transformation is then applied to
 # the matched pattern.
 #   syntax:
 #       ${<tab_stop_no/regular_expression/replacement/options}
@@ -280,8 +280,8 @@
 #   (?no:text:other text)
 # This reads as follows:
 #   if the group $no has matched, insert "text", otherwise insert "other text".
-#   "other text" is optional and if not provided defaults to the empty string, 
-#   "". This feature is very powerful. It allows you to add optional text into 
+#   "other text" is optional and if not provided defaults to the empty string,
+#   "". This feature is very powerful. It allows you to add optional text into
 #   snippets.
 #   e.g.
 #       snippet title "Title transformation"
@@ -295,7 +295,7 @@
 
 # clearing snippets: clearsnippets [trigger1 rigger2]
 # To remove snippets for current file type with the 'clearsnippets' directive.
-# Without arguments, 'clearsnippets' removes all snippets defined up to that 
+# Without arguments, 'clearsnippets' removes all snippets defined up to that
 # point far for the current file type.
 
 # one placeholder with multiple lines.
@@ -322,13 +322,13 @@
 
 # We use a little hack so that the snippet is expanded
 # and parsed correctly
-snippet snip "Snippet definition" !
+snippet snip "Snippet definition"
 `!p snip.rv = "snippet"` ${1:trigger/"{pattern}use option r"} "${2:describe}" ${3:!bir}
 $0
 `!p snip.rv = "endsnippet"`
 endsnippet
 
-snippet global "Global snippet" !
+snippet global "Global snippet"
 `!p snip.rv = "global"` !p
 $0
 `!p snip.rv = "endglobal"`
@@ -349,7 +349,7 @@ snippet transform "one transform example" i
 \$\{$1/.+/ "/}\$\{${1:1}:${2:opt title}\}\$\{$1/.+/"/\}
 endsnippet
 
-snippet footer "vim modeline footer for marker fold" !b
+snippet footer "vim modeline footer for marker fold" b
 
 # vim:ft=snippets:fdm=marker:fmr={{{,}}}
 endsnippet
