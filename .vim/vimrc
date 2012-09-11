@@ -1858,9 +1858,11 @@ syntax on
                 " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
                 " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
                 " ----------------------------------------------
-                "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump() ?
-                            "\ UltiSnips_ExpandSnippetOrJump()
-                            "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                if exists('did_UltiSnips_vim')
+                    inoremap <expr> <Tab> UltiSnips_ExpandSnippetOrJump() ?
+                                \ UltiSnips_ExpandSnippetOrJump()
+                                \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                endif
                 " }}}
 
                 " { snipMate } {{{
