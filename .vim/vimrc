@@ -658,6 +658,7 @@ endif
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
         set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%s]", "", "f")}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%p]", "")} " prototype
         set statusline+=\%#StatusHELP#\%H
         set statusline+=\%=
         " set statusline+=\%#StatusFileType#\%y
