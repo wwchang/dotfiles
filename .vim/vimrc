@@ -722,15 +722,15 @@ endif
     set foldcolumn=0        " colums ahead of line number.
     set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
 
-        "set foldtext=VimrcFoldText() " {{{
-        "function! VimrcFoldText()
-            "let line = foldtext()
-            "let foldSize = 1 + v:foldend - v:foldstart
-            "let lineCount = line("$")
-            "let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
-            "" Show fold Percentage along with # of lines
-            "return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
-        "endfunction " }}}
+        " set foldtext=VimrcFoldText() " {{{
+        " function! VimrcFoldText()
+        "     let line = foldtext()
+        "     let foldSize = 1 + v:foldend - v:foldstart
+        "     let lineCount = line("$")
+        "     let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
+        "     " Show fold Percentage along with # of lines
+        "     return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
+        " endfunction " }}}
 
         function! VimFoldText() " {{{4
             " get first non-blank line
@@ -747,16 +747,16 @@ endif
             let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
             let foldSize = 1 + v:foldend - v:foldstart
             let foldSizeStr = " " . foldSize . " lines "
-            let foldLevelStr = repeat("+--", v:foldlevel)
+            let foldLevelStr = repeat("+ ", v:foldlevel)
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
             let l:folddashes = v:folddashes
-            return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
+            return foldLevelStr. line . expansionString . foldSizeStr. foldPercentage
         endfunction
         set foldtext=VimFoldText()
         " }}}
-    " }}}
+        " }}}
     " }}}
 " }}}
 
@@ -1101,6 +1101,7 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
+        " NeoBundle 'Shougo/vimshell'
         " Vim improve
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
@@ -1498,7 +1499,8 @@ syntax on
                 let g:neocomplcache_vim_completefuncs = {}
             endif
             " }}}
-            " omni functions {{{ set omni_functions will need to set omni_patterns too.
+            " omni functions {{{
+            " set omni_functions will need to set omni_patterns too.
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
