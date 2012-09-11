@@ -540,7 +540,8 @@ endif
 
     " [ indent ] {{{
     " help indent.txt
-    set smartindent  " autoindent, smartindent, cindent, indentexpr.
+    " set smartindent  " autoindent, smartindent, cindent, indentexpr.
+        " use 'filetype indent on' to per-filetype indent
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -555,7 +556,8 @@ endif
     " }}}
 
     " [ tab ] {{{
-    set expandtab " expandtab: use spaces to insert a <Tab>.
+    " set expandtab " expandtab: use spaces to insert a <Tab>.
+        " don't use 'expandtab' when using 'tabstop'
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set shiftwidth=4 " number of spaces to use for each step of (auto)indent.
     set tabstop=4 " number of spaces that a <Tab> counts for.
