@@ -4415,7 +4415,7 @@ syntax on
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             " Customization {{{
-            if exists('g:Powerline_loaded')
+            if !exists('g:Powerline_loaded')
                 "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
                 "{location} : 'before', 'after'
                 "call Pl#Theme#RemoveSegment({targetsegment})
