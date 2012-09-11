@@ -1150,6 +1150,7 @@ endif
         NeoBundle 'The-NERD-tree', {
                     \ 'directory': 'NERDTree',
                     \ }
+        NeoBundle 'troydm/easybuffer.vim'
         " compile & run
         NeoBundle 'SingleCompile'
         " syntax checker
@@ -3103,6 +3104,11 @@ syntax on
             " Usage: :VimFiler
             " Require: unite.vim
             let g:vimfiler_as_default_explorer = 1 " behaves as netrw
+        " }}}
+
+        " easybuffer {{{ quickly switch between buffers using corresponding keys
+        " or buffer numbers displayed in easybuffer quick switch window
+            " Usage: :EasyBuffer
         " }}}
     " }}}
 
