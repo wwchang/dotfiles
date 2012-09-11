@@ -540,7 +540,8 @@ endif
 
     " [ indent ] {{{
     " help indent.txt
-    set smartindent  " autoindent, smartindent, cindent, indentexpr.
+    " set smartindent  " autoindent, smartindent, cindent, indentexpr.
+        " use 'filetype indent on' to per-filetype indent
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -648,7 +649,7 @@ endif
         set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
         set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
         set statusline+=\ \%{virtualenv#statusline()}
-        set statusline+=\%#StatusChar#\»
+        set statusline+=\%#StatusChar#\pain\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
         " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
@@ -657,18 +658,18 @@ endif
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
         set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%s]", "", "f")}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%p]", "")} " prototype
         set statusline+=\%#StatusHELP#\%H
         set statusline+=\%=
-        set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'':neocomplcache#get_context_filetype()}
-        set statusline+=\%#StatusChar#\%{neocomplcache#get_context_filetype()==#&ft?'':'•'}
-        set statusline+=\%#StatusFileType#\%y
+        " set statusline+=\%#StatusFileType#\%y
+        set statusline+=\%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'['.&ft.']':'['.neocomplcache#get_context_filetype().']'}
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%<%(\%#StatusNormal#\%{&ff==#'unix'?'':&ff}%)
         set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc==#'utf-8'?'':'•'}
         set statusline+=\%#StatusNormal#\%{&fenc==#'utf-8'?'':&fenc}
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         " set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
-        set statusline+=\ \%#StatusLineNumber#\%-(L:%l\ C:%c%V%)
+        set statusline+=\ \%#StatusLineNumber#\%-(⭡:%l/%c%)
         set statusline+=\ \%#StatusPercent#\%P
     endfunction
 
@@ -722,15 +723,15 @@ endif
     set foldcolumn=0        " colums ahead of line number.
     set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
 
-        "set foldtext=VimrcFoldText() " {{{
-        "function! VimrcFoldText()
-            "let line = foldtext()
-            "let foldSize = 1 + v:foldend - v:foldstart
-            "let lineCount = line("$")
-            "let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
-            "" Show fold Percentage along with # of lines
-            "return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
-        "endfunction " }}}
+        " set foldtext=VimrcFoldText() " {{{
+        " function! VimrcFoldText()
+        "     let line = foldtext()
+        "     let foldSize = 1 + v:foldend - v:foldstart
+        "     let lineCount = line("$")
+        "     let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
+        "     " Show fold Percentage along with # of lines
+        "     return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
+        " endfunction " }}}
 
         function! VimFoldText() " {{{4
             " get first non-blank line
@@ -747,16 +748,16 @@ endif
             let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
             let foldSize = 1 + v:foldend - v:foldstart
             let foldSizeStr = " " . foldSize . " lines "
-            let foldLevelStr = repeat("+--", v:foldlevel)
+            let foldLevelStr = repeat("+ ", v:foldlevel)
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
             let l:folddashes = v:folddashes
-            return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
+            return foldLevelStr. line . expansionString . foldSizeStr. foldPercentage
         endfunction
         set foldtext=VimFoldText()
         " }}}
-    " }}}
+        " }}}
     " }}}
 " }}}
 
@@ -1101,6 +1102,7 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
+        " NeoBundle 'Shougo/vimshell'
         " Vim improve
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
@@ -1150,6 +1152,7 @@ endif
         NeoBundle 'The-NERD-tree', {
                     \ 'directory': 'NERDTree',
                     \ }
+        NeoBundle 'troydm/easybuffer.vim'
         " compile & run
         NeoBundle 'SingleCompile'
         " syntax checker
@@ -1225,6 +1228,7 @@ endif
         NeoBundle 'bad-whitespace'
         NeoBundle 'visualstar.vim'
         NeoBundle 'SpitVspit'
+        " NeoBundle 'dahu/VimLint'
         " }}}
 
         " FIXME
@@ -1496,7 +1500,8 @@ syntax on
                 let g:neocomplcache_vim_completefuncs = {}
             endif
             " }}}
-            " omni functions {{{ set omni_functions will need to set omni_patterns too.
+            " omni functions {{{
+            " set omni_functions will need to set omni_patterns too.
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
@@ -1526,6 +1531,7 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
+			let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
@@ -1607,6 +1613,7 @@ syntax on
             let g:neocomplcache_source_completion_length['keyword_complete'] = 3
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
+            let g:neocomplcache_source_completion_length['tags_complete'] = 2
             let g:neocomplcache_source_completion_length['look'] = 3
             " FIXME seems this if expression does not work.
             let s:TextFileType = ['text', 'mail', 'markdown',]
@@ -1857,9 +1864,11 @@ syntax on
                 " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
                 " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
                 " ----------------------------------------------
-                "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump() ?
-                            "\ UltiSnips_ExpandSnippetOrJump()
-                            "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                if exists('did_UltiSnips_vim')
+                    inoremap <expr> <Tab> UltiSnips_ExpandSnippetOrJump() ?
+                                \ UltiSnips_ExpandSnippetOrJump()
+                                \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                endif
                 " }}}
 
                 " { snipMate } {{{
@@ -3101,6 +3110,11 @@ syntax on
             " Require: unite.vim
             let g:vimfiler_as_default_explorer = 1 " behaves as netrw
         " }}}
+
+        " easybuffer {{{ quickly switch between buffers using corresponding keys
+        " or buffer numbers displayed in easybuffer quick switch window
+            " Usage: :EasyBuffer
+        " }}}
     " }}}
 
     " [ buffers ] {{{
@@ -3566,9 +3580,11 @@ syntax on
             " completion CTRL-X CTRL-O
                 " Ruby completion will parse your buffer on demand in order to
                 " provide a list of completions.
-            let g:rubycomplete_buffer_loading = 0 " this will cause some code execute
-            let g:rubycomplete_classes_in_global = 1
             let g:rubycomplete_rails = 1
+            let g:rubycomplete_classes_in_global = 1
+            let g:rubycomplete_buffer_loading = 1
+            let g:rubycomplete_include_object = 1
+            let g:rubycomplete_include_objectspace = 1
         " }}}
 
         " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
@@ -4398,22 +4414,21 @@ syntax on
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             " Customization {{{
-            if exists('g:Powerline_loaded')
+            if !exists('g:Powerline_loaded')
                 "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
                 "{location} : 'before', 'after'
                 "call Pl#Theme#RemoveSegment({targetsegment})
                 "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
                 call Pl#Theme#RemoveSegment('fileencoding')
                 call Pl#Theme#RemoveSegment('fileformat')
-                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
-                " FIXME seems this replacement does not work.
-                call Pl#Theme#ReplaceSegment('hgrev', "%{HGRev()?'[r'.HGRev().']':''}")
+                " FIXME call Pl#Theme#ReplaceSegment('fileencoding', '%{&ff==#"unix"?"":&ff}')
+                " FIXME call Pl#Theme#ReplaceSegment('fileformat', '%{&fenc==#"utf-8"?"":&fenc}')
+                " TODO call Pl#Theme#ReplaceSegment('filetype', '%{neocomplcache#get_context_filetype()==#&ft?"":neocomplcache#get_context_filetype()}')
                 " FIXME whether is this function to show on statusline.
-                call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
                 " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
-                " FIXME this seems display nothing.
                 " call Pl#Theme#InsertSegment('currhigroup', 'before', 'filetype')
-                call Pl#Theme#InsertSegment('%{neocomplcache#get_context_filetype()}', 'before', 'filetype')
                 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
             endif
             " }}}
