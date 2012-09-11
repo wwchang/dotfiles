@@ -4421,15 +4421,14 @@ syntax on
                 "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
                 call Pl#Theme#RemoveSegment('fileencoding')
                 call Pl#Theme#RemoveSegment('fileformat')
-                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
-                " FIXME seems this replacement does not work.
-                call Pl#Theme#ReplaceSegment('hgrev', "%{HGRev()?'[r'.HGRev().']':''}")
+                " FIXME call Pl#Theme#ReplaceSegment('fileencoding', '%{&ff==#"unix"?"":&ff}')
+                " FIXME call Pl#Theme#ReplaceSegment('fileformat', '%{&fenc==#"utf-8"?"":&fenc}')
+                " TODO call Pl#Theme#ReplaceSegment('filetype', '%{neocomplcache#get_context_filetype()==#&ft?"":neocomplcache#get_context_filetype()}')
                 " FIXME whether is this function to show on statusline.
-                call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
                 " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
-                " FIXME this seems display nothing.
                 " call Pl#Theme#InsertSegment('currhigroup', 'before', 'filetype')
-                call Pl#Theme#InsertSegment('%{neocomplcache#get_context_filetype()}', 'before', 'filetype')
                 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
             endif
             " }}}
