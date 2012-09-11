@@ -1226,6 +1226,7 @@ endif
         NeoBundle 'bad-whitespace'
         NeoBundle 'visualstar.vim'
         NeoBundle 'SpitVspit'
+        " NeoBundle 'dahu/VimLint'
         " }}}
 
         " FIXME
