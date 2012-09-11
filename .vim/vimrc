@@ -556,8 +556,7 @@ endif
     " }}}
 
     " [ tab ] {{{
-    " set expandtab " expandtab: use spaces to insert a <Tab>.
-        " don't use 'expandtab' when using 'tabstop'
+    set expandtab " expandtab: use spaces to insert a <Tab>.
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set shiftwidth=4 " number of spaces to use for each step of (auto)indent.
     set tabstop=4 " number of spaces that a <Tab> counts for.
