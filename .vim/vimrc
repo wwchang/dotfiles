@@ -556,8 +556,7 @@ endif
     " }}}
 
     " [ tab ] {{{
-    " set expandtab " expandtab: use spaces to insert a <Tab>.
-        " don't use 'expandtab' when using 'tabstop'
+    set expandtab " expandtab: use spaces to insert a <Tab>.
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set shiftwidth=4 " number of spaces to use for each step of (auto)indent.
     set tabstop=4 " number of spaces that a <Tab> counts for.
@@ -650,7 +649,7 @@ endif
         set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
         set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
         set statusline+=\ \%{virtualenv#statusline()}
-        set statusline+=\%#StatusChar#\»
+        set statusline+=\%#StatusChar#\pain\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
         " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
@@ -659,18 +658,18 @@ endif
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
         set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%s]", "", "f")}
+        " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%p]", "")} " prototype
         set statusline+=\%#StatusHELP#\%H
         set statusline+=\%=
-        set statusline+=\ \%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'':neocomplcache#get_context_filetype()}
-        set statusline+=\%#StatusChar#\%{neocomplcache#get_context_filetype()==#&ft?'':'•'}
-        set statusline+=\%#StatusFileType#\%y
+        " set statusline+=\%#StatusFileType#\%y
+        set statusline+=\%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'['.&ft.']':'['.neocomplcache#get_context_filetype().']'}
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%<%(\%#StatusNormal#\%{&ff==#'unix'?'':&ff}%)
         set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc==#'utf-8'?'':'•'}
         set statusline+=\%#StatusNormal#\%{&fenc==#'utf-8'?'':&fenc}
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         " set statusline+=\ \%#StatusLineNumber#\%-(L:%l/%L\ C:%c%V%)
-        set statusline+=\ \%#StatusLineNumber#\%-(L:%l\ C:%c%V%)
+        set statusline+=\ \%#StatusLineNumber#\%-(⭡:%l/%c%)
         set statusline+=\ \%#StatusPercent#\%P
     endfunction
 
@@ -4415,22 +4414,21 @@ syntax on
             let g:Powerline_mode_cs = "S⋅BLOCK" " select block
 
             " Customization {{{
-            if exists('g:Powerline_loaded')
+            if !exists('g:Powerline_loaded')
                 "call Pl#Theme#InsertSegment({newsegment}, {location}, {targetsegment})
                 "{location} : 'before', 'after'
                 "call Pl#Theme#RemoveSegment({targetsegment})
                 "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
                 call Pl#Theme#RemoveSegment('fileencoding')
                 call Pl#Theme#RemoveSegment('fileformat')
-                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
-                " FIXME seems this replacement does not work.
-                call Pl#Theme#ReplaceSegment('hgrev', "%{HGRev()?'[r'.HGRev().']':''}")
+                " FIXME call Pl#Theme#ReplaceSegment('fileencoding', '%{&ff==#"unix"?"":&ff}')
+                " FIXME call Pl#Theme#ReplaceSegment('fileformat', '%{&fenc==#"utf-8"?"":&fenc}')
+                " TODO call Pl#Theme#ReplaceSegment('filetype', '%{neocomplcache#get_context_filetype()==#&ft?"":neocomplcache#get_context_filetype()}')
                 " FIXME whether is this function to show on statusline.
-                call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('%{ConflictCheck()}', 'before', 'tagbar')
+                " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
                 " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
-                " FIXME this seems display nothing.
                 " call Pl#Theme#InsertSegment('currhigroup', 'before', 'filetype')
-                call Pl#Theme#InsertSegment('%{neocomplcache#get_context_filetype()}', 'before', 'filetype')
                 call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
             endif
             " }}}
