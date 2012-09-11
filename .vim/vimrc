@@ -540,7 +540,8 @@ endif
 
     " [ indent ] {{{
     " help indent.txt
-    set smartindent  " autoindent, smartindent, cindent, indentexpr.
+    " set smartindent  " autoindent, smartindent, cindent, indentexpr.
+        " use 'filetype indent on' to per-filetype indent
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -555,7 +556,8 @@ endif
     " }}}
 
     " [ tab ] {{{
-    set expandtab " expandtab: use spaces to insert a <Tab>.
+    " set expandtab " expandtab: use spaces to insert a <Tab>.
+        " don't use 'expandtab' when using 'tabstop'
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set shiftwidth=4 " number of spaces to use for each step of (auto)indent.
     set tabstop=4 " number of spaces that a <Tab> counts for.
@@ -722,15 +724,15 @@ endif
     set foldcolumn=0        " colums ahead of line number.
     set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
 
-        "set foldtext=VimrcFoldText() " {{{
-        "function! VimrcFoldText()
-            "let line = foldtext()
-            "let foldSize = 1 + v:foldend - v:foldstart
-            "let lineCount = line("$")
-            "let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
-            "" Show fold Percentage along with # of lines
-            "return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
-        "endfunction " }}}
+        " set foldtext=VimrcFoldText() " {{{
+        " function! VimrcFoldText()
+        "     let line = foldtext()
+        "     let foldSize = 1 + v:foldend - v:foldstart
+        "     let lineCount = line("$")
+        "     let foldPercentage = printf("%4.1f", (foldSize*1.0)/lineCount*100)
+        "     " Show fold Percentage along with # of lines
+        "     return substitute(line, '^\([-+]\+\)\(\s\+\)\(\d\+\) lines', '\1 '.foldPercentage.'%\2(\3 lines)', 'g')
+        " endfunction " }}}
 
         function! VimFoldText() " {{{4
             " get first non-blank line
@@ -747,16 +749,16 @@ endif
             let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
             let foldSize = 1 + v:foldend - v:foldstart
             let foldSizeStr = " " . foldSize . " lines "
-            let foldLevelStr = repeat("+--", v:foldlevel)
+            let foldLevelStr = repeat("+ ", v:foldlevel)
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
             let l:folddashes = v:folddashes
-            return line . expansionString . foldSizeStr . foldLevelStr . foldPercentage
+            return foldLevelStr. line . expansionString . foldSizeStr. foldPercentage
         endfunction
         set foldtext=VimFoldText()
         " }}}
-    " }}}
+        " }}}
     " }}}
 " }}}
 
@@ -1101,6 +1103,7 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
+        " NeoBundle 'Shougo/vimshell'
         " Vim improve
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
@@ -1150,6 +1153,7 @@ endif
         NeoBundle 'The-NERD-tree', {
                     \ 'directory': 'NERDTree',
                     \ }
+        NeoBundle 'troydm/easybuffer.vim'
         " compile & run
         NeoBundle 'SingleCompile'
         " syntax checker
@@ -1225,6 +1229,7 @@ endif
         NeoBundle 'bad-whitespace'
         NeoBundle 'visualstar.vim'
         NeoBundle 'SpitVspit'
+        " NeoBundle 'dahu/VimLint'
         " }}}
 
         " FIXME
@@ -1496,7 +1501,8 @@ syntax on
                 let g:neocomplcache_vim_completefuncs = {}
             endif
             " }}}
-            " omni functions {{{ set omni_functions will need to set omni_patterns too.
+            " omni functions {{{
+            " set omni_functions will need to set omni_patterns too.
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
@@ -1526,6 +1532,7 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
+			let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
@@ -1607,6 +1614,7 @@ syntax on
             let g:neocomplcache_source_completion_length['keyword_complete'] = 3
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
+            let g:neocomplcache_source_completion_length['tags_complete'] = 2
             let g:neocomplcache_source_completion_length['look'] = 3
             " FIXME seems this if expression does not work.
             let s:TextFileType = ['text', 'mail', 'markdown',]
@@ -1857,9 +1865,11 @@ syntax on
                 " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
                 " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
                 " ----------------------------------------------
-                "imap <expr><Tab> UltiSnips_ExpandSnippetOrJump() ?
-                            "\ UltiSnips_ExpandSnippetOrJump()
-                            "\ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                if exists('did_UltiSnips_vim')
+                    inoremap <expr> <Tab> UltiSnips_ExpandSnippetOrJump() ?
+                                \ UltiSnips_ExpandSnippetOrJump()
+                                \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                endif
                 " }}}
 
                 " { snipMate } {{{
@@ -3101,6 +3111,11 @@ syntax on
             " Require: unite.vim
             let g:vimfiler_as_default_explorer = 1 " behaves as netrw
         " }}}
+
+        " easybuffer {{{ quickly switch between buffers using corresponding keys
+        " or buffer numbers displayed in easybuffer quick switch window
+            " Usage: :EasyBuffer
+        " }}}
     " }}}
 
     " [ buffers ] {{{
@@ -3566,9 +3581,11 @@ syntax on
             " completion CTRL-X CTRL-O
                 " Ruby completion will parse your buffer on demand in order to
                 " provide a list of completions.
-            let g:rubycomplete_buffer_loading = 0 " this will cause some code execute
-            let g:rubycomplete_classes_in_global = 1
             let g:rubycomplete_rails = 1
+            let g:rubycomplete_classes_in_global = 1
+            let g:rubycomplete_buffer_loading = 1
+            let g:rubycomplete_include_object = 1
+            let g:rubycomplete_include_objectspace = 1
         " }}}
 
         " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
