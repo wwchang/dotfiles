@@ -1228,6 +1228,7 @@ endif
         " colorscheme
         NeoBundle 'altercation/vim-colors-solarized'
         NeoBundle 'nanotech/jellybeans.vim'
+        NeoBundle 'w0ng/vim-hybrid'
         " others
         NeoBundle 'utl.vim'
         NeoBundle 'bad-whitespace'
@@ -4831,7 +4832,8 @@ syntax on
             "                 \ 'attr': 'bold' },
             "             \ }
         " vim-hybrid
-
+            " let g:hybrid_use_Xresources = 1
+            " colorscheme hybrid
         " Lucius
     " }}}
 
