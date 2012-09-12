@@ -1432,19 +1432,19 @@ root.buttons(awful.util.table.join(
         -- awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
         -- dmenu prompt
-        keydoc.group("Functions"),
-        awful.key({ modkey }, "r",
-            function ()
-                awful.util.spawn("dmenu_run -i -p 'Run command:' \
-                -nb '" .. beautiful.bg_normal .. "' \
-                -nf '" .. beautiful.fg_normal .. "' \
-                -sb '" .. beautiful.bg_focus .. "' \
-                -sf '" .. beautiful.fg_focus .. "' \
-                -fn '" .. beautiful.font .. "' \
-                ")
-            end,
-            "dmenu prompt"
-        ),
+        -- keydoc.group("Functions"),
+        -- awful.key({ modkey }, "r",
+        --     function ()
+        --         awful.util.spawn("dmenu_run -i -p 'Run command:' \
+        --         -nb '" .. beautiful.bg_normal .. "' \
+        --         -nf '" .. beautiful.fg_normal .. "' \
+        --         -sb '" .. beautiful.bg_focus .. "' \
+        --         -sf '" .. beautiful.fg_focus .. "' \
+        --         -fn '" .. beautiful.font .. "' \
+        --         ")
+        --     end,
+        --     "dmenu prompt"
+        -- ),
 
         keydoc.group("Functions"),
         awful.key({ modkey }, "x",
