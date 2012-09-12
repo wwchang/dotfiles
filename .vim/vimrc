@@ -1175,6 +1175,8 @@ endif
         NeoBundle 'The-NERD-Commenter'
         NeoBundle 'commentary.vim'
         NeoBundle 'mbbill/undotree'
+        " outline
+        NeoBundle 'h1mesuke/unite-outline'
         " Task List
         NeoBundle 'TagmaTasks'
         " NeoBundle 'TaskList.vim'
@@ -2586,8 +2588,6 @@ syntax on
                     " :Unite rails/[model/controller/view/mailer/lib/db/config/log
                     "               /javascripts/stylesheets/
                     "               bundle/bundled_gem/routes/root/command]
-                " unite-outline : provides your Vim's buffer with the outline view.
-                    " Usage: :Unite outline
                 " unite-adb : unite.vim Android Debug Bridge
                 " unite-oreore :
                 " unite-mark :
@@ -5169,7 +5169,40 @@ syntax on
             " let g:voom_user_command
             " let g:voom_create_devel_commands
 
-            nnoremap <F2> :VoomToggle<CR>
+            " nnoremap <F2> :VoomToggle<CR>
+        " }}}
+
+        " unite-outline {{{ provides your Vim's buffer with the outline view.
+        " TODO custom by myself :help unite-outline
+            " Usage:
+            " - :Unite outline
+            " - :Unite outline:! -- force update
+            " or <C-l> in unite interface to force update.
+            if !exists('g:unite_source_outline_info')
+                let g:unite_source_outline_info = {}
+            endif
+            " let g:unite_source_outline_info['vimwiki'] = {
+            "           \ }
+            let g:unite_source_outline_indent_width = 2 " indent width in heading lists
+            if !exists('g:unite_source_outline_filetype_options')
+                let g:unite_source_outline_filetype_options = {}
+            endif
+            let g:unite_source_outline_filetype_options['*'] = {
+                        \ 'auto_update': 1,
+                        \ 'auto_update_event': 'write',
+                        \ }
+            let g:unite_source_outline_filetype_options['javascript'] = {
+                        \ 'ignore_types': ['comment'],
+                        \ }
+            let g:unite_source_outline_cache_limit = 1000 " biggest cache value.
+                " otherwise, bigger than this value will stored in file.
+            if !exists('g:unite_source_outline_highlight')
+                let g:unite_source_outline_highlight = {}
+            endif
+
+            call unite#sources#outline#alias('xhtml', 'html')
+
+            nnoremap <F2> :Unite outline<CR>
         " }}}
 
         " Speeddating : <C-A>, <C-X>, {Visual}<C-A/X>
