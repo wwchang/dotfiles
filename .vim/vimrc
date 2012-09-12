@@ -1225,6 +1225,8 @@ endif
                     \ }
         " Color
         NeoBundle 'colorv.vim'
+        " colorscheme
+        NeoBundle 'altercation/vim-colors-solarized'
         " others
         NeoBundle 'utl.vim'
         NeoBundle 'bad-whitespace'
@@ -4810,6 +4812,17 @@ syntax on
         " ColorSchemeEditor {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
         " }}}
+
+        " vim-colors-solarized
+            " if has('gui_running')
+            "     set background=light
+            " else
+            "     set background=dark
+            " endif
+            colorscheme solarized
+            let g:solarized_termcolors=256
+        " jellybeans.vim
+        " vim-hybrid
 
         " Lucius
     " }}}
