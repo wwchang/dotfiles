@@ -68,6 +68,7 @@ local keydoc = require("keydoc")
 
     -- terminal = "x-terminal-emulator"
     -- terminal = "gnome-terminal"
+    -- terminal = "xterm"
     terminal = "urxvt" -- USE urxvtc for daemon urxvtd.
     editor = os.getenv("EDITOR") or "vim"
     editor_cmd = terminal .. " -e " .. editor
@@ -288,8 +289,8 @@ run_once("nm-applet")
             moveMouse(saftCoords.x, saftCoords.y)
         end
 
-        -- doesn't move the cursor but temporarily hides it after a period of 
-        -- inactivity, and also offers the ability to instantly hide the cursor 
+        -- doesn't move the cursor but temporarily hides it after a period of
+        -- inactivity, and also offers the ability to instantly hide the cursor
         -- while typing, you could try the program 'unclutter'.
         -- $ unclutter -idle 10
     -- }}}
@@ -1429,22 +1430,22 @@ root.buttons(awful.util.table.join(
         -- prompt {{{
 
         -- default prompt
-        -- awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
+        awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
         -- dmenu prompt
-        keydoc.group("Functions"),
-        awful.key({ modkey }, "r",
-            function ()
-                awful.util.spawn("dmenu_run -i -p 'Run command:' \
-                -nb '" .. beautiful.bg_normal .. "' \
-                -nf '" .. beautiful.fg_normal .. "' \
-                -sb '" .. beautiful.bg_focus .. "' \
-                -sf '" .. beautiful.fg_focus .. "' \
-                -fn '" .. beautiful.font .. "' \
-                ")
-            end,
-            "dmenu prompt"
-        ),
+        -- keydoc.group("Functions"),
+        -- awful.key({ modkey }, "r",
+        --     function ()
+        --         awful.util.spawn("dmenu_run -i -p 'Run command:' \
+        --         -nb '" .. beautiful.bg_normal .. "' \
+        --         -nf '" .. beautiful.fg_normal .. "' \
+        --         -sb '" .. beautiful.bg_focus .. "' \
+        --         -sf '" .. beautiful.fg_focus .. "' \
+        --         -fn '" .. beautiful.font .. "' \
+        --         ")
+        --     end,
+        --     "dmenu prompt"
+        -- ),
 
         keydoc.group("Functions"),
         awful.key({ modkey }, "x",
