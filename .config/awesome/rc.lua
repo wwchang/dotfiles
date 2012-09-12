@@ -68,7 +68,7 @@ local keydoc = require("keydoc")
 
     -- terminal = "x-terminal-emulator"
     -- terminal = "gnome-terminal"
-    -- terminal = "xterm"
+    -- terminal = "xterm" -- USE urxvtc for daemon urxvtd.
     terminal = "urxvt" -- USE urxvtc for daemon urxvtd.
     editor = os.getenv("EDITOR") or "vim"
     editor_cmd = terminal .. " -e " .. editor
