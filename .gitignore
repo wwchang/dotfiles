@@ -13,8 +13,9 @@ tags
 .mutt/lbdb/m_inmail.list
 .mutt/lbdb/m_inmail.list.dirty
 
-.vim/vim-addons/*
+.vim/addons/*
 .vim/bundle/*
+!.vim/bundle/skeleton/
 .vim/view/*
 .vim/cache/*
 .vim/viminfo
@@ -65,6 +66,9 @@ tags
 .canto/feeds/
 .canto/log
 .canto/fetchlog
+.canto-ng/*
+!.canto-ng/conf
+!.canto-ng/plugins/
 
 .vimperator/info/
 
@@ -76,6 +80,7 @@ tags
 .elinks/globhist
 .elinks/gotohist
 .elinks/searchhist
+.links2/links.his
 
 .fonts/fonts.dir
 

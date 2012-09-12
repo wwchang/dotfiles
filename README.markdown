@@ -1,11 +1,18 @@
 # dotfiles
 
+## branches ##
+    * master
+    - origin/arch
+        - develop
+    - origin/ubuntu
+        - develop
+
 1.
     use install.sh to install
 
 2.
-    You can download this repository, than use command 
-      ` $ ln -s dotfiles/mutt/ ~/.mutt/ ` 
+    You can download this repository, than use command
+      `$ ln -s dotfiles/mutt/ ~/.mutt/`
     to make easy manage.
 
 3.
