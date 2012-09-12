@@ -1227,6 +1227,7 @@ endif
         NeoBundle 'colorv.vim'
         " colorscheme
         NeoBundle 'altercation/vim-colors-solarized'
+        NeoBundle 'nanotech/jellybeans.vim'
         " others
         NeoBundle 'utl.vim'
         NeoBundle 'bad-whitespace'
@@ -4822,6 +4823,13 @@ syntax on
             colorscheme solarized
             let g:solarized_termcolors=256
         " jellybeans.vim
+            " colorscheme jellybeans
+            " let g:jellybeans_overrides = {
+            "             \ 'Todo': {
+            "                 \ 'guifg': '303030', 'guibg': 'f0f000',
+            "                 \ 'ctermfg': 'Black', 'ctermbg': 'Yellow',
+            "                 \ 'attr': 'bold' },
+            "             \ }
         " vim-hybrid
 
         " Lucius
