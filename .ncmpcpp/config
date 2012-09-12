@@ -10,7 +10,7 @@
 ######################################################
 ## set it in order to make tag editor and renaming files work properly
 #
-mpd_host = "localhost"
+mpd_host = "NagatoPain"
 #
 mpd_port = "6600"
 #

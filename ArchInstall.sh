@@ -33,7 +33,7 @@ USERNAME=pain
 # pacman {{{
     pacman -S pacman-color
     # pacman -S aurvote
-    pacman -S pkgfile pkgtools
+    pacman -S pkgfile pkgtools pkgstats
 # }}}
 
 # Xorg {{{
@@ -77,7 +77,7 @@ USERNAME=pain
 
 # Network {{{
     # NetworkManager
-    pacman -S networkmanager
+    pacman -S networkmanager network-manager-applet
 
     # Wicd
     pacman -S wicd wicd-gtk
@@ -95,6 +95,9 @@ USERNAME=pain
 
     # VNC
     pacman -S x11vnc tightvnc
+
+    # sync
+    pacman -S rsync
 
     # eMule
     pacman -S mldonkey
