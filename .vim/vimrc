@@ -4816,13 +4816,27 @@ syntax on
         " }}}
 
         " vim-colors-solarized
-            if has('gui_running')
-                set background=light
-            else
-                set background=dark
-            endif
-            colorscheme solarized
-            let g:solarized_termcolors=256
+            " if has('gui_running')
+            "     set background=light
+            " else
+            "     set background=dark
+            " endif
+            " colorscheme solarized
+            let g:solarized_termcolors = 256 " 256colors
+            let g:solarized_termtrans = 1 " terminal emulator transparent background
+            let g:solarized_bold = 1
+            let g:solarized_italic = 1
+            let g:solarized_underline = 1
+            let g:solarized_degrade = 0
+            let g:solarized_contrast = "normal" " Stick with normal!
+            let g:solarized_diffmode = "high"
+            let g:solarized_hitrail = 1
+            let g:solarized_menu = 1
+            let g:solarized_visibility = "normal" " special characters
+            " normal/high/low
+                " such as trailing whitespace, tabs, newlines, when displayed
+                " using :set list can be set to one of three levels depending on
+                " your needs. Default value is normal with high and low options.
         " jellybeans.vim
             " colorscheme jellybeans
             " let g:jellybeans_overrides = {
