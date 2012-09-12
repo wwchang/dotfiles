@@ -69,8 +69,8 @@ xterm*renderFont: true
 xterm*scaleHeight: 1
 xterm*preeditType: Root
 xterm*xftAntialias: true
-xterm*faceName: DejaVu Sans Mono:pixelsize=13.5
-xterm*faceNameDoublesize: WenQuanYi Zen Hei Mono:pixelsize=13.5
+xterm*faceName: DejaVu Sans Mono:pixelsize=13
+xterm*faceNameDoublesize: WenQuanYi Zen Hei Mono:pixelsize=13
 xterm*italicULMode: false
 ! underline
 xterm*colorULMode: true
