@@ -1430,7 +1430,7 @@ root.buttons(awful.util.table.join(
         -- prompt {{{
 
         -- default prompt
-        -- awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
+        awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
         -- dmenu prompt
         -- keydoc.group("Functions"),
