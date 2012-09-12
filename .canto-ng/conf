@@ -24,5 +24,16 @@
             "name": "Reddit", 
             "url": "http://reddit.com/.rss"
         }
-    ]
+    ], 
+    "tags": {
+        "maintag:Canto": {
+            "collapsed": true
+        }, 
+        "maintag:Reddit": {
+            "collapsed": true
+        }, 
+        "maintag:Slashdot": {
+            "collapsed": true
+        }
+    }
 }

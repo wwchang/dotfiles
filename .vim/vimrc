@@ -84,10 +84,13 @@
     " }}}
 
     " [ command line ] {{{ :help cmdline-completion
-    set wildmenu wildmode=longest:full,full " show matches above cmdline <C-N/P>.
-    set wildchar=<Tab>               " <Tab> to complete in cmdline.
-    set wildignorecase               " ignore case when completing file names and directories.
-    set wildmode=list:full           " or use list,longest
+    set wildmenu wildmode=longest:full,full " show matches above cmdline <C-N/P>
+    set showcmd         " show (partial) command in the last line of screen.
+    set cmdheight=2     " Prevent 'Press Enter' message after most commands
+    set shortmess=xtToO " Limit Vim's 'hit-enter' messages
+    set wildchar=<Tab>     " <Tab> to complete in cmdline.
+    set wildignorecase     " ignore case when completing file names and directories.
+    set wildmode=list:full " or use list,longest
     " }}}
 
     " [ encode ] {{{
@@ -109,9 +112,9 @@
     set diffopt=vertical,filler,context:10,foldcolumn:1
     " set scrollbind
     " paste mode
-    " set paste " set nopaste
-    nnoremap <F2> :set invpaste paste?<CR>
+    set nopaste " Start in normal (non-paste) mode
     set pastetoggle=<F2>
+    nnoremap <F2> :set invpaste paste?<CR>
     " select mode -> visual mode, with gh or <Ctrl-G>
     " set selectmode=mouse
     " }}}
@@ -133,7 +136,7 @@
     set autochdir
     set autoread                     " auto read changed files
     set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
-    set confirm                      " confirm current buffer.
+    set confirm                      " prompt to save unsaved changes when exiting
     if has("vms")
         set nobackup " do not keep a backup file, use version instead
     else
@@ -147,8 +150,6 @@
     set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
     set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
-
-    set backspace=2        " more powerful backspace
 
     " [ tags ] {{{
     " C-], [count]C-T, {Visual}g], {Visual}g C-], <C-w><C-]>,
@@ -217,10 +218,11 @@
             " \m, \M
 
         " [ search ]
-        set hlsearch incsearch " highlight all searching, incremental searching
-        set wrapscan " wrapscan used for ]s and [s spelling mistake.
-        " smartcase will override ignorecase when type with upper case characters
-        set ignorecase smartcase
+        set hlsearch   " highlight searchs
+        set ignorecase " Do case insensitive matching
+        set smartcase  " except when using capital letters
+        set incsearch  " incremental searching
+        set wrapscan   " wrapscan used for ]s and [s spelling mistake.
 
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
@@ -243,7 +245,7 @@
     set spellsuggest=best " default and fast list.
     set spellfile=~/.vim/spell/en.utf-8.add " 'zg': add, 'zw': remove.
         " :mkspell command to generate a vim spell file from word lists.
-    nnoremap <silent> <Leader>sc :set spell!<CR>
+    nnoremap <silent> <Leader>sc :set invspell spell?<CR>
     " }}}
 
     " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
@@ -259,6 +261,7 @@
     "             | `-windows buffers
     "             `-the current buffer
     set completeopt=menuone " menu,menuone,longest,preview
+    set completeopt-=preview " dont show preview window
 
     " preview window
     set previewheight=15
@@ -267,7 +270,6 @@
 
     " set file path completion.
     set path+=.,/usr/local/include,/usr/include,,
-    set showcmd     " show (partial) command in the last line of screen.
     " ignore those files when completion.
     set wildignore+=*.swp,*~,*.o,*.obj,*.pyc,*.pyo
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
@@ -280,7 +282,7 @@
     set infercase " adjust ins-completion case for ..th completion.
 
         " [ omni ] {{{ complete things with "<C-X><C-O>"
-        set omnifunc=syntaxcomplete#Complete " for other languages
+        " set omnifunc=syntaxcomplete#Complete " for other languages
         inoremap <C-space> <C-x><C-o>
 
             " SuperCleverTab() for omni-completion or insert <Tab> {{{
@@ -315,8 +317,9 @@
     " }}}
 
     " [ bell ] {{{
-    set errorbells         " error bells
-    set visualbell         " visual bells
+    set errorbells " error bells
+    set visualbell " Flash the screen insteal of beeping on errors
+    set t_vb=      " And then disable even the flashing
     " }}}
 
     " [ filetype ] {{{
@@ -332,10 +335,8 @@
     " }}}
 
     " [ maps ] {{{
-    set timeout
-    set timeoutlen=1500 " 2.5 seconds, default 1000
-    set ttimeout
-    set ttimeoutlen=100
+    set timeout  timeoutlen=1500 " map sequence timeout
+    set ttimeout ttimeoutlen=100 " key code timeout
     " }}}
 
     " [ match pairs ] {{{
@@ -369,7 +370,8 @@ if has('gui') && has('gui_running')
     set antialias
 
     set t_Co=256
-    colorscheme molokai
+    set background=light " dark/light
+    colorscheme solarized
 
     "winsize 110 40 " width & height
 
@@ -407,7 +409,7 @@ endif
         " diff: -, ×,
         " stl: \ ,
         " stlnc: \ ,
-        " tab: \┆\ , >-, \␣, \⋮\ ,
+        " tab: \┆\ , ⇥, >-, \␣, \⋮\ ,
         " tail: \·,
         " extends: \«, ◂,
         " precedes: \», ▸,
@@ -416,7 +418,7 @@ endif
         " eol: ↵, ¶
         " showbreak: "↪ ", "> ", "+++ ",
         " ------------------------------------------
-    set fillchars=vert:│,fold:┄,diff:×
+    set fillchars=vert:│,fold:┄,diff:-
     set list
     set listchars=tab:\ \ , " use whitespace to hide tab.
                 \trail:\·, " trailing line whitespaces
@@ -540,8 +542,11 @@ endif
 
     " [ indent ] {{{
     " help indent.txt
+    set backspace=indent,eol,start " Better handling of backspace key
+    set autoindent " Sane indenting when filetype not recognised
     " set smartindent  " autoindent, smartindent, cindent, indentexpr.
         " use 'filetype indent on' to per-filetype indent
+    set nostartofline   " Emulate typical editor navigation behaviour
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
     "             | | | | | | | | +-- "]" Insert and Replace
@@ -556,11 +561,11 @@ endif
     " }}}
 
     " [ tab ] {{{
-    set expandtab " expandtab: use spaces to insert a <Tab>.
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
-    set shiftwidth=4 " number of spaces to use for each step of (auto)indent.
-    set tabstop=4 " number of spaces that a <Tab> counts for.
-    set softtabstop=4 " number of spaces that a <Tab> counts for
+    set shiftwidth=4 " Number of spaces for each indent level
+    set softtabstop=4 " Even when using <Tab>'s
+    set expandtab " When pressing <Tab>, replace with spaces
+    " set tabstop=4 " number of spaces that a <Tab> counts for.
     " }}}
 
     " [ format ] {{{
@@ -696,8 +701,6 @@ endif
     " endfunction
     " set statusline=%!StatusLineSet()
 
-    set shortmess="lnrxtToO"  " short on status line message : default is "filnxtToO"
-    set cmdheight=1        " cmd line height
     set ruler              " show the cursor position all the time in status line.
     set showmode           " show insert, visual, replace mode on last line.
     " }}}
@@ -713,14 +716,15 @@ endif
     " }}}
 
     " [ folding ] {{{
-    set foldenable          " enable fold
-    set foldmethod=manual   " indent, syntax, manual, expr, diff, marker
-    set foldnestmax=3       " maximum nesting of fold
-    set foldlevel=2         " fold start from which level
-    set foldlevelstart=0    " which level start fold. 0: all folds closed.
-    set foldmarker={{{,}}}      " fold marker
-    set foldminlines=3      " fold minlines
-    set foldcolumn=0        " colums ahead of line number.
+    set foldenable         " enable fold
+    set foldmethod=manual  " indent, syntax, manual, expr, diff, marker
+    set foldnestmax=3      " maximum nesting of fold
+    set foldlevel=2        " fold start from which level
+    set foldlevelstart=0   " which level start fold. 0: all folds closed.
+    set foldmarker={{{,}}} " fold marker
+    set foldminlines=3     " fold minlines
+    set foldcolumn=0       " colums ahead of line number.
+    set foldignore=        " don't ignore anything when folding
     set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
 
         " set foldtext=VimrcFoldText() " {{{
@@ -779,33 +783,40 @@ endif
     " }}}
 
     " windows navigation
-    nnoremap <C-h> <C-w>h
-    nnoremap <C-j> <C-w>j
-    nnoremap <C-k> <C-w>k
-    nnoremap <C-l> <C-w>l
+    " XXX Actually <C-w>key is cheap enough.
+    " nnoremap <C-h> <C-w>h
+    " nnoremap <C-j> <C-w>j
+    " nnoremap <C-k> <C-w>k
+    " XXX conflict with :nohlsearch mapping.
+    " nnoremap <C-l> <C-w>l
     " resize window continuously [ <C-w>(-,+,<,>), Mouse ]
-     nmap         <C-W>+     <C-W>+<SID>winsize
-     nmap         <C-W>-     <C-W>-<SID>winsize
-     nmap         <C-W><     <C-W><<SID>winsize
-     nmap         <C-W>>     <C-W>><SID>winsize
-     nnoremap <script>  <SID>winsize+   <C-W>+<SID>winsize
-     nnoremap <script>  <SID>winsize-   <C-W>-<SID>winsize
-     nnoremap <script>  <SID>winsize<   <C-W><<SID>winsize
-     nnoremap <script>  <SID>winsize>   <C-W>><SID>winsize
-     nmap         <SID>winsize      <Nop>
+    nmap         <C-W>+     <C-W>+<SID>winsize
+    nmap         <C-W>-     <C-W>-<SID>winsize
+    nmap         <C-W><     <C-W><<SID>winsize
+    nmap         <C-W>>     <C-W>><SID>winsize
+    nnoremap <script>  <SID>winsize+   <C-W>+<SID>winsize
+    nnoremap <script>  <SID>winsize-   <C-W>-<SID>winsize
+    nnoremap <script>  <SID>winsize<   <C-W><<SID>winsize
+    nnoremap <script>  <SID>winsize>   <C-W>><SID>winsize
+    nmap         <SID>winsize      <Nop>
 
     " toggle fold
     nnoremap <SPACE> za
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
-    " toggle highlight search
-    nnoremap <Leader>ths :set hlsearch! hlsearch?<CR>
+    " Temporarily clear highlighting
+    nnoremap <silent> <C-l> :nohlsearch<cr><C-l>
+    " <C-\> Toggle search highlighting (:help set-inv  :help E518)
+    nnoremap <C-Bslash> :set invhlsearch hlsearch?<cr>
 
     " quickfix/location list, window manipulate
     nnoremap <Leader>qo :cindow<CR>
     nnoremap <Leader>qc :cclose<CR>
     nnoremap <Leader>lo :lwindow<CR>
     nnoremap <Leader>lc :lclose<CR>
+
+    " reformat paragraph
+    nnoremap <silent> Q gqap
 
         " NOTICE use nonrecursive mapping.
         " Each of the *map commands has a *noremap counterpart that ignores other mappings
@@ -838,6 +849,11 @@ endif
     " i_CTRL-X_s                    -- spelling suggestions
     " i_CTRL-N                      -- keyword in 'complete'
     " }}}
+" }}}
+
+" [[ commands ]] {{{
+    " Grep help files for pattern
+    " command! -nargs=* -complete=help HG helpgrep <args>
 " }}}
 
 " [[ functions ]] {{{
@@ -945,6 +961,28 @@ endif
     endfunction
     " }}}
 
+" }}}
+
+" [ autogroup -> autocmd ] {{{
+    if has("autocmd")
+        augroup vimrc
+            au!
+
+            " Jump to last-known-position when editing files
+            autocmd BufReadPost *
+                        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                        \   exe "normal! g'\"" |
+                        \ endif
+
+            " Default omni completion based on syntax
+            if exists("+omnifunc")
+                autocmd Filetype *
+                            \ if &omnifunc == "" |
+                            \   setlocal omnifunc=syntaxcomplete#Complete |
+                            \ endif
+            endif
+        augroup END
+    endif
 " }}}
 
 " [[ Misc ]] {{{
@@ -1175,6 +1213,8 @@ endif
         NeoBundle 'The-NERD-Commenter'
         NeoBundle 'commentary.vim'
         NeoBundle 'mbbill/undotree'
+        " outline
+        NeoBundle 'h1mesuke/unite-outline'
         " Task List
         NeoBundle 'TagmaTasks'
         " NeoBundle 'TaskList.vim'
@@ -1223,6 +1263,10 @@ endif
                     \ }
         " Color
         NeoBundle 'colorv.vim'
+        " colorscheme
+        NeoBundle 'altercation/vim-colors-solarized'
+        NeoBundle 'nanotech/jellybeans.vim'
+        NeoBundle 'w0ng/vim-hybrid'
         " others
         NeoBundle 'utl.vim'
         NeoBundle 'bad-whitespace'
@@ -2586,8 +2630,6 @@ syntax on
                     " :Unite rails/[model/controller/view/mailer/lib/db/config/log
                     "               /javascripts/stylesheets/
                     "               bundle/bundled_gem/routes/root/command]
-                " unite-outline : provides your Vim's buffer with the outline view.
-                    " Usage: :Unite outline
                 " unite-adb : unite.vim Android Debug Bridge
                 " unite-oreore :
                 " unite-mark :
@@ -4811,6 +4853,39 @@ syntax on
             " (keywords: color scheme editor)
         " }}}
 
+        " vim-colors-solarized
+            " if has('gui_running')
+            "     set background=light
+            " else
+            "     set background=dark
+            " endif
+            " colorscheme solarized
+            let g:solarized_termcolors = 256 " 256colors
+            let g:solarized_termtrans = 1 " terminal emulator transparent background
+            let g:solarized_bold = 1
+            let g:solarized_italic = 1
+            let g:solarized_underline = 1
+            let g:solarized_degrade = 0
+            let g:solarized_contrast = "normal" " Stick with normal!
+            let g:solarized_diffmode = "high"
+            let g:solarized_hitrail = 1
+            let g:solarized_menu = 1
+            let g:solarized_visibility = "normal" " special characters
+            " normal/high/low
+                " such as trailing whitespace, tabs, newlines, when displayed
+                " using :set list can be set to one of three levels depending on
+                " your needs. Default value is normal with high and low options.
+        " jellybeans.vim
+            " colorscheme jellybeans
+            " let g:jellybeans_overrides = {
+            "             \ 'Todo': {
+            "                 \ 'guifg': '303030', 'guibg': 'f0f000',
+            "                 \ 'ctermfg': 'Black', 'ctermbg': 'Yellow',
+            "                 \ 'attr': 'bold' },
+            "             \ }
+        " vim-hybrid
+            " let g:hybrid_use_Xresources = 1
+            " colorscheme hybrid
         " Lucius
     " }}}
 
@@ -5169,7 +5244,40 @@ syntax on
             " let g:voom_user_command
             " let g:voom_create_devel_commands
 
-            nnoremap <F2> :VoomToggle<CR>
+            " nnoremap <F2> :VoomToggle<CR>
+        " }}}
+
+        " unite-outline {{{ provides your Vim's buffer with the outline view.
+        " TODO custom by myself :help unite-outline
+            " Usage:
+            " - :Unite outline
+            " - :Unite outline:! -- force update
+            " or <C-l> in unite interface to force update.
+            if !exists('g:unite_source_outline_info')
+                let g:unite_source_outline_info = {}
+            endif
+            " let g:unite_source_outline_info['vimwiki'] = {
+            "           \ }
+            let g:unite_source_outline_indent_width = 2 " indent width in heading lists
+            if !exists('g:unite_source_outline_filetype_options')
+                let g:unite_source_outline_filetype_options = {}
+            endif
+            let g:unite_source_outline_filetype_options['*'] = {
+                        \ 'auto_update': 1,
+                        \ 'auto_update_event': 'write',
+                        \ }
+            let g:unite_source_outline_filetype_options['javascript'] = {
+                        \ 'ignore_types': ['comment'],
+                        \ }
+            let g:unite_source_outline_cache_limit = 1000 " biggest cache value.
+                " otherwise, bigger than this value will stored in file.
+            if !exists('g:unite_source_outline_highlight')
+                let g:unite_source_outline_highlight = {}
+            endif
+
+            call unite#sources#outline#alias('xhtml', 'html')
+
+            nnoremap <F2> :Unite outline<CR>
         " }}}
 
         " Speeddating : <C-A>, <C-X>, {Visual}<C-A/X>
