@@ -1,0 +1,39 @@
+{
+    "CantoCurses": {
+        "tagorder": [
+            "maintag:Reddit", 
+            "maintag:Canto", 
+            "maintag:Slashdot"
+        ]
+    }, 
+    "defaults": {
+        "global_transform": "None", 
+        "keep": 0, 
+        "rate": 10
+    }, 
+    "feeds": [
+        {
+            "name": "Canto", 
+            "url": "http://codezen.org/static/canto.xml"
+        }, 
+        {
+            "name": "Slashdot", 
+            "url": "http://rss.slashdot.org/slashdot/Slashdot"
+        }, 
+        {
+            "name": "Reddit", 
+            "url": "http://reddit.com/.rss"
+        }
+    ], 
+    "tags": {
+        "maintag:Canto": {
+            "collapsed": true
+        }, 
+        "maintag:Reddit": {
+            "collapsed": true
+        }, 
+        "maintag:Slashdot": {
+            "collapsed": true
+        }
+    }
+}
