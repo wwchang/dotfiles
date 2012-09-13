@@ -792,12 +792,10 @@ endif
     " }}}
 
     " windows navigation
-    " XXX Actually <C-w>key is cheap enough.
-    " nnoremap <C-h> <C-w>h
-    " nnoremap <C-j> <C-w>j
-    " nnoremap <C-k> <C-w>k
-    " XXX conflict with :nohlsearch mapping.
-    " nnoremap <C-l> <C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
     " resize window continuously [ <C-w>(-,+,<,>), Mouse ]
     nmap         <C-W>+     <C-W>+<SID>winsize
     nmap         <C-W>-     <C-W>-<SID>winsize
@@ -814,7 +812,7 @@ endif
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
     " Temporarily clear highlighting
-    nnoremap <silent> <C-l> :nohlsearch<cr><C-l>
+    nnoremap <silent> <Leader>nh :nohlsearch<cr><C-l>
     " <C-\> Toggle search highlighting (:help set-inv  :help E518)
     nnoremap <C-Bslash> :set invhlsearch hlsearch?<cr>
 
