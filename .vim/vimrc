@@ -2871,7 +2871,14 @@ syntax on
             let g:syntastic_quiet_warnings = 0 " 1: care syntax errors not warning
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             let g:syntastic_csslint_options = "--warning=none"
-            " let g:syntastic_c_compiler
+            let g:syntastic_c_compiler = "gcc" " gcc, clang
+            let g:syntastic_c_check_header = 1 " check header files, create .ghc file
+            " disable search of included header files after special libiaries
+            " like GTK and glib =>
+            let g:syntastic_c_no_include_search = 0
+            " let b:syntastic_c_cflags = ' -I/usr/include/libsoup-2.4'
+            let g:syntastic_c_include_dirs = [ 'includes', 'headers' ]
+            " let g:syntastic_c_compiler_options = ' -ansi'
         " }}}
 
         " checksyntax {{{
