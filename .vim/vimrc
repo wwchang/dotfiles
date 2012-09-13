@@ -25,6 +25,15 @@
 "
 " }}}
 
+" before any other settings {{{
+    " [ key prefix -> Leader ] {{{ [ '\', ',']
+    " NOTICE: set this before any mappings.
+    let mapleader = ','
+    " <LocalLeader> is to be used for mappings which are local to a buffer. (filetypes)
+    let maplocalleader = '\'
+    " }}}
+" }}}
+
 " [[ vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
@@ -824,12 +833,7 @@ endif
         " mapping a sequence of multiple keys. like: nnoremap jk dd
         " buffer-local options and mapping. like: inoremap <buffer> <Leader>d dd
         " Operator-Pending mapping, like dw (d: Operator, w: movement),
-    " [ key prefix -> Leader ] {{{
-    let mapleader = '\'
-    "let g:mapleader=","
-    " <LocalLeader> is to be used for mappings which are local to a buffer. (filetypes)
-    let maplocalleader = '\'
-    " }}}
+
         " speed up pressing
         " inoremap jk <esc>
         " inoremap <esc> <nop> " (no operation)
