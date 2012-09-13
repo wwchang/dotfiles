@@ -454,7 +454,11 @@ endif
             set listchars=tab:\ \ ,
             :IndentGuidesEnable
         endif
-    endf
+    endfunction
+
+    fun! ListModeToggle()
+        set invlist list?
+    endfun
 
     " autocmd FileType *      call TabIndentLineToggle(1)
     " autocmd FileType python call TabIndentLineToggle(0)
