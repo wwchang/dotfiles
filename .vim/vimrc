@@ -1227,6 +1227,7 @@ endif
         " NeoBundle 'TaskMotions'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
+        NeoBundle 'taichouchou2/vim-rsense'
         NeoBundle 'tpope/vim-rails'
         " NeoBundle 'rubycomplete.vim'
         " Python
@@ -1557,7 +1558,9 @@ syntax on
             endif
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " vim-ruby plugin
+            " rsense -> RsenseCompleteFunction
+            " vim-ruby plugin -> rubycomplete#Complete
+            let g:neocomplcache_omni_functions['ruby'] = 'RsenseCompleteFunction'
             " FIXME this seems does not work with plugin vim-ruby 's omni complete <C-x><C-o>
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
@@ -3620,10 +3623,26 @@ syntax on
         let g:rubycomplete_include_object = 1
         let g:rubycomplete_include_objectspace = 1
 
-        " vim-ruby {{{
-            " https://github.com/vim-ruby/vim-ruby
-            " https://github.com/MarcWeber/vim-ruby
+        " rsense
+            " 1. Type Help
+            "   You can infer types of an expression at point by :RSenseTypeHelp.
+            " 2. Definition Jump
+            "   You can jump to definition of a method or a constant you are
+            "   pointing at by :RSenseJumpToDefinition.
+            " 3. Where Is
+            "   You can find which class/method you are editing by
+            "   :RSenseWhereIs.
+            " let g:rsenseHome = "/home/chris/opt/rsense-0.3"
+            let g:rsenseHome = $RSENSE_HOME
+            let g:rsenseUseOmniFunc = 1 " start completion automatically
+            " If you don't use autocomplpop.vim or related plugins, you need to
+            " type ^X ^O to start omni completion.
 
+        " vim-ruby {{{
+            " :help vim-ruby.txt vim-ruby-syntax.txt vim-ruby-omni.txt
+            " Usage:
+                " Ruby motions
+                " Ruby text objects
             " autocmd FileType ruby compiler ruby
 
             " syntax
