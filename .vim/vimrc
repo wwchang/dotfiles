@@ -25,6 +25,15 @@
 "
 " }}}
 
+" before any other settings {{{
+    " [ key prefix -> Leader ] {{{ [ '\', ',']
+    " NOTICE: set this before any mappings.
+    " let mapleader = ','
+    " <LocalLeader> is to be used for mappings which are local to a buffer. (filetypes)
+    " let maplocalleader = '\'
+    " }}}
+" }}}
+
 " [[ vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
@@ -154,7 +163,9 @@
     " [ tags ] {{{
     " C-], [count]C-T, {Visual}g], {Visual}g C-], <C-w><C-]>,
     " :tag, :tags, :[count]tnext/tprevious,
-    set tags=./.tags;,./tags;,tags,~/.vim/tags/tags " filename for tag command
+    set tags=tags,./tags,./**/tags,./../tags " search for tags more widely.
+    set tags+=tags;/ " search for a tags file recursively.
+    " set tags+=/lib/**/tags " * and ** wildchar. (slow)
         " ; means recurse upwards to deep under your project.
     set taglength=0 " number(N): up to this number of characters.
     set tagrelative
@@ -426,30 +437,9 @@ endif
                 \precedes:\▸,
                 \nbsp:\✖, " non-breakable space.
                 \conceal:≠ " conceal symbol.
-    nnoremap <silent> <Leader>lc :set nolist!<CR>
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
-    " use listchars tab to show tab vertical line.
-    " TODO use this for other language except Python.
-    fun! TabIndentLineToggle(toggle_vertline)
-        if (a:toggle_vertline == 1)
-            let g:TabIndentLine = 1
-            hi SpecialKey      ctermfg=237 ctermbg=NONE cterm=none
-            set noexpandtab
-            set listchars=tab:\┆\ ,eol:¶
-            :IndentGuidesDisable
-        " elseif (a:toggle_vertline == 0)
-        else
-            let g:TabIndentLine = 0
-            set expandtab
-            set listchars=tab:\ \ ,
-            :IndentGuidesEnable
-        endif
-    endf
-
-    " autocmd FileType *      call TabIndentLineToggle(1)
-    " autocmd FileType python call TabIndentLineToggle(0)
-        " chars to fill the statusline and vertical separators.
+    nnoremap <silent> <Leader>lc :set invlist<CR>
     " }}}
 
     " [ linenumber ] {{{
@@ -783,12 +773,10 @@ endif
     " }}}
 
     " windows navigation
-    " XXX Actually <C-w>key is cheap enough.
-    " nnoremap <C-h> <C-w>h
-    " nnoremap <C-j> <C-w>j
-    " nnoremap <C-k> <C-w>k
-    " XXX conflict with :nohlsearch mapping.
-    " nnoremap <C-l> <C-w>l
+    nnoremap <C-h> <C-w>h
+    nnoremap <C-j> <C-w>j
+    nnoremap <C-k> <C-w>k
+    nnoremap <C-l> <C-w>l
     " resize window continuously [ <C-w>(-,+,<,>), Mouse ]
     nmap         <C-W>+     <C-W>+<SID>winsize
     nmap         <C-W>-     <C-W>-<SID>winsize
@@ -805,7 +793,7 @@ endif
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
     " Temporarily clear highlighting
-    nnoremap <silent> <C-l> :nohlsearch<cr><C-l>
+    nnoremap <silent> <Leader>nh :nohlsearch<cr><C-l>
     " <C-\> Toggle search highlighting (:help set-inv  :help E518)
     nnoremap <C-Bslash> :set invhlsearch hlsearch?<cr>
 
@@ -824,12 +812,7 @@ endif
         " mapping a sequence of multiple keys. like: nnoremap jk dd
         " buffer-local options and mapping. like: inoremap <buffer> <Leader>d dd
         " Operator-Pending mapping, like dw (d: Operator, w: movement),
-    " [ key prefix -> Leader ] {{{
-    let mapleader = '\'
-    "let g:mapleader=","
-    " <LocalLeader> is to be used for mappings which are local to a buffer. (filetypes)
-    let maplocalleader = '\'
-    " }}}
+
         " speed up pressing
         " inoremap jk <esc>
         " inoremap <esc> <nop> " (no operation)
@@ -1018,8 +1001,9 @@ endif
 
 " [[ addons manager: VAM, vundle, pathogen ]] {{{
     " [ pathogen ] {{{ .vim/bundle/
-        "" .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
-        "call pathogen#infect()
+        " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
+        " call pathogen#infect()
+        " call pathogen#helptags()
     " }}}
 
     " [ vundle ] {{{ .vim/bundle/
@@ -1153,6 +1137,7 @@ endif
         NeoBundle 'unimpaired.vim'
         " NeoBundle 'ConflictMotions'
         " Complete
+        " NeoBundle 'ervandew/supertab'
         NeoBundle 'unicode.vim'
         " Pairs
         NeoBundle 'Auto-Pairs', {
@@ -1213,14 +1198,18 @@ endif
         NeoBundle 'The-NERD-Commenter'
         NeoBundle 'commentary.vim'
         NeoBundle 'mbbill/undotree'
-        " outline
+        " unite.vim
         NeoBundle 'h1mesuke/unite-outline'
         " Task List
         NeoBundle 'TagmaTasks'
         " NeoBundle 'TaskList.vim'
         " NeoBundle 'TaskMotions'
+		" VimL (libraries/)
+		" NeoBundle 'dahu/Chroma'
+		" NeoBundle 'dahu/vimple'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
+        NeoBundle 'taichouchou2/vim-rsense'
         NeoBundle 'tpope/vim-rails'
         " NeoBundle 'rubycomplete.vim'
         " Python
@@ -1275,7 +1264,7 @@ endif
         " NeoBundle 'dahu/VimLint'
         " }}}
 
-        " FIXME
+        " TODO use universal plugin names list g:plugins = []
         " call neobundle#source(plugins)
 
         " Installation check.
@@ -1285,6 +1274,12 @@ endif
             echomsg 'Please execute ":NeoBundleInstall" command.'
             "finish
         endif
+
+        " TODO Update log
+        " auto show up updates log if has.
+        " if neobundle#installer#update_log()
+        "     :NeoBundleUpdatesLog
+        " endif
     " }}}
 
     " [ VAM : vim addon manager ] {{{ .vim/addons/
@@ -1417,7 +1412,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ indent & align ] {{{
+    " [ indent, align, fold ] {{{
         " Indent_Guide {{{ <Leader>ig, :IndentGuidesToggle
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_start_level = 2
@@ -1448,6 +1443,8 @@ syntax on
         " }}}
 
         " Indent_Highlight
+
+        " simplefold : space-optimized, configurable folds, supports Ruby ...
 
         " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
             " {{{ switching between a single-line statement and a multi-line one.
@@ -1551,7 +1548,9 @@ syntax on
             endif
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete' " vim-ruby plugin
+            " rsense -> RsenseCompleteFunction
+            " vim-ruby plugin -> rubycomplete#Complete
+            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
             " FIXME this seems does not work with plugin vim-ruby 's omni complete <C-x><C-o>
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
@@ -1579,6 +1578,7 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
+            " FIXME this pattern is copy from python, please improve it.
             let g:neocomplcache_omni_patterns['ruby'] = '[^. \t]\.\w*'
             " FIXME
             " let g:neocomplcache_omni_patterns['coffee'] =
@@ -1833,9 +1833,9 @@ syntax on
                 inoremap <expr> <C-h> neocomplcache#smart_close_popup()."\<C-h>"
                 inoremap <expr> <BS>  neocomplcache#smart_close_popup()."\<C-h>"
 
-                inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-                " inoremap <expr> <CR> neocomplcache#smart_close_popup() . "\<CR>"
-                " inoremap <expr> <CR> neocomplcache#close_popup() . "\<CR>"
+                " inoremap <expr> <CR> <C-R>=neocomplcache#close_popup()<CR>
+                " inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+                inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
 
                 imap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
                 imap <expr> <C-p> pumvisible() ? "\<C-p>"
@@ -1847,6 +1847,10 @@ syntax on
 
                 " ------------------------------------------------------------
                 " { neocomplcache-snippets-complete } {{{
+                " TODO
+                " how to check neocomplcache-snippets-complete plugin is loaded ???
+                " if exists('g:loaded_neocomplcache')
+                " endif
                 " neocomplcache#sources#snippets_complete#expandable()
                     " return value:
                     "   0 : not found
@@ -1941,8 +1945,7 @@ syntax on
             " }}}
         " }}}
 
-        " vimproc {{{ a great asynchronous execution library for Vim.
-        " }}}
+        " vimproc : a great asynchronous execution library for Vim.
 
         " neco-look : neocomplcache-look (/usr/bin/look)
 
@@ -1954,8 +1957,8 @@ syntax on
             let g:SuperTabDefaultCompletionType = "context"
             " when upper option is 'context'
             let g:SuperTabContextDefaultCompletionType = "<c-x><c-o>"
-
             let g:SuperTabCompletionContexts = ['s:ContextText', 's:ContextDiscover']
+                " let g:SuperTabContextTextFileTypeExclusions =
             let g:SuperTabContextTextOmniPrecedence = ['&omnifunc', '&completefunc']
             let g:SuperTabContextDiscoverDiscovery =
                 \ ["&completefunc:<c-x><c-u>", "&omnifunc:<c-x><c-o>"]
@@ -1979,17 +1982,18 @@ syntax on
             "             \   call SuperTabSetDefaultCompletionType("<c-x><c-u>") |
             "             \ endif
 
-            " [ extra ]
-            function! MyTagContext()
-                if filereadable(expand('%:p:h') . '/tags')
-                    return "\<c-x>\<c-]>"
-                endif
-                " no return will result in the evaluation of the next
-                " configured context
-            endfunction
+            " [ extra ] {{{
+            " function! MyTagContext()
+            "     if filereadable(expand('%:p:h') . '/tags')
+            "         return "\<c-x>\<c-]>"
+            "     endif
+            "     " no return will result in the evaluation of the next
+            "     " configured context
+            " endfunction
 
-            let g:SuperTabCompletionContexts =
-                        \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+            " let g:SuperTabCompletionContexts =
+            "             \ ['MyTagContext', 's:ContextText', 's:ContextDiscover']
+            " }}}
         " }}}
 
         " code_complete {{{ function parameter complete, code snippets, etc
@@ -2600,62 +2604,6 @@ syntax on
             " let g:unite_no_default_keymappings =
             " let g:unite_source_file_ignore_pattern
             " .............
-
-            " unite extensions {{{
-                " unite-ack {{{ Unite plugin for Ack.
-                    " Usage:
-                    " - :Unite ack:directory:search_word<CR>
-                    " - :Unite ack::search_word<CR>
-                    let g:unite_source_ack_command = "ack-grep --nocolor --nogroup"
-                    let g:unite_source_ack_enable_highlight = 1
-                    let g:unite_source_ack_search_word_highlight = "Search"
-                    " let g:unite_source_ack_ignore_case =
-                    let g:unite_source_ack_enable_print_cmd = 1
-                    " shortcut
-                    let g:unite_source_ack_targetdir_shortcut = {
-                            \ 'vim': '$HOME/.vim',
-                            \ 'bundle': '$HOME/.vim/bundle',
-                            \ 'vam': '$HOME/.vim/addons',
-                            \ 'neco': "$HOME/.vim/addons/neocomplcache",
-                            \ 'unite': "$HOME/.vim/addons/unite",
-                            \ 'dot': '$HOME/Git/dotfiles',
-                            \ 'gem':  '/var/lib/gems/1.8/gems',
-                            \ }
-                    " .....
-                " }}}
-                " unite-scriptnames : find/open runtime scriptnames.
-                    " Usage: :Unite scriptnames
-                " unite-rails : a unite.vim plugin for rails
-                    " Usage:
-                    " :Unite rails/[model/controller/view/mailer/lib/db/config/log
-                    "               /javascripts/stylesheets/
-                    "               bundle/bundled_gem/routes/root/command]
-                " unite-adb : unite.vim Android Debug Bridge
-                " unite-oreore :
-                " unite-mark :
-                " unite-locate : find/open files easily using locate command.
-                " unite-launch : a unite plugin that runs reserved external commands
-                    " quickly and stays the result persistently.
-                    " Usage: :Unite launch
-                " unite-haskellimport :
-                " unite-history :
-                " unite-help :
-                " unite-gem :
-                " unite-font :
-                " unite-colorscheme :
-                " unite-cmdwin : put next Ex command to command-line.
-                    " Usage: :Unite cmdwin
-                " unite-quickfix {{{ quickfix for unite.vim
-                    " Usage:
-                    " - :Unite quickfix
-                    " - :Unite location_list
-                    let g:unite_quickfix_filename_is_pathshorten = 1
-                    let g:unite_quickfix_is_multiline = 1
-                    " let g:Unite_quickfix_abbr_formatter =
-                    " let g:Unite_quickfix_word_formatter =
-                " }}}
-                " unite-ssh : unite.vim for SSH source.
-            " }}}
         " }}}
 
         " EasyGrep {{{ make search and replace in files easy.
@@ -2865,7 +2813,14 @@ syntax on
             let g:syntastic_quiet_warnings = 0 " 1: care syntax errors not warning
             let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             let g:syntastic_csslint_options = "--warning=none"
-            " let g:syntastic_c_compiler
+            let g:syntastic_c_compiler = "gcc" " gcc, clang
+            let g:syntastic_c_check_header = 1 " check header files, create .ghc file
+            " disable search of included header files after special libiaries
+            " like GTK and glib =>
+            let g:syntastic_c_no_include_search = 0
+            " let b:syntastic_c_cflags = ' -I/usr/include/libsoup-2.4'
+            let g:syntastic_c_include_dirs = [ 'includes', 'headers' ]
+            " let g:syntastic_c_compiler_options = ' -ansi'
         " }}}
 
         " checksyntax {{{
@@ -3607,10 +3562,26 @@ syntax on
         let g:rubycomplete_include_object = 1
         let g:rubycomplete_include_objectspace = 1
 
-        " vim-ruby {{{
-            " https://github.com/vim-ruby/vim-ruby
-            " https://github.com/MarcWeber/vim-ruby
+        " rsense
+            " 1. Type Help
+            "   You can infer types of an expression at point by :RSenseTypeHelp.
+            " 2. Definition Jump
+            "   You can jump to definition of a method or a constant you are
+            "   pointing at by :RSenseJumpToDefinition.
+            " 3. Where Is
+            "   You can find which class/method you are editing by
+            "   :RSenseWhereIs.
+            " let g:rsenseHome = "/home/chris/opt/rsense-0.3"
+            let g:rsenseHome = $RSENSE_HOME
+            let g:rsenseUseOmniFunc = 1 " start completion automatically
+            " If you don't use autocomplpop.vim or related plugins, you need to
+            " type ^X ^O to start omni completion.
 
+        " vim-ruby {{{
+            " :help vim-ruby.txt vim-ruby-syntax.txt vim-ruby-omni.txt
+            " Usage:
+                " Ruby motions
+                " Ruby text objects
             " autocmd FileType ruby compiler ruby
 
             " syntax
@@ -3859,7 +3830,7 @@ syntax on
             " Stack Tracks
             " :C{line number} takes you to the given line number in the
             " compiled Javascript of the CoffeeScript file you are editing.
-            command -nargs=1 C CoffeeCompile | :<args>
+            command! -nargs=1 C CoffeeCompile | :<args>
         " }}}
     " }}}
 
@@ -4461,6 +4432,11 @@ syntax on
                 "{location} : 'before', 'after'
                 "call Pl#Theme#RemoveSegment({targetsegment})
                 "call Pl#Theme#ReplaceSegment({targetsegment}, {newsegment})
+
+                " call Pl#Theme#Buffer(
+                "             \ 'bt_help',
+                "             \ )
+
                 call Pl#Theme#RemoveSegment('fileencoding')
                 call Pl#Theme#RemoveSegment('fileformat')
                 " FIXME call Pl#Theme#ReplaceSegment('fileencoding', '%{&ff==#"unix"?"":&ff}')
@@ -4534,10 +4510,10 @@ syntax on
 
             nnoremap <F10> :UndotreeToggle<CR>
 
-            function g:undotree_CustomMap()
-                map <C-n> J
-                map <C-p> K
-            endfunction
+            " function! g:undotree_CustomMap()
+            "     map <C-n> J
+            "     map <C-p> K
+            " endfunction
             " if has("presistent_undo")
             "     set undodir='~/.undo/'
             "     set undofile
