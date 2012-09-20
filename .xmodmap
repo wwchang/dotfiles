@@ -1,0 +1,16 @@
+pointer = 1 2 3 4 5 6 7 8 9 10 11 12
+
+!
+! Swap Caps_Lock and Control_L for [Emacs]
+!
+! add this line
+! "xmodmap ~/.xmodmap"
+! into .zprofile
+! or .xsession
+!
+remove Lock = Caps_Lock
+remove Control = Control_R
+keysym Control_R = Caps_Lock
+keysym Caps_Lock = Control_R
+add Lock = Caps_Lock
+add Control = Control_R
