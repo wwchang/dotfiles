@@ -2604,62 +2604,6 @@ syntax on
             " let g:unite_no_default_keymappings =
             " let g:unite_source_file_ignore_pattern
             " .............
-
-            " unite extensions {{{
-                " unite-ack {{{ Unite plugin for Ack.
-                    " Usage:
-                    " - :Unite ack:directory:search_word<CR>
-                    " - :Unite ack::search_word<CR>
-                    let g:unite_source_ack_command = "ack-grep --nocolor --nogroup"
-                    let g:unite_source_ack_enable_highlight = 1
-                    let g:unite_source_ack_search_word_highlight = "Search"
-                    " let g:unite_source_ack_ignore_case =
-                    let g:unite_source_ack_enable_print_cmd = 1
-                    " shortcut
-                    let g:unite_source_ack_targetdir_shortcut = {
-                            \ 'vim': '$HOME/.vim',
-                            \ 'bundle': '$HOME/.vim/bundle',
-                            \ 'vam': '$HOME/.vim/addons',
-                            \ 'neco': "$HOME/.vim/addons/neocomplcache",
-                            \ 'unite': "$HOME/.vim/addons/unite",
-                            \ 'dot': '$HOME/Git/dotfiles',
-                            \ 'gem':  '/var/lib/gems/1.8/gems',
-                            \ }
-                    " .....
-                " }}}
-                " unite-scriptnames : find/open runtime scriptnames.
-                    " Usage: :Unite scriptnames
-                " unite-rails : a unite.vim plugin for rails
-                    " Usage:
-                    " :Unite rails/[model/controller/view/mailer/lib/db/config/log
-                    "               /javascripts/stylesheets/
-                    "               bundle/bundled_gem/routes/root/command]
-                " unite-adb : unite.vim Android Debug Bridge
-                " unite-oreore :
-                " unite-mark :
-                " unite-locate : find/open files easily using locate command.
-                " unite-launch : a unite plugin that runs reserved external commands
-                    " quickly and stays the result persistently.
-                    " Usage: :Unite launch
-                " unite-haskellimport :
-                " unite-history :
-                " unite-help :
-                " unite-gem :
-                " unite-font :
-                " unite-colorscheme :
-                " unite-cmdwin : put next Ex command to command-line.
-                    " Usage: :Unite cmdwin
-                " unite-quickfix {{{ quickfix for unite.vim
-                    " Usage:
-                    " - :Unite quickfix
-                    " - :Unite location_list
-                    let g:unite_quickfix_filename_is_pathshorten = 1
-                    let g:unite_quickfix_is_multiline = 1
-                    " let g:Unite_quickfix_abbr_formatter =
-                    " let g:Unite_quickfix_word_formatter =
-                " }}}
-                " unite-ssh : unite.vim for SSH source.
-            " }}}
         " }}}
 
         " EasyGrep {{{ make search and replace in files easy.
