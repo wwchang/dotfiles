@@ -1139,6 +1139,7 @@ endif
         " Complete
         " NeoBundle 'ervandew/supertab'
         NeoBundle 'unicode.vim'
+	" NeoBundle 'caio/querycommandcomplete.vim'
         " Pairs
         NeoBundle 'Auto-Pairs', {
                     \ 'directory': 'AutoPairs',
@@ -4255,6 +4256,19 @@ syntax on
 
     " VimLint {{{ a correctness and sanity checker of Vim configuration
         " Usage: :VimLint
+    " }}}
+
+    " [ completion ] {{{
+	" querycommandcomplete {{{ completions from an external query command
+	    " External command that queries for contacts If empty,
+	    " QueryCommandComplete tries to guess what command to run by
+	    " executing `mutt -Q query_command`
+	    let g:qcc_query_command = 'abook'
+	    au BufRead /tmp/mutt* setlocal omnifunc=QueryCommandComplete
+	    let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
+	    let g:qcc_line_separator = "\n"
+	    let g:qcc_field_separator = "\t"
+	" }}}
     " }}}
 
     " [ register & operation ] {{{
