@@ -999,7 +999,7 @@ endif
 
 " ----------------------------------------------------------------
 
-" [[ addons manager: VAM, vundle, pathogen ]] {{{
+" [ plugins list ] {{{
     " [ pathogen ] {{{ .vim/bundle/
         " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
         " call pathogen#infect()
@@ -4310,6 +4310,10 @@ syntax on
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
 
+        " gf-user: extend 'gf' operation to open code file.
+    " }}}
+
+    " [ bookmark & mark ] {{{
         " vim-signature {{{ toggle, display and navigate marks.
             " Usage:
             " mark
@@ -4384,8 +4388,6 @@ syntax on
             "nmap <Plug>IgnoreMarkSearchNext <Plug>MarkSearchNext
             "nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
         " }}}
-
-        " gf-user: extend 'gf' operation to open code file.
 
         " DynamicSigns {{{ Use Signs for different things.
             let g:Signs_IndentationLevel = 1 " numeric indentation level.
@@ -5328,9 +5330,6 @@ syntax on
             let g:vimshell_interactive_cygwin_home = ''
             "let g:unite_source_vimshell_external_history_path =
         " }}}
-    " }}}
-
-    " [ bookmark & mark ] {{{
     " }}}
 
     " [ TeX & LaTeX ] {{{
