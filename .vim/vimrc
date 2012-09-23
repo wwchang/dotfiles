@@ -1604,7 +1604,9 @@ syntax on
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
+	    " if empty, use Vim 'dictionary' option.
             let g:neocomplcache_dictionary_filetype_lists['default'] = ''
+            let g:neocomplcache_dictionary_filetype_lists['text'] = '/usr/share/dict/words'
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
