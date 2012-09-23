@@ -1672,6 +1672,11 @@ syntax on
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
+	    " if value contains "_", neocomplcache completes from all buffers.
+	    let g:neocomplcache_same_filetype_lists['gitconfig'] = '_'
+	    let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
+	    let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
+	    let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
             " }}}
             " composite file type (only use one completion) {{{
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
