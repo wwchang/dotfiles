@@ -1172,6 +1172,7 @@ endif
         NeoBundle 'indexer.tar.gz', {
                     \ 'depends': ['DfrankUtil', 'vimprj'],
                     \ }
+	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'The-NERD-tree', {
                     \ 'directory': 'NERDTree',
@@ -2316,6 +2317,26 @@ syntax on
             " To go to the referenced point of func. add -r option. :Gtags -r func
             " More details please refer vim/plugin/gtags.vim
         " }}}
+
+	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
+	    " it works like the context window of 'Source Insight'
+	    nnoremap <F4> :SrcExplToggle<CR>
+	    let g:SrcExpl_winHeight = 8
+	    let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
+	    let g:SrcExpl_pluginList = [
+			\ "Source_Explorer",
+			\ "_NERD_tree_",
+			\ "__Tag_List__",
+			\ "*unite*",
+			\ ]
+	    let g:SrcExpl_searchLocalDef = 1 " enable local definition searching.
+	    let g:SrcExpl_isUpdateTags = 1 " auto update tags file.
+	    let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+	    " key mappings:
+	    let g:SrcExpl_jumpKey = "<CR>"
+	    let g:SrcExpl_gobackKey = "<Space>"
+	    let g:SrcExpl_updateTagsKey = ''
+	" }}}
     " }}}
 
     " [ cscope ] {{{
