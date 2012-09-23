@@ -999,7 +999,7 @@ endif
 
 " ----------------------------------------------------------------
 
-" [[ addons manager: VAM, vundle, pathogen ]] {{{
+" [ plugins list ] {{{
     " [ pathogen ] {{{ .vim/bundle/
         " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
         " call pathogen#infect()
@@ -1139,6 +1139,7 @@ endif
         " Complete
         " NeoBundle 'ervandew/supertab'
         NeoBundle 'unicode.vim'
+	" NeoBundle 'caio/querycommandcomplete.vim'
         " Pairs
         NeoBundle 'Auto-Pairs', {
                     \ 'directory': 'AutoPairs',
@@ -1171,6 +1172,7 @@ endif
         NeoBundle 'indexer.tar.gz', {
                     \ 'depends': ['DfrankUtil', 'vimprj'],
                     \ }
+	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'The-NERD-tree', {
                     \ 'directory': 'NERDTree',
@@ -1472,9 +1474,9 @@ syntax on
             "   neocomplcache#get_context_filetype()
             "   unite#get_context_filetype()
             "   this [filetype] only used inside of neocomplcache.
-            "   -- to use local compound filetype for neocomplcache
+            "   -- to use local composite filetype for neocomplcache
             " - :set ft=html.python
-            "   -- to use global compound filetype.
+            "   -- to use global composite filetype.
             "   so you can complete HTML and Python as same time.
             "   -- but this will affect other plugins which use 'filetype' too.
             " - :NeoComplCacheCachingTags command to make cache.
@@ -1602,7 +1604,9 @@ syntax on
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
+	    " if empty, use Vim 'dictionary' option.
             let g:neocomplcache_dictionary_filetype_lists['default'] = ''
+            let g:neocomplcache_dictionary_filetype_lists['text'] = '/usr/share/dict/words'
             if !exists('g:neocomplcache_dictionary_patterns')
                 let g:neocomplcache_dictionary_patterns = {}
             endif
@@ -1657,9 +1661,9 @@ syntax on
             let g:neocomplcache_source_completion_length['keyword_complete'] = 3
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
-            let g:neocomplcache_source_completion_length['tags_complete'] = 2
+            let g:neocomplcache_source_completion_length['tags_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3
-            " FIXME seems this if expression does not work.
+	    " dynamically change dictionary_complete source completion length.
             let s:TextFileType = ['text', 'mail', 'markdown',]
             if index(s:TextFileType, &filetype) >= 0
                 let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
@@ -1671,8 +1675,13 @@ syntax on
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
+	    " if value contains "_", neocomplcache completes from all buffers.
+	    let g:neocomplcache_same_filetype_lists['gitconfig'] = '_'
+	    let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
+	    let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
+	    let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
             " }}}
-            " composite/compound file type (only use one completion) {{{
+            " composite file type (only use one completion) {{{
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
                 let g:neocomplcache_ignore_composite_filetype_lists = {}
             endif
@@ -2310,6 +2319,26 @@ syntax on
             " To go to the referenced point of func. add -r option. :Gtags -r func
             " More details please refer vim/plugin/gtags.vim
         " }}}
+
+	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
+	    " it works like the context window of 'Source Insight'
+	    nnoremap <F4> :SrcExplToggle<CR>
+	    let g:SrcExpl_winHeight = 8
+	    let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
+	    let g:SrcExpl_pluginList = [
+			\ "Source_Explorer",
+			\ "_NERD_tree_",
+			\ "__Tag_List__",
+			\ "*unite*",
+			\ ]
+	    let g:SrcExpl_searchLocalDef = 1 " enable local definition searching.
+	    let g:SrcExpl_isUpdateTags = 1 " auto update tags file.
+	    let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+	    " key mappings:
+	    let g:SrcExpl_jumpKey = "<CR>"
+	    let g:SrcExpl_gobackKey = "<Space>"
+	    let g:SrcExpl_updateTagsKey = ''
+	" }}}
     " }}}
 
     " [ cscope ] {{{
@@ -4257,6 +4286,19 @@ syntax on
         " Usage: :VimLint
     " }}}
 
+    " [ completion ] {{{
+	" querycommandcomplete {{{ completions from an external query command
+	    " External command that queries for contacts If empty,
+	    " QueryCommandComplete tries to guess what command to run by
+	    " executing `mutt -Q query_command`
+	    let g:qcc_query_command = 'abook'
+	    au BufRead /tmp/mutt* setlocal omnifunc=QueryCommandComplete
+	    let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
+	    let g:qcc_line_separator = "\n"
+	    let g:qcc_field_separator = "\t"
+	" }}}
+    " }}}
+
     " [ register & operation ] {{{
         " YankRing
 
@@ -4296,6 +4338,10 @@ syntax on
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
 
+        " gf-user: extend 'gf' operation to open code file.
+    " }}}
+
+    " [ bookmark & mark ] {{{
         " vim-signature {{{ toggle, display and navigate marks.
             " Usage:
             " mark
@@ -4370,8 +4416,6 @@ syntax on
             "nmap <Plug>IgnoreMarkSearchNext <Plug>MarkSearchNext
             "nmap <Plug>IgnoreMarkSearchPrev <Plug>MarkSearchPrev
         " }}}
-
-        " gf-user: extend 'gf' operation to open code file.
 
         " DynamicSigns {{{ Use Signs for different things.
             let g:Signs_IndentationLevel = 1 " numeric indentation level.
@@ -5314,9 +5358,6 @@ syntax on
             let g:vimshell_interactive_cygwin_home = ''
             "let g:unite_source_vimshell_external_history_path =
         " }}}
-    " }}}
-
-    " [ bookmark & mark ] {{{
     " }}}
 
     " [ TeX & LaTeX ] {{{

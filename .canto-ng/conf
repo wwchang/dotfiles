@@ -1,39 +1,614 @@
 {
     "CantoCurses": {
+        "browser": {
+            "path": "firefox%u",
+            "text": False
+        },
+        "reader": {
+            "enumerate_links": False
+        },
+        "story": {
+            "enumerated": True
+        },
+        "taglist": {
+            "cursor": {
+                "edge": 5,
+                "scroll": "scroll",
+                "type": "middle"
+            }
+        },
         "tagorder": [
-            "maintag:Reddit", 
-            "maintag:Canto", 
-            "maintag:Slashdot"
-        ]
-    }, 
-    "defaults": {
-        "global_transform": "None", 
-        "keep": 0, 
-        "rate": 10
-    }, 
-    "feeds": [
-        {
-            "name": "Canto", 
-            "url": "http://codezen.org/static/canto.xml"
-        }, 
-        {
-            "name": "Slashdot", 
-            "url": "http://rss.slashdot.org/slashdot/Slashdot"
-        }, 
-        {
-            "name": "Reddit", 
-            "url": "http://reddit.com/.rss"
+            "maintag:Canto",
+            "maintag:Slashdot",
+            "maintag:Reddit",
+            "tag:news",
+            "tag:update"
+        ],
+        "update": {
+            "auto": {
+                "enabled": True,
+                "interval": 3600
+            },
+            "style": "append"
         }
-    ], 
+    },
+    "defaults": {
+        "global_transform": "None",
+        "keep": 0,
+        "rate": 10
+    },
+    "feeds": [
+        # Program {{{
+        # }}}
+
+        # Arch {{{
+        # News and Activity Feeds
+        {
+            "name": "Arch Linux RSS news",
+            "url": "http://www.archlinux.org/feeds/news/"
+        },
+        {
+            "name": "Plant Arch Linux",
+            "url": "http://planet.archlinux.org/atom.xml"
+        },
+        # Package Feeds
+        # {
+        #     "name": "Arch All repos",
+        #     "url": "http://www.archlinux.org/feeds/packages/"
+        # },
+        # {
+        #     "name": "Arch [core] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/core/"
+        # },
+        # {
+        #     "name": "Arch [community] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/community/"
+        # },
+        # {
+        #     "name": "Arch [community-testing] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/community-testing/"
+        # },
+        # {
+        #     "name": "Arch [extra] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/extra/"
+        # },
+        # {
+        #     "name": "Arch [testing] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/testing/"
+        # },
+        # {
+        #     "name": "Arch [multilib] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/multilib/"
+        # },
+        # {
+        #     "name": "Arch [multilib-testing] repo",
+        #     "url": "http://www.archlinux.org/feeds/packages/all/multilib-testing/"
+        # },
+        # {
+        #     "name": "Arch [AUR] repo",
+        #     "url": "https://aur.archlinux.org/rss.php"
+        # },
+        # Development Feeds
+        # {
+        #     "name": "Arch Linux Bugtracker:: Pacman Development",
+        #     "url": "https://bugs.archlinux.org/feed.php?feed_type=rss2&project=3"
+        # },
+        {
+            "name": "Arch Linux User Blogs",
+            "url": "http://archlinux.me/?type=atom10"
+        },
+        # }}}
+
+        # Vim {{{
+        {
+            "name": "Vim scripts update",
+            "url": "http://feed43.com/vim-scripts.xml"
+        },
+        # }}}
+
+        # projects release {{{
+        {
+            "name": "Canto",
+            "url": "http://codezen.org/static/canto.xml"
+            # "url": "http://codezen.org/canto/feeds/latest"
+        },
+        {
+            "name": "Awesome Wiki Updates",
+            "http://awesome.naquadah.org/w/index.php?title=Special:RecentChanges&feed=atom",
+        },
+        {
+            "name": "definitely Awesome",
+            "url": "http://definitely-awesome.posterous.com/rss.xml"
+        },
+        {
+            "name": "Firebug",
+            "url": "http://blog.getfirebug.com/feed/"
+        },
+        {
+            "name": "weechat update",
+            "url": "http://www.weechat.org/feeds/news/"
+        },
+        {
+            "name": "weechat dev annonce",
+            "url": "http://dev.weechat.org/feed/atom"
+        },
+        {
+            "name": "weechat scripts",
+            "url": "http://www.weechat.org/feeds/news/"
+        },
+        {
+            "name": "Conky Blog",
+            "url": "http://blog.conky.be/feed/"
+        },
+        {
+            "name": "Mutt dev",
+            "url": "http://dev.mutt.org/hg/mutt/rss-log"
+        },
+        {
+            "name": "CSS3 .info",
+            "url": "http://feeds2.feedburner.com/css3"
+        },
+        {
+            "name": "BackTrack official blog.",
+            "url": "http://www.backtrack-linux.org/feed/"
+        },
+        # {
+        #     "name": "BackTrack Linux Atom 3",
+        #     "url": "http://www.backtrack-linux.org/feed/atom/"
+        # },
+        # {
+        #     "name": "BackTrack Linux RSS 2",
+        #     "url": "http://www.backtrack-linux.org/feed/"
+        # },
+        {
+            "name": "BackBox",
+            "url": "http://www.backbox.org/blog/feed"
+        },
+        {
+            "name": "Project Byzantium: Ad-hoc wireless mesh networking for the zombie apocalypse.",
+            "url": "http://project-byzantium.org/feed/"
+        },
+        # {
+        #     "name": "Tor announce",
+        #     "url": "http://rss.gmane.org/gmane.network.onion-routing.announce"
+        # },
+        # {
+        #     "name": "Miredo",
+        #     "url": "http://freecode.com/projects/miredo/releases.atom"
+        # },
+        # {
+        #     "name": "pwmt.org",
+        #     "url": "http://pwmt.org/rss.xml"
+        # },
+        # }}}
+
+        # Ruby {{{
+        {
+            "name": "ruby-lang.org news",
+            "url": "http://www.ruby-lang.org/en/feeds/news.rss"
+        },
+        {
+            "name": "Ruby Inside",
+            "url": "http://feeds.feedburner.com/RubyInside"
+        },
+        {
+            "name": "Ruby gems - Gemcutter | Latest Gems",
+            "url": "http://feeds.feedburner.com/gemcutter-latest"
+        },
+        {
+            "name": "Ruby-china",
+            "url": "http://ruby-china.org/topics/feed"
+        },
+        # }}}
+
+        # Python {{{
+        {
+            "name": "Daily Python-URL!",
+            "url": "http://www.pythonware.com/daily/rss.xml"
+        },
+        {
+            "name": "Python Notes",
+            "url": "http://pythonnotes.blogspot.com/feeds/posts/default?alt=rss"
+        },
+        {
+            "name": "Neopythonic",
+            "url": "http://neopythonic.blogspot.com/feeds/posts/default?alt=rss"
+        },
+        {
+            "name": "PySide.org released",
+            "url": "http://www.pyside.org/feed/"
+        },
+        # }}}
+
+        # Go {{{
+        {
+            "name": "Go lang",
+            "url": "http://blog.golang.org/feeds/posts/default"
+        },
+        {
+            "name": "GoLang Tutorials",
+            "url": "http://feeds.feedburner.com/GoLangTutorials"
+        },
+        # }}}
+
+        # Dart {{{
+        {
+            "name": "Dart lang",
+            "url": "http://feeds.feedburner.com/dartosphere"
+        },
+        {
+            "name": "Dart news",
+            "url": "http://news.dartlang.org/feeds/posts/default"
+        },
+        # }}}
+
+        # Subscribes {{{
+        {
+            "name": "Github Blog",
+            "url": "https://github.com/blog.atom"
+        },
+        {
+            "name": "GitCafe Blog",
+            "url": "http://blog.gitcafe.com/feed"
+        },
+        {
+            "name": "GitHub Podcasts",
+            "url": "http://feeds.feedburner.com/changelogshow"
+        },
+        {
+            "name": "TaoBao Developer forums",
+            "url": "http://dev.open.taobao.com/bbs/rss.php?fid=2"
+        },
+        {
+            "name": "TaoBao UED",
+            "url": "http://ued.taobao.com/blog/feed/"
+        },
+        {
+            "name": "hacks.mozilla",
+            "url": "http://hacks.mozilla.org/feed/"
+        },
+        # {
+        #     "name": "maemo latest news",
+        #     "url": "http://maemo.org/news/latest.xml"
+        # },
+        # {
+        #     "name": "maemo news",
+        #     "url": "http://maemo.org/news/items.xml"
+        # },
+        {
+            "name": "My~Maemo",
+            "url": "http://my-maemo.com/maemo.xml"
+        },
+        {
+            "name": "Maemo World",
+            "url": "http://maemoworld.org/feed/"
+        },
+        {
+            "name": "N900 PenTesting Tutorials",
+            "url": "http://n900-pentesting.blogspot.com/feeds/posts/default?alt=rss"
+        },
+        # {
+        #     "name": "All About MeeGo",
+        #     "url": "http://rss.allaboutmeego.com/aam-feed-summary.xml"
+        # },
+        # {
+        #     "name": "37singles Podcast",
+        #     "url": "http://feeds.feedburner.com/37signals_podcast")
+        # },
+        {
+            "name": "hackthissite RSS",
+            "url": "http://www.hackthissite.org/pages/hts.rss.php"
+        },
+        {
+            "name": "九州 点点官方",
+            "url": "http://ninlands.diandian.com/rss"
+        },
+        {
+            "name": "黑客志 hack news",
+            "url": "http://feed.feedsky.com/heikezhi"
+        },
+        # {
+        #     "name": "kerneltrap",
+        #     "url": "http://kerneltrap.org/node/feed"
+        # },
+        # {
+        #     "name": "The Geek Stuff",
+        #     "url": "http://www.thegeekstuff.com/feed"
+        # },
+        # {
+        #     "name": "How To Geek",
+        #     "url": "http://feeds.howtogeek.com/HowToGeek"
+        # },
+        # }}}
+
+        # Blog {{{
+        {
+            "name": "王垠 新浪博客",
+            "url": "http://blog.sina.com.cn/rss/1569777711.xml" tas=[None "blog"])
+        },
+        {
+            "name": "王垠 yinwang0 wordpress blog",
+            "url": "http://yinwang0.wordpress.com/feed/"
+        },
+        {
+            "name": "vim and vigor",
+            "url": "http://of-vim-and-vigor.blogspot.com/feeds/posts/default"
+        },
+        {
+            "name": "semicomplete.com - Jordan Sissel",
+            "url": "http://feeds.feedburner.com/semicomplete/main"
+        },
+        {
+            "name": "altdevblogaday",
+            "url": "http://www.altdevblogaday.com/feed/"
+        },
+        {
+            "name": "Stack Exchange Blog",
+            "url": "http://blog.stackoverflow.com/feed/"
+        },
+        {
+            "name": "Programmers Stack Exchange Blog",
+            "url": "http://programmers.blogoverflow.com/feed/"
+        },
+        # {
+        #     "name": "Stevey's Blog Rants",
+        #     "url": "http://steve-yegge.blogspot.com/feeds/posts/default?alt=rss"
+        # },
+        {
+            "name": "pragdave",
+            "url": "http://pragdave.blogs.pragprog.com/pragdave/rss.xml"
+        },
+        {
+            "name": "Peter Norvig",
+            "url": "http://www.norvig.com/rss-feed.xml"
+        },
+        {
+            "name": "ongoing by Tim Bray",
+            "url": "http://www.tbray.org/ongoing/ongoing.atom"
+        },
+        {
+            "name": "Blinux.",
+            "url": "http://blog.binux.me/feed/"
+        },
+        # {
+        #     "name": "iGFW",
+        #     "url": "http://igfw.net/feed"
+        # },
+        {
+            "name": "Instagram Tech Blog",
+            "url": "http://instagram-engineering.tumblr.com/rss"
+        },
+        {
+            "name": "Coding Horror",
+            "url": "http://feeds.feedburner.com/codinghorror"
+        },
+        {
+            "name": "HTML5 Rocks",
+            "url": "http://feeds.feedburner.com/html5rocks"
+        },
+        {
+            "name": "tomayko Blog",
+            "url": "http://tomayko.com/feed/"
+        },
+        {
+            "name": "Lost in Technopolis",
+            "url": "http://newartisans.com/feed/"
+        },
+        {
+            "name": "pbrisbin Blog",
+            "url": "http://pbrisbin.com/feed"
+        },
+        {
+            "name": "apt-blog Blog cn",
+            "url": "http://apt-blog.net/feed"
+        },
+        {
+            "name": "Web Designer Wall",
+            "url": "http://feeds2.feedburner.com/WebDesignerWall"
+        },
+        {
+            "name": "stevelosh Blog",
+            "url": "http://feeds2.feedburner.com/stevelosh"
+        },
+        {
+            "name": "Program Think",
+            "url": "http://program-think.blogspot.com/feeds/posts/default"
+        },
+        # {
+        #     "name": "RuanYiFeng Blog",
+        #     "url": "http://feeds.feedburner.com/ruanyifeng"
+        # },
+        # {
+        #     "name": "Goo Blog",
+        #     "url": "http://feed.tmdsb.com/"
+        # },
+        {
+            "name": "Matric Math",
+            "url": "http://www.matrix67.com/blog/feed/atom"
+        },
+        # {
+        #     "name": "Cool shell",
+        #     "url": "http://coolshell.cn/?feed=rss2"
+        # },
+        # {
+        #     "name": "Moonlight Blog",
+        #     "url": "http://feed.williamlong.info/"
+        # },
+        {
+            "name": "Physics Universe",
+            "url": "http://www.eaglefantasy.com/feed"
+        },
+        {
+            "name": "cdwillis",
+            "url": "http://cdwillis.wordpress.com/feed/"
+        },
+        {
+            "name": "SKORKS Blog",
+            "url": "http://feeds.feedburner.com/softwaretechandmore"
+        },
+        "url": "http://feed.feedsky.com/taoofsource"
+        {
+            "name": "hackbloc.org",
+            "url": "https://www.hackbloc.org/rss.xml"
+        },
+        {
+            "name": "confusedfly",
+            "url": "http://confusedfly.yo2.cn/feed"
+        },
+        {
+            "name": "LaTex chinese Blog",
+            "url": "http://LaTex.yo2.cn/feed"
+        },
+        # {
+        #     "name": "ibeini",
+        #     "url": "http://blog.ibeini.com/feed"
+        # },
+        {
+            "name": "CSSlayer Blog",
+            "url": "https://www.csslayer.info/wordpress/feed/"
+        },
+        {
+            "name": "whileimautomaton",
+            "url": "http://whileimautomaton.net/rss.rdf"
+        },
+        {
+            "name": "gregsexton.org",
+            "url": "http://www.gregsexton.org/feed/"
+        },
+        # }}}
+
+        # Podcasts {{{
+        # {
+        #     "name": "The Setup",
+        #     "url": "http://usesthis.com/feed/"
+        # },
+        # {
+        #     "name": "The Setup (Chinese)",
+        #     "url": "http://setup.xiuxiu.de/feed/"
+        # },
+        # {
+        #     "name": "Vimcasts OGG Feed",
+        #     "url": "http://vimcasts.org/feeds/ogg"
+        # },
+        # {
+        #     "name": "VOA special English Podcasts",
+        #     "url": "http://feeds.feedburner.com/voa"
+        # },
+        # {
+        #     "name": "Fosscasts Podcasts",
+        #     "url": "http://feeds.feedburner.com/Fosscasts-FreeOpenSourceScreencasts/ogg"
+        # },
+        # {
+        #     "name": "TED Talks",
+        #     "url": "http://feeds.feedburner.com/tedtalks_video"
+        # },
+        {
+            "name": "xkcd.com",
+            "url": "http://xkcd.com/rss.xml"
+        },
+        # }}}
+
+        # NEWS {{{
+        {
+            "name": "Slashdot",
+            "url": "http://rss.slashdot.org/slashdot/Slashdot"
+            # "url": "http://slashdot.org/index.rss"
+        },
+        # {
+        #     "name": "Hacker News",
+        #     "url": "http://news.ycombinator.com/rss"
+        # },
+        # {
+        #     "name": "Reddit",
+        #     "url": "http://reddit.com/.rss"
+        # },
+        {
+            "name": "Solidot",
+            "url": "http://feeds2.feedburner.com/solidot"
+        },
+        {
+            "name": "LinuxToy",
+            # full content output feed
+            "url": "http://feeds.feedburner.com/linuxtoy"
+            # "url": "http://linuxtoy.org/feed/"
+        },
+        # {
+        #     "name": "极客公园",
+        #     "url": "http://feeds.geekpark.net/"
+        # },
+        # {
+        #     "name": "Jobbole 伯乐",
+        #     "url": "http://blog.jobbole.com/feed/"
+        # },
+        {
+            "name": "eMule Fans",
+            "url": "http://feeds.feedburner.com/emule-fans"
+        },
+        # {
+        #     "name": "LWN.net",
+        #     "url": "http://lwn.net/headlines/newrss"
+        # },
+        # }}}
+
+        # ebooks {{{
+        {
+            "name": "PiPi ebooks.",
+            "url": "http://www.ppurl.com/feed"
+        },
+        {
+            "name": "OnlineProgrammingBooks.com",
+            "url": "http://feeds.feedburner.com/FreeComputerBooks"
+        },
+        {
+            "name": "book.zi5.me",
+            "url": "http://book.zi5.me/feed"
+        },
+        # }}}
+
+        # Crack {{{
+        {
+            "name": "Ethical Hacking Tutorials | Learn How to Hack",
+            "url": "http://www.breakthesecurity.com/feeds/posts/default?alt=rss"
+        },
+        {
+            "name": "pcsci3nce",
+            "url": "http://pcsci3nce.info/?feed=rss2"
+        },
+        {
+            "name": "Hacking Wifi",
+            "url": "http://feeds.feedburner.com/HackingWifi"
+        },
+        {
+            "name": "DC949 News",
+            "url": "http://www.dc949.org/news/rss.php"
+        },
+        # {
+        #     "name": "wlan inject etc dev",
+        #     "url": "http://homepages.tu-darmstadt.de/~p_larbig/wlan/"
+        # },
+        # }}}
+
+    ],
     "tags": {
         "maintag:Canto": {
-            "collapsed": true
-        }, 
+            "collapsed": False,
+            "extra_tags": [
+                "update"
+            ]
+        },
         "maintag:Reddit": {
-            "collapsed": true
-        }, 
+            "collapsed": True,
+            "extra_tags": [
+                "news"
+            ]
+        },
         "maintag:Slashdot": {
-            "collapsed": true
+            "collapsed": True,
+            "extra_tags": [
+                "news"
+            ]
         }
     }
 }
+
+# vim:ft=python
