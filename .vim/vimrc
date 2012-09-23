@@ -1473,9 +1473,9 @@ syntax on
             "   neocomplcache#get_context_filetype()
             "   unite#get_context_filetype()
             "   this [filetype] only used inside of neocomplcache.
-            "   -- to use local compound filetype for neocomplcache
+            "   -- to use local composite filetype for neocomplcache
             " - :set ft=html.python
-            "   -- to use global compound filetype.
+            "   -- to use global composite filetype.
             "   so you can complete HTML and Python as same time.
             "   -- but this will affect other plugins which use 'filetype' too.
             " - :NeoComplCacheCachingTags command to make cache.
@@ -1673,7 +1673,7 @@ syntax on
                 let g:neocomplcache_same_filetype_lists = {}
             endif
             " }}}
-            " composite/compound file type (only use one completion) {{{
+            " composite file type (only use one completion) {{{
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
                 let g:neocomplcache_ignore_composite_filetype_lists = {}
             endif
