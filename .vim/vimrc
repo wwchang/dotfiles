@@ -1245,6 +1245,7 @@ endif
         " Python
         NeoBundle 'virtualenv.vim'
         NeoBundle 'pythoncomplete'
+	" NeoBundle 'kevinw/pyflakes-vim'
         " C / cpp
         NeoBundle 'Shougo/neocomplcache-clang', {
                     \ 'depends': ['clang-complete',],
@@ -3471,6 +3472,10 @@ syntax on
             "endfunction
             "autocmd BufWrite *.{py} :call Pylint()
             " }}}
+
+	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
+		" NOTE has been merged into Syntastic
+	    " }}}
 
             " pytest {{{ A simple way of running your tests from within VIM.
             " }}}
