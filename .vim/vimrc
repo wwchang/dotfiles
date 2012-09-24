@@ -1561,6 +1561,16 @@ syntax on
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             " NOTE you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
+	    " wildcard {{{
+	    if !exists('g:neocomplcache_wildcard_characters')
+		let g:neocomplcache_wildcard_characters = {}
+	    endif
+	    " _ for all filetype, default is {'_': '*'}
+	    " TODO should I use this - ?
+	    let g:neocomplcache_wildcard_characters['_'] = '-'
+		" -> e.g. p-h -> public-html
+	    " }}}
+	    " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
                 let g:neocomplcache_keyword_patterns = {}
             endif
