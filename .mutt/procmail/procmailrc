@@ -404,10 +404,19 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Perl/
     # }}}
 
+    # [ SQL ] {{{
+    :0
+    * ^List-Id: .*sqlite-users\.sqlite\.org
+    SQL/SQLite/
+    :0
+    * ^List-Id: .*sqlite-announce\.sqlite\.org
+    SQL/SQLite/
+    # }}}
+
     # [ NoSQL ] {{{
     :0
     * ^List-Id: .*mongodb-user\.googlegroups\.com
-    MongoDB/
+    NoSQL/MongoDB/
     # }}}
 # }}}
 

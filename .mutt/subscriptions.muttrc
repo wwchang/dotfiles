@@ -151,6 +151,9 @@ subscribe vim-ruby vim-ruby <vim-ruby-devel@rubyforge.org>
 subscribe -group Git <git@vger.kernel.org>
 subscribe -group GotGit gotgit@googlegroups.com got-users@googlegroups.com
 
+# SQL
+subscribe sqlite SQLite <sqlite-users@sqlite.org>
+
 # NoSQL
 subscribe mongodb MongoDB <mongodb-user@googlegroups.com>
 

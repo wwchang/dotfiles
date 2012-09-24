@@ -90,8 +90,13 @@ mailboxes =Web/whatwg
 mailboxes =Web/firebug
 # mailboxes =Web/jplayer
 
+# SQL
+mailboxes =SQL
+mailboxes =SQL/SQLite
+
 # NoSQL
-mailboxes =MongoDB
+mailboxes =NoSQL
+mailboxes =NoSQL/MongoDB
 
 mailboxes =Maemo
 mailboxes =Maemo/users
