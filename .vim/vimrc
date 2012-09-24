@@ -1128,7 +1128,9 @@ endif
         " Vim improve
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
-        NeoBundle 'quickfixsigns'
+        NeoBundle 'quickfixsigns', {
+		    \ 'depends': ['tomtom/tlib_vim'],
+		    \ }
         NeoBundle 'kshenoy/vim-signature'
         " NeoBundle 'quickfixstatus.vim'
         NeoBundle 'restore_view.vim'
@@ -1155,7 +1157,22 @@ endif
         NeoBundle 'fugitive.vim'
         NeoBundle 'gitv'
         NeoBundle 'hgrev'
-        " program
+	" }}}
+	" [ Vim libraries/frameworks ] {{{
+	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', {
+		    \ 'type': 'hg',
+		    \ 'directory': 'l9',
+		    \ }
+	NeoBundle 'tomtom/tlib_vim'
+	NeoBundle 'tomtom/prototype_vim', {
+		    \ 'directory': 'prototype',
+		    \ }
+	NeoBundle 'megaannum/self'
+	NeoBundle 'mattn/webapi-vim', {
+		    \ 'directory': 'webapi',
+		    \ }
+	" }}}
+        " [ program ] {{{
         " help
         " NeoBundle 'viewdoc'
         NeoBundle 'powerman/vim-plugin-viewdoc', {
