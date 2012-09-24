@@ -1000,6 +1000,13 @@ endif
 " ----------------------------------------------------------------
 
 " [ plugins list ] {{{
+" [[ addons manager: VAM, neobundle, vundle, pathogen, tplugin, ]] {{{
+    " [ tplugin ] {{{ An on-demand runtimepath manager and plugin loader for Vim
+	" Put this close to the top of your vimrc file
+	" runtime macros/tplugin.vim
+	" runtime bundles/tplugin_vim/macros/tplugin.vim
+    " }}}
+
     " [ pathogen ] {{{ .vim/bundle/
         " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
         " call pathogen#infect()
@@ -1124,6 +1131,9 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
+	" NeoBundle 'tomtom/tplugin_vim', {
+	" 	    \ 'directory': 'tplugin',
+	" 	    \ }
         " NeoBundle 'Shougo/vimshell'
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
