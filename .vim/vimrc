@@ -1174,20 +1174,24 @@ endif
         NeoBundle 'fugitive.vim'
         NeoBundle 'gitv'
         NeoBundle 'hgrev'
+	" colorscheme
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
-	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', {
-		    \ 'type': 'hg',
-		    \ 'directory': 'l9',
-		    \ }
 	NeoBundle 'tomtom/tlib_vim'
-	NeoBundle 'tomtom/prototype_vim', {
-		    \ 'directory': 'prototype',
-		    \ }
-	NeoBundle 'megaannum/self'
-	NeoBundle 'mattn/webapi-vim', {
-		    \ 'directory': 'webapi',
-		    \ }
+	" NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', {
+	" 	    \ 'type': 'hg',
+	" 	    \ 'directory': 'l9',
+	" 	    \ }
+	" NeoBundle 'tomtom/prototype_vim', {
+	" 	    \ 'directory': 'prototype',
+	" 	    \ }
+	" NeoBundle 'megaannum/self'
+	" NeoBundle 'mattn/webapi-vim', {
+	" 	    \ 'directory': 'webapi',
+	" 	    \ }
+	" NeoBundle 'https://bitbucket.org/ZyX_I/frawor', {
+	" 	    \ 'type': 'hg',
+	" 	    \ }
 	" }}}
         " [ program ] {{{
         " help
