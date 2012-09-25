@@ -1245,7 +1245,8 @@ endif
 	" }}}
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
-        NeoBundle 'taichouchou2/vim-rsense'
+        " NeoBundle 'taichouchou2/vim-rsense'
+	NeoBundle 'danchoi/ri.vim'
         NeoBundle 'tpope/vim-rails'
         " NeoBundle 'rubycomplete.vim'
         " Python
@@ -3683,6 +3684,9 @@ syntax on
             "   - Ruby 1.9.3
             "   - gem install methodfinder
         " }}}
+
+	" ri.vim {{{ Ruby documentation ri
+	" }}}
 
         " rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
