@@ -1704,7 +1704,9 @@ syntax on
             endif
             let g:neocomplcache_source_completion_length['include_complete'] = 0
             let g:neocomplcache_source_completion_length['member_complete'] = 0
-            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+            " let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+		" merged to buffer_complete, stores cache of the keyword in this
+		" 'buffer_cache' sub directory.
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 1
@@ -1821,7 +1823,6 @@ syntax on
                         \ 'filename_complete' : 5,
                         \ 'dictionary_complete' : 6,
                         \ 'member_complete' : 7,
-                        \ 'keyword_complete' : 8,
                         \ 'buffer_complete' : 9,
                         \ 'syntax_complete' : 10,
                         \ 'include_complete' : 700,
@@ -1833,6 +1834,7 @@ syntax on
                         \ 'other completefunc sources' : 15,
                         \ 'other ftplugin sources' : 100,
                         \ }
+                        " \ 'keyword_complete' : 8, " deleted
             " }}}
 
             " [ neocomplcache functions ] {{{
@@ -1842,7 +1844,6 @@ syntax on
                 " pumvisible() ? "\<C-j>" : neocomplcache#...()
                 " neocomplcache#manual_filename_complete()
                 " neocomplcache#manual_omni_complete()
-                " neocomplcache#manual_keyword_complete()
                 " neocomplcache#smart_close_popup()
                 " neocomplcache#close_popup
                 " neocomplcache#complete_common_string()
