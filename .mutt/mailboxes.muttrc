@@ -33,6 +33,11 @@ mailboxes =Stack\ Exchange
 
 mailboxes =Important
 
+mailboxes =Emacs
+mailboxes =Emacs/help
+mailboxes =Emacs/devel
+mailboxes =Emacs/Evil
+
 mailboxes =Vim
 mailboxes =Vim/help
 mailboxes =Vim/dev
@@ -40,27 +45,24 @@ mailboxes =Vim/vim-ruby
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
 
-mailboxes =Emacs
-mailboxes =Emacs/help
-mailboxes =Emacs/devel
-mailboxes =Emacs/Evil
+mailboxes =apps/Awesome
 
 mailboxes =Ruby
 mailboxes =Ruby/talk
-mailboxes =Ruby/core
-mailboxes =Ruby/cvs
+# mailboxes =Ruby/core
+# mailboxes =Ruby/cvs
 mailboxes =Ruby/Rails
 
 mailboxes =Python
 mailboxes =Python/python
 mailboxes =Python/help
-mailboxes =Python/dev
-mailboxes =Python/comp-lang
-mailboxes =Python/python-cn
-mailboxes =Python/python-tw
+# mailboxes =Python/dev
+# mailboxes =Python/comp-lang
+# mailboxes =Python/python-cn
+# mailboxes =Python/python-tw
 # projects
 mailboxes =Python/PySide
-mailboxes =Python/Django
+# mailboxes =Python/Django
 mailboxes =Python/webpy
 mailboxes =Python/sphinx-dev
 # mailboxes =Python/peps
@@ -68,25 +70,33 @@ mailboxes =Python/sphinx-dev
 mailboxes =Go
 mailboxes =Go/go-nuts
 mailboxes =Go/go-china
-mailboxes =Go/go-dev
+# mailboxes =Go/go-dev
 
 mailboxes =C
 
 mailboxes =Lisp
-mailboxes =Lisp/Lisp
-mailboxes =Lisp/comp-lang
-mailboxes =Lisp/cn
+# mailboxes =Lisp/Lisp
+# mailboxes =Lisp/comp-lang
+# mailboxes =Lisp/cn
 
 mailboxes =Guile
 mailboxes =Guile/user
-mailboxes =Guile/devel
-mailboxes =Guile/sources
+# mailboxes =Guile/devel
+# mailboxes =Guile/sources
 # mailboxes =Guile/bug
 
 mailboxes =Web
 mailboxes =Web/whatwg
 mailboxes =Web/firebug
-mailboxes =Web/jplayer
+# mailboxes =Web/jplayer
+
+# SQL
+mailboxes =SQL
+mailboxes =SQL/SQLite
+
+# NoSQL
+mailboxes =NoSQL
+mailboxes =NoSQL/MongoDB
 
 mailboxes =Maemo
 mailboxes =Maemo/users
@@ -96,12 +106,13 @@ mailboxes =Maemo/update/Development
 
 mailboxes =Arch
 mailboxes =Arch/general
-mailboxes =Arch/projects
-mailboxes =Arch/dev-public
-mailboxes =Arch/pacman-dev
-mailboxes =Arch/aur-general
 mailboxes =Arch/archlinux-cn
+# mailboxes =Arch/aur-general
+# mailboxes =Arch/dev-public
+# mailboxes =Arch/pacman-dev
 mailboxes =Arch/releng
+
+mailboxes =Linux
 
 mailboxes =Clojure
 
@@ -113,29 +124,25 @@ mailboxes =PHP/general/
 # mailboxes =PHP/comp-lang/
 # mailboxes =PHP/alt-comp-lang/
 
-mailboxes =Perl
-
-mailboxes =Zsh
-mailboxes =Zsh/users
-mailboxes =Zsh/workers
-
-mailboxes =Linux
-
-mailboxes =Git
-mailboxes =Git/help
-mailboxes =Git/users
-mailboxes =Git/GotGit
+# mailboxes =Perl
 
 mailboxes =Drupal
 mailboxes =Drupal/support
 mailboxes =Drupal/security
+
+mailboxes =Zsh
+mailboxes =Zsh/users
+mailboxes =Zsh/workers
+mailboxes =Git
+mailboxes =Git/help
+mailboxes =Git/users
+mailboxes =Git/GotGit
 
 mailboxes =GNU
 mailboxes =GNU/parallel
 mailboxes =GNU/gnu
 
 mailboxes =apps
-mailboxes =apps/Awesome
 mailboxes =apps/FVWM
 mailboxes =apps/Mutt
 mailboxes =apps/tmux

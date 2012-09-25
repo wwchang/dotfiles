@@ -33,3 +33,6 @@ if has('python3/dyn') || has('python3')
 elseif has('python/dyn') || has('python')
     setlocal omnifunc=pythoncomplete#Complete " for Python 2.x
 endif
+
+" help (K)
+setlocal keywordprg=pydoc

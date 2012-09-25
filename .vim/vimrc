@@ -238,7 +238,12 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-        set grepprg="grep -n $* /dev/null" " 'grep -n', 'grep -n $* /dev/null'
+	if executable("ack") || executable("ack-grep")
+	    set grepprg=ack\ -H\ --nogroup\ --nocolor
+	else
+	    " 'grep -n', 'grep -n $* /dev/null'
+	    set grepprg=grep\ -n\ $*\ /dev/null
+	endif
 
         " [ match ]
         set showmatch
@@ -262,15 +267,15 @@
     " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
     set cmdheight=1                  " command line height
-    " set complete=".,w,b,t,i,u,k"     " completion buffers
-    "             | | | | | | |
-    "             | | | | | | `-dict
-    "             | | | | | `-unloaded buffers
-    "             | | | | `-include files
-    "             | | | `-tags
-    "             | | `-other loaded buffers
-    "             | `-windows buffers
-    "             `-the current buffer
+    " set complete=.,w,b,t,i,u,k       " completion buffers
+    "            | | | | | | |
+    "            | | | | | | `-dict
+    "            | | | | | `-unloaded buffers
+    "            | | | | `-include files
+    "            | | | `-tags
+    "            | | `-other loaded buffers
+    "            | `-windows buffers
+    "            `-the current buffer
     set completeopt=menuone " menu,menuone,longest,preview
     set completeopt-=preview " dont show preview window
 
@@ -1000,6 +1005,13 @@ endif
 " ----------------------------------------------------------------
 
 " [ plugins list ] {{{
+" [[ addons manager: VAM, neobundle, vundle, pathogen, tplugin, ]] {{{
+    " [ tplugin ] {{{ An on-demand runtimepath manager and plugin loader for Vim
+	" Put this close to the top of your vimrc file
+	" runtime macros/tplugin.vim
+	" runtime bundles/tplugin_vim/macros/tplugin.vim
+    " }}}
+
     " [ pathogen ] {{{ .vim/bundle/
         " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
         " call pathogen#infect()
@@ -1124,11 +1136,16 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
+	" NeoBundle 'tomtom/tplugin_vim', {
+	" 	    \ 'directory': 'tplugin',
+	" 	    \ }
         " NeoBundle 'Shougo/vimshell'
-        " Vim improve
+        " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
-        NeoBundle 'quickfixsigns'
+        NeoBundle 'quickfixsigns', {
+		    \ 'depends': ['tomtom/tlib_vim'],
+		    \ }
         NeoBundle 'kshenoy/vim-signature'
         " NeoBundle 'quickfixstatus.vim'
         NeoBundle 'restore_view.vim'
@@ -1155,7 +1172,22 @@ endif
         NeoBundle 'fugitive.vim'
         NeoBundle 'gitv'
         NeoBundle 'hgrev'
-        " program
+	" }}}
+	" [ Vim libraries/frameworks ] {{{
+	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', {
+		    \ 'type': 'hg',
+		    \ 'directory': 'l9',
+		    \ }
+	NeoBundle 'tomtom/tlib_vim'
+	NeoBundle 'tomtom/prototype_vim', {
+		    \ 'directory': 'prototype',
+		    \ }
+	NeoBundle 'megaannum/self'
+	NeoBundle 'mattn/webapi-vim', {
+		    \ 'directory': 'webapi',
+		    \ }
+	" }}}
+        " [ program ] {{{
         " help
         " NeoBundle 'viewdoc'
         NeoBundle 'powerman/vim-plugin-viewdoc', {
@@ -1186,6 +1218,7 @@ endif
         " NeoBundle 'ctrlp.vim'
         " NeoBundle 'Command-T'
         NeoBundle 'EasyGrep'
+        NeoBundle 'mileszs/ack.vim'
         " regex
         NeoBundle 'VimRegEx.vim', {
                     \ 'depends': ['vsutil.vim'],
@@ -1209,14 +1242,17 @@ endif
 		" VimL (libraries/)
 		" NeoBundle 'dahu/Chroma'
 		" NeoBundle 'dahu/vimple'
+	" }}}
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
-        NeoBundle 'taichouchou2/vim-rsense'
+        " NeoBundle 'taichouchou2/vim-rsense'
+	NeoBundle 'danchoi/ri.vim'
         NeoBundle 'tpope/vim-rails'
         " NeoBundle 'rubycomplete.vim'
         " Python
         NeoBundle 'virtualenv.vim'
         NeoBundle 'pythoncomplete'
+	" NeoBundle 'kevinw/pyflakes-vim'
         " C / cpp
         NeoBundle 'Shougo/neocomplcache-clang', {
                     \ 'depends': ['clang-complete',],
@@ -1382,7 +1418,6 @@ syntax on
 " }}}
 
 " [ Program ] {{{
-
     " [ syntax ] {{{
         " TagHighlight {{{ highlight names of class, variable, types in code.
             " Usage: :UpdateTypesFile
@@ -1461,7 +1496,7 @@ syntax on
         " Align%294
     " }}}
 
-    " [ completion: omni ] {{{
+    " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " if exists('g:loaded_neocomplcache')
             " endif
@@ -1497,7 +1532,7 @@ syntax on
             let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
             let g:neocomplcache_enable_smart_case = 1 " infercase
-            let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*'
+            let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*' for input-saving
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
             " 1: 'InsertCharPre' event, version >= 7.3.461
             if v:version == 703 && has("patch461")
@@ -1534,10 +1569,22 @@ syntax on
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             " NOTE you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
+	    " wildcard {{{
+	    if !exists('g:neocomplcache_wildcard_characters')
+		let g:neocomplcache_wildcard_characters = {}
+	    endif
+	    " _ for all filetype, default is {'_': '*'}
+	    " TODO should I use this - ?
+	    let g:neocomplcache_wildcard_characters['_'] = '-'
+		" -> e.g. public-html -> p-h [B]
+		" -> e.g. public_html -> p_h [B]
+	    " }}}
+	    " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
                 let g:neocomplcache_keyword_patterns = {}
             endif
             let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+	    " }}}
             " vim completefunc {{{
             if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
@@ -1550,10 +1597,9 @@ syntax on
             endif
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            " rsense -> RsenseCompleteFunction
+            " rsense plugin -> RsenseCompleteFunction
             " vim-ruby plugin -> rubycomplete#Complete
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
-            " FIXME this seems does not work with plugin vim-ruby 's omni complete <C-x><C-o>
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
             elseif has('python/dyn') || has('python')
@@ -1576,7 +1622,8 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
-			let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
+            " FIXME this pattern is copy from python, please improve it.
+	    let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
@@ -1658,7 +1705,9 @@ syntax on
             endif
             let g:neocomplcache_source_completion_length['include_complete'] = 0
             let g:neocomplcache_source_completion_length['member_complete'] = 0
-            let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+            " let g:neocomplcache_source_completion_length['keyword_complete'] = 3
+		" merged to buffer_complete, stores cache of the keyword in this
+		" 'buffer_cache' sub directory.
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 1
@@ -1711,12 +1760,12 @@ syntax on
                         \ },
                         \ {
                         \ 'filetype': 'javascript',
-                        \ 'start': '^\s*{{{ruby$',
+                        \ 'start': '^\s*{{{javascript$',
                         \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'coffee',
-                        \ 'start': '^\s*{{{coffee$',
+                        \ 'filetype': 'bash',
+                        \ 'start': '^\s*{{{bash$',
                         \ 'end': '^\s*}}}',
                         \ },
                         \ {
@@ -1775,7 +1824,6 @@ syntax on
                         \ 'filename_complete' : 5,
                         \ 'dictionary_complete' : 6,
                         \ 'member_complete' : 7,
-                        \ 'keyword_complete' : 8,
                         \ 'buffer_complete' : 9,
                         \ 'syntax_complete' : 10,
                         \ 'include_complete' : 700,
@@ -1787,6 +1835,7 @@ syntax on
                         \ 'other completefunc sources' : 15,
                         \ 'other ftplugin sources' : 100,
                         \ }
+                        " \ 'keyword_complete' : 8, " deleted
             " }}}
 
             " [ neocomplcache functions ] {{{
@@ -1796,7 +1845,6 @@ syntax on
                 " pumvisible() ? "\<C-j>" : neocomplcache#...()
                 " neocomplcache#manual_filename_complete()
                 " neocomplcache#manual_omni_complete()
-                " neocomplcache#manual_keyword_complete()
                 " neocomplcache#smart_close_popup()
                 " neocomplcache#close_popup
                 " neocomplcache#complete_common_string()
@@ -3434,6 +3482,10 @@ syntax on
             "autocmd BufWrite *.{py} :call Pylint()
             " }}}
 
+	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
+		" NOTE has been merged into Syntastic
+	    " }}}
+
             " pytest {{{ A simple way of running your tests from within VIM.
             " }}}
         " }}}
@@ -3634,6 +3686,9 @@ syntax on
             "   - Ruby 1.9.3
             "   - gem install methodfinder
         " }}}
+
+	" ri.vim {{{ Ruby documentation ri
+	" }}}
 
         " rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more

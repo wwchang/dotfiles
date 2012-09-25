@@ -205,6 +205,12 @@ alias vim.ruby vim-ruby <vim-ruby-devel@rubyforge.org>
 # Vim plugins scripts
 alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>
 
+# SQL
+alias sqlite SQLite <sqlite-users@sqlite.org>
+
+# NoSQL
+alias mongodb MongoDB <mongodb-user@googlegroups.com>
+
 
 # parallel
 alias parallel parallel <parallel@gnu.org>
