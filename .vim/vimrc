@@ -1206,9 +1206,14 @@ endif
                     \ }
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
-        NeoBundle 'The-NERD-tree', {
-                    \ 'directory': 'NERDTree',
-                    \ }
+        NeoBundle 'scrooloose/nerdtree'
+	NeoBundle 'ivalkeen/nerdtree-execute', {
+		    \ 'depends': ['scrooloose/nerdtree'],
+		    \ }
+	NeoBundle 'toritori0318/vim-nerdtree-plugin', {
+		    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
+		    \ 'directory': 'nerdtree-plugin',
+		    \ }
         NeoBundle 'troydm/easybuffer.vim'
         " compile & run
         NeoBundle 'SingleCompile'
@@ -3150,7 +3155,7 @@ syntax on
     " }}}
 
     " [ FileManager ] {{{ <F11>
-        " NerdTree {{{ <F11> :NERDTree [dir|bookmark-name]
+        " NERDtree {{{ <F11> :NERDTree [dir|bookmark-name]
             " let loaded_nerd_tree=1 " let vim can not load NERDTree.
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
             let NERDTreeAutoCenter = 1 " default = 1.
@@ -3176,8 +3181,20 @@ syntax on
             " TODO au FileType nerdtree
         " }}}
 
-        " vim-nerdtree_plugin_collections {{{
-        " }}}
+	" nerdtree-execute
+	    " Usage:
+	    " When navigating in NERDTree, select file or directory, press 'm'
+	    " key, and NERDTree menu will appear. Press 'x' then to execute
+	    " system default application for selected file/directory, using this
+	    " plugin.  You can open your favourite image editor for images, pdf
+	    " reader for pdfs etc.
+
+	" nerdtree-plugin
+	    " ack_menuitem.vim
+	    " quickrun_keymap.vim
+	    " callex_keymap.vim
+	    " callsh_keymap.vim
+	    " callfinder_keymap.vim
 
         " vimfiler {{{ Powerful file explorer implemented by VimL.
             " Usage: :VimFiler
