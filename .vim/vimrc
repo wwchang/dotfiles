@@ -238,7 +238,12 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-        set grepprg="grep -n $* /dev/null" " 'grep -n', 'grep -n $* /dev/null'
+	if executable("ack") || executable("ack-grep")
+	    set grepprg=ack\ -H\ --nogroup\ --nocolor
+	else
+	    " 'grep -n', 'grep -n $* /dev/null'
+	    set grepprg=grep\ -n\ $*\ /dev/null
+	endif
 
         " [ match ]
         set showmatch
@@ -262,15 +267,15 @@
     " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
     set mousemodel=extend
     set cmdheight=1                  " command line height
-    " set complete=".,w,b,t,i,u,k"     " completion buffers
-    "             | | | | | | |
-    "             | | | | | | `-dict
-    "             | | | | | `-unloaded buffers
-    "             | | | | `-include files
-    "             | | | `-tags
-    "             | | `-other loaded buffers
-    "             | `-windows buffers
-    "             `-the current buffer
+    " set complete=.,w,b,t,i,u,k       " completion buffers
+    "            | | | | | | |
+    "            | | | | | | `-dict
+    "            | | | | | `-unloaded buffers
+    "            | | | | `-include files
+    "            | | | `-tags
+    "            | | `-other loaded buffers
+    "            | `-windows buffers
+    "            `-the current buffer
     set completeopt=menuone " menu,menuone,longest,preview
     set completeopt-=preview " dont show preview window
 
