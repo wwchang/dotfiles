@@ -712,7 +712,10 @@ endif
 
     " [ folding ] {{{
     set foldenable         " enable fold
-    set foldmethod=manual  " indent, syntax, manual, expr, diff, marker
+    " indent, syntax, manual, expr, diff, marker
+    set foldmethod=manual  " manual: to create a fold with foldmarker.
+	"   - zf{motion}
+	"   - visual selection, zf
     set foldnestmax=3      " maximum nesting of fold
     set foldlevel=2        " fold start from which level
     set foldlevelstart=0   " which level start fold. 0: all folds closed.
@@ -743,16 +746,15 @@ endif
             else
                 let line = getline(fs)
             endif
-            let line = substitute(line, '/\*\|\*/\|{'.'{{\d\=', '', 'g')." "
+            let line = " " . substitute(line, '/\*\|\*/\|{'.'{{\d\=', '', 'g') . " "
             let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
             let foldSize = 1 + v:foldend - v:foldstart
             let foldSizeStr = " " . foldSize . " lines "
-            let foldLevelStr = repeat("+ ", v:foldlevel)
+            let foldLevelStr = repeat("+ ", v:foldlevel) . "{" . v:foldlevel . "}"
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┄", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
-            let l:folddashes = v:folddashes
-            return foldLevelStr. line . expansionString . foldSizeStr. foldPercentage
+            return foldLevelStr . line . expansionString . foldSizeStr. foldPercentage
         endfunction
         set foldtext=VimFoldText()
         " }}}
