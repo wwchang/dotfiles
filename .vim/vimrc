@@ -1576,7 +1576,8 @@ syntax on
 	    " _ for all filetype, default is {'_': '*'}
 	    " TODO should I use this - ?
 	    let g:neocomplcache_wildcard_characters['_'] = '-'
-		" -> e.g. p-h -> public-html
+		" -> e.g. public-html -> p-h [B]
+		" -> e.g. public_html -> p_h [B]
 	    " }}}
 	    " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
