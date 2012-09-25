@@ -157,6 +157,9 @@ subscribe sqlite SQLite <sqlite-users@sqlite.org>
 # NoSQL
 subscribe mongodb MongoDB <mongodb-user@googlegroups.com>
 
+# Development
+subscribe gstreamer GStreamer <gstreamer-devel@lists.freedesktop.org>
+
 # Apps
 # tmux
 subscribe tmux tmux <tmux-users-request@lists.sourceforge.net>

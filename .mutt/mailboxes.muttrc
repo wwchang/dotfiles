@@ -126,6 +126,9 @@ mailboxes =PHP/general/
 
 # mailboxes =Perl
 
+mailboxes =Development
+mailboxes =Development/GStreamer
+
 mailboxes =Drupal
 mailboxes =Drupal/support
 mailboxes =Drupal/security

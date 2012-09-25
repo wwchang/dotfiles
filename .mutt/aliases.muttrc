@@ -211,6 +211,9 @@ alias sqlite SQLite <sqlite-users@sqlite.org>
 # NoSQL
 alias mongodb MongoDB <mongodb-user@googlegroups.com>
 
+# Development
+alias gstreamer GStreamer <gstreamer-devel@lists.freedesktop.org>
+
 
 # parallel
 alias parallel parallel <parallel@gnu.org>

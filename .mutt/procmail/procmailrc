@@ -435,6 +435,12 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Web/whatwg/
 # }}}
 
+# Development {{{
+    :0
+    * List-Id: .*gstreamer-devel\.lists\.freedesktop\.org
+    Development/GStreamer/
+# }}}
+
 # Drupal {{{
     :0
     * List-Id: .*support\.drupal\.org
