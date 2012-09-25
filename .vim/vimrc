@@ -1213,6 +1213,7 @@ endif
         " NeoBundle 'ctrlp.vim'
         " NeoBundle 'Command-T'
         NeoBundle 'EasyGrep'
+        NeoBundle 'mileszs/ack.vim'
         " regex
         NeoBundle 'VimRegEx.vim', {
                     \ 'depends': ['vsutil.vim'],
