@@ -44,6 +44,7 @@ mailboxes =Vim/dev
 mailboxes =Vim/vim-ruby
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
+mailboxes =Vim/vimtouch
 
 mailboxes =apps/Awesome
 

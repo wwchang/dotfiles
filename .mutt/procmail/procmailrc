@@ -503,6 +503,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*eclim-user\.googlegroups\.com
     Vim/eclim/
+    :0
+    * ^List-Id: .*vimtouch-general\.googlegroups\.com
+    Vim/vimtouch/
 
     #:0
     #* ^List-Id: .*vim_use\.googlegroups\.com
