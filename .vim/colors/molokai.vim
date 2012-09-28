@@ -193,8 +193,8 @@ if &t_Co > 255
     hi Repeat          ctermfg=161               cterm=bold
 
     " search
-    hi Search          ctermfg=234 ctermbg=226   cterm=none
-    hi IncSearch       ctermfg=196 ctermbg=016
+    hi Search          ctermfg=233 ctermbg=159   cterm=none
+    hi IncSearch       ctermfg=233 ctermbg=070	 cterm=none
 
     " marks column
     hi SignColumn      ctermfg=161 ctermbg=none
