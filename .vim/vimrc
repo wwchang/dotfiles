@@ -3374,6 +3374,101 @@ syntax on
 " }}}
 
 " [ languages ] {{{
+    " [ Ruby ] {{{
+        let ruby_operators = 1 " highlight operations
+        let ruby_space_errors = 1 " highlight space errors
+        let ruby_fold = 1
+        "let ruby_no_comment_fold = 1
+
+        " vim-ruby {{{
+            " :help vim-ruby.txt ft-ruby-syntax.txt ft-ruby-omni.txt
+            " Usage:
+                " Ruby motions
+                " Ruby text objects
+            " syntax
+            let ruby_no_expensive = 1 " smart end color etc
+	    let ruby_minlines = 100
+            let ruby_operators = 1 " highlight operators
+            let ruby_space_errors = 0 " highlight whitespace erros
+                " disable this, because use other script
+
+	    " omni completefunc rubycomplete#Complete() settings : CTRL-X CTRL-O
+	    let g:rubycomplete_buffer_loading = 1 " load/evaluate code to provide completions
+	    let g:rubycomplete_classes_in_global = 1 " parse buffer to complete classes, constants and globals
+	    let g:rubycomplete_rails = 1 " detect & load Rails env for files in Rails project
+
+	    " TODO where are those options from ??
+	    " let g:rubycomplete_include_object = 1
+	    " let g:rubycomplete_include_objectspace = 1
+                " " Ruby completion will parse your buffer on demand in order to
+                " " provide a list of completions.
+            " let g:rubycomplete_include_object = 1
+            " let g:rubycomplete_include_objectspace = 1
+
+            " autocmd FileType ruby compiler ruby
+        " }}}
+
+	" neco-rake : A neocomplcache plugin for Rake on vimshell
+
+        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
+            " Requires:
+            "   - Ruby 1.9.3
+            "   - gem install methodfinder
+        " }}}
+
+	" ri.vim {{{ Ruby documentation ri
+	    " lets you search and navigate Ruby library and gem documentation inside Vim
+	    " Advantages over the venerable ri command-line tool:
+		" - write code and browse pertinent documentation in adjacent Vim windows
+		" - search with autocompletion help
+		" - hyperlinking lets you jump from definition to definition
+		" - run back and forth through your jump history with CTRL-o and CTRL-i
+		" - jump directly to gem READMEs and into the gem source directories
+		" - directly open corresponding HTML-formatted rdoc documentation
+	    " Usage:
+	    " Invoking the plugin
+	    "	- <Leader>r
+	    "	    -- opens the search/autocomplete window, and will use a
+	    "	    horizontal split to display matching documentation.
+	    "	- <Leader>R
+	    "	    -- opens the search/autocomplete window, and will use a
+	    "	    vertical split to display matching documentatoin.
+	    "	- <Leader>K
+	    "	    -- opens the search/autocomplete window and prefills it with
+	    "	    the keyword under the cursor.
+	    "	- K
+	    "	    -- is automatically remapped to use ri.vim if the current
+	    "	    buffer is a *.rb file.
+	    " Using the search/autocomplete window
+	    "	With the search/autocomplete window open, start typing the name
+	    "	of the class, module, or method you want to lookup.
+	    " Press `TAB` to start autocompletion.
+	" }}}
+
+        " vim-rails {{{ Ruby on Rails
+            " easy file navigation, enhanced syntax highlighting, and more
+        " }}}
+
+        " RbREPL {{{ Rub a Ruby REPL in Vim.
+        " }}}
+
+        " rsense
+            " 1. Type Help
+            "   You can infer types of an expression at point by :RSenseTypeHelp.
+            " 2. Definition Jump
+            "   You can jump to definition of a method or a constant you are
+            "   pointing at by :RSenseJumpToDefinition.
+            " 3. Where Is
+            "   You can find which class/method you are editing by
+            "   :RSenseWhereIs.
+            " let g:rsenseHome = "/home/chris/opt/rsense-0.3"
+            let g:rsenseHome = $RSENSE_HOME
+            let g:rsenseUseOmniFunc = 1 " start completion automatically
+            " If you don't use autocomplpop.vim or related plugins, you need to
+            " type ^X ^O to start omni completion.
+
+    " }}}
+
     " [ regexp ] {{{ Regular Expression
         " VimRegEx {{{ Regular Expression Developer for Vim
             " Usage:
@@ -3650,74 +3745,6 @@ syntax on
                 " let g:django_projects = "$HOME/Projects"
                 " let g:django_apps =
             " }}}
-        " }}}
-    " }}}
-
-    " [ Ruby ] {{{
-        let ruby_operators = 1 " highlight operations
-        let ruby_space_errors = 1 " highlight space errors
-        let ruby_fold = 1
-        "let ruby_no_comment_fold = 1
-
-        " rubycomplete() omnicomplete settings
-        let g:rubycomplete_rails = 0
-        let g:rubycomplete_buffer_loading = 1
-        let g:rubycomplete_classes_in_global = 1
-        let g:rubycomplete_include_object = 1
-        let g:rubycomplete_include_objectspace = 1
-
-        " rsense
-            " 1. Type Help
-            "   You can infer types of an expression at point by :RSenseTypeHelp.
-            " 2. Definition Jump
-            "   You can jump to definition of a method or a constant you are
-            "   pointing at by :RSenseJumpToDefinition.
-            " 3. Where Is
-            "   You can find which class/method you are editing by
-            "   :RSenseWhereIs.
-            " let g:rsenseHome = "/home/chris/opt/rsense-0.3"
-            let g:rsenseHome = $RSENSE_HOME
-            let g:rsenseUseOmniFunc = 1 " start completion automatically
-            " If you don't use autocomplpop.vim or related plugins, you need to
-            " type ^X ^O to start omni completion.
-
-        " vim-ruby {{{
-            " :help vim-ruby.txt vim-ruby-syntax.txt vim-ruby-omni.txt
-            " Usage:
-                " Ruby motions
-                " Ruby text objects
-            " autocmd FileType ruby compiler ruby
-
-            " syntax
-            let ruby_no_expensive = 1 " smart end color etc
-            let ruby_operators = 1 " highlight operators
-            let ruby_space_errors = 0 " highlight whitespace erros
-                " disable this, because use other script
-
-            " completion CTRL-X CTRL-O
-                " Ruby completion will parse your buffer on demand in order to
-                " provide a list of completions.
-            let g:rubycomplete_rails = 1
-            let g:rubycomplete_classes_in_global = 1
-            let g:rubycomplete_buffer_loading = 1
-            let g:rubycomplete_include_object = 1
-            let g:rubycomplete_include_objectspace = 1
-        " }}}
-
-        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
-            " Requires:
-            "   - Ruby 1.9.3
-            "   - gem install methodfinder
-        " }}}
-
-	" ri.vim {{{ Ruby documentation ri
-	" }}}
-
-        " rails {{{ Ruby on Rails
-            " easy file navigation, enhanced syntax highlighting, and more
-        " }}}
-
-        " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
     " }}}
 
