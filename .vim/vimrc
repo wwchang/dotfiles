@@ -784,6 +784,8 @@ endif
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
     nnoremap <C-l> <C-w>l
+    " <C-w> 9+, <C-w> [H,J,K,L], <C-w> T,
+    " maximum window (<C-w> [|, _ ])
     " resize window continuously [ <C-w>(-,+,<,>), Mouse ]
     nmap         <C-W>+     <C-W>+<SID>winsize
     nmap         <C-W>-     <C-W>-<SID>winsize
