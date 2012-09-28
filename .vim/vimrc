@@ -1578,8 +1578,11 @@ syntax on
 
             " complex dictionary options {{{
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
+	    " those g:neocomplcache_* options only are initialized in first
+	    " completion, not in Vim's initialization.
             " NOTE you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
+	    " if value/key is "_", means all buffers in neocomplcache.
 	    " wildcard {{{
 	    if !exists('g:neocomplcache_wildcard_characters')
 		let g:neocomplcache_wildcard_characters = {}
@@ -1589,6 +1592,7 @@ syntax on
 	    let g:neocomplcache_wildcard_characters['_'] = '-'
 		" -> e.g. public-html -> p-h [B]
 		" -> e.g. public_html -> p_h [B]
+		" -> e.g. HellowWorld -> H-W [B]
 	    " }}}
 	    " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
@@ -1601,8 +1605,23 @@ syntax on
                 let g:neocomplcache_vim_completefuncs = {}
             endif
             " }}}
+            " omni patterns {{{
+	    " every filetype or 'omnifunc' need omni_patterns setted, if not
+	    " setted, neocomplcache will not call omnifunc. partial omnifunc has
+	    " problem when neocomplcache call. (e.g. rubycomplete, clang_complete).
+	    " so you should use force_omni_patterns instead.
+            if !exists('g:neocomplcache_force_omni_patterns')
+                let g:neocomplcache_force_omni_patterns = {}
+            endif
+	    " let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
+            if !exists('g:neocomplcache_omni_patterns')
+                let g:neocomplcache_omni_patterns = {}
+            endif
+            " TODO please improve this pattern.
+            " let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\h\w*\|\h\w*::'
+	    let g:neocomplcache_omni_patterns['ruby'] = '[^. \t]\.\w*'
+            " }}}
             " omni functions {{{
-            " set omni_functions will need to set omni_patterns too.
             if !exists('g:neocomplcache_omni_functions')
                 let g:neocomplcache_omni_functions = {}
             endif
@@ -1628,21 +1647,6 @@ syntax on
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
-            " }}}
-            " omni patterns {{{
-            if !exists('g:neocomplcache_force_omni_patterns')
-                let g:neocomplcache_force_omni_patterns = {}
-            endif
-            " FIXME this pattern is copy from python, please improve it.
-	    let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
-            if !exists('g:neocomplcache_omni_patterns')
-                let g:neocomplcache_omni_patterns = {}
-            endif
-            " FIXME this pattern is copy from python, please improve it.
-            let g:neocomplcache_omni_patterns['ruby'] = '[^. \t]\.\w*'
-            " FIXME
-            " let g:neocomplcache_omni_patterns['coffee'] =
-            "             \
             " }}}
             " member patterns {{{
             if !exists('g:neocomplcache_member_prefix_patterns')
