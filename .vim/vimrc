@@ -222,11 +222,10 @@
         " [ regex ]
         " magic/nomagic: changes special chars that can be used in search patterns
         set magic
-            " use \v and \V to switch char special meaning on or off.
-            " \v: this will make every following character except a-zA-Z0-9 and
-            " '_' have special meaning
-            " \V: preceded by \ to activate their special meaning.
-            " \m, \M
+            " \v: 'very magic', make every character except a-zA-Z0-9 and '_' have special meaning
+            " use \v and \V to switch 'very magic' on or off.
+            " \m, \M: 'magic' mode.
+            " use \m and \M to switch 'magic' on or off.
 
         " [ search ]
         set hlsearch   " highlight searchs
@@ -814,6 +813,10 @@ endif
 
     " reformat paragraph
     nnoremap <silent> Q gqap
+
+    " very magic regex in search with '\v'
+    nnoremap / /\v
+    nnoremap ? ?\v
 
         " NOTICE use nonrecursive mapping.
         " Each of the *map commands has a *noremap counterpart that ignores other mappings
