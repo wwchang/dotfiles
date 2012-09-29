@@ -283,6 +283,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^To: .*rubyonrails-core@googlegroups\.com
     Ruby/Rails/
     # comp.lang.ruby
+    :0
+    * ^List-Id: .*kde-bindings\.kde\.org
+    Ruby/RubyQt/
     # }}}
 
     # [ Python ] {{{
@@ -453,7 +456,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # Emacs {{{
     :0
     * ^List-Id: .*help-gnu-emacs\.gnu\.org
-    Emacs/help
+    Emacs/help/
     :0
     * ^List-Id: .*emacs-devel\.gnu\.org
     Emacs/devel/

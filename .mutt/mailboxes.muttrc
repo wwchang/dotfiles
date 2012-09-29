@@ -53,6 +53,7 @@ mailboxes =Ruby/talk
 # mailboxes =Ruby/core
 # mailboxes =Ruby/cvs
 mailboxes =Ruby/Rails
+mailboxes =Ruby/RubyQt
 
 mailboxes =Python
 mailboxes =Python/python

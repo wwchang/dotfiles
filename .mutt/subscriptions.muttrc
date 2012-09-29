@@ -44,6 +44,7 @@ subscribe ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>
 subscribe ruby.core Ruby-Core <ruby-core@ruby-lang.org>
 subscribe ruby.doc Ruby-Doc <ruby-doc@ruby-lang.org>
 subscribe ruby.rails Ruby On Rails <rubyonrails-talk@googlegroups.com>
+subscribe ruby.rubyqt RubyQt <kde-bindings@kde.org>
 
 # [ Clojure ]
 subscribe clojure Clojure <clojure@googlegroups.com>
