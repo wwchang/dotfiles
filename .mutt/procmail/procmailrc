@@ -275,6 +275,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*ruby-core\.ruby-lang\.org
     Ruby/core/
+    :0
+    * ^List-Id: .*rubyversionmanager\.googlegroups\.com
+    Ruby/rvm/
     # Ruby on Rails
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
