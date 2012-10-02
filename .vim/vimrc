@@ -1952,12 +1952,20 @@ syntax on
                 inoremap <expr> <C-y> neocomplcache#smart_close_popup()
                 inoremap <expr> <C-e> neocomplcache#cancel_popup()
                 inoremap <expr> <C-g> neocomplcache#undo_completion()
-                inoremap <expr> <C-h> neocomplcache#smart_close_popup()."\<C-h>"
+		" use close_popup for e.g. pythoncomplete.vim's subprocess.os.
+		" dot candidate can not auto popup in next string after dot.
+		" without ."\<C-h>"
+                inoremap <expr> <C-h> neocomplcache#smart_close_popup()
                 inoremap <expr> <BS>  neocomplcache#smart_close_popup()."\<C-h>"
 
-                " inoremap <expr> <CR> <C-R>=neocomplcache#close_popup()<CR>
-                " inoremap <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
-                inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+                " inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+                " <CR>: close popup and save indent.
+                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+                function! s:my_cr_function()
+                    return neocomplcache#smart_close_popup() . "\<CR>"
+                    " For no inserting <CR> key.
+                    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+                endfunction
 
                 imap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
                 imap <expr> <C-p> pumvisible() ? "\<C-p>"
