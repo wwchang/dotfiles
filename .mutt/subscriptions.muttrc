@@ -44,6 +44,8 @@ subscribe ruby.talk Ruby-Talk <ruby-talk@ruby-lang.org>
 subscribe ruby.core Ruby-Core <ruby-core@ruby-lang.org>
 subscribe ruby.doc Ruby-Doc <ruby-doc@ruby-lang.org>
 subscribe ruby.rails Ruby On Rails <rubyonrails-talk@googlegroups.com>
+subscribe ruby.rubyqt RubyQt <kde-bindings@kde.org>
+subscribe ruby.rvm RVM <rubyversionmanager@googlegroups.com>
 
 # [ Clojure ]
 subscribe clojure Clojure <clojure@googlegroups.com>
@@ -146,6 +148,7 @@ subscribe vimwiki Vim.vimwiki <vimwiki@googlegroups.com>
 subscribe eclim Vim.eclim <eclim-user@googlegroups.com>
 # vim-ruby
 subscribe vim-ruby vim-ruby <vim-ruby-devel@rubyforge.org>
+subscribe vimtouch vimtouch <vimtouch-general@googlegroups.com>
 
 # [ Git ]
 subscribe -group Git <git@vger.kernel.org>
@@ -156,6 +159,9 @@ subscribe sqlite SQLite <sqlite-users@sqlite.org>
 
 # NoSQL
 subscribe mongodb MongoDB <mongodb-user@googlegroups.com>
+
+# Development
+subscribe gstreamer GStreamer <gstreamer-devel@lists.freedesktop.org>
 
 # Apps
 # tmux

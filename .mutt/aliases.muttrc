@@ -105,6 +105,8 @@ alias ruby.cvs Ruby-CVS <ruby-cvs@ruby-lang.org>
 alias ruby.cvs.ctl Ruby-CVS-ctl <ruby-cvs-ctl@ruby-lang.org>
 alias ruby.G comp.lang.ruby <comp.lang.ruby@googlegroups.com>
 alias rubyonrails Ruby on Rails <rubyonrails-talk@googlegroups.com>
+alias ruby.rubyqt RubyQt <kde-bindings@kde.org>
+alias ruby.rvm RVM <rubyversionmanager@googlegroups.com>
 # JavaScript
 alias javascript comp.lang.javascript <comp.lang.javascript@googlegroups.com>
 alias javascript.alt.lang JavaScript.alt.comp.lang <alt.comp.lang.javascript@googlegroups.com>
@@ -201,6 +203,7 @@ alias vim.organizer VimOrganizer <vimorganizer@googlegroups.com>
 alias vim.eclim Eclim <eclim-user@googlegroups.com>
 alias vim.vimim vimim <vimim@googlegroups.com>
 alias vim.ruby vim-ruby <vim-ruby-devel@rubyforge.org>
+alias vim.vimtouch vimtouch <vimtouch-general@googlegroups.com>
 
 # Vim plugins scripts
 alias shougo Shougo Matsu <Shougo.Matsu@gmail.com>
@@ -210,6 +213,9 @@ alias sqlite SQLite <sqlite-users@sqlite.org>
 
 # NoSQL
 alias mongodb MongoDB <mongodb-user@googlegroups.com>
+
+# Development
+alias gstreamer GStreamer <gstreamer-devel@lists.freedesktop.org>
 
 
 # parallel

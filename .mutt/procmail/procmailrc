@@ -275,6 +275,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*ruby-core\.ruby-lang\.org
     Ruby/core/
+    :0
+    * ^List-Id: .*rubyversionmanager\.googlegroups\.com
+    Ruby/rvm/
     # Ruby on Rails
     :0
     * ^To: .*rubyonrails-talk@googlegroups\.com
@@ -283,6 +286,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^To: .*rubyonrails-core@googlegroups\.com
     Ruby/Rails/
     # comp.lang.ruby
+    :0
+    * ^List-Id: .*kde-bindings\.kde\.org
+    Ruby/RubyQt/
     # }}}
 
     # [ Python ] {{{
@@ -435,6 +441,12 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     Web/whatwg/
 # }}}
 
+# Development {{{
+    :0
+    * List-Id: .*gstreamer-devel\.lists\.freedesktop\.org
+    Development/GStreamer/
+# }}}
+
 # Drupal {{{
     :0
     * List-Id: .*support\.drupal\.org
@@ -447,7 +459,7 @@ PMSRC = ${HOME}/.mutt/procmail/lib
 # Emacs {{{
     :0
     * ^List-Id: .*help-gnu-emacs\.gnu\.org
-    Emacs/help
+    Emacs/help/
     :0
     * ^List-Id: .*emacs-devel\.gnu\.org
     Emacs/devel/
@@ -497,6 +509,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*eclim-user\.googlegroups\.com
     Vim/eclim/
+    :0
+    * ^List-Id: .*vimtouch-general\.googlegroups\.com
+    Vim/vimtouch/
 
     #:0
     #* ^List-Id: .*vim_use\.googlegroups\.com

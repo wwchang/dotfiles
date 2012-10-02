@@ -44,14 +44,15 @@ mailboxes =Vim/dev
 mailboxes =Vim/vim-ruby
 mailboxes =Vim/vimwiki
 mailboxes =Vim/eclim
-
-mailboxes =apps/Awesome
+mailboxes =Vim/vimtouch
 
 mailboxes =Ruby
 mailboxes =Ruby/talk
 # mailboxes =Ruby/core
 # mailboxes =Ruby/cvs
 mailboxes =Ruby/Rails
+mailboxes =Ruby/RubyQt
+mailboxes =Ruby/rvm
 
 mailboxes =Python
 mailboxes =Python/python
@@ -126,6 +127,9 @@ mailboxes =PHP/general/
 
 # mailboxes =Perl
 
+mailboxes =Development
+mailboxes =Development/GStreamer
+
 mailboxes =Drupal
 mailboxes =Drupal/support
 mailboxes =Drupal/security
@@ -143,6 +147,7 @@ mailboxes =GNU/parallel
 mailboxes =GNU/gnu
 
 mailboxes =apps
+mailboxes =apps/Awesome
 mailboxes =apps/FVWM
 mailboxes =apps/Mutt
 mailboxes =apps/tmux
