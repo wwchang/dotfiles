@@ -1160,6 +1160,9 @@ endif
 		    \ 'depends': ['tomtom/tlib_vim'],
 		    \ }
         NeoBundle 'kshenoy/vim-signature'
+	" NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', {
+	" 	    \ 'type': 'hg',
+	" 	    \ }
         " NeoBundle 'quickfixstatus.vim'
 	NeoBundle 'xolox/vim-session'
         " NeoBundle 'restore_view.vim'
@@ -3369,6 +3372,17 @@ syntax on
         " }}}
     " }}}
 
+    " [ REPL (Read-eval-print loop) ] {{{
+	" vim-slime {{{ A vim plugin to give you some slime. (Emacs)
+	    " Grab some text and "send" to GNU screen / tmux session.
+	    "	VIM ---(text)---> screen / tmux
+	    " Usage:
+	    " [{Visual}]<C-c><C-c>
+	    " :<range>SlimeSend
+	    let g:slime_target = "tmux" " tmux/screen
+	" }}}
+    " }}}
+
     " [ tools ] {{{
         let g:TasksListTokens = ['FIXME', 'TODO', 'BUG', 'ISSUE', 'ERROR', 'XXX',]
 
@@ -3530,6 +3544,26 @@ syntax on
 	    "	With the search/autocomplete window open, start typing the name
 	    "	of the class, module, or method you want to lookup.
 	    " Press `TAB` to start autocompletion.
+	" }}}
+
+	" vim-rake {{{ it's like rails.vim without rails.
+	" }}}
+
+	" neco-rake : A neocomplcache plugin for Rake on vimshell
+
+	" vim-rvm {{{ switch Ruby versions from inside Vim
+	    " Usage:
+	    " - :Rvm 1.9.3
+	    " - :Rvm use default
+	    " * leave off the version
+	    "	- :Rvm
+	    "	- :Rvm use
+	" }}}
+
+	" vim-bundler {{{ Lightweight support for Ruby's Bundler
+	    " Usage:
+	    " - :Bundle -- wraps 'bundle'
+	    " - :Bopen/Bsplit/Btabedit
 	" }}}
 
         " vim-rails {{{ Ruby on Rails
