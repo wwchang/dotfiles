@@ -81,7 +81,7 @@
     " autocmd FileType tex nnoremap <buffer> K :exec "help" expand("<cword>")<CR>
     "augroup KHelp
         "au!
-        "au FileType sh setlocal keywordprg="man-s"
+        "au FileType sh setlocal keywordprg="man -s"
         "au FileType vim,help let &keywordprg=":help"
     "augroup END
         " }}}
@@ -323,7 +323,17 @@
     " }}}
 
     " [ session ] {{{
-    " set sessionoptions=blank,buffers,curdir,folds,help,options,tabpages,winsize " for :mksession
+    set sessionoptions+=blank
+    set sessionoptions+=buffers
+    set sessionoptions+=curdir
+    set sessionoptions+=folds
+    set sessionoptions-=help
+    set sessionoptions+=options
+    set sessionoptions+=tabpages
+    set sessionoptions+=resize
+    set sessionoptions+=winsize
+    set sessionoptions+=winpos
+
     "au BufReadPost *
                 "\if line("'\"") > 1 && line("'\"") <= line("$")
                 "\| exe "normal! g`\""
@@ -1089,17 +1099,16 @@ endif
 
         " [ bundles ] {{{
         " examples {{{
-        " Original repos on github
+        " - Original repos on github
         " NeoBundle 'tpope/vim-fugitive'
         " NeoBundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-        " vim-scripts repos
+        " - vim-scripts repos
         " NeoBundle 'L9'
-        " Non github repos
+        " - Non github repos
         " NeoBundle 'git://git.wincent.com/command-t.git'
-        " Non git repos
+        " - Non git repos
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
-
-        " plugin attributes
+        " - plugin attributes
         " NeoBundle 'neocomplcache.vim', {
         "             \ 'directory': 'neocomplcache',
         "             \ 'type': 'hg',
@@ -1107,16 +1116,13 @@ endif
         "             \ 'rtp': 'vim',
         "             \ 'base': '~/.vim/bundle',
         "             \ }
-
-        " revision lock
+        " - revision lock
         " NeoBundle 'neocomplcache', '3787e5'
         " NeoBundle 'neocomplcache', 'master'
-
-        " name
+        " - name
         " NeoBundleLazy 'The-NERD-tree', {'augroup': 'NERDTree'}
         " NeoBundleSource The-NERD-tree
-
-        " build plugin
+        " - build plugin
         " NeoBundle 'Shougo/vimproc', {
         "     \ 'build' : {
         "         \ 'windows': 'echo "vimproc binary file does not support Windows."',
@@ -1132,7 +1138,7 @@ endif
                     \ 'depends': ['Shougo/unite.vim'],
                     \ 'directory': 'neobundle',
                     \ }
-        NeoBundle 'neocomplcache', {
+        NeoBundle 'Shougo/neocomplcache', {
                     \ 'depends': ['Shougo/vimproc'],
                     \ }
         NeoBundle 'Shougo/vimproc', {
@@ -1143,10 +1149,10 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
+        NeoBundle 'Shougo/vimshell'
 	" NeoBundle 'tomtom/tplugin_vim', {
 	" 	    \ 'directory': 'tplugin',
 	" 	    \ }
-        " NeoBundle 'Shougo/vimshell'
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'current-func-info.vim'
@@ -1155,31 +1161,36 @@ endif
 		    \ }
         NeoBundle 'kshenoy/vim-signature'
         " NeoBundle 'quickfixstatus.vim'
-        NeoBundle 'restore_view.vim'
-        NeoBundle 'recover.vim'
-        NeoBundle 'surround.vim'
-        NeoBundle 'unimpaired.vim'
+	NeoBundle 'xolox/vim-session'
+        " NeoBundle 'restore_view.vim'
+        NeoBundle 'chrisbra/Recover.vim'
+        NeoBundle 'tpope/vim-surround'
+        NeoBundle 'tpope/vim-unimpaired'
         " NeoBundle 'ConflictMotions'
         " Complete
         " NeoBundle 'ervandew/supertab'
         NeoBundle 'unicode.vim'
 	" NeoBundle 'caio/querycommandcomplete.vim'
+	" Windows
+	NeoBundle 'roman/golden-ratio'
         " Pairs
         NeoBundle 'Auto-Pairs', {
                     \ 'directory': 'AutoPairs',
                     \ }
-        NeoBundle 'endwise.vim'
-        " others
-        NeoBundle 'Switch'
+        NeoBundle 'tpope/vim-endwise'
+        " Others
+        NeoBundle 'AndrewRadev/switch.vim'
         " NeoBundle 'ConflictDetection'
-        NeoBundle 'gf-diff'
-        NeoBundle 'gf-user'
+        NeoBundle 'kana/vim-gf-diff'
+        NeoBundle 'kana/vim-gf-user'
         " NeoBundle 'patchreview.vim'
         " VCS & quickfix
-        NeoBundle 'fugitive.vim'
-        NeoBundle 'gitv'
-        NeoBundle 'hgrev'
-	" colorscheme
+        NeoBundle 'tpope/vim-fugitive'
+        NeoBundle 'gregsexton/gitv'
+        NeoBundle 'vim-scripts/hgrev'
+	" Colorscheme
+	" Register
+	NeoBundle 'tpope/vim-repeat'
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
@@ -1205,12 +1216,13 @@ endif
                     \ 'directory': 'viewdoc',
                     \ }
         " snippets
-        NeoBundle 'UltiSnips'
-        " NeoBundle 'neocomplcache-snippets_complete'
+        NeoBundle 'SirVer/ultisnips'
+	" NeoBundle 'garbas/vim-snipmate'
+        " NeoBundle 'Shougo/neocomplcache-snippets-complete'
         " tags : ctags, cscope
-        NeoBundle 'Tagbar'
-        NeoBundle 'TagHighlight'
-        NeoBundle 'easytags.vim'
+        NeoBundle 'majutsushi/tagbar'
+        " NeoBundle 'abudden/TagHighlight'
+        " NeoBundle 'xolox/vim-easytags'
         " NeoBundle 'AutoTag'
         NeoBundle 'indexer.tar.gz', {
                     \ 'depends': ['DfrankUtil', 'vimprj'],
@@ -1227,32 +1239,35 @@ endif
 		    \ }
         NeoBundle 'troydm/easybuffer.vim'
         " compile & run
-        NeoBundle 'SingleCompile'
+        NeoBundle 'xuhdev/SingleCompile'
         " syntax checker
-        NeoBundle 'Syntastic'
+        NeoBundle 'scrooloose/syntastic'
         " search [grep, MRU, files]
-        " NeoBundle 'ctrlp.vim'
+        " NeoBundle 'kien/ctrlp.vim'
         " NeoBundle 'Command-T'
-        NeoBundle 'EasyGrep'
+        NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
         " regex
-        NeoBundle 'VimRegEx.vim', {
+        NeoBundle 'Raimondi/VimRegEx.vim', {
                     \ 'depends': ['vsutil.vim'],
                     \ }
         " syntax / indent / fold
-        NeoBundle 'Indent-Guides'
+        NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'vim-scripts/simplefold'
+	" REPL (Read-eval-print loop)
+	" NeoBundle 'jpalardy/vim-slime'
         " Tabular
-        NeoBundle 'Tabular'
+        NeoBundle 'godlygeek/tabular'
         " NeoBundle 'filter'
         " comment
-        NeoBundle 'The-NERD-Commenter'
-        NeoBundle 'commentary.vim'
+	NeoBundle 'tomtom/tcomment_vim'
+        " NeoBundle 'scrooloose/nerdcommenter'
+        " NeoBundle 'tpope/vim-commentary'
         NeoBundle 'mbbill/undotree'
         " unite.vim
         NeoBundle 'h1mesuke/unite-outline'
         " Task List
-        NeoBundle 'TagmaTasks'
+        NeoBundle 'LStinson/TagmaTasks'
         " NeoBundle 'TaskList.vim'
         " NeoBundle 'TaskMotions'
 		" VimL (libraries/)
@@ -1262,59 +1277,74 @@ endif
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         " NeoBundle 'taichouchou2/vim-rsense'
+	" NeoBundle 'vadv/rubycomplete'
 	NeoBundle 'danchoi/ri.vim'
         NeoBundle 'tpope/vim-rails'
-        " NeoBundle 'rubycomplete.vim'
+	NeoBundle 'tpope/vim-rvm'
+	NeoBundle 'tpope/vim-bundler'
+	NeoBundle 'tpope/vim-rake'
+	NeoBundle 'ujihisa/neco-rake', {
+		    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell']
+		    \ }
+	" NeoBundle 'tpope/gem-ctags'
         " Python
-        NeoBundle 'virtualenv.vim'
-        NeoBundle 'pythoncomplete'
+        NeoBundle 'jmcantrell/vim-virtualenv'
+        NeoBundle 'vim-scripts/pythoncomplete'
 	" NeoBundle 'kevinw/pyflakes-vim'
         " C / cpp
         NeoBundle 'Shougo/neocomplcache-clang', {
                     \ 'depends': ['clang-complete',],
                     \ }
-        " NeoBundle 'OmniCppComplete'
+        " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
         NeoBundle 'undx/vim-gocode', {
                     \ 'directory': 'gocode',
                     \ }
         " HTML
-        NeoBundle 'ZenCoding.vim'
-        NeoBundle 'MatchTag'
-        NeoBundle 'html5.vim'
-        NeoBundle 'HTML5-Syntax-File'
+        NeoBundle 'mattn/zencoding-vim'
+        NeoBundle 'gregsexton/MatchTag'
+        NeoBundle 'othree/html5.vim'
+        NeoBundle 'othree/html5-syntax.vim'
         " CSS
-        NeoBundle 'Better-CSS-Syntax-for-Vim'
+        NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+	NeoBundle 'tpope/vim-haml'
         " CoffeeScript
         " JavaScript
         NeoBundle 'teramako/jscomplete-vim'
         " Clojure
         " NeoBundle 'VimClojure'
         " PHP
-        NeoBundle 'phpcomplete.vim'
-        NeoBundle 'PIV'
+        NeoBundle 'shawncplus/phpcomplete.vim'
+        NeoBundle 'spf13/PIV'
         " Lisp
-        " NeoBundle 'slimv.vim'
-        " NeoBundle 'Lisper.vim'
+        " NeoBundle 'vim-scripts/slimv.vim'
+        " NeoBundle 'mattn/lisper-vim'
         " NeoBundle 'paredit.vim'
+	" Markdown
+	NeoBundle 'tpope/vim-markdown'
         " Wiki / Note
+	" NeoBundle 'https://code.google.com/p/vimwiki/', {
+	" 	    \ 'type': 'hg',
+	" 	    \ }
         NeoBundle 'vimwiki'
         " Paste
-        NeoBundle 'Gist.vim', {
-                    \ 'directory': 'Gist',
+        NeoBundle 'mattn/gist-vim', {
                     \ 'depends': ['WebAPI.vim',],
                     \ }
+	" NeoBundle 'tpope/vim-pastie'
         " Color
-        NeoBundle 'colorv.vim'
+        " NeoBundle 'Rykka/colorv'
+        " binary files
+        NeoBundle 'tpope/vim-afterimage'
         " colorscheme
         NeoBundle 'altercation/vim-colors-solarized'
         NeoBundle 'nanotech/jellybeans.vim'
         NeoBundle 'w0ng/vim-hybrid'
         " others
-        NeoBundle 'utl.vim'
-        NeoBundle 'bad-whitespace'
-        NeoBundle 'visualstar.vim'
-        NeoBundle 'SpitVspit'
+        NeoBundle 'vim-scripts/utl.vim'
+        NeoBundle 'bitc/vim-bad-whitespace'
+        NeoBundle 'thinca/vim-visualstar'
+        NeoBundle 'vim-scripts/SpitVspit'
         " NeoBundle 'dahu/VimLint'
         " }}}
 
@@ -1537,7 +1567,8 @@ syntax on
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
-            let g:neocomplcache_force_overwrite_completefunc = 0
+            let g:neocomplcache_force_overwrite_completefunc = 1
+		" when conflict with other plugin completefunc, set 1 to disable error.
             let g:neocomplcache_use_vimproc = 1
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
@@ -1585,7 +1616,7 @@ syntax on
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
 	    " those g:neocomplcache_* options only are initialized in first
 	    " completion, not in Vim's initialization.
-            " NOTE you can see neocomplcache default value of option by command:
+            " you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
 	    " if value/key is "_", means all buffers in neocomplcache.
 	    " wildcard {{{
@@ -1603,7 +1634,10 @@ syntax on
             if !exists('g:neocomplcache_keyword_patterns')
                 let g:neocomplcache_keyword_patterns = {}
             endif
-            let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+            " let g:neocomplcache_keyword_patterns['_'] = '\h\w*'
+            if !exists('g:neocomplcache_next_keyword_patterns')
+                let g:neocomplcache_next_keyword_patterns = {}
+            endif
 	    " }}}
             " vim completefunc {{{
             if !exists('g:neocomplcache_vim_completefuncs')
@@ -1618,13 +1652,10 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
-	    " let g:neocomplcache_force_omni_patterns['ruby'] = '[^. \t]\.\w*'
+	    let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            " TODO please improve this pattern.
-            " let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\h\w*\|\h\w*::'
-	    let g:neocomplcache_omni_patterns['ruby'] = '[^. \t]\.\w*'
             " }}}
             " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
@@ -1683,6 +1714,7 @@ syntax on
             if !exists('g:neocomplcache_ctags_arguments_list')
                 let g:neocomplcache_ctags_arguments_list = {}
             endif
+            " let g:neocomplcache_ctags_arguments_list['_'] = ''
             " let g:neocomplcache_ctags_arguments_list['python'] =
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
@@ -1749,8 +1781,10 @@ syntax on
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-	    " if value contains "_", neocomplcache completes from all buffers.
-	    let g:neocomplcache_same_filetype_lists['gitconfig'] = '_'
+	    " if value contains '_', neocomplcache completes from all buffers.
+	    " set this '_' key will disable default initialization
+	    " let g:neocomplcache_same_filetype_lists['_'] = '_'
+		" default complete from all buffers
 	    let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
 	    let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
 	    let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
@@ -1816,9 +1850,15 @@ syntax on
                         \ ]
             " }}}
             " text mode filetypes {{{
+	    " in text mode, neocomplcache supports word convertion to write English.
+	    " For example, if you input 'Fo', neocomplcache will convert
+	    " candidate 'foo' to 'Foo'. If you input 'foo', neocomplcache will
+	    " convert candidate 'FooBar' to 'foobar'. If you input 'FO',
+	    " neocomplcache will convert candidate 'foo' to 'FOO'.
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
+	    " let g:neocomplcache_text_mode_filetypes['gitcommit'] = 0
             " }}}
 
             " }}}
@@ -2257,6 +2297,7 @@ syntax on
             let g:tagbar_foldlevel = 2 " level higher than this number will be closed.
             let g:tagbar_usearrows = 0 " { Windows only }
             let g:tagbar_iconchars = ['▶', '▼'] " default on Linux and Mac.
+	    let g:tagbar_indent = 1 " indent for compact view.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
             " let g:tagbar_type_javascript = {
@@ -2765,32 +2806,25 @@ syntax on
     " }}}
 
     " [ comment ] {{{
-        " commentary {{{
-        " \\{motion}, \\\, {Visual}\\ ==> comment
-        " \\u ==> uncomment
-        " }}}
-
-        " tComment {{{ An extensible & universal comment plugin
-            " also handles embedded filetypes.
+        " TComment {{{ An extensible & universal comment plugin
+	    " It provides easy to use, file-type sensible comments for Vim.
+	    " line, block, in-line, embed. (toggle)
                 " Usage:
-                "   - gc{motion}    :: toggle comments.
-                "   - gcc           :: toggle comment for current line.
-                "   - gC{motion}    :: Comment region.
-                "   - gCc           :: Comment the current line.
-                "   - <C-_>...      :: :TComment ...
-                "   - <Leader>...   :: :TComment ...
-                "   - :[range]TComment[!] ?ARGS
-                "   - :[range]TCommentAs[!] [commenttype] ?ARGS
-                " tcomment#DefineType() to override defualt choice.
+		" - tcomment#DefineType() to override and define file-type comment string.
+                "   - g[c/C]{motion}    :: toggle comments.
+		"   - <c-_>{action}	:: :TComment actions.
             let g:tcommentMapLeader1 = '<c-_>'
             let g:tcommentMapLeader2 = '<Leader>_'
             let g:tcommentMapLeaderOp1 = 'gc'
             let g:tcommentMapLeaderOp2 = 'gC'
+	    let g:tcommentModeExtra = '>>' " move cursor to end of comment and next line
+            let g:tcommentOpModeExtra = '>>'
             let g:tcommentBlankLines = 1 " comment blank lines too.
-            let g:tcommentOpModeExtra = '' " '>' move cursor to end of comment
             let g:tcommentOptions = {}
+		" {'col': 1}
+		"   put comment marker always in the first column regardless of block's indentation.
             let g:tcomment#ignore_char_type = 1
-            let g:tcommentGuessFileType = 1 " default: 0
+            let g:tcommentGuessFileType = 1 " guess filetype
             let g:tcommentGuessFileType_dsl = 'xml'
             let g:tcommentGuessFileType_php = 'html'
             let g:tcommentGuessFileType_html = 1
@@ -2798,15 +2832,33 @@ syntax on
             let g:tcommentGuessFileType_vim = 1
             let g:tcommentGuessFileType_django = 1
             let g:tcommentIgnoreTypes_php = 'sql'
-            "let g:tcomment#syntax_substitute = {}
-            "let g:tcommentSyntaxMap = {}
-            "let g:tcomment#replacements_c = {}
-            "let g:tcommentBlockC = {}
-            "let g:tcommentBlockC2 = {}
-            "let g:tcommentInlineC = g:tcommentLineC
-            "let g:tcommentBlockXML = "<!--%s-->\n  "
-            "let g:tcommentInlineXML = "<!-- %s -->"
-            "let g:tcomment_types {}
+            let g:tcomment#syntax_substitute = {'\C^javaScript': {'sub': 'javascript'}}
+            let g:tcommentSyntaxMap =
+			\ {
+			    \ 'vimRubyRegion': 'ruby',
+			    \ 'vimPythonRegion': 'python',
+			    \ 'vimMzSchemeRegion': 'scheme',
+			    \ 'vimPerlRegion': 'perl',
+			    \ 'vimwikiRubyRegion': 'ruby',
+			    \ 'vimwikiPythonRegion': 'python',
+			    \ 'vimwikiCRegion': 'c',
+			\ }
+		    " FIXME how to define 'vimwikiRubyRegion' etc ? for use in
+		    " vimwiki embed syntax ?
+            " let g:tcomment#replacements_c = {} " replacement for c filetype
+            " let g:tcommentBlockC = {} " generic c-like block comments.
+            " let g:tcommentBlockC2 = {} " generic c-like block comments (alternative markup)
+            " let g:tcommentInlineC = g:tcommentLineC
+            " let g:tcommentBlockXML = "<!--%s-->\n  "
+            " let g:tcommentInlineXML = "<!-- %s -->"
+
+	    " tcomment#DefineType(name, commentdef)
+	    " - 'name' usually is 'filetype', you can use 'FILETYPE_block' for
+	    "	block comment. 'FILETYPE_inline' for inline comments. if no
+	    "	specialized comment definition exists, the normal one with
+	    "	'FILETYPE' is used.
+	    " - 'commentdef'. can be a string or a dictionary.
+            " let g:tcomment_types {}
         " }}}
 
         " Nerd Commenter {{{ \cc, \cu, \cs, \cm, \cn, \c$, \c<space>
@@ -2814,6 +2866,11 @@ syntax on
             " \cn: Nested, \c<space>: Toggle, \ci: Invert,
             " \c$: EOL, \cy: "y", \cA: "A", \cI: "I", \ca: Alternative delimiters,
             " let loaded_nerd_comments=1 " turn off this script.
+        " }}}
+
+        " commentary {{{
+        " \\{motion}, \\\, {Visual}\\ ==> comment
+        " \\u ==> uncomment
         " }}}
 
         " vim-addon-commenting {{{ features: ( fork from commentary.vim )
@@ -2923,6 +2980,7 @@ syntax on
             " let b:syntastic_c_cflags = ' -I/usr/include/libsoup-2.4'
             let g:syntastic_c_include_dirs = [ 'includes', 'headers' ]
             " let g:syntastic_c_compiler_options = ' -ansi'
+	    " let g:syntastic_cpp_compiler_options = ''
         " }}}
 
         " checksyntax {{{
@@ -3007,24 +3065,21 @@ syntax on
 
     " [ quickfix & location list ] {{{
         " quickfixsigns {{{ mark quickfix & location list items with signs.
-            let g:quickfixsigns_classes = (['qfl', 'loc', 'marks', 'breakpoints',
-                        \ 'vcsdiff' ])
-            let g:quickfixsigns_events = (['BufEnter', 'BufLeave',
+            let g:quickfixsigns_classes = ([
+			\ 'qfl', 'loc',
+			\ 'marks', 'breakpoints',
+                        \ 'vcsdiff'
+			\ ])
+            let g:quickfixsigns_events = ([
+			\ 'BufEnter',
                         \ 'CursorHold', 'CursorHoldI',
-                        \ 'InsertLeave', 'InsertEnter', 'InsertChange'])
-            let g:quickfixsigns_class_vcsdiff = {
-                        \ 'sign': '*quickfixsigns#vcsdiff#Signs',
-                        \ 'get': 'quickfixsigns#vcsdiff#GetList(%s)',
-                        \ 'event': [ 'BufEnter', 'BufLeave', 'BufWritePost'],
-                        \ 'level': 6,
-                        \ }
+                        \ 'InsertLeave', 'InsertEnter', 'InsertChange',
+			\ ])
             let g:quickfixsigns_balloon = 1
             let g:quickfixsigns_max = 500 " don't display signs if longer than this.
-            let g:quickfixsigns_blacklist_buffer = '^\(__.*__\|NERD_tree_.*\|-MiniBufExplorer-\)$'
+            let g:quickfixsigns_blacklist_buffer = '^__.*__$'
             let g:quickfixsigns_icons = {}
             let g:quickfixsigns#vcsdiff#guess_type = 1
-            let g:quickfixsigns#vcsdiff#highlight = {'DEL': 'DiffDelete',
-                        \ 'ADD': 'DiffAdd', 'CHANGE': 'DiffChange'}
         " }}}
 
         " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
@@ -3032,10 +3087,16 @@ syntax on
 
         " Unimpaired {{{ provides several pairs of bracket maps.
             " [, ],
-            " a: , b: :b, l: :l, q: :c, t: tag.
-            " o: alphabetically, n: SCM conflict marker.
-            " <space>: add count blank lines. e: exchange current with.
+	    " a - :Next/:Previous
+	    " b - buffer
+	    " l - location list
+	    " q - quickfix
+	    " t - tag
+	    " n - SCM conflict marker
             " encoding & decoding
+	    " [ - encoding -> <foo bar="baz"> => &lt;foo bar=&quot;baz&quot&gt;
+	    " ] - decoding ->
+	    " .....
         " }}}
 
         " sharefix {{{ sharefix addresses the pain point of your quickfix list
@@ -3350,6 +3411,12 @@ syntax on
 
         " switch {{{ swap a pattern and substition.
             " let g:switch_no_builtins
+	    nnoremap - :Switch<cr>
+            let g:switch_definitions =
+                        \ [
+                            \ ['foo', 'bar', 'baz']
+                        \ ]
+                        " foo -> bar -> baz -> foo
         " }}}
 
         " SwapIt {{{ <C-A>, <C-X>
@@ -3422,8 +3489,6 @@ syntax on
             " autocmd FileType ruby compiler ruby
         " }}}
 
-	" neco-rake : A neocomplcache plugin for Rake on vimshell
-
         " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
             " Requires:
             "   - Ruby 1.9.3
@@ -3467,20 +3532,36 @@ syntax on
         " }}}
 
         " rsense
+            " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
-            "   You can infer types of an expression at point by :RSenseTypeHelp.
+            "   You can infer types of an expression at point by
+	    "   :RSenseTypeHelp.
             " 2. Definition Jump
             "   You can jump to definition of a method or a constant you are
-            "   pointing at by :RSenseJumpToDefinition.
+            "   pointing at by
+	    "   :RSenseJumpToDefinition.
             " 3. Where Is
             "   You can find which class/method you are editing by
             "   :RSenseWhereIs.
-            " let g:rsenseHome = "/home/chris/opt/rsense-0.3"
+	    " other commands:
+	    " :RSenseVersion
+	    "	See RSense version.
+	    " :RSenseOpenProject
+	    "	Open a project of specified directory.
+	    " :RSenseCloseProject
+	    "	Close currently opened project.
+	    " :RSenseServiceStart
+	    "	Start Windows service.
+	    " :RSenseServiceStop
+	    "	STop Windows service.
+	    " :RSenseServiceStatus
+	    "	Show Windows service status.
+	    " :RSenseClear
+	    "	Clear current environment.
+	    " :RSenseExit
+	    "	Exit RSense server.
             let g:rsenseHome = $RSENSE_HOME
             let g:rsenseUseOmniFunc = 1 " start completion automatically
-            " If you don't use autocomplpop.vim or related plugins, you need to
-            " type ^X ^O to start omni completion.
-
     " }}}
 
     " [ regexp ] {{{ Regular Expression
@@ -3943,6 +4024,8 @@ syntax on
 
             " css3_mod
 
+	    " vim-haml :
+
             " vim_less {{{ support for LESS CSS.
                 " syntax highlight
                 " indent support
@@ -4323,6 +4406,12 @@ syntax on
 
     " [ Java ] {{{
         let java_highlight_java_lang_ids=1 " highlight Identifiers in java.lang.*
+
+	" javacomplete
+	" http://www.vim.org/scripts/script.php?script_id=1785
+
+	" Vim JDE : Vim - Just a Development Envirement (Java/C++)
+	" http://www.vim.org/scripts/script.php?script_id=1213
     " }}}
 
     " [ Sed ] {{{
@@ -4370,7 +4459,21 @@ syntax on
     " }}}
 
     " [ Markdown ] {{{
+	" vim-markdown {{{ Vim Markdown runtime files
+	" }}}
+
         " riv {{{ Reading , Writing and Managing reStructuredText documents in Vim
+        " }}}
+    " }}}
+
+    " [ Binary ] {{{
+        " afterimage.vim {{{
+            " Edit ICO, PNG, and GIF icons. No really. They're converted with
+            " ImageMagick to XPM, a plain text image format with beautiful
+            " syntax highlighting in GUI versions of Vim. Here, it's easier just
+            " to show you:
+	    " Oh, and it can also handle PDFs (with pdftk), Word Documents
+	    " (read-only, with Antiword), and Mac OS X plist files.
         " }}}
     " }}}
 " }}}
@@ -4421,7 +4524,7 @@ syntax on
     " [ register & operation ] {{{
         " YankRing
 
-        " Repeat {{{ improve Vim's "."'s repeat.
+        " repeat {{{ improve Vim's "."'s repeat.
             " support in:
             " surround.vim, speeddating.vim, abolish.vim, unimpaired.vim, commentary.vim
             " single/last/multiple/visual/complex repeats, using vim scripts.
@@ -4436,6 +4539,21 @@ syntax on
     " }}}
 
     " [ position & session & marker ] {{{
+	" vim-session {{{ Extended session management for Vim ':mksession'
+	    " Usage:
+	    " - :SaveSession
+	    " - :OpenSession
+	    " - :CloseSession
+	    " - :DeleteSession
+	    " - :ViewSession
+	    " - :RestartVim
+	    let g:session_autoload = 'prompt' " 'prompt'/'yes' - auto load session or prompt ?
+	    let g:session_autosave = 1
+	    let g:session_directory = "~/.vim-sessions/"
+	    let g:session_default_to_last = 0 " default open last session instead of default
+	    let g:session_command_aliases = 1 " :SessionOpen <-> :OpenSession
+	" }}}
+
         " restore_view : automatically restoring file's cursor position and folding
             " view info in ~/.vim/view/*
             " set viewoptions=cursor,folds,slash,unix
@@ -4449,7 +4567,7 @@ syntax on
 
         " StarRange.vim | Select a string in visual mode. Press * or # key.
 
-        " visualstar: | star (*) for visual-mode.
+        " visualstar: | *,#,g*,g# for visual mode.
 
         " exjumplist | a Vim plugin to provide extra commands for |jumplist|
             nmap <C-M-i>  <Plug>(exjumplist-go-last)
@@ -5058,6 +5176,12 @@ syntax on
     " }}}
 
     " [ window ] {{{
+	" golden-ratio {{{ Automatic resizing of Vim windows to the golden ratio
+	    " let g:loaded_golden_ratio = 0 " 1: to disable load golden-ratio
+	    " let g:golden_ratio_autocommand = 1 " 0: disable autocommand events
+	    " let g:golden_ratio_wrap_ignored = 0 " set line wrapping of ignored windows
+	" }}}
+
         " dwm.vim {{{ Tiled Window Management for Vim inspired from dwm.
             " Usage:
             " - Ctrl-N => creates a new window and place it in the area [M],
@@ -5726,7 +5850,7 @@ syntax on
 
         " Align%294
 
-        " Surround {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
+        " surround {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
             " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
             " Visual(V): S<p class="important">
             " :help surround.txt
