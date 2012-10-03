@@ -186,32 +186,25 @@
     " }}}
 
     " [ cscope ] {{{
-    " C-], [count]C-T, {Visual}g], {Visual}g C-],
-    " :cscope, :cs, :scscope(split) :lcscope, :cstag,
+    "	    <C-\> [s/g/d/c/t/e/f/i]
+    " :cscope [add/find/kill/reset/show], :scscope (split), :lcscope, :cstag,
     " ------------
-    " $ cscope -b       > build up cscope database for source code.
-    " :cscope add cscope.out > add database to vim. establishes a connection.
+    "	$ cscope -b -- build up cscope database for source code.
+    "	$ cscope -R -- recursively
+    "	:cscope add cscope.out -- add database to vim. establishes a connection.
     if has("cscope")
         set cscopeprg=cscope " cscope program.
         " find {querytype}: + append, - clear, 0/absence -> don't use quickfix.
-        set nocscopetag " use cscope for tag commands
+        set cscopetag " use cscope for tag commands, cscope -> tags
         set cscopetagorder=0 " 0: cscope -> tags file, 1: tags file -> cscope
         " set cscoperelative
         set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i- " use quickfix to show result
         set cscopepathcomp=3 " how many components of a file's path to display
-
-        set nocscopeverbose " work with bellowing verbose setting.
-        " add any database in current directory
-        if filereadable("cscope.out")
-            cscope add cscope.out
-            " else add database pointed to by environment
-        elseif $CSCOPE_DB != ""
-            cscope add $CSCOPE_DB
-        endif
         set cscopeverbose " print message indicate success or failure.
 
+	" original is <C-_>
         " keep regular tag behavior and have a different shortcut access :cstag
-        map <C-_> :cstag <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash> :cstag <C-R>=expand("<cword>")<CR><CR>
         " following scheme.
         " s: Find this C symbol
         " g: Find this definition
@@ -221,14 +214,14 @@
         " e: Find this egrep pattern
         " f: Find this file
         " i: Find files #including this file
-        nnoremap <C-_>s :cscope find s <C-R>=expand("<cword>")<CR><CR>
-        nnoremap <C-_>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
-        nnoremap <C-_>c :cscope find c <C-R>=expand("<cword>")<CR><CR>
-        nnoremap <C-_>t :cscope find t <C-R>=expand("<cword>")<CR><CR>
-        nnoremap <C-_>e :cscope find e <C-R>=expand("<cword>")<CR><CR>
-        nnoremap <C-_>f :cscope find f <C-R>=expand("<cfile>")<CR><CR>
-        nnoremap <C-_>i :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-        nnoremap <C-_>d :cscope find d <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>s :cscope find s <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>g :cscope find g <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>d :cscope find d <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>c :cscope find c <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>t :cscope find t <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>e :cscope find e <C-R>=expand("<cword>")<CR><CR>
+        nnoremap <C-Bslash>f :cscope find f <C-R>=expand("<cfile>")<CR><CR>
+        nnoremap <C-Bslash>i :cscope find i ^<C-R>=expand("<cfile>")<CR>$<CR>
     endif
 
     " auto loading cscope database
