@@ -1147,9 +1147,7 @@ endif
                     \ 'depends': ['Shougo/unite.vim'],
                     \ 'directory': 'neobundle',
                     \ }
-        NeoBundle 'Shougo/neocomplcache', {
-                    \ 'depends': ['Shougo/vimproc'],
-                    \ }
+        NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
         NeoBundle 'Shougo/vimproc', {
             \ 'build': {
                 \ 'windows': 'echo "vimproc binary file does not support Windows."',
@@ -1159,9 +1157,7 @@ endif
                 \ },
             \ }
         NeoBundle 'Shougo/vimshell'
-	" NeoBundle 'tomtom/tplugin_vim', {
-	" 	    \ 'directory': 'tplugin',
-	" 	    \ }
+	" NeoBundle 'tomtom/tplugin_vim', { 'directory': 'tplugin' }
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'tyru/current-func-info.vim'
@@ -1204,26 +1200,15 @@ endif
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
-	" NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', {
-	" 	    \ 'type': 'hg',
-	" 	    \ 'directory': 'l9',
-	" 	    \ }
-	" NeoBundle 'tomtom/prototype_vim', {
-	" 	    \ 'directory': 'prototype',
-	" 	    \ }
+	" NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'l9' }
+	" NeoBundle 'tomtom/prototype_vim', { 'directory': 'prototype' }
 	" NeoBundle 'megaannum/self'
-	" NeoBundle 'mattn/webapi-vim', {
-	" 	    \ 'directory': 'webapi',
-	" 	    \ }
-	" NeoBundle 'https://bitbucket.org/ZyX_I/frawor', {
-	" 	    \ 'type': 'hg',
-	" 	    \ }
+	" NeoBundle 'mattn/webapi-vim', { 'directory': 'webapi' }
+	" NeoBundle 'https://bitbucket.org/ZyX_I/frawor', { 'type': 'hg' }
 	" }}}
         " [ program ] {{{
         " help
-        NeoBundle 'powerman/vim-plugin-viewdoc', {
-                    \ 'directory': 'viewdoc',
-                    \ }
+        NeoBundle 'powerman/vim-plugin-viewdoc', { 'directory': 'viewdoc' }
         " snippets
         NeoBundle 'SirVer/ultisnips'
 	" NeoBundle 'garbas/vim-snipmate'
@@ -1233,16 +1218,12 @@ endif
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags'
         " NeoBundle 'vim-scripts/AutoTag'
-        NeoBundle 'indexer.tar.gz', {
-                    \ 'depends': ['DfrankUtil', 'vimprj'],
-                    \ }
+        NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
 	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'scrooloose/nerdtree'
-	NeoBundle 'ivalkeen/nerdtree-execute', {
-		    \ 'depends': ['scrooloose/nerdtree'],
-		    \ }
+	NeoBundle 'ivalkeen/nerdtree-execute', { 'depends': ['scrooloose/nerdtree'] }
 	NeoBundle 'toritori0318/vim-nerdtree-plugin', {
 		    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
 		    \ 'directory': 'nerdtree-plugin',
@@ -1259,9 +1240,7 @@ endif
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
         " regex
-        NeoBundle 'Raimondi/VimRegEx.vim', {
-                    \ 'depends': ['vsutil.vim'],
-                    \ }
+        NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
         " syntax / indent / fold
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'vim-scripts/simplefold'
@@ -1308,9 +1287,7 @@ endif
                     \ }
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
-        NeoBundle 'undx/vim-gocode', {
-                    \ 'directory': 'gocode',
-                    \ }
+        NeoBundle 'undx/vim-gocode', { 'directory': 'gocode' }
         " HTML
         NeoBundle 'mattn/zencoding-vim'
         NeoBundle 'gregsexton/MatchTag'
@@ -1334,9 +1311,7 @@ endif
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
         " Wiki / Note
-	NeoBundle 'https://code.google.com/p/vimwiki/', {
-		    \ 'rtp': 'src',
-		    \ }
+	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
         " Paste
         NeoBundle 'mattn/gist-vim', {
                     \ 'depends': ['WebAPI.vim',],
