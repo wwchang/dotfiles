@@ -1350,11 +1350,9 @@ endif
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
         " Wiki / Note
-	" FIXME how to set runtimepath to correct path for vimwiki ?
 	NeoBundle 'https://code.google.com/p/vimwiki/', {
-		    \ 'rtp': "~/.vim/bundle/vimwiki/src",
+		    \ 'rtp': 'src',
 		    \ }
-        " NeoBundle 'vimwiki'
         " Paste
         NeoBundle 'mattn/gist-vim', {
                     \ 'depends': ['WebAPI.vim',],
