@@ -1290,6 +1290,7 @@ endif
         NeoBundle 'undx/vim-gocode', { 'directory': 'gocode' }
         " HTML
         NeoBundle 'mattn/zencoding-vim'
+	NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
         NeoBundle 'gregsexton/MatchTag'
         NeoBundle 'othree/html5.vim'
         NeoBundle 'othree/html5-syntax.vim'
@@ -4018,6 +4019,8 @@ syntax on
             " }}}
 
             " Sparkup {{{ Sparkup lets you write HTML code faster.
+		let g:sparkupExecuteMapping = '<c-e>' " expand/execute sparkup
+		let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
             " }}}
 
             " MatchTag
