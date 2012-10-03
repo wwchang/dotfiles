@@ -1256,6 +1256,7 @@ endif
         NeoBundle 'indexer.tar.gz', {
                     \ 'depends': ['DfrankUtil', 'vimprj'],
                     \ }
+	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'scrooloose/nerdtree'
@@ -2460,6 +2461,12 @@ syntax on
             " To go to the referenced point of func. add -r option. :Gtags -r func
             " More details please refer vim/plugin/gtags.vim
         " }}}
+
+	" yate {{{ search in tags more convenient.
+	    " It holds query and search result in one buffer for faster jump to desired tag.
+	    " Usage:
+	    "	:YATE
+	" }}}
 
 	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
 	    " it works like the context window of 'Source Insight'
