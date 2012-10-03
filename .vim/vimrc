@@ -146,9 +146,9 @@
     " set autowrite                    " auto write when changed
     " set autowriteall
     set autochdir
-    set autoread                     " auto read changed files
-    set updatetime=4000              " Bundle showmarks need lower updatetime to refresh marks.
-    set confirm                      " prompt to save unsaved changes when exiting
+    set autoread         " auto read changed files
+    set updatetime=3000  " swap write to disk, and for CursorHold event
+    set confirm          " prompt to save unsaved changes when exiting
     if has("vms")
         set nobackup " do not keep a backup file, use version instead
     else
@@ -2065,7 +2065,7 @@ syntax on
                 " }}}
 
                 " { snipMate } {{{
-                " FIXME snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
+                " TODO snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
                 " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
                 " ----------------------------------------------
                 " imap <expr> <Tab> snipMate#ShowAvailableSnips() ?
@@ -3224,7 +3224,7 @@ syntax on
 
         " ConflictDetection {{{ highlight markers >>>>>> <<<<<<< =========
             let g:ConflictDetection_WarnEvents = 'BufWritePost'
-            " FIXME set statusline+=%!ConflictCheck()
+            " TODO set statusline+=%!ConflictCheck()
             " set statusline+=%!g:ConflictDetection_AutoDetectEvents
             " set statusline+=%!g:ConflictDetection_WarnEvents
             " let g:ConflictDetection_AutoDetectEvents = ''
@@ -3675,7 +3675,7 @@ syntax on
                 let g:pymode_run_key = '<LocalLeader>r' " Key for run python code
                 " Pylint checking
                 let g:pymode_lint = 1 " Load pylint code plugin
-                let g:pymode_lint_checker = "pylint" " pylint, pyflakes or PEP8
+                let g:pymode_lint_checker = "pyflakes" " pylint, pyflakes or PEP8
                 let g:pymode_lint_config = "$HOME/.pylintrc" " Pylint configuration file
                 let g:pymode_lint_write = 1 " Check code every save
                 let g:pymode_lint_cwindow = 1 " Auto open cwindow if errors be finded
