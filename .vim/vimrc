@@ -1610,7 +1610,7 @@ syntax on
             endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_disable_select_mode_mappings = 1
-            let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
+            let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 0 " ArgumentExcep -> ArE (not AE)
             let g:neocomplcache_enable_underbar_completion = 0 " public_html -> pu_h (not p_h)
@@ -1771,7 +1771,7 @@ syntax on
                 let g:neocomplcache_source_disable = {}
             endif
             " let g:neocomplcache_source_disable['dictionary_complete'] = 1
-            let g:neocomplcache_source_disable['clang_complete'] = 1
+            let g:neocomplcache_source_disable['clang_complete'] = 1 " avoid clang's error
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
