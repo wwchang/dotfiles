@@ -3093,7 +3093,7 @@ syntax on
     " }}}
 
     " [ quickfix & location list ] {{{
-        " quickfixsigns {{{ mark quickfix & location list items with signs.
+        " quickfixsigns {{{ marks, quickfix & location list items with signs.
             let g:quickfixsigns_classes = ([
 			\ 'qfl', 'loc',
 			\ 'marks', 'breakpoints',
@@ -5339,6 +5339,17 @@ syntax on
 	    " - tinykeymap#PressEnter()
 	    " * :Tinykeymap
 	    "
+	    " gt               --  tabs
+	    " windows          --  <C-W>
+	    " buffers          --  <Leader>mb
+	    " diff             --  <Leader>md
+	    " filter           --  <Leader>mf
+	    " lines            --  <Leader>ml
+	    " location list    --  <Leader>mo
+	    " quickfix         --  <Leader>mq
+	    " undo             --  <Leader>mu
+	    " quickfixsigns    --  <Leader>ms
+
 	    " list of tinykeymaps be loaded on startup
 	    let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
 	    let g:tinykeymap#mapleader = mapleader . 'm'
