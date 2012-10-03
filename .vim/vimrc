@@ -28,9 +28,9 @@
 " before any other settings {{{
     " [ key prefix -> Leader ] {{{ [ '\', ',']
     " NOTICE: set this before any mappings.
-    " let mapleader = ','
+    let mapleader = '\'
     " <LocalLeader> is to be used for mappings which are local to a buffer. (filetypes)
-    " let maplocalleader = '\'
+    let maplocalleader = ','
     " }}}
 " }}}
 
@@ -1135,6 +1135,9 @@ endif
         " - Non git repos
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
         " - plugin attributes
+	"   - 'rtp' is a relative path.
+	"	e.g. bundle/vimwiki/src/autoload
+	"	    -> 'rtp': 'src',
         " NeoBundle 'neocomplcache.vim', {
         "             \ 'directory': 'neocomplcache',
         "             \ 'type': 'hg',
