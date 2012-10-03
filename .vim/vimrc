@@ -1612,8 +1612,8 @@ syntax on
             let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
-            let g:neocomplcache_enable_camel_case_completion = 1 " ArgumentExcep -> ArE (not AE)
-            let g:neocomplcache_enable_underbar_completion = 1 " public_html -> pu_h (not p_h)
+            let g:neocomplcache_enable_camel_case_completion = 0 " ArgumentExcep -> ArE (not AE)
+            let g:neocomplcache_enable_underbar_completion = 0 " public_html -> pu_h (not p_h)
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
             let g:neocomplcache_fuzzy_completion_start_length = 3 " fuzzy complete min length
             let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
