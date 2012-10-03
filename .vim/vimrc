@@ -171,16 +171,29 @@
 	" :tags (tag stack), :[count]tnext/tprevious,
 	" :ptag [ident] (show in preview window).
 	" :tselect [ident] (tag match list), :stselect [ident] (split),
+    " ctags
+	" $ ctags
     " ; means recurse upwards to deep under your project.
     set tags+=tags    " search current dir
     " set tags+=./tags  " search dir of current file.
     set tags+=./tags;  " search current dir, recursively to parent dir until root
     " set tags+=./tags;/  " walk up the tree towards root until one is found
     " set tags+=tags;$HOME " walk up the tree towards $HOME.
+    " ----------------
     " TODO
     " libraries:
     " set tags+=/lib/**/tags " * and ** wildchar. (slow)
     " set tags+=/usr/lib/**/tags
+    " set tags+=/usr/include/**/tags
+    set tags+=~/tmp/vim/tags/usr_include.ctags
+    "	$ ctags -R --fields=+S -f ~/tmp/vim/tags/usr_include.ctags /usr/include/
+    set tags+=~/tmp/vim/tags/cpp.tags
+    "   $ ctags -R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ -f ~/tmp/vim/tags/cpp.ctags /usr/include/c++/4.6/
+    set tags+=~/tmp/vim/tags/ruby1.9.1.ctags
+    "	$ ctags -R -f ~/tmp/vim/tags/ruby1.9.1.ctags /usr/lib/ruby/1.9.1/
+    set tags+=~/tmp/vim/tags/python3.2.ctags
+    "	$ ctags -R -f ~/tmp/vim/tags/python3.2.ctags /usr/lib/python3.2/
+    " ----------------
     set taglength=0 " number(N): up to this number of characters.
     set tagrelative
     " }}}
@@ -306,7 +319,7 @@
     " set file path completion.
     set path+=.,/usr/local/include,/usr/include,,
     " ignore those files when completion.
-    set wildignore+=*.swp,*~,*.o,*.obj,*.pyc,*.pyo
+    set wildignore+=*.swp,*~,*.o,*.obj,*.py[co]
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
     " set wildignore+=.git\*,.hg\*,.svn\*        " Windows
     set report=0 " always report changed lines
