@@ -36,3 +36,23 @@ endif
 
 " help (K)
 setlocal keywordprg=pydoc
+
+" REPL : run/execution
+python << EOF
+import vim
+def EvaluateRangeCode():
+    eval(compile('\n'.join(vim.current.range),'','exec'),globals())
+EOF
+vnoremap <F5> :py EvaluateRangeCode()<CR>
+
+" FIXME if module is a directory ??? e.g. import sys
+" 'gf' jump to the filename under the cursor. like 'import module'.
+" add python runtime path into vim option 'path'.
+python << EOF
+import os
+import sys
+import vim
+for p in sys.path:
+    if os.path.isdir(p):
+	vim.command(r"set path+=%s" % (p.replace(" ", r"\ ")))
+EOF
