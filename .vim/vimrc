@@ -892,7 +892,7 @@ endif
 " you can call function with ":source file.vim" then ":call"
 
     " [ execute mode ] {{{
-        " [ sh / rb / py / pl ] {{{
+        " [ chmod +x % -> sh / rb / py / pl ] {{{
             function! ScriptExecute()
                 :!chmod u+x %
                 :w
@@ -905,26 +905,6 @@ endif
                 " autocmd BufWritePost *.py :call ScriptExecute()
                 " autocmd BufWritePost *.pl :call ScriptExecute()
             augroup END
-        " }}}
-
-        " [ VimL ] {{{ TODO merge this three mode into one.
-            " range
-            function! VimLRangeSource() range
-                let tmpsofile = tempname()
-                call writefile(getline(a:firstline, a:lastline), l:tmpsofile)
-                execute "source " . l:tmpsofile
-                call delete(l:tmpsofile)
-            endfunction
-
-            " visual
-            " V -> "ay -> :@a
-
-            command! -range VimL <line1>,<line2>call VimLRangeSource()
-            au FileType vim vnoremap <silent><buffer> <F5> <esc>:'<,'>:VimL<cr>
-
-            " file
-            " au FileType vim nnoremap <F5> :source %<cr>
-            au FileType vim nnoremap <silent><buffer> <F5> :exec 'source ' . bufname('%')<CR>
         " }}}
     " }}}
 
@@ -1594,14 +1574,14 @@ syntax on
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
             let g:neocomplcache_max_menu_width = 15 " popup menu width
-            let g:neocomplcache_auto_completion_start_length = 1 " auto complete min length
-            let g:neocomplcache_manual_completion_start_length = 0 " manually min length
+            let g:neocomplcache_auto_completion_start_length = 2 " auto complete min length
+            let g:neocomplcache_manual_completion_start_length = 2 " manually min length
             let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
             let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " wildcard '*', '-' for input-saving
-            let g:neocomplcache_enable_cursor_hold_i = 1 " 'CursorHoldI' event
+            let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
             " 1: 'InsertCharPre' event, version >= 7.3.461
             if v:version == 703 && has("patch461")
                 let g:neocomplcache_enable_insert_char_pre = 1
@@ -1610,7 +1590,7 @@ syntax on
             endif
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_disable_select_mode_mappings = 1
-            let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
+            let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 0 " ArgumentExcep -> ArE (not AE)
             let g:neocomplcache_enable_underbar_completion = 0 " public_html -> pu_h (not p_h)
@@ -1771,7 +1751,7 @@ syntax on
                 let g:neocomplcache_source_disable = {}
             endif
             " let g:neocomplcache_source_disable['dictionary_complete'] = 1
-            let g:neocomplcache_source_disable['clang_complete'] = 1
+            let g:neocomplcache_source_disable['clang_complete'] = 1 " avoid clang's error
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
@@ -3873,8 +3853,6 @@ syntax on
             " }}}
         " }}}
 
-        " selfdot lets you type 'self.' by pressing '.' in Python files.
-
         " [ Django ] {{{
             " vim-django-support {{{ Django omni completion.
             " }}}
@@ -3964,10 +3942,6 @@ syntax on
     " }}}
 
     " [ VimL ] {{{
-        let g:vimsyn_embed = "mpPr" " embed script highlight: perl,python,ruby,tcl
-        let g:vimsyn_folding = 'afmpPr' " augroup, function, perl, python, ruby
-        let g:vimsyn_noerror = 1 " suppress error highlighting.
-
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
             " :h vimsupport.
         " }}}
@@ -3986,7 +3960,7 @@ syntax on
         " :h ft_sql.txt,
             let msql_sql_query = 1 " like SQL highlighting inside Strings.
             let msql_minlines = 200 " for syncing, minlines defaults to 100.
-        let g:sql_type_default = 'mysql' " or 'sqlanywhere'
+	    let g:sql_type_default = 'mysql' " or 'sqlanywhere'
 
             " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
                 " [ static mode ] {{{
