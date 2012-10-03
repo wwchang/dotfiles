@@ -1114,10 +1114,16 @@ endif
         " NeoBundle 'git://git.wincent.com/command-t.git'
         " - Non git repos
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
-        " - plugin attributes
+        " - attributes
 	"   - 'rtp' is a relative path.
 	"	e.g. bundle/vimwiki/src/autoload
 	"	    -> 'rtp': 'src',
+	"   - 'name'
+	"   - 'directory'
+	"   - 'type'
+	"   - 'depends'
+	"   - 'build'
+	"   - 'rev'
         " NeoBundle 'neocomplcache.vim', {
         "             \ 'directory': 'neocomplcache',
         "             \ 'type': 'hg',
@@ -1177,10 +1183,10 @@ endif
         " NeoBundle 'ConflictMotions'
         " Complete
         " NeoBundle 'ervandew/supertab'
-        NeoBundle 'chrisbra/unicode.vim'
+        " NeoBundle 'chrisbra/unicode.vim'
 	" NeoBundle 'caio/querycommandcomplete.vim'
 	" Windows
-	NeoBundle 'roman/golden-ratio'
+	" NeoBundle 'roman/golden-ratio'
         " Pairs
         NeoBundle 'jiangmiao/auto-pairs'
         NeoBundle 'tpope/vim-endwise'
@@ -1193,14 +1199,14 @@ endif
         " VCS & quickfix
         NeoBundle 'tpope/vim-fugitive'
         NeoBundle 'gregsexton/gitv'
-        NeoBundle 'vim-scripts/hgrev'
+        " NeoBundle 'vim-scripts/hgrev'
 	" Colorscheme
 	" Register
 	NeoBundle 'tpope/vim-repeat'
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
-	" NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'l9' }
+	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
 	" NeoBundle 'tomtom/prototype_vim', { 'directory': 'prototype' }
 	" NeoBundle 'megaannum/self'
 	" NeoBundle 'mattn/webapi-vim', { 'directory': 'webapi' }
@@ -1218,7 +1224,7 @@ endif
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags'
         " NeoBundle 'vim-scripts/AutoTag'
-        NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
+        " NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
 	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
@@ -1240,7 +1246,7 @@ endif
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
         " regex
-        NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
+        " NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
         " syntax / indent / fold
         NeoBundle 'nathanaelkane/vim-indent-guides'
         NeoBundle 'vim-scripts/simplefold'
@@ -1270,8 +1276,9 @@ endif
 	" NeoBundle 'vadv/rubycomplete'
 	NeoBundle 'danchoi/ri.vim'
         NeoBundle 'tpope/vim-rails'
+	" NeoBundle 'ujihisa/unite-gem'
 	NeoBundle 'tpope/vim-rvm'
-	NeoBundle 'tpope/vim-bundler'
+	" NeoBundle 'tpope/vim-bundler'
 	NeoBundle 'tpope/vim-rake'
 	NeoBundle 'ujihisa/neco-rake', {
 		    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell']
@@ -1290,13 +1297,13 @@ endif
         NeoBundle 'undx/vim-gocode', { 'directory': 'gocode' }
         " HTML
         NeoBundle 'mattn/zencoding-vim'
-	NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
+	" NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
         NeoBundle 'gregsexton/MatchTag'
         NeoBundle 'othree/html5.vim'
         NeoBundle 'othree/html5-syntax.vim'
         " CSS
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-	NeoBundle 'tpope/vim-haml'
+	" NeoBundle 'tpope/vim-haml'
         " CoffeeScript
         " JavaScript
         NeoBundle 'teramako/jscomplete-vim'
@@ -1309,23 +1316,23 @@ endif
         " NeoBundle 'vim-scripts/slimv.vim'
         " NeoBundle 'mattn/lisper-vim'
         " NeoBundle 'paredit.vim'
+	" Haskell
+	" NeoBundle 'ujihisa/neco-ghc'
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
         " Wiki / Note
 	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
         " Paste
-        NeoBundle 'mattn/gist-vim', {
-                    \ 'depends': ['WebAPI.vim',],
-                    \ }
+        NeoBundle 'mattn/gist-vim', { 'depends': ['WebAPI.vim'] }
 	" NeoBundle 'tpope/vim-pastie'
         " Color
         NeoBundle 'Rykka/colorv.vim'
         " binary files
         NeoBundle 'tpope/vim-afterimage'
         " colorscheme
-        NeoBundle 'altercation/vim-colors-solarized'
-        NeoBundle 'nanotech/jellybeans.vim'
-        NeoBundle 'w0ng/vim-hybrid'
+        " NeoBundle 'altercation/vim-colors-solarized'
+        " NeoBundle 'nanotech/jellybeans.vim'
+        " NeoBundle 'w0ng/vim-hybrid'
         " others
         NeoBundle 'vim-scripts/utl.vim'
         NeoBundle 'bitc/vim-bad-whitespace'
