@@ -164,12 +164,23 @@
     " }}}
 
     " [ tags ] {{{
-    " C-], [count]C-T, {Visual}g], {Visual}g C-], <C-w><C-]>,
-    " :tag, :tags, :[count]tnext/tprevious,
-    set tags=tags,./tags,./**/tags,./../tags " search for tags more widely.
-    set tags+=tags;/ " search for a tags file recursively.
+    " tags
+	" ':help tagrsch.txt'
+	" {Visual}C-], [count]C-T, {Visual}g], C-w C-], {Visual}g C-],
+	" :tag [ident: main, /^get (tag-regexp)],
+	" :tags (tag stack), :[count]tnext/tprevious,
+	" :ptag [ident] (show in preview window).
+	" :tselect [ident] (tag match list), :stselect [ident] (split),
+    " ; means recurse upwards to deep under your project.
+    set tags+=tags    " search current dir
+    " set tags+=./tags  " search dir of current file.
+    set tags+=./tags;  " search current dir, recursively to parent dir until root
+    " set tags+=./tags;/  " walk up the tree towards root until one is found
+    " set tags+=tags;$HOME " walk up the tree towards $HOME.
+    " TODO
+    " libraries:
     " set tags+=/lib/**/tags " * and ** wildchar. (slow)
-        " ; means recurse upwards to deep under your project.
+    " set tags+=/usr/lib/**/tags
     set taglength=0 " number(N): up to this number of characters.
     set tagrelative
     " }}}
