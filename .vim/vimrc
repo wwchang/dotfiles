@@ -38,7 +38,10 @@
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
 
+    " [ compatiable ] {{{
     set nocompatible " not vim compatible. must be first one, will affect other options
+    " set cpoptions= " flags for Vi compatible behavior.
+    " }}}
 
     " [ updating vimrc file on the fly ] {{{
     if has("autocmd")
@@ -180,7 +183,7 @@
     if has("cscope")
         set cscopeprg=cscope " cscope program.
         " find {querytype}: + append, - clear, 0/absence -> don't use quickfix.
-        set nocscopetag " always search cscope database instead of tags file.
+        set nocscopetag " use cscope for tag commands
         set cscopetagorder=0 " 0: cscope -> tags file, 1: tags file -> cscope
         " set cscoperelative
         set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i- " use quickfix to show result
@@ -661,7 +664,6 @@ endif
         set statusline+=\%#StatusChar#\pain\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
-        " FIXME set statusline+=\ \%{ConflictDetection-b:conflicted}
         set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
         set statusline+=\ \%#StatusFilePath#\%<%t
         set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
@@ -1155,9 +1157,9 @@ endif
 	" 	    \ }
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
-        NeoBundle 'current-func-info.vim'
-        NeoBundle 'quickfixsigns', {
-		    \ 'depends': ['tomtom/tlib_vim'],
+        NeoBundle 'tyru/current-func-info.vim'
+        NeoBundle 'tomtom/quickfixsigns_vim', {
+		    \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
 		    \ }
         NeoBundle 'kshenoy/vim-signature'
 	" NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', {
@@ -1172,14 +1174,12 @@ endif
         " NeoBundle 'ConflictMotions'
         " Complete
         " NeoBundle 'ervandew/supertab'
-        NeoBundle 'unicode.vim'
+        NeoBundle 'chrisbra/unicode.vim'
 	" NeoBundle 'caio/querycommandcomplete.vim'
 	" Windows
 	NeoBundle 'roman/golden-ratio'
         " Pairs
-        NeoBundle 'Auto-Pairs', {
-                    \ 'directory': 'AutoPairs',
-                    \ }
+        NeoBundle 'jiangmiao/auto-pairs'
         NeoBundle 'tpope/vim-endwise'
         " Others
         NeoBundle 'AndrewRadev/switch.vim'
@@ -1214,7 +1214,6 @@ endif
 	" }}}
         " [ program ] {{{
         " help
-        " NeoBundle 'viewdoc'
         NeoBundle 'powerman/vim-plugin-viewdoc', {
                     \ 'directory': 'viewdoc',
                     \ }
@@ -1225,8 +1224,8 @@ endif
         " tags : ctags, cscope
         NeoBundle 'majutsushi/tagbar'
         " NeoBundle 'abudden/TagHighlight'
-        " NeoBundle 'xolox/vim-easytags'
-        " NeoBundle 'AutoTag'
+        NeoBundle 'xolox/vim-easytags'
+        " NeoBundle 'vim-scripts/AutoTag'
         NeoBundle 'indexer.tar.gz', {
                     \ 'depends': ['DfrankUtil', 'vimprj'],
                     \ }
@@ -1240,6 +1239,7 @@ endif
 		    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
 		    \ 'directory': 'nerdtree-plugin',
 		    \ }
+	NeoBundle 'troydm/easytree.vim'
         NeoBundle 'troydm/easybuffer.vim'
         " compile & run
         NeoBundle 'xuhdev/SingleCompile'
@@ -1247,7 +1247,7 @@ endif
         NeoBundle 'scrooloose/syntastic'
         " search [grep, MRU, files]
         " NeoBundle 'kien/ctrlp.vim'
-        " NeoBundle 'Command-T'
+        " NeoBundle 'wincent/Command-T'
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
         " regex
@@ -1271,7 +1271,7 @@ endif
         NeoBundle 'h1mesuke/unite-outline'
         " Task List
         NeoBundle 'LStinson/TagmaTasks'
-        " NeoBundle 'TaskList.vim'
+        " NeoBundle 'vim-scripts/TaskList.vim'
         " NeoBundle 'TaskMotions'
 		" VimL (libraries/)
 		" NeoBundle 'dahu/Chroma'
@@ -1326,17 +1326,18 @@ endif
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
         " Wiki / Note
-	" NeoBundle 'https://code.google.com/p/vimwiki/', {
-	" 	    \ 'type': 'hg',
-	" 	    \ }
-        NeoBundle 'vimwiki'
+	" FIXME how to set runtimepath to correct path for vimwiki ?
+	NeoBundle 'https://code.google.com/p/vimwiki/', {
+		    \ 'rtp': "~/.vim/bundle/vimwiki/src",
+		    \ }
+        " NeoBundle 'vimwiki'
         " Paste
         NeoBundle 'mattn/gist-vim', {
                     \ 'depends': ['WebAPI.vim',],
                     \ }
 	" NeoBundle 'tpope/vim-pastie'
         " Color
-        " NeoBundle 'Rykka/colorv'
+        NeoBundle 'Rykka/colorv.vim'
         " binary files
         NeoBundle 'tpope/vim-afterimage'
         " colorscheme
@@ -1351,9 +1352,6 @@ endif
         " NeoBundle 'dahu/VimLint'
         " }}}
 
-        " TODO use universal plugin names list g:plugins = []
-        " call neobundle#source(plugins)
-
         " Installation check.
         if neobundle#exists_not_installed_bundles()
             echomsg 'Not installed bundles : ' .
@@ -1361,12 +1359,6 @@ endif
             echomsg 'Please execute ":NeoBundleInstall" command.'
             "finish
         endif
-
-        " TODO Update log
-        " auto show up updates log if has.
-        " if neobundle#installer#update_log()
-        "     :NeoBundleUpdatesLog
-        " endif
     " }}}
 
     " [ VAM : vim addon manager ] {{{ .vim/addons/
@@ -1576,14 +1568,14 @@ syntax on
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
             let g:neocomplcache_max_menu_width = 15 " popup menu width
-            let g:neocomplcache_auto_completion_start_length = 2 " auto complete min length
+            let g:neocomplcache_auto_completion_start_length = 1 " auto complete min length
             let g:neocomplcache_manual_completion_start_length = 0 " manually min length
             let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
             let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
-            let g:neocomplcache_enable_smart_case = 1 " infercase
-            let g:neocomplcache_enable_wildcard = 1 " accept wild card character '*' for input-saving
-            let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
+            let g:neocomplcache_enable_smart_case = 1 " smartcase
+            let g:neocomplcache_enable_wildcard = 1 " wildcard '*', '-' for input-saving
+            let g:neocomplcache_enable_cursor_hold_i = 1 " 'CursorHoldI' event
             " 1: 'InsertCharPre' event, version >= 7.3.461
             if v:version == 703 && has("patch461")
                 let g:neocomplcache_enable_insert_char_pre = 1
@@ -1594,8 +1586,8 @@ syntax on
             let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
-            let g:neocomplcache_enable_camel_case_completion = 1 " ambiguous searching when capital
-            let g:neocomplcache_enable_underbar_completion = 1 " ambiguous searching when input _
+            let g:neocomplcache_enable_camel_case_completion = 1 " ArgumentExcep -> ArE (not AE)
+            let g:neocomplcache_enable_underbar_completion = 1 " public_html -> pu_h (not p_h)
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
             let g:neocomplcache_fuzzy_completion_start_length = 3 " fuzzy complete min length
             let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
@@ -1627,7 +1619,6 @@ syntax on
 		let g:neocomplcache_wildcard_characters = {}
 	    endif
 	    " _ for all filetype, default is {'_': '*'}
-	    " TODO should I use this - ?
 	    let g:neocomplcache_wildcard_characters['_'] = '-'
 		" -> e.g. public-html -> p-h [B]
 		" -> e.g. public_html -> p_h [B]
@@ -1659,6 +1650,7 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
+	    let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " FIXME this pattern
             " }}}
             " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
@@ -1674,13 +1666,13 @@ syntax on
             elseif has('python/dyn') || has('python')
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
             endif
-            " TODO let neocomplcache work with gocode complete.
-            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
             let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
             let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
             let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
-            " let g:neocomplcache_omni_functions['javascript'] = 'javascriptcomplete#CompleteJS' " default javascript omni
+            " - 'javascriptcomplete#CompleteJS' -- default javascript omni
+            " - 'jscomplete#CompleteJS' -- jscomplete-vim plugin
             let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
@@ -1722,7 +1714,6 @@ syntax on
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
-            " let g:neocomplcache_tags_filter_patterns['c'] = 'v:val.word !~ ''^[~_]'''
             " }}}
             " include: paths, exprs, patterns, functions {{{
             if !exists('g:neocomplcache_include_paths')
@@ -1760,9 +1751,6 @@ syntax on
             endif
             let g:neocomplcache_source_completion_length['include_complete'] = 0
             let g:neocomplcache_source_completion_length['member_complete'] = 0
-            " let g:neocomplcache_source_completion_length['keyword_complete'] = 3
-		" merged to buffer_complete, stores cache of the keyword in this
-		" 'buffer_cache' sub directory.
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 1
@@ -2385,23 +2373,26 @@ syntax on
 
         " easytags {{{ Automated tag file generation & syntax highlighting of tags
             " Usage:
-            " :UpdateTags[!]
-            " :UpdateTags -R ~/.vim => ctags -R ~/.vim
-            " :HighlightTags
-            let g:easytags_cmd = '/usr/bin/ctags'
-            let g:easytags_file = '~/.vim/tags/tags'
-            let g:easytags_dynamic_files = 2 " 1: use 'tags' option, 2: auto.
+		" :UpdateTags[!]
+		" :UpdateTags -R ~/.vim => ctags -R ~/.vim
+		" :TagsByFileType
+		" :HighlightTags
+            " let g:easytags_cmd = '/usr/bin/ctags'
+            let g:easytags_file = '~/.vim/tags' " global tags
+            let g:easytags_dynamic_files = 2
+		" 1: project specific tags -> use 'tags' option
+		" 2: auto create project specific tags based on first name in 'tags' option
             let g:easytags_by_filetype = '~/.vim/tags'
             let g:easytags_always_enabled = 0 " this slow down Vim
-            let g:easytags_on_cursorhold = 0 " disable auto tags highlight
-            " let g:easytags_updatetime_min =
-            " let g:easytags_updatetime_autodisable = 1
-            let g:easytags_auto_update = 1
+            let g:easytags_on_cursorhold = 0 " disable periodic highlight
+            let g:easytags_updatetime_min = 4000
+            let g:easytags_updatetime_autodisable = 1
+            let g:easytags_auto_update = 1 " auto update tags and highlights
             let g:easytags_auto_highlight = 1 " auto highlight tags
             let g:easytags_autorecurse = 1 " 0: file, 1: current dir, 2: recursively
-            let g:easytags_include_members = 1
             let g:easytags_resolve_links = 1 " unix symbolic link and hard link
-            let g:easytags_suppress_ctags_warning = 1 " 0: no warning
+            let g:easytags_include_members = 1 " let ctags include struct/class members
+            let g:easytags_suppress_ctags_warning = 0 " suppress ctags warnings
             " let g:easytags_ignored_syntax_groups = '.*String.*,.*Comment.*,cIncluded'
             let g:easytags_python_enabled = 1 " use python interface to speed up
             " let g:easytags_python_script =
@@ -2860,8 +2851,8 @@ syntax on
             " let g:tcommentBlockC = {} " generic c-like block comments.
             " let g:tcommentBlockC2 = {} " generic c-like block comments (alternative markup)
             " let g:tcommentInlineC = g:tcommentLineC
-            " let g:tcommentBlockXML = "<!--%s-->\n  "
-            " let g:tcommentInlineXML = "<!-- %s -->"
+            let g:tcommentBlockXML = "<!-- %s -->\n"
+            let g:tcommentInlineXML = "<!-- %s -->"
 
 	    " tcomment#DefineType(name, commentdef)
 	    " - 'name' usually is 'filetype', you can use 'FILETYPE_block' for
@@ -3288,6 +3279,23 @@ syntax on
 	    " callsh_keymap.vim
 	    " callfinder_keymap.vim
 
+	" easytree {{{ Tree file manager.
+	    " Usage:
+	    " :EasyTree [directory path]
+	    " .....
+	    " .....
+	    nnoremap <silent> <F11> :EasyTree<CR>
+
+	    let g:easytree_cascade_open_single_dir = 1 " cascade expands all subsequent single dir
+	    let g:easytree_show_line_numbers = 0 " disable showing line numbers
+	    let g:easytree_show_hidden_files = 0
+	    let g:easytree_highlight_cursor_line = 1
+	    let g:easytree_ignore_dirs = ['.git']
+	    let g:easytree_ignore_files = ['*.swp', '*~']
+	    let g:easytree_ignore_find_result = ['*.swp', '*~', 'tags']
+	    let g:easytree_hijack_netrw = 1 " replace netrw with easytree
+	" }}}
+
         " vimfiler {{{ Powerful file explorer implemented by VimL.
             " Usage: :VimFiler
             " Require: unite.vim
@@ -3505,8 +3513,6 @@ syntax on
 	    " let g:rubycomplete_include_objectspace = 1
                 " " Ruby completion will parse your buffer on demand in order to
                 " " provide a list of completions.
-            " let g:rubycomplete_include_object = 1
-            " let g:rubycomplete_include_objectspace = 1
 
             " autocmd FileType ruby compiler ruby
         " }}}
@@ -5295,7 +5301,23 @@ syntax on
         " }}}
     " }}}
 
-    " [ key bindings ] {{{
+    " [ key maps/bindings ] {{{
+	" tinykeymap {{{ tiny, temporary keymaps
+	    " Usage:
+	    " * press <Esc> deactivates the tinykeymap.
+	    " - tinykeymap#Map()
+	    " - tinykeymap#EnterMap()
+	    " - tinykeymap#Load()
+	    " - tinykeymap#Complete()
+	    " - tinykeymap#PressEnter()
+	    " * :Tinykeymap
+	    "
+	    " list of tinykeymaps be loaded on startup
+	    let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
+	    let g:tinykeymap#mapleader = mapleader . 'm'
+	    let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
+	" }}}
+
         " vim-addon-actions {{{ customization for key bindings
         " }}}
     " }}}
