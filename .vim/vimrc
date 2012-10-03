@@ -843,9 +843,10 @@ endif
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
     " Temporarily clear highlighting
-    nnoremap <silent> <Leader>nh :nohlsearch<cr><C-l>
     " <C-\> Toggle search highlighting (:help set-inv  :help E518)
-    nnoremap <C-Bslash> :set invhlsearch hlsearch?<cr>
+    " nnoremap <silent> <Leader>nh :nohlsearch<cr><C-l>
+    " nnoremap <C-Bslash> :set invhlsearch hlsearch?<cr>
+    nnoremap <silent> <Leader>nh :set invhlsearch hlsearch?<cr>
 
     " quickfix/location list, window manipulate
     nnoremap <Leader>qo :cindow<CR>
