@@ -2850,12 +2850,12 @@ syntax on
 		" {'col': 1}
 		"   put comment marker always in the first column regardless of block's indentation.
             let g:tcomment#ignore_char_type = 1
-            let g:tcommentGuessFileType = 1 " guess filetype
+            let g:tcommentGuessFileType = 0 " guess filetype
             let g:tcommentGuessFileType_dsl = 'xml'
             let g:tcommentGuessFileType_php = 'html'
+            let g:tcommentGuessFileType_vim = 1
             let g:tcommentGuessFileType_html = 1
             let g:tcommentGuessFileType_tskeleton = 1
-            let g:tcommentGuessFileType_vim = 1
             let g:tcommentGuessFileType_django = 1
             let g:tcommentIgnoreTypes_php = 'sql'
             let g:tcomment#syntax_substitute = {'\C^javaScript': {'sub': 'javascript'}}
@@ -2865,12 +2865,15 @@ syntax on
 			    \ 'vimPythonRegion': 'python',
 			    \ 'vimMzSchemeRegion': 'scheme',
 			    \ 'vimPerlRegion': 'perl',
-			    \ 'vimwikiRubyRegion': 'ruby',
-			    \ 'vimwikiPythonRegion': 'python',
-			    \ 'vimwikiCRegion': 'c',
 			\ }
+			"\ 'VimwikiPre': '??'
 		    " FIXME how to define 'vimwikiRubyRegion' etc ? for use in
 		    " vimwiki embed syntax ?
+		    " the dictionary key is a syntax group defined by vimwiki.
+		    " so you need to add code to syntax file.
+		    " you can write a function to get filetype from context, and
+		    " treat it as function parameter.
+		    " write this function at here.
             " let g:tcomment#replacements_c = {} " replacement for c filetype
             " let g:tcommentBlockC = {} " generic c-like block comments.
             " let g:tcommentBlockC2 = {} " generic c-like block comments (alternative markup)
