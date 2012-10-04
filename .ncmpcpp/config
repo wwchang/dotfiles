@@ -67,7 +67,7 @@ visualizer_sync_interval = "30"
 ##
 #
 # (spectrum/wave)
-visualizer_type = "wave" (spectrum/wave) 
+visualizer_type = "wave" (spectrum/wave)
 #
 ##### system encoding #####
 ##
@@ -249,10 +249,10 @@ playlist_shorten_total_times = "yes"
 playlist_separate_albums = "no"
 #
 # (classic/columns)
-playlist_display_mode = "columns" 
+playlist_display_mode = "columns"
 #
 # (classic/columns)
-browser_display_mode = "columns" 
+browser_display_mode = "columns"
 #
 # (classic/columns)
 search_engine_display_mode = "columns"
@@ -274,31 +274,31 @@ centered_cursor = "yes"
 #progressbar_look = "·"
 progressbar_look = "·∮"
 # ➤  ↵  »  ✔  ✗  ➜  ✚  ✹  ✖  ═  ✭  ✎
-# ▍ ♩ & ♫  ♪ ♬  ♭ ♮ ♯ ☺  ☻ 
-# ♥  ♦ ♣  ♠  • ◘ ○ ◙  ♂ ♀ 
-# ☭  , ⌘  , ☠, ⌥  , ✇ , ⌤  , 
-# ⍜ , ✣ , ⌨   , ⌘, ☕  
-# ☮ ☠ ☻ ❀ ☃ ☆ ☄  ☢ ☉ ◎ ⊙ ░ ⍟  
+# ▍ ♩ & ♫  ♪ ♬  ♭ ♮ ♯ ☺  ☻
+# ♥  ♦ ♣  ♠  • ◘ ○ ◙  ♂ ♀
+# ☭  , ⌘  , ☠, ⌥  , ✇ , ⌤  ,
+# ⍜ , ✣ , ⌨   , ⌘, ☕
+# ☮ ☠ ☻ ❀ ☃ ☆ ☄  ☢ ☉ ◎ ⊙ ░ ⍟
 # ￬ ￪ ￫ ￩ ⇧ ⇩ ⇨ ⇦ ↑ ↓ ≠ ∞ ⿻  □  "
-# ☼ ► ◄  ↕  𝄆 𝄇 𝄡 𝄢 𝄞 ♭  ¥ , 
+# ☼ ► ◄  ↕  𝄆 𝄇 𝄡 𝄢 𝄞 ♭  ¥ ,
 #
 # (database/playlist)
-default_place_to_search_in = "database" 
+default_place_to_search_in = "database"
 #
 # (classic/alternative)
-user_interface = "classic" 
+user_interface = "classic"
 #
 # (possible values: a,y,g,c,p, legend above)
-media_library_left_column = "g" 
+media_library_left_column = "g"
 #
 # (wrapped/normal)
-default_find_mode = "wrapped" 
+default_find_mode = "wrapped"
 #
 # (add/select)
-default_space_mode = "add" 
+default_space_mode = "add"
 #
 # (albums/dirs)
-default_tag_editor_left_col = "albums" 
+default_tag_editor_left_col = "albums"
 #
 default_tag_editor_pattern = "%n - %t"
 #
@@ -317,7 +317,7 @@ lines_scrolled = "2"
 #
 #
 # (enabled - add/remove, disabled - always add)
-ncmpc_like_songs_adding = "yes" 
+ncmpc_like_songs_adding = "yes"
 #
 show_hidden_files_in_local_browser = "no"
 #
@@ -426,13 +426,13 @@ follow_now_playing_lyrics = "yes"
 #
 lyrics_database = "1"
 #
-# if enabled, will saved in song's  dir, otherwise will save in ~/.lyrics 
+# if enabled, will saved in song's  dir, otherwise will save in ~/.lyrics
 store_lyrics_in_song_dir = "yes"
 #
 external_editor = "/usr/bin/vim"
 #
 # (set to yes, if your editor is console app)
-use_console_editor = "yes" 
+use_console_editor = "yes"
 #
 ##### blue theme #####
 
