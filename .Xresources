@@ -6,8 +6,7 @@
 ! /_/\_\__,_|\___|_|  \__,_|\__,_|_|\__|___/
 !
 
-! F O N T S ==============================================================
-
+! xft fonts {{{
 Xft.autohint:   true
 Xft.lcdfilter:  lcddefault
 ! hintfull, hintslight
@@ -16,16 +15,17 @@ Xft.hinting:    true
 Xft.antialias:  true
 Xft.dpi: 96
 Xft.rgba: rgb
+! }}}
 
-! X T E R M ==============================================================
-
+! XTerm {{{
 ! general settings
 xterm*termName: xterm-256color
 xterm*geometry: 80x24
 xterm*saveLines: 1024
 ! allow windows resize (from vim help)
 Xterm*allowWindowOps: true
-xterm*loginshell: false
+! enable login shell for ruby rvm
+xterm*loginshell: true
 xterm*dynamicColors: true
 xterm*toolBar: false
 xterm*transparent: true
@@ -109,19 +109,17 @@ xterm*color12: #729fcf
 xterm*color13: #ad7fa8
 xterm*color14: #00f5e9
 xterm*color15: #eeeeec
+! }}}
 
-
-! D M E N U ==============================================================
-
+! dmenu {{{
 dmenu.font:		Monospace:size=12
 dmenu.foreground:	#FF5787
 dmenu.background:	#FFFFFF
 dmenu.selforeground:	#151515
 dmenu.selbackground:	#ee3b3b
+! }}}
 
-
-! Y E A H C O N S O L E ==================================================
-
+! yeahcolsole {{{
 yeahconsole*term: xterm
 yeahconsole*consoleHeight: 14
 yeahconsole*toggleKey: none+F12
@@ -144,25 +142,24 @@ yeahconsole*utf8: 2
 yeahconsole*transparent: true
 yeahconsole*shading: 4
 yeahcolsole*depth: 32
+! }}}
 
-
-! X I M ==============================================================
+! XIM {{{
 *.international: True
 *.inputMethod: ibus
 !*.imLocale: zh_CN.UTF-8
 ! *.preeditType: your_input_style
+! }}}
 
-
-! Xcursor ==============================================================
+! Xcursor {{{
 ! man Xcursor
 !  Available themes reside in /usr/share/icons and local themes can be installed to ~/.icons
 ! Xcursor*theme: redglass
 Xcursor*theme: Buuf-cursor
 ! Xcursor*size:  20
+! }}}
 
-
-! U R X V T ==============================================================
-
+! URxvt {{{
 ! for real transparency:
 ! A "real" transparency, using the composite manager currently running
 ! (xcompmgr, dcompmgr, compiz...)
@@ -172,7 +169,7 @@ Xcursor*theme: Buuf-cursor
 ! for fake transparency:
 ! A "fake" transparency, that copies the wallpaper to the background of the terminal.
 ! (more exactly, the contents of Xorgs root window)
-urxvt*transparent: true
+urxvt*transparent: false
 ! URxvt.shading: 0 to 99 darkens, 101 to 200 lightens
 urxvt*shading: 60
 ! NOTE: comment URxvt.tintColor and URxvt.inheritPixmap when fake transparency.
@@ -245,9 +242,12 @@ URxvt*colorUL: #60a2d1
 URxvt*underlineColor: #484848
 URxvt*highlightColor: #afff00
 URxvt*highlightTextColor: #151515
+! }}}
 
-! C O L O R S E T S ====================================================
+! foreground, background, cursorColor, cursorColor2, colorBD, colorUL as a number 0-15
+!as a convenient shorthand to reference the colour name of color0-color15.
 
+! colorsets {{{
 !! darkgreen colorsets
 
 !color0       (black)            = Black
@@ -268,130 +268,130 @@ URxvt*highlightTextColor: #151515
 !color15      (bright white)     = White
 !foreground                      = Black
 !background                      = Whit
-
-! foreground, background, cursorColor, cursorColor2, colorBD, colorUL as a number 0-15
-!as a convenient shorthand to reference the colour name of color0-color15.
-
-! gray colorscheme for weechat IRC. {{{
-*foreground: #D2D6D1
-*background: #202428
-
-!black
-*color0:     #424242
-!bright black
-*color8:     #0E0E0E
-!red
-*color1:     #A76B67
-!bright red
-*color9:     #BF3835
-!green
-*color2:    #486830
-!bright green
-*color10:     #A5D65B
-!yellow
-*color3:    #C7BB8F
-!bright yellow
-*color11:     #C5B131
-!blue
-*color4:    #588490
-!bright blue
-*color12:     #3590A7
-!magenta
-*color5:    #9D89C8
-!bright magenta
-*color13:     #8455C3
-!cyan
-*color6:    #5FA6A8
-!bright cyan
-*color14:     #5BC7CA
-!white
-*color7:    #C1C1C1
-!bright white
-*color15:     #D6DADA
-
-*cursorColor: #8EFFFF
-*cursorColor2: #FF5B5B
-*colorBD:    #FF2929
-*colorUL:    #EAA200
 ! }}}
 
-!! Solarized {{{
-!!! drop in Solarized colorscheme for Xresources
-!!!
-!!! ## Installation
-!!! 1) Write to $HOME/.Xresources
-!!! 2) If not using Xsession, you must add the line `xrdb -merge ~/.Xresources`
-!!!    to `.xinitrc`. See http://manpages.ubuntu.com/Xsession for more details.
-!!!
-!!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
-!!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
-!!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
-!!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
-!!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
-!!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
-!!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
-!!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
-!!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
-!!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
-!!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
-!!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
-!!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
-!!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
-!!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
-!!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
-!!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
-!!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+! ! gray colorscheme for weechat IRC. {{{
+! *foreground: #D2D6D1
+! *background: #202428
+! 
+! !black
+! *color0:     #424242
+! !bright black
+! *color8:     #0E0E0E
+! !red
+! *color1:     #A76B67
+! !bright red
+! *color9:     #BF3835
+! !green
+! *color2:    #486830
+! !bright green
+! *color10:     #A5D65B
+! !yellow
+! *color3:    #C7BB8F
+! !bright yellow
+! *color11:     #C5B131
+! !blue
+! *color4:    #588490
+! !bright blue
+! *color12:     #3590A7
+! !magenta
+! *color5:    #9D89C8
+! !bright magenta
+! *color13:     #8455C3
+! !cyan
+! *color6:    #5FA6A8
+! !bright cyan
+! *color14:     #5BC7CA
+! !white
+! *color7:    #C1C1C1
+! !bright white
+! *color15:     #D6DADA
+! 
+! *cursorColor: #8EFFFF
+! *cursorColor2: #FF5B5B
+! *colorBD:    #FF2929
+! *colorUL:    #EAA200
+! ! }}}
 
-!#define S_base03        #002b36
-!#define S_base02        #073642
-!#define S_base01        #586e75
-!#define S_base00        #657b83
-!#define S_base0         #839496
-!#define S_base1         #93a1a1
-!#define S_base2         #eee8d5
-!#define S_base3         #fdf6e3
-!#define S_yellow        #b58900
-!#define S_orange        #cb4b16
-!#define S_red           #dc322f
-!#define S_magenta       #d33682
-!#define S_violet        #6c71c4
-!#define S_blue          #268bd2
-!#define S_cyan          #2aa198
-!#define S_green         #859900
+! Solarized {{{
+!! drop in Solarized colorscheme for Xresources
+!!
+!! ## Installation
+!! 1) Write to $HOME/.Xresources
+!! 2) If not using Xsession, you must add the line `xrdb -merge ~/.Xresources`
+!!    to `.xinitrc`. See http://manpages.ubuntu.com/Xsession for more details.
+!!
+!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
+!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
 
-!*background:            S_base03
-!*foreground:            S_base0
-!*fading:                40
-!*fadeColor:             S_base03
-!*cursorColor:           S_base1
-!*pointerColorBackground:S_base01
-!*pointerColorForeground:S_base1
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
-!!! black dark/light
-!*color0:                S_base02
-!*color8:                S_base03
-!!! red dark/light
-!*color1:                S_red
-!*color9:                S_orange
-!!! green dark/light
-!*color2:                S_green
-!*color10:               S_base01
-!!! yellow dark/light
-!*color3:                S_yellow
-!*color11:               S_base00
-!!! blue dark/light
-!*color4:                S_blue
-!*color12:               S_base0
-!!! magenta dark/light
-!*color5:                S_magenta
-!*color13:               S_violet
-!!! cyan dark/light
-!*color6:                S_cyan
-!*color14:               S_base1
-!!! white dark/light
-!*color7:                S_base2
-!*color15:               S_base3
-!! }}}
+! *background:            S_base03
+! *foreground:            S_base0
+*background:            #121212
+*foreground:            #d0d0d0
+*fading:                40
+*fadeColor:             S_base03
+*cursorColor:           S_base1
+*pointerColorBackground:S_base01
+*pointerColorForeground:S_base1
+
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3
+! }}}
 
 !! [ vim-hybrid ] {{{
 !! colours for hybrid.vim (copied from Tomorrow-Night)
