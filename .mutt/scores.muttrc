@@ -8,6 +8,7 @@ score "~P" +5 # only to me
 score "~f fuhemeng@gmail.com" +30
 score "~f 568734625@qq.com" +30
 score "~f zmnlb1106@gmail.com" +30
+score "~f service@mail.alipay.com" +100
 # }}}
 
 # new & old & deleted {{{
@@ -40,6 +41,7 @@ score "~f update.*@.*" +2
 score "~f notifications@github.com" +30
 score "~f do-not-reply@stackexchange.com" +10
 score "~f digest-noreply@quora.com" +10
+score "~f webmaster@talk.maemo.org" +50
 # }}}
 
 # bullshit

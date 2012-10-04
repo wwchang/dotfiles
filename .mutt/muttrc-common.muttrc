@@ -169,7 +169,7 @@ set recall    = ask-yes
 # [ collapse of thread ]
 set collapse_unread = no
 # yes: collapse "even" has unread message in thread. message status: n
-# no:  "no" collapse "when" has unread message in thread. only collapse old 
+# no:  "no" collapse "when" has unread message in thread. only collapse old
 # thread which has no new messages. so easy to find new reply on thread.
 # mutt not collapse a thread if it contains any unread messages.
 set uncollapse_jump = yes
@@ -206,9 +206,10 @@ set imap_check_subscribed=yes
 # set of mailboxes it polls for new mail just as if you had issued individual “mailboxes” commands.
 set imap_list_subscribed=yes
 
-# set display_filter = ""
-# When set, specifies a command used to filter messages. When a message is viewed it is passed as standard input to $display_filter, and the filtered message is read from the
-# standard output. default is ""
+set display_filter = "sed -e '/^\[-- Autoview using .* --]$/d'"
+# When set, specifies a command used to filter messages. When a message is
+# viewed it is passed as standard input to $display_filter, and the filtered
+# message is read from the standard output. default is ""
 
 # charset
 # this must be same with your terminal supported character encoding.
