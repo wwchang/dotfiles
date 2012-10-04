@@ -208,7 +208,7 @@
     if has("cscope")
         set cscopeprg=cscope " cscope program.
         " find {querytype}: + append, - clear, 0/absence -> don't use quickfix.
-        set cscopetag " use cscope for tag commands, cscope -> tags
+        set nocscopetag " cscopetag: use cscope for tag commands, cscope -> tags
         set cscopetagorder=0 " 0: cscope -> tags file, 1: tags file -> cscope
         " set cscoperelative
         set cscopequickfix=s-,g-,d-,c-,t-,e-,f-,i- " use quickfix to show result
@@ -1226,13 +1226,14 @@ endif
         NeoBundle 'SirVer/ultisnips'
 	" NeoBundle 'garbas/vim-snipmate'
         " NeoBundle 'Shougo/neocomplcache-snippets-complete'
-        " tags : ctags, cscope
+        " tags/cscope
         NeoBundle 'majutsushi/tagbar'
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags'
         " NeoBundle 'vim-scripts/AutoTag'
         " NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
 	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
+	NeoBundle 'brookhong/cscope.vim'
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'scrooloose/nerdtree'
@@ -2277,7 +2278,7 @@ syntax on
         " TagmaLast : Update the 'Last Changed' line in a file.
     " }}}
 
-    " [ tags ] {{{ <F12>
+    " [ tags/cscope ] {{{ <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
             let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
@@ -2436,6 +2437,16 @@ syntax on
 	    " It holds query and search result in one buffer for faster jump to desired tag.
 	    " Usage:
 	    "	:YATE
+	" }}}
+
+	" [ cscope.vim ] {{{ create cscope database and connect automatically.
+	    " Usage:
+	    " - <Leader>f[s/g/d/c/t/e/f/i] with cursor on a function name.
+	    " - <Leader>l -- toggle show found result in location list.
+	    "   - CscopeFind, :CscopeGen, :CscopeClear, CscopeList,
+	    let g:cscope_preload_path =
+			\ "/usr/include/;/usr/include/c++;" .
+			\ "/usr/lib/ruby/1.9.1/;" . "/usr/lib/python3.2/"
 	" }}}
 
 	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
