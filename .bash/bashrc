@@ -326,3 +326,7 @@ shopt -s cdspell
 GPG_TTY=`tty`
 export GPG_TTY
 
+# tmux-powerline
+# PS1="$PS1"'$([ -n "$TMUX" ] && tmux setenv TMUXPWD_$(tmux display -p "#I_#P") "$PWD")'
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

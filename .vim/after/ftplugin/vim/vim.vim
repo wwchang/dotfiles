@@ -15,9 +15,9 @@ endfunction
 " V -> "ay -> :@a
 
 command! -range VimL <line1>,<line2>call VimLRangeSource()
-au FileType vim vnoremap <silent><buffer> <F5> <esc>:'<,'>:VimL<cr>
+vnoremap <silent><buffer> <F5> <esc>:'<,'>:VimL<cr>
 
 " file
-" au FileType vim nnoremap <F5> :source %<cr>
-au FileType vim nnoremap <silent><buffer> <F5> :exec 'source ' . bufname('%')<CR>
+" nnoremap <F5> :source %<cr>
+nnoremap <silent><buffer> <F5> :exec 'source ' . bufname('%')<CR>
 " }}}

@@ -34,7 +34,8 @@
     # or: 'echo "password" | sudo -S command'
     # for network monitor, need to detect eth0 or ppp0 or wlan0 interface.
     # [ system ]
-    new-session -d -s radar 'htop'
+    new-session -d -s radar 'glances'
+    split-window -h 'htop'
     split-window -h 'itop'
     split-window -v -p 80 'echo "PASSWORD" | sudo -S powertop"'
     split-window -v -p 60 'iostat -h -z -p sda 2'

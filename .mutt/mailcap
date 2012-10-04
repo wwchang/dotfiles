@@ -24,7 +24,7 @@ text/html; lynx -assume_charset=%{charset} -display_charset=%{charset} -dump %s;
 # text/html; muttHtml; copiousoutput
 
 # [ diff & patch ]
-text/x-diff; vimdiff %s
+text/x-diff; vim %s
 text/x-patch; vim %s
 
 # [ source code ]
@@ -37,8 +37,8 @@ application/x-emacs-lisp; vim %s
 application/x-script.elisp; vim %s
 
 # [ document ]
-application/pdf; zathura %s; copiousoutput
-# application/pdf; pdftotext -enc UTF-8 %s /dev/stdout; copiousoutput
+application/pdf; pdftotext -enc UTF-8 %s -; copiousoutput
+# application/pdf; zathura %s; copiousoutput
 # application/pdf; evince %s; copiousoutput
 application/chm; chmsee %s; copiousoutput
 # Microsoft Word Doc

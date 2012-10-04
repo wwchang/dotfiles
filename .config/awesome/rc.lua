@@ -1040,8 +1040,8 @@ end
             {
                 foursquare,
                 mytextword, separator_sign,
-                mypromptbox[s], separator_sign,
                 musictext, mpdwidget,
+                mypromptbox[s], separator_sign,
                 -- osinfowidget,
                 -- mailbox, separator_sign,
                 layout = awful.widget.layout.horizontal.leftright
@@ -1676,14 +1676,6 @@ root.buttons(awful.util.table.join(
                 maximized_vertical = true,
                 floating = false,
                 tag = tags[1][7],
-            }
-        },
-        -- Firefox extension DownloadThemAll! Scheduler auto open.
-        {
-            rule = { class = "Firefox", instance = "DTA", role = "Manager" },
-            properties = {
-                floating = false,
-                tag = tags[1][8],
             }
         },
         -- Chromium
