@@ -54,6 +54,7 @@ add("http://archlinux.me/?type=atom10", tags=[None, "Arch", "blog"]) # Arch Linu
 
 # Vim {{{
 default_rate(500)
+add("http://feeds.feedburner.com/usevim", tags=[None, "tips", "vim"]) # UseVim
 add("http://feed43.com/vim-scripts.xml", tags=[None, "update", "vim", "script", "plugin"]) # Vim scripts update
 # }}}
 
@@ -84,6 +85,8 @@ default_rate(1000)
 add("http://www.ruby-lang.org/en/feeds/news.rss", tags=[None, "Ruby", "language"]) # ruby-lang.org news
 add("http://feeds.feedburner.com/RubyInside", tags=[None, "Ruby", "language"]) # Ruby Inside (Ruby News)
 add("http://feeds.feedburner.com/gemcutter-latest", tags=[None, "Ruby", "gem"]) # Ruby gems - Gemcutter | Latest Gems
+add("http://feeds.feedburner.com/Ruby5", tags=[None, "Ruby"]) # Ruby5
+add("http://feeds2.feedburner.com/Rubyflow", tags=[None, "Ruby"]) # RubyFlow
 add("http://ruby-china.org/topics/feed", tags=[None, "Ruby", "china"]) # Ruby-china
 # }}}
 
@@ -128,12 +131,16 @@ add("http://feed.feedsky.com/heikezhi", tags=[None, "subscribe"]) # 黑客志 ha
 # add("http://kerneltrap.org/node/feed", tags=[None, "subscribe", "kernel"]) # kerneltrap
 # add("http://www.thegeekstuff.com/feed", tags=[None, "subscribe", "geek"]) # The Geek Stuff
 # add("http://feeds.howtogeek.com/HowToGeek", tags=[None, "subscribe", "geek"]) # How To Geek
+add("http://songshuhui.net/archives/category/major/cs/feed", tags=[None, "subscribe"]) # 科学松鼠会 » 计算机科学
+add("http://songshuhui.net/archives/category/major/math/feed", tags=[None, "subscribe"]) # 科学松鼠会 » 数学
+add("http://songshuhui.net/archives/category/major/psychology/feed", tags=[None, "subscribe"]) # 科学松鼠会 » 心理
 # }}}
 
 # Blog {{{
 default_rate(700)
 add("http://blog.sina.com.cn/rss/1569777711.xml", tas=[None, "blog"]) # 王垠 新浪博客
 add("http://yinwang0.wordpress.com/feed/", tags=[None, "blog"]) # 王垠 yinwang0 wordpress blog
+add("http://feeds.feedburner.com/pedrokroger", tags=[None, "blog"]) # Pedro Kroger -- Because programming is fun
 add("http://of-vim-and-vigor.blogspot.com/feeds/posts/default", tags=[None, "blog"]) # Wholly Unbalanced Parentheses (Vim)
 add("http://feeds.feedburner.com/semicomplete/main", tags=[None, "blog"]) # semicomplete.com - Jordan Sissel
 add("http://www.altdevblogaday.com/feed/", tags=[None, "blog"]) # altdevblogaday
@@ -171,6 +178,7 @@ add("http://LaTex.yo2.cn/feed", tags=[None, "blog"]) # LaTex chinese Blog
 add("https://www.csslayer.info/wordpress/feed/", tags=[None, "blog"]) # CSSlayer Blog
 add("http://whileimautomaton.net/rss.rdf", tags=[None, "blog"]) # while ("im automaton");
 add("http://www.gregsexton.org/feed/", tags=[None, "blog"]) # gregsexton.org
+add("http://www.artima.com/spotlight/feeds/spotlight.rss", tags=[None, "blog"]) # artima developer
 # }}}
 
 # Podcasts {{{
