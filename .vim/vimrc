@@ -1492,23 +1492,23 @@ syntax on
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_start_level = 2
             let g:indent_guides_indent_levels = 7
-            let g:indent_guides_color_change_percent = 100 " 0~100
+            let g:indent_guides_color_change_percent = 10 " 0~100
             let g:indent_guides_guide_size = 1 " indent vertical lines width.
             let g:indent_guides_space_guides = 1 " consider spaces as indention.
                 let g:indent_guides_auto_colors = 0
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
+                " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
+                " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
                 " alternately
-                "hi IndentGuidesOdd  guibg=red   ctermbg=3
-                "hi IndentGuidesEven guibg=green ctermbg=4
-            if &background == "dark"
-                hi IndentGuidesEven ctermbg=darkgrey    guibg=#6F7500
-                hi IndentGuidesOdd  ctermbg=black       guibg=#6F7500
-            elseif &background == "light"
-                "molokai's background = light, guibg for peachpuff
-                hi IndentGuidesEven ctermbg=233 guibg=LightRed
-                hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
-            endif
+                " hi IndentGuidesOdd  guibg=red   ctermbg=3
+                " hi IndentGuidesEven guibg=green ctermbg=4
+                if &background == "dark"
+                    hi IndentGuidesEven ctermbg=233 guibg=#6F7500
+                    hi IndentGuidesOdd  ctermbg=234 guibg=LightRed
+                elseif &background == "light"
+                    "molokai's background = light, guibg for peachpuff
+                    hi IndentGuidesEven ctermbg=233 guibg=#6F7500
+                    hi IndentGuidesOdd  ctermbg=234 guibg=LightRed
+                endif
         " }}}
 
         " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
