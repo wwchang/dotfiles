@@ -24,6 +24,13 @@ hi VimwikiHeader5 ctermfg=202 ctermbg=232   cterm=bold
 hi VimwikiHeader6 ctermfg=039 ctermbg=232   cterm=bold
 " }}}
 
-au FileType vimwiki setlocal concealcursor=v
+setlocal concealcursor=v
+
+" motions
+" TODO write some motions for jump between vimwiki sections.
+
+" operator-pending mappings
+onoremap ih :<c-u>execute "normal! ?^=*\ \\+$\r:nohlsearch\rkvg_"<cr>
+onoremap ah :<c-u>execute "normal! ?^=*\ \\+\r:nohlsearch\rg_vk0"<cr>
 
 " TODO add date time, reference links, etc to first lines of vimwiki file.
