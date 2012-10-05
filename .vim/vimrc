@@ -1344,8 +1344,9 @@ endif
         " Wiki / Note
 	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
         " Paste
-        NeoBundle 'mattn/gist-vim', { 'depends': ['WebAPI.vim'] }
+        NeoBundle 'mattn/gist-vim', { 'depends': ['mattn/webapi-vim'] }
 	" NeoBundle 'tpope/vim-pastie'
+        NeoBundle 'sickill/vim-pasta'
         " Color
         NeoBundle 'Rykka/colorv.vim'
         " Tmux & Screen
@@ -5975,22 +5976,6 @@ syntax on
             " }}}
 
         " [ paste ] {{{
-            " vim-pastie
-                " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
-                " :[%|visual]Pastie!
-
-            " PasteBin {{{ <Visual>PasteBin
-                " http://www.vim.org/scripts/script.php?script_id=3505
-                " http://pastebin.com/api config reference.
-                let g:pastebin_browser_command = "firefox %URL% &"
-                let g:pastebin_private = 1 " 0: Public, 1: Unlisted, 2: Private.
-                let g:pastebin_api_dev_key = '1587f97dfac0e24806b9d5092f710dc6'
-                let g:pastebin_api_user_name = 'numbchild'
-                let g:pastebin_api_user_password = 'numbchild324'
-                let g:pastebin_expire_date = '1M'
-                    " N:Never, 1H: 1 Hour, 1D: 1 Day, 1M: 1 Month
-            " }}}
-
             " Gist {{{ GitHub paste server.
                 " Requires: curl, webapi-vim, git command.
                 " :'<,'>Gist -- visual
@@ -6021,10 +6006,31 @@ syntax on
                 let g:gist_show_privates = 1 " show private gist in :Gist -l.
                 let g:gist_get_multiplefile = 1 " edit all files contains more than one.
             " }}}
+
+            " PasteBin {{{ interface for pastebin.com
+                " http://pastebin.com/api config reference.
+                " <Visual>PasteBin
+                let g:pastebin_browser_command = "firefox %URL% &"
+                let g:pastebin_private = 1 " 0: Public, 1: Unlisted, 2: Private.
+                let g:pastebin_api_dev_key = '1587f97dfac0e24806b9d5092f710dc6'
+                let g:pastebin_api_user_name = 'numbchild'
+                let g:pastebin_api_user_password = 'numbchild324'
+                let g:pastebin_expire_date = '1M'
+                    " N:Never, 1H: 1 Hour, 1D: 1 Day, 1M: 1 Month
+            " }}}
+
+            " vim-pastie : interface for pastie.org
+                " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
+                " :[%|visual]Pastie!
+
+            " vim-pasta {{{ Pasting in Vim with indentation adjusted to destination context
+            " TODO
+            " }}}
         " }}}
 
         " WebAPI {{{
         " }}}
+
         " TwitVim {{{ Vim Twitter client.
             let twitvim_login = "numbchild:numbchild324"
             "let twitvim_proxy = "proxyhost:proxyport"
