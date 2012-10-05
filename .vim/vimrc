@@ -1323,6 +1323,7 @@ endif
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
         NeoBundle 'undx/vim-gocode'
+        NeoBundle 'jnwhiteh/vim-golang'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
 	" NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -4463,6 +4464,10 @@ syntax on
     " [ Go ] {{{
         " gocode {{{ autocompletion daemon for Go Language
             " Features: Context-sensitive autocompletion
+
+        " }}}
+
+        " vim-golang {{{ Go lang runtime vim scripts.
         " }}}
     " }}}
 
