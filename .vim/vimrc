@@ -1333,6 +1333,7 @@ endif
         " NeoBundle 'sukima/xmledit'
         " CSS
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+        NeoBundle 'hail2u/vim-css3-syntax'
 	" NeoBundle 'tpope/vim-haml'
         " CoffeeScript
         " JavaScript
@@ -4228,6 +4229,9 @@ syntax on
                 " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
                 " 2. Different highlight colors for properties, value, units and so on.
             " }}}
+
+            " vim-css3-syntax : Add CSS3 syntax support to vim's built-in syntax/css.vim
+            " TODO https://github.com/hail2u/vim-css3-syntax
 
             " css3_mod
 
