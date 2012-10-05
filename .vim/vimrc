@@ -1217,6 +1217,7 @@ endif
 	NeoBundle 'tpope/vim-repeat'
         " Shell
         NeoBundle 'Shougo/vimshell'
+        " NeoBundle 'myusuf3/numbers.vim'
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
@@ -4933,6 +4934,12 @@ syntax on
     " }}}
 
     " [ command line ] {{{
+    " }}}
+
+    " [ line numbers ] {{{
+        " numbers.vim {{{ relative line numbers.
+            " :NumbersToggle
+        " }}}
     " }}}
 
     " [ history/undo ] {{{ <F10>
