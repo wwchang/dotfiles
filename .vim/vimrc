@@ -1318,6 +1318,7 @@ endif
         NeoBundle 'jmcantrell/vim-virtualenv'
         NeoBundle 'vim-scripts/pythoncomplete'
 	" NeoBundle 'kevinw/pyflakes-vim'
+        NeoBundle 'ehamberg/vim-cute-python', { 'rev': 'moresymbols' }
         " C / cpp
         NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
@@ -4000,6 +4001,10 @@ syntax on
             " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
                 " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
             " }}}
+        " }}}
+
+        " others {{{
+            " vim-cute-python : Unicode goodness for Python code by using vim's 'conceal' feature
         " }}}
 
         " [ Django ] {{{
