@@ -1229,9 +1229,12 @@ endif
         " help
         NeoBundle 'powerman/vim-plugin-viewdoc', { 'directory': 'viewdoc' }
         " snippets
+        " NeoBundle 'Shougo/neocomplcache-snippets-complete', {
+        "             \ 'depends': 'Shougo/neocomplcache',
+        "             \ 'rev': 'neosnippet',
+        "             \ }
         NeoBundle 'SirVer/ultisnips'
 	" NeoBundle 'garbas/vim-snipmate'
-        " NeoBundle 'Shougo/neocomplcache-snippets-complete'
         " tags/cscope
         NeoBundle 'majutsushi/tagbar'
         " NeoBundle 'abudden/TagHighlight'
@@ -1970,6 +1973,9 @@ syntax on
                 "             \ : "\<C-x>\<C-u>"
 
                 " ------------------------------------------------------------
+                " { neosnippet } {{{
+                " }}}
+
                 " { neocomplcache-snippets-complete } {{{
                 " TODO
                 " how to check neocomplcache-snippets-complete plugin is loaded ???
@@ -2126,46 +2132,53 @@ syntax on
     " }}}
 
     " [ snippets ] {{{ <Ctrl-j/k> | <Tab>
-        " neocomplcache-snippets_complete {{{ snippets using neocomplcache complete.
-            "This source analyzes snippet files for completion. The source offer
-            "a function similar with snipMate.vim and snippetsEmu.vim. Because
-            "you can search a snippet with a function of neocomplcache, you may
-            "omit trouble to learn.
-                " :NeoComplCacheCachingSnippets [filetype]
-                " :NeoComplcacheEditSnippets [filetype]
-                " :NeoComplCacheEditRuntimeSnippets [filetype]
-                " neocomplcache#sources#snippets_complete#expandable()
-                    " return value:
-                    "   0 : not found
-                    "   1 : cursor text is snippets trigger
-                    "   2 : exists placeholder in current buffer
-                    "   3 : both found.
-                " neocomplcache#sources#snippets_complete#jumpable()
-                " neocomplcache#sources#snippets_complete#force_expandable()
-                " <Plug>(neocomplcache_snippets_expand) -> expand_or_jump
-                " <Plug>(neocomplcache_snippets_jump)   -> jump_or_expand
-                " <Plug>(neocomplcache_snippets_force_expand)
-                " <Plug>(neocomplcache_snippets_force_jump)
-                " <Plug>(neocomplcache_start_unit_snippet)
-                " <Plug>(neocomplcache_snippets_expand)
-                " <Plug>(neocomplcache_snippets_jump)
-                " <Plug>(neocomplcache_start_unite_snippet)
+	" neosnippet {{{
+            " :NeoSnippetMakeCache [filetype]
+            " :NeoSnippetEdit [{options}] [filetype]
+            " key mappings:
+            "   - <Plug>(neosnippet_expand_or_jump)
+            "   - <Plug>(neosnippet_jump_or_expand)
+            "   - <Plug>(neosnippet_expand)
+            "   - <Plug>(neosnippet_jump)
+            "   - i_<Plug>(neosnippet_start_snippet)
+            "   - neosnippet#expandable()
+            "   - neosnippet#jumpable()
+            " unite.vim
+            "   - :Unite snippet
+            "   - source actions TODO how to use this actions.
+            "   - snippet
+            "       - expand
+            "       - edit
+            "       - preview
 
-            " add user own snippets dir.
-            "let g:neocomplcache_snippets_dir='~/.vim/snippets/dir2,~/.vim/snippets/dir2'
-            let g:neocomplcache_snippets_dir='~/.vim/snippets/neco-snippets'
-            let g:neocomplcache_disable_select_mode_mappings = 1
-                " 1: not load runtime snippets. avoid conflicting snippets.
-            let g:neocomplcache_snippets_disable_runtime_snippets = 0
+            let g:neosnippet#snippets_directory = "~/.vim/snippets/neosnippet/"
+            let g:neosnippet#disable_select_mode_mappings = 1
+                " disable key-mappings in select-mode when snippets_complete
+                " performs. usually enable it.
+            let g:neosnippet#disable_runtime_snippets = 0
 
-                function! EditNeoSnippets()
-                    split
-                    execute ":NeoComplCacheEditSnippets ".&filetype
-                endfunction
+	    if !exists('g:loaded_neosnippet')
+                imap <expr><TAB> neosnippet#expandable() ?
+                            \ "\<Plug>(neosnippet_expand_or_jump)"
+                            \: pumvisible() ? "\<C-n>" : "\<TAB>"
+                imap <expr> <C-j> neosnippet#jumpable() ?
+                            \ "\<Plug>(neosnippet_jump)"
+                            \ : neosnippet#expandable() ?
+                            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+                " TODO ask Shougo where to use this mapping. in Unite buffer or
+                " insert mode in vim ?
+                " and how to use snippet source ? edit/preview/expand.
+                " FIXME imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+                nnoremap <buffer> <Leader>es
+                    \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
+                    " \ . &filetype<CR>
+	    endif
 
-                nnoremap <buffer> <Leader>es :call EditNeoSnippets()<CR>
-                "nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
-        " }}}
+            " for snippets_complete marker.
+            if has('conceal')
+                set conceallevel=2 concealcursor=i
+            endif
+	" }}}
 
         " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
             " :UltiSnipsEdit
