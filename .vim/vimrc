@@ -1238,12 +1238,14 @@ endif
 	" NeoBundle 'garbas/vim-snipmate'
         " tags/cscope
         NeoBundle 'majutsushi/tagbar'
+        " NeoBundle 'vim-scripts/taglist.vim'
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags'
         " NeoBundle 'vim-scripts/AutoTag'
         " NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
 	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 	NeoBundle 'brookhong/cscope.vim'
+        NeoBundle 'vim-scripts/CCTree'
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'scrooloose/nerdtree'
@@ -2479,16 +2481,6 @@ syntax on
 	    "	:YATE
 	" }}}
 
-	" [ cscope.vim ] {{{ create cscope database and connect automatically.
-	    " Usage:
-	    " - <Leader>f[s/g/d/c/t/e/f/i] with cursor on a function name.
-	    " - <Leader>l -- toggle show found result in location list.
-	    "   - CscopeFind, :CscopeGen, :CscopeClear, CscopeList,
-	    let g:cscope_preload_path =
-			\ "/usr/include/;/usr/include/c++;" .
-			\ "/usr/lib/ruby/1.9.1/;" . "/usr/lib/python3.2/"
-	" }}}
-
 	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
 	    " it works like the context window of 'Source Insight'
 	    nnoremap <F4> :SrcExplToggle<CR>
@@ -2508,27 +2500,84 @@ syntax on
 	    let g:SrcExpl_gobackKey = "<Space>"
 	    let g:SrcExpl_updateTagsKey = ''
 	" }}}
-    " }}}
 
-    " [ cscope ] {{{
-        " cscope {{{
+        " cscope.vim {{{ auto create cscope database and connect to existing database
+            " Usage:
+            " - <Leader>f[s/g/d/c/t/e/f/i] with cursor on a function name.
+            " - <Leader>l -- toggle show found result in location list.
+            "   - :CscopeGen [path], CscopeFind, :CscopeClear, CscopeList,
+            " let g:cscope_cmd = '/path/to/cscope'
+            " let g:cscope_preload_path .= "/usr/include/;"
+            " let g:cscope_preload_path .= "/usr/include/c++;"
+            " let g:cscope_preload_path .= "/usr/lib/ruby/1.9.1/;"
+            " let g:cscope_preload_path .= "/usr/lib/python3.2/"
+            " old/original mapping example with <leader>f[?]
+            " " s: Find this C symbol
+            " nnoremap <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+
+            " s: Find this C symbol
+            nnoremap <C-Bslash>s :call CscopeFind('s', expand('<cword>'))<CR>
+            " g: Find this definition
+            nnoremap <C-Bslash>g :call CscopeFind('g', expand('<cword>'))<CR>
+            " d: Find functions called by this function
+            nnoremap <C-Bslash>d :call CscopeFind('d', expand('<cword>'))<CR>
+            " c: Find functions calling this function
+            nnoremap <C-Bslash>c :call CscopeFind('c', expand('<cword>'))<CR>
+            " t: Find this text string
+            nnoremap <C-Bslash>t :call CscopeFind('t', expand('<cword>'))<CR>
+            " e: Find this egrep pattern
+            nnoremap <C-Bslash>e :call CscopeFind('e', expand('<cword>'))<CR>
+            " f: Find this file
+            nnoremap <C-Bslash>f :call CscopeFind('f', expand('<cword>'))<CR>
+            " i: Find files #including this file
+            nnoremap <C-Bslash>i :call CscopeFind('i', expand('<cword>'))<CR>
         " }}}
-        " CCTree {{{ generate dependency-trees for symbols using cscope database in Vim
-            " Usage: Build cscope database, e.g.
-            "   > cscope -b -i cscope.files
-            " - Load database with command, :CCTreeLoadDB
-            " - Append database with command, :CCTreeAppendDB ./cscope.out
-            " - show loaded databases, :CCTreeShowLoadedDBs
-            let g:CCTreeUseUTF8Symbols = 1 " use symbols for drawing the tree.
-            let g:CCTreeOrientation = "left"
-            let g:CCTreeWindowVertical = 1 " use vertical window.
-            let g:CCTreeWindowMinWidth = 20
-            let g:CCTreeWindowWidth = -1 " auto-select best width to fix.
-            let g:CCTreeDisplayMode = 1 " 1:Ultra-compact, 2:Compact, 3:Wide
 
-            " syntax coloring:
+        " CCTree {{{ displays hierarchical call-trees for functions or files using cscope database.
+            " FIXME do not know how to open CCTree window
+            " Usage: Build cscope database, e.g.
+            "   > cscope -b -i cscope.out
+            " - :CCTreeLoadDB cscope.out        -- load database
+            " - :CCTreeAppendDB ./cscope.out    -- append database
+            " - :CCTreeShowLoadedDBs            -- show databases
+            " - :CCTreeUnLoadDB                 -- unload database
+            " Mappings:
+            "   - <C-\>w    -- toggle window
+            "   - <C-\><    -- get reverse call tree for symbol
+            "   - <C-\>>    -- get forward call tree for symbol
+            "   - <C-\>=    -- increase depth of tree and update
+            "   - <C-\>-    -- decrease depth of tree and update
+            "   - <CR>      -- open symbol in other window
+            "   - <C-p>     -- preview symbol in other window
+            "   - <C-l>     -- highlight current call-tree flow
+            "   - zs        -- compress(fold) call-tree view (useful for viewing long call-tree)
+            let g:CCTreeCscopeDb = "cscope.out" " cscope database file
+            let g:CCTreeDbFileMaxSize = 40000000 " 40M
+            let g:CCTreeUsePerl = 1 " enable the perl interface
+            let g:CCTreeEnhancedSymbolProcessing = 1
+            let g:CCTreeRecursiveDepth = 3 " max call levels
+            let g:CCTreeMinVisibleDepth = 3 " max visible(unfolded) level
+            let g:CCTreeUseUTF8Symbols = 1 " use symbols for drawing the tree.
+            let g:CCTreeOrientation = "topleft" " orientation of window
+                " standard vim options for split: [right|left][above|below]
+            let g:CCTreeWindowVertical = 1 " use vertical window.
+            let g:CCTreeWindowMinWidth = 20 " vertical window min width
+            let g:CCTreeWindowWidth = -1 " horizontal, auto-select best width to fix.
+            let g:CCTreeDisplayMode = 1 " 1:Ultra-compact, 2:Compact, 3:Wide
+            let g:CCTreeKeyToggleWindow = '<C-\>w'
+            let g:CCTreeKeyTraceForwardTree = '<C-\>>'
+            let g:CCTreeKeyTraceReverseTree = '<C-\><'
+            let g:CCTreeKeyDepthPlus = '<C-\>='
+            let g:CCTreeKeyDepthMinus = '<C-\>-'
+            let g:CCTreeKeyHilightTree = '<C-l>'    " static highlighting
+            let g:CCTreeKeySaveWindow = '<C-\>y'
+            let g:CCTreeKeyCompressTree = 'zs'     " compress(fold) call-tree
+
+            " syntax highlighting groups:
                 " CCTreeSymbol -- symbol name.
                 " CCTreeMarkers -- include "|", "+--->"
+                " CCTreeHiSymbol
+                " CCTreeHiMarkers
         " }}}
     " }}}
 
