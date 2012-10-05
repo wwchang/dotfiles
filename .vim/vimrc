@@ -1319,6 +1319,7 @@ endif
         NeoBundle 'vim-scripts/pythoncomplete'
 	" NeoBundle 'kevinw/pyflakes-vim'
         NeoBundle 'ehamberg/vim-cute-python', { 'rev': 'moresymbols' }
+        " NeoBundle 'ivanov/vim-ipython'
         " C / cpp
         NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
@@ -3993,6 +3994,10 @@ syntax on
         " }}}
 
         " [ REPL ] {{{
+            " vim-ipython {{{ A two-way integration between Vim and IPython
+            " TODO
+            " }}}
+
             " vim-pipe {{{ provides REPL-like development for other shell tools
                 " For example you can instantly send an SQL script to the
                 " database and see the results in a temporary buffer.
