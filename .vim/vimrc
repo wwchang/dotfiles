@@ -1086,7 +1086,7 @@ endif
         " Usage:
         " :NeoBundleUpdate
         " :NeoBundleInstall or :Unite neobundle/install
-        " :Unite neobundle/search
+        " :Unite neobundle/search -- <C-l> to remake cache.
         " :NeoBundleLog -- git updates commit messages
         " :NeoBundleUpdatesLog -- simple version of :NeoBundleLog
         " :NeoBundleList          - list configured bundles
@@ -1166,7 +1166,6 @@ endif
                     \ 'depends': ['Shougo/unite.vim'],
                     \ 'directory': 'neobundle',
                     \ }
-        NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
         NeoBundle 'Shougo/vimproc', {
             \ 'build': {
                 \ 'windows': 'echo "vimproc binary file does not support Windows."',
@@ -1175,7 +1174,7 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
-        NeoBundle 'Shougo/vimshell'
+        " NeoBundle 'xolox/vim-shell'
 	" NeoBundle 'tomtom/tplugin_vim', { 'directory': 'tplugin' }
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
@@ -1216,6 +1215,8 @@ endif
 	" Colorscheme
 	" Register
 	NeoBundle 'tpope/vim-repeat'
+        " Shell
+        NeoBundle 'Shougo/vimshell'
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
@@ -1545,8 +1546,9 @@ syntax on
 
     " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-            " if exists('g:loaded_neocomplcache')
-            " endif
+	" TODO
+	" if exists('g:loaded_neocomplcache')
+	" endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " comment out :set complete option.
@@ -1626,9 +1628,9 @@ syntax on
 	    endif
 	    " _ for all filetype, default is {'_': '*'}
 	    let g:neocomplcache_wildcard_characters['_'] = '-'
-		" -> e.g. public-html -> p-h [B]
-		" -> e.g. public_html -> p_h [B]
-		" -> e.g. HellowWorld -> H-W [B]
+		" -> e.g. public-html -> p-h [B] -> p-h
+		" -> e.g. public_html -> p_h [B] -> p-h
+		" -> e.g. HellowWorld -> H-W [B] -> H-W
 	    " }}}
 	    " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
@@ -1652,6 +1654,7 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
+            " . -> methods, :: -> class method, # -> instance method.
 	    let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
@@ -1716,7 +1719,11 @@ syntax on
                 let g:neocomplcache_ctags_arguments_list = {}
             endif
             " let g:neocomplcache_ctags_arguments_list['_'] = ''
+            " let g:neocomplcache_ctags_arguments_list['c'] =
+            " let g:neocomplcache_ctags_arguments_list['cpp'] =
             " let g:neocomplcache_ctags_arguments_list['python'] =
+            " let g:neocomplcache_ctags_arguments_list['ruby'] =
+            " let g:neocomplcache_ctags_arguments_list['go'] =
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
@@ -1743,8 +1750,9 @@ syntax on
             if !exists('g:neocomplcache_filename_include_exts')
                 let g:neocomplcache_filename_include_exts = {}
             endif
-            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
             let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
             " }}}
             " sources {{{
             if !exists('g:neocomplcache_source_disable')
@@ -1825,6 +1833,11 @@ syntax on
                         \ 'end': '^\s*}}}',
                         \ },
                         \ {
+                        \ 'filetype': 'zsh',
+                        \ 'start': '^\s*{{{zsh$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
                         \ 'filetype': 'go',
                         \ 'start': '^\s*{{{go$',
                         \ 'end': '^\s*}}}',
@@ -1855,7 +1868,9 @@ syntax on
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-	    " let g:neocomplcache_text_mode_filetypes['gitcommit'] = 0
+	    let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+	    let g:neocomplcache_text_mode_filetypes['markdown'] = 1
+	    let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
             " }}}
 
             " }}}
@@ -2205,8 +2220,10 @@ syntax on
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
 
-            nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
-            " nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
+            if exists(':UltiSnipsEdit')
+                nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
+                " nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
+            endif
         " }}}
 
         " Xptemplate
@@ -2952,7 +2969,9 @@ syntax on
             let g:viewdoc_man_cmd = "/usr/bin/man"
             let g:ViewDoc_DEFAULT = 'ViewDoc_man' " ViewDoc_man, ViewDoc_help
 
-            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go,
+            " customize {{{
+            " TODO add other doc like HTML5, CSS3, JavaScript. Go,
+	    " support ruby doc (ri), Go doc (godoc) etc
             " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
@@ -3108,6 +3127,8 @@ syntax on
 
     " [ quickfix & location list ] {{{
         " quickfixsigns {{{ marks, quickfix & location list items with signs.
+	    " Usage:
+	    " <Leader>ms -- jump from sign to sign (vcsdiff)
             let g:quickfixsigns_classes = ([
 			\ 'qfl', 'loc',
 			\ 'marks', 'breakpoints',
@@ -3123,6 +3144,7 @@ syntax on
             let g:quickfixsigns_blacklist_buffer = '^__.*__$'
             let g:quickfixsigns_icons = {}
             let g:quickfixsigns#vcsdiff#guess_type = 1
+	    " let g:quickfixsigns#vcsdiff#cmd_separator = '&&'
         " }}}
 
         " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
