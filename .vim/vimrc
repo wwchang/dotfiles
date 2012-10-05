@@ -1203,6 +1203,15 @@ endif
         NeoBundle 'mbbill/undotree'
 	" Colorscheme
         NeoBundle 'tomasr/molokai'
+        " NeoBundle 'sickill/vim-monokai'
+        " NeoBundle 'altercation/vim-colors-solarized'
+        " NeoBundle 'nanotech/jellybeans.vim'
+        " NeoBundle 'w0ng/vim-hybrid'
+        " NeoBundle 'ciaranm/inkpot'
+            " colorsets
+            " NeoBundle 'altercation/solarized'
+            " NeoBundle 'chriskempson/tomorrow-theme'
+            " NeoBundle 'hukl/Smyck-Color-Scheme'
 	" Register
 	NeoBundle 'tpope/vim-repeat'
         " Motion : text object,
