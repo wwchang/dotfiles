@@ -1349,6 +1349,7 @@ endif
         NeoBundle 'c9s/perlomni.vim'
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
+        " NeoBundle 'jeffbuttars/Vimdown'
         " Wiki / Note
 	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
         " Paste
@@ -4662,6 +4663,10 @@ syntax on
 	" }}}
 
         " riv {{{ Reading , Writing and Managing reStructuredText documents in Vim
+        " }}}
+
+        " Vimdown {{{ A dirty tool to convert .vimrc and .vim script files to markdown
+        " TODO
         " }}}
     " }}}
 
