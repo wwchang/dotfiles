@@ -1292,6 +1292,7 @@ endif
         " NeoBundle 'tpope/vim-commentary'
         NeoBundle 'mbbill/undotree'
         " unite.vim
+        " NeoBundle 'tsaleh/vim-align'
         NeoBundle 'h1mesuke/unite-outline'
         " Task List
         NeoBundle 'LStinson/TagmaTasks'
@@ -6081,7 +6082,7 @@ syntax on
             " Tabularize scripts.
         " }}}
 
-        " Align%294
+        " vim-align
 
         " surround {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
             " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
