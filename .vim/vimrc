@@ -1335,7 +1335,9 @@ endif
 	" NeoBundle 'tpope/vim-haml'
         " CoffeeScript
         " JavaScript
+        NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
+        NeoBundle 'jelera/vim-javascript-syntax'
         NeoBundle 'hallettj/jslint.vim'
         " TODO NeoBundle 'walm/jshint.vim'
             " jQuery
@@ -4270,6 +4272,15 @@ syntax on
     " }}}
 
     " [ JavaScript ] {{{
+        " vim-javascript {{{ provides syntax and indent plugins.
+            " - very correct indentation for javascript
+            " - support javascript indentation in html
+        " }}}
+
+        " vim-javascript-syntax {{{ Enhanced Javascript Syntax for Vim
+            au FileType javascript call JavaScriptFold()
+        " }}}
+
         " jscomplete-vim {{{ vim omnifunc for JavaScript
             " [Optional extensions]
             " extension scripts under the 'autoload/js/' will be loaded with set
