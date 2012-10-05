@@ -1349,6 +1349,7 @@ endif
         NeoBundle 'c9s/perlomni.vim'
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
+        " NeoBundle 'greyblake/vim-preview'
         " NeoBundle 'jeffbuttars/Vimdown'
         " Wiki / Note
 	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
@@ -4661,6 +4662,10 @@ syntax on
     " [ Markdown ] {{{
 	" vim-markdown {{{ Vim Markdown runtime files
 	" }}}
+
+        " vim-preview {{{ preview markup files (markdown,rdoc,textile,html)
+        " TODO
+        " }}}
 
         " riv {{{ Reading , Writing and Managing reStructuredText documents in Vim
         " }}}
