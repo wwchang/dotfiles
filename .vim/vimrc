@@ -1330,6 +1330,7 @@ endif
         NeoBundle 'gregsexton/MatchTag'
         NeoBundle 'othree/html5.vim'
         NeoBundle 'othree/html5-syntax.vim'
+        " NeoBundle 'sukima/xmledit'
         " CSS
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
 	" NeoBundle 'tpope/vim-haml'
@@ -4240,6 +4241,12 @@ syntax on
             " }}}
 
             " vim-less : syntax support for LESS CSS.
+        " }}}
+
+        " [ XML ] {{{
+            " xmledit {{{ A filetype plugin for VIM to help edit XML files
+            " TODO
+            " }}}
         " }}}
     " }}}
 
