@@ -3125,17 +3125,36 @@ syntax on
 
     " [ VCS: Git, bzr, svn, ] {{{ <F9>
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
+            " Usage:
+            "   - :Git[!] [args]
+            "   - :Gstatus
+            "   - :Gcommit [args]
+            "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
+            "   - :Gwrite/:Gwq {path}
+            "   - :Gmove {destination}
+            "   - :Gremove
+            "   - :{range}Gread [revision]/[args]
+            "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
+            "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
+            "   - :Glog [args] -- load all previous revisions of current file into quickfix
+            "   - :[range]Gblame {flags}
+            "   - :[range]Gbrowse {revision}
 
             " auto open quickfix window for :Ggrep.
             autocmd QuickFixCmdPost grep cwindow
         " }}}
 
         " Gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
-            " [Browser/File] mode
             " Usage:
-            "   - :Gitv [args]
-            "   - :Gitv! [args]
-            "   - [range]Gitv! [args]
+            "   - [Browser/File] mode
+            "   - [range]Gitv[!] [args]
+            "   - arguments:
+            "       - Gitv is a wrapper of 'git log', support all options for `git log`
+            "       - --all
+            "       - <since>..<until>
+            "       - --merges
+            "       - -S<string>
+            "       - -G<regex>
             "   - back to working revision file
             "       press <Enter> on top line:
             "       -- [filename] --
@@ -3143,13 +3162,13 @@ syntax on
             "       press <C-Enter> on line below this line:
             "       -- Showing (up to 56) commits affecting lines in the range:
             let g:Gitv_CommitStep = &lines
-            let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
+            let g:Gitv_OpenHorizontal = 'auto' " 0: vertical, 1: horizontal, auto:
             let g:Gitv_GitExecutable = 'git'
-            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close.
-            let g:Gitv_WrapLines = 0 " wrap long commit.
-            let g:Gitv_TruncateCommitSubjects = 0
+            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close
+            let g:Gitv_WrapLines = 0 " wrap long commit
+            let g:Gitv_TruncateCommitSubjects = 0 " 1: truncate for vertical display
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
-            let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
+            let g:Gitv_PromptToDeleteMergeBranch = 1 " prompt delete branch when merge
             let g:Gitv_DoNotMapCtrlKey = 0
 
             nnoremap <F9> :Gitv<cr>
@@ -3274,8 +3293,10 @@ syntax on
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
+	    let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 
-            nnoremap <silent> <F11> :NERDTreeToggle<CR>
+
+	    nnoremap <silent> <F11> :NERDTreeToggle<CR>
 
             " TODO au FileType nerdtree
         " }}}
@@ -4412,8 +4433,8 @@ syntax on
         "let lhs_markup = tex " tex/none
 
         " neco-ghc {{{ neocomplcache complete for Haskell.
-        " omnifunc=necoghc#omnifunc
-        " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
+	    " omnifunc=necoghc#omnifunc
+	    " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
         " }}}
     " }}}
 
