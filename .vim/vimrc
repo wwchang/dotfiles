@@ -1174,8 +1174,7 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
-        " NeoBundle 'xolox/vim-shell'
-	" NeoBundle 'tomtom/tplugin_vim', { 'directory': 'tplugin' }
+	" NeoBundle 'tomtom/tplugin_vim'
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'tyru/current-func-info.vim'
@@ -1183,52 +1182,61 @@ endif
 		    \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
 		    \ }
         NeoBundle 'kshenoy/vim-signature'
-	" NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', {
-	" 	    \ 'type': 'hg',
-	" 	    \ }
-        " NeoBundle 'quickfixstatus.vim'
-	NeoBundle 'xolox/vim-session'
-        " NeoBundle 'restore_view.vim'
+        NeoBundle 'quickfixstatus.vim'
+	" NeoBundle 'xolox/vim-session'
+        NeoBundle 'vim-scripts/restore_view.vim'
         NeoBundle 'chrisbra/Recover.vim'
-        NeoBundle 'tpope/vim-surround'
-        NeoBundle 'tpope/vim-unimpaired'
-        " NeoBundle 'ConflictMotions'
         " Complete
         " NeoBundle 'ervandew/supertab'
-        " NeoBundle 'chrisbra/unicode.vim'
 	" NeoBundle 'caio/querycommandcomplete.vim'
 	" Windows
 	" NeoBundle 'roman/golden-ratio'
         " Pairs
+        NeoBundle 'tpope/vim-surround'
         NeoBundle 'jiangmiao/auto-pairs'
-        NeoBundle 'tpope/vim-endwise'
-        " Others
-        NeoBundle 'AndrewRadev/switch.vim'
-        " NeoBundle 'ConflictDetection'
-        NeoBundle 'kana/vim-gf-diff'
-        NeoBundle 'kana/vim-gf-user'
-        " NeoBundle 'patchreview.vim'
-        " VCS & quickfix
-        NeoBundle 'tpope/vim-fugitive'
-        NeoBundle 'gregsexton/gitv'
-        " NeoBundle 'vim-scripts/hgrev'
+        " TODO NeoBundle 'Townk/vim-autoclose'
+        " NeoBundle 'vim-scripts/AutoClose'
+        " TODO NeoBundle 'Raimondi/delimitMate'
+        NeoBundle 'kien/rainbow_parentheses.vim'
+        " NeoBundle 'tpope/vim-endwise'
+        " Undo
+        NeoBundle 'mbbill/undotree'
 	" Colorscheme
 	" Register
 	NeoBundle 'tpope/vim-repeat'
+        " Motion : text object,
+        NeoBundle 'tpope/vim-unimpaired'
         " Shell
         NeoBundle 'Shougo/vimshell'
+        " NeoBundle 'sjl/clam.vim'
+        " unicode symbol
+        " TODO NeoBundle 'chrisbra/unicode.vim'
+	" TODO NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', { 'type': 'hg' }
+        " Others
+        NeoBundle 'AndrewRadev/switch.vim'
+        " NeoBundle 'tpope/vim-speeddating'
         " NeoBundle 'myusuf3/numbers.vim'
+        NeoBundle 'kana/vim-gf-diff'
+        NeoBundle 'kana/vim-gf-user'
+        " TODO NeoBundle 'patchreview.vim'
         " NeoBundle 'xolox/vim-shell'
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
 	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
-	" NeoBundle 'tomtom/prototype_vim', { 'directory': 'prototype' }
+	" NeoBundle 'tomtom/prototype_vim'
 	" NeoBundle 'megaannum/self'
-	" NeoBundle 'mattn/webapi-vim', { 'directory': 'webapi' }
+	NeoBundle 'mattn/webapi-vim'
+        " NeoBundle 'vim-jp/vital.vim'
+        " NeoBundle 'tomtom/vimtlib'
 	" NeoBundle 'https://bitbucket.org/ZyX_I/frawor', { 'type': 'hg' }
+        " NeoBundle 'dahu/Chroma'
+        " NeoBundle 'dahu/vimple'
 	" }}}
         " [ program ] {{{
+        " complete
+        NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
+        " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
         " help
         NeoBundle 'powerman/vim-plugin-viewdoc', { 'directory': 'viewdoc' }
         " snippets
@@ -1289,9 +1297,6 @@ endif
         NeoBundle 'LStinson/TagmaTasks'
         " NeoBundle 'vim-scripts/TaskList.vim'
         " NeoBundle 'TaskMotions'
-		" VimL (libraries/)
-		" NeoBundle 'dahu/Chroma'
-		" NeoBundle 'dahu/vimple'
 	" }}}
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
@@ -1312,12 +1317,10 @@ endif
         NeoBundle 'vim-scripts/pythoncomplete'
 	" NeoBundle 'kevinw/pyflakes-vim'
         " C / cpp
-        NeoBundle 'Shougo/neocomplcache-clang', {
-                    \ 'depends': ['clang-complete',],
-                    \ }
+        NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
-        NeoBundle 'undx/vim-gocode', { 'directory': 'gocode' }
+        NeoBundle 'undx/vim-gocode'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
 	" NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -1355,7 +1358,7 @@ endif
         " Tmux & Screen
         NeoBundle 'benmills/vimux'
         " binary files
-        NeoBundle 'tpope/vim-afterimage'
+        " NeoBundle 'tpope/vim-afterimage'
         " colorscheme
         " NeoBundle 'altercation/vim-colors-solarized'
         " NeoBundle 'nanotech/jellybeans.vim'
@@ -3724,7 +3727,7 @@ syntax on
         " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
 
-        " rsense
+        " rsense {{{
             " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
             "   You can infer types of an expression at point by
@@ -3891,6 +3894,7 @@ syntax on
 	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
 		" NOTE has been merged into Syntastic
 	    " }}}
+        " }}}
 
             " pytest {{{ A simple way of running your tests from within VIM.
             " }}}
@@ -3937,7 +3941,7 @@ syntax on
         " }}}
 
         " [ virtualenv ] {{{
-            " virtualenv {{{ Python virtualenv for Vim.
+            " vim-virtualenv {{{ Python virtualenv for Vim.
                 " Usage:
                 " statusline: %{virtualenv#statusline()}
                 " Commands:
@@ -4121,7 +4125,7 @@ syntax on
             let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
             " }}}
 
-        " Dbext {{{ Database extension plugin.
+        " Dbext {{{ enable Vim to access several databases
             " \sbp -- SQL Buffer Prompt.
             " \se  -- SQL Execute
             " \sel -- SQL Execute Line
@@ -4141,7 +4145,10 @@ syntax on
         " }}}
     " }}}
 
-    " [ Web: HTML5 & CSS ] {{{
+    " [ NoSQL ] {{{
+    " }}}
+
+    " [ Web: HTML5 & CSS, XML ] {{{
         " [ HTML5 ] {{{
             " ZenCoding {{{ powerful abbreviation engine. "<C-Y>[,vn...]"
                 " Usage: :verbose map <c-y>  --> to show all ZenCoding mappings.
@@ -4177,11 +4184,7 @@ syntax on
 		let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
             " }}}
 
-            " MatchTag
-
-            " HTML_AutoCloseTag
-
-            " html5 {{{ HTML5 omnicomplete func and syntax for Vim.
+            " html5 {{{ HTML5 omnifunc and syntax for Vim.
                 " based on the default htmlcomplete.vim.
                 " Features:
                 "   - Support all new elements and attributes.
@@ -4199,7 +4202,9 @@ syntax on
                 let g:html5_aria_attributes_complete = 1
             " }}}
 
-            " HTML5_Syntax_File : HTML5 syntax file.
+            " MatchTag
+
+            " HTML_AutoCloseTag
         " }}}
 
         " [ CSS ] {{{
@@ -4207,6 +4212,7 @@ syntax on
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
 
             " Better_CSS_Syntax_for_Vim {{{
+                " Highlights for full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-).
                 " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
                 " 2. Different highlight colors for properties, value, units and so on.
             " }}}
@@ -4332,6 +4338,11 @@ syntax on
         let php_folding = 1 " folding for classes and functions.
         let php_sync_method = -1 " selecting syncing method. -1/0/>0
 
+        " [ completion ] {{{
+            " phpcomplete {{{ Improved PHP omnicompletion.
+            " }}}
+        " }}}
+
         " [ debugger ] {{{
             " DBGPavim {{{ enable PHP debug in vim with Xdebug.
                 " Requires:
@@ -4413,11 +4424,6 @@ syntax on
             " }}}
         " }}}
 
-        " [ completion ] {{{
-            " phpcomplete {{{ Improved PHP omnicompletion.
-            " }}}
-        " }}}
-
         " [ Framework ] {{{
             " cakephp {{{ navigating, managing CakePHP applications with Vim
             " }}}
@@ -4456,28 +4462,15 @@ syntax on
         " }}}
     " }}}
 
-    " [ C & C++ Dev Env ] {{{
+    " [ C & C++ ] {{{
         augroup CSettings
             au!
             au FileType c,cpp setlocal cindent
             au FileType c,cpp,java set matchpairs+==:;
         augroup END
 
-        " neocomplcache-clang {{{ clang_complete for neocomplcache.
-            " Require: clang_complete
-                " clang.so, clang.dll, libclang.dylib
-            let g:neocomplcache_clang_use_library = 1 " use clang library
-            let g:neocomplcache_clang_library_path = '/usr/lib/'
-            let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
-            let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
-            let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-            let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
-            let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
-            " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
-            let g:neocomplcache_clang_debug = 0 " enable debug message.
-        " }}}
-
-        " clang_complete {{{ :h clang_complete.txt
+        " clang_complete {{{ use of clang to complete in C/C++.
+            " :h clang_complete.txt
             let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
             " disable with 0 to solve neocomplcache problem
             let g:clang_complete_auto = 1 " auto complete after -> . ::
@@ -4504,6 +4497,20 @@ syntax on
             let g:clang_sort_algo = "priority"
             let g:clang_complete_macros = 1
             let g:clang_complete_patterns = 1
+        " }}}
+
+        " neocomplcache-clang {{{ clang_complete for neocomplcache.
+            " Require: clang_complete
+                " clang.so, clang.dll, libclang.dylib
+            let g:neocomplcache_clang_use_library = 1 " use clang library
+            let g:neocomplcache_clang_library_path = '/usr/lib/'
+            let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
+            let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
+            let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
+            let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
+            let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
+            " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
+            let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
 
         " OmniCppComplete {{{ C/C++ omni-completion with ctags database
