@@ -89,10 +89,16 @@
     "augroup END
         " }}}
 
-    " [ history ] {{{
+    " [ history & undo ] {{{
     set history=50 " history lines
     " undo
     set undolevels=1000
+    " if has("presistent_undo")
+    "     if isdirectory(expand("~/.vim/undodir"))
+    "         set undodir=~/.vim/undodir/
+    "     endif
+    "     set undofile
+    " endif
     " }}}
 
     " [ command line ] {{{ :help cmdline-completion
@@ -165,7 +171,7 @@
 
     " [ tags ] {{{
     " tags
-	" ':help tagrsch.txt'
+	" ':help tagsrch.txt'
 	" {Visual}C-], [count]C-T, {Visual}g], C-w C-], {Visual}g C-],
 	" :tag [ident: main, /^get (tag-regexp)],
 	" :tags (tag stack), :[count]tnext/tprevious,
@@ -4876,10 +4882,6 @@ syntax on
             "     map <C-n> J
             "     map <C-p> K
             " endfunction
-            " if has("presistent_undo")
-            "     set undodir='~/.undo/'
-            "     set undofile
-            " endif
         " }}}
     " }}}
 
