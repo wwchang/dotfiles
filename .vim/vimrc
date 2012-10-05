@@ -1202,6 +1202,7 @@ endif
         " Undo
         NeoBundle 'mbbill/undotree'
 	" Colorscheme
+        NeoBundle 'tomasr/molokai'
 	" Register
 	NeoBundle 'tpope/vim-repeat'
         " Motion : text object,
@@ -5311,6 +5312,9 @@ syntax on
         " ColorSchemeEditor {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
         " }}}
+
+        " tomasr/molokai
+            let g:molokai_original = 0 " 0: dark gray background, 1: light gray
 
         " vim-colors-solarized
             " if has('gui_running')
