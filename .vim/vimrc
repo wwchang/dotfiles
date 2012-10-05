@@ -1341,6 +1341,7 @@ endif
         " NeoBundle 'paredit.vim'
 	" Haskell
 	" NeoBundle 'ujihisa/neco-ghc'
+        NeoBundle 'c9s/perlomni.vim'
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
         " Wiki / Note
@@ -4546,7 +4547,8 @@ syntax on
     " }}}
 
     " [ Perl ] {{{
-    " perlomni : https://github.com/c9s/perlomni.vim
+        " perlomni {{{ perl omnicompletion for vim (including base class function compleltions .etc)
+        " }}}
     " }}}
 
     " [ Lua ] {{{
