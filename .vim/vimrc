@@ -1348,6 +1348,8 @@ endif
 	" NeoBundle 'tpope/vim-pastie'
         " Color
         NeoBundle 'Rykka/colorv.vim'
+        " Tmux & Screen
+        NeoBundle 'benmills/vimux'
         " binary files
         NeoBundle 'tpope/vim-afterimage'
         " colorscheme
@@ -5039,7 +5041,7 @@ syntax on
                 "augroup END
         " }}}
 
-        " vimux {{{ Easily interact with tmux from vim.
+        " vimux {{{ easily interact with tmux from vim.
             " Usage:
             " - :VimuxRunCommand("command")
             " - :VimuxRunLastCommand
@@ -5057,22 +5059,19 @@ syntax on
             let VimuxUseNearestPane = "q C-u"
 
             " Run the current file with rspec
-            map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+            nnoremap <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
             " Prompt for a command to run
-            map <Leader>rp :VimuxPromptCommand<CR>
+            nnoremap <Leader>rp :VimuxPromptCommand<CR>
             " Run last command executed by VimuxRunCommand
-            map <Leader>rl :VimuxRunLastCommand<CR>
+            nnoremap <Leader>rl :VimuxRunLastCommand<CR>
             " Inspect runner pane
-            map <Leader>ri :VimuxInspectRunner<CR>
+            nnoremap <Leader>ri :VimuxInspectRunner<CR>
             " Close all other tmux panes in current window
-            map <Leader>rx :VimuxClosePanes<CR>
+            nnoremap <Leader>rx :VimuxClosePanes<CR>
             " Close vim tmux runner opened by VimuxRunCommand
-            map <Leader>rq :VimuxCloseRunner<CR>
+            nnoremap <Leader>rq :VimuxCloseRunner<CR>
             " Interrupt any command running in the runner pane
-            map <Leader>rs :VimuxInterruptRunner<CR>
-
-            " vimux-ruby-test {{{
-            " }}}
+            nnoremap <Leader>rs :VimuxInterruptRunner<CR>
         " }}}
 
         " inline_edit {{{ Edit code that's embedded within other code.
@@ -6213,11 +6212,6 @@ syntax on
             " window or Tmux/Screen pane.  The plugin talks to the running
             " instance of ELinks.  If you want to change the keybindings, just
             " edit the nnoremap lines at the bottom of the plugin file.
-        " }}}
-    " }}}
-
-    " [ terminal multiplexer ] {{{
-        " vimux {{{ effortless vim and tmux interaction. :call RunVimTmuxCommand("ls")
         " }}}
     " }}}
 
