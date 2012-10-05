@@ -1336,6 +1336,8 @@ endif
         " CoffeeScript
         " JavaScript
         NeoBundle 'teramako/jscomplete-vim'
+            " jQuery
+            NeoBundle 'itspriddle/vim-jquery'
         " Clojure
         " NeoBundle 'VimClojure'
         " PHP
@@ -4304,14 +4306,12 @@ syntax on
 
         " javaScriptLint: Displays JavaScript Lint warnings in quickfix window
 
-        " jshint.vim : JSHint Integration
-            " jshint.vim facilitates tight integration between JSHint and Vim.
-        " jslint.vim : Check JavaScript files for errors with JSLint
-            " :JSLintUpdate
-            let g:JSLintHighlightErrorLine = 1
+        " [ jQuery ] {{{
+            " vim-jquery : Vim syntax file to add some colorations for jQuery keywords and css selectors.
 
-        " jQuery : Syntax file for jQuery.
-            au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+            " jQuery : Syntax file for jQuery.
+                au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+        " }}}
     " }}}
 
     " [ Dart ] {{{
