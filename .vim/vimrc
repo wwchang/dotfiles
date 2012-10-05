@@ -1256,6 +1256,7 @@ endif
 		    \ }
 	NeoBundle 'troydm/easytree.vim'
         NeoBundle 'troydm/easybuffer.vim'
+        NeoBundle 'airblade/vim-rooter'
         " compile & run
         NeoBundle 'xuhdev/SingleCompile'
         " syntax checker
@@ -3613,6 +3614,11 @@ syntax on
 
     " [ project ] {{{ different settings for every projects
         " vimprj {{{ managing options for different projects
+        " }}}
+
+        " vim-rooter {{{ Changes Vim working directory to project root
+            let g:rooter_patterns = ['.git/', '.hg/', '.bzr/', '.svn/', '_darcs/', 'Rakefile', 'Makefile',]
+            let g:rooter_use_lcd = 0 " use :lcd to locally
         " }}}
     " }}}
 " }}}
