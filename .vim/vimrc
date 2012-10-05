@@ -6067,7 +6067,7 @@ syntax on
             " :Abolish, :Subvert.
         " }}}
 
-        " Auto_Pairs {{{
+        " AutoPairs {{{
                 " shortcuts:
                 "   <M-o> : newline with indentation
                 "   <M-a> : jump to of line
@@ -6090,6 +6090,8 @@ syntax on
             let g:AutoPairsCenterLine = 1
             let g:AutoPairsFlyMode = 0
         " }}}
+
+        " jiangmiao/auto-pairs : insert or delete brackets, parens, quotes in pair
 
         " delimitMate {{{ auto closing of quotes, parenthesis, brackets etc.
         " }}}
