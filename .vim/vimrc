@@ -2287,6 +2287,10 @@ syntax on
     " [ tags/cscope ] {{{ <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
+            " access symbols:
+            "   - + -> public
+            "   - # -> protected
+            "   - - -> private
             let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
             let g:tagbar_width = 25
             let g:tagbar_compact = 0 " omitting heading help line and blank lines.
@@ -2309,11 +2313,11 @@ syntax on
             nnoremap <F12> :TagbarToggle<CR>
 
             " automatically opening tagbar.
-                " autocmd VimEnter * nested :TagbarOpen " open for any files.
-                "augroup TagListAutoToggle
-                    "au!
-                    "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
-                "augroup END
+            " 1. autocmd VimEnter * nested :TagbarOpen " open for any files.
+            "2. augroup TagListAutoToggle
+                "au!
+                "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
+            "augroup END
 
             " tagbar highlight
                 highlight TagbarComment ctermfg=Black
