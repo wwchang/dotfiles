@@ -1336,6 +1336,8 @@ endif
         " CoffeeScript
         " JavaScript
         NeoBundle 'teramako/jscomplete-vim'
+        NeoBundle 'hallettj/jslint.vim'
+        " TODO NeoBundle 'walm/jshint.vim'
             " jQuery
             NeoBundle 'itspriddle/vim-jquery'
         " Clojure
@@ -4283,6 +4285,13 @@ syntax on
             "   + => loaded extensions.
             "   - => non-loaded extensions.
         " }}}
+
+        " jshint.vim : Vim plugin and command line tool for running JSLint.
+            " :JSLintUpdate
+            " TODO
+            let g:JSLintHighlightErrorLine = 1
+
+        " jshint.vim : A plugin that integrates JSHint with Vim
 
         " jsflakes%4057 {{{ powerful vim plugin lint javascript code on the fly.
             " Require: jsruntime, jsoncodecs.
