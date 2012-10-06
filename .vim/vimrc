@@ -661,14 +661,19 @@ endif
     " }}}
 
     " [ title ] {{{
-    " set title                       " dynamic title
     if $TERM == "screen-256color"
-        set notitle " for tmux session can set window name.
+        set notitle " for tmux/screen session do not set window name.
     else
         set title
     endif
     set titleold="Shape ideas into code with Vim"
     set titlestring="Shape ideas into code with Vim"
+    set titlestring=VIM:\ %-25.55F\ %a%r%m
+    "                            |   | | |
+    "                            |   | | m: modified flag
+    "                            |   | r: readonly flag
+    "                            |   a: argument list status
+    "                            F : full path to file in the buffer
     " set titlelen=95
     " }}}
 
