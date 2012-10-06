@@ -34,7 +34,7 @@
     " }}}
 " }}}
 
-" [[ vim Settings ]] {{{
+" [[ Vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
 
@@ -302,10 +302,11 @@
     nnoremap <silent> <Leader>sc :set invspell spell?<CR>
     " }}}
 
-    " [ completion : omni ] {{{ AutoPop Tab Ctrl-Y Ctrl-E
+    " [ completion ] {{{ auto popup menu: Tab, C-x + C-?, C-y, C-e
+    " [ completion options ]
     set mousemodel=extend
     set cmdheight=1                  " command line height
-    " set complete=.,w,b,t,i,u,k       " completion buffers
+    set complete=.,w,b,t,i,u,k       " completion buffers
     "            | | | | | | |
     "            | | | | | | `-dict
     "            | | | | | `-unloaded buffers
@@ -317,47 +318,49 @@
     set completeopt=menuone " menu,menuone,longest,preview
     set completeopt-=preview " dont show preview window
 
-    " preview window
+    " [ popup menu ]
+    set pumheight=20 " set popup menu max items available. 0=long
+
+    " [ preview ] window
+    " set previewwindow " identifies the preview window. normally not set directly.
     set previewheight=15
-    "set previewwindow " this popup menu is up towards.
-        " NOTE this solved python neocomplcache popup menu disappear problem.
 
     " set file path completion.
     set path+=.,/usr/local/include,/usr/include,,
+
+    " [ wildignore ]
     " ignore those files when completion.
     set wildignore+=*.swp,*~,*.o,*.obj,*.py[co]
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
     " set wildignore+=.git\*,.hg\*,.svn\*        " Windows
-    set report=0 " always report changed lines
-    " new-omni-completion ( internal ) Ctrl-X,Ctrl-*
-    set pumheight=20 " set popup menu max items available. 0=long
-    " set completefunc " actually find the matches.
 
     set infercase " adjust ins-completion case for ..th completion.
+    set report=0 " always report changed lines
 
-        " [ omni ] {{{ complete things with "<C-X><C-O>"
-        " set omnifunc=syntaxcomplete#Complete " for other languages
-        inoremap <C-space> <C-x><C-o>
+    " [ omni ]
+    " complete with "<C-X><C-O>"
+    " set omnifunc=syntaxcomplete#Complete " for other languages
+    " set completefunc=neocomplcache#manual_complet " actually find the matches.
+    " inoremap <C-space> <C-x><C-o>
 
-            " SuperCleverTab() for omni-completion or insert <Tab> {{{
-            function! SuperCleverTab()
-                if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-                    return "\<Tab>"
+        " SuperCleverTab() for omni-completion or insert <Tab> {{{
+        function! SuperCleverTab()
+            if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+                return "\<Tab>"
+            else
+                " use omnifunc
+                if &omnifunc != ''
+                    return "\<C-X>\<C-O>"
+                " use dictionary option with /usr/share/dict/words
+                elseif &dictionary != ''
+                    return "<C-X>\<C-K>"
                 else
-                    " use omnifunc
-                    if &omnifunc != ''
-                        return "\<C-X>\<C-O>"
-                    " use dictionary option with /usr/share/dict/words
-                    elseif &dictionary != ''
-                        return "<C-X>\<C-K>"
-                    else
-                        return "\<C-X>\<C-N>"
-                    endif
+                    return "\<C-X>\<C-N>"
                 endif
-            endfunction
+            endif
+        endfunction
 
-            " inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-            " }}}
+        " inoremap <Tab> <C-R>=SuperCleverTab()<cr>
         " }}}
     " }}}
 
