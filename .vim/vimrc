@@ -501,6 +501,12 @@ endif
     set numberwidth=2 " minimal number of columns for line number.
     " }}}
 
+    " [ window ] {{{
+    " <C-w> [s/v/+/-/</>/|/-]
+    " set winfixheight
+    " set winfixwidth
+    " }}}
+
     " [ colorscheme ] {{{
     " if $COLORTERM == 'gnome-terminal'
     if $TERM ==? "rxvt-unicode-256color"
