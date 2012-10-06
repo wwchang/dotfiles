@@ -89,10 +89,16 @@
     "augroup END
         " }}}
 
-    " [ history ] {{{
+    " [ history & undo ] {{{
     set history=50 " history lines
     " undo
     set undolevels=1000
+    " if has("presistent_undo")
+    "     if isdirectory(expand("~/.vim/undodir"))
+    "         set undodir=~/.vim/undodir/
+    "     endif
+    "     set undofile
+    " endif
     " }}}
 
     " [ command line ] {{{ :help cmdline-completion
@@ -165,7 +171,7 @@
 
     " [ tags ] {{{
     " tags
-	" ':help tagrsch.txt'
+	" ':help tagsrch.txt'
 	" {Visual}C-], [count]C-T, {Visual}g], C-w C-], {Visual}g C-],
 	" :tag [ident: main, /^get (tag-regexp)],
 	" :tags (tag stack), :[count]tnext/tprevious,
@@ -240,7 +246,7 @@
     " auto loading cscope database
     " similar functionality with tags -> set tags=tags;/ (auto towards)
     fun! LoadCscope()
-	let db = findfile("cscope.out", ".;")
+	let db = findfile("cscope.out", '.;')
 	if (!empty(db))
 	    let path = strpart(db, 0, match(db, "/cscope.out$"))
 	    set nocscopeverbose " suppress 'duplicate connection' error
@@ -248,7 +254,7 @@
 	    set cscopeverbose
 	endif
     endfun
-    au BufEnter /* call LoadCscope()
+    au BufEnter * call LoadCscope()
     " }}}
 
     " [ search ] {{{
@@ -1080,7 +1086,7 @@ endif
         " Usage:
         " :NeoBundleUpdate
         " :NeoBundleInstall or :Unite neobundle/install
-        " :Unite neobundle/search
+        " :Unite neobundle/search -- <C-l> to remake cache.
         " :NeoBundleLog -- git updates commit messages
         " :NeoBundleUpdatesLog -- simple version of :NeoBundleLog
         " :NeoBundleList          - list configured bundles
@@ -1160,7 +1166,6 @@ endif
                     \ 'depends': ['Shougo/unite.vim'],
                     \ 'directory': 'neobundle',
                     \ }
-        NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
         NeoBundle 'Shougo/vimproc', {
             \ 'build': {
                 \ 'windows': 'echo "vimproc binary file does not support Windows."',
@@ -1169,8 +1174,7 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
-        NeoBundle 'Shougo/vimshell'
-	" NeoBundle 'tomtom/tplugin_vim', { 'directory': 'tplugin' }
+	" NeoBundle 'tomtom/tplugin_vim'
         " [ Vim improve ] {{{
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'tyru/current-func-info.vim'
@@ -1178,62 +1182,90 @@ endif
 		    \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
 		    \ }
         NeoBundle 'kshenoy/vim-signature'
-	" NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', {
-	" 	    \ 'type': 'hg',
-	" 	    \ }
-        " NeoBundle 'quickfixstatus.vim'
-	NeoBundle 'xolox/vim-session'
-        " NeoBundle 'restore_view.vim'
+        NeoBundle 'quickfixstatus.vim'
+	" NeoBundle 'xolox/vim-session'
+        NeoBundle 'vim-scripts/restore_view.vim'
         NeoBundle 'chrisbra/Recover.vim'
-        NeoBundle 'tpope/vim-surround'
-        NeoBundle 'tpope/vim-unimpaired'
-        " NeoBundle 'ConflictMotions'
         " Complete
         " NeoBundle 'ervandew/supertab'
-        " NeoBundle 'chrisbra/unicode.vim'
 	" NeoBundle 'caio/querycommandcomplete.vim'
 	" Windows
 	" NeoBundle 'roman/golden-ratio'
         " Pairs
+        NeoBundle 'tpope/vim-surround'
         NeoBundle 'jiangmiao/auto-pairs'
-        NeoBundle 'tpope/vim-endwise'
-        " Others
-        NeoBundle 'AndrewRadev/switch.vim'
-        " NeoBundle 'ConflictDetection'
-        NeoBundle 'kana/vim-gf-diff'
-        NeoBundle 'kana/vim-gf-user'
-        " NeoBundle 'patchreview.vim'
-        " VCS & quickfix
-        NeoBundle 'tpope/vim-fugitive'
-        NeoBundle 'gregsexton/gitv'
-        " NeoBundle 'vim-scripts/hgrev'
+        " TODO NeoBundle 'Townk/vim-autoclose'
+        " NeoBundle 'vim-scripts/AutoClose'
+        " TODO NeoBundle 'Raimondi/delimitMate'
+        NeoBundle 'kien/rainbow_parentheses.vim'
+        " NeoBundle 'tpope/vim-endwise'
+        " Undo
+        NeoBundle 'mbbill/undotree'
 	" Colorscheme
+        NeoBundle 'tomasr/molokai'
+        " NeoBundle 'sickill/vim-monokai'
+        " NeoBundle 'altercation/vim-colors-solarized'
+        " NeoBundle 'nanotech/jellybeans.vim'
+        " NeoBundle 'w0ng/vim-hybrid'
+        " NeoBundle 'ciaranm/inkpot'
+            " colorsets
+            " NeoBundle 'altercation/solarized'
+            " NeoBundle 'chriskempson/tomorrow-theme'
+            " NeoBundle 'hukl/Smyck-Color-Scheme'
 	" Register
 	NeoBundle 'tpope/vim-repeat'
+        " Motion : text object,
+        NeoBundle 'tpope/vim-unimpaired'
+        " Shell
+        NeoBundle 'Shougo/vimshell'
+        " NeoBundle 'sjl/clam.vim'
+        " unicode symbol
+        " TODO NeoBundle 'chrisbra/unicode.vim'
+	" TODO NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', { 'type': 'hg' }
+        " Others
+        NeoBundle 'AndrewRadev/switch.vim'
+        " NeoBundle 'tpope/vim-speeddating'
+        " NeoBundle 'myusuf3/numbers.vim'
+        NeoBundle 'kana/vim-gf-diff'
+        NeoBundle 'kana/vim-gf-user'
+        " TODO NeoBundle 'patchreview.vim'
+        " NeoBundle 'xolox/vim-shell'
 	" }}}
 	" [ Vim libraries/frameworks ] {{{
 	NeoBundle 'tomtom/tlib_vim'
 	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
-	" NeoBundle 'tomtom/prototype_vim', { 'directory': 'prototype' }
+	" NeoBundle 'tomtom/prototype_vim'
 	" NeoBundle 'megaannum/self'
-	" NeoBundle 'mattn/webapi-vim', { 'directory': 'webapi' }
+	NeoBundle 'mattn/webapi-vim'
+        " NeoBundle 'vim-jp/vital.vim'
+        " NeoBundle 'tomtom/vimtlib'
 	" NeoBundle 'https://bitbucket.org/ZyX_I/frawor', { 'type': 'hg' }
+        " NeoBundle 'dahu/Chroma'
+        " NeoBundle 'dahu/vimple'
 	" }}}
         " [ program ] {{{
+        " complete
+        NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
+        " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
         " help
         NeoBundle 'powerman/vim-plugin-viewdoc', { 'directory': 'viewdoc' }
         " snippets
+        " NeoBundle 'Shougo/neocomplcache-snippets-complete', {
+        "             \ 'depends': 'Shougo/neocomplcache',
+        "             \ 'rev': 'neosnippet',
+        "             \ }
         NeoBundle 'SirVer/ultisnips'
 	" NeoBundle 'garbas/vim-snipmate'
-        " NeoBundle 'Shougo/neocomplcache-snippets-complete'
         " tags/cscope
         NeoBundle 'majutsushi/tagbar'
+        " NeoBundle 'vim-scripts/taglist.vim'
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags'
         " NeoBundle 'vim-scripts/AutoTag'
         " NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
 	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
 	NeoBundle 'brookhong/cscope.vim'
+        NeoBundle 'vim-scripts/CCTree'
 	" NeoBundle 'wesleyche/SrcExpl'
         " file manager
         NeoBundle 'scrooloose/nerdtree'
@@ -1244,6 +1276,7 @@ endif
 		    \ }
 	NeoBundle 'troydm/easytree.vim'
         NeoBundle 'troydm/easybuffer.vim'
+        NeoBundle 'airblade/vim-rooter'
         " compile & run
         NeoBundle 'xuhdev/SingleCompile'
         " syntax checker
@@ -1260,23 +1293,32 @@ endif
         NeoBundle 'vim-scripts/simplefold'
 	" REPL (Read-eval-print loop)
 	" NeoBundle 'jpalardy/vim-slime'
-        " Tabular
-        NeoBundle 'godlygeek/tabular'
-        " NeoBundle 'filter'
+        " Narrow Region
+        " NeoBundle 'chrisbra/NrrwRgn'
+        " VCS
+        NeoBundle 'tpope/vim-git'
+        NeoBundle 'tpope/vim-fugitive'
+        NeoBundle 'gregsexton/gitv'
+        " NeoBundle 'c9s/hypergit.vim'
+        " NeoBundle 'vim-scripts/hgrev'
+        " NeoBundle 'taq/vim-git-branch-info'
+        " NeoBundle 'sjl/splice.vim'
+        NeoBundle 'ConflictDetection'
+        " NeoBundle 'ConflictMotions'
         " comment
 	NeoBundle 'tomtom/tcomment_vim'
         " NeoBundle 'scrooloose/nerdcommenter'
         " NeoBundle 'tpope/vim-commentary'
-        NeoBundle 'mbbill/undotree'
-        " unite.vim
+        " Tabular
+        NeoBundle 'godlygeek/tabular'
+        " NeoBundle 'tsaleh/vim-align'
+        " NeoBundle 'vim-scripts/filter'
+        " Outline
         NeoBundle 'h1mesuke/unite-outline'
         " Task List
         NeoBundle 'LStinson/TagmaTasks'
         " NeoBundle 'vim-scripts/TaskList.vim'
         " NeoBundle 'TaskMotions'
-		" VimL (libraries/)
-		" NeoBundle 'dahu/Chroma'
-		" NeoBundle 'dahu/vimple'
 	" }}}
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
@@ -1286,35 +1328,50 @@ endif
         NeoBundle 'tpope/vim-rails'
 	" NeoBundle 'ujihisa/unite-gem'
 	NeoBundle 'tpope/vim-rvm'
-	" NeoBundle 'tpope/vim-bundler'
+	NeoBundle 'tpope/vim-bundler'
 	NeoBundle 'tpope/vim-rake'
 	NeoBundle 'ujihisa/neco-rake', {
 		    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell']
 		    \ }
 	" NeoBundle 'tpope/gem-ctags'
         " Python
-        NeoBundle 'jmcantrell/vim-virtualenv'
         NeoBundle 'vim-scripts/pythoncomplete'
 	" NeoBundle 'kevinw/pyflakes-vim'
+        NeoBundle 'jmcantrell/vim-virtualenv'
+        " NeoBundle 'ivanov/vim-ipython'
+        NeoBundle 'ehamberg/vim-cute-python', { 'rev': 'moresymbols' }
+        " NeoBundle 'alfredodeza/pytest.vim'
+        " NeoBundle 'julienr/vimux-pyutils'
+            " Django
+            " TODO NeoBundle 'yodiaditya/vim-pydjango'
         " C / cpp
-        NeoBundle 'Shougo/neocomplcache-clang', {
-                    \ 'depends': ['clang-complete',],
-                    \ }
+        NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
-        NeoBundle 'undx/vim-gocode', { 'directory': 'gocode' }
+        NeoBundle 'undx/vim-gocode'
+        NeoBundle 'jnwhiteh/vim-golang'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
 	" NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
         NeoBundle 'gregsexton/MatchTag'
         NeoBundle 'othree/html5.vim'
-        NeoBundle 'othree/html5-syntax.vim'
+        " NeoBundle 'tpope/vim-ragtag'
+        " XML
+        " NeoBundle 'sukima/xmledit'
         " CSS
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+        NeoBundle 'hail2u/vim-css3-syntax'
+        NeoBundle 'skammer/vim-css-color'
 	" NeoBundle 'tpope/vim-haml'
         " CoffeeScript
         " JavaScript
+        NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
+        NeoBundle 'jelera/vim-javascript-syntax'
+        NeoBundle 'hallettj/jslint.vim'
+        " TODO NeoBundle 'walm/jshint.vim'
+            " jQuery
+            NeoBundle 'itspriddle/vim-jquery'
         " Clojure
         " NeoBundle 'VimClojure'
         " PHP
@@ -1326,21 +1383,23 @@ endif
         " NeoBundle 'paredit.vim'
 	" Haskell
 	" NeoBundle 'ujihisa/neco-ghc'
+        NeoBundle 'c9s/perlomni.vim'
 	" Markdown
 	NeoBundle 'tpope/vim-markdown'
+        " NeoBundle 'greyblake/vim-preview'
+        " NeoBundle 'jeffbuttars/Vimdown'
         " Wiki / Note
 	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
         " Paste
-        NeoBundle 'mattn/gist-vim', { 'depends': ['WebAPI.vim'] }
+        NeoBundle 'mattn/gist-vim', { 'depends': ['mattn/webapi-vim'] }
 	" NeoBundle 'tpope/vim-pastie'
+        NeoBundle 'sickill/vim-pasta'
         " Color
         NeoBundle 'Rykka/colorv.vim'
+        " Tmux & Screen
+        NeoBundle 'benmills/vimux'
         " binary files
-        NeoBundle 'tpope/vim-afterimage'
-        " colorscheme
-        " NeoBundle 'altercation/vim-colors-solarized'
-        " NeoBundle 'nanotech/jellybeans.vim'
-        " NeoBundle 'w0ng/vim-hybrid'
+        " NeoBundle 'tpope/vim-afterimage'
         " others
         NeoBundle 'vim-scripts/utl.vim'
         NeoBundle 'bitc/vim-bad-whitespace'
@@ -1492,23 +1551,23 @@ syntax on
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_start_level = 2
             let g:indent_guides_indent_levels = 7
-            let g:indent_guides_color_change_percent = 100 " 0~100
+            let g:indent_guides_color_change_percent = 10 " 0~100
             let g:indent_guides_guide_size = 1 " indent vertical lines width.
             let g:indent_guides_space_guides = 1 " consider spaces as indention.
                 let g:indent_guides_auto_colors = 0
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
-                "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
+                " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
+                " autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=red ctermbg=4
                 " alternately
-                "hi IndentGuidesOdd  guibg=red   ctermbg=3
-                "hi IndentGuidesEven guibg=green ctermbg=4
-            if &background == "dark"
-                hi IndentGuidesEven ctermbg=darkgrey    guibg=#6F7500
-                hi IndentGuidesOdd  ctermbg=black       guibg=#6F7500
-            elseif &background == "light"
-                "molokai's background = light, guibg for peachpuff
-                hi IndentGuidesEven ctermbg=233 guibg=LightRed
-                hi IndentGuidesOdd  ctermbg=233 guibg=LightRed
-            endif
+                " hi IndentGuidesOdd  guibg=red   ctermbg=3
+                " hi IndentGuidesEven guibg=green ctermbg=4
+                if &background == "dark"
+                    hi IndentGuidesEven ctermbg=233 guibg=#6F7500
+                    hi IndentGuidesOdd  ctermbg=234 guibg=LightRed
+                elseif &background == "light"
+                    "molokai's background = light, guibg for peachpuff
+                    hi IndentGuidesEven ctermbg=233 guibg=#6F7500
+                    hi IndentGuidesOdd  ctermbg=234 guibg=LightRed
+                endif
         " }}}
 
         " matchindent {{{ match others's indent style: tab, 4 spaces, 2 spaces.
@@ -1536,8 +1595,9 @@ syntax on
 
     " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-            " if exists('g:loaded_neocomplcache')
-            " endif
+	" TODO
+	" if exists('g:loaded_neocomplcache')
+	" endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " comment out :set complete option.
@@ -1617,9 +1677,9 @@ syntax on
 	    endif
 	    " _ for all filetype, default is {'_': '*'}
 	    let g:neocomplcache_wildcard_characters['_'] = '-'
-		" -> e.g. public-html -> p-h [B]
-		" -> e.g. public_html -> p_h [B]
-		" -> e.g. HellowWorld -> H-W [B]
+		" -> e.g. public-html -> p-h [B] -> p-h
+		" -> e.g. public_html -> p_h [B] -> p-h
+		" -> e.g. HellowWorld -> H-W [B] -> H-W
 	    " }}}
 	    " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
@@ -1643,6 +1703,7 @@ syntax on
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
+            " . -> methods, :: -> class method, # -> instance method.
 	    let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
@@ -1707,7 +1768,11 @@ syntax on
                 let g:neocomplcache_ctags_arguments_list = {}
             endif
             " let g:neocomplcache_ctags_arguments_list['_'] = ''
+            " let g:neocomplcache_ctags_arguments_list['c'] =
+            " let g:neocomplcache_ctags_arguments_list['cpp'] =
             " let g:neocomplcache_ctags_arguments_list['python'] =
+            " let g:neocomplcache_ctags_arguments_list['ruby'] =
+            " let g:neocomplcache_ctags_arguments_list['go'] =
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
@@ -1734,8 +1799,9 @@ syntax on
             if !exists('g:neocomplcache_filename_include_exts')
                 let g:neocomplcache_filename_include_exts = {}
             endif
-            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
             let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
             " }}}
             " sources {{{
             if !exists('g:neocomplcache_source_disable')
@@ -1816,6 +1882,11 @@ syntax on
                         \ 'end': '^\s*}}}',
                         \ },
                         \ {
+                        \ 'filetype': 'zsh',
+                        \ 'start': '^\s*{{{zsh$',
+                        \ 'end': '^\s*}}}',
+                        \ },
+                        \ {
                         \ 'filetype': 'go',
                         \ 'start': '^\s*{{{go$',
                         \ 'end': '^\s*}}}',
@@ -1846,7 +1917,9 @@ syntax on
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-	    " let g:neocomplcache_text_mode_filetypes['gitcommit'] = 0
+	    let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+	    let g:neocomplcache_text_mode_filetypes['markdown'] = 1
+	    let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
             " }}}
 
             " }}}
@@ -1964,6 +2037,9 @@ syntax on
                 "             \ : "\<C-x>\<C-u>"
 
                 " ------------------------------------------------------------
+                " { neosnippet } {{{
+                " }}}
+
                 " { neocomplcache-snippets-complete } {{{
                 " TODO
                 " how to check neocomplcache-snippets-complete plugin is loaded ???
@@ -2120,46 +2196,53 @@ syntax on
     " }}}
 
     " [ snippets ] {{{ <Ctrl-j/k> | <Tab>
-        " neocomplcache-snippets_complete {{{ snippets using neocomplcache complete.
-            "This source analyzes snippet files for completion. The source offer
-            "a function similar with snipMate.vim and snippetsEmu.vim. Because
-            "you can search a snippet with a function of neocomplcache, you may
-            "omit trouble to learn.
-                " :NeoComplCacheCachingSnippets [filetype]
-                " :NeoComplcacheEditSnippets [filetype]
-                " :NeoComplCacheEditRuntimeSnippets [filetype]
-                " neocomplcache#sources#snippets_complete#expandable()
-                    " return value:
-                    "   0 : not found
-                    "   1 : cursor text is snippets trigger
-                    "   2 : exists placeholder in current buffer
-                    "   3 : both found.
-                " neocomplcache#sources#snippets_complete#jumpable()
-                " neocomplcache#sources#snippets_complete#force_expandable()
-                " <Plug>(neocomplcache_snippets_expand) -> expand_or_jump
-                " <Plug>(neocomplcache_snippets_jump)   -> jump_or_expand
-                " <Plug>(neocomplcache_snippets_force_expand)
-                " <Plug>(neocomplcache_snippets_force_jump)
-                " <Plug>(neocomplcache_start_unit_snippet)
-                " <Plug>(neocomplcache_snippets_expand)
-                " <Plug>(neocomplcache_snippets_jump)
-                " <Plug>(neocomplcache_start_unite_snippet)
+	" neosnippet {{{
+            " :NeoSnippetMakeCache [filetype]
+            " :NeoSnippetEdit [{options}] [filetype]
+            " key mappings:
+            "   - <Plug>(neosnippet_expand_or_jump)
+            "   - <Plug>(neosnippet_jump_or_expand)
+            "   - <Plug>(neosnippet_expand)
+            "   - <Plug>(neosnippet_jump)
+            "   - i_<Plug>(neosnippet_start_snippet)
+            "   - neosnippet#expandable()
+            "   - neosnippet#jumpable()
+            " unite.vim
+            "   - :Unite snippet
+            "   - source actions TODO how to use this actions.
+            "   - snippet
+            "       - expand
+            "       - edit
+            "       - preview
 
-            " add user own snippets dir.
-            "let g:neocomplcache_snippets_dir='~/.vim/snippets/dir2,~/.vim/snippets/dir2'
-            let g:neocomplcache_snippets_dir='~/.vim/snippets/neco-snippets'
-            let g:neocomplcache_disable_select_mode_mappings = 1
-                " 1: not load runtime snippets. avoid conflicting snippets.
-            let g:neocomplcache_snippets_disable_runtime_snippets = 0
+            let g:neosnippet#snippets_directory = "~/.vim/snippets/neosnippet/"
+            let g:neosnippet#disable_select_mode_mappings = 1
+                " disable key-mappings in select-mode when snippets_complete
+                " performs. usually enable it.
+            let g:neosnippet#disable_runtime_snippets = 0
 
-                function! EditNeoSnippets()
-                    split
-                    execute ":NeoComplCacheEditSnippets ".&filetype
-                endfunction
+	    if !exists('g:loaded_neosnippet')
+                imap <expr><TAB> neosnippet#expandable() ?
+                            \ "\<Plug>(neosnippet_expand_or_jump)"
+                            \: pumvisible() ? "\<C-n>" : "\<TAB>"
+                imap <expr> <C-j> neosnippet#jumpable() ?
+                            \ "\<Plug>(neosnippet_jump)"
+                            \ : neosnippet#expandable() ?
+                            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+                " TODO ask Shougo where to use this mapping. in Unite buffer or
+                " insert mode in vim ?
+                " and how to use snippet source ? edit/preview/expand.
+                " FIXME imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+                nnoremap <buffer> <Leader>es
+                    \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
+                    " \ . &filetype<CR>
+	    endif
 
-                nnoremap <buffer> <Leader>es :call EditNeoSnippets()<CR>
-                "nnoremap <buffer> <Leader>es :NeoComplCacheEditSnippets<CR>
-        " }}}
+            " for snippets_complete marker.
+            if has('conceal')
+                set conceallevel=2 concealcursor=i
+            endif
+	" }}}
 
         " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
             " :UltiSnipsEdit
@@ -2186,8 +2269,10 @@ syntax on
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
 
-            nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
-            " nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
+            if exists(':UltiSnipsEdit')
+                nnoremap <buffer> <Leader>es :UltiSnipsEdit<CR>
+                " nnoremap <buffer> <Leader>as :UltiSnipsAddFiletypes vimwiki.python
+            endif
         " }}}
 
         " Xptemplate
@@ -2281,6 +2366,10 @@ syntax on
     " [ tags/cscope ] {{{ <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
+            " access symbols:
+            "   - + -> public
+            "   - # -> protected
+            "   - - -> private
             let g:tagbar_ctags_bin = '/usr/bin/ctags' " default empty, '/usr/bin/ctags'
             let g:tagbar_width = 25
             let g:tagbar_compact = 0 " omitting heading help line and blank lines.
@@ -2303,11 +2392,11 @@ syntax on
             nnoremap <F12> :TagbarToggle<CR>
 
             " automatically opening tagbar.
-                " autocmd VimEnter * nested :TagbarOpen " open for any files.
-                "augroup TagListAutoToggle
-                    "au!
-                    "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
-                "augroup END
+            " 1. autocmd VimEnter * nested :TagbarOpen " open for any files.
+            "2. augroup TagListAutoToggle
+                "au!
+                "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
+            "augroup END
 
             " tagbar highlight
                 highlight TagbarComment ctermfg=Black
@@ -2439,16 +2528,6 @@ syntax on
 	    "	:YATE
 	" }}}
 
-	" [ cscope.vim ] {{{ create cscope database and connect automatically.
-	    " Usage:
-	    " - <Leader>f[s/g/d/c/t/e/f/i] with cursor on a function name.
-	    " - <Leader>l -- toggle show found result in location list.
-	    "   - CscopeFind, :CscopeGen, :CscopeClear, CscopeList,
-	    let g:cscope_preload_path =
-			\ "/usr/include/;/usr/include/c++;" .
-			\ "/usr/lib/ruby/1.9.1/;" . "/usr/lib/python3.2/"
-	" }}}
-
 	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
 	    " it works like the context window of 'Source Insight'
 	    nnoremap <F4> :SrcExplToggle<CR>
@@ -2468,27 +2547,84 @@ syntax on
 	    let g:SrcExpl_gobackKey = "<Space>"
 	    let g:SrcExpl_updateTagsKey = ''
 	" }}}
-    " }}}
 
-    " [ cscope ] {{{
-        " cscope {{{
+        " cscope.vim {{{ auto create cscope database and connect to existing database
+            " Usage:
+            " - <Leader>f[s/g/d/c/t/e/f/i] with cursor on a function name.
+            " - <Leader>l -- toggle show found result in location list.
+            "   - :CscopeGen [path], CscopeFind, :CscopeClear, CscopeList,
+            " let g:cscope_cmd = '/path/to/cscope'
+            " let g:cscope_preload_path .= "/usr/include/;"
+            " let g:cscope_preload_path .= "/usr/include/c++;"
+            " let g:cscope_preload_path .= "/usr/lib/ruby/1.9.1/;"
+            " let g:cscope_preload_path .= "/usr/lib/python3.2/"
+            " old/original mapping example with <leader>f[?]
+            " " s: Find this C symbol
+            " nnoremap <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+
+            " s: Find this C symbol
+            nnoremap <C-Bslash>s :call CscopeFind('s', expand('<cword>'))<CR>
+            " g: Find this definition
+            nnoremap <C-Bslash>g :call CscopeFind('g', expand('<cword>'))<CR>
+            " d: Find functions called by this function
+            nnoremap <C-Bslash>d :call CscopeFind('d', expand('<cword>'))<CR>
+            " c: Find functions calling this function
+            nnoremap <C-Bslash>c :call CscopeFind('c', expand('<cword>'))<CR>
+            " t: Find this text string
+            nnoremap <C-Bslash>t :call CscopeFind('t', expand('<cword>'))<CR>
+            " e: Find this egrep pattern
+            nnoremap <C-Bslash>e :call CscopeFind('e', expand('<cword>'))<CR>
+            " f: Find this file
+            nnoremap <C-Bslash>f :call CscopeFind('f', expand('<cword>'))<CR>
+            " i: Find files #including this file
+            nnoremap <C-Bslash>i :call CscopeFind('i', expand('<cword>'))<CR>
         " }}}
-        " CCTree {{{ generate dependency-trees for symbols using cscope database in Vim
-            " Usage: Build cscope database, e.g.
-            "   > cscope -b -i cscope.files
-            " - Load database with command, :CCTreeLoadDB
-            " - Append database with command, :CCTreeAppendDB ./cscope.out
-            " - show loaded databases, :CCTreeShowLoadedDBs
-            let g:CCTreeUseUTF8Symbols = 1 " use symbols for drawing the tree.
-            let g:CCTreeOrientation = "left"
-            let g:CCTreeWindowVertical = 1 " use vertical window.
-            let g:CCTreeWindowMinWidth = 20
-            let g:CCTreeWindowWidth = -1 " auto-select best width to fix.
-            let g:CCTreeDisplayMode = 1 " 1:Ultra-compact, 2:Compact, 3:Wide
 
-            " syntax coloring:
+        " CCTree {{{ displays hierarchical call-trees for functions or files using cscope database.
+            " FIXME do not know how to open CCTree window
+            " Usage: Build cscope database, e.g.
+            "   > cscope -b -i cscope.out
+            " - :CCTreeLoadDB cscope.out        -- load database
+            " - :CCTreeAppendDB ./cscope.out    -- append database
+            " - :CCTreeShowLoadedDBs            -- show databases
+            " - :CCTreeUnLoadDB                 -- unload database
+            " Mappings:
+            "   - <C-\>w    -- toggle window
+            "   - <C-\><    -- get reverse call tree for symbol
+            "   - <C-\>>    -- get forward call tree for symbol
+            "   - <C-\>=    -- increase depth of tree and update
+            "   - <C-\>-    -- decrease depth of tree and update
+            "   - <CR>      -- open symbol in other window
+            "   - <C-p>     -- preview symbol in other window
+            "   - <C-l>     -- highlight current call-tree flow
+            "   - zs        -- compress(fold) call-tree view (useful for viewing long call-tree)
+            let g:CCTreeCscopeDb = "cscope.out" " cscope database file
+            let g:CCTreeDbFileMaxSize = 40000000 " 40M
+            let g:CCTreeUsePerl = 1 " enable the perl interface
+            let g:CCTreeEnhancedSymbolProcessing = 1
+            let g:CCTreeRecursiveDepth = 3 " max call levels
+            let g:CCTreeMinVisibleDepth = 3 " max visible(unfolded) level
+            let g:CCTreeUseUTF8Symbols = 1 " use symbols for drawing the tree.
+            let g:CCTreeOrientation = "topleft" " orientation of window
+                " standard vim options for split: [right|left][above|below]
+            let g:CCTreeWindowVertical = 1 " use vertical window.
+            let g:CCTreeWindowMinWidth = 20 " vertical window min width
+            let g:CCTreeWindowWidth = -1 " horizontal, auto-select best width to fix.
+            let g:CCTreeDisplayMode = 1 " 1:Ultra-compact, 2:Compact, 3:Wide
+            let g:CCTreeKeyToggleWindow = '<C-\>w'
+            let g:CCTreeKeyTraceForwardTree = '<C-\>>'
+            let g:CCTreeKeyTraceReverseTree = '<C-\><'
+            let g:CCTreeKeyDepthPlus = '<C-\>='
+            let g:CCTreeKeyDepthMinus = '<C-\>-'
+            let g:CCTreeKeyHilightTree = '<C-l>'    " static highlighting
+            let g:CCTreeKeySaveWindow = '<C-\>y'
+            let g:CCTreeKeyCompressTree = 'zs'     " compress(fold) call-tree
+
+            " syntax highlighting groups:
                 " CCTreeSymbol -- symbol name.
                 " CCTreeMarkers -- include "|", "+--->"
+                " CCTreeHiSymbol
+                " CCTreeHiMarkers
         " }}}
     " }}}
 
@@ -2726,15 +2862,18 @@ syntax on
             " files, buffers, recently used files or registers.
             " You can run one of defined action on a target displayed.
             " Usage:
-            "   - :Unite [{options}] {sources}
-            "       Shows the candidate window of {sources}
+            "   - :Unite [{options}] {source's'}
+            "       - {source's'}
+            "           - parameters of source
+            "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
+            "               - e.g. file:foo\:bar -- use \ to escape
+            "               - e.g. file:foo::bar -- ['foo', '', 'bar']
             "   - press 'i' to search after prompt '>'
             "       - *word,
             "       - **/foo (directory recursively)
             "       - foo bar (AND)
             "       - foo|bar (OR)
             "       - foo !bar (negative)
-            "   - :Unite -buffer-name=files file
             "   - :UniteResume, :UniteBookmarkAdd,
             " Key Mappings:
             "   - <Plug>(unite_exit)
@@ -2751,17 +2890,16 @@ syntax on
             let g:unite_enable_start_insert = 1 " startup into insert mode
             let g:unite_split_rule = "topleft"
             let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
-            let g:unite_winheight = 20
-            let g:unite_winwidth = 90
+            let g:unite_winheight = 15
+            let g:unite_winwidth = 50
             let g:unite_kind_openable_cd_command = "cd"
             let g:unite_kind_openable_lcd_command = "lcd"
             let g:unite_cursor_line_highlight = "PmenuSel"
             let g:unite_abbr_highlight = "Normal"
+            let g:unite_enable_use_short_source_names = 0
             " let g:unite_quick_match_table = {}
             let g:unite_data_directory = expand('~/.unite')
-            " let g:unite_no_default_keymappings =
-            " let g:unite_source_file_ignore_pattern
-            " .............
+            " let g:unite_no_default_keymappings = 1 " don't map default key mappings
         " }}}
 
         " EasyGrep {{{ make search and replace in files easy.
@@ -2927,7 +3065,9 @@ syntax on
             let g:viewdoc_man_cmd = "/usr/bin/man"
             let g:ViewDoc_DEFAULT = 'ViewDoc_man' " ViewDoc_man, ViewDoc_help
 
-            " customize {{{ TODO add other doc like HTML5, CSS3, JavaScript. Go,
+            " customize {{{
+            " TODO add other doc like HTML5, CSS3, JavaScript. Go,
+	    " support ruby doc (ri), Go doc (godoc) etc
             " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
@@ -3083,6 +3223,8 @@ syntax on
 
     " [ quickfix & location list ] {{{
         " quickfixsigns {{{ marks, quickfix & location list items with signs.
+	    " Usage:
+	    " <Leader>ms -- jump from sign to sign (vcsdiff)
             let g:quickfixsigns_classes = ([
 			\ 'qfl', 'loc',
 			\ 'marks', 'breakpoints',
@@ -3098,6 +3240,7 @@ syntax on
             let g:quickfixsigns_blacklist_buffer = '^__.*__$'
             let g:quickfixsigns_icons = {}
             let g:quickfixsigns#vcsdiff#guess_type = 1
+	    " let g:quickfixsigns#vcsdiff#cmd_separator = '&&'
         " }}}
 
         " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
@@ -3125,17 +3268,36 @@ syntax on
 
     " [ VCS: Git, bzr, svn, ] {{{ <F9>
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
+            " Usage:
+            "   - :Git[!] [args]
+            "   - :Gstatus
+            "   - :Gcommit [args]
+            "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
+            "   - :Gwrite/:Gwq {path}
+            "   - :Gmove {destination}
+            "   - :Gremove
+            "   - :{range}Gread [revision]/[args]
+            "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
+            "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
+            "   - :Glog [args] -- load all previous revisions of current file into quickfix
+            "   - :[range]Gblame {flags}
+            "   - :[range]Gbrowse {revision}
 
             " auto open quickfix window for :Ggrep.
             autocmd QuickFixCmdPost grep cwindow
         " }}}
 
         " Gitv {{{ 'gitk clone' plugin for Vim as similar set of func as a repo viewer.
-            " [Browser/File] mode
             " Usage:
-            "   - :Gitv [args]
-            "   - :Gitv! [args]
-            "   - [range]Gitv! [args]
+            "   - [Browser/File] mode
+            "   - [range]Gitv[!] [args]
+            "   - arguments:
+            "       - Gitv is a wrapper of 'git log', support all options for `git log`
+            "       - --all
+            "       - <since>..<until>
+            "       - --merges
+            "       - -S<string>
+            "       - -G<regex>
             "   - back to working revision file
             "       press <Enter> on top line:
             "       -- [filename] --
@@ -3143,13 +3305,13 @@ syntax on
             "       press <C-Enter> on line below this line:
             "       -- Showing (up to 56) commits affecting lines in the range:
             let g:Gitv_CommitStep = &lines
-            let g:Gitv_OpenHorizontal = 'auto' " 0: browser mode vertical split.
+            let g:Gitv_OpenHorizontal = 'auto' " 0: vertical, 1: horizontal, auto:
             let g:Gitv_GitExecutable = 'git'
-            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close.
-            let g:Gitv_WrapLines = 0 " wrap long commit.
-            let g:Gitv_TruncateCommitSubjects = 0
+            let g:Gitv_WipeAllOnClose = 0 " wipe all buffers when q to close
+            let g:Gitv_WrapLines = 0 " wrap long commit
+            let g:Gitv_TruncateCommitSubjects = 0 " 1: truncate for vertical display
             let g:Gitv_OpenPreviewOnLaunch = 1 " launch preview window when open gitv
-            let g:Gitv_PromptToDeleteMergeBranch = 0 " prompt delete branch when merge
+            let g:Gitv_PromptToDeleteMergeBranch = 1 " prompt delete branch when merge
             let g:Gitv_DoNotMapCtrlKey = 0
 
             nnoremap <F9> :Gitv<cr>
@@ -3274,8 +3436,10 @@ syntax on
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
+	    let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 
-            nnoremap <silent> <F11> :NERDTreeToggle<CR>
+
+	    nnoremap <silent> <F11> :NERDTreeToggle<CR>
 
             " TODO au FileType nerdtree
         " }}}
@@ -3497,6 +3661,11 @@ syntax on
     " [ project ] {{{ different settings for every projects
         " vimprj {{{ managing options for different projects
         " }}}
+
+        " vim-rooter {{{ Changes Vim working directory to project root
+            let g:rooter_patterns = ['.git/', '.hg/', '.bzr/', '.svn/', '_darcs/', 'Rakefile', 'Makefile',]
+            let g:rooter_use_lcd = 0 " use :lcd to locally
+        " }}}
     " }}}
 " }}}
 
@@ -3595,7 +3764,7 @@ syntax on
         " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
 
-        " rsense
+        " rsense {{{
             " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
             "   You can infer types of an expression at point by
@@ -3762,6 +3931,7 @@ syntax on
 	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
 		" NOTE has been merged into Syntastic
 	    " }}}
+        " }}}
 
             " pytest {{{ A simple way of running your tests from within VIM.
             " }}}
@@ -3808,7 +3978,7 @@ syntax on
         " }}}
 
         " [ virtualenv ] {{{
-            " virtualenv {{{ Python virtualenv for Vim.
+            " vim-virtualenv {{{ Python virtualenv for Vim.
                 " Usage:
                 " statusline: %{virtualenv#statusline()}
                 " Commands:
@@ -3844,6 +4014,10 @@ syntax on
         " }}}
 
         " [ REPL ] {{{
+            " vim-ipython {{{ A two-way integration between Vim and IPython
+            " TODO
+            " }}}
+
             " vim-pipe {{{ provides REPL-like development for other shell tools
                 " For example you can instantly send an SQL script to the
                 " database and see the results in a temporary buffer.
@@ -3852,6 +4026,10 @@ syntax on
             " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
                 " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
             " }}}
+        " }}}
+
+        " others {{{
+            " vim-cute-python : Unicode goodness for Python code by using vim's 'conceal' feature
         " }}}
 
         " [ Django ] {{{
@@ -3992,7 +4170,7 @@ syntax on
             let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
             " }}}
 
-        " Dbext {{{ Database extension plugin.
+        " Dbext {{{ enable Vim to access several databases
             " \sbp -- SQL Buffer Prompt.
             " \se  -- SQL Execute
             " \sel -- SQL Execute Line
@@ -4012,7 +4190,10 @@ syntax on
         " }}}
     " }}}
 
-    " [ Web: HTML5 & CSS ] {{{
+    " [ NoSQL ] {{{
+    " }}}
+
+    " [ Web: HTML5 & CSS, XML ] {{{
         " [ HTML5 ] {{{
             " ZenCoding {{{ powerful abbreviation engine. "<C-Y>[,vn...]"
                 " Usage: :verbose map <c-y>  --> to show all ZenCoding mappings.
@@ -4048,11 +4229,7 @@ syntax on
 		let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
             " }}}
 
-            " MatchTag
-
-            " HTML_AutoCloseTag
-
-            " html5 {{{ HTML5 omnicomplete func and syntax for Vim.
+            " html5 {{{ HTML5 omnifunc and syntax for Vim.
                 " based on the default htmlcomplete.vim.
                 " Features:
                 "   - Support all new elements and attributes.
@@ -4070,7 +4247,13 @@ syntax on
                 let g:html5_aria_attributes_complete = 1
             " }}}
 
-            " HTML5_Syntax_File : HTML5 syntax file.
+            " MatchTag
+
+            " HTML_AutoCloseTag
+
+            " vim-ragtag {{{ ghetto HTML/XML mappings
+                " TODO
+            " }}}
         " }}}
 
         " [ CSS ] {{{
@@ -4078,9 +4261,15 @@ syntax on
             " au BufRead,BufNewFile *.css setlocal ft=css syntax=css3
 
             " Better_CSS_Syntax_for_Vim {{{
+                " Highlights for full CSS2, most of HTML5 & CSS3 properties (include prefix like -moz-).
                 " 1. Support most of HTML & CSS properties, including HTML5 & CSS3.
                 " 2. Different highlight colors for properties, value, units and so on.
             " }}}
+
+            " vim-css3-syntax : Add CSS3 syntax support to vim's built-in syntax/css.vim
+            " TODO https://github.com/hail2u/vim-css3-syntax
+
+            " vim-css-color : highlight colors
 
             " css3_mod
 
@@ -4094,6 +4283,12 @@ syntax on
             " }}}
 
             " vim-less : syntax support for LESS CSS.
+        " }}}
+
+        " [ XML ] {{{
+            " xmledit {{{ A filetype plugin for VIM to help edit XML files
+            " TODO
+            " }}}
         " }}}
     " }}}
 
@@ -4126,6 +4321,15 @@ syntax on
     " }}}
 
     " [ JavaScript ] {{{
+        " vim-javascript {{{ provides syntax and indent plugins.
+            " - very correct indentation for javascript
+            " - support javascript indentation in html
+        " }}}
+
+        " vim-javascript-syntax {{{ Enhanced Javascript Syntax for Vim
+            au FileType javascript call JavaScriptFold()
+        " }}}
+
         " jscomplete-vim {{{ vim omnifunc for JavaScript
             " [Optional extensions]
             " extension scripts under the 'autoload/js/' will be loaded with set
@@ -4141,6 +4345,13 @@ syntax on
             "   + => loaded extensions.
             "   - => non-loaded extensions.
         " }}}
+
+        " jshint.vim : Vim plugin and command line tool for running JSLint.
+            " :JSLintUpdate
+            " TODO
+            let g:JSLintHighlightErrorLine = 1
+
+        " jshint.vim : A plugin that integrates JSHint with Vim
 
         " jsflakes%4057 {{{ powerful vim plugin lint javascript code on the fly.
             " Require: jsruntime, jsoncodecs.
@@ -4164,14 +4375,12 @@ syntax on
 
         " javaScriptLint: Displays JavaScript Lint warnings in quickfix window
 
-        " jshint.vim : JSHint Integration
-            " jshint.vim facilitates tight integration between JSHint and Vim.
-        " jslint.vim : Check JavaScript files for errors with JSLint
-            " :JSLintUpdate
-            let g:JSLintHighlightErrorLine = 1
+        " [ jQuery ] {{{
+            " vim-jquery : Vim syntax file to add some colorations for jQuery keywords and css selectors.
 
-        " jQuery : Syntax file for jQuery.
-            au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+            " jQuery : Syntax file for jQuery.
+                au BufRead,BufNewFile jquery.*.js set ft=javascript syntax=jquery
+        " }}}
     " }}}
 
     " [ Dart ] {{{
@@ -4202,6 +4411,11 @@ syntax on
         let php_parent_error_open = 1 " skip php end tag, if exists, open (, [
         let php_folding = 1 " folding for classes and functions.
         let php_sync_method = -1 " selecting syncing method. -1/0/>0
+
+        " [ completion ] {{{
+            " phpcomplete {{{ Improved PHP omnicompletion.
+            " }}}
+        " }}}
 
         " [ debugger ] {{{
             " DBGPavim {{{ enable PHP debug in vim with Xdebug.
@@ -4284,11 +4498,6 @@ syntax on
             " }}}
         " }}}
 
-        " [ completion ] {{{
-            " phpcomplete {{{ Improved PHP omnicompletion.
-            " }}}
-        " }}}
-
         " [ Framework ] {{{
             " cakephp {{{ navigating, managing CakePHP applications with Vim
             " }}}
@@ -4324,31 +4533,22 @@ syntax on
     " [ Go ] {{{
         " gocode {{{ autocompletion daemon for Go Language
             " Features: Context-sensitive autocompletion
+
+        " }}}
+
+        " vim-golang {{{ Go lang runtime vim scripts.
         " }}}
     " }}}
 
-    " [ C & C++ Dev Env ] {{{
+    " [ C & C++ ] {{{
         augroup CSettings
             au!
             au FileType c,cpp setlocal cindent
             au FileType c,cpp,java set matchpairs+==:;
         augroup END
 
-        " neocomplcache-clang {{{ clang_complete for neocomplcache.
-            " Require: clang_complete
-                " clang.so, clang.dll, libclang.dylib
-            let g:neocomplcache_clang_use_library = 1 " use clang library
-            let g:neocomplcache_clang_library_path = '/usr/lib/'
-            let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
-            let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
-            let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
-            let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
-            let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
-            " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
-            let g:neocomplcache_clang_debug = 0 " enable debug message.
-        " }}}
-
-        " clang_complete {{{ :h clang_complete.txt
+        " clang_complete {{{ use of clang to complete in C/C++.
+            " :h clang_complete.txt
             let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
             " disable with 0 to solve neocomplcache problem
             let g:clang_complete_auto = 1 " auto complete after -> . ::
@@ -4375,6 +4575,20 @@ syntax on
             let g:clang_sort_algo = "priority"
             let g:clang_complete_macros = 1
             let g:clang_complete_patterns = 1
+        " }}}
+
+        " neocomplcache-clang {{{ clang_complete for neocomplcache.
+            " Require: clang_complete
+                " clang.so, clang.dll, libclang.dylib
+            let g:neocomplcache_clang_use_library = 1 " use clang library
+            let g:neocomplcache_clang_library_path = '/usr/lib/'
+            let g:neocomplcache_clang_executable_path = '/usr/bin/clang'
+            let g:neocomplcache_clang_macros = 1 " -code-completion-macros option
+            let g:neocomplcache_clang_patterns = 1 " -code-completion-patterns option
+            let g:neocomplcache_clang_auto_options = "path, .clang_complete, clang"
+            let g:neocomplcache_clang_user_options = '-std=gnu99 -stdlib=libc'
+            " let g:neocomplcache_clang_user_options = '-std=c++11 -stdlib=libc++'
+            let g:neocomplcache_clang_debug = 0 " enable debug message.
         " }}}
 
         " OmniCppComplete {{{ C/C++ omni-completion with ctags database
@@ -4412,13 +4626,14 @@ syntax on
         "let lhs_markup = tex " tex/none
 
         " neco-ghc {{{ neocomplcache complete for Haskell.
-        " omnifunc=necoghc#omnifunc
-        " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
+	    " omnifunc=necoghc#omnifunc
+	    " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
         " }}}
     " }}}
 
     " [ Perl ] {{{
-    " perlomni : https://github.com/c9s/perlomni.vim
+        " perlomni {{{ perl omnicompletion for vim (including base class function compleltions .etc)
+        " }}}
     " }}}
 
     " [ Lua ] {{{
@@ -4522,7 +4737,15 @@ syntax on
 	" vim-markdown {{{ Vim Markdown runtime files
 	" }}}
 
+        " vim-preview {{{ preview markup files (markdown,rdoc,textile,html)
+        " TODO
+        " }}}
+
         " riv {{{ Reading , Writing and Managing reStructuredText documents in Vim
+        " }}}
+
+        " Vimdown {{{ A dirty tool to convert .vimrc and .vim script files to markdown
+        " TODO
         " }}}
     " }}}
 
@@ -4566,6 +4789,11 @@ syntax on
 
     " VimLint {{{ a correctness and sanity checker of Vim configuration
         " Usage: :VimLint
+    " }}}
+
+    " vim-shell {{{ Improved integration between Vim and its environment
+        " This plug-in aims to improve the integration between Vim and its
+        " environment by providing functions to switch to full-screen
     " }}}
 
     " [ completion ] {{{
@@ -4809,6 +5037,12 @@ syntax on
     " [ command line ] {{{
     " }}}
 
+    " [ line numbers ] {{{
+        " numbers.vim {{{ relative line numbers.
+            " :NumbersToggle
+        " }}}
+    " }}}
+
     " [ history/undo ] {{{ <F10>
         " Vim's builtin undo tree:
             " "u" -> undo
@@ -4855,10 +5089,6 @@ syntax on
             "     map <C-n> J
             "     map <C-p> K
             " endfunction
-            " if has("presistent_undo")
-            "     set undodir='~/.undo/'
-            "     set undofile
-            " endif
         " }}}
     " }}}
 
@@ -4920,7 +5150,7 @@ syntax on
                 "augroup END
         " }}}
 
-        " vimux {{{ Easily interact with tmux from vim.
+        " vimux {{{ easily interact with tmux from vim.
             " Usage:
             " - :VimuxRunCommand("command")
             " - :VimuxRunLastCommand
@@ -4938,22 +5168,19 @@ syntax on
             let VimuxUseNearestPane = "q C-u"
 
             " Run the current file with rspec
-            map <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
+            nnoremap <Leader>rb :call VimuxRunCommand("clear; rspec " . bufname("%"))<CR>
             " Prompt for a command to run
-            map <Leader>rp :VimuxPromptCommand<CR>
+            nnoremap <Leader>rp :VimuxPromptCommand<CR>
             " Run last command executed by VimuxRunCommand
-            map <Leader>rl :VimuxRunLastCommand<CR>
+            nnoremap <Leader>rl :VimuxRunLastCommand<CR>
             " Inspect runner pane
-            map <Leader>ri :VimuxInspectRunner<CR>
+            nnoremap <Leader>ri :VimuxInspectRunner<CR>
             " Close all other tmux panes in current window
-            map <Leader>rx :VimuxClosePanes<CR>
+            nnoremap <Leader>rx :VimuxClosePanes<CR>
             " Close vim tmux runner opened by VimuxRunCommand
-            map <Leader>rq :VimuxCloseRunner<CR>
+            nnoremap <Leader>rq :VimuxCloseRunner<CR>
             " Interrupt any command running in the runner pane
-            map <Leader>rs :VimuxInterruptRunner<CR>
-
-            " vimux-ruby-test {{{
-            " }}}
+            nnoremap <Leader>rs :VimuxInterruptRunner<CR>
         " }}}
 
         " inline_edit {{{ Edit code that's embedded within other code.
@@ -5169,6 +5396,9 @@ syntax on
         " ColorSchemeEditor {{{ PyGTK GUI to more easily create colorschemes
             " (keywords: color scheme editor)
         " }}}
+
+        " tomasr/molokai
+            let g:molokai_original = 0 " 0: dark gray background, 1: light gray
 
         " vim-colors-solarized
             " if has('gui_running')
@@ -5857,22 +6087,6 @@ syntax on
             " }}}
 
         " [ paste ] {{{
-            " vim-pastie
-                " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
-                " :[%|visual]Pastie!
-
-            " PasteBin {{{ <Visual>PasteBin
-                " http://www.vim.org/scripts/script.php?script_id=3505
-                " http://pastebin.com/api config reference.
-                let g:pastebin_browser_command = "firefox %URL% &"
-                let g:pastebin_private = 1 " 0: Public, 1: Unlisted, 2: Private.
-                let g:pastebin_api_dev_key = '1587f97dfac0e24806b9d5092f710dc6'
-                let g:pastebin_api_user_name = 'numbchild'
-                let g:pastebin_api_user_password = 'numbchild324'
-                let g:pastebin_expire_date = '1M'
-                    " N:Never, 1H: 1 Hour, 1D: 1 Day, 1M: 1 Month
-            " }}}
-
             " Gist {{{ GitHub paste server.
                 " Requires: curl, webapi-vim, git command.
                 " :'<,'>Gist -- visual
@@ -5903,10 +6117,31 @@ syntax on
                 let g:gist_show_privates = 1 " show private gist in :Gist -l.
                 let g:gist_get_multiplefile = 1 " edit all files contains more than one.
             " }}}
+
+            " PasteBin {{{ interface for pastebin.com
+                " http://pastebin.com/api config reference.
+                " <Visual>PasteBin
+                let g:pastebin_browser_command = "firefox %URL% &"
+                let g:pastebin_private = 1 " 0: Public, 1: Unlisted, 2: Private.
+                let g:pastebin_api_dev_key = '1587f97dfac0e24806b9d5092f710dc6'
+                let g:pastebin_api_user_name = 'numbchild'
+                let g:pastebin_api_user_password = 'numbchild324'
+                let g:pastebin_expire_date = '1M'
+                    " N:Never, 1H: 1 Hour, 1D: 1 Day, 1M: 1 Month
+            " }}}
+
+            " vim-pastie : interface for pastie.org
+                " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
+                " :[%|visual]Pastie!
+
+            " vim-pasta {{{ Pasting in Vim with indentation adjusted to destination context
+            " TODO
+            " }}}
         " }}}
 
         " WebAPI {{{
         " }}}
+
         " TwitVim {{{ Vim Twitter client.
             let twitvim_login = "numbchild:numbchild324"
             "let twitvim_proxy = "proxyhost:proxyport"
@@ -5935,7 +6170,7 @@ syntax on
             " Tabularize scripts.
         " }}}
 
-        " Align%294
+        " vim-align
 
         " surround {{{ cs, ds, ys[(text object)|iw|W|t(<p>)], (Visual)S
             " cs"', cs'<q>, cst", ds", ysiw], yss(, ds{, ds),
@@ -5949,7 +6184,7 @@ syntax on
             " :Abolish, :Subvert.
         " }}}
 
-        " Auto_Pairs {{{
+        " AutoPairs {{{
                 " shortcuts:
                 "   <M-o> : newline with indentation
                 "   <M-a> : jump to of line
@@ -5972,6 +6207,8 @@ syntax on
             let g:AutoPairsCenterLine = 1
             let g:AutoPairsFlyMode = 0
         " }}}
+
+        " jiangmiao/auto-pairs : insert or delete brackets, parens, quotes in pair
 
         " delimitMate {{{ auto closing of quotes, parenthesis, brackets etc.
         " }}}
@@ -6094,11 +6331,6 @@ syntax on
             " window or Tmux/Screen pane.  The plugin talks to the running
             " instance of ELinks.  If you want to change the keybindings, just
             " edit the nnoremap lines at the bottom of the plugin file.
-        " }}}
-    " }}}
-
-    " [ terminal multiplexer ] {{{
-        " vimux {{{ effortless vim and tmux interaction. :call RunVimTmuxCommand("ls")
         " }}}
     " }}}
 
