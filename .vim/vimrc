@@ -409,7 +409,7 @@
     " }}}
 " }}}
 
-" [[ Gvim ]] {{{
+" [[ gVim ]] {{{
 " :help gui.txt :help gui_x11.txt
     " $MYGVIMRC
 if has('gui') && has('gui_running')
@@ -453,8 +453,16 @@ if has('gui') && has('gui_running')
 endif
 " }}}
 
-" [[ looks ]] {{{
+" [[ Windows ]] {{{
+" Windows specific settings
+if has('win32')
+    " Windows gVim-specific settings
+    if has('gui_running')
+    endif
+endif
+" }}}
 
+" [[ looks ]] {{{
     " [ basic looks ] {{{
     set linespace=1 " 1 for Win32 GUI, space for underline.
     set lazyredraw
