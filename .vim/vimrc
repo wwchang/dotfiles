@@ -1442,6 +1442,8 @@ endif
         NeoBundle 'Rykka/colorv.vim'
         " Tmux & Screen
         NeoBundle 'benmills/vimux'
+        " IM
+        NeoBundle 'vimim/vimim'
         " binary files
         " NeoBundle 'tpope/vim-afterimage'
         " others
@@ -6420,6 +6422,48 @@ syntax on
     " }}}
 
     " [ smalltools ] {{{
+        " vimim {{{ Vim Input Method
+        " TODO set popup menu height
+            " Usage:
+            "   - [normal] gi --> no popup menu input.
+            "   - [normal] n  --> no popup menu input.
+            "   - [insert] i_CTRL-_     --> toggle VimIM
+            "   - [insert] i-CTRL-^     --> toggle popup menu
+            "   - [insert] i_CTRL-U     --> undo inserted characters
+            "   - [insert] i_CTRL-L     --> when .. is set: go to .. mode
+            let g:vimim_map = 'tab_as_onekey' " 'no-gi', 'tab_as_gi', 'tab_as_onekey'
+            let g:vimim_mode = 'dynamic'
+            let g:vimim_pumheight = 5 " my own branch
+            " let g:vimim_plugin = '/path/to/plugin' " plugin path
+            let g:vimim_punctuation = 0
+                " 1: basic chinese punctuation
+                " 2: usual chinese punctuation (default)
+                " 3: include " and /
+                " 0: do not use chinese punctuation
+                " -1: totally close chinese punctuation
+            let g:vimim_toggle = 'pinyin,google' " toggle cycle
+                " -1: close toggle cycle
+                " 'wubi,pinyin'
+            let g:vimim_shuangpin = 0 " 双拼
+                " 'abc': 智能 ABC
+                " 'ms': 微软
+                " 'nature': 自然码
+                " 'plusplus': 拼音加加
+                " 'purple': 紫光
+                " 'flypy': 小鹤
+            let g:vimim_cloud = 'google,sougou,qq.fanti' " 云输入
+                " -1 : close cloud
+                " 'baidu': 百度云输入
+                " 'google': 谷歌云输入
+                " 'shougou': 搜狗云输入
+                " 'qq': QQ云输入
+                " 'sougou.dynamic': 搜狗纯云输入，动态
+                " 'sougou.static': 搜狗纯云输入，静态
+                " 'qq.[fanti/mixture/fuzzy/wubi]': QQ云输入，开启繁体/混合模式/模糊音/五笔
+                " 'qq.shuangpin.[abc/ms/nature/plusplus/purple/flypy]'
+            let g:vimim_mycloud = 0
+        " }}}
+
         " fcitx
             " for set small delay
             " set timeoutlen=600
