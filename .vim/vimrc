@@ -1293,6 +1293,7 @@ endif
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
         " help
         NeoBundle 'powerman/vim-plugin-viewdoc', { 'directory': 'viewdoc' }
+        NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " snippets
         " NeoBundle 'Shougo/neocomplcache-snippets-complete', {
         "             \ 'depends': 'Shougo/neocomplcache',
@@ -3193,6 +3194,10 @@ syntax on
         " }}}
 
         " Manuals {{{ An extensible help system
+        " }}}
+
+        " unite-help {{{ Vim :help command in unite interface through doc tags file
+            " Usage: :Unite help
         " }}}
     " }}}
 
