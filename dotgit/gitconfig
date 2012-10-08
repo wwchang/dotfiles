@@ -22,9 +22,9 @@
 [core]
     editor = vim
     pager = less
-    excludesfile = $HOME/.gitignore
+    excludesfile = /home/chris/.gitignore
     # enable "autocrlf" this when you are on Windows. for line break.
-	autocrlf = input # true, false, input, off
+    autocrlf = input # true, false, input, off
     whitespace=indent-with-non-tab,space-before-tab,cr-at-eol,blank-at-eof,blank-at-eol
 
 [help]
