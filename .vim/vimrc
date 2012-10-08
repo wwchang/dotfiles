@@ -319,7 +319,7 @@
     set completeopt-=preview " dont show preview window
 
     " [ popup menu ]
-    set pumheight=20 " set popup menu max items available. 0=long
+    set pumheight=20 " popup menu height. 0: long
 
     " [ preview ] window
     " set previewwindow " identifies the preview window. normally not set directly.
@@ -1108,12 +1108,19 @@ endif
         " Usage:
         " :NeoBundleUpdate
         " :NeoBundleInstall or :Unite neobundle/install
-        " :Unite neobundle/search -- <C-l> to remake cache.
+        " :Unite neobundle/search -- search plugin from sources.
+        "   - <C-l> : remake cache.
+        "   - sources:
+        "       - vim-script.org -- http://vim-scripts.org
+        "       - neobundle-vim-scripts -- from neobundle-recipe
         " :NeoBundleLog -- git updates commit messages
         " :NeoBundleUpdatesLog -- simple version of :NeoBundleLog
         " :NeoBundleList          - list configured bundles
         " :NeoBundleInstall(!)    - install(update) bundles
         " :NeoBundleClean(!)      - confirm(or auto-approve) removal of unused bundles
+
+        " options
+        " let g:neobundle#types#raw#calc_hash_command = '' " 'sha1sum'/'md5sum'
 
         " check neobundle installed
         fun! InstallNeoBundle(path)
@@ -1149,16 +1156,31 @@ endif
         " NeoBundle 'git://git.wincent.com/command-t.git'
         " - Non git repos
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
-        " - attributes
+        " - raw repository
+        " NeoBundle 'https://raw.github.com/m2ym/rsense/master/etc/rsense.vim'
+        " - recipe attributes
 	"   - 'rtp' is a relative path.
 	"	e.g. bundle/vimwiki/src/autoload
 	"	    -> 'rtp': 'src',
 	"   - 'name'
 	"   - 'directory'
-	"   - 'type'
+        "   - 'base'
+	"   - 'type': -- 'git', 'hg', 'raw', 'nosync'
 	"   - 'depends'
 	"   - 'build'
-	"   - 'rev'
+        "   - 'external_commands': -- Dictionary or List.
+	"   - 'rev': -- revision or branch name.
+        "   - 'type__shallow': 1 -- use shallow clone
+        " nested attributes,
+        " syntax suger -> every value in Dictionary can be nested with Dictionary/List.
+        " NeoBundle 'https://bitbucket.org/ZyX_I/aurum', {'depends':
+        "             \ [ 'https://bitbucket.org/ZyX_I/frawor',
+        "               \ ['kk/kk', {'rtp': 'vim'}],
+        "             \ ]}
+        " NeoBundle 'https://bitbucket.org/ZyX_I/aurum', {
+        "             \ 'type': 'hg',
+        "             \ 'depends': [ ['https://bitbucket.org/ZyX_I/frawor', {'type': 'hg'}] ],
+        "             \ }
         " NeoBundle 'neocomplcache.vim', {
         "             \ 'directory': 'neocomplcache',
         "             \ 'type': 'hg',
@@ -1569,12 +1591,13 @@ syntax on
     " }}}
 
     " [ indent, align, fold ] {{{
-        " Indent_Guide {{{ <Leader>ig, :IndentGuidesToggle
+        " indent-guides {{{ <Leader>ig, :IndentGuidesToggle
             let g:indent_guides_enable_on_vim_startup = 1
             let g:indent_guides_start_level = 2
-            let g:indent_guides_indent_levels = 7
+            let g:indent_guides_indent_levels = 30
             let g:indent_guides_color_change_percent = 10 " 0~100
             let g:indent_guides_guide_size = 1 " indent vertical lines width.
+              " 0: same as shiftwidth, 0~shiftwidth value.
             let g:indent_guides_space_guides = 1 " consider spaces as indention.
                 let g:indent_guides_auto_colors = 0
                 " autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd guibg=red ctermbg=3
@@ -1839,7 +1862,7 @@ syntax on
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 1
-            let g:neocomplcache_source_completion_length['look'] = 3
+            let g:neocomplcache_source_completion_length['look'] = 3 " neco-look plugin
 	    " dynamically change dictionary_complete source completion length.
             let s:TextFileType = ['text', 'mail', 'markdown',]
             if index(s:TextFileType, &filetype) >= 0
@@ -2161,8 +2184,6 @@ syntax on
             " }}}
         " }}}
 
-        " vimproc : a great asynchronous execution library for Vim.
-
         " neco-look : neocomplcache-look (/usr/bin/look)
 
         " AutoComplPop
@@ -2404,7 +2425,7 @@ syntax on
             let g:tagbar_foldlevel = 2 " level higher than this number will be closed.
             let g:tagbar_usearrows = 0 " { Windows only }
             let g:tagbar_iconchars = ['▶', '▼'] " default on Linux and Mac.
-	    let g:tagbar_indent = 1 " indent for compact view.
+            let g:tagbar_indent = 1 " indent for compact view.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
             " let g:tagbar_type_javascript = {
@@ -2415,7 +2436,7 @@ syntax on
 
             " automatically opening tagbar.
             " 1. autocmd VimEnter * nested :TagbarOpen " open for any files.
-            "2. augroup TagListAutoToggle
+            " 2. augroup TagListAutoToggle
                 "au!
                 "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
             "augroup END
@@ -2486,11 +2507,11 @@ syntax on
 		" :TagsByFileType
 		" :HighlightTags
             " let g:easytags_cmd = '/usr/bin/ctags'
-            let g:easytags_file = '~/.vim/tags' " global tags
+            let g:easytags_file = '~/.vimtags' " global tags
             let g:easytags_dynamic_files = 2
 		" 1: project specific tags -> use 'tags' option
 		" 2: auto create project specific tags based on first name in 'tags' option
-            let g:easytags_by_filetype = '~/.vim/tags'
+            let g:easytags_by_filetype = '~/.vimtags'
             let g:easytags_always_enabled = 0 " this slow down Vim
             let g:easytags_on_cursorhold = 0 " disable periodic highlight
             let g:easytags_updatetime_min = 4000
@@ -2505,6 +2526,7 @@ syntax on
             let g:easytags_python_enabled = 1 " use python interface to speed up
             " let g:easytags_python_script =
 
+            set tags+=~/.vimtags " from easytags
             " au FileType python let b:easytags_last_highlighted = 0
         " }}}
 
@@ -3089,7 +3111,7 @@ syntax on
 
             " customize {{{
             " TODO add other doc like HTML5, CSS3, JavaScript. Go,
-	    " support ruby doc (ri), Go doc (godoc) etc
+            " support ruby doc (ri), Go doc (godoc) etc
             " Dart, Lisp, muttrc, fvwm,
             " Functions:
                 " - ViewDoc({target}, {topic}, {filetype})
@@ -3115,7 +3137,7 @@ syntax on
             " let g:ViewDoc_python = function('ViewDoc_pydoc')
 
             " help_custom ~/.vim/ftdoc/{filetype}
-            autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
+            " autocmd VimEnter * let g:ViewDoc_cmake = function('ViewDoc_help_custom')
             " }}}
         " }}}
 
@@ -3172,10 +3194,13 @@ syntax on
         " }}}
     " }}}
 
-    " [ Debugger ] {{{ <F5~F8>
-        " Vdebug : Multi-language DBGP protocol debugger client for Vim.
+    " [ debugger ] {{{ <F5~F8>
+        " Vdebug {{{ Multi-language DBGP protocol debugger client for Vim.
+            " (PHP, Python, Perl, Ruby, etc.)
+        " }}}
 
         " VimDebug {{{ Integrate your debugger with Vim
+            " 'Vim::Debug' - Perl wrapper around a command line debugger
         " }}}
 
         " GdbFromVim {{{ debug your application with gdb from Vim relies on gdblib
@@ -3207,7 +3232,10 @@ syntax on
 
     " [ Compiler ] {{{ <F5>
         " SingleCompile {{{ <F5> compile&run
-            " :SCChooseCompiler, :SCViewResult, :SCCompileRunAsync
+            " Usage:
+            " :SCChooseCompiler
+            " :SCViewResult
+            " :SCCompileRunAsync
             let g:SingleCompile_alwayscompile = 1 " 0: to disable it.
             let g:SingleCompile_asyncrunmode = 'auto' " mode: auto, none, python,
             let g:SingleCompile_autowrite = 1 " save file when compile.
@@ -3412,6 +3440,7 @@ syntax on
         " }}}
 
         " ConflictMotions {{{ defines movement commands and text objects.
+            " Require: CountJump
             " Usage:
             " ]z, [z on conflict marker.
             " ]x, [x next/previous start of a conflict.
@@ -3439,6 +3468,12 @@ syntax on
 
     " [ FileManager ] {{{ <F11>
         " NERDtree {{{ <F11> :NERDTree [dir|bookmark-name]
+            " Usage:
+            "   Keys:
+            "       - t/i/s/o -- open in tab/split/vsplit/preview
+            "       - m -- show NERDTree menu
+            "       - R -- refresh
+            "       - ? -- show quick help
             " let loaded_nerd_tree=1 " let vim can not load NERDTree.
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
             let NERDTreeAutoCenter = 1 " default = 1.
@@ -3685,7 +3720,10 @@ syntax on
         " }}}
 
         " vim-rooter {{{ Changes Vim working directory to project root
-            let g:rooter_patterns = ['.git/', '.hg/', '.bzr/', '.svn/', '_darcs/', 'Rakefile', 'Makefile',]
+            let g:rooter_patterns = [
+                        \ '.git/', '.hg/', '.bzr/', '.svn/', '_darcs/',
+                        \ 'Rakefile', 'Makefile',
+                        \ ]
             let g:rooter_use_lcd = 0 " use :lcd to locally
         " }}}
     " }}}
@@ -3909,6 +3947,8 @@ syntax on
         " }}}
 
         " [ complete ] {{{
+            " pythoncomplete {{{ updated version of python omni completion
+            " }}}
         " }}}
 
         " [ help ] {{{
@@ -3925,6 +3965,8 @@ syntax on
                 " let g:pyref_django = '/usr/share/doc/python-django-doc/html/'
                 " let g:pyref_index =
             " }}}
+
+            " pydoc.vim
 
             " py3stdlib : ~/.vim/doc/py3stdlib.txt
             " :help py3stdlib
@@ -4040,11 +4082,6 @@ syntax on
             " TODO
             " }}}
 
-            " vim-pipe {{{ provides REPL-like development for other shell tools
-                " For example you can instantly send an SQL script to the
-                " database and see the results in a temporary buffer.
-            " }}}
-
             " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
                 " Usage: :PyREPLToogle or \r to toggle the REPL on or off.
             " }}}
@@ -4143,11 +4180,11 @@ syntax on
     " }}}
 
     " [ VimL ] {{{
-        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
-            " :h vimsupport.
+        " vesting {{{ best VimScript VimL test framework.
         " }}}
 
-        " vesting {{{ vimscript test framework.
+        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
+            " :h vimsupport.
         " }}}
 
         " runVimTests {{{ A testing framework for Vim.
@@ -4791,31 +4828,38 @@ syntax on
 " }}}
 
 " [ Vim Extension ] {{{
-    " tplugin  {{{
+    " [ plugins ] {{{
+        " tplugin  {{{
+        " }}}
+
+        " Sauce  {{{ Dynamic vimrc manager for load different settings.
+            " a manager for multiple vimrc files, which can be used to
+            " load different settings for different environments.
+            " ---------------------
+            " Usage:
+            "   - :Sauce <name> -- Load a sauce
+            "   - :SauceNew <name> -- create a new sauce.
+            "   - :SauceEdit <name> -- Edit an existing sauce.
+            "   - :SauceCopy <name>
+            "   - :sauceDelete <name>
+            " This can be used as a simple project organiser tool.
+            " e.g. Load the MyProject sauce: :Sauce MyProject
+            let g:sauce_path = "~/.vimsauce"
+        " }}}
+
+        " VimLint {{{ a correctness and sanity checker of Vim configuration
+            " Usage: :VimLint
+        " }}}
     " }}}
 
-    " Sauce  {{{ Dynamic vimrc manager for load different settings.
-        " a manager for multiple vimrc files, which can be used to
-        " load different settings for different environments.
-        " ---------------------
-        " Usage:
-        "   - :Sauce <name> -- Load a sauce
-        "   - :SauceNew <name> -- create a new sauce.
-        "   - :SauceEdit <name> -- Edit an existing sauce.
-        "   - :SauceCopy <name>
-        "   - :sauceDelete <name>
-        " This can be used as a simple project organiser tool.
-        " e.g. Load the MyProject sauce: :Sauce MyProject
-        let g:sauce_path = "~/.vimsauce"
-    " }}}
+    " [ Vim envirement ] {{{
+        " vimproc {{{ a great asynchronous execution library for Vim.
+        " }}}
 
-    " VimLint {{{ a correctness and sanity checker of Vim configuration
-        " Usage: :VimLint
-    " }}}
-
-    " vim-shell {{{ Improved integration between Vim and its environment
-        " This plug-in aims to improve the integration between Vim and its
-        " environment by providing functions to switch to full-screen
+        " vim-shell {{{ Improved integration between Vim and its environment
+            " This plug-in aims to improve the integration between Vim and its
+            " environment by providing functions to switch to full-screen
+        " }}}
     " }}}
 
     " [ completion ] {{{
@@ -4987,7 +5031,7 @@ syntax on
             "let g:EasyMotion_mapping_{motion} = {mapping}
         " }}}
 
-        " CountJump {{{
+        " CountJump {{{ Create custom motions and text objects via repeated jumps.
         " }}}
     " }}}
 
@@ -5125,6 +5169,25 @@ syntax on
     " }}}
 
     " [ REPL: Read-Eval-Print Loop ] {{{
+        " vim-pipe {{{ Send a vim buffer through a command and instantly see the output.
+            " provides REPL-like development for other shell tools For example
+            " you can instantly send an SQL script to the database and see the
+            " results in a temporary buffer.
+            " Usage:
+            "   <LocalLeader>r
+            "   <LocalLeader>p
+            " - b:vimpipe_command = ''
+            " - b:vimpipe_filetype = ''
+            " Once b:vimpipe_command is configured, type <LocalLeader>r to get
+            " the list results. There's no need to save the file first. It works
+            " on the current buffer, not the contents on disk.
+            au FileType sql let b:vimpipe_command = "sqlite3 " . % " sqlite
+            au FileType markdown let b:vimpipe_command = "markdown" " markdown
+            au FileType markdown let b:vimpipe_filetype="html"
+            au FileType html let b:vimpipe_command="lynx -dump -stdin" " HTML
+            au FileType javascript let b:vimpipe_command='jslint <(cat)' " JSLint (JavaScript)
+        " }}}
+
         " Screen {{{ (vim + gnu screen/tmux) ['Screen_vim__gnu_screentmux']
             " simulate an embedded shell in vim by allowing you convert vim
             " session into one running in Screen or Tmux with a split window.
