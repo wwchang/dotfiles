@@ -1268,6 +1268,7 @@ endif
 	" TODO NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', { 'type': 'hg' }
         " Others
         NeoBundle 'AndrewRadev/switch.vim'
+        NeoBundle 'zef/vim-cycle'
         " NeoBundle 'tpope/vim-speeddating'
         " NeoBundle 'myusuf3/numbers.vim'
         NeoBundle 'kana/vim-gf-diff'
@@ -3751,6 +3752,27 @@ syntax on
             " Filetype Swaps
             " OmniCompletion Swaps
             let b:swap_completefunc = 'cssswapit#CssSwapComplete'
+        " }}}
+
+        " vim-cycle {{{ toggle words between pairs or lists of related words.
+        " TODO
+            " Usage:
+            "   - <C-A> / <C-X> -- increment / decrement
+            " Customization
+            " * You can add your own word groups:
+            " call AddCycleGroup(['one', 'two', 'three'])
+            "
+            " * To deal with conflicts, Cycle.vim also supports adding groups that
+            "   are specific to a certain filetype:
+            " call AddCycleGroup('ruby', ['class', 'module'])
+            " call AddCycleGroup('python', ['else', 'elif'])
+            "
+            " * Providing a list of filetypes is also supported:
+            " call AddCycleGroup(['ruby', 'eruby', 'perl'], ['else', 'elsif'])
+            "
+            " However, if there are no conflicting cases it is preferable to
+            " define all cycle groups in the global namespace, using
+            " filetype-specific groups only in case of conflict.
         " }}}
 
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
