@@ -1355,6 +1355,10 @@ endif
 	NeoBundle 'tomtom/tcomment_vim'
         " NeoBundle 'scrooloose/nerdcommenter'
         " NeoBundle 'tpope/vim-commentary'
+        NeoBundle 'mklabs/vim-cowsay', {
+                    \ 'depends': ['tomtom/tcomment_vim'],
+                    \ 'external_commands': ['cowsay'],
+                    \ }
         " Tabular
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
@@ -3119,6 +3123,17 @@ syntax on
             " https://github.com/MarcWeber/vim-addon-commenting
             "let g:vim_addon_commenting = {'force_filetype_comments':
                         "\ {'php': ['#',''], 'c' : ['/*','*/']} }
+        " }}}
+
+        " vim-cowsay {{{
+            " Require:
+            "   - cowsay
+            " Usage:
+            "   - :Cow [string]
+            "   - :[range]Cow -> e.g. :20,35Cow (surround words (20,35) with cow)
+            "   - :Cowcomment [string] (use tComment)
+            "   - :Cowfile [string] -- different style cows
+            "   - :Cowsay [string] -- :echo
         " }}}
     " }}}
 
