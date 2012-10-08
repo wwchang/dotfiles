@@ -5732,6 +5732,7 @@ syntax on
 	    let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
 	    let g:tinykeymap#mapleader = mapleader . 'm'
 	    let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
+	    let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
 	" }}}
 
         " vim-addon-actions {{{ customization for key bindings
