@@ -14,6 +14,8 @@ if exists("b:current_syntax")
     finish
 endif
 
+hi clear
+
 set background=dark " dark or light
 
 if version > 580
@@ -70,7 +72,7 @@ hi ModeMsg         guifg=#E6DB74
 hi MoreMsg         guifg=#E6DB74
 hi Operator        guifg=#F92672
 
-" Pop complete menu
+" complete popup menu
 hi Pmenu           guifg=#000000 guibg=#FFFFFF
 hi PmenuSel        guifg=#080808 guibg=#FE0086 gui=italic
 hi PmenuSbar       guifg=#080808 guibg=#AEFE00
@@ -275,124 +277,3 @@ if &t_Co > 255
     hi SpellRare      ctermfg=none ctermbg=105
 
 end
-
-" {{{ for Tagbar.vim
-" cyan
-highlight TagbarHighlight       ctermfg=051 ctermbg=none cterm=bold
-" gray
-highlight TagbarComment         ctermfg=238 ctermbg=none cterm=none
-" green
-highlight TagbarKind            ctermfg=154 ctermbg=none cterm=bold
-" dark green
-highlight TagbarNestedKind      ctermfg=070 ctermbg=none cterm=none
-" blue
-highlight TagbarScope           ctermfg=039 ctermbg=none cterm=none
-" yellow
-highlight TagbarType            ctermfg=190 ctermbg=none cterm=none
-" orange
-highlight TagbarSignature       ctermfg=202 ctermbg=none cterm=none
-" pink
-highlight TagbarPseudoID        ctermfg=205 ctermbg=none cterm=bold
-" red
-highlight TagbarFoldIcon        ctermfg=197 ctermbg=none cterm=none
-" dark green
-highlight TagbarAccessPublic    ctermfg=022 ctermbg=none cterm=none
-" dark red
-highlight TagbarAccessProtected ctermfg=088 ctermbg=none cterm=bold
-" red
-highlight TagbarPrivate         ctermfg=196 ctermbg=none cterm=italic
-" }}}
-
-" Colors: {
-"hi Black    ctermfg=240         ctermbg=none        cterm=none
-"hi Blue     ctermfg=68          ctermbg=none        cterm=none
-"hi Green    ctermfg=107         ctermbg=none        cterm=none
-"hi Orange   ctermfg=214         ctermbg=none        cterm=none
-"hi Peach    ctermfg=222         ctermbg=none        cterm=none
-"hi Pink     ctermfg=205         ctermbg=none        cterm=none
-"hi Pink2    ctermfg=211         ctermbg=none        cterm=none
-"hi Purple   ctermfg=153         ctermbg=none        cterm=none
-"hi Purple2  ctermfg=164         ctermbg=none        cterm=none
-"hi Red      ctermfg=203         ctermbg=none        cterm=none
-"hi Silver   ctermfg=245         ctermbg=none        cterm=none
-"hi White    ctermfg=255         ctermbg=none        cterm=none
-" }
-
-"" JavaScript: {
-"" Other
-"hi link javaScriptSpecial               Pink
-"hi link javaScriptFloat                 Red
-
-"" Browser/DOM
-"hi link javaScriptHtmlEvents            Pink2
-"hi link javaScriptDomElemAttrs          Purple
-"hi link javaScriptHtmlElemAttrs         Purple
-"hi link javaScriptHtmlElemFuncs         Pink
-"hi link javaScriptCssStyles             Purple
-
-"" JSDoc
-"hi link javaScriptDocType         Blue
-"hi link javaScriptDocTypeNoParam  Blue
-"hi link javaScriptDocParam        Silver
-
-"" JavaScript
-""syntax keyword javaScriptPrototype      prototype
-"hi link javaScriptPrototype       Pink2
-""syntax keyword javaScriptSource         import export
-"hi link javaScriptSource          Red
-""syntax keyword javaScriptType           const undefined var void yield
-"hi link javaScriptType            Orange
-""syntax keyword javaScriptOperator       delete new in instanceof let typeof
-"hi link javaScriptOperator        Orange
-""syntax keyword javaScriptBoolean        true false
-"hi link javaScriptBoolean         Red
-""syntax keyword javaScriptNull           null
-"hi link javaScriptNull            Purple
-""syntax keyword javaScriptThis           this self
-""syntax keyword javaScriptConditional    if else
-"hi link javaScriptConditional     Peach
-""syntax keyword javaScriptRepeat         do while for
-"hi link javaScriptRepeat          Peach
-""syntax keyword javaScriptBranch         break continue switch case default return
-"hi link javaScriptBranch          Orange
-""syntax keyword javaScriptStatement      try catch throw with finally
-"hi link javaScriptStatement       Red
-""syntax keyword javaScriptGlobalObjects  Array Boolean Date Function Infinity JavaArray JavaClass JavaObject JavaPackage kind Math Number NaN Object Packages RegExp String Undefined java netscape sun
-"hi link javaScriptGlobalObjects   Purple
-""syntax keyword javaScriptExceptions     Error EvalError RangeError ReferenceError SyntaxError TypeError URIError
-"hi link javaScriptExceptions      Red
-""syntax keyword javaScriptFutureKeys     abstract enum int short boolean export interface static byte extends long super char final native synchronized class float package throws goto private transient debugger implements protected volatile double import public
-"hi link javaScriptFutureKeys      Black
-""  }
-
-"" PHP: {
-"hi link phpFunctions          Pink
-"" }
-
-"" HTML: {
-"hi link htmlTag               Blue
-"hi link htmlTagName           Blue
-""}
-
-"" Python: {
-"hi link pythonPreCondit       Blue
-"" }
-
-"" CSS_LESS: {
-"hi link lessVariable      Blue
-"hi link lessFunction      Purple
-"hi link lessFuncDef       Purple
-"hi link cssBraces         Peach
-"hi link cssTagName        Orange
-"hi link cssClassName      Peach
-"hi link cssCommonAttr     Pink
-"hi link cssFontAttr       Pink
-"hi link cssTextAttr       Pink
-"hi link cssBoxAttr        Pink
-"hi link cssColorAttr      Pink
-"hi link cssRenderAttr     Pink
-"hi link cssTableAttr      Pink
-"hi link cssAuralAttr      Pink
-"hi link cssUIAttr         Pink
-"hi link cssGeneratedContentAttr      Pink
-""}
