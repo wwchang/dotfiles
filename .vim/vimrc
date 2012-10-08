@@ -1159,17 +1159,17 @@ endif
         " - raw repository
         " NeoBundle 'https://raw.github.com/m2ym/rsense/master/etc/rsense.vim'
         " - recipe attributes
-	"   - 'rtp' is a relative path.
-	"	e.g. bundle/vimwiki/src/autoload
-	"	    -> 'rtp': 'src',
-	"   - 'name'
-	"   - 'directory'
+        "   - 'rtp' is a relative path.
+        "	e.g. bundle/vimwiki/src/autoload
+        "	    -> 'rtp': 'src',
+        "   - 'name'
+        "   - 'directory'
         "   - 'base'
-	"   - 'type': -- 'git', 'hg', 'raw', 'nosync'
-	"   - 'depends'
-	"   - 'build'
+        "   - 'type': -- 'git', 'hg', 'raw', 'nosync'
+        "   - 'depends'
+        "   - 'build'
         "   - 'external_commands': -- Dictionary or List.
-	"   - 'rev': -- revision or branch name.
+        "   - 'rev': -- revision or branch name.
         "   - 'type__shallow': 1 -- use shallow clone
         " nested attributes,
         " syntax suger -> every value in Dictionary can be nested with Dictionary/List.
@@ -1223,8 +1223,8 @@ endif
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'tyru/current-func-info.vim'
         NeoBundle 'tomtom/quickfixsigns_vim', {
-		    \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
-		    \ }
+                    \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
+                    \ }
         NeoBundle 'kshenoy/vim-signature'
         NeoBundle 'quickfixstatus.vim'
 	" NeoBundle 'xolox/vim-session'
@@ -1667,7 +1667,7 @@ syntax on
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
             let g:neocomplcache_force_overwrite_completefunc = 1
-		" when conflict with other plugin completefunc, set 1 to disable error.
+            " when conflict with other plugin completefunc, set 1 to disable error.
             let g:neocomplcache_use_vimproc = 1
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
@@ -1713,22 +1713,22 @@ syntax on
 
             " complex dictionary options {{{
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
-	    " those g:neocomplcache_* options only are initialized in first
-	    " completion, not in Vim's initialization.
+            " those g:neocomplcache_* options only are initialized in first
+            " completion, not in Vim's initialization.
             " you can see neocomplcache default value of option by command:
             " :echo g:neocomplcache_*
-	    " if value/key is "_", means all buffers in neocomplcache.
-	    " wildcard {{{
-	    if !exists('g:neocomplcache_wildcard_characters')
-		let g:neocomplcache_wildcard_characters = {}
-	    endif
-	    " _ for all filetype, default is {'_': '*'}
-	    let g:neocomplcache_wildcard_characters['_'] = '-'
-		" -> e.g. public-html -> p-h [B] -> p-h
-		" -> e.g. public_html -> p_h [B] -> p-h
-		" -> e.g. HellowWorld -> H-W [B] -> H-W
-	    " }}}
-	    " keyword patterns {{{
+            " if value/key is "_", means all buffers in neocomplcache.
+            " wildcard {{{
+            if !exists('g:neocomplcache_wildcard_characters')
+                let g:neocomplcache_wildcard_characters = {}
+            endif
+            " _ for all filetype, default is {'_': '*'}
+            let g:neocomplcache_wildcard_characters['_'] = '-'
+            " -> e.g. public-html -> p-h [B] -> p-h
+            " -> e.g. public_html -> p_h [B] -> p-h
+            " -> e.g. HellowWorld -> H-W [B] -> H-W
+            " }}}
+            " keyword patterns {{{
             if !exists('g:neocomplcache_keyword_patterns')
                 let g:neocomplcache_keyword_patterns = {}
             endif
@@ -1736,26 +1736,26 @@ syntax on
             if !exists('g:neocomplcache_next_keyword_patterns')
                 let g:neocomplcache_next_keyword_patterns = {}
             endif
-	    " }}}
+            " }}}
             " vim completefunc {{{
             if !exists('g:neocomplcache_vim_completefuncs')
                 let g:neocomplcache_vim_completefuncs = {}
             endif
             " }}}
             " omni patterns {{{
-	    " every filetype or 'omnifunc' need omni_patterns setted, if not
-	    " setted, neocomplcache will not call omnifunc. partial omnifunc has
-	    " problem when neocomplcache call. (e.g. rubycomplete, clang_complete).
-	    " so you should use force_omni_patterns instead.
+            " every filetype or 'omnifunc' need omni_patterns setted, if not
+            " setted, neocomplcache will not call omnifunc. partial omnifunc has
+            " problem when neocomplcache call. (e.g. rubycomplete, clang_complete).
+            " so you should use force_omni_patterns instead.
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
             " . -> methods, :: -> class method, # -> instance method.
-	    let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
+            let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-	    let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " FIXME this pattern
+            let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " FIXME this pattern
             " }}}
             " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
