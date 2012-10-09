@@ -3199,7 +3199,14 @@ syntax on
             let g:syntastic_mode_map = {
                         \ "mode": "active",
                         \ "active_filetypes":
-                            \ ['ruby', 'python', 'php', 'c', 'go', 'javascript', 'tex',],
+                            \ [
+                                \ 'ruby', 'python', 'php', 'perl',
+                                \ 'lisp',
+                                \ 'c', 'cpp', 'go',
+                                \ 'javascript', 'coffee',
+                                \ 'css',
+                                \ 'xml', 'tex',
+                            \ ],
                         \ "passive_filetypes":
                             \ ['html'],
                         \ }
