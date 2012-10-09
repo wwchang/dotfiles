@@ -943,6 +943,9 @@ endif
 " [[ commands ]] {{{
     " Grep help files for pattern
     " command! -nargs=* -complete=help HG helpgrep <args>
+
+    " `:write !sudo tee %` hack ->
+    command! -bar -nargs=0 SudoWrite  :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 " }}}
 
 " [[ functions ]] {{{
