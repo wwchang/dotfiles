@@ -645,10 +645,10 @@ endif
 
     " [ tab ] {{{
     set smarttab " <Tab> insert shiftwidth at beginning of a line.
-    set shiftwidth=4 " Number of spaces for each indent level
-    set softtabstop=4 " Even when using <Tab>'s
+    set shiftwidth=2 " Number of spaces for each indent level
+    set softtabstop=2 " Even when using <Tab>'s
     set expandtab " When pressing <Tab>, replace with spaces
-    " set tabstop=4 " number of spaces that a <Tab> counts for.
+    " set tabstop=2 " number of spaces that a <Tab> counts for.
     " }}}
 
     " [ format ] {{{
