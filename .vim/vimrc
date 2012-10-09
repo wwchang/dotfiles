@@ -1689,7 +1689,7 @@ syntax on
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
             let g:neocomplcache_max_menu_width = 15 " popup menu width
             let g:neocomplcache_auto_completion_start_length = 2 " auto complete min length
-            let g:neocomplcache_manual_completion_start_length = 2 " manually min length
+            let g:neocomplcache_manual_completion_start_length = 0 " manually min length
             let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
             let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
