@@ -77,9 +77,8 @@
     if has('mouse')
         " set mouse=""           " disable mouse
         set mouse=v " a: all modes, v: visual,
-        " right mouse button
-        set mousemodel=popup_setpos " extends a selection. like in an xterm.
-        " set mouseshape=
+        set mousemodel=extend
+        set ttymouse=urxvt " make terminal support mouse: xterm/urxvt/...
     endif
     " }}}
 
