@@ -2165,14 +2165,26 @@ syntax on
 
                 " { UltiSnips } {{{
                 " <C-j>/<C-k> is used by UltiSnips jump backwards and forwards.
-                " defined jump forward and backwards with C-j/k.
-                " UltiSnips_ExpandSnippetOrJump, UltiSnips_ExpandSnippet,
-                " UltiSnips_ListSnippets, UltiSnips_JumpForwards.
+                " - UltiSnips_ExpandSnippet() -- expand snippet
+                " - UltiSnips_ExpandSnippetOrJump()
+                " - UltiSnips_JumpForwards()
+                " - UltiSnips_JumpBackwards()
+                " - UltiSnips_ListSnippets()
                 " ----------------------------------------------
                 if exists('did_UltiSnips_vim')
-                    inoremap <expr> <Tab> UltiSnips_ExpandSnippetOrJump() ?
-                                \ UltiSnips_ExpandSnippetOrJump()
+                    " function! Ulti_ExpandOrJump_and_getRes()
+                    "     call UltiSnips_ExpandSnippetOrJump()
+                    "     return g:ulti_expand_or_jump_res
+                    " endfunction
+                    " inoremap <expr> <Tab> <C-R>=(UltiSnips_ExpandSnippetOrJump() > 0) ?
+                    "             \ UltiSnips_ExpandSnippet()
+                    "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+
+                    inoremap <expr> <Tab> UltiSnips_ListSnippets() ?
+                                \ UltiSnips_ExpandSnippet()
                                 \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                    inoremap <expr> <C-j> UltiSnips_JumpForwards()
+                    inoremap <expr> <C-k> UltiSnips_JumpBackwards()
                 endif
                 " }}}
 
@@ -2306,11 +2318,20 @@ syntax on
 	" }}}
 
         " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
-            " :UltiSnipsEdit
-            " :UltiSnipAddFiletypes
+            " commands:
+            " - :UltiSnipsEdit
+            " - :UltiSnipAddFiletypes
             "       cuda.cpp.c (merging of two filetypes snippets)
-            " UltiSnips_AddSnippet(trigger, value, description, options, ...)
-            " UltiSnips_Anon(value, ...) 'anonymous snippet'
+            " functions:
+            " - UltiSnips_AddSnippet(trigger, value, desc ...) -- add snippet
+            " - UltiSnips_Anon() -- expand anonymous snippet
+            " - UltiSnips_ExpandSnippet() -- expand snippet
+            " - UltiSnips_ExpandSnippetOrJump()
+            " - UltiSnips_JumpForwards()
+            " - UltiSnips_JumpBackwards()
+            " - UltiSnips_ListSnippets()
+            " - UltiSnips_FileTypeChanged()
+
             if has('python3')
                 let g:UltiSnipsUsePythonVersion = 3 " use python 3.X
             elseif has('python')
