@@ -2944,50 +2944,6 @@ syntax on
             let g:asyncfinder_edit_file_on_single_result = 1
         " }}}
 
-        " unite.vim {{{ search and display info from arbitrary sources like:
-            " files, buffers, recently used files or registers.
-            " You can run one of defined action on a target displayed.
-            " Usage:
-            "   - :Unite [{options}] {source's'}
-            "       - {source's'}
-            "           - parameters of source
-            "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
-            "               - e.g. file:foo\:bar -- use \ to escape
-            "               - e.g. file:foo::bar -- ['foo', '', 'bar']
-            "   - press 'i' to search after prompt '>'
-            "       - *word,
-            "       - **/foo (directory recursively)
-            "       - foo bar (AND)
-            "       - foo|bar (OR)
-            "       - foo !bar (negative)
-            "   - :UniteResume, :UniteBookmarkAdd,
-            " Key Mappings:
-            "   - <Plug>(unite_exit)
-            "   - ....
-            " Normal mode mappings:
-            " Functions:
-            " Sources:
-            "   file, file/new, file_mru, file_rec, directory, buffer,
-            "   tab, register, bookmark, source, window, output, command,
-            "   mapping, grep, find, line, resume, jump, change, launcher,
-            "   alias, menu, history/yank, process, session ....
-
-            let g:unite_update_time = 500 " update time interval of candidates
-            let g:unite_enable_start_insert = 1 " startup into insert mode
-            let g:unite_split_rule = "topleft"
-            let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
-            let g:unite_winheight = 15
-            let g:unite_winwidth = 50
-            let g:unite_kind_openable_cd_command = "cd"
-            let g:unite_kind_openable_lcd_command = "lcd"
-            let g:unite_cursor_line_highlight = "PmenuSel"
-            let g:unite_abbr_highlight = "Normal"
-            let g:unite_enable_use_short_source_names = 0
-            " let g:unite_quick_match_table = {}
-            let g:unite_data_directory = expand('~/.unite')
-            " let g:unite_no_default_keymappings = 1 " don't map default key mappings
-        " }}}
-
         " EasyGrep {{{ make search and replace in files easy.
             " \vv: grep current word, \va: add to list,
             " \vr: replace, \vo: config options.
@@ -4871,8 +4827,8 @@ syntax on
     " }}}
 
     " [ Markdown ] {{{
-	" vim-markdown {{{ Vim Markdown runtime files
-	" }}}
+        " vim-markdown {{{ Vim Markdown runtime files
+        " }}}
 
         " vim-preview {{{ preview markup files (markdown,rdoc,textile,html)
         " TODO
@@ -4910,7 +4866,7 @@ syntax on
         " tplugin  {{{
         " }}}
 
-        " Sauce  {{{ Dynamic vimrc manager for load different settings.
+        " Sauce  {{{ Dynamic vimrc manager for load different envirements.
             " a manager for multiple vimrc files, which can be used to
             " load different settings for different environments.
             " ---------------------
@@ -4941,6 +4897,38 @@ syntax on
     " }}}
 
     " [ completion ] {{{
+        " unite.vim {{{ Ultimate interface to unite all sources
+            " Usage:
+            "   - :Unite [{options}] {source's'}
+            "       - {source's'}
+            "           - parameters of source
+            "               - e.g. file:foo:bar -- here ['foo', 'bar'] is parameters
+            "               - e.g. file:foo\:bar -- use \ to escape
+            "               - e.g. file:foo::bar -- ['foo', '', 'bar']
+            "   - press 'I' to search after prompt '>'
+            "       - *word,
+            "       - **/foo (directory recursively)
+            "       - foo bar (AND)
+            "       - foo|bar (OR)
+            "       - foo !bar (negative)
+            "   - :UniteResume, :UniteBookmarkAdd,
+
+            let g:unite_update_time = 500 " update time interval of candidates
+            let g:unite_enable_start_insert = 1 " startup into insert mode
+            let g:unite_split_rule = "topleft"
+            let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
+            let g:unite_winheight = 15
+            let g:unite_winwidth = 50
+            let g:unite_kind_openable_cd_command = "cd"
+            let g:unite_kind_openable_lcd_command = "lcd"
+            let g:unite_cursor_line_highlight = "PmenuSel"
+            let g:unite_abbr_highlight = "Normal"
+            let g:unite_enable_use_short_source_names = 0
+            " let g:unite_quick_match_table = {}
+            let g:unite_data_directory = expand('~/.unite')
+            " let g:unite_no_default_keymappings = 1 " don't map default key mappings
+        " }}}
+
 	" querycommandcomplete {{{ completions from an external query command
 	    " External command that queries for contacts If empty,
 	    " QueryCommandComplete tries to guess what command to run by
