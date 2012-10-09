@@ -34,6 +34,12 @@
     " }}}
 " }}}
 
+" separate configs clean vimrc {{{
+" for f in split(glob('~/.vim/vimrc/*.vim'), '\n')
+"     exe 'source' f
+" endfor
+" }}}
+
 " [[ Vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
@@ -122,7 +128,9 @@
 
     " [ register ] {{{
     " you can use ["+p and "+y] to paste and yank
-    set clipboard+=unnamed   " "* is the clipboard register,
+    " "* for clipboard,
+    " "+ for X11 select board.
+    set clipboard+=unnamed   " "* is the clipboard register in Linux, OS X.
     " }}}
 
     " [ diff, paste & select mode ] {{{
@@ -304,7 +312,6 @@
 
     " [ completion ] {{{ auto popup menu: Tab, C-x + C-?, C-y, C-e
     " [ completion options ]
-    set mousemodel=extend
     set cmdheight=1                  " command line height
     set complete=.,w,b,t,i,u,k       " completion buffers
     "            | | | | | | |
@@ -410,6 +417,23 @@
     set matchpairs=(:),{:},[:]
     set matchtime=5
     " }}}
+
+    " [ binary ] {{{ editing binary files
+    " `:help edit-binary`
+    " binary
+        " `$ vim -b filename` or running: `:set binary`
+        " When navigating binary files, `[count]go` is useful because it moves
+        " the cursor to a byte offset.
+
+    " xxd
+        " Another good tip is to convert files to the hexdump format using
+        " `:%!xxd`.  It's actually possible to convert a binary to hexdump, edit
+        " it, then convert it back to binary using xxd's `-r` (revert) flag.
+    " binary diff
+        " By using anonymous pipes (supported by bash and zsh), it's fairly easy
+        " to get Vim to diff files by redirecting the output of xxd:
+        " `$ vimdiff <(xxd bin_file_1) <(xxd bin_file_2)`
+    " }}}
 " }}}
 
 " [[ gVim ]] {{{
@@ -484,7 +508,7 @@ endif
         " diff: -, ×,
         " stl: \ ,
         " stlnc: \ ,
-        " tab: \┆\ , ⇥, >-, \␣, \⋮\ ,
+        " tab: \┆\ , »·, ⇥, >-, \␣, \⋮\ ,
         " tail: \·,
         " extends: \«, ◂,
         " precedes: \», ▸,
@@ -1070,6 +1094,7 @@ endif
 	" runtime bundles/tplugin_vim/macros/tplugin.vim
     " }}}
 
+" [[ addons manager: VAM, neobundle, vundle, pathogen, tplugin, ]] {{{
     " [ pathogen ] {{{ .vim/bundle/
         " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
         " call pathogen#infect()
@@ -1207,7 +1232,7 @@ endif
 
         " Let NeoBundle manage NeoBundle
         NeoBundle 'Shougo/neobundle.vim', {
-                    \ 'depends': ['Shougo/unite.vim'],
+                    \ 'depends': ['Shougo/unite.vim', 'Shougo/neobundle-vim-scripts'],
                     \ 'directory': 'neobundle',
                     \ }
         NeoBundle 'Shougo/vimproc', {
@@ -1218,35 +1243,45 @@ endif
                 \ 'cygwin': 'make -f make_cygwin.mak',
                 \ },
             \ }
-	" NeoBundle 'tomtom/tplugin_vim'
-        " [ Vim improve ] {{{
+        " NeoBundle 'xolox/vim-shell'
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'tyru/current-func-info.vim'
+        " quickfix, marks, signatures, status
         NeoBundle 'tomtom/quickfixsigns_vim', {
                     \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
                     \ }
         NeoBundle 'kshenoy/vim-signature'
-        NeoBundle 'quickfixstatus.vim'
-	" NeoBundle 'xolox/vim-session'
+        " NeoBundle 'vim-scripts/vmark.vim--Visual-Bookmarking'
+        " NeoBundle 'dannyob/quickfixstatus'
+        " NeoBundle 'osyo-manga/unite-quickfix'
+        " NeoBundle 'samiconductor/vim-sharefix'
+        " NeoBundle 'xolox/vim-session'
+        " NeoBundle 'Shougo/unite-session'
         NeoBundle 'vim-scripts/restore_view.vim'
         NeoBundle 'chrisbra/Recover.vim'
         " Complete
         " NeoBundle 'ervandew/supertab'
-	" NeoBundle 'caio/querycommandcomplete.vim'
-	" Windows
-	" NeoBundle 'roman/golden-ratio'
+        NeoBundle 'caio/querycommandcomplete.vim'
+        " Windows
+        " NeoBundle 'roman/golden-ratio'
+        " NeoBundle 'spolu/dwm.vim'
+        " Buffer
+        " NeoBundle 'fholgado/minibufexpl.vim'
+        " NeoBundle 'jeetsukumaran/vim-buffergator'
+        " Tab
+        " NeoBundle 'kien/tabman.vim'
         " Pairs
         NeoBundle 'tpope/vim-surround'
         NeoBundle 'jiangmiao/auto-pairs'
-        " TODO NeoBundle 'Townk/vim-autoclose'
+        " NeoBundle 'Townk/vim-autoclose'
         " NeoBundle 'vim-scripts/AutoClose'
-        " TODO NeoBundle 'Raimondi/delimitMate'
+        " NeoBundle 'Raimondi/delimitMate'
         NeoBundle 'kien/rainbow_parentheses.vim'
         " NeoBundle 'tpope/vim-endwise'
         " Undo
         NeoBundle 'mbbill/undotree'
-	" Colorscheme
-        NeoBundle 'tomasr/molokai'
+        " Colorscheme
+        " NeoBundle 'tomasr/molokai'
         " NeoBundle 'sickill/vim-monokai'
         " NeoBundle 'altercation/vim-colors-solarized'
         " NeoBundle 'nanotech/jellybeans.vim'
@@ -1256,16 +1291,23 @@ endif
             " NeoBundle 'altercation/solarized'
             " NeoBundle 'chriskempson/tomorrow-theme'
             " NeoBundle 'hukl/Smyck-Color-Scheme'
-	" Register
-	NeoBundle 'tpope/vim-repeat'
+        " Register
+        NeoBundle 'tpope/vim-repeat'
         " Motion : text object,
         NeoBundle 'tpope/vim-unimpaired'
+        NeoBundle 'vim-scripts/CountJump'
+        " NeoBundle 'Lokaltog/vim-easymotion'
+        " NeoBundle 'michaeljsmith/vim-indent-object'
+        " NeoBundle 'kana/vim-textobj-user'
         " Shell
         NeoBundle 'Shougo/vimshell'
         " NeoBundle 'sjl/clam.vim'
         " unicode symbol
-        " TODO NeoBundle 'chrisbra/unicode.vim'
-	" TODO NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', { 'type': 'hg' }
+        " NeoBundle 'chrisbra/unicode.vim'
+        " NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', { 'type': 'hg' }
+        " Outline
+        NeoBundle 'h1mesuke/unite-outline'
+        " NeoBundle 'insanum/votl'
         " Others
         NeoBundle 'AndrewRadev/switch.vim'
         NeoBundle 'zef/vim-cycle'
@@ -1273,27 +1315,41 @@ endif
         " NeoBundle 'myusuf3/numbers.vim'
         NeoBundle 'kana/vim-gf-diff'
         NeoBundle 'kana/vim-gf-user'
-        " TODO NeoBundle 'patchreview.vim'
-        " NeoBundle 'xolox/vim-shell'
-	" }}}
-	" [ Vim libraries/frameworks ] {{{
-	NeoBundle 'tomtom/tlib_vim'
-	NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
-	" NeoBundle 'tomtom/prototype_vim'
-	" NeoBundle 'megaannum/self'
-	NeoBundle 'mattn/webapi-vim'
-        " NeoBundle 'vim-jp/vital.vim'
-        " NeoBundle 'tomtom/vimtlib'
-	" NeoBundle 'https://bitbucket.org/ZyX_I/frawor', { 'type': 'hg' }
-        " NeoBundle 'dahu/Chroma'
-        " NeoBundle 'dahu/vimple'
-	" }}}
+        " NeoBundle 'junkblocker/patchreview-vim'
+        " menu
+        " NeoBundle 'mbadran/headlights'
+        " modeline
+        NeoBundle 'ciaranm/securemodelines'
+        " }}}
+        " [ Vim libraries/frameworks ] {{{
+        NeoBundle 'tomtom/tlib_vim'
+        NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
+        " NeoBundle 'tomtom/prototype_vim'
+        " NeoBundle 'megaannum/self'
+        NeoBundle 'mattn/webapi-vim'
+            " NeoBundle 'vim-jp/vital.vim'
+            " NeoBundle 'tomtom/vimtlib'
+        " NeoBundle 'https://bitbucket.org/ZyX_I/frawor', { 'type': 'hg' }
+            " NeoBundle 'dahu/Chroma'
+            " NeoBundle 'dahu/vimple'
+        " }}}
         " [ program ] {{{
         " complete
         NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
         " help
-        NeoBundle 'powerman/vim-plugin-viewdoc', { 'directory': 'viewdoc' }
+        NeoBundle 'thinca/vim-ref', {
+                    \ 'external_commands': [
+                        \ 'refe', 'pydoc', 'perldoc',
+                        \ 'erl',
+                        \ 'w3m',
+                        \ ]
+                    \ }
+                    " FIXME 'clj' for Clojure, 'rsense' for Ruby.
+        " NeoBundle 'powerman/vim-plugin-viewdoc', {
+        "             \ 'external_commands': ['pydoc', 'perldoc', 'man'],
+        "             \ }
+        " NeoBundle 'vim-scripts/Manuals'
         NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " snippets
         " NeoBundle 'Shougo/neocomplcache-snippets-complete', {
@@ -1301,37 +1357,85 @@ endif
         "             \ 'rev': 'neosnippet',
         "             \ }
         NeoBundle 'SirVer/ultisnips'
-	" NeoBundle 'garbas/vim-snipmate'
+        " NeoBundle 'drmingdrmer/xptemplate'
+        " NeoBundle 'garbas/vim-snipmate'
+        " NeoBundle 'scrooloose/snipmate-snippets'
         " tags/cscope
-        NeoBundle 'majutsushi/tagbar'
-        " NeoBundle 'vim-scripts/taglist.vim'
+        NeoBundle 'majutsushi/tagbar', { 'external_commands': ['ctags'], }
+        NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
         " NeoBundle 'abudden/TagHighlight'
-        NeoBundle 'xolox/vim-easytags'
-        " NeoBundle 'vim-scripts/AutoTag'
-        " NeoBundle 'indexer.tar.gz', { 'depends': ['DfrankUtil', 'vimprj'], }
-	" NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
-	NeoBundle 'brookhong/cscope.vim'
+        NeoBundle 'xolox/vim-easytags', { 'external_commands': ['ctags'], }
+        " NeoBundle 'vim-scripts/AutoTag', { 'external_commands': ['ctags'], }
+        " NeoBundle 'indexer.tar.gz', {
+        "             \ 'depends': ['DfrankUtil', 'vimprj'],
+        "             \ 'external_commands': ['ctags'],
+        "             \ }
+        " NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
+        " NeoBundle 'brookhong/cscope.vim', {'external_commands': ['cscope']}
+        NeoBundle 'NagatoPain/cscope.vim', {
+                    \ 'rev': 'master',
+                    \ 'external_commands': ['cscope'],
+                    \ }
         NeoBundle 'vim-scripts/CCTree'
-	" NeoBundle 'wesleyche/SrcExpl'
+        " NeoBundle 'wesleyche/SrcExpl'
+        " NeoBundle 'joonty/vim-taggatron', {'external_commands': ['ctags']}
         " file manager
         NeoBundle 'scrooloose/nerdtree'
-	NeoBundle 'ivalkeen/nerdtree-execute', { 'depends': ['scrooloose/nerdtree'] }
-	NeoBundle 'toritori0318/vim-nerdtree-plugin', {
-		    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
-		    \ 'directory': 'nerdtree-plugin',
-		    \ }
-	NeoBundle 'troydm/easytree.vim'
-        NeoBundle 'troydm/easybuffer.vim'
+        NeoBundle 'ivalkeen/nerdtree-execute', { 'depends': ['scrooloose/nerdtree'] }
+        NeoBundle 'toritori0318/vim-nerdtree-plugin', {
+                    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
+                    \ 'directory': 'nerdtree-plugin',
+                    \ }
+        " NeoBundle 'troydm/easytree.vim'
+        " NeoBundle 'vim-scripts/project.tar.gz'
+        " NeoBundle 'Shougo/vimfiler'
+        " NeoBundle 'troydm/easybuffer.vim'
         NeoBundle 'airblade/vim-rooter'
         " compile & run
-        NeoBundle 'xuhdev/SingleCompile'
+        NeoBundle 'xuhdev/SingleCompile', {
+                    \ 'external_commands': [
+                        \ 'ruby', 'python', 'php', 'perl',
+                        \ 'bash', 'zsh', 'sh',
+                        \ 'gcc', 'clang',
+                        \ 'make', 'cmake',
+                        \ 'lua',
+                        \ 'firefox', 'gcj', 'js', 'nodejs', 'gjs',
+                        \ 'clisp', 'gcl',
+                        \ 'ghc',
+                        \ 'escript',
+                        \ 'gfortran',
+                        \ 'markdown',
+                        \ 'latex',
+                        \ ],
+                    \ }
         " syntax checker
-        NeoBundle 'scrooloose/syntastic'
+        NeoBundle 'scrooloose/syntastic', {
+                    \ 'external_commands': [
+                        \ 'zsh', 'bash',
+                        \ 'ruby', 'python', 'flake8', 'php', 'perl',
+                        \ 'clisp',
+                        \ 'go',
+                        \ 'luac',
+                        \ 'gcc', 'clang',
+                        \'g++', 'clang++',
+                        \ 'coffee',
+                        \ 'tidy',
+                        \ 'xmllint',
+                        \ 'lacheck',
+                        \ 'ghc-mod',
+                        \ 'escript',
+                        \ 'gfortran',
+                        \ 'cucumber',
+                        \ 'javac',
+                        \ 'nasm',
+                        \ ],
+                    \ }
         " search [grep, MRU, files]
         " NeoBundle 'kien/ctrlp.vim'
         " NeoBundle 'wincent/Command-T'
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
+        " NeoBundle 't9md/vim-unite-ack'
         " regex
         " NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
         " syntax / indent / fold
@@ -1339,22 +1443,39 @@ endif
         " NeoBundle 'ciaranm/detectindent'
         NeoBundle 'conormcd/matchindent.vim'
         NeoBundle 'vim-scripts/simplefold'
-	" REPL (Read-eval-print loop)
-	" NeoBundle 'jpalardy/vim-slime'
+        " REPL (Read-eval-print loop)
+        " NeoBundle 'jpalardy/vim-slime'
+        NeoBundle 'krisajenkins/vim-pipe'
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
         " VCS
+        " NeoBundle 'https://bitbucket.org/ZyX_I/aurum', {
+        "             \ 'type': 'hg',
+        "             \ 'depends': [
+        "                 \ ['https://bitbucket.org/ZyX_I/frawor',
+        "                     \ {'type': 'hg'}
+        "                     \ ]
+        "                 \ ],
+        "             \ }
+                    " (optional depends):
+                        " - Command-T
+                        " - ctrlp
+                        " - FuzzyFinder
+                        " - unite
+                        " - ku
+                        " - tlib
         NeoBundle 'tpope/vim-git'
-        NeoBundle 'tpope/vim-fugitive'
-        NeoBundle 'gregsexton/gitv'
-        " NeoBundle 'c9s/hypergit.vim'
-        " NeoBundle 'vim-scripts/hgrev'
+        NeoBundle 'tpope/vim-fugitive', {'external_commands': ['git']}
+        NeoBundle 'gregsexton/gitv', {'external_commands': ['git']}
+        " NeoBundle 'c9s/hypergit.vim', {'external_commands': ['git', 'hg', 'svn']}
+        " NeoBundle 'nsmgr8/vitra'
+        NeoBundle 'vim-scripts/hgrev', {'external_commands': ['hg']}
         " NeoBundle 'taq/vim-git-branch-info'
         " NeoBundle 'sjl/splice.vim'
         NeoBundle 'ConflictDetection'
-        " NeoBundle 'ConflictMotions'
+        NeoBundle 'ConflictMotions', { 'depends': ['vim-scripts/CountJump'] }
         " comment
-	NeoBundle 'tomtom/tcomment_vim'
+        NeoBundle 'tomtom/tcomment_vim'
         " NeoBundle 'scrooloose/nerdcommenter'
         " NeoBundle 'tpope/vim-commentary'
         NeoBundle 'mklabs/vim-cowsay', {
@@ -1365,101 +1486,197 @@ endif
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
         " NeoBundle 'vim-scripts/filter'
-        " Outline
-        NeoBundle 'h1mesuke/unite-outline'
+        " debugger
+        " NeoBundle 'joonty/vdebug'
+        " NeoBundle 'kablamo/VimDebug'
+        " NeoBundle 'skibyte/gdb-from-vim'
         " Task List
         NeoBundle 'LStinson/TagmaTasks'
         " NeoBundle 'vim-scripts/TaskList.vim'
-        " NeoBundle 'TaskMotions'
-	" }}}
+        NeoBundle 'TaskMotions', { 'depends': ['vim-scripts/CountJump'] }
+        " License
+        " NeoBundle 'vim-scripts/license-loader'
+        " }}}
+        " [ languages ] {{{
+        " VimL
+        NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         " NeoBundle 'taichouchou2/vim-rsense'
-	" NeoBundle 'vadv/rubycomplete'
-	NeoBundle 'danchoi/ri.vim'
+        " NeoBundle 'vadv/rubycomplete'
+        " NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
+        " NeoBundle 'astashov/vim-ruby-debugger'
+        " NeoBundle 'ecomba/vim-ruby-refactoring'
         NeoBundle 'tpope/vim-rails'
-	" NeoBundle 'ujihisa/unite-gem'
-	NeoBundle 'tpope/vim-rvm'
-	NeoBundle 'tpope/vim-bundler'
-	NeoBundle 'tpope/vim-rake'
-	NeoBundle 'ujihisa/neco-rake', {
-		    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell']
-		    \ }
-	" NeoBundle 'tpope/gem-ctags'
+        " NeoBundle 'ujihisa/unite-gem'
+        NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
+        NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
+        NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
+        " NeoBundle 'ujihisa/neco-rake', {
+        " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
+        " 	    \ 'external_commands': ['rake'],
+        " 	    \ }
+        " NeoBundle 'ujihisa/neco-rubymf', {
+        " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
+        " 	    \ }
+        " NeoBundle 'nelstrom/vim-textobj-rubyblock'
+        " NeoBundle 'Bogdanp/rbrepl.vim'
+        " NeoBundle 'janx/vim-rubytest'
+        " NeoBundle 'skalnik/vim-vroom'
+        " NeoBundle 'pgr0ss/vimux-ruby-test'
+        " NeoBundle 'cloud8421/vimux-cucumber'
+        " NeoBundle 'jgdavey/vim-turbux'
+        " NeoBundle 'skwp/vim-ruby-conque'
         " Python
         NeoBundle 'vim-scripts/pythoncomplete'
-	" NeoBundle 'kevinw/pyflakes-vim'
-        NeoBundle 'jmcantrell/vim-virtualenv'
-        " NeoBundle 'ivanov/vim-ipython'
+        " NeoBundle 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
+        " NeoBundle 'kevinw/pyflakes-vim'
+        NeoBundle 'jmcantrell/vim-virtualenv', {'external_commands': ['virtualenv']}
+        " NeoBundle 'ivanov/vim-ipython', {'external_commands': ['ipython']}
         NeoBundle 'ehamberg/vim-cute-python', { 'rev': 'moresymbols' }
         " NeoBundle 'alfredodeza/pytest.vim'
         " NeoBundle 'julienr/vimux-pyutils'
             " Django
-            " TODO NeoBundle 'yodiaditya/vim-pydjango'
-        " C / cpp
+            " NeoBundle 'yodiaditya/vim-pydjango'
+        " C / C++(cpp)
         NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
         NeoBundle 'undx/vim-gocode'
         NeoBundle 'jnwhiteh/vim-golang'
+        " Lua
+        " NeoBundle 'xolox/vim-lua-ftplugin'
+        " NeoBundle 'vim-scripts/lua_omni'
+        " NeoBundle 'vim-scripts/luarefvim'
+        " NeoBundle 'xolox/vim-lua-inspect'
+        " SQL
+        NeoBundle 'vim-scripts/dbext.vim'
+        NeoBundle 'mattn/vdbi-vim'
+        " NoSQL
         " HTML
         NeoBundle 'mattn/zencoding-vim'
-	" NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
+        " NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
         NeoBundle 'gregsexton/MatchTag'
         NeoBundle 'othree/html5.vim'
         " NeoBundle 'tpope/vim-ragtag'
         " XML
         " NeoBundle 'sukima/xmledit'
+        " NeoBundle 'vim-scripts/onsgmls.vim'
+        " NeoBundle 'vim-scripts/xmlwf.vim', {'external_commands': ['xmlwf']}
         " CSS
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'skammer/vim-css-color'
-	" NeoBundle 'tpope/vim-haml'
-        " CoffeeScript
+            " Vim runtime files for Haml, Sass, and SCSS
+            " NeoBundle 'tpope/vim-haml'
+            " LESS
+            " NeoBundle 'groenewege/vim-less'
+            " SCSS
+            " NeoBundle 'cakebaker/scss-syntax.vim'
+            " Stylus
+            " NeoBundle 'wavded/vim-stylus'
         " JavaScript
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
         NeoBundle 'jelera/vim-javascript-syntax'
         NeoBundle 'hallettj/jslint.vim'
-        " TODO NeoBundle 'walm/jshint.vim'
+        " NeoBundle 'walm/jshint.vim'
             " jQuery
             NeoBundle 'itspriddle/vim-jquery'
+            " JSON
+            " NeoBundle 'alfredodeza/jacinto.vim'
+        " CoffeeScript
+        " NeoBundle 'kchmck/vim-coffee-script'
+        " NeoBundle 'lukaszkorecki/CoffeeTags', {'depends': 'majutsushi/tagbar'}
         " Clojure
-        " NeoBundle 'VimClojure'
+        " NeoBundle 'vim-scripts/VimClojure'
+        " Haskell
+        " NeoBundle 'Twinside/vim-haskellConceal'
+        " Erlang
+        " NeoBundle 'oscarh/vimerl'
+        " Scala
+        " NeoBundle 'derekwyatt/vim-scala'
         " PHP
         NeoBundle 'shawncplus/phpcomplete.vim'
-        NeoBundle 'spf13/PIV'
+        " NeoBundle 'tobyS/vip'
+        " NeoBundle 'spf13/PIV'
+        " NeoBundle 'techlivezheng/tagbar-phpctags', {'depends': 'majutsushi/tagbar'}
         " Lisp
         " NeoBundle 'vim-scripts/slimv.vim'
         " NeoBundle 'mattn/lisper-vim'
         " NeoBundle 'paredit.vim'
-	" Haskell
-	" NeoBundle 'ujihisa/neco-ghc'
+        " Haskell
+        NeoBundle 'ujihisa/neco-ghc', { 'external_commands': {'unix': 'ghc-mod'} }
+        " NeoBundle 'eagletmt/ghcmod-vim', {
+        "             \ 'depends': 'Shougo/vimproc',
+        "             \ 'external_commands': {'unix': 'ghc-mod'},
+        "             \ 'build': { 'unix': 'cabal install ghc-mod' },
+        "             \ }
+        " NeoBundle 'dag/vim2hs'
+        " Perl
         NeoBundle 'c9s/perlomni.vim'
-	" Markdown
-	NeoBundle 'tpope/vim-markdown'
+        " R
+        " NeoBundle 'jcfaria/Vim-R-plugin', {
+        "             \ 'depends': ['jalvesaq/VimCom'],
+        "             \ }
+        " NeoBundle 'vim-scripts/R.vim'
+        " NeoBundle 'vim-scripts/GNU-R'
+        " Assembly
+        NeoBundle 'pksunkara/vim-dasm'
+        " Markdown
+        NeoBundle 'tpope/vim-markdown'
+        " NeoBundle 'suan/vim-instant-markdown'
         " NeoBundle 'greyblake/vim-preview'
         " NeoBundle 'jeffbuttars/Vimdown'
-        " Wiki / Note
-	NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
+            " pacdoc
+            " NeoBundle 'vim-pandoc/vim-pandoc'
+            " NeoBundle 'vim-pandoc/vim-pandoc-extras'
+            " Textile
+            " NeoBundle 'timcharper/textile.vim'
+        " }}}
+        " [ frameworks ] {{{
+        " Android
+        " NeoBundle 'pwicks86/eclim-for-vundle'
+        " }}}
+        " [ tools ] {{{
+        " Wiki / Note / Org
+        NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
+        " NeoBundle 'danchoi/soywiki'
+        " NeoBundle 'xolox/vim-notes'
+        " NeoBundle 'hsitz/VimOrganizer'
         " Paste
         NeoBundle 'mattn/gist-vim', { 'depends': ['mattn/webapi-vim'] }
-	" NeoBundle 'tpope/vim-pastie'
-        NeoBundle 'sickill/vim-pasta'
+        " NeoBundle 'tpope/vim-pastie'
+        " NeoBundle 'sickill/vim-pasta'
         " Color
         NeoBundle 'Rykka/colorv.vim'
         " Tmux & Screen
-        NeoBundle 'benmills/vimux'
+        " NeoBundle 'benmills/vimux', {'external_commands': ['tmux']}
+        " NeoBundle 'ervandew/screen', {'external_commands': ['tmux', 'screen']}
+        " Draw
+        " NeoBundle 'vim-scripts/DrawIt'
+        " NeoBundle 'vim-scripts/ditaa', {'external_commands': ['ditaa']}
         " IM
-        NeoBundle 'vimim/vimim'
+        " NeoBundle 'vimim/vimim'
+        NeoBundle 'NagatoPain/vimim', {'rev': 'develop'}
         " binary files
+        NeoBundle 'rbtnn/hexript.vim', {
+                    \ 'depends': [ 'Shougo/vimproc', ],
+                    \ 'external_commands': {'unix': 'xxd',},
+                    \ }
         " NeoBundle 'tpope/vim-afterimage'
+        " time
+        " NeoBundle 'mnick/vim-pomodoro'
         " others
         NeoBundle 'vim-scripts/utl.vim'
+        " NeoBundle 'thinca/vim-quickrun'
         NeoBundle 'bitc/vim-bad-whitespace'
         NeoBundle 'thinca/vim-visualstar'
         NeoBundle 'vim-scripts/SpitVspit'
         " NeoBundle 'dahu/VimLint'
+        " NeoBundle 'tomtom/startup_profile_vim'
+        " NeoBundle 'mikewest/vimroom'
+        " }}}
         " }}}
 
         " Installation check.
@@ -3362,6 +3579,8 @@ syntax on
 	    " let g:quickfixsigns#vcsdiff#cmd_separator = '&&'
         " }}}
 
+        " scmdiff : Highlight changed lines in a file via SCM diff command
+
         " svndiff%1881 {{{ similar with quickfixsigns. colored signs for diff.
         " }}}
 
@@ -3386,6 +3605,10 @@ syntax on
     " }}}
 
     " [ VCS: Git, bzr, svn, ] {{{ <F9>
+        " aurum {{{ dealing with source files under various VCS control
+            " Usage:
+        " }}}
+
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
             " Usage:
             "   - :Git[!] [args]
@@ -3448,6 +3671,16 @@ syntax on
             " nnoremap <F9> :Extradite<cr>
             " let g:extradite_width = 60
             let g:extradite_showhash = 1 " show abbre commit hashes.
+        " }}}
+
+        " hypergit {{{ Git plugin for Vim.
+            " Features:
+            " - Git Actions in TreeMenu
+            " - Commit Buffer
+            " - Rebase (interactive) Helper. when git rebase -i [branch]
+        " }}}
+
+        " vitra {{{ Vim client for Trac
         " }}}
 
         " vim-github {{{ A vim plugin to access to Github.
@@ -3794,18 +4027,19 @@ syntax on
             " let g:vimrc_homepage = ''
         " }}}
 
-        " license_loader {{{ a vim script to load a license template.
+        " license-loader {{{ load a license template
             " Usage: :call LoadMyLicense('apache')
             " license template in template/license/*
             let g:T_AUTHOR = "stardiviner"
             let g:T_AUTHOR_EMAIL = "numbchild@gmail.com"
             let g:T_DATE_FORMAT = "%c"
-            "nnoremap <C-j> /<+.\{-1,}+><CR>c/+>/e<CR>
-            "inoremap <C-j> <ESC>/<+.\{-1,}+><CR>c/+>/e<CR>
         " }}}
     " }}}
 
     " [ project ] {{{ different settings for every projects
+        " project.tar.gz {{{
+        " }}}
+
         " vimprj {{{ managing options for different projects
         " }}}
 
@@ -3815,6 +4049,10 @@ syntax on
                         \ 'Rakefile', 'Makefile',
                         \ ]
             let g:rooter_use_lcd = 0 " use :lcd to locally
+
+            " TODO implement this in VimL
+            " Recursively add directories from a project with *.h in them to user_options
+            " au FileType c,cpp let g:clang_user_options = "-I" . system("find . -print0 -iname *.h | xargs -0 -r -n 1 dirname | grep -v .git | sort -u | sed ':a;N;$!ba;s/\n/ -I/g'")
         " }}}
     " }}}
 " }}}
@@ -3890,7 +4128,10 @@ syntax on
 	" vim-rake {{{ it's like rails.vim without rails.
 	" }}}
 
-	" neco-rake : A neocomplcache plugin for Rake on vimshell
+        " neco-rake {{{ A neocomplcache plugin for Rake on vimshell
+        " TODO
+        " }}}
+
 
 	" vim-rvm {{{ switch Ruby versions from inside Vim
 	    " Usage:
@@ -3945,6 +4186,50 @@ syntax on
 	    "	Exit RSense server.
             let g:rsenseHome = $RSENSE_HOME
             let g:rsenseUseOmniFunc = 1 " start completion automatically
+        " }}}
+
+        " ruby-debugger {{{ debug Ruby App with ruby-debug-ide gem
+        " }}}
+
+        " ruby-refactoring {{{ Ruby Refactoring Tool for Vim
+        " }}}
+
+        " rake.vim {{{ it's like rails.vim without the rails
+            " With rake.vim, you can use all those parts of rails.vim that you
+            " wish you could use on your other Ruby projects on anything with a
+            " Rakefile, including :R/:A, :Rlib and friends, and of course :Rake.
+            " It's great when paired with gem open and bundle open and
+            " complemented nicely by bundler.vim.
+        " }}}
+
+        " unite-gem {{{ A Unite plugin for RubyGems (search)
+            " :Unite gem -input=
+            " XXX very slow
+        " }}}
+
+        " rbrepl.vim {{{ allows you to run a Ruby REPL inside a VIM buffer.
+            " Usage:
+            " :RbREPLToggle
+            " :RbREPLEvalFile
+        " }}}
+
+        " vim-rubytest {{{ run ruby test: vanilla test, rspec, ...
+        " }}}
+
+        " vim-vroom {{{ Ruby tests! Supports RSpec, Test::Unit/MiniTest, and Cucumber.
+        " }}}
+
+        " vimux-ruby-test {{{
+        " }}}
+
+        " vimux-cucumber {{{ Run Cucumber Features through Vimux plugin.
+        " }}}
+
+        " vim-ruby-conque {{{ display ruby, rake, and rspec output colorized in ConqueTerm
+        " }}}
+
+        " vim-textobj-rubyblock {{{ A custom text object for selecting ruby blocks.
+        " }}}
     " }}}
 
     " [ regexp ] {{{ Regular Expression
@@ -4087,7 +4372,11 @@ syntax on
 	    " }}}
         " }}}
 
-            " pytest {{{ A simple way of running your tests from within VIM.
+        " [ test ] {{{
+            " pytest.vim {{{ Runs your UnitTests with py.test displaying red/green bars and errors
+            " }}}
+
+            " vimux-pyutils {{{ run code blocks in IPython through vimux plugin
             " }}}
         " }}}
 
@@ -4342,6 +4631,12 @@ syntax on
     " [ NoSQL ] {{{
     " }}}
 
+    " [ R ] {{{
+        " Vim-R-plugin
+        " R.vim
+        " GNU-R
+    " }}}
+
     " [ Web: HTML5 & CSS, XML ] {{{
         " [ HTML5 ] {{{
             " ZenCoding {{{ powerful abbreviation engine. "<C-Y>[,vn...]"
@@ -4438,6 +4733,8 @@ syntax on
             " xmledit {{{ A filetype plugin for VIM to help edit XML files
             " TODO
             " }}}
+
+            " xmlwf : A compiler plugin for the xmlwf xml well-formedness checker
         " }}}
     " }}}
 
@@ -4466,6 +4763,9 @@ syntax on
             " :C{line number} takes you to the given line number in the
             " compiled Javascript of the CoffeeScript file you are editing.
             command! -nargs=1 C CoffeeCompile | :<args>
+        " }}}
+
+        " CoffeeTags {{{ Ctags-like tag generator for CoffeeScript
         " }}}
     " }}}
 
@@ -4778,6 +5078,13 @@ syntax on
 	    " omnifunc=necoghc#omnifunc
 	    " au Filetype haskell setlocal omnifunc=necoghc#omnifunc
         " }}}
+
+        " ghcmod-vim {{{
+        " Features
+        " - Displaying the type of sub-expressions (ghc-mod type)
+        " - Displaying error/warning messages and their locations (ghc-mod check and ghc-mod lint)
+        " - Displaying the expansion of splices (ghc-mod expand)
+        " }}}
     " }}}
 
     " [ Perl ] {{{
@@ -4811,6 +5118,9 @@ syntax on
             " :help lua_omni
             let b:lua_inner_folds = 1
             " To regenerate folds use the zx or zX normal commands.
+        " }}}
+
+        " luarefvim {{{ Lua reference manual
         " }}}
 
         " luainspect {{{ Semantic highlighting for Lua in Vim.
@@ -4877,6 +5187,10 @@ syntax on
         let filetype_i = "asm" " files matching *.i could be Progress or Assembly.
         " let b:asmsyntax = "nasm"
         " let asmsyntax = "nasm"
+
+        " vim-dasm {{{ vim syntax highlighting for dasm & dasm16
+            au BufNewFile,BufReadPost *.dasm,*.dasm16 setl shiftwidth=2 expandtab
+        " }}}
     " }}}
 
     " [ TeX ] {{{
@@ -4886,19 +5200,28 @@ syntax on
         " vim-markdown {{{ Vim Markdown runtime files
         " }}}
 
+        " vim-instant-markdown {{{ Instant Markdown previews from Vim
+        " }}}
+
         " vim-preview {{{ preview markup files (markdown,rdoc,textile,html)
-        " TODO
         " }}}
 
         " riv {{{ Reading , Writing and Managing reStructuredText documents in Vim
         " }}}
 
         " Vimdown {{{ A dirty tool to convert .vimrc and .vim script files to markdown
-        " TODO
         " }}}
     " }}}
 
     " [ Binary ] {{{
+        " hexript {{{ write a binary easily, and it is a code writing on free-format.
+            " Require:
+            "   - `xxd` program
+            "   - vimproc
+            "   - quickrun (optional)
+            "   - vinarise (optional)
+        " }}}
+
         " afterimage.vim {{{
             " Edit ICO, PNG, and GIF icons. No really. They're converted with
             " ImageMagick to XPM, a plain text image format with beautiful
@@ -4939,6 +5262,11 @@ syntax on
 
         " VimLint {{{ a correctness and sanity checker of Vim configuration
             " Usage: :VimLint
+        " }}}
+
+        " startup_profile_vim {{{ profile vim startup
+            " Usage: insert this line at top of .vimrc file.
+            " runtime macros/startup_profile.vim
         " }}}
     " }}}
 
@@ -5089,7 +5417,7 @@ syntax on
             let g:SignaturePeriodicRefresh = 0 " periodic auto refresh
         " }}}
 
-        " vmark.vim_Visual_Bookmarking {{{
+        " vmark.vim--Visual_Bookmarking {{{
         " Toggle visual bookmarking and jump through bookmarks
         " Usage:
         " - mm    -- toggle visual bookmark current line.
@@ -5750,6 +6078,18 @@ syntax on
         " }}}
     " }}}
 
+    " [ menu ] {{{
+        " Headlights {{{ add bundles to menu and show features they provide.
+            " Headlights adds a Bundles [^1] menu to Vim, revealing your bundles
+            " (aka. plugins) and the features they provide.
+        " }}}
+    " }}}
+
+    " [ modeline ] {{{
+        " securemodelines {{{ whitelist certain options for modeline.
+        " }}}
+    " }}}
+
     " [ key maps/bindings ] {{{
 	" tinykeymap {{{ tiny, temporary keymaps
 	    " Usage:
@@ -6084,7 +6424,7 @@ syntax on
             let g:Pomo_ToDoTodayFilePath = "$HOME/Wiki/Vomodoro/archive"
         " }}}
 
-        " vim-pomodoro {{{ a Vim plugin for the Pomodoro time management technique
+        " vim-pomodoro {{{ a Vim plugin for the pomodoro time management technique
             " Require: AsyncCommand
         " }}}
     " }}}
@@ -6342,8 +6682,17 @@ syntax on
                 " :[range(v):/1,10/%(file)]Pastie[!] file.txt/register
                 " :[%|visual]Pastie!
 
-            " vim-pasta {{{ Pasting in Vim with indentation adjusted to destination context
-            " TODO
+            " vim-pasta {{{ pasting in Vim with indentation adjusted to destination context
+                " this plugin remaps `p` and `P` (put command) in normal and
+                " visual mode to do context aware pasting.  What it means is
+                " that indentation of pasted text is adjusted properly to match
+                " indentation of surrounding code.
+
+                " disable plugin override default p and P mappings.
+                " let g:pasta_paste_before_mapping = ',P'
+                " let g:pasta_paste_after_mapping = ',p'
+                " let g:pasta_disabled_filetypes = ['python', 'coffee', 'yaml']
+                " let g:pasta_enabled_filetypes = ['ruby', 'javascript', 'css', 'sh']
             " }}}
         " }}}
 
