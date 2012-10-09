@@ -3211,17 +3211,47 @@ syntax on
                             \ ['html'],
                         \ }
             let g:syntastic_quiet_warnings = 0 " 1: care syntax errors not warning
-            let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
-            let g:syntastic_csslint_options = "--warning=none"
-            let g:syntastic_c_compiler = "gcc" " gcc, clang
-            let g:syntastic_c_check_header = 1 " check header files, create .ghc file
-            " disable search of included header files after special libiaries
-            " like GTK and glib =>
-            let g:syntastic_c_no_include_search = 0
-            " let b:syntastic_c_cflags = ' -I/usr/include/libsoup-2.4'
-            let g:syntastic_c_include_dirs = [ 'includes', 'headers' ]
-            " let g:syntastic_c_compiler_options = ' -ansi'
-	    " let g:syntastic_cpp_compiler_options = ''
+            " let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
+            " --------------------------------------------------------------
+            " C
+                let g:syntastic_c_checker = "gcc"
+                let g:syntastic_c_compiler = "gcc" " gcc/clang
+                let g:syntastic_c_check_header = 1 " check header files
+                let g:syntastic_c_no_include_search = 0
+                    " 1: disable search of included header files after special libraries.
+                let g:syntastic_c_include_dirs = [ 'includes', 'headers', ]
+                    " add some custom include directories.
+                let g:syntastic_c_auto_refresh_includes = 1
+                    " enable header files being re-checked on every file write.
+                let g:syntastic_c_remove_include_errors = 1
+                    " remove errors of files included via the g:syntastic_cpp_include_dirs
+                let g:syntastic_c_compiler_options = ' -ansi'
+                    " add additional compiler options.
+                " let g:syntastic_c_errorformat = ''
+                    " use this variable to override the default error format.
+            " cpp
+                let g:syntastic_cpp_compiler = 'g++' " clang++, g++
+                let g:syntastic_cpp_check_header = 1 " check header files
+                let g:syntastic_cp_no_include_search = 0
+                    " 1: disable search of included header files after special libraries.
+                let g:syntastic_cpp_include_dirs = [ 'includes', 'headers', ]
+                    " add some custom include directories.
+                let g:syntastic_cpp_auto_refresh_includes = 1
+                    " enable header files being re-checked on every file write.
+                let g:syntastic_cpp_remove_include_errors = 1
+                    " remove errors of files included via the g:syntastic_cpp_include_dirs
+                let b:syntastic_cpp_cflags = ' -I/usr/include/libsoup-2.4'
+                    " alternately, set buffer local variable.
+                let g:syntastic_cpp_compiler_options = ' -std=c++0x'
+                    " add additional compiler options.
+                " let g:syntastic_cpp_config_file = '.config'
+                    " default: '.syntastic_cpp_config'
+                " let g:syntastic_cpp_errorformat = ''
+                    " use this variable to override the default error format.
+            " JavaScript
+                " let g:syntastic_javascript_checker = "jslint"
+            " CSS
+                " let g:syntastic_csslint_options = "--warning=none" " disable warning
         " }}}
 
         " checksyntax {{{
