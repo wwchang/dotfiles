@@ -893,12 +893,6 @@ endif
     nnoremap <SPACE> za
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
 
-    " Temporarily clear highlighting
-    " <C-\> Toggle search highlighting (:help set-inv  :help E518)
-    " nnoremap <silent> <Leader>nh :nohlsearch<cr><C-l>
-    " nnoremap <C-Bslash> :set invhlsearch hlsearch?<cr>
-    nnoremap <silent> <Leader>nh :set invhlsearch hlsearch?<cr>
-
     " quickfix/location list, window manipulate
     nnoremap <Leader>qo :cindow<CR>
     nnoremap <Leader>qc :cclose<CR>
@@ -908,9 +902,16 @@ endif
     " reformat paragraph
     nnoremap <silent> Q gqap
 
-    " very magic regex in search with '\v'
-    nnoremap / /\v
-    nnoremap ? ?\v
+    " very magic regex in search with '\v', and always enable 'hlsearch' before search
+    " nnoremap / <ESC>:set hlsearch<CR>/\v
+    " nnoremap ? <ESC>:set hlsearch<CR>?\v
+    " Temporarily clear highlighting
+    " nnoremap <silent> <Leader>nh :set invhlsearch hlsearch?<cr>
+    " -----------------------------------------------------
+    " more better and simple version solution
+    " should not disable hlsearch, only :nohlsearch is fine. Because Vim search
+    " will turn hlsearch back.
+    nnoremap <Leader>nh :nohlsearch<CR>
 
         " NOTICE use nonrecursive mapping.
         " Each of the *map commands has a *noremap counterpart that ignores other mappings
