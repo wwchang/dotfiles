@@ -1153,7 +1153,7 @@ endif
         " options
         " let g:neobundle#types#raw#calc_hash_command = '' " 'sha1sum'/'md5sum'
 
-        " check neobundle installed
+        " check neobundle installed {{{
         fun! InstallNeoBundle(path)
             if isdirectory(expand(a:path))
                 return 1
@@ -1175,6 +1175,7 @@ endif
             set runtimepath+=~/.vim/bundle/neobundle/
         endif
         call neobundle#rc(expand('~/.vim/bundle/'))
+        " }}}
 
         " [ bundles ] {{{
         " examples {{{
@@ -1238,7 +1239,10 @@ endif
 
         " Let NeoBundle manage NeoBundle
         NeoBundle 'Shougo/neobundle.vim', {
-                    \ 'depends': ['Shougo/unite.vim', 'Shougo/neobundle-vim-scripts'],
+                    \ 'depends': [
+                        \ 'Shougo/unite.vim',
+                        \ 'Shougo/neobundle-vim-scripts',
+                        \ ],
                     \ 'directory': 'neobundle',
                     \ }
         NeoBundle 'Shougo/vimproc', {
@@ -1327,6 +1331,7 @@ endif
         " modeline
         NeoBundle 'ciaranm/securemodelines'
         " }}}
+
         " [ Vim libraries/frameworks ] {{{
         NeoBundle 'tomtom/tlib_vim'
         NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
@@ -1339,6 +1344,7 @@ endif
             " NeoBundle 'dahu/Chroma'
             " NeoBundle 'dahu/vimple'
         " }}}
+
         " [ program ] {{{
         " complete
         NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
@@ -1371,7 +1377,7 @@ endif
         NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags', { 'external_commands': ['ctags'], }
-        " NeoBundle 'vim-scripts/AutoTag', { 'external_commands': ['ctags'], }
+        " NeoBundle 'basilgor/vim-autotags', { 'external_commands': ['ctags', 'cscope', 'md5sum'] }
         " NeoBundle 'indexer.tar.gz', {
         "             \ 'depends': ['DfrankUtil', 'vimprj'],
         "             \ 'external_commands': ['ctags'],
@@ -1503,6 +1509,7 @@ endif
         " License
         " NeoBundle 'vim-scripts/license-loader'
         " }}}
+
         " [ languages ] {{{
         " VimL
         NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
@@ -1640,10 +1647,12 @@ endif
             " Textile
             " NeoBundle 'timcharper/textile.vim'
         " }}}
+
         " [ frameworks ] {{{
         " Android
         " NeoBundle 'pwicks86/eclim-for-vundle'
         " }}}
+
         " [ tools ] {{{
         " Wiki / Note / Org
         NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
@@ -1881,9 +1890,9 @@ syntax on
 
     " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-	" TODO
-	" if exists('g:loaded_neocomplcache')
-	" endif
+            " TODO
+            " if exists('g:loaded_neocomplcache')
+            " endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " comment out :set complete option.
@@ -1901,12 +1910,11 @@ syntax on
             " - :NeoComplCacheCachingTags command to make cache.
             " }}}
 
-            " common options {{{
+            " [ common options ] {{{
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
-            let g:neocomplcache_force_overwrite_completefunc = 1
-            " when conflict with other plugin completefunc, set 1 to disable error.
+            let g:neocomplcache_force_overwrite_completefunc = 1 " override other completefunc
             let g:neocomplcache_use_vimproc = 1
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
@@ -1950,7 +1958,7 @@ syntax on
             let g:neocomplcache_temporary_dir = '~/.neocon'
             " }}}
 
-            " complex dictionary options {{{
+            " [ complex dictionary options ] {{{
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             " those g:neocomplcache_* options only are initialized in first
             " completion, not in Vim's initialization.
@@ -2806,20 +2814,27 @@ syntax on
             " au FileType python let b:easytags_last_highlighted = 0
         " }}}
 
-        " taggatron {{{ A simple tag file manager for vim.
-            " allow user to setup rules for creating your tag files based on language.
+        " vim-autotags {{{ easy ctags and cscope handling in a separate directory
+            " Features:
+            " - build/rebuild index for project
+            " - tags are loaded automatically when a file is opened anywhere in project tree.
+            " - tags are stored in a separate directory and don't clog your project tree.
             " Usage:
-            " :TagUpdate
-            " let g:tagdefaults = "/path/to/other/tag.file"
-            " let g:taggatron_verbose = 1 " debug
-            let g:tagcommands = {
-                        \ "python" : {"tagfile": ".python.tags", "args": "-R"},
-                        \ "php" : {"tagfile": ".php.tags", "args": "-R"},
-                        \ "javascript" : {"tagfile": ".js.tags", "args": "-R"},
-                        \ }
+            " - AutotagsUpdate()
+            " - AutotagsAdd()
+            " - AutotagsRemove()
+            " FIXME create a map for AutotagsUpdate()
+            let g:autotagsdir = $HOME."/tmp/vim/tags/autotags.vim"
+            let g:autotags_global = $HOME . "/.autotags/global_tags"
+            let g:autotags_ctags_exe = "ctags"
+            let g:autotags_ctags_opts = "--c++-kinds=+p --fields=+iaS --extra=+q"
+            let g:autotags_ctags_languages = "all" " ctags --languages
+            let g:autotags_ctags_langmap = "default" " ctags --langmap
+            let g:autotags_no_global = 0 " generate global tags for /usr/include
+            let g:autotags_ctags_global_include = "/usr/include/*"
+            let g:autotags_cscope_exe = "cscope"
+            let g:autotags_cscope_file_extensions = ".cpp .cc .cxx .m .hpp .hh .h .hxx .c .idl"
         " }}}
-
-        " AutoTag (updates entries in a tags file automatically when saving.)
 
         " indexer.tar.gz
 
@@ -2842,31 +2857,44 @@ syntax on
             " More details please refer vim/plugin/gtags.vim
         " }}}
 
-	" yate {{{ search in tags more convenient.
-	    " It holds query and search result in one buffer for faster jump to desired tag.
-	    " Usage:
-	    "	:YATE
-	" }}}
+        " taggatron {{{ A simple tag file manager for vim.
+            " allow user to setup rules for creating your tag files based on language.
+            " Usage:
+            " :TagUpdate
+            " let g:tagdefaults = "/path/to/other/tag.file"
+            " let g:taggatron_verbose = 1 " debug
+            let g:tagcommands = {
+                        \ "python" : {"tagfile": ".python.tags", "args": "-R"},
+                        \ "php" : {"tagfile": ".php.tags", "args": "-R"},
+                        \ "javascript" : {"tagfile": ".js.tags", "args": "-R"},
+                        \ }
+        " }}}
 
-	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
-	    " it works like the context window of 'Source Insight'
-	    nnoremap <F4> :SrcExplToggle<CR>
-	    let g:SrcExpl_winHeight = 8
-	    let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
-	    let g:SrcExpl_pluginList = [
-			\ "Source_Explorer",
-			\ "_NERD_tree_",
-			\ "__Tag_List__",
-			\ "*unite*",
-			\ ]
-	    let g:SrcExpl_searchLocalDef = 1 " enable local definition searching.
-	    let g:SrcExpl_isUpdateTags = 1 " auto update tags file.
-	    let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
-	    " key mappings:
-	    let g:SrcExpl_jumpKey = "<CR>"
-	    let g:SrcExpl_gobackKey = "<Space>"
-	    let g:SrcExpl_updateTagsKey = ''
-	" }}}
+        " yate {{{ search in tags more convenient.
+            " It holds query and search result in one buffer for faster jump to desired tag.
+            " Usage:
+            "	:YATE
+        " }}}
+
+        " SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
+            " it works like the context window of 'Source Insight'
+            nnoremap <F4> :SrcExplToggle<CR>
+            let g:SrcExpl_winHeight = 8
+            let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
+            let g:SrcExpl_pluginList = [
+                \ "Source_Explorer",
+                \ "_NERD_tree_",
+                \ "__Tag_List__",
+                \ "*unite*",
+                \ ]
+            let g:SrcExpl_searchLocalDef = 1 " enable local definition searching.
+            let g:SrcExpl_isUpdateTags = 1 " auto update tags file.
+            let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+            " key mappings:
+            let g:SrcExpl_jumpKey = "<CR>"
+            let g:SrcExpl_gobackKey = "<Space>"
+            let g:SrcExpl_updateTagsKey = ''
+        " }}}
 
         " cscope.vim {{{ auto create cscope database and connect to existing database
             " Usage:
@@ -4077,21 +4105,21 @@ syntax on
                 " Ruby text objects
             " syntax
             let ruby_no_expensive = 1 " smart end color etc
-	    let ruby_minlines = 100
+            let ruby_minlines = 100
             let ruby_operators = 1 " highlight operators
             let ruby_space_errors = 0 " highlight whitespace erros
                 " disable this, because use other script
 
-	    " omni completefunc rubycomplete#Complete() settings : CTRL-X CTRL-O
-	    let g:rubycomplete_buffer_loading = 1 " load/evaluate code to provide completions
-	    let g:rubycomplete_classes_in_global = 1 " parse buffer to complete classes, constants and globals
-	    let g:rubycomplete_rails = 1 " detect & load Rails env for files in Rails project
+            " omni completefunc rubycomplete#Complete() settings : CTRL-X CTRL-O
+            let g:rubycomplete_buffer_loading = 1 " load/evaluate code to provide completions
+            let g:rubycomplete_classes_in_global = 1 " parse buffer to complete classes, constants and globals
+            let g:rubycomplete_rails = 1 " detect & load Rails env for files in Rails project
 
-	    " TODO where are those options from ??
-	    " let g:rubycomplete_include_object = 1
-	    " let g:rubycomplete_include_objectspace = 1
-                " " Ruby completion will parse your buffer on demand in order to
-                " " provide a list of completions.
+            " TODO where are those options from ??
+            " let g:rubycomplete_include_object = 1
+            " let g:rubycomplete_include_objectspace = 1
+            " " Ruby completion will parse your buffer on demand in order to
+            " " provide a list of completions.
 
             " autocmd FileType ruby compiler ruby
         " }}}
@@ -4102,57 +4130,57 @@ syntax on
             "   - gem install methodfinder
         " }}}
 
-	" ri.vim {{{ Ruby documentation ri
-	    " lets you search and navigate Ruby library and gem documentation inside Vim
-	    " Advantages over the venerable ri command-line tool:
-		" - write code and browse pertinent documentation in adjacent Vim windows
-		" - search with autocompletion help
-		" - hyperlinking lets you jump from definition to definition
-		" - run back and forth through your jump history with CTRL-o and CTRL-i
-		" - jump directly to gem READMEs and into the gem source directories
-		" - directly open corresponding HTML-formatted rdoc documentation
-	    " Usage:
-	    " Invoking the plugin
-	    "	- <Leader>r
-	    "	    -- opens the search/autocomplete window, and will use a
-	    "	    horizontal split to display matching documentation.
-	    "	- <Leader>R
-	    "	    -- opens the search/autocomplete window, and will use a
-	    "	    vertical split to display matching documentatoin.
-	    "	- <Leader>K
-	    "	    -- opens the search/autocomplete window and prefills it with
-	    "	    the keyword under the cursor.
-	    "	- K
-	    "	    -- is automatically remapped to use ri.vim if the current
-	    "	    buffer is a *.rb file.
-	    " Using the search/autocomplete window
-	    "	With the search/autocomplete window open, start typing the name
-	    "	of the class, module, or method you want to lookup.
-	    " Press `TAB` to start autocompletion.
-	" }}}
+        " ri.vim {{{ Ruby documentation ri
+            " lets you search and navigate Ruby library and gem documentation inside Vim
+            " Advantages over the venerable ri command-line tool:
+            " - write code and browse pertinent documentation in adjacent Vim windows
+            " - search with autocompletion help
+            " - hyperlinking lets you jump from definition to definition
+            " - run back and forth through your jump history with CTRL-o and CTRL-i
+            " - jump directly to gem READMEs and into the gem source directories
+            " - directly open corresponding HTML-formatted rdoc documentation
+            " Usage:
+            " Invoking the plugin
+            "	- <Leader>r
+            "	    -- opens the search/autocomplete window, and will use a
+            "	    horizontal split to display matching documentation.
+            "	- <Leader>R
+            "	    -- opens the search/autocomplete window, and will use a
+            "	    vertical split to display matching documentatoin.
+            "	- <Leader>K
+            "	    -- opens the search/autocomplete window and prefills it with
+            "	    the keyword under the cursor.
+            "	- K
+            "	    -- is automatically remapped to use ri.vim if the current
+            "	    buffer is a *.rb file.
+            " Using the search/autocomplete window
+            "	With the search/autocomplete window open, start typing the name
+            "	of the class, module, or method you want to lookup.
+            " Press `TAB` to start autocompletion.
+        " }}}
 
-	" vim-rake {{{ it's like rails.vim without rails.
-	" }}}
+        " vim-rake {{{ it's like rails.vim without rails.
+        " }}}
 
         " neco-rake {{{ A neocomplcache plugin for Rake on vimshell
         " TODO
         " }}}
 
 
-	" vim-rvm {{{ switch Ruby versions from inside Vim
-	    " Usage:
-	    " - :Rvm 1.9.3
-	    " - :Rvm use default
-	    " * leave off the version
-	    "	- :Rvm
-	    "	- :Rvm use
-	" }}}
+        " vim-rvm {{{ switch Ruby versions from inside Vim
+            " Usage:
+            " - :Rvm 1.9.3
+            " - :Rvm use default
+            " * leave off the version
+            "	- :Rvm
+            "	- :Rvm use
+        " }}}
 
-	" vim-bundler {{{ Lightweight support for Ruby's Bundler
-	    " Usage:
-	    " - :Bundle -- wraps 'bundle'
-	    " - :Bopen/Bsplit/Btabedit
-	" }}}
+        " vim-bundler {{{ Lightweight support for Ruby's Bundler
+            " Usage:
+            " - :Bundle -- wraps 'bundle'
+            " - :Bopen/Bsplit/Btabedit
+        " }}}
 
         " vim-rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
@@ -4583,7 +4611,7 @@ syntax on
         " :h ft_sql.txt,
             let msql_sql_query = 1 " like SQL highlighting inside Strings.
             let msql_minlines = 200 " for syncing, minlines defaults to 100.
-	    let g:sql_type_default = 'mysql' " or 'sqlanywhere'
+            let g:sql_type_default = 'mysql' " or 'sqlanywhere'
 
             " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
                 " [ static mode ] {{{
@@ -4628,8 +4656,7 @@ syntax on
             " Datasource Viewer keys: q, <cr>
         " }}}
 
-        " SQLUtilities: | Formatting, generate - columns lists, procedures for databases
-            " [ functions ] {{{
+        " SQLUtilities {{{ Formatting, generate - columns lists, procedures for databases
             " automatically captilize all SQL keywords and statements.
         " }}}
     " }}}
@@ -5156,24 +5183,6 @@ syntax on
 
     " [ Sed ] {{{
         let highlight_sedtabs = 1 " make tabs stand out from regular blanks
-    " }}}
-
-    " [ R ] {{{
-        " Vim-R-plugin {{{ editing R code and integrate Vim with R
-            " :help vim-r-plugin
-            " Depends:
-            " Tmux, vimcom(R packge), Screen(Vim plugin: vim + screen/tmux)
-            " Features:
-                " Communication with R.
-                " Omni completion (auto-completion) for R objects.
-                " Ability to see R's documentation in Vim's buffer.
-                " Object Browser.
-                " Syntax highlighting for R and RHelp code.
-                " Smart indentation for R and RHelp syntax.
-                " Most of the plugin's behavior is customizable.
-        " }}}
-
-        " rcom : Evaluate R code via rcom, rserve, screen, or tmux
     " }}}
 
     " [ Rust ] {{{
@@ -6899,7 +6908,6 @@ syntax on
 
     " [ smalltools ] {{{
         " vimim {{{ Vim Input Method
-        " TODO set popup menu height
             " Usage:
             "   - [normal] gi --> no popup menu input.
             "   - [normal] n  --> no popup menu input.
@@ -6909,6 +6917,7 @@ syntax on
             "   - [insert] i_CTRL-L     --> when .. is set: go to .. mode
             let g:vimim_map = 'tab_as_onekey' " 'no-gi', 'tab_as_gi', 'tab_as_onekey'
             let g:vimim_mode = 'dynamic'
+            " TODO set popup menu height
             let g:vimim_pumheight = 5 " my own branch
             " let g:vimim_plugin = '/path/to/plugin' " plugin path
             let g:vimim_punctuation = 0
@@ -6921,6 +6930,7 @@ syntax on
                 " -1: close toggle cycle
                 " 'wubi,pinyin'
             let g:vimim_shuangpin = 0 " 双拼
+                " 0: disable
                 " 'abc': 智能 ABC
                 " 'ms': 微软
                 " 'nature': 自然码
