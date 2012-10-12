@@ -908,6 +908,9 @@ endif
     " Temporarily clear highlighting
     " nnoremap <silent> <Leader>nh :set invhlsearch hlsearch?<cr>
     " -----------------------------------------------------
+    " very magic regex in search with '\v', and always enable 'hlsearch' before search
+    nnoremap / /\v
+    nnoremap ? ?\v
     " more better and simple version solution
     " should not disable hlsearch, only :nohlsearch is fine. Because Vim search
     " will turn hlsearch back.
