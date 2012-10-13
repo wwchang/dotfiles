@@ -98,13 +98,15 @@
     " endif
     " }}}
 
-    " [ command line ] {{{ :help cmdline-completion <C-n>/<C-p>
+    " [ command line ] {{{ <C-n>/<C-p>, <C-f>(cmdline-window), [q:/q/|q?]
     set wildmenu wildmode=list:full " show matches above cmdline <C-N/P>
     set showcmd         " show (partial) command in the last line of screen.
     set cmdheight=2     " Prevent 'Press Enter' message after most commands
     set shortmess=xtToO " Limit Vim's 'hit-enter' messages
     set wildchar=<Tab>     " <Tab> to complete in cmdline.
     set wildignorecase     " ignore case when completing file names and directories.
+    " cmdline-window
+    set cmdwinheight=10
     " }}}
 
     " [ encode ] {{{
