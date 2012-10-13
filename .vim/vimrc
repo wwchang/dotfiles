@@ -3368,7 +3368,131 @@ syntax on
     " }}}
 
     " [ doc & help "K" ] {{{
-        " Viewdoc {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+        " ref {{{ {Visual}'K', ref is a Vim plugin to view the reference.
+            " TODO enhance ref with feature of completion in vim command line
+            " TODO change ref-viewer open style, like viewdoc open content in
+            " preview window with syntax highlighting.
+            " take this as an option for ref.
+            " This plugin can be separated to core of viewer and sources of
+            " reference.  As a result, various references can be viewed by the
+            " same interface.
+            " :help ref@en
+            " Usage:
+            "   - 'K'
+            "   - :Unite ref/??
+            "   - :Ref [{options}] {source-name} [{query}]
+            "       - options:
+            "           - -open={command} -- overwrite the g:ref_open
+            "           - -new -- open viewer newly
+            "       - source: (source is a Dictionary)
+            "       - function: (function is a Dictionary-function)
+            "       - query: (a string passed by :Ref command)
+            "   - <Plug>(ref-keyword) => 'K' / '<CR>' / '<C-]>'
+            "   - history
+            "       - <Plug>(ref-forward)   => '<C-i>'
+            "       - <Plug>(ref-back)      => '<C-t>' / '<C-o>'
+            " Supports:
+            "   - Ruby -> refe/resense (ReFe)
+            "   - Python -> pydoc
+            "   - C/command -> man
+            "   - Perl -> perldoc
+            "   - PHP -> phpmanual
+            "   - Clojure -> clojure
+            "   - Erlang -> erlang
+            "   - rfc -> Web RFC
+            "   - webdict - > web dictionary
+
+            " let g:ref_no_default_key_mappings = 1 " no default mappings
+            let g:ref_open = 'split' " split/vsplit/tabnew
+            let g:ref_use_vimproc = 1 " ref#system() use vimproc.
+                " comment out: open in vim buffer instead of less
+            let g:ref_noenter = 0 " 1: always enable -noenter option for :Ref
+            if !exists('g:ref_detect_filetype')
+                let g:ref_detect_filetype = {}
+            endif
+            let g:ref_detect_filetype['_'] = 'man'
+                " key is filetype.
+                " value is source name in ref/
+                " '_' means all filetypes.
+                " '_' key used when filetype was not registered
+            " FIXME let g:ref_detect_filetype['vim'] = 'Funcref'
+
+            " [ Vim ]
+                " -> :help
+                "  FIXME let ref support this.
+            " [ Ruby ]
+                " -> refe (ReFe)
+                " Requirements:
+                "       - ref + ReFe
+                "       - or ref-man + RSense
+                let g:ref_refe_cmd = ["refe",]
+                    " allow a List includes command and arguments.
+                let g:ref_refe_version = 2 " 1/2 <- $ refe --version
+                let g:ref_refe_encoding = &termencoding
+                " ref-man: RSense
+                let g:ref_refe_rsense_cmd = 'rsense'
+                    " specific RSense command.
+            " [ Python ]
+                " -> pydoc
+                let g:ref_pydoc_cmd = 'pydoc'
+                let g:ref_pydoc_complete_head = 1
+            " [ C / command ]
+                " -> man
+                let g:ref_man_cmd = 'man' " man/info/'man -P cat'
+                let g:ref_man_lang = $LANG " $LANG
+            "  [ Go ]
+                " -> godoc
+                " TODO support godoc
+            " [ JavaScript ]
+                " -> ???
+                "  TODO support JavaScript
+            " [ Perl ]
+                " -> perldoc
+                let g:ref_perldoc_cmd = 'perldoc'
+                let g:ref_perldoc_complete_head = 1
+                let g:ref_perldoc_auto_append_f = 1
+            " [ PHP ]
+                " -> phpmanual
+                let g:ref_phpmanual_cmd = 'w3m -dump %s'
+                let g:ref_phpmanual_path = 'http://php.benscom.com/download-docs.php'
+            " [ Clojure ]
+                " -> clojure
+                let g:ref_clojure_cmd = 'clj'
+                let g:ref_clojure_overview = 1
+                " let g:ref_clojure_classpath =
+                    " specific $CLASSPATH by string or List.
+                " let g:ref_clojure_precode = '' " 'use'/'require'
+                    " specific the code executed before searching.
+            " [ Erlang ]
+                " -> erlang
+                let g:ref_erlang_cmd = 'erl' " 'erl'/'erl -man'
+                let g:ref_erlang_man_dir =
+                            \ 'erl -noshell -eval' .
+                            \ 'io:fwrite(code:root_dir()). -s init stop'
+            " [ RFC ]
+                " -> rfc
+                let g:ref_rfc_cmd = 'elinks'
+                let g:ref_rfc_encoding = &termencoding
+            " [ webdict ]
+                " -> webdict
+                let g:ref_source_webdict_cmd = 'w3m -dump %s'
+                if !exists('g:ref_source_webdict_sites')
+                    let g:ref_source_webdict_sites = {}
+                endif
+                " TODO add my firefox bookmarks: youdao, google, chinese ...
+                " FIXME %s after ?q= is the query keyword
+                " let g:ref_source_webdict_sites['youdao'] = {
+                "             \ 'url': 'http://dict.youdao.com/search?q=%s&keyfrom=dict.index',
+                "             \ 'keyword_encoding': 'utf-8',
+                "             \ 'output_encoding': 'utf-8',
+                "             \ 'cache': 0,
+                "             \ 'filter': '',
+                "             \ 'line': '',
+                "             \ }
+                let g:ref_source_webdict_encoding = &termencoding
+        " }}}
+
+        " viewdoc {{{ {Visual}'K', Flexible viewer for any documentation (vim help/man/perl/python)
             " support python dot operator help.
             " e.g. module.fun|<K>ction(args)
             " TODO more customize
