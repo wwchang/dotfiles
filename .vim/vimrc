@@ -2550,10 +2550,10 @@ syntax on
             " do not use snippets come with UltiSnips.
             let g:UltiSnipsSnippetDirectories = ["snippets/UltiSnips"]
             let g:UltiSnipsDontReverseSearchPath = 0 " traverse runtimepath
-            let g:UltiSnipsExpandTrigger = "<tab>"
-            let g:UltiSnipsListSnippets = "<c-tab>"
-            let g:UltiSnipsJumpForwardTrigger = "<c-j>" " jump to next tabstop.
-            let g:UltiSnipsJumpBackwardTrigger = "<c-k>" " previous tabstop.
+            let g:UltiSnipsExpandTrigger = "<c-tab>" " <Tab>
+            let g:UltiSnipsListSnippets = "<c-tab>" " <C-Tab>
+            let g:UltiSnipsJumpForwardTrigger = "<c-j>" " <C-j> jump to next tabstop.
+            let g:UltiSnipsJumpBackwardTrigger = "<c-k>" " <C-k> previous tabstop.
             let g:UltiSnipsDoHash = 1 " check and reload new snip file.
             " let g:UltiSnipsRemoveSelectModeMappings = 1 " issues a :sunmap cmd.
             " let g:UltiSnipsMappingsToIgnore = [ "somePlugin", "otherPlugin" ]
@@ -7087,7 +7087,13 @@ syntax on
             "   - [insert] i-CTRL-^     --> toggle popup menu
             "   - [insert] i_CTRL-U     --> undo inserted characters
             "   - [insert] i_CTRL-L     --> when .. is set: go to .. mode
-            let g:vimim_map = 'tab_as_onekey' " 'no-gi', 'tab_as_gi', 'tab_as_onekey'
+            let g:vimim_map = 'm-space'
+                " 'c-bslash' -> <C-Bslash> <C-_> (Ctrl-\)
+                " 'c-space' -> <C-Space> <C-_> (Ctrl-Space)
+                " 'm-space' -> <M-Space> <C-_> (Alt-Space)
+                " 'tab' -> <Tab> <C-^>
+                " 'tab_as_gi' -> <Tab> <C-R>g:vimim_tab(1)
+                " 'tab_as_onekey' -> <Tab> <C-R>=g:vimim_tab(0)
             let g:vimim_mode = 'dynamic'
             " TODO set popup menu height
             let g:vimim_pumheight = 5 " my own branch
