@@ -98,13 +98,15 @@
     " endif
     " }}}
 
-    " [ command line ] {{{ :help cmdline-completion <C-n>/<C-p>
+    " [ command line ] {{{ <C-n>/<C-p>, <C-f>(cmdline-window), [q:/q/|q?]
     set wildmenu wildmode=list:full " show matches above cmdline <C-N/P>
     set showcmd         " show (partial) command in the last line of screen.
     set cmdheight=2     " Prevent 'Press Enter' message after most commands
     set shortmess=xtToO " Limit Vim's 'hit-enter' messages
     set wildchar=<Tab>     " <Tab> to complete in cmdline.
     set wildignorecase     " ignore case when completing file names and directories.
+    " cmdline-window
+    set cmdwinheight=10
     " }}}
 
     " [ encode ] {{{
@@ -639,7 +641,7 @@ endif
     set shiftwidth=2 " Number of spaces for each indent level
     set softtabstop=2 " Even when using <Tab>'s
     set expandtab " When pressing <Tab>, replace with spaces
-    " set tabstop=2 " number of spaces that a <Tab> counts for.
+    " set tabstop=8 " number of spaces that a <Tab> counts for.
     " }}}
 
     " [ format ] {{{
@@ -1565,6 +1567,7 @@ endif
         NeoBundle 'vim-scripts/dbext.vim'
         NeoBundle 'mattn/vdbi-vim'
         " NoSQL
+        " NeoBundle 'vim-scripts/nosql.vim'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
         " NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -2001,7 +2004,20 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " FIXME this pattern
+            " FIXME this 'go' pattern
+            " let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " gocode plugin
+            let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns['cpp'] = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns['javascript'] = '[^. \t]\.\%(\h\w*\)\?'
+            " FIXME
+            " let g:neocomplcache_omni_patterns['haskell'] = ''
+            " FIXME
+            let g:neocomplcache_omni_patterns['clojure'] = '\w\|-\|\.\|+\|*\|/'
+            " FIXME this 'sql' pattern
+            let g:neocomplcache_omni_patterns['sql'] = '\(\w\|\.\)'
+            let g:neocomplcache_omni_patterns['r'] = '[[:alnum:].\\]\+' " vim-R-plugin
+            let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::' " default / plugin phpcomplete.vim
+            let g:neocomplcache_omni_patterns['xquery'] = '\k\|:\|\-\|&' " plugin XQuery-indentomnicompleteftplugin
             " }}}
             " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
@@ -2018,17 +2034,20 @@ syntax on
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
             endif
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
-            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
-            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
-            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
-            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " plugin gocode
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main' " plugin omnicppcomplete
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main' " plugin omnicppcomplete
             " - 'javascriptcomplete#CompleteJS' -- default javascript omni
             " - 'jscomplete#CompleteJS' -- jscomplete-vim plugin
             let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
-            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default
+            let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
+            let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
             " }}}
             " member patterns {{{
             if !exists('g:neocomplcache_member_prefix_patterns')
@@ -2048,7 +2067,7 @@ syntax on
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
-	    " if empty, use Vim 'dictionary' option.
+            " if empty, use Vim 'dictionary' option.
             let g:neocomplcache_dictionary_filetype_lists['default'] = ''
             let g:neocomplcache_dictionary_filetype_lists['text'] = '/usr/share/dict/words'
             if !exists('g:neocomplcache_dictionary_patterns')
@@ -2109,32 +2128,36 @@ syntax on
             let g:neocomplcache_source_completion_length['member_complete'] = 0
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
-            let g:neocomplcache_source_completion_length['tags_complete'] = 1
-            let g:neocomplcache_source_completion_length['look'] = 3 " neco-look plugin
-	    " dynamically change dictionary_complete source completion length.
-            let s:TextFileType = ['text', 'mail', 'markdown',]
+            let g:neocomplcache_source_completion_length['tags_complete'] = 2
+            let g:neocomplcache_source_completion_length['syntax_complete'] = 1
+            let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
+            " TODO
+            let g:neocomplcache_source_completion_length['js_complete'] = 1 " plugin jscomplete.vim
+            let g:neocomplcache_source_completion_length['ghc'] = 2 " plugin neco-ghc
+            " dynamically change dictionary_complete source completion length.
+            let s:TextFileType = ['text', 'mail', 'markdown', 'vimwiki',]
             if index(s:TextFileType, &filetype) >= 0
                 let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
             else
                 let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             endif
-	    if !exists('g:neocomplcache_sources_list')
-		let g:neocomplcache_sources_list = {}
-	    endif
-	    " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
-	    " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
+            if !exists('g:neocomplcache_sources_list')
+                let g:neocomplcache_sources_list = {}
+            endif
+            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
+            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
             " }}}
             " same filetypes {{{
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-	    " if value contains '_', neocomplcache completes from all buffers.
-	    " set this '_' key will disable default initialization
-	    " let g:neocomplcache_same_filetype_lists['_'] = '_'
-		" default complete from all buffers
-	    let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
-	    let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
-	    let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
+            " if value contains '_', neocomplcache completes from all buffers.
+            " set this '_' key will disable default initialization
+            " let g:neocomplcache_same_filetype_lists['_'] = '_'
+            " default complete from all buffers
+            let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
+            let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
+            let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
             " }}}
             " composite file type (only use one completion) {{{
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
@@ -2199,20 +2222,25 @@ syntax on
                         \ 'start': '^\s*{{{css$',
                         \ 'end': '^\s*}}}',
                         \ },
+                        \ {
+                        \ 'filetype': 'tex',
+                        \ 'start': '^\s*{{{tex$',
+                        \ 'end': '^\s*}}}',
+                        \ },
                         \ ]
             " }}}
             " text mode filetypes {{{
-	    " in text mode, neocomplcache supports word convertion to write English.
-	    " For example, if you input 'Fo', neocomplcache will convert
-	    " candidate 'foo' to 'Foo'. If you input 'foo', neocomplcache will
-	    " convert candidate 'FooBar' to 'foobar'. If you input 'FO',
-	    " neocomplcache will convert candidate 'foo' to 'FOO'.
+            " in text mode, neocomplcache supports word convertion to write English.
+            " For example, if you input 'Fo', neocomplcache will convert
+            " candidate 'foo' to 'Foo'. If you input 'foo', neocomplcache will
+            " convert candidate 'FooBar' to 'foobar'. If you input 'FO',
+            " neocomplcache will convert candidate 'foo' to 'FOO'.
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-	    let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
-	    let g:neocomplcache_text_mode_filetypes['markdown'] = 1
-	    let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
+            let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+            let g:neocomplcache_text_mode_filetypes['markdown'] = 1
+            let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
             " }}}
 
             " }}}
@@ -2702,14 +2730,63 @@ syntax on
             "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
             "             \ }
 
+            " Ruby {{{
+            let g:tagbar_type_ruby = {
+                        \ 'kinds' : [
+                            \ 'm:modules',
+                            \ 'c:classes',
+                            \ 'd:describes',
+                            \ 'C:contexts',
+                            \ 'f:methods',
+                            \ 'F:singleton methods'
+                            \ ]
+                        \ }
+            " }}}
+
+            " Go {{{
+            let g:tagbar_type_go = {
+                        \ 'ctagstype': 'go',
+                        \ 'kinds' : [
+                            \'p:package',
+                            \'f:function',
+                            \'v:variables',
+                            \'t:type',
+                            \'c:const'
+                            \ ]
+                        \ }
+            " }}}
+
+            " Markdown {{{
+            let g:tagbar_type_markdown = {
+                        \ 'ctagstype' : 'markdown',
+                        \ 'kinds' : [
+                        \ 'h:Heading_L1',
+                        \ 'i:Heading_L2',
+                        \ 'k:Heading_L3'
+                        \ ]
+                        \ }
+            " }}}
+
+            " Xquery {{{
+            let g:tagbar_type_xquery = {
+                        \ 'ctagstype' : 'xquery',
+                        \ 'kinds'     : [
+                            \ 'f:function',
+                            \ 'v:variable',
+                            \ 'm:module',
+                            \ ]
+                        \ }
+            " }}}
+
             nnoremap <F12> :TagbarToggle<CR>
 
-            " automatically opening tagbar.
-            " 1. autocmd VimEnter * nested :TagbarOpen " open for any files.
-            " 2. augroup TagListAutoToggle
-                "au!
-                "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
-            "augroup END
+            " 1. auto open for any files.
+            " autocmd VimEnter * nested :TagbarOpen
+            " 2. auto open for supported filetypes.
+            " augroup TagbarAutoToggle
+            "     au!
+            "     au VimEnter * nested :call tagbar#autoopen(1)
+            " augroup END
 
             " {{{ colors for Tagbar.vim
             " cyan
@@ -2748,7 +2825,6 @@ syntax on
             " :Tlist[AddFiles, AddFilesRecursive, Close, Debug, Lock, Messages,
             " Open, ShowPrototype, ShowTag, HighlightTag, Toggle, Undebug,
             " Unlock, Update]
-            " nnoremap <F12> :TlistToggle<CR>
             let g:Tlist_Auto_Open = 0 " open taglist window when vim starts.
             let g:Tlist_Process_File_Always = 1 " processing tag even not open tags win.
             let g:Tlist_Auto_Highlight_Tag = 1 " highlight current tag.
@@ -2771,12 +2847,13 @@ syntax on
             " let g:Tlist_Max_Tag_Length = 25
             let g:Tlist_javascript_Hide_Extras = 0 " hide extra tag data
 
-            " TODO highlighting
-            "TagListTagName  - Used for tag names
-            "TagListTagScope - Used for tag scope
-            "TagListTitle    - Used for tag titles
-            "TagListComment  - Used for comments
-            "TagListFileName - Used for filenames
+            highlight TagListTagName    ctermfg=250
+            highlight TagListTagScope   ctermfg=045
+            highlight TagListTitle      ctermfg=226
+            highlight TagListComment    ctermfg=235
+            highlight TagListFileName   ctermfg=255 ctermbg=232
+
+            " TODO nnoremap <F12> :TlistToggle<CR>
         " }}}
 
         " Tag_Signature_Balloons (Tag Signatures in Balloon Tooltips)
@@ -2880,7 +2957,6 @@ syntax on
 
         " SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
             " it works like the context window of 'Source Insight'
-            nnoremap <F4> :SrcExplToggle<CR>
             let g:SrcExpl_winHeight = 8
             let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
             let g:SrcExpl_pluginList = [
@@ -2896,6 +2972,8 @@ syntax on
             let g:SrcExpl_jumpKey = "<CR>"
             let g:SrcExpl_gobackKey = "<Space>"
             let g:SrcExpl_updateTagsKey = ''
+
+            nnoremap <F4> :SrcExplToggle<CR>
         " }}}
 
         " cscope.vim {{{ auto create cscope database and connect to existing database
@@ -3982,9 +4060,6 @@ syntax on
         " easytree {{{ Tree file manager.
             " Usage:
             " :EasyTree [directory path]
-            " .....
-            " .....
-            " TODO nnoremap <silent> <F11> :EasyTree<CR>
 
             let g:easytree_cascade_open_single_dir = 1 " cascade expands all subsequent single dir
             let g:easytree_show_line_numbers = 0 " disable showing line numbers
@@ -3994,6 +4069,8 @@ syntax on
             let g:easytree_ignore_files = ['*.swp', '*~']
             let g:easytree_ignore_find_result = ['*.swp', '*~', 'tags']
             let g:easytree_hijack_netrw = 1 " replace netrw with easytree
+
+            " TODO nnoremap <silent> <F11> :EasyTree<CR>
         " }}}
 
         " vimfiler {{{ Powerful file explorer implemented by VimL.
@@ -4048,12 +4125,13 @@ syntax on
             " let g:miniBufExplMaxSize = <max width: default 0>
             " let g:miniBufExplMinSize = <min width: default 1>
             " MiniBufExpl Colors
-            hi MBEVisibleActive guifg=#A6DB29 guibg=fg
-            hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-            hi MBEVisibleChanged guifg=#F1266F guibg=fg
-            hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
-            hi MBEChanged guifg=#CD5907 guibg=fg
-            hi MBENormal guifg=#808080 guibg=fg
+            hi MBENormal guifg=#808080 ctermfg=250
+            hi MBEChanged guifg=#CD5907 ctermfg=208 cterm=bold
+            hi MBEVisibleNormal guifg=#5DC2D6 ctermfg=024
+            hi MBEVisibleNormalActive guifg=#5DC2D6 ctermfg=026 cterm=bold
+            hi MBEVisibleChanged guifg=#F1266F ctermfg=208 cterm=bold
+            hi MBEVisibleChangedActive guifg=#F1266F ctermfg=232 ctermbg=208 cterm=bold
+            " FIXME how to auto open MiniBufExpl
         " }}}
 
         " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
@@ -4794,6 +4872,8 @@ syntax on
     " }}}
 
     " [ NoSQL ] {{{
+        " nosql.vim {{{ syntax for NoSQL tables, or any tab-separated (TSV) tables
+        " }}}
     " }}}
 
     " [ R ] {{{
@@ -5147,7 +5227,6 @@ syntax on
     " [ Go ] {{{
         " gocode {{{ autocompletion daemon for Go Language
             " Features: Context-sensitive autocompletion
-
         " }}}
 
         " vim-golang {{{ Go lang runtime vim scripts.
@@ -5360,7 +5439,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Binary ] {{{
+    " [ binary, hex ] {{{
         " hexript {{{ write a binary easily, and it is a code writing on free-format.
             " Require:
             "   - `xxd` program
@@ -5460,16 +5539,29 @@ syntax on
             " let g:unite_no_default_keymappings = 1 " don't map default key mappings
         " }}}
 
-	" querycommandcomplete {{{ completions from an external query command
-	    " External command that queries for contacts If empty,
-	    " QueryCommandComplete tries to guess what command to run by
-	    " executing `mutt -Q query_command`
-	    let g:qcc_query_command = 'abook'
-	    au BufRead /tmp/mutt* setlocal omnifunc=QueryCommandComplete
-	    let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
-	    let g:qcc_line_separator = "\n"
-	    let g:qcc_field_separator = "\t"
-	" }}}
+        " CompleteHelper {{{ Generic functions to support custom insert mode completions
+            " Externals:
+            " - CamelCaseComplete
+            " - MotionComplete
+            "   - BracketComplete
+            "   - LineEndComplete
+            " - PatternComplete
+            " - PrevInsertComplete
+            " - SameFiletypeComplete
+        " }}}
+
+        " querycommandcomplete {{{ completions from an external query command
+            " External command that queries for contacts If empty,
+                " TODO for other external command tools.
+
+            " QueryCommandComplete tries to guess what command to run by
+            " executing `mutt -Q query_command`
+            let g:qcc_query_command = 'abook'
+            au BufRead /tmp/mutt* setlocal omnifunc=QueryCommandComplete
+            let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
+            let g:qcc_line_separator = "\n"
+            let g:qcc_field_separator = "\t"
+        " }}}
     " }}}
 
     " [ register & operation ] {{{
@@ -7069,7 +7161,7 @@ syntax on
                 " 'plusplus': 拼音加加
                 " 'purple': 紫光
                 " 'flypy': 小鹤
-            let g:vimim_cloud = 'google,sougou,qq.fanti' " 云输入
+            let g:vimim_cloud = 'sougou' " 云输入
                 " -1 : close cloud
                 " 'baidu': 百度云输入
                 " 'google': 谷歌云输入
