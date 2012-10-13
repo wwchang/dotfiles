@@ -7145,7 +7145,7 @@ syntax on
                 " 'plusplus': 拼音加加
                 " 'purple': 紫光
                 " 'flypy': 小鹤
-            let g:vimim_cloud = 'google,sougou,qq.fanti' " 云输入
+            let g:vimim_cloud = 'sougou' " 云输入
                 " -1 : close cloud
                 " 'baidu': 百度云输入
                 " 'google': 谷歌云输入
