@@ -83,16 +83,8 @@
     " }}}
 
     " [ help ] {{{ vim internal HELP
-    " ":options | resize"
-    " nnoremap K <ESC>:exec "help".expand("<cWORD>")<CR>
-    " nnoremap K <ESC>:exec "help" expand("<cword>")<CR>
-    " autocmd FileType tex nnoremap <buffer> K :exec "help" expand("<cword>")<CR>
-    "augroup KHelp
-        "au!
-        "au FileType sh setlocal keywordprg="man -s"
-        "au FileType vim,help let &keywordprg=":help"
-    "augroup END
-        " }}}
+    set keywordprg="man -s"
+    " }}}
 
     " [ history & undo ] {{{
     set history=50 " history lines
@@ -106,14 +98,13 @@
     " endif
     " }}}
 
-    " [ command line ] {{{ :help cmdline-completion
-    set wildmenu wildmode=longest:full,full " show matches above cmdline <C-N/P>
+    " [ command line ] {{{ :help cmdline-completion <C-n>/<C-p>
+    set wildmenu wildmode=list:full " show matches above cmdline <C-N/P>
     set showcmd         " show (partial) command in the last line of screen.
     set cmdheight=2     " Prevent 'Press Enter' message after most commands
     set shortmess=xtToO " Limit Vim's 'hit-enter' messages
     set wildchar=<Tab>     " <Tab> to complete in cmdline.
     set wildignorecase     " ignore case when completing file names and directories.
-    set wildmode=list:full " or use list,longest
     " }}}
 
     " [ encode ] {{{
@@ -871,7 +862,7 @@ endif
     ":ShowFuncKeys
     " }}}
 
-    " windows navigation
+    " windows navigation {{{
     nnoremap <C-h> <C-w>h
     nnoremap <C-j> <C-w>j
     nnoremap <C-k> <C-w>k
@@ -888,43 +879,54 @@ endif
     nnoremap <script>  <SID>winsize<   <C-W><<SID>winsize
     nnoremap <script>  <SID>winsize>   <C-W>><SID>winsize
     nmap         <SID>winsize      <Nop>
+    " }}}
 
-    " toggle fold
+    " fold {{{
     nnoremap <SPACE> za
     " nnoremap <silent> <space> :exe 'silent! normal! '.((foldclosed('.')>0)? 'zMzx' : 'zc')<cr>
+    " }}}
 
-    " quickfix/location list, window manipulate
+    " quickfix/location list {{{
     nnoremap <Leader>qo :cindow<CR>
     nnoremap <Leader>qc :cclose<CR>
     nnoremap <Leader>lo :lwindow<CR>
     nnoremap <Leader>lc :lclose<CR>
+    " }}}
+
+    " help/doc/reference {{{
+    " }}}
 
     " reformat paragraph
     nnoremap <silent> Q gqap
 
+    " / ? search {{{
     " very magic regex in search with '\v', and always enable 'hlsearch' before search
     " nnoremap / <ESC>:set hlsearch<CR>/\v
     " nnoremap ? <ESC>:set hlsearch<CR>?\v
     " Temporarily clear highlighting
     " nnoremap <silent> <Leader>nh :set invhlsearch hlsearch?<cr>
     " -----------------------------------------------------
+    " very magic regex in search with '\v', and always enable 'hlsearch' before search
+    nnoremap / /\v
+    nnoremap ? ?\v
     " more better and simple version solution
     " should not disable hlsearch, only :nohlsearch is fine. Because Vim search
     " will turn hlsearch back.
     nnoremap <Leader>nh :nohlsearch<CR>
+    " }}}
 
-        " NOTICE use nonrecursive mapping.
-        " Each of the *map commands has a *noremap counterpart that ignores other mappings
-        " nnoremap, vnoremap, and inoremap. onoremap(operator).
-        " mapping a sequence of multiple keys. like: nnoremap jk dd
-        " buffer-local options and mapping. like: inoremap <buffer> <Leader>d dd
-        " Operator-Pending mapping, like dw (d: Operator, w: movement),
+    " NOTICE use nonrecursive mapping.
+    " Each of the *map commands has a *noremap counterpart that ignores other mappings
+    " nnoremap, vnoremap, and inoremap. onoremap(operator).
+    " mapping a sequence of multiple keys. like: nnoremap jk dd
+    " buffer-local options and mapping. like: inoremap <buffer> <Leader>d dd
+    " Operator-Pending mapping, like dw (d: Operator, w: movement),
 
-        " speed up pressing
-        " inoremap jk <esc>
-        " inoremap <esc> <nop> " (no operation)
+    " speed up pressing
+    " inoremap jk <esc>
+    " inoremap <esc> <nop> " (no operation)
 
-    " [ ins-completion ] {{{ CTRL-E: stop, CTRL-Y: accept.
+    " [ ins-completion ] {{{ C-n/p, CTRL-E: stop, CTRL-Y: accept.
     " i_CTRL-X_CTRL-L               -- whole lines
     " i_CTRL-X_CTRL-N               -- keywords in current file
     " i_CTRL-X_CTRL-K               -- keywords in dictionary
@@ -1150,7 +1152,7 @@ endif
         " options
         " let g:neobundle#types#raw#calc_hash_command = '' " 'sha1sum'/'md5sum'
 
-        " check neobundle installed
+        " check neobundle installed {{{
         fun! InstallNeoBundle(path)
             if isdirectory(expand(a:path))
                 return 1
@@ -1172,6 +1174,7 @@ endif
             set runtimepath+=~/.vim/bundle/neobundle/
         endif
         call neobundle#rc(expand('~/.vim/bundle/'))
+        " }}}
 
         " [ bundles ] {{{
         " examples {{{
@@ -1235,7 +1238,10 @@ endif
 
         " Let NeoBundle manage NeoBundle
         NeoBundle 'Shougo/neobundle.vim', {
-                    \ 'depends': ['Shougo/unite.vim', 'Shougo/neobundle-vim-scripts'],
+                    \ 'depends': [
+                        \ 'Shougo/unite.vim',
+                        \ 'Shougo/neobundle-vim-scripts',
+                        \ ],
                     \ 'directory': 'neobundle',
                     \ }
         NeoBundle 'Shougo/vimproc', {
@@ -1324,6 +1330,7 @@ endif
         " modeline
         NeoBundle 'ciaranm/securemodelines'
         " }}}
+
         " [ Vim libraries/frameworks ] {{{
         NeoBundle 'tomtom/tlib_vim'
         NeoBundle 'https://bitbucket.org/ns9tks/vim-l9', { 'type': 'hg', 'directory': 'L9' }
@@ -1336,6 +1343,7 @@ endif
             " NeoBundle 'dahu/Chroma'
             " NeoBundle 'dahu/vimple'
         " }}}
+
         " [ program ] {{{
         " complete
         NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
@@ -1368,7 +1376,7 @@ endif
         NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags', { 'external_commands': ['ctags'], }
-        " NeoBundle 'vim-scripts/AutoTag', { 'external_commands': ['ctags'], }
+        " NeoBundle 'basilgor/vim-autotags', { 'external_commands': ['ctags', 'cscope', 'md5sum'] }
         " NeoBundle 'indexer.tar.gz', {
         "             \ 'depends': ['DfrankUtil', 'vimprj'],
         "             \ 'external_commands': ['ctags'],
@@ -1500,6 +1508,7 @@ endif
         " License
         " NeoBundle 'vim-scripts/license-loader'
         " }}}
+
         " [ languages ] {{{
         " VimL
         NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
@@ -1637,10 +1646,12 @@ endif
             " Textile
             " NeoBundle 'timcharper/textile.vim'
         " }}}
+
         " [ frameworks ] {{{
         " Android
         " NeoBundle 'pwicks86/eclim-for-vundle'
         " }}}
+
         " [ tools ] {{{
         " Wiki / Note / Org
         NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
@@ -1878,9 +1889,9 @@ syntax on
 
     " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-	" TODO
-	" if exists('g:loaded_neocomplcache')
-	" endif
+            " TODO
+            " if exists('g:loaded_neocomplcache')
+            " endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " comment out :set complete option.
@@ -1898,12 +1909,11 @@ syntax on
             " - :NeoComplCacheCachingTags command to make cache.
             " }}}
 
-            " common options {{{
+            " [ common options ] {{{
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
-            let g:neocomplcache_force_overwrite_completefunc = 1
-            " when conflict with other plugin completefunc, set 1 to disable error.
+            let g:neocomplcache_force_overwrite_completefunc = 1 " override other completefunc
             let g:neocomplcache_use_vimproc = 1
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
             let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
@@ -1947,7 +1957,7 @@ syntax on
             let g:neocomplcache_temporary_dir = '~/.neocon'
             " }}}
 
-            " complex dictionary options {{{
+            " [ complex dictionary options ] {{{
             " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
             " those g:neocomplcache_* options only are initialized in first
             " completion, not in Vim's initialization.
@@ -2296,23 +2306,24 @@ syntax on
                 inoremap <expr> <C-y> neocomplcache#smart_close_popup()
                 inoremap <expr> <C-e> neocomplcache#cancel_popup()
                 inoremap <expr> <C-g> neocomplcache#undo_completion()
-		" use close_popup for e.g. pythoncomplete.vim's subprocess.os.
-		" dot candidate can not auto popup in next string after dot.
-		" without ."\<C-h>"
+                " use close_popup for e.g. pythoncomplete.vim's subprocess.os.
+                " dot candidate can not auto popup in next string after dot.
+                " without ."\<C-h>"
                 inoremap <expr> <C-h> neocomplcache#smart_close_popup()
                 inoremap <expr> <BS>  neocomplcache#smart_close_popup()."\<C-h>"
 
-                " inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
                 " <CR>: close popup and save indent.
-                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+                " inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
+
                 function! s:my_cr_function()
                     return neocomplcache#smart_close_popup() . "\<CR>"
                     " For no inserting <CR> key.
                     "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
                 endfunction
+                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 
-                imap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
-                imap <expr> <C-p> pumvisible() ? "\<C-p>"
+                inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
+                inoremap <expr> <C-p> pumvisible() ? "\<C-p>"
 
                 " imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
                 "             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
@@ -2326,7 +2337,7 @@ syntax on
                 " { neocomplcache-snippets-complete } {{{
                 " TODO
                 " how to check neocomplcache-snippets-complete plugin is loaded ???
-                " if exists('g:loaded_neocomplcache')
+                " if exists('g:loaded_neocomplcache') && exists('g:loaded_necosnippet')
                 " endif
                 " neocomplcache#sources#snippets_complete#expandable()
                     " return value:
@@ -2489,7 +2500,7 @@ syntax on
     " }}}
 
     " [ snippets ] {{{ <Ctrl-j/k> | <Tab>
-	" neosnippet {{{
+        " neosnippet {{{
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
             " key mappings:
@@ -2514,28 +2525,28 @@ syntax on
                 " performs. usually enable it.
             let g:neosnippet#disable_runtime_snippets = 0
 
-	    if !exists('g:loaded_neosnippet')
-                imap <expr><TAB> neosnippet#expandable() ?
-                            \ "\<Plug>(neosnippet_expand_or_jump)"
-                            \: pumvisible() ? "\<C-n>" : "\<TAB>"
-                imap <expr> <C-j> neosnippet#jumpable() ?
-                            \ "\<Plug>(neosnippet_jump)"
-                            \ : neosnippet#expandable() ?
-                            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
-                " TODO ask Shougo where to use this mapping. in Unite buffer or
-                " insert mode in vim ?
-                " and how to use snippet source ? edit/preview/expand.
-                " FIXME imap <C-s> <Plug>(neosnippet_start_unite_snippet)
-                nnoremap <buffer> <Leader>es
-                    \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
-                    " \ . &filetype<CR>
-	    endif
+            if !exists('g:loaded_neosnippet')
+                    imap <expr><TAB> neosnippet#expandable() ?
+                                \ "\<Plug>(neosnippet_expand_or_jump)"
+                                \: pumvisible() ? "\<C-n>" : "\<TAB>"
+                    imap <expr> <C-j> neosnippet#jumpable() ?
+                                \ "\<Plug>(neosnippet_jump)"
+                                \ : neosnippet#expandable() ?
+                                \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+                    " TODO ask Shougo where to use this mapping. in Unite buffer or
+                    " insert mode in vim ?
+                    " and how to use snippet source ? edit/preview/expand.
+                    " FIXME imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+                    nnoremap <buffer> <Leader>es
+                        \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
+                        " \ . &filetype<CR>
+            endif
 
             " for snippets_complete marker.
             if has('conceal')
                 set conceallevel=2 concealcursor=i
             endif
-	" }}}
+        " }}}
 
         " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
             " commands:
@@ -2775,16 +2786,16 @@ syntax on
 
         " easytags {{{ Automated tag file generation & syntax highlighting of tags
             " Usage:
-		" :UpdateTags[!]
-		" :UpdateTags -R ~/.vim => ctags -R ~/.vim
-		" :TagsByFileType
-		" :HighlightTags
+            " :UpdateTags[!]
+            " :UpdateTags -R ~/.vim => ctags -R ~/.vim
+            " :TagsByFileType
+            " :HighlightTags
             " let g:easytags_cmd = '/usr/bin/ctags'
-            let g:easytags_file = '~/.vimtags' " global tags
+            let g:easytags_file = '~/tmp/vim/tags/easytags/global.tags' " global tags
             let g:easytags_dynamic_files = 2
-		" 1: project specific tags -> use 'tags' option
-		" 2: auto create project specific tags based on first name in 'tags' option
-            let g:easytags_by_filetype = '~/.vimtags'
+                " 1: if project specific tags exists, otherwise -> use global tags file
+                " 2: auto create project specific tags based on first name in 'tags' option
+            let g:easytags_by_filetype = '~/tmp/vim/tags/easytags'
             let g:easytags_always_enabled = 0 " this slow down Vim
             let g:easytags_on_cursorhold = 0 " disable periodic highlight
             let g:easytags_updatetime_min = 4000
@@ -2799,24 +2810,33 @@ syntax on
             let g:easytags_python_enabled = 1 " use python interface to speed up
             " let g:easytags_python_script =
 
-            set tags+=~/.vimtags " from easytags
+            if exists('g:loaded_easytags')
+                set tags+=~/tmp/vim/tags/easytags/global.tags " for easytags
+            endif
             " au FileType python let b:easytags_last_highlighted = 0
         " }}}
 
-        " taggatron {{{ A simple tag file manager for vim.
-            " allow user to setup rules for creating your tag files based on language.
+        " vim-autotags {{{ easy ctags and cscope handling in a separate directory
+            " Features:
+            " - build/rebuild index for project
+            " - tags are loaded automatically when a file is opened anywhere in project tree.
+            " - tags are stored in a separate directory and don't clog your project tree.
             " Usage:
-            " :TagUpdate
-            " let g:tagdefaults = "/path/to/other/tag.file"
-            " let g:taggatron_verbose = 1 " debug
-            let g:tagcommands = {
-                        \ "python" : {"tagfile": ".python.tags", "args": "-R"},
-                        \ "php" : {"tagfile": ".php.tags", "args": "-R"},
-                        \ "javascript" : {"tagfile": ".js.tags", "args": "-R"},
-                        \ }
+            " - AutotagsUpdate()
+            " - AutotagsAdd()
+            " - AutotagsRemove()
+            " FIXME create a map for AutotagsUpdate()
+            let g:autotagsdir = $HOME."/tmp/vim/tags/autotags.vim"
+            let g:autotags_global = $HOME . "/.autotags/global_tags"
+            let g:autotags_ctags_exe = "ctags"
+            let g:autotags_ctags_opts = "--c++-kinds=+p --fields=+iaS --extra=+q"
+            let g:autotags_ctags_languages = "all" " ctags --languages
+            let g:autotags_ctags_langmap = "default" " ctags --langmap
+            let g:autotags_no_global = 0 " generate global tags for /usr/include
+            let g:autotags_ctags_global_include = "/usr/include/*"
+            let g:autotags_cscope_exe = "cscope"
+            let g:autotags_cscope_file_extensions = ".cpp .cc .cxx .m .hpp .hh .h .hxx .c .idl"
         " }}}
-
-        " AutoTag (updates entries in a tags file automatically when saving.)
 
         " indexer.tar.gz
 
@@ -2839,31 +2859,44 @@ syntax on
             " More details please refer vim/plugin/gtags.vim
         " }}}
 
-	" yate {{{ search in tags more convenient.
-	    " It holds query and search result in one buffer for faster jump to desired tag.
-	    " Usage:
-	    "	:YATE
-	" }}}
+        " taggatron {{{ A simple tag file manager for vim.
+            " allow user to setup rules for creating your tag files based on language.
+            " Usage:
+            " :TagUpdate
+            " let g:tagdefaults = "/path/to/other/tag.file"
+            " let g:taggatron_verbose = 1 " debug
+            let g:tagcommands = {
+                        \ "python" : {"tagfile": ".python.tags", "args": "-R"},
+                        \ "php" : {"tagfile": ".php.tags", "args": "-R"},
+                        \ "javascript" : {"tagfile": ".js.tags", "args": "-R"},
+                        \ }
+        " }}}
 
-	" SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
-	    " it works like the context window of 'Source Insight'
-	    nnoremap <F4> :SrcExplToggle<CR>
-	    let g:SrcExpl_winHeight = 8
-	    let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
-	    let g:SrcExpl_pluginList = [
-			\ "Source_Explorer",
-			\ "_NERD_tree_",
-			\ "__Tag_List__",
-			\ "*unite*",
-			\ ]
-	    let g:SrcExpl_searchLocalDef = 1 " enable local definition searching.
-	    let g:SrcExpl_isUpdateTags = 1 " auto update tags file.
-	    let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
-	    " key mappings:
-	    let g:SrcExpl_jumpKey = "<CR>"
-	    let g:SrcExpl_gobackKey = "<Space>"
-	    let g:SrcExpl_updateTagsKey = ''
-	" }}}
+        " yate {{{ search in tags more convenient.
+            " It holds query and search result in one buffer for faster jump to desired tag.
+            " Usage:
+            "	:YATE
+        " }}}
+
+        " SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
+            " it works like the context window of 'Source Insight'
+            nnoremap <F4> :SrcExplToggle<CR>
+            let g:SrcExpl_winHeight = 8
+            let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
+            let g:SrcExpl_pluginList = [
+                \ "Source_Explorer",
+                \ "_NERD_tree_",
+                \ "__Tag_List__",
+                \ "*unite*",
+                \ ]
+            let g:SrcExpl_searchLocalDef = 1 " enable local definition searching.
+            let g:SrcExpl_isUpdateTags = 1 " auto update tags file.
+            let g:SrcExpl_updateTagsCmd = "ctags --sort=foldcase -R ."
+            " key mappings:
+            let g:SrcExpl_jumpKey = "<CR>"
+            let g:SrcExpl_gobackKey = "<Space>"
+            let g:SrcExpl_updateTagsKey = ''
+        " }}}
 
         " cscope.vim {{{ auto create cscope database and connect to existing database
             " Usage:
@@ -3044,95 +3077,95 @@ syntax on
             let g:ctrlp_mruf_default_order = 0 " show only MRU files in pwd
             let g:ctrlp_tabpage_position = 'ac'
 
-                " statusline {{{
-                " customize the statusline for CtrlP window.
+            " statusline {{{
+            " customize the statusline for CtrlP window.
             let g:ctrlp_status_func = {
                         \ 'main': 'Function_Name_1',
                         \ 'prog': 'Function_Name_2',
                         \ }
 
-                " Arguments: focus, byfname, s:regexp, prv, item, nxt, marked
-                " a:1 a:2 a:3 a:4 a:5 a:6 a:7
-                "fu! CtrlP_Statusline_1(...)
-                    "let focus = '%#LineNr# '.a:1.' %*'
-                    "let byfname = '%#Character# '.a:2.' %*'
-                    "let regex = a:3 ? '%#LineNr# regex %*' : ''
-                    "let prv = ' <'.a:4.'>='
-                    "let item = '{%#Character# '.a:5.' %*}'
-                    "let nxt = '=<'.a:6.'>'
-                    "let marked = ' '.a:7.' '
-                    "let dir = ' %=%<%#LineNr# '.getcwd().' %*'
-                    "" Return the full statusline
-                    "retu focus.byfname.regex.prv.item.nxt.marked.dir
-                "endf
+            " Arguments: focus, byfname, s:regexp, prv, item, nxt, marked
+            " a:1 a:2 a:3 a:4 a:5 a:6 a:7
+            "fu! CtrlP_Statusline_1(...)
+                "let focus = '%#LineNr# '.a:1.' %*'
+                "let byfname = '%#Character# '.a:2.' %*'
+                "let regex = a:3 ? '%#LineNr# regex %*' : ''
+                "let prv = ' <'.a:4.'>='
+                "let item = '{%#Character# '.a:5.' %*}'
+                "let nxt = '=<'.a:6.'>'
+                "let marked = ' '.a:7.' '
+                "let dir = ' %=%<%#LineNr# '.getcwd().' %*'
+                "" Return the full statusline
+                "retu focus.byfname.regex.prv.item.nxt.marked.dir
+            "endf
 
-                " Argument: len
-                " a:1
-                "fu! CtrlP_Statusline_2(...)
-                    "let len = '%#Function# '.a:1.' %*'
-                    "let dir = ' %=%<%#LineNr# '.getcwd().' %*'
-                    "" Return the full statusline
-                    "retu len.dir
-                "endf
-                " }}}
+            " Argument: len
+            " a:1
+            "fu! CtrlP_Statusline_2(...)
+                "let len = '%#Function# '.a:1.' %*'
+                "let dir = ' %=%<%#LineNr# '.getcwd().' %*'
+                "" Return the full statusline
+                "retu len.dir
+            "endf
+            " }}}
 
-                " extensions {{{
-                let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
-                            \ 'rtscript']
-                    " the order of them in statusline when using <C-f>, <C-b>
-                " }}}
+            " extensions {{{
+            let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
+                        \ 'rtscript']
+                " the order of them in statusline when using <C-f>, <C-b>
+            " }}}
 
-                " file open funcs {{{
-                let g:ctrlp_open_func = {
-                            \ 'files'     : 'CtrlPHTMLOpenFunc',
-                            \ 'buffers'   : 'Function_Name_2',
-                            \ 'mru files' : 'Function_Name_3',
-                            \ }
+            " file open funcs {{{
+            let g:ctrlp_open_func = {
+                        \ 'files'     : 'CtrlPHTMLOpenFunc',
+                        \ 'buffers'   : 'Function_Name_2',
+                        \ 'mru files' : 'Function_Name_3',
+                        \ }
 
-                fun! CtrlPHTMLOpenFunc(action, line)
-                    if a:action == 't' && fnamemodify(a:line, ':e') =~? '^html\?$'
-                        let filename = fnameescape(fnamemodify(a:line, ':p'))
-                        call ctrlp#exit()
-                        silent! execute '!xdg-open' filename
-                    elseif a:action == 'x' && fnamemodify(a:line, ':e') !~? '^html\?$'
-                        call feedkeys("\<c-o>")
-                    else
-                        call call('ctrlp#acceptfile', [a:action, a:line])
-                    endif
-                endf
-                " }}}
+            fun! CtrlPHTMLOpenFunc(action, line)
+                if a:action == 't' && fnamemodify(a:line, ':e') =~? '^html\?$'
+                    let filename = fnameescape(fnamemodify(a:line, ':p'))
+                    call ctrlp#exit()
+                    silent! execute '!xdg-open' filename
+                elseif a:action == 'x' && fnamemodify(a:line, ':e') !~? '^html\?$'
+                    call feedkeys("\<c-o>")
+                else
+                    call call('ctrlp#acceptfile', [a:action, a:line])
+                endif
+            endf
+            " }}}
 
-                " [ mappings ] {{{
-                " <c-p>     -- open CtrlP prompt. >>>
-                " <c-r>     -- regexp mode. r>>
-                " <c-d>     -- full-path or filename only search. >d>
-                " <c-f>,<c-up>  -- scroll to next search mode.
-                " <c-b>,<c-down> -- scroll to previous search mode.
-                " <tab>     -- auto-complete dir names under current working dir.
-                " <s-tab>   -- focus between the match window and the prompt.
-                " <c-j>,<down>  -- move selection down.
-                " <c-k>,<up>    -- move selection up.
-                " <c-a>     -- move cursor to the start of the prompt.
-                " <c-e>     -- move cursor to the end.
-                " <c-h>,<left>,<c-^> -- move the cursor one char to the left.
-                " <c-l>,<right>,     -- move the cursor one char to the right.
-                " <c-]><bs> -- delete the preceding char.
-                " <del>     -- delete the current char.
-                " <c-w>     -- delete a preceding innder word.
-                " <cr>      -- open selected file in active window.
-                " <c-t>     -- open selected file in new tab after the last tabpage.
-                " <c-v>     -- open selected file in vertical split.
-                " <c-s>,<c-cr>,<c-x> -- open selected file in a horizontal split.
-                " <c-y>     -- create a new file and its parent directories.
-                " <c-n>     -- next string in the prompt's history.
-                " <c-p>     -- previous string in the prompt's history.
-                " <c-z>     -- mark/unmark a file to be opened with <c-o>. <c-y>
-                " <c-o>     -- open files marked by <c-z>
-                " <F5>      -- refresh window. and purge cache.
-                " <F7>      -- wipe MRU list. delete MRU entries marked by <c-z>.
-                " <insert>  -- ...
-                " <esc>,<c-c>,<c-g> -- cancel. exit CtrlP.
-                " }}}
+            " [ mappings ] {{{
+            " <c-p>     -- open CtrlP prompt. >>>
+            " <c-r>     -- regexp mode. r>>
+            " <c-d>     -- full-path or filename only search. >d>
+            " <c-f>,<c-up>  -- scroll to next search mode.
+            " <c-b>,<c-down> -- scroll to previous search mode.
+            " <tab>     -- auto-complete dir names under current working dir.
+            " <s-tab>   -- focus between the match window and the prompt.
+            " <c-j>,<down>  -- move selection down.
+            " <c-k>,<up>    -- move selection up.
+            " <c-a>     -- move cursor to the start of the prompt.
+            " <c-e>     -- move cursor to the end.
+            " <c-h>,<left>,<c-^> -- move the cursor one char to the left.
+            " <c-l>,<right>,     -- move the cursor one char to the right.
+            " <c-]><bs> -- delete the preceding char.
+            " <del>     -- delete the current char.
+            " <c-w>     -- delete a preceding innder word.
+            " <cr>      -- open selected file in active window.
+            " <c-t>     -- open selected file in new tab after the last tabpage.
+            " <c-v>     -- open selected file in vertical split.
+            " <c-s>,<c-cr>,<c-x> -- open selected file in a horizontal split.
+            " <c-y>     -- create a new file and its parent directories.
+            " <c-n>     -- next string in the prompt's history.
+            " <c-p>     -- previous string in the prompt's history.
+            " <c-z>     -- mark/unmark a file to be opened with <c-o>. <c-y>
+            " <c-o>     -- open files marked by <c-z>
+            " <F5>      -- refresh window. and purge cache.
+            " <F7>      -- wipe MRU list. delete MRU entries marked by <c-z>.
+            " <insert>  -- ...
+            " <esc>,<c-c>,<c-g> -- cancel. exit CtrlP.
+            " }}}
         " }}}
 
         " Command-T {{{
@@ -3241,22 +3274,22 @@ syntax on
 
     " [ comment ] {{{
         " TComment {{{ An extensible & universal comment plugin
-	    " It provides easy to use, file-type sensible comments for Vim.
-	    " line, block, in-line, embed. (toggle)
-                " Usage:
-		" - tcomment#DefineType() to override and define file-type comment string.
-                "   - g[c/C]{motion}    :: toggle comments.
-		"   - <c-_>{action}	:: :TComment actions.
+            " It provides easy to use, file-type sensible comments for Vim.
+            " line, block, in-line, embed. (toggle)
+            " Usage:
+            " - tcomment#DefineType() to override and define file-type comment string.
+            "   - g[c/C]{motion}    :: toggle comments.
+            "   - <c-_>{action}	:: :TComment actions.
             let g:tcommentMapLeader1 = '<c-_>'
             let g:tcommentMapLeader2 = '<Leader>_'
             let g:tcommentMapLeaderOp1 = 'gc'
             let g:tcommentMapLeaderOp2 = 'gC'
-	    let g:tcommentModeExtra = '>>' " move cursor to end of comment and next line
+            let g:tcommentModeExtra = '>>' " move cursor to end of comment and next line
             let g:tcommentOpModeExtra = '>>'
             let g:tcommentBlankLines = 1 " comment blank lines too.
             let g:tcommentOptions = {}
-		" {'col': 1}
-		"   put comment marker always in the first column regardless of block's indentation.
+            " {'col': 1}
+            "   put comment marker always in the first column regardless of block's indentation.
             let g:tcomment#ignore_char_type = 1
             let g:tcommentGuessFileType = 0 " guess filetype
             let g:tcommentGuessFileType_dsl = 'xml'
@@ -3268,20 +3301,20 @@ syntax on
             let g:tcommentIgnoreTypes_php = 'sql'
             let g:tcomment#syntax_substitute = {'\C^javaScript': {'sub': 'javascript'}}
             let g:tcommentSyntaxMap =
-			\ {
-			    \ 'vimRubyRegion': 'ruby',
-			    \ 'vimPythonRegion': 'python',
-			    \ 'vimMzSchemeRegion': 'scheme',
-			    \ 'vimPerlRegion': 'perl',
-			\ }
-			"\ 'VimwikiPre': '??'
-		    " FIXME how to define 'vimwikiRubyRegion' etc ? for use in
-		    " vimwiki embed syntax ?
-		    " the dictionary key is a syntax group defined by vimwiki.
-		    " so you need to add code to syntax file.
-		    " you can write a function to get filetype from context, and
-		    " treat it as function parameter.
-		    " write this function at here.
+                        \ {
+                        \ 'vimRubyRegion': 'ruby',
+                        \ 'vimPythonRegion': 'python',
+                        \ 'vimMzSchemeRegion': 'scheme',
+                        \ 'vimPerlRegion': 'perl',
+                        \ }
+            "\ 'VimwikiPre': '??'
+            " FIXME how to define 'vimwikiRubyRegion' etc ? for use in
+            " vimwiki embed syntax ?
+            " the dictionary key is a syntax group defined by vimwiki.
+            " so you need to add code to syntax file.
+            " you can write a function to get filetype from context, and
+            " treat it as function parameter.
+            " write this function at here.
             " let g:tcomment#replacements_c = {} " replacement for c filetype
             " let g:tcommentBlockC = {} " generic c-like block comments.
             " let g:tcommentBlockC2 = {} " generic c-like block comments (alternative markup)
@@ -3289,12 +3322,12 @@ syntax on
             let g:tcommentBlockXML = "<!-- %s -->\n"
             let g:tcommentInlineXML = "<!-- %s -->"
 
-	    " tcomment#DefineType(name, commentdef)
-	    " - 'name' usually is 'filetype', you can use 'FILETYPE_block' for
-	    "	block comment. 'FILETYPE_inline' for inline comments. if no
-	    "	specialized comment definition exists, the normal one with
-	    "	'FILETYPE' is used.
-	    " - 'commentdef'. can be a string or a dictionary.
+            " tcomment#DefineType(name, commentdef)
+            " - 'name' usually is 'filetype', you can use 'FILETYPE_block' for
+            "	block comment. 'FILETYPE_inline' for inline comments. if no
+            "	specialized comment definition exists, the normal one with
+            "	'FILETYPE' is used.
+            " - 'commentdef'. can be a string or a dictionary.
             " let g:tcomment_types {}
         " }}}
 
@@ -3306,8 +3339,8 @@ syntax on
         " }}}
 
         " commentary {{{
-        " \\{motion}, \\\, {Visual}\\ ==> comment
-        " \\u ==> uncomment
+            " \\{motion}, \\\, {Visual}\\ ==> comment
+            " \\u ==> uncomment
         " }}}
 
         " vim-addon-commenting {{{ features: ( fork from commentary.vim )
@@ -3335,20 +3368,144 @@ syntax on
     " }}}
 
     " [ doc & help "K" ] {{{
-        " Viewdoc {{{ Flexible viewer for any documentation (vim help/man/perl/python)
+        " ref {{{ {Visual}'K', ref is a Vim plugin to view the reference.
+            " TODO enhance ref with feature of completion in vim command line
+            " TODO change ref-viewer open style, like viewdoc open content in
+            " preview window with syntax highlighting.
+            " take this as an option for ref.
+            " This plugin can be separated to core of viewer and sources of
+            " reference.  As a result, various references can be viewed by the
+            " same interface.
+            " :help ref@en
+            " Usage:
+            "   - 'K'
+            "   - :Unite ref/??
+            "   - :Ref [{options}] {source-name} [{query}]
+            "       - options:
+            "           - -open={command} -- overwrite the g:ref_open
+            "           - -new -- open viewer newly
+            "       - source: (source is a Dictionary)
+            "       - function: (function is a Dictionary-function)
+            "       - query: (a string passed by :Ref command)
+            "   - <Plug>(ref-keyword) => 'K' / '<CR>' / '<C-]>'
+            "   - history
+            "       - <Plug>(ref-forward)   => '<C-i>'
+            "       - <Plug>(ref-back)      => '<C-t>' / '<C-o>'
+            " Supports:
+            "   - Ruby -> refe/resense (ReFe)
+            "   - Python -> pydoc
+            "   - C/command -> man
+            "   - Perl -> perldoc
+            "   - PHP -> phpmanual
+            "   - Clojure -> clojure
+            "   - Erlang -> erlang
+            "   - rfc -> Web RFC
+            "   - webdict - > web dictionary
+
+            " let g:ref_no_default_key_mappings = 1 " no default mappings
+            let g:ref_open = 'split' " split/vsplit/tabnew
+            let g:ref_use_vimproc = 1 " ref#system() use vimproc.
+                " comment out: open in vim buffer instead of less
+            let g:ref_noenter = 0 " 1: always enable -noenter option for :Ref
+            if !exists('g:ref_detect_filetype')
+                let g:ref_detect_filetype = {}
+            endif
+            let g:ref_detect_filetype['_'] = 'man'
+                " key is filetype.
+                " value is source name in ref/
+                " '_' means all filetypes.
+                " '_' key used when filetype was not registered
+            " FIXME let g:ref_detect_filetype['vim'] = 'Funcref'
+
+            " [ Vim ]
+                " -> :help
+                "  FIXME let ref support this.
+            " [ Ruby ]
+                " -> refe (ReFe)
+                " Requirements:
+                "       - ref + ReFe
+                "       - or ref-man + RSense
+                let g:ref_refe_cmd = ["refe",]
+                    " allow a List includes command and arguments.
+                let g:ref_refe_version = 2 " 1/2 <- $ refe --version
+                let g:ref_refe_encoding = &termencoding
+                " ref-man: RSense
+                let g:ref_refe_rsense_cmd = 'rsense'
+                    " specific RSense command.
+            " [ Python ]
+                " -> pydoc
+                let g:ref_pydoc_cmd = 'pydoc'
+                let g:ref_pydoc_complete_head = 1
+            " [ C / command ]
+                " -> man
+                let g:ref_man_cmd = 'man' " man/info/'man -P cat'
+                let g:ref_man_lang = $LANG " $LANG
+            "  [ Go ]
+                " -> godoc
+                " TODO support godoc
+            " [ JavaScript ]
+                " -> ???
+                "  TODO support JavaScript
+            " [ Perl ]
+                " -> perldoc
+                let g:ref_perldoc_cmd = 'perldoc'
+                let g:ref_perldoc_complete_head = 1
+                let g:ref_perldoc_auto_append_f = 1
+            " [ PHP ]
+                " -> phpmanual
+                let g:ref_phpmanual_cmd = 'w3m -dump %s'
+                let g:ref_phpmanual_path = 'http://php.benscom.com/download-docs.php'
+            " [ Clojure ]
+                " -> clojure
+                let g:ref_clojure_cmd = 'clj'
+                let g:ref_clojure_overview = 1
+                " let g:ref_clojure_classpath =
+                    " specific $CLASSPATH by string or List.
+                " let g:ref_clojure_precode = '' " 'use'/'require'
+                    " specific the code executed before searching.
+            " [ Erlang ]
+                " -> erlang
+                let g:ref_erlang_cmd = 'erl' " 'erl'/'erl -man'
+                let g:ref_erlang_man_dir =
+                            \ 'erl -noshell -eval' .
+                            \ 'io:fwrite(code:root_dir()). -s init stop'
+            " [ RFC ]
+                " -> rfc
+                let g:ref_rfc_cmd = 'elinks'
+                let g:ref_rfc_encoding = &termencoding
+            " [ webdict ]
+                " -> webdict
+                let g:ref_source_webdict_cmd = 'w3m -dump %s'
+                if !exists('g:ref_source_webdict_sites')
+                    let g:ref_source_webdict_sites = {}
+                endif
+                " TODO add my firefox bookmarks: youdao, google, chinese ...
+                " FIXME %s after ?q= is the query keyword
+                " let g:ref_source_webdict_sites['youdao'] = {
+                "             \ 'url': 'http://dict.youdao.com/search?q=%s&keyfrom=dict.index',
+                "             \ 'keyword_encoding': 'utf-8',
+                "             \ 'output_encoding': 'utf-8',
+                "             \ 'cache': 0,
+                "             \ 'filter': '',
+                "             \ 'line': '',
+                "             \ }
+                let g:ref_source_webdict_encoding = &termencoding
+        " }}}
+
+        " viewdoc {{{ {Visual}'K', Flexible viewer for any documentation (vim help/man/perl/python)
             " support python dot operator help.
             " e.g. module.fun|<K>ction(args)
             " TODO more customize
             " Usage:
-                " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
-                "   q (close), <Tab> completion.
-                " - :doc[!] {topic} [{filetype}]
-                " - :doc[!] <cword> [{filetype}]
-                " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
-                "   :perldoc, :ViewDocPerl.
-                " - e.g. :ViewDoc string.split in Python filetype.
-                " - :ViewDocMan [Man/C/...]
-                "   e.g. :ViewDocMan 3 printf -- for C Man Page.
+            " - <K>/<F1>, <C-]>/<C-T>, <CR>/<BS>(tag navigation),
+            "   q (close), <Tab> completion.
+            " - :doc[!] {topic} [{filetype}]
+            " - :doc[!] <cword> [{filetype}]
+            " - :ViewDoc, :man, :ViewDocMan, :help, :ViewDocHelp,
+            "   :perldoc, :ViewDocPerl.
+            " - e.g. :ViewDoc string.split in Python filetype.
+            " - :ViewDocMan [Man/C/...]
+            "   e.g. :ViewDocMan 3 printf -- for C Man Page.
             let g:viewdoc_open = "topleft new" " tabnew, topleft new, belowright vnew
             let g:viewdoc_only = 0 " :only, hide all other window only keep doc window.
             let g:viewdoc_prevtabonclose = 1
@@ -3362,19 +3519,19 @@ syntax on
             " support ruby doc (ri), Go doc (godoc) etc
             " Dart, Lisp, muttrc, fvwm,
             " Functions:
-                " - ViewDoc({target}, {topic}, {filetype})
-                " - ViewDoc({target}, {topic})
-                " - ViewDoc({target}, <cword>, {filetype})
-                " - ViewDoc({target}, <cword>)
+            " - ViewDoc({target}, {topic}, {filetype})
+            " - ViewDoc({target}, {topic})
+            " - ViewDoc({target}, <cword>, {filetype})
+            " - ViewDoc({target}, <cword>)
             " Handlers:
-                " to add documentation handler for new {filetype}, it's enough
-                " to create on function in ~/.vimrc (or some plugin):
-                " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
-                    " synid = Syntax id for requested topic as returned by synID().
-                    " Can be non-zero only if |:ViewDoc| was called with <cword>.
-                    " have_context : true if we've context.
-                    " The function return Dictionary with these keys. (all optional)
-                    " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
+            " to add documentation handler for new {filetype}, it's enough
+            " to create on function in ~/.vimrc (or some plugin):
+            " ViewDoc_{filetype}({topic}/<cword>, {filetype}, synid, have_context)
+            " synid = Syntax id for requested topic as returned by synID().
+            " Can be non-zero only if |:ViewDoc| was called with <cword>.
+            " have_context : true if we've context.
+            " The function return Dictionary with these keys. (all optional)
+            " 'topic', 'cmd', 'ft', 'line', 'col', 'search', 'tags', 'docft'.
 
             " function ViewDoc_pydoc(topic, ...)
             "     return  { 'cmd':	printf('pydoc %s', shellescape(a:topic,1)),
@@ -3433,45 +3590,46 @@ syntax on
             let g:syntastic_quiet_warnings = 0 " 1: care syntax errors not warning
             " let g:syntastic_stl_format = '[%E{Err: %fe #%e}%B{, }%W{Warn: %fw #%w}]'
             " --------------------------------------------------------------
+            "  let g:syntastic_[ft]_checker = 'checkstyle'
             " C
-                let g:syntastic_c_checker = "gcc"
-                let g:syntastic_c_compiler = "gcc" " gcc/clang
-                let g:syntastic_c_check_header = 1 " check header files
-                let g:syntastic_c_no_include_search = 0
-                    " 1: disable search of included header files after special libraries.
-                let g:syntastic_c_include_dirs = [ 'includes', 'headers', ]
-                    " add some custom include directories.
-                let g:syntastic_c_auto_refresh_includes = 1
-                    " enable header files being re-checked on every file write.
-                let g:syntastic_c_remove_include_errors = 1
-                    " remove errors of files included via the g:syntastic_cpp_include_dirs
-                let g:syntastic_c_compiler_options = ' -ansi'
-                    " add additional compiler options.
-                " let g:syntastic_c_errorformat = ''
-                    " use this variable to override the default error format.
+            let g:syntastic_c_checker = "gcc"
+            let g:syntastic_c_compiler = "gcc" " gcc/clang
+            let g:syntastic_c_check_header = 1 " check header files
+            let g:syntastic_c_no_include_search = 0
+            " 1: disable search of included header files after special libraries.
+            let g:syntastic_c_include_dirs = [ 'includes', 'headers', ]
+            " add some custom include directories.
+            let g:syntastic_c_auto_refresh_includes = 1
+            " enable header files being re-checked on every file write.
+            let g:syntastic_c_remove_include_errors = 1
+            " remove errors of files included via the g:syntastic_cpp_include_dirs
+            let g:syntastic_c_compiler_options = ' -ansi'
+            " add additional compiler options.
+            " let g:syntastic_c_errorformat = ''
+            " use this variable to override the default error format.
             " cpp
-                let g:syntastic_cpp_compiler = 'g++' " clang++, g++
-                let g:syntastic_cpp_check_header = 1 " check header files
-                let g:syntastic_cp_no_include_search = 0
-                    " 1: disable search of included header files after special libraries.
-                let g:syntastic_cpp_include_dirs = [ 'includes', 'headers', ]
-                    " add some custom include directories.
-                let g:syntastic_cpp_auto_refresh_includes = 1
-                    " enable header files being re-checked on every file write.
-                let g:syntastic_cpp_remove_include_errors = 1
-                    " remove errors of files included via the g:syntastic_cpp_include_dirs
-                let b:syntastic_cpp_cflags = ' -I/usr/include/libsoup-2.4'
-                    " alternately, set buffer local variable.
-                let g:syntastic_cpp_compiler_options = ' -std=c++0x'
-                    " add additional compiler options.
-                " let g:syntastic_cpp_config_file = '.config'
-                    " default: '.syntastic_cpp_config'
-                " let g:syntastic_cpp_errorformat = ''
-                    " use this variable to override the default error format.
+            let g:syntastic_cpp_compiler = 'g++' " clang++, g++
+            let g:syntastic_cpp_check_header = 1 " check header files
+            let g:syntastic_cp_no_include_search = 0
+            " 1: disable search of included header files after special libraries.
+            let g:syntastic_cpp_include_dirs = [ 'includes', 'headers', ]
+            " add some custom include directories.
+            let g:syntastic_cpp_auto_refresh_includes = 1
+            " enable header files being re-checked on every file write.
+            let g:syntastic_cpp_remove_include_errors = 1
+            " remove errors of files included via the g:syntastic_cpp_include_dirs
+            let b:syntastic_cpp_cflags = ' -I/usr/include/libsoup-2.4'
+            " alternately, set buffer local variable.
+            let g:syntastic_cpp_compiler_options = ' -std=c++0x'
+            " add additional compiler options.
+            " let g:syntastic_cpp_config_file = '.config'
+            " default: '.syntastic_cpp_config'
+            " let g:syntastic_cpp_errorformat = ''
+            " use this variable to override the default error format.
             " JavaScript
-                " let g:syntastic_javascript_checker = "jslint"
+            " let g:syntastic_javascript_checker = "jslint"
             " CSS
-                " let g:syntastic_csslint_options = "--warning=none" " disable warning
+            " let g:syntastic_csslint_options = "--warning=none" " disable warning
         " }}}
 
         " checksyntax {{{
@@ -3562,24 +3720,24 @@ syntax on
 
     " [ quickfix & location list ] {{{
         " quickfixsigns {{{ marks, quickfix & location list items with signs.
-	    " Usage:
-	    " <Leader>ms -- jump from sign to sign (vcsdiff)
+            " Usage:
+            " <Leader>ms -- jump from sign to sign (vcsdiff)
             let g:quickfixsigns_classes = ([
-			\ 'qfl', 'loc',
-			\ 'marks', 'breakpoints',
+                        \ 'qfl', 'loc',
+                        \ 'marks', 'breakpoints',
                         \ 'vcsdiff'
-			\ ])
+                        \ ])
             let g:quickfixsigns_events = ([
-			\ 'BufEnter',
+                        \ 'BufEnter',
                         \ 'CursorHold', 'CursorHoldI',
                         \ 'InsertLeave', 'InsertEnter', 'InsertChange',
-			\ ])
+                        \ ])
             let g:quickfixsigns_balloon = 1
             let g:quickfixsigns_max = 500 " don't display signs if longer than this.
             let g:quickfixsigns_blacklist_buffer = '^__.*__$'
             let g:quickfixsigns_icons = {}
             let g:quickfixsigns#vcsdiff#guess_type = 1
-	    " let g:quickfixsigns#vcsdiff#cmd_separator = '&&'
+            " let g:quickfixsigns#vcsdiff#cmd_separator = '&&'
         " }}}
 
         " scmdiff : Highlight changed lines in a file via SCM diff command
@@ -3589,16 +3747,16 @@ syntax on
 
         " Unimpaired {{{ provides several pairs of bracket maps.
             " [, ],
-	    " a - :Next/:Previous
-	    " b - buffer
-	    " l - location list
-	    " q - quickfix
-	    " t - tag
-	    " n - SCM conflict marker
+                " a - :Next/:Previous
+                " b - buffer
+                " l - location list
+                " q - quickfix
+                " t - tag
+                " n - SCM conflict marker
             " encoding & decoding
-	    " [ - encoding -> <foo bar="baz"> => &lt;foo bar=&quot;baz&quot&gt;
-	    " ] - decoding ->
-	    " .....
+                " [ - encoding -> <foo bar="baz"> => &lt;foo bar=&quot;baz&quot&gt;
+                " ] - decoding ->
+                " .....
         " }}}
 
         " sharefix {{{ sharefix addresses the pain point of your quickfix list
@@ -3784,11 +3942,11 @@ syntax on
             let NERDTreeAutoCenter = 1 " default = 1.
             let NERDTreeAutoCenterThreshold = 3 " default = 3.
             let NERDTreeCaseSensitiveSort = 0 " default = 0.
-            let NERDTreeChDirMode = 1 " 0/1/2
+            let NERDTreeChDirMode = 2 " 0/1/2
             let NERDTreeHighlightCursorline = 1 " highlight cursorline.
             let NERDTreeHijackNetrw = 1 " for :edit <dir> open 'secondary' NERD tree.
             let NERDTreeIgnore = ['\~$', '\.log', '\.pyo', '\.pyc', '\.swp', '\.bak', '\.git', '\.hg']
-            let NERDTreeBookmarksFile="$HOME/.vim/NERDTreeBookmarks"
+            let NERDTreeBookmarksFile="$HOME/.vimNERDTreeBookmarks"
             let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
             let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
             let NERDTreeShowHidden = 0 " does not show hidden files.
@@ -3798,45 +3956,45 @@ syntax on
             "let NERDTreeDirArrows =
             "new own syntax highlight gnap.
             "let NERDTreeMinimalUI =
-	    let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
+            let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 
 
-	    nnoremap <silent> <F11> :NERDTreeToggle<CR>
+            nnoremap <silent> <F11> :NERDTreeToggle<CR>
 
             " TODO au FileType nerdtree
         " }}}
 
-	" nerdtree-execute
-	    " Usage:
-	    " When navigating in NERDTree, select file or directory, press 'm'
-	    " key, and NERDTree menu will appear. Press 'x' then to execute
-	    " system default application for selected file/directory, using this
-	    " plugin.  You can open your favourite image editor for images, pdf
-	    " reader for pdfs etc.
+        " nerdtree-execute
+            " Usage:
+            " When navigating in NERDTree, select file or directory, press 'm'
+            " key, and NERDTree menu will appear. Press 'x' then to execute
+            " system default application for selected file/directory, using this
+            " plugin.  You can open your favourite image editor for images, pdf
+            " reader for pdfs etc.
 
-	" nerdtree-plugin
-	    " ack_menuitem.vim
-	    " quickrun_keymap.vim
-	    " callex_keymap.vim
-	    " callsh_keymap.vim
-	    " callfinder_keymap.vim
+        " nerdtree-plugin
+            " ack_menuitem.vim
+            " quickrun_keymap.vim
+            " callex_keymap.vim
+            " callsh_keymap.vim
+            " callfinder_keymap.vim
 
-	" easytree {{{ Tree file manager.
-	    " Usage:
-	    " :EasyTree [directory path]
-	    " .....
-	    " .....
-	    nnoremap <silent> <F11> :EasyTree<CR>
+        " easytree {{{ Tree file manager.
+            " Usage:
+            " :EasyTree [directory path]
+            " .....
+            " .....
+            " TODO nnoremap <silent> <F11> :EasyTree<CR>
 
-	    let g:easytree_cascade_open_single_dir = 1 " cascade expands all subsequent single dir
-	    let g:easytree_show_line_numbers = 0 " disable showing line numbers
-	    let g:easytree_show_hidden_files = 0
-	    let g:easytree_highlight_cursor_line = 1
-	    let g:easytree_ignore_dirs = ['.git']
-	    let g:easytree_ignore_files = ['*.swp', '*~']
-	    let g:easytree_ignore_find_result = ['*.swp', '*~', 'tags']
-	    let g:easytree_hijack_netrw = 1 " replace netrw with easytree
-	" }}}
+            let g:easytree_cascade_open_single_dir = 1 " cascade expands all subsequent single dir
+            let g:easytree_show_line_numbers = 0 " disable showing line numbers
+            let g:easytree_show_hidden_files = 0
+            let g:easytree_highlight_cursor_line = 1
+            let g:easytree_ignore_dirs = ['.git']
+            let g:easytree_ignore_files = ['*.swp', '*~']
+            let g:easytree_ignore_find_result = ['*.swp', '*~', 'tags']
+            let g:easytree_hijack_netrw = 1 " replace netrw with easytree
+        " }}}
 
         " vimfiler {{{ Powerful file explorer implemented by VimL.
             " Usage: :VimFiler
@@ -4047,6 +4205,11 @@ syntax on
         " }}}
 
         " vim-rooter {{{ Changes Vim working directory to project root
+            " Usage:
+            "   - <Leader>cd -- locate to root directory
+            "   - :Rooter
+            "   - <Plug>RooterChangeToRootDirectory
+            " map <silent> <unique> <Leader>cd <Plug>RooterChangeToRootDirectory
             let g:rooter_patterns = [
                         \ '.git/', '.hg/', '.bzr/', '.svn/', '_darcs/',
                         \ 'Rakefile', 'Makefile',
@@ -4074,21 +4237,21 @@ syntax on
                 " Ruby text objects
             " syntax
             let ruby_no_expensive = 1 " smart end color etc
-	    let ruby_minlines = 100
+            let ruby_minlines = 100
             let ruby_operators = 1 " highlight operators
             let ruby_space_errors = 0 " highlight whitespace erros
                 " disable this, because use other script
 
-	    " omni completefunc rubycomplete#Complete() settings : CTRL-X CTRL-O
-	    let g:rubycomplete_buffer_loading = 1 " load/evaluate code to provide completions
-	    let g:rubycomplete_classes_in_global = 1 " parse buffer to complete classes, constants and globals
-	    let g:rubycomplete_rails = 1 " detect & load Rails env for files in Rails project
+            " omni completefunc rubycomplete#Complete() settings : CTRL-X CTRL-O
+            let g:rubycomplete_buffer_loading = 1 " load/evaluate code to provide completions
+            let g:rubycomplete_classes_in_global = 1 " parse buffer to complete classes, constants and globals
+            let g:rubycomplete_rails = 1 " detect & load Rails env for files in Rails project
 
-	    " TODO where are those options from ??
-	    " let g:rubycomplete_include_object = 1
-	    " let g:rubycomplete_include_objectspace = 1
-                " " Ruby completion will parse your buffer on demand in order to
-                " " provide a list of completions.
+            " TODO where are those options from ??
+            " let g:rubycomplete_include_object = 1
+            " let g:rubycomplete_include_objectspace = 1
+            " " Ruby completion will parse your buffer on demand in order to
+            " " provide a list of completions.
 
             " autocmd FileType ruby compiler ruby
         " }}}
@@ -4099,57 +4262,57 @@ syntax on
             "   - gem install methodfinder
         " }}}
 
-	" ri.vim {{{ Ruby documentation ri
-	    " lets you search and navigate Ruby library and gem documentation inside Vim
-	    " Advantages over the venerable ri command-line tool:
-		" - write code and browse pertinent documentation in adjacent Vim windows
-		" - search with autocompletion help
-		" - hyperlinking lets you jump from definition to definition
-		" - run back and forth through your jump history with CTRL-o and CTRL-i
-		" - jump directly to gem READMEs and into the gem source directories
-		" - directly open corresponding HTML-formatted rdoc documentation
-	    " Usage:
-	    " Invoking the plugin
-	    "	- <Leader>r
-	    "	    -- opens the search/autocomplete window, and will use a
-	    "	    horizontal split to display matching documentation.
-	    "	- <Leader>R
-	    "	    -- opens the search/autocomplete window, and will use a
-	    "	    vertical split to display matching documentatoin.
-	    "	- <Leader>K
-	    "	    -- opens the search/autocomplete window and prefills it with
-	    "	    the keyword under the cursor.
-	    "	- K
-	    "	    -- is automatically remapped to use ri.vim if the current
-	    "	    buffer is a *.rb file.
-	    " Using the search/autocomplete window
-	    "	With the search/autocomplete window open, start typing the name
-	    "	of the class, module, or method you want to lookup.
-	    " Press `TAB` to start autocompletion.
-	" }}}
+        " ri.vim {{{ Ruby documentation ri
+            " lets you search and navigate Ruby library and gem documentation inside Vim
+            " Advantages over the venerable ri command-line tool:
+            " - write code and browse pertinent documentation in adjacent Vim windows
+            " - search with autocompletion help
+            " - hyperlinking lets you jump from definition to definition
+            " - run back and forth through your jump history with CTRL-o and CTRL-i
+            " - jump directly to gem READMEs and into the gem source directories
+            " - directly open corresponding HTML-formatted rdoc documentation
+            " Usage:
+            " Invoking the plugin
+            "	- <Leader>r
+            "	    -- opens the search/autocomplete window, and will use a
+            "	    horizontal split to display matching documentation.
+            "	- <Leader>R
+            "	    -- opens the search/autocomplete window, and will use a
+            "	    vertical split to display matching documentatoin.
+            "	- <Leader>K
+            "	    -- opens the search/autocomplete window and prefills it with
+            "	    the keyword under the cursor.
+            "	- K
+            "	    -- is automatically remapped to use ri.vim if the current
+            "	    buffer is a *.rb file.
+            " Using the search/autocomplete window
+            "	With the search/autocomplete window open, start typing the name
+            "	of the class, module, or method you want to lookup.
+            " Press `TAB` to start autocompletion.
+        " }}}
 
-	" vim-rake {{{ it's like rails.vim without rails.
-	" }}}
+        " vim-rake {{{ it's like rails.vim without rails.
+        " }}}
 
         " neco-rake {{{ A neocomplcache plugin for Rake on vimshell
         " TODO
         " }}}
 
 
-	" vim-rvm {{{ switch Ruby versions from inside Vim
-	    " Usage:
-	    " - :Rvm 1.9.3
-	    " - :Rvm use default
-	    " * leave off the version
-	    "	- :Rvm
-	    "	- :Rvm use
-	" }}}
+        " vim-rvm {{{ switch Ruby versions from inside Vim
+            " Usage:
+            " - :Rvm 1.9.3
+            " - :Rvm use default
+            " * leave off the version
+            "	- :Rvm
+            "	- :Rvm use
+        " }}}
 
-	" vim-bundler {{{ Lightweight support for Ruby's Bundler
-	    " Usage:
-	    " - :Bundle -- wraps 'bundle'
-	    " - :Bopen/Bsplit/Btabedit
-	" }}}
+        " vim-bundler {{{ Lightweight support for Ruby's Bundler
+            " Usage:
+            " - :Bundle -- wraps 'bundle'
+            " - :Bopen/Bsplit/Btabedit
+        " }}}
 
         " vim-rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
@@ -4371,7 +4534,7 @@ syntax on
             " }}}
 
 	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
-		" NOTE has been merged into Syntastic
+        " NOTE has been merged into Syntastic
 	    " }}}
         " }}}
 
@@ -4580,7 +4743,7 @@ syntax on
         " :h ft_sql.txt,
             let msql_sql_query = 1 " like SQL highlighting inside Strings.
             let msql_minlines = 200 " for syncing, minlines defaults to 100.
-	    let g:sql_type_default = 'mysql' " or 'sqlanywhere'
+            let g:sql_type_default = 'mysql' " or 'sqlanywhere'
 
             " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
                 " [ static mode ] {{{
@@ -4625,8 +4788,7 @@ syntax on
             " Datasource Viewer keys: q, <cr>
         " }}}
 
-        " SQLUtilities: | Formatting, generate - columns lists, procedures for databases
-            " [ functions ] {{{
+        " SQLUtilities {{{ Formatting, generate - columns lists, procedures for databases
             " automatically captilize all SQL keywords and statements.
         " }}}
     " }}}
@@ -4720,7 +4882,7 @@ syntax on
 
             " css3_mod
 
-	    " vim-haml :
+            " vim-haml :
 
             " vim_less {{{ support for LESS CSS.
                 " syntax highlight
@@ -5153,24 +5315,6 @@ syntax on
 
     " [ Sed ] {{{
         let highlight_sedtabs = 1 " make tabs stand out from regular blanks
-    " }}}
-
-    " [ R ] {{{
-        " Vim-R-plugin {{{ editing R code and integrate Vim with R
-            " :help vim-r-plugin
-            " Depends:
-            " Tmux, vimcom(R packge), Screen(Vim plugin: vim + screen/tmux)
-            " Features:
-                " Communication with R.
-                " Omni completion (auto-completion) for R objects.
-                " Ability to see R's documentation in Vim's buffer.
-                " Object Browser.
-                " Syntax highlighting for R and RHelp code.
-                " Smart indentation for R and RHelp syntax.
-                " Most of the plugin's behavior is customizable.
-        " }}}
-
-        " rcom : Evaluate R code via rcom, rserve, screen, or tmux
     " }}}
 
     " [ Rust ] {{{
@@ -6896,7 +7040,6 @@ syntax on
 
     " [ smalltools ] {{{
         " vimim {{{ Vim Input Method
-        " TODO set popup menu height
             " Usage:
             "   - [normal] gi --> no popup menu input.
             "   - [normal] n  --> no popup menu input.
@@ -6906,6 +7049,7 @@ syntax on
             "   - [insert] i_CTRL-L     --> when .. is set: go to .. mode
             let g:vimim_map = 'tab_as_onekey' " 'no-gi', 'tab_as_gi', 'tab_as_onekey'
             let g:vimim_mode = 'dynamic'
+            " TODO set popup menu height
             let g:vimim_pumheight = 5 " my own branch
             " let g:vimim_plugin = '/path/to/plugin' " plugin path
             let g:vimim_punctuation = 0
@@ -6918,6 +7062,7 @@ syntax on
                 " -1: close toggle cycle
                 " 'wubi,pinyin'
             let g:vimim_shuangpin = 0 " 双拼
+                " 0: disable
                 " 'abc': 智能 ABC
                 " 'ms': 微软
                 " 'nature': 自然码
