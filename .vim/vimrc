@@ -1567,6 +1567,7 @@ endif
         NeoBundle 'vim-scripts/dbext.vim'
         NeoBundle 'mattn/vdbi-vim'
         " NoSQL
+        " NeoBundle 'vim-scripts/nosql.vim'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
         " NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -4871,6 +4872,8 @@ syntax on
     " }}}
 
     " [ NoSQL ] {{{
+        " nosql.vim {{{ syntax for NoSQL tables, or any tab-separated (TSV) tables
+        " }}}
     " }}}
 
     " [ R ] {{{
