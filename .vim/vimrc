@@ -5546,6 +5546,19 @@ syntax on
             " - PrevInsertComplete
             " - SameFiletypeComplete
         " }}}
+
+        " querycommandcomplete {{{ completions from an external query command
+            " External command that queries for contacts If empty,
+                " TODO for other external command tools.
+
+            " QueryCommandComplete tries to guess what command to run by
+            " executing `mutt -Q query_command`
+            let g:qcc_query_command = 'abook'
+            au BufRead /tmp/mutt* setlocal omnifunc=QueryCommandComplete
+            let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
+            let g:qcc_line_separator = "\n"
+            let g:qcc_field_separator = "\t"
+        " }}}
     " }}}
 
     " [ register & operation ] {{{
