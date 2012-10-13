@@ -2136,23 +2136,23 @@ syntax on
             else
                 let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             endif
-	    if !exists('g:neocomplcache_sources_list')
-		let g:neocomplcache_sources_list = {}
-	    endif
-	    " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
-	    " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
+            if !exists('g:neocomplcache_sources_list')
+                let g:neocomplcache_sources_list = {}
+            endif
+            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
+            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
             " }}}
             " same filetypes {{{
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-	    " if value contains '_', neocomplcache completes from all buffers.
-	    " set this '_' key will disable default initialization
-	    " let g:neocomplcache_same_filetype_lists['_'] = '_'
-		" default complete from all buffers
-	    let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
-	    let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
-	    let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
+            " if value contains '_', neocomplcache completes from all buffers.
+            " set this '_' key will disable default initialization
+            " let g:neocomplcache_same_filetype_lists['_'] = '_'
+            " default complete from all buffers
+            let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
+            let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
+            let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
             " }}}
             " composite file type (only use one completion) {{{
             if !exists('g:neocomplcache_ignore_composite_filetype_lists')
@@ -2217,20 +2217,25 @@ syntax on
                         \ 'start': '^\s*{{{css$',
                         \ 'end': '^\s*}}}',
                         \ },
+                        \ {
+                        \ 'filetype': 'tex',
+                        \ 'start': '^\s*{{{tex$',
+                        \ 'end': '^\s*}}}',
+                        \ },
                         \ ]
             " }}}
             " text mode filetypes {{{
-	    " in text mode, neocomplcache supports word convertion to write English.
-	    " For example, if you input 'Fo', neocomplcache will convert
-	    " candidate 'foo' to 'Foo'. If you input 'foo', neocomplcache will
-	    " convert candidate 'FooBar' to 'foobar'. If you input 'FO',
-	    " neocomplcache will convert candidate 'foo' to 'FOO'.
+            " in text mode, neocomplcache supports word convertion to write English.
+            " For example, if you input 'Fo', neocomplcache will convert
+            " candidate 'foo' to 'Foo'. If you input 'foo', neocomplcache will
+            " convert candidate 'FooBar' to 'foobar'. If you input 'FO',
+            " neocomplcache will convert candidate 'foo' to 'FOO'.
             if !exists('g:neocomplcache_text_mode_filetypes')
                 let g:neocomplcache_text_mode_filetypes = {}
             endif
-	    let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
-	    let g:neocomplcache_text_mode_filetypes['markdown'] = 1
-	    let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
+            let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+            let g:neocomplcache_text_mode_filetypes['markdown'] = 1
+            let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
             " }}}
 
             " }}}
@@ -2722,12 +2727,13 @@ syntax on
 
             nnoremap <F12> :TagbarToggle<CR>
 
-            " automatically opening tagbar.
-            " 1. autocmd VimEnter * nested :TagbarOpen " open for any files.
-            " 2. augroup TagListAutoToggle
-                "au!
-                "au VimEnter * nested :call tagbar#autoopen(1) " open for supported.
-            "augroup END
+            " 1. auto open for any files.
+            " autocmd VimEnter * nested :TagbarOpen
+            " 2. auto open for supported filetypes.
+            " augroup TagbarAutoToggle
+            "     au!
+            "     au VimEnter * nested :call tagbar#autoopen(1)
+            " augroup END
 
             " {{{ colors for Tagbar.vim
             " cyan
@@ -2766,7 +2772,6 @@ syntax on
             " :Tlist[AddFiles, AddFilesRecursive, Close, Debug, Lock, Messages,
             " Open, ShowPrototype, ShowTag, HighlightTag, Toggle, Undebug,
             " Unlock, Update]
-            " nnoremap <F12> :TlistToggle<CR>
             let g:Tlist_Auto_Open = 0 " open taglist window when vim starts.
             let g:Tlist_Process_File_Always = 1 " processing tag even not open tags win.
             let g:Tlist_Auto_Highlight_Tag = 1 " highlight current tag.
@@ -2789,12 +2794,13 @@ syntax on
             " let g:Tlist_Max_Tag_Length = 25
             let g:Tlist_javascript_Hide_Extras = 0 " hide extra tag data
 
-            " TODO highlighting
-            "TagListTagName  - Used for tag names
-            "TagListTagScope - Used for tag scope
-            "TagListTitle    - Used for tag titles
-            "TagListComment  - Used for comments
-            "TagListFileName - Used for filenames
+            highlight TagListTagName    ctermfg=250
+            highlight TagListTagScope   ctermfg=045
+            highlight TagListTitle      ctermfg=226
+            highlight TagListComment    ctermfg=235
+            highlight TagListFileName   ctermfg=255 ctermbg=232
+
+            " TODO nnoremap <F12> :TlistToggle<CR>
         " }}}
 
         " Tag_Signature_Balloons (Tag Signatures in Balloon Tooltips)
@@ -2898,7 +2904,6 @@ syntax on
 
         " SrcExpl {{{ (Source Explorer) exploring the source code based on "tags".
             " it works like the context window of 'Source Insight'
-            nnoremap <F4> :SrcExplToggle<CR>
             let g:SrcExpl_winHeight = 8
             let g:SrcExpl_refreshTime = 500 " how ofen to refresh window.
             let g:SrcExpl_pluginList = [
@@ -2914,6 +2919,8 @@ syntax on
             let g:SrcExpl_jumpKey = "<CR>"
             let g:SrcExpl_gobackKey = "<Space>"
             let g:SrcExpl_updateTagsKey = ''
+
+            nnoremap <F4> :SrcExplToggle<CR>
         " }}}
 
         " cscope.vim {{{ auto create cscope database and connect to existing database
@@ -4000,9 +4007,6 @@ syntax on
         " easytree {{{ Tree file manager.
             " Usage:
             " :EasyTree [directory path]
-            " .....
-            " .....
-            " TODO nnoremap <silent> <F11> :EasyTree<CR>
 
             let g:easytree_cascade_open_single_dir = 1 " cascade expands all subsequent single dir
             let g:easytree_show_line_numbers = 0 " disable showing line numbers
@@ -4012,6 +4016,8 @@ syntax on
             let g:easytree_ignore_files = ['*.swp', '*~']
             let g:easytree_ignore_find_result = ['*.swp', '*~', 'tags']
             let g:easytree_hijack_netrw = 1 " replace netrw with easytree
+
+            " TODO nnoremap <silent> <F11> :EasyTree<CR>
         " }}}
 
         " vimfiler {{{ Powerful file explorer implemented by VimL.
@@ -4066,12 +4072,13 @@ syntax on
             " let g:miniBufExplMaxSize = <max width: default 0>
             " let g:miniBufExplMinSize = <min width: default 1>
             " MiniBufExpl Colors
-            hi MBEVisibleActive guifg=#A6DB29 guibg=fg
-            hi MBEVisibleChangedActive guifg=#F1266F guibg=fg
-            hi MBEVisibleChanged guifg=#F1266F guibg=fg
-            hi MBEVisibleNormal guifg=#5DC2D6 guibg=fg
-            hi MBEChanged guifg=#CD5907 guibg=fg
-            hi MBENormal guifg=#808080 guibg=fg
+            hi MBENormal guifg=#808080 ctermfg=250
+            hi MBEChanged guifg=#CD5907 ctermfg=208 cterm=bold
+            hi MBEVisibleNormal guifg=#5DC2D6 ctermfg=024
+            hi MBEVisibleNormalActive guifg=#5DC2D6 ctermfg=026 cterm=bold
+            hi MBEVisibleChanged guifg=#F1266F ctermfg=208 cterm=bold
+            hi MBEVisibleChangedActive guifg=#F1266F ctermfg=232 ctermbg=208 cterm=bold
+            " FIXME how to auto open MiniBufExpl
         " }}}
 
         " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
@@ -5165,7 +5172,6 @@ syntax on
     " [ Go ] {{{
         " gocode {{{ autocompletion daemon for Go Language
             " Features: Context-sensitive autocompletion
-
         " }}}
 
         " vim-golang {{{ Go lang runtime vim scripts.
@@ -5378,7 +5384,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ Binary ] {{{
+    " [ binary, hex ] {{{
         " hexript {{{ write a binary easily, and it is a code writing on free-format.
             " Require:
             "   - `xxd` program
@@ -5478,16 +5484,16 @@ syntax on
             " let g:unite_no_default_keymappings = 1 " don't map default key mappings
         " }}}
 
-	" querycommandcomplete {{{ completions from an external query command
-	    " External command that queries for contacts If empty,
-	    " QueryCommandComplete tries to guess what command to run by
-	    " executing `mutt -Q query_command`
-	    let g:qcc_query_command = 'abook'
-	    au BufRead /tmp/mutt* setlocal omnifunc=QueryCommandComplete
-	    let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
-	    let g:qcc_line_separator = "\n"
-	    let g:qcc_field_separator = "\t"
-	" }}}
+        " CompleteHelper {{{ Generic functions to support custom insert mode completions
+            " Externals:
+            " - CamelCaseComplete
+            " - MotionComplete
+            "   - BracketComplete
+            "   - LineEndComplete
+            " - PatternComplete
+            " - PrevInsertComplete
+            " - SameFiletypeComplete
+        " }}}
     " }}}
 
     " [ register & operation ] {{{
