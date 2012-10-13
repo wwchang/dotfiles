@@ -2467,7 +2467,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ snippets ] {{{ <Ctrl-j/k> | <Tab>
+    " [ snippets ] {{{ <Tab>, <Ctrl-j/k>
         " neosnippet {{{
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
@@ -2491,24 +2491,32 @@ syntax on
             let g:neosnippet#disable_select_mode_mappings = 1
                 " disable key-mappings in select-mode when snippets_complete
                 " performs. usually enable it.
-            let g:neosnippet#disable_runtime_snippets = 0
+            " '_': 1, to disable all runtime snippets.
+            " 'c': 1,
+            let g:neosnippet#disable_runtime_snippets = {
+                        \ '_': 1,
+                        \ }
 
             if !exists('g:loaded_neosnippet')
-                    imap <expr><TAB> neosnippet#expandable() ?
-                                \ "\<Plug>(neosnippet_expand_or_jump)"
-                                \: pumvisible() ? "\<C-n>" : "\<TAB>"
-                    imap <expr> <C-j> neosnippet#jumpable() ?
-                                \ "\<Plug>(neosnippet_jump)"
-                                \ : neosnippet#expandable() ?
-                                \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
-                    " TODO ask Shougo where to use this mapping. in Unite buffer or
-                    " insert mode in vim ?
-                    " and how to use snippet source ? edit/preview/expand.
-                    " FIXME imap <C-s> <Plug>(neosnippet_start_unite_snippet)
-                    nnoremap <buffer> <Leader>es
-                        \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
-                        " \ . &filetype<CR>
             endif
+
+            " because <Tab> and <C-j> is conflict with UltiSnips.
+            " Can't use 'inoremap' here.
+            imap <expr> <Tab> neosnippet#expandable() ?
+                        \ "\<Plug>(neosnippet_expand_or_jump)"
+                        \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+            " imap <expr> <C-j> neosnippet#jumpable() ?
+            "             \ "\<Plug>(neosnippet_jump)"
+            "             \ : neosnippet#expandable() ?
+            "             \ "\<Plug>(neosnippet_expand_or_jump)" : "\<C-n>"
+
+            " TODO ask Shougo where to use this mapping. in Unite buffer or
+            " insert mode in vim ?
+            " and how to use snippet source ? edit/preview/expand.
+            " FIXME imap <C-s> <Plug>(neosnippet_start_unite_snippet)
+            nnoremap <buffer> <Leader>es
+                \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
+                " \ . &filetype<CR>
 
             " for snippets_complete marker.
             if has('conceal')
