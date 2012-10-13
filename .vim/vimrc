@@ -2003,7 +2003,20 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
-            let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " FIXME this pattern
+            " FIXME this 'go' pattern
+            " let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " gocode plugin
+            let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns['cpp'] = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns['javascript'] = '[^. \t]\.\%(\h\w*\)\?'
+            " FIXME
+            " let g:neocomplcache_omni_patterns['haskell'] = ''
+            " FIXME
+            let g:neocomplcache_omni_patterns['clojure'] = '\w\|-\|\.\|+\|*\|/'
+            " FIXME this 'sql' pattern
+            let g:neocomplcache_omni_patterns['sql'] = '\(\w\|\.\)'
+            let g:neocomplcache_omni_patterns['r'] = '[[:alnum:].\\]\+' " vim-R-plugin
+            let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::' " default / plugin phpcomplete.vim
+            let g:neocomplcache_omni_patterns['xquery'] = '\k\|:\|\-\|&' " plugin XQuery-indentomnicompleteftplugin
             " }}}
             " omni functions {{{
             if !exists('g:neocomplcache_omni_functions')
@@ -2020,17 +2033,20 @@ syntax on
                 let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
             endif
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
-            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " gocode plugin
-            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default C omni
-            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main'
-            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main'
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " plugin gocode
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main' " plugin omnicppcomplete
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main' " plugin omnicppcomplete
             " - 'javascriptcomplete#CompleteJS' -- default javascript omni
             " - 'jscomplete#CompleteJS' -- jscomplete-vim plugin
             let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
-            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default/phpcomplete plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default
+            let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
+            let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
             " }}}
             " member patterns {{{
             if !exists('g:neocomplcache_member_prefix_patterns')
@@ -2050,7 +2066,7 @@ syntax on
             if !exists('g:neocomplcache_dictionary_filetype_lists')
                 let g:neocomplcache_dictionary_filetype_lists = {}
             endif
-	    " if empty, use Vim 'dictionary' option.
+            " if empty, use Vim 'dictionary' option.
             let g:neocomplcache_dictionary_filetype_lists['default'] = ''
             let g:neocomplcache_dictionary_filetype_lists['text'] = '/usr/share/dict/words'
             if !exists('g:neocomplcache_dictionary_patterns')
