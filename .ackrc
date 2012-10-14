@@ -1,0 +1,24 @@
+# always sort the files
+--sort-files
+
+# always enable color, even if piping to another program
+--color
+--color-match
+# --color-filename
+
+# use "less -r" as pager
+# --pager=less -r
+
+# list all types
+# $ ack --help types
+
+# define own types
+# --type-set
+# vimwiki=.wiki
+# OR
+# --type-set=backup=.bak
+
+# add type into type group
+--type-add=ruby=.ruby
+--type-add=python=.python
+--type-add=perl=.perl
