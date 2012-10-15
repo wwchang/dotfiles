@@ -1920,6 +1920,9 @@ syntax on
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
+            let g:neocomplcache_skip_auto_completion_time = "0.5" " skip auto completion (+reltime)
+                " '' empty to disable
+                " if completion time is higher than it, neocomplcache will skip auto completion.
             let g:neocomplcache_force_overwrite_completefunc = 1 " override other completefunc
             let g:neocomplcache_use_vimproc = 1
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
