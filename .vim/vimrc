@@ -1919,6 +1919,7 @@ syntax on
             " }}}
 
             " [ common options ] {{{
+            let g:neocomplcache_enable_debug = 0
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
