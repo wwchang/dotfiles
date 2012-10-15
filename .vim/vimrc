@@ -2021,8 +2021,7 @@ syntax on
             " let g:neocomplcache_omni_patterns['haskell'] = ''
             " FIXME
             let g:neocomplcache_omni_patterns['clojure'] = '\w\|-\|\.\|+\|*\|/'
-            " FIXME this 'sql' pattern
-            let g:neocomplcache_omni_patterns['sql'] = '\(\w\|\.\)'
+            let g:neocomplcache_omni_patterns['sql'] = '[[:alpha:]_.][[:alnum:]_.]*'
             let g:neocomplcache_omni_patterns['r'] = '[[:alnum:].\\]\+' " vim-R-plugin
             let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::' " default / plugin phpcomplete.vim
             let g:neocomplcache_omni_patterns['xquery'] = '\k\|:\|\-\|&' " plugin XQuery-indentomnicompleteftplugin
