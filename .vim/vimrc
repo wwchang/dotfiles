@@ -808,8 +808,12 @@ endif
     set foldmarker={{{,}}} " fold marker
     set foldminlines=3     " fold minlines
     set foldcolumn=0       " colums ahead of line number.
-    set foldignore=        " don't ignore anything when folding
-    set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
+    if &foldmethod ==# 'indent'
+        set foldignore="#"
+        " lines start with characters in foldignore will get their fold level
+        " from surrounding lines.
+    endif
+    set foldopen=block,mark,percent,quickfix,search,tag,undo " open fold for commands
 
         " set foldtext=VimrcFoldText() " {{{
         " function! VimrcFoldText()
