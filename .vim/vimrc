@@ -151,7 +151,7 @@
     " [ buffer ] {{{
     " set autowrite                    " auto write when changed
     " set autowriteall
-    set autochdir
+    " set autochdir
     set autoread         " auto read changed files
     set updatetime=3000  " swap write to disk, and for CursorHold event
     set confirm          " prompt to save unsaved changes when exiting
