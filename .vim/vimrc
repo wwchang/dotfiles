@@ -276,12 +276,16 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-	if executable("ack") || executable("ack-grep")
-	    set grepprg=ack\ -H\ --nogroup\ --nocolor
-	else
-	    " 'grep -n', 'grep -n $* /dev/null'
-	    set grepprg=grep\ -n\ $*\ /dev/null
-	endif
+        if system("grep 'Ubuntu' /etc/issue") =~? 'Ubuntu' || executable("ack-grep")
+            " set grepprg=ack-grep\ -H\ --nogroup\ --nocolor
+            set grepprg=ack-grep\ -a
+        elseif executable("ack")
+            " set grepprg=ack\ -H\ --nogroup\ --nocolor
+            set grepprg=ack\ -a
+        else
+            " 'grep -n', 'grep -n $* /dev/null'
+            set grepprg=grep\ -n\ $*\ /dev/null
+        endif
 
         " [ match ]
         set showmatch
