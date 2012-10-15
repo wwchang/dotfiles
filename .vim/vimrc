@@ -4175,12 +4175,17 @@ syntax on
 
         " switch {{{ swap a pattern and substition.
             " let g:switch_no_builtins
-	    nnoremap - :Switch<cr>
+            nnoremap - :Switch<cr>
             let g:switch_definitions =
                         \ [
-                            \ ['foo', 'bar', 'baz']
+                            \ ['foo', 'bar', 'baz'],
+                            \ ['是', '否'], ['男', '女'],
                         \ ]
                         " foo -> bar -> baz -> foo
+            " let b:switch_definitions = [
+            "                 \ {
+            "                 \ }
+            "             \ ]
         " }}}
 
         " SwapIt {{{ <C-A>, <C-X>
