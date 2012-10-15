@@ -289,7 +289,9 @@
 
         " [ match ]
         set showmatch
-        set matchpairs+=<:>
+        set matchpairs+=(:),{:},[:],<:>
+        set matchpairs+=':'
+        set matchtime=5
     " }}}
 
     " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
@@ -406,11 +408,6 @@
     " [ maps ] {{{
     set timeout  timeoutlen=1500 " map sequence timeout
     set ttimeout ttimeoutlen=100 " key code timeout
-    " }}}
-
-    " [ match pairs ] {{{
-    set matchpairs=(:),{:},[:]
-    set matchtime=5
     " }}}
 
     " [ binary ] {{{ editing binary files
