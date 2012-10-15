@@ -732,22 +732,23 @@ endif
         set statusline+=\%#StatusBufferNumber#\b:%n
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\%#StatusReadOnly#\%r\%#StatusList#\%q
-        set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
-        set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
+        set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()} " plugin fugitive
+        set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''} " plugin hgrev
         set statusline+=\ \%{virtualenv#statusline()}
         set statusline+=\%#StatusChar#\pain\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
-        set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
+        set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()} " plugin Syntastic
         set statusline+=\ \%#StatusFilePath#\%<%t
-        set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-        set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')}
+        set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()} " plugin current-func-info
+        set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')} " plugin tagbar
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%s]", "", "f")}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%p]", "")} " prototype
         set statusline+=\%#StatusHELP#\%H
         set statusline+=\%=
+        set statusline+=\ \%{rvm#statusline()} " plugin vim-rvm
         " set statusline+=\%#StatusFileType#\%y
-        set statusline+=\%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'['.&ft.']':'['.neocomplcache#get_context_filetype().']'}
+        set statusline+=\%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'['.&ft.']':'['.neocomplcache#get_context_filetype().']'} " plugin neocomplcache
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%<%(\%#StatusNormal#\%{&ff==#'unix'?'':&ff}%)
         set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc==#'utf-8'?'':'•'}
