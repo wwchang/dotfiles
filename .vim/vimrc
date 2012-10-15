@@ -1898,9 +1898,6 @@ syntax on
 
     " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-            " TODO
-            " if exists('g:loaded_neocomplcache')
-            " endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " comment out :set complete option.
@@ -2057,13 +2054,13 @@ syntax on
             let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
             " }}}
             " member patterns {{{
-            if !exists('g:neocomplcache_member_prefix_patterns')
-                let g:neocomplcache_member_prefix_patterns = {}
-            endif
             if !exists('g:neocomplcache_member_patterns')
                 let g:neocomplcache_member_patterns = {}
             endif
             " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
+            endif
             " }}}
             " delimiter patterns {{{
             if !exists('g:neocomplcache_delimiter_patterns')
@@ -2123,6 +2120,11 @@ syntax on
             " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
             " }}}
             " sources {{{
+            if !exists('g:neocomplcache_sources_list')
+                let g:neocomplcache_sources_list = {}
+            endif
+            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
+            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
             if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
@@ -2148,20 +2150,17 @@ syntax on
             else
                 let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             endif
-            if !exists('g:neocomplcache_sources_list')
-                let g:neocomplcache_sources_list = {}
-            endif
-            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
-            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
             " }}}
             " same filetypes {{{
+            " a dictionary to connect file type mutually.
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            " if value contains '_', neocomplcache completes from all buffers.
-            " set this '_' key will disable default initialization
+            " The value are comma-separated filetypes.
+            " If value contains '_', neocomplcache completes from all buffers.
+            " If key is '_', the value will be used for default same filetypes.
             " let g:neocomplcache_same_filetype_lists['_'] = '_'
-            " default complete from all buffers
+            "   -> default, complete from all buffers
             let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
             let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
             let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
@@ -2177,62 +2176,61 @@ syntax on
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            " TODO let this context_filetype support markdown, TeX, etc.
             let g:neocomplcache_context_filetype_lists['vimwiki'] = [
                         \ {
-                        \ 'filetype': 'python',
-                        \ 'start': '^\s*{{{python$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'python',
+                            \ 'start': '^\s*{{{python$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'ruby',
-                        \ 'start': '^\s*{{{ruby$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'ruby',
+                            \ 'start': '^\s*{{{ruby$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'vim',
-                        \ 'start': '^\s*{{{vim$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'vim',
+                            \ 'start': '^\s*{{{vim$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'javascript',
-                        \ 'start': '^\s*{{{javascript$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'javascript',
+                            \ 'start': '^\s*{{{javascript$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'bash',
-                        \ 'start': '^\s*{{{bash$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'bash',
+                            \ 'start': '^\s*{{{bash$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'zsh',
-                        \ 'start': '^\s*{{{zsh$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'zsh',
+                            \ 'start': '^\s*{{{zsh$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'go',
-                        \ 'start': '^\s*{{{go$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'go',
+                            \ 'start': '^\s*{{{go$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'c',
-                        \ 'start': '^\s*{{{c$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'c',
+                            \ 'start': '^\s*{{{c$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'html',
-                        \ 'start': '^\s*{{{html$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'html',
+                            \ 'start': '^\s*{{{html$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'css',
-                        \ 'start': '^\s*{{{css$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'css',
+                            \ 'start': '^\s*{{{css$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'tex',
-                        \ 'start': '^\s*{{{tex$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'tex',
+                            \ 'start': '^\s*{{{tex$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ ]
             " }}}
