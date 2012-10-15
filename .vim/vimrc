@@ -1964,7 +1964,7 @@ syntax on
                 let g:neocomplcache_enable_prefetch = 1
             endif
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
-            let g:neocomplcache_temporary_dir = '~/.neocon'
+            let g:neocomplcache_temporary_dir = '~/.neocomplcache'
             " }}}
 
             " [ complex dictionary options ] {{{
