@@ -304,7 +304,6 @@
 
     " [ completion ] {{{ auto popup menu: Tab, C-x + C-?, C-y, C-e
     " [ completion options ]
-    set cmdheight=1                  " command line height
     set complete=.,w,b,t,i,u,k       " completion buffers
     "            | | | | | | |
     "            | | | | | | `-dict
