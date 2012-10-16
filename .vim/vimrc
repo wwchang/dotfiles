@@ -4161,7 +4161,7 @@ syntax on
             " Usage:
             " ]t -- go to [count] next start of a task or todo marker.
             " [t -- .... previous start of ...
-            let g:TaskMotions_Pattern = '\<TODO:'
+            let g:TaskMotions_Pattern = '\C\<\%(FIXME\|TODO\|XXX\|BUG\|NOTE\)\>'
             let g:TaskMotions_Mapping = 't'
         " }}}
 
