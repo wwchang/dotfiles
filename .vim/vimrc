@@ -2173,23 +2173,18 @@ syntax on
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
-            let g:neocomplcache_source_completion_length['include_complete'] = 0
-            let g:neocomplcache_source_completion_length['member_complete'] = 0
+            let g:neocomplcache_source_completion_length['include_complete'] = 2
+            let g:neocomplcache_source_completion_length['member_complete'] = 2
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 2
-            let g:neocomplcache_source_completion_length['syntax_complete'] = 1
+            let g:neocomplcache_source_completion_length['syntax_complete'] = 2
+            let g:neocomplcache_source_completion_length['vim_complete'] = 2
+            let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
             " TODO
-            let g:neocomplcache_source_completion_length['js_complete'] = 1 " plugin jscomplete.vim
-            let g:neocomplcache_source_completion_length['ghc'] = 2 " plugin neco-ghc
-            " dynamically change dictionary_complete source completion length.
-            let s:TextFileType = ['text', 'mail', 'markdown', 'vimwiki',]
-            if index(s:TextFileType, &filetype) >= 0
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
-            else
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
-            endif
+            let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
+            let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
             " }}}
             " same filetypes {{{
             " a dictionary to connect file type mutually.
