@@ -109,6 +109,9 @@
     set cmdwinheight=10
     " }}}
 
+    " Ex-mode {{{ 'Q'
+    " }}}
+
     " [ encode ] {{{
     set encoding=utf-8
     set fileencoding=utf-8
@@ -151,7 +154,7 @@
     " [ buffer ] {{{
     " set autowrite                    " auto write when changed
     " set autowriteall
-    " set autochdir
+    set autochdir
     set autoread         " auto read changed files
     set updatetime=3000  " swap write to disk, and for CursorHold event
     set confirm          " prompt to save unsaved changes when exiting
@@ -182,9 +185,9 @@
     " ; means recurse upwards to deep under your project.
     set tags+=tags    " search current dir
     " set tags+=./tags  " search dir of current file.
-    set tags+=./tags;  " search current dir, recursively to parent dir until root
+    " set tags+=./tags;  " search current dir, recursively to parent dir until root
     " set tags+=./tags;/  " walk up the tree towards root until one is found
-    " set tags+=tags;$HOME " walk up the tree towards $HOME.
+    set tags+=./tags;$HOME " walk up the tree towards $HOME.
     " ----------------
     " TODO
     " libraries:
@@ -348,28 +351,10 @@
     " [ omni ]
     " complete with "<C-X><C-O>"
     " set omnifunc=syntaxcomplete#Complete " for other languages
-    " set completefunc=neocomplcache#manual_complet " actually find the matches.
+    " set completefunc=
     " inoremap <C-space> <C-x><C-o>
+    " }}}
 
-        " SuperCleverTab() for omni-completion or insert <Tab> {{{
-        function! SuperCleverTab()
-            if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-                return "\<Tab>"
-            else
-                " use omnifunc
-                if &omnifunc != ''
-                    return "\<C-X>\<C-O>"
-                " use dictionary option with /usr/share/dict/words
-                elseif &dictionary != ''
-                    return "<C-X>\<C-K>"
-                else
-                    return "\<C-X>\<C-N>"
-                endif
-            endif
-        endfunction
-
-        " inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-        " }}}
     " }}}
 
     " [ session ] {{{
@@ -641,11 +626,11 @@ endif
     " }}}
 
     " [ tab ] {{{
-    set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set shiftwidth=2 " Number of spaces for each indent level
-    set softtabstop=2 " Even when using <Tab>'s
+    set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set expandtab " When pressing <Tab>, replace with spaces
-    " set tabstop=8 " number of spaces that a <Tab> counts for.
+    " set tabstop=2 " number of spaces that a <Tab> counts for.
+    set softtabstop=2 " Even when using <Tab>'s
     " }}}
 
     " [ format ] {{{
@@ -719,7 +704,7 @@ endif
         " %-0{minwid}.{maxwid}{item}
         " %!expression to evaluate the expression.
         " %{} items will be evaluated too.
-        "   NOTE: in %{}, Unclosed expression sequence:
+        "   NOTE in %{}, Unclosed expression sequence:
         "   - you can not has space in %{}
         "   - you can not use double quote in %{}, use single quote instead.
         " Require: fugitive, current-func-info, syntastic,
@@ -862,7 +847,7 @@ endif
     function! ShowFuncKeys(bang)
         for i in range(1,12)
             redir! => map
-            exe "silent ".(a:bang == "!" ? 'verbose' : '') . " map<F".i.">"
+            exe "silent " . (a:bang == "!" ? 'verbose' : '') . " map<F" . i . ">"
             redir end
             if map !~ 'No mapping found'
                 echomsg map
@@ -966,6 +951,29 @@ endif
 " Vimscript functions must start with a capital letter if they are unscoped!
 " you can call function with ":source file.vim" then ":call"
 
+    " [ <Tab> completion ] {{{
+        " SuperCleverTab() for omni-completion or insert <Tab>
+        function! SuperCleverTab()
+            if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+                return "\<Tab>"
+            else
+                " use omnifunc
+                if &omnifunc != ''
+                    return "\<C-X>\<C-O>"
+                " use dictionary option with /usr/share/dict/words
+                elseif &dictionary != ''
+                    return "<C-X>\<C-K>"
+                else
+                    return "\<C-X>\<C-N>"
+                endif
+            endif
+        endfunction
+
+        if !hasmapto('<Tab>')
+            inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+        endif
+    " }}}
+
     " [ execute mode ] {{{
         " [ chmod +x % -> sh / rb / py / pl ] {{{
             function! ScriptExecute()
@@ -988,7 +996,9 @@ endif
     "autocmd BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
     " }}}
 
-    " {{{ Visual OR :10,50TOhtml :TOhtml
+    " [ ToHTML ] {{{
+    " Usage:
+    " Visual OR :10,50TOhtml :TOhtml
     " FIXME do not support script: indent-guides.vim
     " convert code to HTML used for website or paste
     " let g:html_no_progress = 1 " disable progress.
@@ -1027,12 +1037,6 @@ endif
         let g:html_use_css = old_css
     endfunction
     command! -range=% MyToHtml :call MyToHtml(<line1>,<line2>)
-    " }}}
-
-    " [ matchit ] {{{
-        " '%' to match more than just single characters.
-        " %, g%, [%, ]%, a%,
-        runtime macros/matchit.vim " load system matchit.vim plugin
     " }}}
 
     " [ convert file into unix & utf-8 ] {{{
@@ -1214,6 +1218,7 @@ endif
         "   - 'external_commands': -- Dictionary or List.
         "   - 'rev': -- revision or branch name.
         "   - 'type__shallow': 1 -- use shallow clone
+        "   - 'type__update_style': 'default'(master) / 'current'(topic)
         " nested attributes,
         " syntax suger -> every value in Dictionary can be nested with Dictionary/List.
         " NeoBundle 'https://bitbucket.org/ZyX_I/aurum', {'depends':
