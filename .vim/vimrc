@@ -40,6 +40,11 @@
 " endfor
 " }}}
 
+" [[ DISPLAY ]] {{{
+if $DISPLAY != ""
+endif
+" }}}
+
 " [[ Vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
@@ -291,13 +296,13 @@
         endif
 
         " [ match ]
-        " matchit
-        " '%' to match more than just single characters.
+        " matchit -> '%'
         " %, g%, [%, ]%, a%,
+        " let b:match_words = '<:>,<tag>:</tag>,if:endif,\<if\>:\<endif\>'
         runtime macros/matchit.vim " load system matchit.vim plugin
         set showmatch
-        set matchpairs=(:),{:},[:],<:>
-        set matchpairs+=':'
+        set matchpairs=(:),[:],{:},<:>
+        set matchpairs+=':',":"
         set matchtime=5
     " }}}
 
@@ -355,6 +360,12 @@
     " inoremap <C-space> <C-x><C-o>
     " }}}
 
+    " [ templates ] {{{
+    " FIXME this code does not work.
+    augroup TemplatesAutocmd
+        autocmd!
+        autocmd BufNewFile * silent! 0r "~/.vim/templates/" . &filetype. "/template" . %:e
+    augroup END
     " }}}
 
     " [ session ] {{{
@@ -1130,6 +1141,16 @@ endif
         "augroup END
 
 
+" }}}
+
+" [ local/project specific vimrc ] {{{
+" if filereadable('~/.vim/local.vim')
+"     " local vimrc
+"     source ~/.vim/local.vim
+" elseif filereadable('.local.vim')
+"     " project vimrc
+"     source .local.vim
+" endif
 " }}}
 
 " ----------------------------------------------------------------
@@ -1918,7 +1939,8 @@ syntax on
 
         " Indent_Highlight
 
-        " simplefold : space-optimized, configurable folds, supports Ruby ...
+        " simplefold {{{ space-optimized, configurable folds, supports Ruby ...
+        " }}}
 
         " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
             " {{{ switching between a single-line statement and a multi-line one.
@@ -2428,7 +2450,7 @@ syntax on
                 " }}}
 
                 " { snipMate } {{{
-                " TODO snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
+                " snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
                 " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
                 " ----------------------------------------------
                 " imap <expr> <Tab> snipMate#ShowAvailableSnips() ?
@@ -2897,7 +2919,8 @@ syntax on
             " - AutotagsUpdate()
             " - AutotagsAdd()
             " - AutotagsRemove()
-            " FIXME create a map for AutotagsUpdate()
+            " FIXME make this automatically or create a command for it.
+            " command! -nargs=? AutotagsUpdate :call AutotagsUpdate()<CR>
             let g:autotagsdir = $HOME."/tmp/vim/tags/autotags.vim"
             let g:autotags_global = $HOME . "/.autotags/global_tags"
             let g:autotags_ctags_exe = "ctags"
@@ -2908,6 +2931,7 @@ syntax on
             let g:autotags_ctags_global_include = "/usr/include/*"
             let g:autotags_cscope_exe = "cscope"
             let g:autotags_cscope_file_extensions = ".cpp .cc .cxx .m .hpp .hh .h .hxx .c .idl"
+            let g:autotags_pathhash_humanreadable = 1
         " }}}
 
         " indexer.tar.gz
@@ -3327,6 +3351,8 @@ syntax on
             endif
         " }}}
 
+        " vim-unite-ack : ack source for unite.vim
+
         " buffers_search_and_replace {{{ powerful buffer(s) search & replace tool.
             " Usage:
             "   - [range]Bs[flag] <search regex>
@@ -3519,6 +3545,9 @@ syntax on
             " [ JavaScript ]
                 " -> ???
                 "  TODO support JavaScript
+            " [ R ]
+                " -> ???
+                " TODO support R
             " [ Perl ]
                 " -> perldoc
                 let g:ref_perldoc_cmd = 'perldoc'
@@ -4299,6 +4328,25 @@ syntax on
 " }}}
 
 " [ languages ] {{{
+    " [ VimL ] {{{
+        " vesting {{{ best VimScript VimL test framework.
+        " TODO
+        " }}}
+
+        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
+            " :h vimsupport.
+        " }}}
+
+        " runVimTests {{{ A testing framework for Vim.
+        " }}}
+
+        " Self {{{ Vim prototype object system.
+        " }}}
+
+        " vimple {{{ provides VimLOO (Object Oriented VimL) objects for write-only :ex commands
+        " }}}
+    " }}}
+
     " [ Ruby ] {{{
         let ruby_operators = 1 " highlight operations
         let ruby_space_errors = 1 " highlight space errors
@@ -4367,6 +4415,7 @@ syntax on
         " }}}
 
         " vim-rake {{{ it's like rails.vim without rails.
+            " :help rake
         " }}}
 
         " neco-rake {{{ A neocomplcache plugin for Rake on vimshell
@@ -4396,6 +4445,11 @@ syntax on
 
         " vim-rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
+	    " `:help rails`
+        " }}}
+
+        " unite-rails {{{ a unite.vim plugin for Rails.
+            " Usage: :Unite rails/???
         " }}}
 
         " RbREPL {{{ Rub a Ruby REPL in Vim.
@@ -4435,9 +4489,11 @@ syntax on
         " }}}
 
         " ruby-debugger {{{ debug Ruby App with ruby-debug-ide gem
+            " :help ruby_debugger.txt
         " }}}
 
         " ruby-refactoring {{{ Ruby Refactoring Tool for Vim
+        " https://www.relishapp.com/despo/vim-ruby-refactoring/docs
         " }}}
 
         " rake.vim {{{ it's like rails.vim without the rails
@@ -4614,7 +4670,7 @@ syntax on
             " }}}
 
 	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
-        " NOTE has been merged into Syntastic
+        " XXX has been merged into Syntastic
 	    " }}}
         " }}}
 
@@ -4803,21 +4859,6 @@ syntax on
         " }}}
     " }}}
 
-    " [ VimL ] {{{
-        " vesting {{{ best VimScript VimL test framework.
-        " }}}
-
-        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
-            " :h vimsupport.
-        " }}}
-
-        " runVimTests {{{ A testing framework for Vim.
-        " }}}
-
-        " Self {{{ Vim prototype object system.
-        " }}}
-    " }}}
-
     " [ SQL ] {{{
         " :h ft_sql.txt,
             let msql_sql_query = 1 " like SQL highlighting inside Strings.
@@ -4878,9 +4919,131 @@ syntax on
     " }}}
 
     " [ R ] {{{
-        " Vim-R-plugin
-        " R.vim
-        " GNU-R
+        " Vim-R-plugin {{{ Plugin to work with R
+            " TODO make plugin auto generate and update R tags.
+            " add this into easytags.
+            " XXX :help r-plugin.txt
+            " Features:
+            "   - Communication with R.
+            "   - Omni completion (auto-completion) for R objects.
+            "   - Ability to see R's documentation in a Vim's buffer.
+            "   - Object Browser.
+            "   - Syntax highlighting for R and RHelp code.
+            "   - Smart indentation for R and RHelp syntax.
+            "   - Most of the plugin's behavior is customizable.
+            " INSTALL:
+            " $ R
+            "   > install.packages(c('colorout', 'vimcom', 'setwidth'))
+            " Usage:
+            "   - <LocalLeader>rf -- start vim-R-plugin R, can send commands to R
+            "   - <LocalLeader>rq -- close (q: quit)
+            "   - <LocalLeader>rh -- help (h: help)
+            "   - <LocalLeader>ro -- update the Object Browser.
+            "   - <LocalLeader>rp -- Print (cur) vim.print() (p: print)
+            "   - <LocalLeader>aa -- send File (a: all)
+            "   - <LocalLeader>ao -- send File (open .Rout) (a: all)
+            "   - <LocalLeader>bb -- send Block (cur) (b: block)
+            "   - <LocalLeader>cc -- send Chunk (cur) (c: chunk)
+            "   - <LocalLeader>ff -- send Function (cur) (f: function)
+            "   - <LocalLeader>ss -- send Selection (s: selection)
+            "   - <LocalLeader>pp -- send Paragraph (p: paragraph)
+            "   - <LocalLeader>l  -- send Line (l: line)
+            "   - :RUpdateObjectList
+            "       -- start R and update objects for omni completion and syntax highlighting
+            "   - :Rhelp topic  -- help. <Tab> to complete R objects names. <C-D> to list
+            "   - :RAddLibToList [[lib1] [lib2]] -- add the objects of libraries.
+            "   - :RSourceDir   -- source all .R files in a directory.
+            "   - :RBuildTags   -- build tags file
+            "   - <Plug>RStart  -- \rf to start R
+            "   - <Plug>RDSendSelection     -- send visual selected
+            "   - <Plug>RDSendLine          -- send current line
+            "   Edit:
+            "       _           -- type '_' auto insert ' <- ',
+            "                      press '_' again to insert '_' literally.
+            "       <C-x><C-o>  -- complete object name
+            "       <C-x><C-a>  -- complete function arguments
+            "       gn          -- go (next R chunk)
+            "       gN          -- go (previous R chunk)
+            let vimrplugin_term = "rxvt"
+            " let vimrplugin_term_cmd = 'urxvt --title R -e'
+            let vimrplugin_assign = 1 " auto convert '_' to ' <- '
+            " let vimrplugin_assign_map = "<M-->" " map key to convert into ' <- '
+            let vimrplugin_rnowebchunk = 1 " auto change < to <<>>=\n@
+            let vimrplugin_objbr_w = 40 " Object Browser default width
+            let vimrplugin_objbr_place = "console,left" " Object Browser split position
+                " 'script'/'console', 'right'/'left'
+            let vimrplugin_external_ob = 1 " in case R running in external terminal emulator
+            let vimrplugin_vimpager = "horizontal" " see R doc in vim's buffer as a pager
+                " 'tab'/'vertical'/'horizontal'/'tabnew'/'no'
+            let vimrplugin_editor_w = 80 " min window width
+            let vimrplugin_editor_h = 30 " min window height
+            " without screen.vim
+                " let vimrplugin_nosingler = 0
+                    " 0: all buffers of Vim instances send code to 'same' R process.
+                    " 1: each vim buffer uses its own R process.
+                " let vimrplugin_by_vim_instance = 0
+            " with screen.vim
+            " behaves as if the vimrplugin_by_vim_instance was enabled.
+            let vimrplugin_i386 = 1 " use 23 bit version of R
+            " let vimrplugin_r_path = "/path/to/R/version/bin"
+            " let vimrplugin_r_args = "--sdi --no-save --quiet" " default args for Windows
+                " On Linux, there is no default value for vimrplugin_r_args
+            let vimrplugin_buildwait = 240 " time to build the list of objects
+            let vimrplugin_routmorecolors = 1 " color .Rout file
+            let vimrplugin_routnotab = 1 " prefer open .Rout in split instead of tab
+            let vimrplugin_indent_commented = 0
+            let vimrplugin_sleeptime = 0.2 " time of R to process the paste command
+            let vimrplugin_notmuxconf = 0 " whether use tmux config file
+            if winwidth(0) > 120
+                let vimrplugin_screenvsplit = 1 " prefer split tmux vertically
+            else
+                let vimrplugin_screenvsplit = 0 " tmux horizontal split
+            endif
+            let g:ScreenImpl = 'Tmux'
+            " let g:ScreenShellWidth = 80 " R console width
+            let vimrplugin_tmux = 1 " 1: prefer use tmux
+            " let vimrplugin_only_in_tmux = 1
+            let vimrplugin_screenplugin = 1 " integrate screen.vim plugin
+            let vimrplugin_listmethods = 1 " args() lists the arguments of a function
+            let vimrplugin_specialplot = 1
+            let vimrplugin_latexcmd = "pdflatex" " build PDF from .tex, pdflatex/latex
+            let vimrplugin_never_unmake_menu = 0 " always keep R menu and bar
+            let vimrplugin_map_r = 0
+            let vimrplugin_openpdf = 1 " auto open PDF after process Rnoweb file
+            let vimrplugin_openpdf_quietly = 1 " disable open PDF verbose
+            let vimrplugin_openhtml = 1 " auto open HTML after process .Rmd file
+            let vimrplugin_strict_rst = 1 " strict rst
+            let g:vimrplugin_insert_mode_cmds = 0 " disable insert mode R commands
+            let g:vimrplugin_allnames = 1 " also show hidden objects
+            let g:vimrplugin_rmhidden = 1 " remove hidden objects
+            let r_indent_align_args = 1 " auto align multi lines of function arguments
+            let r_indent_ess_comments = 0 " like Emacs/ESS
+            let r_indent_comment_column = 40
+            let r_indent_ess_compatible = 0 " not Emacs/ESS compatiable
+            let r_syntax_folding = 1 " R folding
+            " let vimrplugin_pandoc_args = "--toc -V lang=german"
+            let g:rmd_syn_hl_chunk = 1
+            let g:rrst_syn_hl_chunk = 1
+
+            augroup RFileTypeMappings
+                au!
+                au FileType r vnoremap K <Esc>:call RAction("help")<CR>
+                au FileType r nnoremap K :call RAction("help")<CR>
+                au FileType r vnoremap <Space> <Plug>RDSendSelection
+                au FileType r nnoremap <Space> <Plug>RDSendLine
+                " run Makefile within R to build
+                au FileType r nnoremap <LocalLeader>sm :update<CR>:call SendCmdToR('system("make")')<CR>
+            augroup END
+        " }}}
+
+        " R.vim {{{
+        " }}}
+
+        " GNU-R {{{
+        " }}}
+
+        " rcom : Evaluate R code via rcom, rserve, screen, or tmux
+
     " }}}
 
     " [ Web: HTML5 & CSS, XML ] {{{
@@ -5010,6 +5173,10 @@ syntax on
         " }}}
 
         " CoffeeTags {{{ Ctags-like tag generator for CoffeeScript
+        " TODO https://github.com/lukaszkorecki/CoffeeTags
+        " }}}
+
+        " vim-eco {{{ Eco (embedded coffee-script) support for Vim
         " }}}
     " }}}
 
@@ -5450,6 +5617,17 @@ syntax on
 	    " Oh, and it can also handle PDFs (with pdftk), Word Documents
 	    " (read-only, with Antiword), and Mac OS X plist files.
         " }}}
+
+        " vinarise {{{ Ultimate hex editing system with Vim
+        " }}}
+    " }}}
+
+    " [ XQuery ] {{{
+        " XQuery-indentomnicompleteftplugin {{{ indent/omnicomplete/ftplugin
+        " }}}
+
+        " vim-xqmarklogic {{{ ftplugin to run an xquery against a MarkLogic server
+        " }}}
     " }}}
 " }}}
 
@@ -5459,6 +5637,12 @@ syntax on
             " code complete: <C-X><C-U>
             " :Validate/:w to check syntax error.
         " }}}
+    " }}}
+
+    " [ RoR: Ruby on Rails ] {{{
+    " }}}
+
+    " [ Qt ] {{{
     " }}}
 
     " [ Gtk ] {{{
@@ -5539,15 +5723,33 @@ syntax on
             " let g:unite_no_default_keymappings = 1 " don't map default key mappings
         " }}}
 
-        " CompleteHelper {{{ Generic functions to support custom insert mode completions
-            " Externals:
-            " - CamelCaseComplete
-            " - MotionComplete
-            "   - BracketComplete
-            "   - LineEndComplete
-            " - PatternComplete
-            " - PrevInsertComplete
-            " - SameFiletypeComplete
+        " CompleteHelper {{{ 'completefunc', i_CTRL-X_CTRL-U,
+            " Functions: {{{
+                " CompleteHelper#FindMatches( matches, pattern, options )
+                " CompleteHelper#ExtractText( startPos, endPos, matchObj )
+                " CompleteHelper#Abbreviate#Word( matchObj )
+                " CompleteHelper#JoinMultiline( text )
+                " CompleteHelper#Repeat#TestForRepeat()
+            " }}}
+            "" Example: {{{
+            "function! SimpleComplete( findstart, base )
+                "if a:findstart
+                    "" Locate the start of the keyword.
+                    "let l:startCol = searchpos('\k*\%#', 'bn', line('.'))[1]
+                    "if l:startCol == 0
+                        "let l:startCol = col('.')
+                    "endif
+                    "return l:startCol - 1 " Return byte index, not column.
+                "else
+                    "" Find matches starting with a:base.
+                    "let l:matches = []
+                    "call CompleteHelper#FindMatches( l:matches, '\V\<' . escape(a:base, '') . '\k\+', {'complete': '.'} )
+                    "return l:matches
+                "endif
+            "endfunction
+
+            "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
+            "" }}}
         " }}}
 
         " querycommandcomplete {{{ completions from an external query command
@@ -5561,6 +5763,16 @@ syntax on
             let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
             let g:qcc_line_separator = "\n"
             let g:qcc_field_separator = "\t"
+        " }}}
+
+        " AmbiCompletion {{{ ambiguous word completion.
+            " complete a word with no only start-with match but also ends-with
+            " and contains match.
+            if &completefunc == ''
+                set completefunc=g:AmbiCompletion
+            endif
+            let g:AmbiCompletion_richerSupportForMultibyte = 1
+            let g:AmbiCompletion_allBuffers = 1
         " }}}
     " }}}
 
@@ -5581,7 +5793,7 @@ syntax on
         " operator-user : Define your own operator easily
     " }}}
 
-    " [ position & session & marker ] {{{
+    " [ position & session ] {{{
 	" vim-session {{{ Extended session management for Vim ':mksession'
 	    " Usage:
 	    " - :SaveSession
@@ -5653,7 +5865,7 @@ syntax on
             let g:SignatureDisableMenu = 0
             let g:SignatureMenuStruct = "P&lugins.&Signature"
             let g:SignaturePurgeConfirmation = 1
-            let g:SignaturePeriodicRefresh = 0 " periodic auto refresh
+            let g:SignaturePeriodicRefresh = 1 " periodic auto refresh
         " }}}
 
         " vmark.vim--Visual_Bookmarking {{{
@@ -6240,11 +6452,18 @@ syntax on
     " }}}
 
     " [ window ] {{{
-	" golden-ratio {{{ Automatic resizing of Vim windows to the golden ratio
-	    " let g:loaded_golden_ratio = 0 " 1: to disable load golden-ratio
-	    " let g:golden_ratio_autocommand = 1 " 0: disable autocommand events
-	    " let g:golden_ratio_wrap_ignored = 0 " set line wrapping of ignored windows
-	" }}}
+        " SpitVspit {{{ Powerful multiple files splitting; split/vsplit/edit.
+            " Usage:
+            "   - :Spit[Up/Down]
+            "   - :[V/W]spit[Left/Right]
+            let g:loaded_SpitVspit = 0 " =1 to disable load script.
+        " }}}
+
+        " golden-ratio {{{ Automatic resizing of Vim windows to the golden ratio
+            " let g:loaded_golden_ratio = 0 " 1: to disable load golden-ratio
+            " let g:golden_ratio_autocommand = 1 " 0: disable autocommand events
+            " let g:golden_ratio_wrap_ignored = 0 " set line wrapping of ignored windows
+        " }}}
 
         " dwm.vim {{{ Tiled Window Management for Vim inspired from dwm.
             " Usage:
@@ -6261,60 +6480,12 @@ syntax on
             let g:zoomwin_preserve_taglist = 1
             let g:zoomwin_preserve_winmanager = 1
         " }}}
+
+        " layoutManager : Create layouts from tabs, templates and windows and control them.
     " }}}
 
     " [ conceal ] {{{
         " vim-ocaml-conceal
-    " }}}
-
-    " [ complete ] {{{
-        " CompleteHelper {{{ 'completefunc', i_CTRL-X_CTRL-U,
-            " Functions: {{{
-                " CompleteHelper#FindMatches( matches, pattern, options )
-                " CompleteHelper#ExtractText( startPos, endPos, matchObj )
-                " CompleteHelper#Abbreviate#Word( matchObj )
-                " CompleteHelper#JoinMultiline( text )
-                " CompleteHelper#Repeat#TestForRepeat()
-            " }}}
-            "" Example: {{{
-            "function! SimpleComplete( findstart, base )
-                "if a:findstart
-                    "" Locate the start of the keyword.
-                    "let l:startCol = searchpos('\k*\%#', 'bn', line('.'))[1]
-                    "if l:startCol == 0
-                        "let l:startCol = col('.')
-                    "endif
-                    "return l:startCol - 1 " Return byte index, not column.
-                "else
-                    "" Find matches starting with a:base.
-                    "let l:matches = []
-                    "call CompleteHelper#FindMatches( l:matches, '\V\<' . escape(a:base, '') . '\k\+', {'complete': '.'} )
-                    "return l:matches
-                "endif
-            "endfunction
-
-            "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
-            "" }}}
-        " }}}
-
-        " AmbiCompletion {{{ ambiguous word completion.
-            " complete a word with no only start-with match but also ends-with
-            " and contains match.
-            if &completefunc == ''
-                set completefunc=g:AmbiCompletion
-            endif
-            let g:AmbiCompletion_richerSupportForMultibyte = 1
-            let g:AmbiCompletion_allBuffers = 1
-        " }}}
-    " }}}
-
-    " [ window: split, navigation ] {{{
-        " SpitVspit {{{ Powerful multiple files splitting; split/vsplit/edit.
-            " Usage:
-            "   - :Spit[Up/Down]
-            "   - :[V/W]spit[Left/Right]
-            let g:loaded_SpitVspit = 0 " =1 to disable load script.
-        " }}}
     " }}}
 
     " [ menu ] {{{
@@ -6330,39 +6501,36 @@ syntax on
     " }}}
 
     " [ key maps/bindings ] {{{
-	" tinykeymap {{{ tiny, temporary keymaps
-	    " Usage:
-	    " * press <Esc> deactivates the tinykeymap.
-	    " - tinykeymap#Map()
-	    " - tinykeymap#EnterMap()
-	    " - tinykeymap#Load()
-	    " - tinykeymap#Complete()
-	    " - tinykeymap#PressEnter()
-	    " * :Tinykeymap
-	    "
-	    " gt               --  tabs
-	    " windows          --  <C-W>
-	    " buffers          --  <Leader>mb
-	    " diff             --  <Leader>md
-	    " filter           --  <Leader>mf
-	    " lines            --  <Leader>ml
-	    " location list    --  <Leader>mo
-	    " quickfix         --  <Leader>mq
-	    " undo             --  <Leader>mu
-	    " quickfixsigns    --  <Leader>ms
+        " tinykeymap {{{ tiny, temporary keymaps
+            " Usage:
+            " * press <Esc> deactivates the tinykeymap.
+            " - tinykeymap#Map()
+            " - tinykeymap#EnterMap()
+            " - tinykeymap#Load()
+            " - tinykeymap#Complete()
+            " - tinykeymap#PressEnter()
+            " * :Tinykeymap
+            "
+            " gt               --  tabs
+            " windows          --  <C-W>
+            " buffers          --  <Leader>mb
+            " diff             --  <Leader>md
+            " filter           --  <Leader>mf
+            " lines            --  <Leader>ml
+            " location list    --  <Leader>mo
+            " quickfix         --  <Leader>mq
+            " undo             --  <Leader>mu
+            " quickfixsigns    --  <Leader>ms
 
-	    " list of tinykeymaps be loaded on startup
-	    let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
-	    let g:tinykeymap#mapleader = mapleader . 'm'
-	    let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
-	    let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
-	" }}}
+            " list of tinykeymaps be loaded on startup
+            let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
+            let g:tinykeymap#mapleader = mapleader . 'm'
+            let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
+            let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
+        " }}}
 
         " vim-addon-actions {{{ customization for key bindings
         " }}}
-    " }}}
-
-    " [ timestamp ] {{{
     " }}}
 
     " bad-whitespace highlight bad whitespace, but disable in insert mode.
