@@ -40,6 +40,11 @@
 " endfor
 " }}}
 
+" [[ DISPLAY ]] {{{
+if $DISPLAY != ""
+endif
+" }}}
+
 " [[ Vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
@@ -107,6 +112,9 @@
     set wildignorecase     " ignore case when completing file names and directories.
     " cmdline-window
     set cmdwinheight=10
+    " }}}
+
+    " Ex-mode {{{ 'Q'
     " }}}
 
     " [ encode ] {{{
@@ -182,9 +190,9 @@
     " ; means recurse upwards to deep under your project.
     set tags+=tags    " search current dir
     " set tags+=./tags  " search dir of current file.
-    set tags+=./tags;  " search current dir, recursively to parent dir until root
+    " set tags+=./tags;  " search current dir, recursively to parent dir until root
     " set tags+=./tags;/  " walk up the tree towards root until one is found
-    " set tags+=tags;$HOME " walk up the tree towards $HOME.
+    set tags+=./tags;$HOME " walk up the tree towards $HOME.
     " ----------------
     " TODO
     " libraries:
@@ -276,16 +284,26 @@
         " [ grep ]
         " internal(vimgrep) : use Vim search patterns, slower(read into memory)
         " external(grep) : used when the vim grep does not do what you want.
-	if executable("ack") || executable("ack-grep")
-	    set grepprg=ack\ -H\ --nogroup\ --nocolor
-	else
-	    " 'grep -n', 'grep -n $* /dev/null'
-	    set grepprg=grep\ -n\ $*\ /dev/null
-	endif
+        if system("grep 'Ubuntu' /etc/issue") =~? 'Ubuntu' || executable("ack-grep")
+            " set grepprg=ack-grep\ -H\ --nogroup\ --nocolor
+            set grepprg=ack-grep\ -a
+        elseif executable("ack")
+            " set grepprg=ack\ -H\ --nogroup\ --nocolor
+            set grepprg=ack\ -a
+        else
+            " 'grep -n', 'grep -n $* /dev/null'
+            set grepprg=grep\ -n\ $*\ /dev/null
+        endif
 
         " [ match ]
+        " matchit -> '%'
+        " %, g%, [%, ]%, a%,
+        " let b:match_words = '<:>,<tag>:</tag>,if:endif,\<if\>:\<endif\>'
+        runtime macros/matchit.vim " load system matchit.vim plugin
         set showmatch
-        set matchpairs+=<:>
+        set matchpairs=(:),[:],{:},<:>
+        set matchpairs+=':',":"
+        set matchtime=5
     " }}}
 
     " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
@@ -304,7 +322,6 @@
 
     " [ completion ] {{{ auto popup menu: Tab, C-x + C-?, C-y, C-e
     " [ completion options ]
-    set cmdheight=1                  " command line height
     set complete=.,w,b,t,i,u,k       " completion buffers
     "            | | | | | | |
     "            | | | | | | `-dict
@@ -325,7 +342,7 @@
     set previewheight=15
 
     " set file path completion.
-    set path+=.,/usr/local/include,/usr/include,,
+    set path+=.,/usr/include,/usr/local/include
 
     " [ wildignore ]
     " ignore those files when completion.
@@ -339,28 +356,16 @@
     " [ omni ]
     " complete with "<C-X><C-O>"
     " set omnifunc=syntaxcomplete#Complete " for other languages
-    " set completefunc=neocomplcache#manual_complet " actually find the matches.
+    " set completefunc=
     " inoremap <C-space> <C-x><C-o>
+    " }}}
 
-        " SuperCleverTab() for omni-completion or insert <Tab> {{{
-        function! SuperCleverTab()
-            if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
-                return "\<Tab>"
-            else
-                " use omnifunc
-                if &omnifunc != ''
-                    return "\<C-X>\<C-O>"
-                " use dictionary option with /usr/share/dict/words
-                elseif &dictionary != ''
-                    return "<C-X>\<C-K>"
-                else
-                    return "\<C-X>\<C-N>"
-                endif
-            endif
-        endfunction
-
-        " inoremap <Tab> <C-R>=SuperCleverTab()<cr>
-        " }}}
+    " [ templates ] {{{
+    " FIXME this code does not work.
+    augroup TemplatesAutocmd
+        autocmd!
+        autocmd BufNewFile * silent! 0r "~/.vim/templates/" . &filetype. "/template" . %:e
+    augroup END
     " }}}
 
     " [ session ] {{{
@@ -403,11 +408,6 @@
     " [ maps ] {{{
     set timeout  timeoutlen=1500 " map sequence timeout
     set ttimeout ttimeoutlen=100 " key code timeout
-    " }}}
-
-    " [ match pairs ] {{{
-    set matchpairs=(:),{:},[:]
-    set matchtime=5
     " }}}
 
     " [ binary ] {{{ editing binary files
@@ -637,11 +637,11 @@ endif
     " }}}
 
     " [ tab ] {{{
-    set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set shiftwidth=2 " Number of spaces for each indent level
-    set softtabstop=2 " Even when using <Tab>'s
+    set smarttab " <Tab> insert shiftwidth at beginning of a line.
     set expandtab " When pressing <Tab>, replace with spaces
-    " set tabstop=8 " number of spaces that a <Tab> counts for.
+    " set tabstop=2 " number of spaces that a <Tab> counts for.
+    set softtabstop=2 " Even when using <Tab>'s
     " }}}
 
     " [ format ] {{{
@@ -715,7 +715,7 @@ endif
         " %-0{minwid}.{maxwid}{item}
         " %!expression to evaluate the expression.
         " %{} items will be evaluated too.
-        "   NOTE: in %{}, Unclosed expression sequence:
+        "   NOTE in %{}, Unclosed expression sequence:
         "   - you can not has space in %{}
         "   - you can not use double quote in %{}, use single quote instead.
         " Require: fugitive, current-func-info, syntastic,
@@ -732,22 +732,23 @@ endif
         set statusline+=\%#StatusBufferNumber#\b:%n
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\%#StatusReadOnly#\%r\%#StatusList#\%q
-        set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()}
-        set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''}
+        set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()} " plugin fugitive
+        set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''} " plugin hgrev
         set statusline+=\ \%{virtualenv#statusline()}
         set statusline+=\%#StatusChar#\pain\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
                     \\%#StatusModFlag2#\%{&modified?'':'✔'}
-        set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()}
+        set statusline+=\ \%#StatusProgramInfo#\%{SyntasticStatuslineFlag()} " plugin Syntastic
         set statusline+=\ \%#StatusFilePath#\%<%t
-        set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()}
-        set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')}
+        set statusline+=\ \%#StatusProgramInfo#\%{cfi#get_func_name()} " plugin current-func-info
+        set statusline+=\ \%#StatusProgramInfo#\%{(tagbar#currenttag('%s','','s')?tagbar#currenttag('%s',''):'')} " plugin tagbar
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%s]", "", "f")}
         " set statusline+=\ \%#StatusProgramInfo#\%{tagbar#currenttag("[%p]", "")} " prototype
         set statusline+=\%#StatusHELP#\%H
         set statusline+=\%=
+        set statusline+=\ \%{rvm#statusline()} " plugin vim-rvm
         " set statusline+=\%#StatusFileType#\%y
-        set statusline+=\%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'['.&ft.']':'['.neocomplcache#get_context_filetype().']'}
+        set statusline+=\%#StatusFileType#\%{neocomplcache#get_context_filetype()==#&ft?'['.&ft.']':'['.neocomplcache#get_context_filetype().']'} " plugin neocomplcache
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\ \%<%(\%#StatusNormal#\%{&ff==#'unix'?'':&ff}%)
         set statusline+=\%#StatusChar#\%{&ff=~'unix'&&&fenc==#'utf-8'?'':'•'}
@@ -807,8 +808,12 @@ endif
     set foldmarker={{{,}}} " fold marker
     set foldminlines=3     " fold minlines
     set foldcolumn=0       " colums ahead of line number.
-    set foldignore=        " don't ignore anything when folding
-    set foldopen=block,hor,mark,percent,quickfix,search,tag,undo " open fold when ?
+    if &foldmethod ==# 'indent'
+        set foldignore="#"
+        " lines start with characters in foldignore will get their fold level
+        " from surrounding lines.
+    endif
+    set foldopen=block,mark,percent,quickfix,search,tag,undo " open fold for commands
 
         " set foldtext=VimrcFoldText() " {{{
         " function! VimrcFoldText()
@@ -853,7 +858,7 @@ endif
     function! ShowFuncKeys(bang)
         for i in range(1,12)
             redir! => map
-            exe "silent ".(a:bang == "!" ? 'verbose' : '') . " map<F".i.">"
+            exe "silent " . (a:bang == "!" ? 'verbose' : '') . " map<F" . i . ">"
             redir end
             if map !~ 'No mapping found'
                 echomsg map
@@ -957,6 +962,29 @@ endif
 " Vimscript functions must start with a capital letter if they are unscoped!
 " you can call function with ":source file.vim" then ":call"
 
+    " [ <Tab> completion ] {{{
+        " SuperCleverTab() for omni-completion or insert <Tab>
+        function! SuperCleverTab()
+            if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+                return "\<Tab>"
+            else
+                " use omnifunc
+                if &omnifunc != ''
+                    return "\<C-X>\<C-O>"
+                " use dictionary option with /usr/share/dict/words
+                elseif &dictionary != ''
+                    return "<C-X>\<C-K>"
+                else
+                    return "\<C-X>\<C-N>"
+                endif
+            endif
+        endfunction
+
+        if !hasmapto('<Tab>')
+            inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+        endif
+    " }}}
+
     " [ execute mode ] {{{
         " [ chmod +x % -> sh / rb / py / pl ] {{{
             function! ScriptExecute()
@@ -979,7 +1007,9 @@ endif
     "autocmd BufNewFile *.py 0r ~/.vim/skeletons/skeleton.py
     " }}}
 
-    " {{{ Visual OR :10,50TOhtml :TOhtml
+    " [ ToHTML ] {{{
+    " Usage:
+    " Visual OR :10,50TOhtml :TOhtml
     " FIXME do not support script: indent-guides.vim
     " convert code to HTML used for website or paste
     " let g:html_no_progress = 1 " disable progress.
@@ -1020,12 +1050,6 @@ endif
     command! -range=% MyToHtml :call MyToHtml(<line1>,<line2>)
     " }}}
 
-    " [ matchit ] {{{
-        " '%' to match more than just single characters.
-        " %, g%, [%, ]%, a%,
-        runtime macros/matchit.vim " load system matchit.vim plugin
-    " }}}
-
     " [ convert file into unix & utf-8 ] {{{
     function! ConvertFile2UnixUTF8()
         if &fileformat != 'unix' || &fileencoding != 'utf-8'
@@ -1038,6 +1062,34 @@ endif
     endfunction
     " }}}
 
+    " [ tags ] {{{
+        " ctagsloader {{{
+        " This script will automatically traverse your path tree from the
+        " current directory all the way to root and load tags files found along
+        " the way.
+        function! SetCTags()
+            let curdir = split(substitute(system('pwd'), "\n", "", ""), "/")
+            let ctagdir = ""
+            for folder in curdir
+                let ctagdir .= "/" . folder
+                let ctagfile = substitute(system('ls ' . ctagdir . '/tags'), "\n", "", "")
+                if match(ctagfile, "^.*tags$") != -1
+                    execute 'autocmd BufEnter * :setlocal tags+=' . ctagfile
+                else
+                    let ctagfile = substitute(system('ls ' . ctagdir . '/TAGS'), "\n", "", "")
+                    if match(ctagfile, "^.*TAGS$") != -1
+                        execute 'autocmd BufEnter * :setlocal tags+=' . ctagfile
+                    endif
+                endif
+            endfor
+            unlet ctagdir
+            unlet ctagfile
+            unlet curdir
+        endfunc
+
+        " call SetCTags()
+        " }}}
+    " }}}
 " }}}
 
 " [ autogroup -> autocmd ] {{{
@@ -1089,6 +1141,16 @@ endif
         "augroup END
 
 
+" }}}
+
+" [ local/project specific vimrc ] {{{
+" if filereadable('~/.vim/local.vim')
+"     " local vimrc
+"     source ~/.vim/local.vim
+" elseif filereadable('.local.vim')
+"     " project vimrc
+"     source .local.vim
+" endif
 " }}}
 
 " ----------------------------------------------------------------
@@ -1153,6 +1215,7 @@ endif
 
         " options
         " let g:neobundle#types#raw#calc_hash_command = '' " 'sha1sum'/'md5sum'
+        let g:neobundle#install_max_processes = 5 " async update
 
         " check neobundle installed {{{
         fun! InstallNeoBundle(path)
@@ -1204,6 +1267,7 @@ endif
         "   - 'external_commands': -- Dictionary or List.
         "   - 'rev': -- revision or branch name.
         "   - 'type__shallow': 1 -- use shallow clone
+        "   - 'type__update_style': 'default'(master) / 'current'(topic)
         " nested attributes,
         " syntax suger -> every value in Dictionary can be nested with Dictionary/List.
         " NeoBundle 'https://bitbucket.org/ZyX_I/aurum', {'depends':
@@ -1875,7 +1939,8 @@ syntax on
 
         " Indent_Highlight
 
-        " simplefold : space-optimized, configurable folds, supports Ruby ...
+        " simplefold {{{ space-optimized, configurable folds, supports Ruby ...
+        " }}}
 
         " Splitjoin: || https://github.com/AndrewRadev/splitjoin.vim.git
             " {{{ switching between a single-line statement and a multi-line one.
@@ -1892,9 +1957,6 @@ syntax on
 
     " [ completion: autocomplete popup menu candidates ] {{{
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
-            " TODO
-            " if exists('g:loaded_neocomplcache')
-            " endif
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
             " comment out :set complete option.
@@ -1913,9 +1975,13 @@ syntax on
             " }}}
 
             " [ common options ] {{{
+            let g:neocomplcache_enable_debug = 0
             let g:acp_enableAtStartup = 0 " Disable AutoComplPop
             let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
             let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
+            let g:neocomplcache_skip_auto_completion_time = "0.5" " skip auto completion (+reltime)
+                " '' empty to disable
+                " if completion time is higher than it, neocomplcache will skip auto completion.
             let g:neocomplcache_force_overwrite_completefunc = 1 " override other completefunc
             let g:neocomplcache_use_vimproc = 1
             let g:neocomplcache_max_list = 100 " candidate number display in popup menu
@@ -1957,7 +2023,7 @@ syntax on
                 let g:neocomplcache_enable_prefetch = 1
             endif
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
-            let g:neocomplcache_temporary_dir = '~/.neocon'
+            let g:neocomplcache_temporary_dir = '~/.neocomplcache'
             " }}}
 
             " [ complex dictionary options ] {{{
@@ -2004,6 +2070,7 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
+            let g:neocomplcache_omni_patterns['python'] = '[^. \t]\.\w*'
             " FIXME this 'go' pattern
             " let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " gocode plugin
             let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
@@ -2013,8 +2080,7 @@ syntax on
             " let g:neocomplcache_omni_patterns['haskell'] = ''
             " FIXME
             let g:neocomplcache_omni_patterns['clojure'] = '\w\|-\|\.\|+\|*\|/'
-            " FIXME this 'sql' pattern
-            let g:neocomplcache_omni_patterns['sql'] = '\(\w\|\.\)'
+            let g:neocomplcache_omni_patterns['sql'] = '[[:alpha:]_.][[:alnum:]_.]*'
             let g:neocomplcache_omni_patterns['r'] = '[[:alnum:].\\]\+' " vim-R-plugin
             let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::' " default / plugin phpcomplete.vim
             let g:neocomplcache_omni_patterns['xquery'] = '\k\|:\|\-\|&' " plugin XQuery-indentomnicompleteftplugin
@@ -2050,13 +2116,13 @@ syntax on
             let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
             " }}}
             " member patterns {{{
-            if !exists('g:neocomplcache_member_prefix_patterns')
-                let g:neocomplcache_member_prefix_patterns = {}
-            endif
             if !exists('g:neocomplcache_member_patterns')
                 let g:neocomplcache_member_patterns = {}
             endif
             " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
+            endif
             " }}}
             " delimiter patterns {{{
             if !exists('g:neocomplcache_delimiter_patterns')
@@ -2116,6 +2182,11 @@ syntax on
             " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
             " }}}
             " sources {{{
+            if !exists('g:neocomplcache_sources_list')
+                let g:neocomplcache_sources_list = {}
+            endif
+            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
+            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
             if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
@@ -2124,37 +2195,29 @@ syntax on
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
-            let g:neocomplcache_source_completion_length['include_complete'] = 0
-            let g:neocomplcache_source_completion_length['member_complete'] = 0
+            let g:neocomplcache_source_completion_length['include_complete'] = 2
+            let g:neocomplcache_source_completion_length['member_complete'] = 2
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 2
-            let g:neocomplcache_source_completion_length['syntax_complete'] = 1
+            let g:neocomplcache_source_completion_length['syntax_complete'] = 2
+            let g:neocomplcache_source_completion_length['vim_complete'] = 2
+            let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
             " TODO
-            let g:neocomplcache_source_completion_length['js_complete'] = 1 " plugin jscomplete.vim
-            let g:neocomplcache_source_completion_length['ghc'] = 2 " plugin neco-ghc
-            " dynamically change dictionary_complete source completion length.
-            let s:TextFileType = ['text', 'mail', 'markdown', 'vimwiki',]
-            if index(s:TextFileType, &filetype) >= 0
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 2
-            else
-                let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
-            endif
-            if !exists('g:neocomplcache_sources_list')
-                let g:neocomplcache_sources_list = {}
-            endif
-            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
-            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
+            let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
+            let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
             " }}}
             " same filetypes {{{
+            " a dictionary to connect file type mutually.
             if !exists('g:neocomplcache_same_filetype_lists')
                 let g:neocomplcache_same_filetype_lists = {}
             endif
-            " if value contains '_', neocomplcache completes from all buffers.
-            " set this '_' key will disable default initialization
+            " The value are comma-separated filetypes.
+            " If value contains '_', neocomplcache completes from all buffers.
+            " If key is '_', the value will be used for default same filetypes.
             " let g:neocomplcache_same_filetype_lists['_'] = '_'
-            " default complete from all buffers
+            "   -> default, complete from all buffers
             let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
             let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
             let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
@@ -2170,62 +2233,61 @@ syntax on
             if !exists('g:neocomplcache_context_filetype_lists')
                 let g:neocomplcache_context_filetype_lists = {}
             endif
-            " TODO let this context_filetype support markdown, TeX, etc.
             let g:neocomplcache_context_filetype_lists['vimwiki'] = [
                         \ {
-                        \ 'filetype': 'python',
-                        \ 'start': '^\s*{{{python$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'python',
+                            \ 'start': '^\s*{{{python$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'ruby',
-                        \ 'start': '^\s*{{{ruby$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'ruby',
+                            \ 'start': '^\s*{{{ruby$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'vim',
-                        \ 'start': '^\s*{{{vim$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'vim',
+                            \ 'start': '^\s*{{{vim$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'javascript',
-                        \ 'start': '^\s*{{{javascript$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'javascript',
+                            \ 'start': '^\s*{{{javascript$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'bash',
-                        \ 'start': '^\s*{{{bash$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'bash',
+                            \ 'start': '^\s*{{{bash$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'zsh',
-                        \ 'start': '^\s*{{{zsh$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'zsh',
+                            \ 'start': '^\s*{{{zsh$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'go',
-                        \ 'start': '^\s*{{{go$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'go',
+                            \ 'start': '^\s*{{{go$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'c',
-                        \ 'start': '^\s*{{{c$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'c',
+                            \ 'start': '^\s*{{{c$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'html',
-                        \ 'start': '^\s*{{{html$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'html',
+                            \ 'start': '^\s*{{{html$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'css',
-                        \ 'start': '^\s*{{{css$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'css',
+                            \ 'start': '^\s*{{{css$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                        \ 'filetype': 'tex',
-                        \ 'start': '^\s*{{{tex$',
-                        \ 'end': '^\s*}}}',
+                            \ 'filetype': 'tex',
+                            \ 'start': '^\s*{{{tex$',
+                            \ 'end': '^\s*}}}',
                         \ },
                         \ ]
             " }}}
@@ -2257,7 +2319,7 @@ syntax on
             " syntax_complete            -> [S] {syntax-keyword}
             " include_complete           -> [FI] or [I]
             " snippets_complete          -> [Snip] (none placeholders) or
-            " <Snip> (contains placeholders)
+            "                               <Snip> (contains placeholders)
             " vim_complete               -> [vim] type
             " omni_complete              -> [O]
             " tags_complete              -> [T]
@@ -2388,7 +2450,7 @@ syntax on
                 " }}}
 
                 " { snipMate } {{{
-                " TODO snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
+                " snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
                 " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
                 " ----------------------------------------------
                 " imap <expr> <Tab> snipMate#ShowAvailableSnips() ?
@@ -2467,7 +2529,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ snippets ] {{{ <Tab>, <Ctrl-j/k>
+    " [ snippets ] {{{ <Tab>, <C-j/k> / <C-f/b>
         " neosnippet {{{
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
@@ -2486,13 +2548,17 @@ syntax on
             "       - expand
             "       - edit
             "       - preview
+            " neosnippet                 -> [Snip] (no placeholders)
+            " neosnippet                 -> <Snip> (contain placeholders)
 
             let g:neosnippet#snippets_directory = "~/.vim/snippets/neosnippet/"
             let g:neosnippet#disable_select_mode_mappings = 1
                 " disable key-mappings in select-mode when snippets_complete
                 " performs. usually enable it.
-            " '_': 1, to disable all runtime snippets.
-            " 'c': 1,
+            " disable runtime snippets
+            " value = 1 : do not load runtime snippets
+            " '_': for default filetype (all filetype) global
+            " e.g. '_': 1, -> to disable all runtime snippets.
             let g:neosnippet#disable_runtime_snippets = {
                         \ '_': 1,
                         \ }
@@ -2500,11 +2566,14 @@ syntax on
             if !exists('g:loaded_neosnippet')
             endif
 
-            " because <Tab> and <C-j> is conflict with UltiSnips.
-            " Can't use 'inoremap' here.
+            " expand snippet trigger
             imap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand_or_jump)"
                         \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+            " jump to next placeholder
+            smap <expr> <Tab> neosnippet#expandable() ?
+                        \ "\<Plug>(neosnippet_expand_or_jump)"
+                        \ : "\<Tab>"
             " imap <expr> <C-j> neosnippet#jumpable() ?
             "             \ "\<Plug>(neosnippet_jump)"
             "             \ : neosnippet#expandable() ?
@@ -2524,7 +2593,7 @@ syntax on
             endif
         " }}}
 
-        " UltiSnips {{{ VISUAL, <Tab>, <C-Tab>, <C-J/K>
+        " UltiSnips {{{ {VISUAL}, <Tab>, <C-Tab>, <C-j/k>/<C-f/b>
             " commands:
             " - :UltiSnipsEdit
             " - :UltiSnipAddFiletypes
@@ -2801,7 +2870,7 @@ syntax on
             highlight TagListComment    ctermfg=235
             highlight TagListFileName   ctermfg=255 ctermbg=232
 
-            " TODO nnoremap <F12> :TlistToggle<CR>
+            " nnoremap <F12> :TlistToggle<CR>
         " }}}
 
         " Tag_Signature_Balloons (Tag Signatures in Balloon Tooltips)
@@ -2850,7 +2919,8 @@ syntax on
             " - AutotagsUpdate()
             " - AutotagsAdd()
             " - AutotagsRemove()
-            " FIXME create a map for AutotagsUpdate()
+            " FIXME make this automatically or create a command for it.
+            " command! -nargs=? AutotagsUpdate :call AutotagsUpdate()<CR>
             let g:autotagsdir = $HOME."/tmp/vim/tags/autotags.vim"
             let g:autotags_global = $HOME . "/.autotags/global_tags"
             let g:autotags_ctags_exe = "ctags"
@@ -2861,6 +2931,7 @@ syntax on
             let g:autotags_ctags_global_include = "/usr/include/*"
             let g:autotags_cscope_exe = "cscope"
             let g:autotags_cscope_file_extensions = ".cpp .cc .cxx .m .hpp .hh .h .hxx .c .idl"
+            let g:autotags_pathhash_humanreadable = 1
         " }}}
 
         " indexer.tar.gz
@@ -3280,6 +3351,8 @@ syntax on
             endif
         " }}}
 
+        " vim-unite-ack : ack source for unite.vim
+
         " buffers_search_and_replace {{{ powerful buffer(s) search & replace tool.
             " Usage:
             "   - [range]Bs[flag] <search regex>
@@ -3394,7 +3467,7 @@ syntax on
     " }}}
 
     " [ doc & help "K" ] {{{
-        " ref {{{ {Visual}'K', ref is a Vim plugin to view the reference.
+        " ref {{{ {Visual}/'K', ref is a Vim plugin to view the reference.
             " TODO enhance ref with feature of completion in vim command line
             " TODO change ref-viewer open style, like viewdoc open content in
             " preview window with syntax highlighting.
@@ -3404,7 +3477,7 @@ syntax on
             " same interface.
             " :help ref@en
             " Usage:
-            "   - 'K'
+            "   - {Visual}'K'
             "   - :Unite ref/??
             "   - :Ref [{options}] {source-name} [{query}]
             "       - options:
@@ -3472,6 +3545,9 @@ syntax on
             " [ JavaScript ]
                 " -> ???
                 "  TODO support JavaScript
+            " [ R ]
+                " -> ???
+                " TODO support R
             " [ Perl ]
                 " -> perldoc
                 let g:ref_perldoc_cmd = 'perldoc'
@@ -3809,6 +3885,9 @@ syntax on
             "   - :Gdiff/:Gsdiff/:Gvdiff [revision]
             "   - :Ggrep/:Glgrep [args] -- :grep/:lgrep with git-grep as 'grepprg'
             "   - :Glog [args] -- load all previous revisions of current file into quickfix
+            "       - :Git! log
+            "       - :Gsplit! log
+            "       - :Glog --
             "   - :[range]Gblame {flags}
             "   - :[range]Gbrowse {revision}
 
@@ -3987,7 +4066,7 @@ syntax on
 
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
 
-            " TODO au FileType nerdtree
+            " au FileType nerdtree
         " }}}
 
         " nerdtree-execute
@@ -4117,62 +4196,20 @@ syntax on
 	" }}}
     " }}}
 
-    " [ tools ] {{{
-        let g:TasksListTokens = ['FIXME', 'TODO', 'BUG', 'ISSUE', 'ERROR', 'XXX',]
-
-        " TagmaTasks {{{
-            " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
-            " :TagmaTasksClear, :TagmaTasksToggle
-            " \tt, \tc, \tm, \tw. => [t, ]t, [T, ]T.
-            let g:TagmaTasksAutoUpdate = 1
-            let g:TagmaTasksHeight = 10
-            let g:TagmaTasksIdleUpdate = 0
-            let g:TagmaTasksJumpTask = 1
-            let g:TagmaTasksJumpKeys = 1
-            let g:TagmaTasksMarks = 1
-            let g:TagmaTasksOpen = 1
-            let g:TagmaTasksPrefix = '<Leader>t'
-            let g:TagmaTasksTokens = g:TasksListTokens
-        " }}}
-
-        " TaskList {{{ \tl ( \t map conflict with CommandT.vim )
-            map <Leader>tl <Plug>TaskList
-            let g:tlWindowPosition = 1 " 1: bottom, 0: top.
-            let g:tlRememberPosition = 1
-            let g:tlTokenList = g:TasksListTokens
-        " }}}
-
-        " GrepTasks {{{ Grep for tasks and todo markers.
-        " }}}
-
-        " TaskMotions {{{ Motions to task and todo markers.
-            " Require: CountJump
-            " Usage:
-            " ]t -- go to [count] next start of a task or todo marker.
-            " [t -- .... previous start of ...
-            let g:TaskMotions_Pattern = '\<TODO:'
-            let g:TaskMotions_Mapping = 't'
-        " }}}
-
-        " endwise : end certain structures automatically. if, do, def ...
-
-        " Rainbow_Parentheses_Improved {{{ show parentheses in different color
-            " Usage: :RainbowToggle, rainbow#toggle()
-            " au syntax * call rainbow#load([
-            "             \ ['(',')'],['\[','\]'],['{','}'],
-            "             \ ['begin','end'],
-            "             \ ])
-            " au syntax * call rainbow#activate()
-        " }}}
-
+    " [ swap ] {{{
         " switch {{{ swap a pattern and substition.
             " let g:switch_no_builtins
-	    nnoremap - :Switch<cr>
+            nnoremap - :Switch<cr>
             let g:switch_definitions =
                         \ [
-                            \ ['foo', 'bar', 'baz']
+                            \ ['foo', 'bar', 'baz'],
+                            \ ['是', '否'], ['男', '女'],
                         \ ]
                         " foo -> bar -> baz -> foo
+            " let b:switch_definitions = [
+            "                 \ {
+            "                 \ }
+            "             \ ]
         " }}}
 
         " SwapIt {{{ <C-A>, <C-X>
@@ -4187,24 +4224,65 @@ syntax on
         " }}}
 
         " vim-cycle {{{ toggle words between pairs or lists of related words.
-        " TODO
             " Usage:
             "   - <C-A> / <C-X> -- increment / decrement
-            " Customization
-            " * You can add your own word groups:
-            " call AddCycleGroup(['one', 'two', 'three'])
             "
-            " * To deal with conflicts, Cycle.vim also supports adding groups that
-            "   are specific to a certain filetype:
+            " call AddCycleGroup(['是', '否'])
+            " call AddCycleGroup(['男', '女'])
+            " " to deal with conflicts, support add group to specific filetype:
             " call AddCycleGroup('ruby', ['class', 'module'])
             " call AddCycleGroup('python', ['else', 'elif'])
-            "
-            " * Providing a list of filetypes is also supported:
+            " " providing a list of filetypes is also supported:
             " call AddCycleGroup(['ruby', 'eruby', 'perl'], ['else', 'elsif'])
-            "
-            " However, if there are no conflicting cases it is preferable to
-            " define all cycle groups in the global namespace, using
-            " filetype-specific groups only in case of conflict.
+        " }}}
+    " }}}
+
+    " [ tools ] {{{
+        " TagmaTasks {{{
+            " :TagmaTasks [*.pl|*|**/*], :TagmaTasksMarks
+            " :TagmaTasksClear, :TagmaTasksToggle
+            " \tt, \tc, \tm, \tw. => [t, ]t, [T, ]T.
+            let g:TagmaTasksAutoUpdate = 1
+            let g:TagmaTasksHeight = 10
+            let g:TagmaTasksIdleUpdate = 0
+            let g:TagmaTasksJumpTask = 1
+            let g:TagmaTasksJumpKeys = 1
+            let g:TagmaTasksMarks = 1
+            let g:TagmaTasksOpen = 1
+            let g:TagmaTasksPrefix = '<Leader>t'
+            let g:TagmaTasksTokens = ['FIXME', 'TODO', 'BUG', 'XXX',]
+
+        " }}}
+
+        " TaskList {{{ \tl ( \t map conflict with CommandT.vim )
+            let g:tlWindowPosition = 1 " 1: bottom, 0: top.
+            let g:tlRememberPosition = 1
+            let g:tlTokenList = ['FIXME', 'TODO', 'BUG', 'XXX',]
+
+            " nnoremap <Leader>tl <Plug>TaskList
+        " }}}
+
+        " GrepTasks {{{ Grep for tasks and todo markers.
+        " }}}
+
+        " TaskMotions {{{ Motions to task and todo markers.
+            " Require: CountJump
+            " Usage:
+            " ]t -- go to [count] next start of a task or todo marker.
+            " [t -- .... previous start of ...
+            let g:TaskMotions_Pattern = '\C\<\%(FIXME\|TODO\|XXX\|BUG\)\>'
+            let g:TaskMotions_Mapping = 't'
+        " }}}
+
+        " endwise : end certain structures automatically. if, do, def ...
+
+        " Rainbow_Parentheses_Improved {{{ show parentheses in different color
+            " Usage: :RainbowToggle, rainbow#toggle()
+            " au syntax * call rainbow#load([
+            "             \ ['(',')'],['\[','\]'],['{','}'],
+            "             \ ['begin','end'],
+            "             \ ])
+            " au syntax * call rainbow#activate()
         " }}}
 
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
@@ -4250,6 +4328,25 @@ syntax on
 " }}}
 
 " [ languages ] {{{
+    " [ VimL ] {{{
+        " vesting {{{ best VimScript VimL test framework.
+        " TODO
+        " }}}
+
+        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
+            " :h vimsupport.
+        " }}}
+
+        " runVimTests {{{ A testing framework for Vim.
+        " }}}
+
+        " Self {{{ Vim prototype object system.
+        " }}}
+
+        " vimple {{{ provides VimLOO (Object Oriented VimL) objects for write-only :ex commands
+        " }}}
+    " }}}
+
     " [ Ruby ] {{{
         let ruby_operators = 1 " highlight operations
         let ruby_space_errors = 1 " highlight space errors
@@ -4318,10 +4415,10 @@ syntax on
         " }}}
 
         " vim-rake {{{ it's like rails.vim without rails.
+            " :help rake
         " }}}
 
         " neco-rake {{{ A neocomplcache plugin for Rake on vimshell
-        " TODO
         " }}}
 
 
@@ -4332,6 +4429,12 @@ syntax on
             " * leave off the version
             "	- :Rvm
             "	- :Rvm use
+            " - :Rvm install 1.9.3
+            " - statusline
+            "   %{rvm#statusline()}
+            " If you really want to get crazy, you can make this happen
+            " automatically as you switch from buffer to buffer.
+            " autocmd BufEnter * Rvm
         " }}}
 
         " vim-bundler {{{ Lightweight support for Ruby's Bundler
@@ -4342,6 +4445,11 @@ syntax on
 
         " vim-rails {{{ Ruby on Rails
             " easy file navigation, enhanced syntax highlighting, and more
+	    " `:help rails`
+        " }}}
+
+        " unite-rails {{{ a unite.vim plugin for Rails.
+            " Usage: :Unite rails/???
         " }}}
 
         " RbREPL {{{ Rub a Ruby REPL in Vim.
@@ -4381,9 +4489,11 @@ syntax on
         " }}}
 
         " ruby-debugger {{{ debug Ruby App with ruby-debug-ide gem
+            " :help ruby_debugger.txt
         " }}}
 
         " ruby-refactoring {{{ Ruby Refactoring Tool for Vim
+        " https://www.relishapp.com/despo/vim-ruby-refactoring/docs
         " }}}
 
         " rake.vim {{{ it's like rails.vim without the rails
@@ -4560,7 +4670,7 @@ syntax on
             " }}}
 
 	    " pyflakes {{{ a faster smurfier pyflakes fork using _ast instead of compiler
-        " NOTE has been merged into Syntastic
+        " XXX has been merged into Syntastic
 	    " }}}
         " }}}
 
@@ -4650,7 +4760,6 @@ syntax on
 
         " [ REPL ] {{{
             " vim-ipython {{{ A two-way integration between Vim and IPython
-            " TODO
             " }}}
 
             " PyREPL.vim {{{ Provide a way to run python REPL inside buffer.
@@ -4750,21 +4859,6 @@ syntax on
         " }}}
     " }}}
 
-    " [ VimL ] {{{
-        " vesting {{{ best VimScript VimL test framework.
-        " }}}
-
-        " Vim-Support {{{ Vim Script IDE for Vim/gVim.
-            " :h vimsupport.
-        " }}}
-
-        " runVimTests {{{ A testing framework for Vim.
-        " }}}
-
-        " Self {{{ Vim prototype object system.
-        " }}}
-    " }}}
-
     " [ SQL ] {{{
         " :h ft_sql.txt,
             let msql_sql_query = 1 " like SQL highlighting inside Strings.
@@ -4825,9 +4919,131 @@ syntax on
     " }}}
 
     " [ R ] {{{
-        " Vim-R-plugin
-        " R.vim
-        " GNU-R
+        " Vim-R-plugin {{{ Plugin to work with R
+            " TODO make plugin auto generate and update R tags.
+            " add this into easytags.
+            " XXX :help r-plugin.txt
+            " Features:
+            "   - Communication with R.
+            "   - Omni completion (auto-completion) for R objects.
+            "   - Ability to see R's documentation in a Vim's buffer.
+            "   - Object Browser.
+            "   - Syntax highlighting for R and RHelp code.
+            "   - Smart indentation for R and RHelp syntax.
+            "   - Most of the plugin's behavior is customizable.
+            " INSTALL:
+            " $ R
+            "   > install.packages(c('colorout', 'vimcom', 'setwidth'))
+            " Usage:
+            "   - <LocalLeader>rf -- start vim-R-plugin R, can send commands to R
+            "   - <LocalLeader>rq -- close (q: quit)
+            "   - <LocalLeader>rh -- help (h: help)
+            "   - <LocalLeader>ro -- update the Object Browser.
+            "   - <LocalLeader>rp -- Print (cur) vim.print() (p: print)
+            "   - <LocalLeader>aa -- send File (a: all)
+            "   - <LocalLeader>ao -- send File (open .Rout) (a: all)
+            "   - <LocalLeader>bb -- send Block (cur) (b: block)
+            "   - <LocalLeader>cc -- send Chunk (cur) (c: chunk)
+            "   - <LocalLeader>ff -- send Function (cur) (f: function)
+            "   - <LocalLeader>ss -- send Selection (s: selection)
+            "   - <LocalLeader>pp -- send Paragraph (p: paragraph)
+            "   - <LocalLeader>l  -- send Line (l: line)
+            "   - :RUpdateObjectList
+            "       -- start R and update objects for omni completion and syntax highlighting
+            "   - :Rhelp topic  -- help. <Tab> to complete R objects names. <C-D> to list
+            "   - :RAddLibToList [[lib1] [lib2]] -- add the objects of libraries.
+            "   - :RSourceDir   -- source all .R files in a directory.
+            "   - :RBuildTags   -- build tags file
+            "   - <Plug>RStart  -- \rf to start R
+            "   - <Plug>RDSendSelection     -- send visual selected
+            "   - <Plug>RDSendLine          -- send current line
+            "   Edit:
+            "       _           -- type '_' auto insert ' <- ',
+            "                      press '_' again to insert '_' literally.
+            "       <C-x><C-o>  -- complete object name
+            "       <C-x><C-a>  -- complete function arguments
+            "       gn          -- go (next R chunk)
+            "       gN          -- go (previous R chunk)
+            let vimrplugin_term = "rxvt"
+            " let vimrplugin_term_cmd = 'urxvt --title R -e'
+            let vimrplugin_assign = 1 " auto convert '_' to ' <- '
+            " let vimrplugin_assign_map = "<M-->" " map key to convert into ' <- '
+            let vimrplugin_rnowebchunk = 1 " auto change < to <<>>=\n@
+            let vimrplugin_objbr_w = 40 " Object Browser default width
+            let vimrplugin_objbr_place = "console,left" " Object Browser split position
+                " 'script'/'console', 'right'/'left'
+            let vimrplugin_external_ob = 1 " in case R running in external terminal emulator
+            let vimrplugin_vimpager = "horizontal" " see R doc in vim's buffer as a pager
+                " 'tab'/'vertical'/'horizontal'/'tabnew'/'no'
+            let vimrplugin_editor_w = 80 " min window width
+            let vimrplugin_editor_h = 30 " min window height
+            " without screen.vim
+                " let vimrplugin_nosingler = 0
+                    " 0: all buffers of Vim instances send code to 'same' R process.
+                    " 1: each vim buffer uses its own R process.
+                " let vimrplugin_by_vim_instance = 0
+            " with screen.vim
+            " behaves as if the vimrplugin_by_vim_instance was enabled.
+            let vimrplugin_i386 = 1 " use 23 bit version of R
+            " let vimrplugin_r_path = "/path/to/R/version/bin"
+            " let vimrplugin_r_args = "--sdi --no-save --quiet" " default args for Windows
+                " On Linux, there is no default value for vimrplugin_r_args
+            let vimrplugin_buildwait = 240 " time to build the list of objects
+            let vimrplugin_routmorecolors = 1 " color .Rout file
+            let vimrplugin_routnotab = 1 " prefer open .Rout in split instead of tab
+            let vimrplugin_indent_commented = 0
+            let vimrplugin_sleeptime = 0.2 " time of R to process the paste command
+            let vimrplugin_notmuxconf = 0 " whether use tmux config file
+            if winwidth(0) > 120
+                let vimrplugin_screenvsplit = 1 " prefer split tmux vertically
+            else
+                let vimrplugin_screenvsplit = 0 " tmux horizontal split
+            endif
+            let g:ScreenImpl = 'Tmux'
+            " let g:ScreenShellWidth = 80 " R console width
+            let vimrplugin_tmux = 1 " 1: prefer use tmux
+            " let vimrplugin_only_in_tmux = 1
+            let vimrplugin_screenplugin = 1 " integrate screen.vim plugin
+            let vimrplugin_listmethods = 1 " args() lists the arguments of a function
+            let vimrplugin_specialplot = 1
+            let vimrplugin_latexcmd = "pdflatex" " build PDF from .tex, pdflatex/latex
+            let vimrplugin_never_unmake_menu = 0 " always keep R menu and bar
+            let vimrplugin_map_r = 0
+            let vimrplugin_openpdf = 1 " auto open PDF after process Rnoweb file
+            let vimrplugin_openpdf_quietly = 1 " disable open PDF verbose
+            let vimrplugin_openhtml = 1 " auto open HTML after process .Rmd file
+            let vimrplugin_strict_rst = 1 " strict rst
+            let g:vimrplugin_insert_mode_cmds = 0 " disable insert mode R commands
+            let g:vimrplugin_allnames = 1 " also show hidden objects
+            let g:vimrplugin_rmhidden = 1 " remove hidden objects
+            let r_indent_align_args = 1 " auto align multi lines of function arguments
+            let r_indent_ess_comments = 0 " like Emacs/ESS
+            let r_indent_comment_column = 40
+            let r_indent_ess_compatible = 0 " not Emacs/ESS compatiable
+            let r_syntax_folding = 1 " R folding
+            " let vimrplugin_pandoc_args = "--toc -V lang=german"
+            let g:rmd_syn_hl_chunk = 1
+            let g:rrst_syn_hl_chunk = 1
+
+            augroup RFileTypeMappings
+                au!
+                au FileType r vnoremap K <Esc>:call RAction("help")<CR>
+                au FileType r nnoremap K :call RAction("help")<CR>
+                au FileType r vnoremap <Space> <Plug>RDSendSelection
+                au FileType r nnoremap <Space> <Plug>RDSendLine
+                " run Makefile within R to build
+                au FileType r nnoremap <LocalLeader>sm :update<CR>:call SendCmdToR('system("make")')<CR>
+            augroup END
+        " }}}
+
+        " R.vim {{{
+        " }}}
+
+        " GNU-R {{{
+        " }}}
+
+        " rcom : Evaluate R code via rcom, rserve, screen, or tmux
+
     " }}}
 
     " [ Web: HTML5 & CSS, XML ] {{{
@@ -4889,7 +5105,6 @@ syntax on
             " HTML_AutoCloseTag
 
             " vim-ragtag {{{ ghetto HTML/XML mappings
-                " TODO
             " }}}
         " }}}
 
@@ -4924,7 +5139,6 @@ syntax on
 
         " [ XML ] {{{
             " xmledit {{{ A filetype plugin for VIM to help edit XML files
-            " TODO
             " }}}
 
             " xmlwf : A compiler plugin for the xmlwf xml well-formedness checker
@@ -4959,6 +5173,10 @@ syntax on
         " }}}
 
         " CoffeeTags {{{ Ctags-like tag generator for CoffeeScript
+        " TODO https://github.com/lukaszkorecki/CoffeeTags
+        " }}}
+
+        " vim-eco {{{ Eco (embedded coffee-script) support for Vim
         " }}}
     " }}}
 
@@ -4990,7 +5208,6 @@ syntax on
 
         " jshint.vim : Vim plugin and command line tool for running JSLint.
             " :JSLintUpdate
-            " TODO
             let g:JSLintHighlightErrorLine = 1
 
         " jshint.vim : A plugin that integrates JSHint with Vim
@@ -5182,14 +5399,10 @@ syntax on
     " }}}
 
     " [ C & C++ ] {{{
-        augroup CSettings
-            au!
-            au FileType c,cpp setlocal cindent
-            au FileType c,cpp,java set matchpairs+==:;
-        augroup END
-
         " clang_complete {{{ use of clang to complete in C/C++.
             " :h clang_complete.txt
+            " Usage:
+            " - file .clang_complete
             let g:clang_auto_select = 0 " 0/1/2 auto select first entry in popup menu
             " disable with 0 to solve neocomplcache problem
             let g:clang_complete_auto = 1 " auto complete after -> . ::
@@ -5404,13 +5617,36 @@ syntax on
 	    " Oh, and it can also handle PDFs (with pdftk), Word Documents
 	    " (read-only, with Antiword), and Mac OS X plist files.
         " }}}
+
+        " vinarise {{{ Ultimate hex editing system with Vim
+        " }}}
+    " }}}
+
+    " [ XQuery ] {{{
+        " XQuery-indentomnicompleteftplugin {{{ indent/omnicomplete/ftplugin
+        " }}}
+
+        " vim-xqmarklogic {{{ ftplugin to run an xquery against a MarkLogic server
+        " }}}
     " }}}
 " }}}
 
-" [ Android ] {{{
-    " Eclim {{{ bring Eclipse functionality to Vim support various languages
-        " code complete: <C-X><C-U>
-        " :Validate/:w to check syntax error.
+" [ Frameworks ] {{{
+    " [ Android ] {{{
+        " Eclim {{{ bring Eclipse functionality to Vim support various languages
+            " code complete: <C-X><C-U>
+            " :Validate/:w to check syntax error.
+        " }}}
+    " }}}
+
+    " [ RoR: Ruby on Rails ] {{{
+    " }}}
+
+    " [ Qt ] {{{
+    " }}}
+
+    " [ Gtk ] {{{
+    " gtk-vim-syntax : Syntax highlighting for GLib, Gtk+, Xlib, Gimp, Gstreamer, and more.
     " }}}
 " }}}
 
@@ -5487,15 +5723,33 @@ syntax on
             " let g:unite_no_default_keymappings = 1 " don't map default key mappings
         " }}}
 
-        " CompleteHelper {{{ Generic functions to support custom insert mode completions
-            " Externals:
-            " - CamelCaseComplete
-            " - MotionComplete
-            "   - BracketComplete
-            "   - LineEndComplete
-            " - PatternComplete
-            " - PrevInsertComplete
-            " - SameFiletypeComplete
+        " CompleteHelper {{{ 'completefunc', i_CTRL-X_CTRL-U,
+            " Functions: {{{
+                " CompleteHelper#FindMatches( matches, pattern, options )
+                " CompleteHelper#ExtractText( startPos, endPos, matchObj )
+                " CompleteHelper#Abbreviate#Word( matchObj )
+                " CompleteHelper#JoinMultiline( text )
+                " CompleteHelper#Repeat#TestForRepeat()
+            " }}}
+            "" Example: {{{
+            "function! SimpleComplete( findstart, base )
+                "if a:findstart
+                    "" Locate the start of the keyword.
+                    "let l:startCol = searchpos('\k*\%#', 'bn', line('.'))[1]
+                    "if l:startCol == 0
+                        "let l:startCol = col('.')
+                    "endif
+                    "return l:startCol - 1 " Return byte index, not column.
+                "else
+                    "" Find matches starting with a:base.
+                    "let l:matches = []
+                    "call CompleteHelper#FindMatches( l:matches, '\V\<' . escape(a:base, '') . '\k\+', {'complete': '.'} )
+                    "return l:matches
+                "endif
+            "endfunction
+
+            "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
+            "" }}}
         " }}}
 
         " querycommandcomplete {{{ completions from an external query command
@@ -5509,6 +5763,16 @@ syntax on
             let g:qcc_pattern = "^\(To\|Cc\|Bcc\|From\|Reply-To\):"
             let g:qcc_line_separator = "\n"
             let g:qcc_field_separator = "\t"
+        " }}}
+
+        " AmbiCompletion {{{ ambiguous word completion.
+            " complete a word with no only start-with match but also ends-with
+            " and contains match.
+            if &completefunc == ''
+                set completefunc=g:AmbiCompletion
+            endif
+            let g:AmbiCompletion_richerSupportForMultibyte = 1
+            let g:AmbiCompletion_allBuffers = 1
         " }}}
     " }}}
 
@@ -5529,7 +5793,7 @@ syntax on
         " operator-user : Define your own operator easily
     " }}}
 
-    " [ position & session & marker ] {{{
+    " [ position & session ] {{{
 	" vim-session {{{ Extended session management for Vim ':mksession'
 	    " Usage:
 	    " - :SaveSession
@@ -5601,7 +5865,7 @@ syntax on
             let g:SignatureDisableMenu = 0
             let g:SignatureMenuStruct = "P&lugins.&Signature"
             let g:SignaturePurgeConfirmation = 1
-            let g:SignaturePeriodicRefresh = 0 " periodic auto refresh
+            let g:SignaturePeriodicRefresh = 1 " periodic auto refresh
         " }}}
 
         " vmark.vim--Visual_Bookmarking {{{
@@ -5687,7 +5951,7 @@ syntax on
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
             let g:Powerline_colorscheme = "default" " default, skwp
-            let g:Powerline_stl_path_style = "relative" " filename/short/relative/full
+            let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
             let g:Powerline_mode_n  = " N " " normal
             let g:Powerline_mode_i  = "INSERT" " insert
             let g:Powerline_mode_R  = "REPLACE" " replace
@@ -5719,7 +5983,7 @@ syntax on
                 " call Pl#Theme#InsertSegment('static_str', 'before', 'filetype')
                 " call Pl#Theme#InsertSegment('filesize', 'before', 'scrollpercent')
                 " call Pl#Theme#InsertSegment('currhigroup', 'before', 'filetype')
-                call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
+                " call Pl#Theme#InsertSegment('ws_marker', 'after', 'lineinfo')
             endif
             " }}}
         " }}}
@@ -5818,11 +6082,11 @@ syntax on
             " Once b:vimpipe_command is configured, type <LocalLeader>r to get
             " the list results. There's no need to save the file first. It works
             " on the current buffer, not the contents on disk.
-            au FileType sql let b:vimpipe_command = "sqlite3 " . % " sqlite
+            " au FileType sql let b:vimpipe_command = 'sqlite3 ' . % " sqlite
             au FileType markdown let b:vimpipe_command = "markdown" " markdown
             au FileType markdown let b:vimpipe_filetype="html"
             au FileType html let b:vimpipe_command="lynx -dump -stdin" " HTML
-            au FileType javascript let b:vimpipe_command='jslint <(cat)' " JSLint (JavaScript)
+            " au FileType javascript let b:vimpipe_command='jslint <(cat)' " JSLint (JavaScript)
         " }}}
 
         " Screen {{{ (vim + gnu screen/tmux) ['Screen_vim__gnu_screentmux']
@@ -6188,11 +6452,18 @@ syntax on
     " }}}
 
     " [ window ] {{{
-	" golden-ratio {{{ Automatic resizing of Vim windows to the golden ratio
-	    " let g:loaded_golden_ratio = 0 " 1: to disable load golden-ratio
-	    " let g:golden_ratio_autocommand = 1 " 0: disable autocommand events
-	    " let g:golden_ratio_wrap_ignored = 0 " set line wrapping of ignored windows
-	" }}}
+        " SpitVspit {{{ Powerful multiple files splitting; split/vsplit/edit.
+            " Usage:
+            "   - :Spit[Up/Down]
+            "   - :[V/W]spit[Left/Right]
+            let g:loaded_SpitVspit = 0 " =1 to disable load script.
+        " }}}
+
+        " golden-ratio {{{ Automatic resizing of Vim windows to the golden ratio
+            " let g:loaded_golden_ratio = 0 " 1: to disable load golden-ratio
+            " let g:golden_ratio_autocommand = 1 " 0: disable autocommand events
+            " let g:golden_ratio_wrap_ignored = 0 " set line wrapping of ignored windows
+        " }}}
 
         " dwm.vim {{{ Tiled Window Management for Vim inspired from dwm.
             " Usage:
@@ -6209,60 +6480,12 @@ syntax on
             let g:zoomwin_preserve_taglist = 1
             let g:zoomwin_preserve_winmanager = 1
         " }}}
+
+        " layoutManager : Create layouts from tabs, templates and windows and control them.
     " }}}
 
     " [ conceal ] {{{
         " vim-ocaml-conceal
-    " }}}
-
-    " [ complete ] {{{
-        " CompleteHelper {{{ 'completefunc', i_CTRL-X_CTRL-U,
-            " Functions: {{{
-                " CompleteHelper#FindMatches( matches, pattern, options )
-                " CompleteHelper#ExtractText( startPos, endPos, matchObj )
-                " CompleteHelper#Abbreviate#Word( matchObj )
-                " CompleteHelper#JoinMultiline( text )
-                " CompleteHelper#Repeat#TestForRepeat()
-            " }}}
-            "" Example: {{{
-            "function! SimpleComplete( findstart, base )
-                "if a:findstart
-                    "" Locate the start of the keyword.
-                    "let l:startCol = searchpos('\k*\%#', 'bn', line('.'))[1]
-                    "if l:startCol == 0
-                        "let l:startCol = col('.')
-                    "endif
-                    "return l:startCol - 1 " Return byte index, not column.
-                "else
-                    "" Find matches starting with a:base.
-                    "let l:matches = []
-                    "call CompleteHelper#FindMatches( l:matches, '\V\<' . escape(a:base, '') . '\k\+', {'complete': '.'} )
-                    "return l:matches
-                "endif
-            "endfunction
-
-            "inoremap <C-x><C-z> <C-o>:set completefunc=SimpleComplete<CR><C-x><C-u>
-            "" }}}
-        " }}}
-
-        " AmbiCompletion {{{ ambiguous word completion.
-            " complete a word with no only start-with match but also ends-with
-            " and contains match.
-            if &completefunc == ''
-                set completefunc=g:AmbiCompletion
-            endif
-            let g:AmbiCompletion_richerSupportForMultibyte = 1
-            let g:AmbiCompletion_allBuffers = 1
-        " }}}
-    " }}}
-
-    " [ window: split, navigation ] {{{
-        " SpitVspit {{{ Powerful multiple files splitting; split/vsplit/edit.
-            " Usage:
-            "   - :Spit[Up/Down]
-            "   - :[V/W]spit[Left/Right]
-            let g:loaded_SpitVspit = 0 " =1 to disable load script.
-        " }}}
     " }}}
 
     " [ menu ] {{{
@@ -6278,39 +6501,36 @@ syntax on
     " }}}
 
     " [ key maps/bindings ] {{{
-	" tinykeymap {{{ tiny, temporary keymaps
-	    " Usage:
-	    " * press <Esc> deactivates the tinykeymap.
-	    " - tinykeymap#Map()
-	    " - tinykeymap#EnterMap()
-	    " - tinykeymap#Load()
-	    " - tinykeymap#Complete()
-	    " - tinykeymap#PressEnter()
-	    " * :Tinykeymap
-	    "
-	    " gt               --  tabs
-	    " windows          --  <C-W>
-	    " buffers          --  <Leader>mb
-	    " diff             --  <Leader>md
-	    " filter           --  <Leader>mf
-	    " lines            --  <Leader>ml
-	    " location list    --  <Leader>mo
-	    " quickfix         --  <Leader>mq
-	    " undo             --  <Leader>mu
-	    " quickfixsigns    --  <Leader>ms
+        " tinykeymap {{{ tiny, temporary keymaps
+            " Usage:
+            " * press <Esc> deactivates the tinykeymap.
+            " - tinykeymap#Map()
+            " - tinykeymap#EnterMap()
+            " - tinykeymap#Load()
+            " - tinykeymap#Complete()
+            " - tinykeymap#PressEnter()
+            " * :Tinykeymap
+            "
+            " gt               --  tabs
+            " windows          --  <C-W>
+            " buffers          --  <Leader>mb
+            " diff             --  <Leader>md
+            " filter           --  <Leader>mf
+            " lines            --  <Leader>ml
+            " location list    --  <Leader>mo
+            " quickfix         --  <Leader>mq
+            " undo             --  <Leader>mu
+            " quickfixsigns    --  <Leader>ms
 
-	    " list of tinykeymaps be loaded on startup
-	    let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
-	    let g:tinykeymap#mapleader = mapleader . 'm'
-	    let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
-	    let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
-	" }}}
+            " list of tinykeymaps be loaded on startup
+            let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
+            let g:tinykeymap#mapleader = mapleader . 'm'
+            let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
+            let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
+        " }}}
 
         " vim-addon-actions {{{ customization for key bindings
         " }}}
-    " }}}
-
-    " [ timestamp ] {{{
     " }}}
 
     " bad-whitespace highlight bad whitespace, but disable in insert mode.
@@ -6415,6 +6635,11 @@ syntax on
                         \ 10: 'October', 11: 'November', 12: 'December',
                         \ }
             let g:vimwiki_use_calendar = 1
+        " }}}
+
+        " HyperList {{{ a methodology to describe anything in plain text.
+            " HyperList definition document:
+            "   http://www.scribd.com/doc/56083458/HyperList
         " }}}
 
         " Calendar {{{
@@ -6532,11 +6757,6 @@ syntax on
             " XXX change mappings.
         " }}}
 
-        " HyperList: <= WOIM {{{
-            " HyperList is a way to describe anything: any state, item(s),
-            " pattern, action, process, transition, program, instruction etc
-        " }}}
-
         " VOoM {{{ <F2> Vim two-pane outliner
             " Usage:
             "   - :Voom {MarkupMode}, :Voomhelp.
@@ -6559,7 +6779,7 @@ syntax on
             " let g:voom_user_command
             " let g:voom_create_devel_commands
 
-            " nnoremap <F2> :VoomToggle<CR>
+            nnoremap <F2> :VoomToggle<CR>
         " }}}
 
         " unite-outline {{{ provides your Vim's buffer with the outline view.
@@ -6782,8 +7002,10 @@ syntax on
                 " wwwsearch:add({search-engine}, {uri-template})
                 " wwwsearch:remove({search-engine})
             let g:wwwsearch_command_to_open_uri = '/usr/bin/luakit {uri} &'
-            "nnoremap <Space>*  :<C-u>Wwwsearch -default <cword><Return>
-            nnoremap <Space>* <Plug>(operator-wwwsearch)
+            " nnoremap <Space>* <Plug>(operator-wwwsearch)
+            " TODO
+            " nnoremap <Space>/ :<C-u>Wwwsearch -default <cword><CR>
+            " vnoremap <Space>/ y:<C-u>Wwwsearch -default @"<CR>
                 " search-engine :
                     " -default : same as "-google"
                     " -dictionary : Dictionary (Max OS X only)
@@ -7078,7 +7300,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ smalltools ] {{{
+    " [ IM: Input Method ] {{{
         " vimim {{{ Vim Input Method
             " Usage:
             "   - [normal] gi --> no popup menu input.
@@ -7127,6 +7349,10 @@ syntax on
                 " 'qq.shuangpin.[abc/ms/nature/plusplus/purple/flypy]'
             let g:vimim_mycloud = 0
         " }}}
+
+        " ywvim: Another input method(IM) for VIM, supports all modes.
+
+        " CY : Fast input method for Chinese
 
         " fcitx
             " for set small delay
