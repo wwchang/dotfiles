@@ -288,6 +288,10 @@
         endif
 
         " [ match ]
+        " matchit
+        " '%' to match more than just single characters.
+        " %, g%, [%, ]%, a%,
+        runtime macros/matchit.vim " load system matchit.vim plugin
         set showmatch
         set matchpairs+=(:),{:},[:],<:>
         set matchpairs+=':'
