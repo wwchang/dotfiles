@@ -4106,83 +4106,7 @@ syntax on
             let g:vimfiler_as_default_explorer = 1 " behaves as netrw
         " }}}
 
-        " easybuffer {{{ quickly switch between buffers using corresponding keys
-        " or buffer numbers displayed in easybuffer quick switch window
-            " Usage: :EasyBuffer
-        " }}}
-    " }}}
-
-    " [ buffers ] {{{
-        " Tagma_Buffer_Manager {{{
-            " h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
-            " :MgrToggle :help TagmaBufMgr
-            let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
-            let g:TagmaBufMgrBufferNumbers = 1 " buffer number
-            let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
-            let g:TagmaBufMgrLastWindow = 1 " default =0.
-            let g:TagmaBufMgrLocation = 'T' " Top, Bottom, Left, Right, Float
-            let g:TagmaBufMgrMapCArrow = 1 " Ctrl-Arrow
-            let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
-            let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
-            let g:TagmaBufMgrPopUp = 1 " Right-Click PopUp menu
-            let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
-            let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
-        " }}}
-
-        " minibufexplorer {{{
-            let g:miniBufExplSplitBelow = 0  " position at bottom or top.
-            let g:miniBufExplSplitToEdge = 1 " force MBR to open at the edge of screen
-            let g:miniBufExplorerMoreThanOne = 1 " open when more than one.
-            let g:miniBufExplMapWindowNavVim = 1 " Ctrl + h/j/k/l
-            let g:miniBufExplMapWindowNavArrows = 0 " Ctrl + Arrow keys
-            let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
-            let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
-            let g:miniBufExplUseSingleClick = 1 " single click or tabs.
-            let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
-            let g:miniBufExplCloseOnSelect = 0 " close after select buffer.
-            let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
-            let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
-            " let g:miniBufExplForceSyntaxEnable = 1 " conflict with Powerline.
-            let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
-            let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
-            let g:miniBufExplMaxSize = 0
-            let g:miniBufExplMinSize = 1
-            " Vertical mode
-            " let g:miniBufExplVSplit = 20   " column width in chars in virtical.
-            " let g:miniBufExplMaxSize = <max width: default 0>
-            " let g:miniBufExplMinSize = <min width: default 1>
-            " MiniBufExpl Colors
-            hi MBENormal guifg=#808080 ctermfg=250
-            hi MBEChanged guifg=#CD5907 ctermfg=208 cterm=bold
-            hi MBEVisibleNormal guifg=#5DC2D6 ctermfg=024
-            hi MBEVisibleNormalActive guifg=#5DC2D6 ctermfg=026 cterm=bold
-            hi MBEVisibleChanged guifg=#F1266F ctermfg=208 cterm=bold
-            hi MBEVisibleChangedActive guifg=#F1266F ctermfg=232 ctermbg=208 cterm=bold
-            " FIXME how to auto open MiniBufExpl
-        " }}}
-
-        " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
-            " Usage:
-            " :LustyFilesystemExplorer
-            " :LustyFilesystemExplorerFromHere
-            " :LustyBufferExplorer
-            " :LustyBufferGrep (for searching through all open buffers)
-            " <Leader>lf  - Opens filesystem explorer.
-            " <Leader>lr  - Opens filesystem explorer at the directory of the current file.
-            " <Leader>lb  - Opens buffer explorer.
-            " <Leader>lg  - Opens buffer grep.
-            " <Leader>lj  - Launch the juggler.
-            set hidden
-        " }}}
-
-        " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
-            let g:loaded_tabman = 0 " set 1 to disable plugin completely
-            let g:tabman_toggle = '<leader>tm'
-            let g:tabman_width = 25
-            let g:tabman_side = 'left'
-            let g:tabman_specials = 0 " show help and quickfix window created by plugin
-            let g:tabman_number = 0 " disable line number in TabMan
-        " }}}
+        " LustyExplorer : A lightweight fast file manager.
     " }}}
 
     " [ REPL (Read-eval-print loop) ] {{{
@@ -6484,6 +6408,89 @@ syntax on
         " layoutManager : Create layouts from tabs, templates and windows and control them.
     " }}}
 
+    " [ tab ] {{{
+        " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
+            let g:loaded_tabman = 0 " set 1 to disable plugin completely
+            let g:tabman_toggle = '<leader>tm'
+            let g:tabman_width = 25
+            let g:tabman_side = 'left'
+            let g:tabman_specials = 0 " show help and quickfix window created by plugin
+            let g:tabman_number = 0 " disable line number in TabMan
+        " }}}
+    " }}}
+
+    " [ buffers ] {{{
+        " TagmaBufMgr {{{
+            " Usage:
+            "   :MgrToggle
+            " Mappings:
+            "   h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
+            " TODO :help TagmaBufMgr
+            let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
+            let g:TagmaBufMgrBufferNumbers = 1 " buffer number
+            let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
+            let g:TagmaBufMgrLastWindow = 1 " default =0.
+            let g:TagmaBufMgrLocation = 'T' " Top, Bottom, Left, Right, Float
+            let g:TagmaBufMgrMapCArrow = 1 " Ctrl-Arrow
+            let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
+            let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
+            let g:TagmaBufMgrPopUp = 1 " Right-Click PopUp menu
+            let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
+            let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
+        " }}}
+
+        " minibufexplorer {{{
+            let g:miniBufExplSplitBelow = 0  " position at bottom or top.
+            let g:miniBufExplSplitToEdge = 1 " force MBR to open at the edge of screen
+            let g:miniBufExplorerMoreThanOne = 1 " open when more than one.
+            let g:miniBufExplMapWindowNavVim = 1 " Ctrl + h/j/k/l
+            let g:miniBufExplMapWindowNavArrows = 0 " Ctrl + Arrow keys
+            let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
+            let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
+            let g:miniBufExplUseSingleClick = 1 " single click or tabs.
+            let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
+            let g:miniBufExplCloseOnSelect = 0 " close after select buffer.
+            let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
+            let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
+            " let g:miniBufExplForceSyntaxEnable = 1 " conflict with Powerline.
+            let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
+            let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
+            let g:miniBufExplMaxSize = 0
+            let g:miniBufExplMinSize = 1
+            " Vertical mode
+            " let g:miniBufExplVSplit = 20   " column width in chars in virtical.
+            " let g:miniBufExplMaxSize = <max width: default 0>
+            " let g:miniBufExplMinSize = <min width: default 1>
+            " MiniBufExpl Colors
+            hi MBENormal guifg=#808080 ctermfg=250
+            hi MBEChanged guifg=#CD5907 ctermfg=208 cterm=bold
+            hi MBEVisibleNormal guifg=#5DC2D6 ctermfg=024
+            hi MBEVisibleNormalActive guifg=#5DC2D6 ctermfg=026 cterm=bold
+            hi MBEVisibleChanged guifg=#F1266F ctermfg=208 cterm=bold
+            hi MBEVisibleChangedActive guifg=#F1266F ctermfg=232 ctermbg=208 cterm=bold
+            " FIXME how to auto open MiniBufExpl
+        " }}}
+
+        " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
+            " Usage:
+            " :LustyFilesystemExplorer
+            " :LustyFilesystemExplorerFromHere
+            " :LustyBufferExplorer
+            " :LustyBufferGrep (for searching through all open buffers)
+            " <Leader>lf  - Opens filesystem explorer.
+            " <Leader>lr  - Opens filesystem explorer at the directory of the current file.
+            " <Leader>lb  - Opens buffer explorer.
+            " <Leader>lg  - Opens buffer grep.
+            " <Leader>lj  - Launch the juggler.
+            set hidden
+        " }}}
+
+        " easybuffer {{{ quickly switch between buffers using corresponding keys
+        " or buffer numbers displayed in easybuffer quick switch window
+            " Usage: :EasyBuffer
+        " }}}
+    " }}}
+
     " [ conceal ] {{{
         " vim-ocaml-conceal
     " }}}
@@ -6511,21 +6518,22 @@ syntax on
             " - tinykeymap#PressEnter()
             " * :Tinykeymap
             "
-            " gt               --  tabs
-            " windows          --  <C-W>
+            " tabs             --  gt
+            " windows          --  <C-w>
             " buffers          --  <Leader>mb
             " diff             --  <Leader>md
             " filter           --  <Leader>mf
             " lines            --  <Leader>ml
             " location list    --  <Leader>mo
             " quickfix         --  <Leader>mq
-            " undo             --  <Leader>mu
+            " undotree         --  <Leader>mu
             " quickfixsigns    --  <Leader>ms
 
             " list of tinykeymaps be loaded on startup
-            let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
+            let g:tinykeymaps_default = ['*'] " wildcard * to load all tinykeymaps.
             let g:tinykeymap#mapleader = mapleader . 'm'
-            let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
+            let g:tinykeymap#maplocalleader = maplocalleader . 'm'
+            let g:tinykeymap#conflict = 2 " 0/1/2/3/4 -- create a new lead map and display a message
             let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
         " }}}
 
