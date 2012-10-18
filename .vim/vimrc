@@ -6424,19 +6424,39 @@ syntax on
             " Usage:
             "   :MgrToggle
             " Mappings:
-            "   h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
+            "   - switch
+            "       - h/<Tab>, l/<S-Tab>, Ctrl-[hjkl]
+            "   - open
+            "       - <Cr>/O/o S/s V/v
+            "   - delete/close
+            "       - D/d C/c
+            "   - refresh
+            "       - R/r
+            "   - help
+            "       - ?/H
+            " Buffer status flags:
+            "   - + -- been modified
+            "   - ? -- is help buffer
+            "   - $ -- is quickfix or location-list buffer
+            "   - & -- buffer is not loaded, not displayed in a window.
             " TODO :help TagmaBufMgr
-            let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
-            let g:TagmaBufMgrBufferNumbers = 1 " buffer number
+            let g:TagmaBufMgrAutoDisplay = 1 " auto display
+            let g:TagmaBufMgrBufferNumbers = 1 " show buffer number
             let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
-            let g:TagmaBufMgrLastWindow = 1 " default =0.
-            let g:TagmaBufMgrLocation = 'T' " Top, Bottom, Left, Right, Float
-            let g:TagmaBufMgrMapCArrow = 1 " Ctrl-Arrow
+            let g:TagmaBufMgrLastWindow = 1 " close the last window quits Vim
+            let g:TagmaBufMgrLocation = 'T' " [T]op, [B]ottom, [L]eft, [R]ight, [F]loat
+            if g:TagmaBufMgrLocation ==# 'B'
+                let g:TagmaBufMgrLastLine = 1 " display on the last line without statusline
+            else
+                let g:TagmaBufMgrLastLine = 0
+            endif
+            let g:TagmaBufMgrMapCArrow = 0 " Ctrl-Arrow
             let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
+            let g:TagmaBufMgrMapCTab = 0 " Ctrl-Tab, Ctrl-Shift-Tab
+            let g:TagmaBufMgrMapMouseFB = 0 " Mouse Forward/Back buttons
+            let g:TagmaBufMgrPopUp = 0 " Right-Click PopUp menu
             let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
-            let g:TagmaBufMgrPopUp = 1 " Right-Click PopUp menu
             let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
-            let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
         " }}}
 
         " minibufexplorer {{{
