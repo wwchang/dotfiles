@@ -2936,23 +2936,36 @@ syntax on
 
         " indexer.tar.gz
 
-        " gtags.vim {{{
-            " | http://www.vim.org/scripts/script.php?script_id=893#0.6
-            " $ sudo apt-get install global || .vim/plugin/gtags.vim
-            " The gtags.vim plugin script integrates the GNU GLOBAL source code
-            " tag system with Vim.  About the details, see
+        " gtags.vim {{{ Integrates GNU GLOBAL source code tag system with Vim.
+            " Usage:
             " http://www.gnu.org/software/global/.
-            " First of all, you must execute gtags at the root of source
-            " directory to make tag files.
-            " $ cd /var/src ; gtags
-            " General form of Gtags command is as follows:
-            " :Gtags [option] pattern
-            " To go to func, you can say :Gtags func
-            " Input completion is available. <Tab>
-            " QucikFix windows, go to any entry with commands: :cn :cp :ccN :cl
-            " You can use POSIX regular expression too. :Gtags ^[sg]et_
-            " To go to the referenced point of func. add -r option. :Gtags -r func
-            " More details please refer vim/plugin/gtags.vim
+            " - first execute gtags (global) at root of project directory.
+            "   $ cd /var/src ; gtags
+            " - search with plugin command:
+            "   <Tab> to complete, and regex for pattern
+            "   :Gtags [option] pattern
+            "   - [option]
+            "       -r      -- go to the referenced point of func
+            "       -s      -- go to any symbols which are not defined in GTAGS
+            "       -g      -- go to any string other than symbol
+            "       -f main.c   -- get list of objects in a file 'main.c'
+            "       -f %        -- if you are editing 'main.c' itself. use '%'
+            "       -P /dir/    -- browse project files
+            "       -P \.h$     -- all include files '*.h'
+            "       -P init     -- all paths includes 'init'
+            "       -i      -- ignorecase e.g. '-gi'
+            "       -ge -C  -- search a pattern which starts with a hyphen like
+            "                   '-C' then use -e option like grep.
+            "       -go pattern -- search both source and text
+            "       -gO pattern -- only text file
+            "   - :Gozilla -- display on mozilla browser
+            " - quickfix list.
+            let Gtags_Auto_Map = 1 " use gtags.vim default mappings.
+            let g:Gtags_OpenQuickfixWindow = 1 " open quickfix window by default
+            let g:Gtags_VerticalWindow = 0 " horizontal window
+        " }}}
+
+        " unite-gtags {{{
         " }}}
 
         " taggatron {{{ A simple tag file manager for vim.
