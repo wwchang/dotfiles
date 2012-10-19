@@ -1606,7 +1606,8 @@ endif
         " NeoBundle 'jgdavey/vim-turbux'
         " NeoBundle 'skwp/vim-ruby-conque'
         " Python
-        NeoBundle 'vim-scripts/pythoncomplete'
+        NeoBundle 'davidhalter/jedi-vim'
+        " NeoBundle 'vim-scripts/pythoncomplete'
         " NeoBundle 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
         " NeoBundle 'kevinw/pyflakes-vim'
         NeoBundle 'jmcantrell/vim-virtualenv', {'external_commands': ['virtualenv']}
@@ -2091,13 +2092,16 @@ syntax on
             endif
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            " rsense plugin -> RsenseCompleteFunction
-            " vim-ruby plugin -> rubycomplete#Complete
+            " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
+            " rsense plugin                 -> RsenseCompleteFunction
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
+            " python3complete#Complete  -- Python3 Vim default omni
+            " jedi#complete             -- plugin jedi-vim omni
             if has('python3/dyn') || has('python3')
-                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
+                let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
             elseif has('python/dyn') || has('python')
-                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
+                let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
             endif
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
             let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " plugin gocode
@@ -2110,7 +2114,7 @@ syntax on
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
-            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default / plugin SQLComplete.vim
             let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
             let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
@@ -4561,6 +4565,10 @@ syntax on
         " }}}
 
         " [ complete ] {{{
+            " jedi-vim {{{ jedi for Vim awesome Python autocomplete
+                " set omnifunc=jedi#complete
+            " }}}
+
             " pythoncomplete {{{ updated version of python omni completion
             " }}}
         " }}}
