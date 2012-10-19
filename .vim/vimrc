@@ -4080,12 +4080,17 @@ syntax on
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
             let NERDTreeAutoCenter = 1 " default = 1.
             let NERDTreeAutoCenterThreshold = 3 " default = 3.
+            let NERDTreeAutoDeleteBuffer = 1 " auto delete buffer after deleting or renaming
             let NERDTreeCaseSensitiveSort = 0 " default = 0.
             let NERDTreeChDirMode = 2 " 0/1/2
             let NERDTreeHighlightCursorline = 1 " highlight cursorline.
             let NERDTreeHijackNetrw = 1 " for :edit <dir> open 'secondary' NERD tree.
-            let NERDTreeIgnore = ['\~$', '\.log', '\.pyo', '\.pyc', '\.swp', '\.bak', '\.git', '\.hg']
-            let NERDTreeBookmarksFile="$HOME/.vimNERDTreeBookmarks"
+            let NERDTreeIgnore = [
+                        \ '\~$', '\.swp', '\.bak', '\.log',
+                        \ '\.pyo', '\.pyc',
+                        \ '\.git', '\.hg'
+                        \ ]
+            let NERDTreeBookmarksFile = "$HOME/.vimNERDTreeBookmarks"
             let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
             let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
             let NERDTreeShowHidden = 0 " does not show hidden files.
