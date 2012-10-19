@@ -3669,6 +3669,20 @@ syntax on
         " }}}
 
         " Manuals {{{ An extensible help system
+            " Supports:
+            " t -- show help text for keyword
+            " k -- list similar keywords (and find help for the selected one)
+            " g -- grep the manuals to find occurences of the word
+            "   - vimhelp (tkg) -- internal vim help
+            "   - extvimhelp (tkg) -- external help in vimhelp format.
+            "   - man (t) -- unix man
+            "   - pydoc (tg) -- python documentation
+            "   - pydiction (k) -- use the dictionary produced by vimscript#850
+            "   - cmakeref (tkg) -- vimscript#3045, use extvimhelp
+            "   - cssref (tkg) -- vimscript#918, use extvimhelp
+            "   - crefvim (tkg) -- vimscript#614, vimscript#2353, use extvimhelp
+            "   - luarefvim (tkg) -- vimscript#1291, use extvimhelp
+            "   - dict (t) -- find a dictionary entry using the dict program
         " }}}
 
         " unite-help {{{ Vim :help command in unite interface through doc tags file
