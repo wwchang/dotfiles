@@ -2960,8 +2960,8 @@ syntax on
             "       -P /dir/    -- browse project files
             "       -P \.h$     -- all include files '*.h'
             "       -P init     -- all paths includes 'init'
-            "       -i      -- ignorecase e.g. '-gi'
-            "       -ge -C  -- search a pattern which starts with a hyphen like
+            "       -i          -- ignorecase e.g. '-gi'
+            "       -ge -C      -- search a pattern which starts with a hyphen like
             "                   '-C' then use -e option like grep.
             "       -go pattern -- search both source and text
             "       -gO pattern -- only text file
@@ -4293,7 +4293,9 @@ syntax on
 " [ languages ] {{{
     " [ VimL ] {{{
         " vesting {{{ best VimScript VimL test framework.
-        " TODO
+        " }}}
+
+        " vim-unittest {{{ Unit Testing for Vim scripts.
         " }}}
 
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
@@ -4419,34 +4421,35 @@ syntax on
         " }}}
 
         " rsense {{{
+            " Usage:
             " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
             "   You can infer types of an expression at point by
-	    "   :RSenseTypeHelp.
+            "   :RSenseTypeHelp.
             " 2. Definition Jump
             "   You can jump to definition of a method or a constant you are
             "   pointing at by
-	    "   :RSenseJumpToDefinition.
+            "   :RSenseJumpToDefinition.
             " 3. Where Is
             "   You can find which class/method you are editing by
             "   :RSenseWhereIs.
-	    " other commands:
-	    " :RSenseVersion
-	    "	See RSense version.
-	    " :RSenseOpenProject
-	    "	Open a project of specified directory.
-	    " :RSenseCloseProject
-	    "	Close currently opened project.
-	    " :RSenseServiceStart
-	    "	Start Windows service.
-	    " :RSenseServiceStop
-	    "	STop Windows service.
-	    " :RSenseServiceStatus
-	    "	Show Windows service status.
-	    " :RSenseClear
-	    "	Clear current environment.
-	    " :RSenseExit
-	    "	Exit RSense server.
+            " Commands:
+            " :RSenseOpenProject
+            "	Open a project of specified directory.
+            " :RSenseCloseProject
+            "	Close currently opened project.
+            " :RSenseServiceStart
+            "	Start Windows service.
+            " :RSenseServiceStop
+            "	STop Windows service.
+            " :RSenseServiceStatus
+            "	Show Windows service status.
+            " :RSenseClear
+            "	Clear current environment.
+            " :RSenseExit
+            "	Exit RSense server.
+            " :RSenseVersion
+            "	See RSense version.
             let g:rsenseHome = $RSENSE_HOME
             let g:rsenseUseOmniFunc = 1 " start completion automatically
         " }}}
@@ -4827,41 +4830,86 @@ syntax on
     " }}}
 
     " [ SQL ] {{{
-        " :h ft_sql.txt,
-            let msql_sql_query = 1 " like SQL highlighting inside Strings.
-            let msql_minlines = 200 " for syncing, minlines defaults to 100.
-            let g:sql_type_default = 'mysql' " or 'sqlanywhere'
+        " SQLComplete.vim (vim default) {{{ Vim SQL omni completion
+            " Features:
+            "   Completion for the SQL language includes:
+            "   * static
+            "   - statements, functions, keywords, operators, database options
+            "   * dynamic
+            "   - tables, procedures, views, column lists,
+            "   * The SQL completion plugin can be used in conjunction with
+            "   other completion plugins. e.g. PHP.
+            " Usage:
+            "   - :SQLSetType [sql type]<Tab> -- work with different databases.
+            "           -- without arguments will set back to default.
+            "   * static:
+            "       - <C-c>a -- syntax
+            "       - <C-c>k -- keyword
+            "       - <C-c>f -- function
+            "       - <C-c>o -- option
+            "       - <C-c>t -- type
+            "       - <C-c>s -- statement
+            "   * dynamic:
+            "       - <C-c>t -- table list
+            "       - <C-c>p -- procedure
+            "       - <C-c>v -- view list
+            "       - <C-c>c -- column list
+            "       - Drilling In / Out:
+            "           - When viewing a popup menu display the list of tables,
+            "           you can press `<Right>`, this will replace the table
+            "           current highlighted with the column list for that table.
+            "           - When viewing a popup menu display the list of columns,
+            "           you can press `<Left>`, this will replace the column
+            "           list with the list of tables.
+            "           - This allow you to quickly drill down into a table to
+            "           view it's columns and back again.
+            "               g:ftplugin_sql_omni_key_right = '<Right>'
+            "               g:ftplugin_sql_omni_key_left  = '<Left>'
+            "       - <C-c>R    -- re-caching database lists.
 
-            " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
-                " [ static mode ] {{{
-                " All, Statement, Functions, Keywords, Options, Types.
-                let g:ftplugin_sql_omni_key = '<C-C>'
-                imap <buffer> <C-C>a <C-\><C-O>:call sqlcomplete#Map('syntax')<CR><C-X><C-O>
-                imap <buffer> <C-C>k <C-\><C-O>:call sqlcomplete#Map('sqlKeyword')<CR><C-X><C-O>
-                imap <buffer> <C-C>f <C-\><C-O>:call sqlcomplete#Map('sqlFunction')<CR><C-X><C-O>
-                imap <buffer> <C-C>o <C-\><C-O>:call sqlcomplete#Map('sqlOption')<CR><C-X><C-O>
-                imap <buffer> <C-C>T <C-\><C-O>:call sqlcomplete#Map('sqlType')<CR><C-X><C-O>
-                imap <buffer> <C-C>s <C-\><C-O>:call sqlcomplete#Map('sqlStatement')<CR><C-X><C-O>
-                " }}}
+            " used in conjunction with the syntaxcomplete plugin
+            let g:omni_syntax_group_include_sql = ""
+            let g:omni_syntax_group_exclude_sql = ""
+            let g:omni_sql_use_tbl_alias = 'a' " default option to verify table alias
+            " default syntax items to precache
+            let g:omni_sql_precache_syntax_groups = [
+                        \ 'syntax',
+                        \ 'sqlKeyword',
+                        \ 'sqlFunction',
+                        \ 'sqlOption',
+                        \ 'sqlType',
+                        \ 'sqlStatement'
+                        \ ]
+            let g:omni_sql_ignorecase = 1 " 1/&ignorecase
+            let g:omni_sql_include_owner = 0 " table list include owner name when completion
+            let g:omni_sql_default_compl_type = 'table' " default type of completion
 
-                " [ dynamic mode ] {{{
-                "       Table List, Procedure List, View List, Column List.
-                " <C-C>     t           p               v       c
-                " Require: dbext.vim
-                    " Drilling In / Out: replace column <-> table when viewing popup window.
-                let g:ftplugin_sql_omni_key_right = '<Right>'
-                let g:ftplugin_sql_omni_key_left  = '<Left>'
-                imap <buffer> <C-C>R <C-\><C-O>:call sqlcomplete#Map('ResetCache')<CR><C-X><C-O>
-                " }}}
+            " static mode
+            let g:ftplugin_sql_omni_key = '<C-C>'
+            imap <buffer> <C-c>a <C-\><C-O>:call sqlcomplete#Map('syntax')<CR><C-X><C-O>
+            imap <buffer> <C-c>k <C-\><C-O>:call sqlcomplete#Map('sqlKeyword')<CR><C-X><C-O>
+            imap <buffer> <C-c>f <C-\><C-O>:call sqlcomplete#Map('sqlFunction')<CR><C-X><C-O>
+            imap <buffer> <C-c>o <C-\><C-O>:call sqlcomplete#Map('sqlOption')<CR><C-X><C-O>
+            imap <buffer> <C-c>T <C-\><C-O>:call sqlcomplete#Map('sqlType')<CR><C-X><C-O>
+            imap <buffer> <C-c>s <C-\><C-O>:call sqlcomplete#Map('sqlStatement')<CR><C-X><C-O>
+
+            " dynamic mode
+            let g:ftplugin_sql_omni_key_right = '<Right>' " <Right>, TODO <C-l>
+            let g:ftplugin_sql_omni_key_left  = '<Left>' " <Left>, TODO <C-h>
+            imap <buffer> <C-c>R <C-\><C-O>:call sqlcomplete#Map('ResetCache')<CR><C-X><C-O>
 
             " Completion Customization
             " let omni_sql_no_default_maps = 1
             let omni_sql_ignorecase = 1
             let omni_sql_include_owner = 1
-            let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
-            " }}}
+            let omni_sql_precache_syntax_groups = [
+                        \ 'syntax',
+                        \ 'sqlKeyword', 'sqlFunction', 'sqlOption',
+                        \ 'sqlType', 'sqlStatement',
+                        \ ]
+        " }}}
 
-        " Dbext {{{ enable Vim to access several databases
+        " dbext.vim {{{ enable Vim to access several databases
             " \sbp -- SQL Buffer Prompt.
             " \se  -- SQL Execute
             " \sel -- SQL Execute Line
