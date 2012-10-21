@@ -1,0 +1,9 @@
+snippet     ruby.skeleton.EOF
+abbr        ruby << EOF ... EOF
+alias       ruby.EOF
+options     head
+    ruby << ${1:EOF/RUBYEOF}
+    ${2:code here}
+    $1
+
+# vim:foldmethod=marker
