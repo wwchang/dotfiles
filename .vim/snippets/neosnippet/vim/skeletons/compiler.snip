@@ -1,0 +1,24 @@
+snippet     compiler.skeleton.did_loaded
+abbr        if exists("compiler") > finish > endif
+alias       compiler.did_loaded
+options     head
+    " Use this for Vim distribution or for a system-wide runtime directory.
+    " Don't use this mechanism, if you write this compiler plugin to overrule
+    " settings from a default plugin. This plugin supposed to be loaded last, thus
+    " should be in directory at the end of 'runtimepath', ~/.vim/after/compiler/.
+    if exists("${1:`expand("%:~:h") =~? '.vim/after/compiler' ? "current_compiler" : "ERROR"`}")
+        finish
+    endif
+    let $1 = "${2:compiler name}"
+
+snippet     compiler.skeleton.CompilerSet
+abbr        command CompilerSet ...
+alias       compiler.CompilerSet
+options     head
+    if !exists(":CompilerSet")
+        command -nargs=* CompilerSet setlocal <args>
+    endif
+    CompilerSet errorformat& " use the default 'errorformat'
+    CompilerSet makeprg=${1:make}
+
+# vim:foldmethod=marker
