@@ -1389,6 +1389,9 @@ endif
         " NeoBundle 'mbadran/headlights'
         " modeline
         NeoBundle 'ciaranm/securemodelines'
+        " profile/debug
+        " NeoBundle 'tomtom/startup_profile_vim'
+        " NeoBundle 'dahu/VimLint'
         " }}}
 
         " [ Vim libraries/frameworks ] {{{
@@ -1746,8 +1749,6 @@ endif
         NeoBundle 'bitc/vim-bad-whitespace'
         NeoBundle 'thinca/vim-visualstar'
         NeoBundle 'vim-scripts/SpitVspit'
-        " NeoBundle 'dahu/VimLint'
-        " NeoBundle 'tomtom/startup_profile_vim'
         " NeoBundle 'mikewest/vimroom'
         " }}}
         " }}}
