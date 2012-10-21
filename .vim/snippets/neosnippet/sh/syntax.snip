@@ -1,0 +1,59 @@
+snippet     env
+abbr        #!/usr/bin/env bash
+options     head
+    #!/usr/bin/env bash
+
+    ${0}
+
+snippet     func
+abbr        function NAME () {...}
+alias       function
+options     head
+    function ${1:NAME} () {
+    	${2:compound commands}
+    }
+
+snippet     if
+abbr        if ...; then ..; fi
+options     head
+    if ${1:condition} ; then
+        ${2:compound commands}
+    fi
+
+snippet     if else
+abbr        if ..; then ..; else ..; fi
+options     head
+    if ${1:condition}; then
+        ${2:compound commands}
+    else
+        ${3:compound commands}
+    fi
+
+snippet     if elif
+abbr        if ..; then ..; else ..; fi
+options     head
+    if ${1:condition}; then
+        ${2:compound commands}
+    elif
+        ${3:compound commands}
+    fi
+
+snippet     else
+abbr        else ..;
+options     head
+    else
+        ${1:compound commands}
+
+snippet     elif
+abbr        elif ..;
+options     head
+    elif
+        ${1:compound commands}
+
+snippet     help doc
+abbr        cat << EOF ... EOF
+alias       EOF
+options     head
+    cat << EOF
+    	${1}
+    EOF
