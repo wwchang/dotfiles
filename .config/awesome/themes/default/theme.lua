@@ -79,7 +79,7 @@ theme.titlebar_maximized_button_focus_inactive  = theme_icons .. "titlebar/maxim
 theme.titlebar_maximized_button_normal_active = theme_icons .. "titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active  = theme_icons .. "titlebar/maximized_focus_active.png"
 
-theme.wallpaper_cmd = { "awsetbg " .. os.getenv("HOME") .. "/.config/awesome/themes/wallpapers/formula.jpg" }
+theme.wallpaper_cmd = { "awsetbg " .. os.getenv("HOME") .. "/.config/awesome/themes/wallpapers/wallpaper.jpg" }
 
 theme.notify_icon = theme_icons .. "notify.jpg"
 
