@@ -1,0 +1,138 @@
+# [ example basic syntax ]
+# >
+# snippet       if
+# abbr          if endif
+# options       head
+#    if $<1:condition>
+#       ${2}
+#    endif
+# <
+# snippet {snippet_name} -> the snippet name
+# abbr    {abbr_name}    -> the completion abbreviation
+# options head           -> means this snippet is enabled only in line head.
+
+# [ delete ]
+# If you want to overwrite snippet explicitly:
+# >
+# delete {snippet_name}
+# <
+# and redefine the snippet.
+
+# [ include ]
+# When including external files or other snippet file's snippets are overwrited.
+# you will not be warned.
+# Snippet include feature is available.
+# >
+# include c.snippet
+# <
+# If you want to include a directory. use `directory/*`.
+# >
+# include javascript/*
+# <
+
+# [ eval ]
+# Eval snippet feature is available.
+# >
+# snippet hoge
+# options head
+#       `expand("%")`
+# <
+# Also, this eval feature is available in nested placeholder.
+# >
+#   if exists("${1:b:did_ftplugin_`expand("%:r")`_loaded}")
+#       finish
+#   endif
+#   let $1 = 1
+# <
+#
+# If you want to use literal backticks '`' in snippet, you must escape them.
+# >
+#       snippet code
+#       abbr    code
+#               \`${1}\`${2}
+# <
+
+# [ placeholder ]
+# Placeholder feature is available.
+# >
+# snippet if
+# abbr    if endif
+# options head
+#       if ${1:condition}
+#               ${2}
+#       endif
+# <
+
+# [ _ ]
+# '_' snippet feature is supported. '_' snippet is loaded in all filetypes.
+
+# [ snipMate ]
+# And neosnippet can load snipMate snippets.
+
+# [ alias ]
+# Alias feature is supported. Separator is ' ' or ','.
+# >
+# alias hoge hogera hogehoge
+# <
+
+# [ sync ]
+# Synchronized placeholder feature is supported. $1 is synchronized to ${1}.
+# When you jump to next, it is synchlonized. $0 is last jump placeholder.
+
+# [ options ]
+# 'options':
+#       - word  --> mean snippet is expanded by word boundary,
+#                   Note: the trigger must be word (digits or alphabet chars or "_")
+#       - head  --> mean snippet is enabled only in line head.
+# >
+# snippet       date
+# options       word
+# <
+
+# [ ! newline ]
+# The placeholder value can't contains new lines. Below snippet is illegal:
+# >
+# snippet test
+#       ${1:constructor: (${2:args\}) ->
+#               ${3:# do smth}}
+
+# [ multi snippet + description ]
+# Multi snippet feature is supported in snipMate.
+# neosnippet substitutes trigger and descriptions spaces to '_'.
+# So you only need to has one SPACE before description.
+# >
+# snippet trigger description1
+#       hoge
+# snippet trigger description2
+#       piyo
+
+# [ snippet complete candidate ]
+# You choose snippet with <C-n> or <C-p> and expand it with
+# <Plug>(neosnippet_expand_or_jump) key-mappings.
+
+# [ nested placeholder ]
+# Nested placeholder feature is supported.
+# But must escape inner '}'. '\' is escape sequence.
+# >
+# snippet div
+#       <div ${1:id="${2:someid\}"}>${3}</div>${4}
+# <
+# If you want to insert '}' literally. use '\\}'
+# e.g.
+# >
+#   catch /${1:pattern: empty, E484:, Vim(cmdname):{errmsg\\} optional}/
+# <
+
+# [ hard Tab ]
+# If you use hard tab for indentation in snippet file, neosnippet will use
+# 'shiftwidth' instead of Vim indent plugin. This feature is useful while some
+# language's indent files can not work very well (e.g.: PHP, Python).
+# >
+# snippet if
+#       if (${1:/* condition */}) {
+#               ${2:// code...}
+#       }
+# <
+# use C-V<Tab> to insert a hard Tab.
+
+# vim: ft=snippet
