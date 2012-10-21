@@ -38,6 +38,7 @@ tags
 .mpd/mpd.pid
 .mpd/sticker.sql
 .mpd/state
+.mpd/playlists/
 .mpdcron/mpdcron.pid
 
 # NOTE must use /* here.
