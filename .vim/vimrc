@@ -1446,10 +1446,7 @@ endif
         "             \ }
         " NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
         " NeoBundle 'brookhong/cscope.vim', {'external_commands': ['cscope']}
-        NeoBundle 'NagatoPain/cscope.vim', {
-                    \ 'rev': 'master',
-                    \ 'external_commands': ['cscope'],
-                    \ }
+        NeoBundle 'NagatoPain/cscope.vim', {'external_commands': ['cscope']}
         NeoBundle 'vim-scripts/CCTree'
         " NeoBundle 'wesleyche/SrcExpl'
         " NeoBundle 'joonty/vim-taggatron', {'external_commands': ['ctags']}
@@ -1468,40 +1465,11 @@ endif
         " compile & run
         NeoBundle 'xuhdev/SingleCompile', {
                     \ 'external_commands': [
-                    \ 'ruby', 'python', 'php', 'perl',
-                    \ 'bash', 'zsh', 'sh',
-                    \ 'gcc', 'clang',
-                    \ 'make', 'cmake',
-                    \ 'lua',
-                    \ 'firefox', 'gcj', 'js', 'nodejs', 'gjs',
-                    \ 'clisp', 'gcl',
-                    \ 'ghc',
-                    \ 'escript',
-                    \ 'gfortran',
-                    \ 'markdown',
-                    \ 'latex',
                     \ ],
                     \ }
         " syntax checker
         NeoBundle 'scrooloose/syntastic', {
                     \ 'external_commands': [
-                    \ 'zsh', 'bash',
-                    \ 'ruby', 'python', 'flake8', 'php', 'perl',
-                    \ 'clisp',
-                    \ 'go',
-                    \ 'luac',
-                    \ 'gcc', 'clang',
-                    \'g++', 'clang++',
-                    \ 'coffee',
-                    \ 'tidy',
-                    \ 'xmllint',
-                    \ 'lacheck',
-                    \ 'ghc-mod',
-                    \ 'escript',
-                    \ 'gfortran',
-                    \ 'cucumber',
-                    \ 'javac',
-                    \ 'nasm',
                     \ ],
                     \ }
         " search [grep, MRU, files]
@@ -1531,13 +1499,13 @@ endif
         "                     \ ]
         "                 \ ],
         "             \ }
-        " (optional depends):
-        " - Command-T
-        " - ctrlp
-        " - FuzzyFinder
-        " - unite
-        " - ku
-        " - tlib
+            " (optional depends):
+            " - Command-T
+            " - ctrlp
+            " - FuzzyFinder
+            " - unite
+            " - ku
+            " - tlib
         NeoBundle 'tpope/vim-git'
         NeoBundle 'tpope/vim-fugitive', {'external_commands': ['git']}
         NeoBundle 'gregsexton/gitv', {'external_commands': ['git']}
