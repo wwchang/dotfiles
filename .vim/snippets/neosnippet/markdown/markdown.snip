@@ -1,0 +1,178 @@
+# header
+snippet     h1 setext
+abbr        =========
+options     head
+    ${1:header}
+    ===========
+snippet     h2 setext
+abbr        ---------
+options     head
+    ${1:header}
+    -----------
+snippet     h1 atx
+abbr        # header 1 #
+options     head
+    # ${1:header 1} #
+    ${0}
+snippet     h2 atx
+abbr        ## header 2 ##
+options     head
+    ## ${1:header 2} ##
+    ${0}
+snippet     h3 atx
+abbr        ### header 3 ###
+options     head
+    ### ${1:header 3} ###
+    ${0}
+snippet     h4 atx
+abbr        #### header 4 ####
+options     head
+    #### ${1:header 4} ####
+    ${0}
+
+# blockquotes and nested blockquotes
+# > ...
+# > # header ...
+# > 1. list 1
+# > 2. list 2
+# > > ...
+# > > ...
+# > ...
+
+# un-ordered list
+# * ...
+# * ...
+# + ...
+# + ...
+# - ...
+# - ...
+snippet     list un-ordered -
+abbr        - item1
+options     head
+
+    - ${1:list 1}
+    - ${2:list 2}
+    - ${3:list 3}
+
+snippet     list un-ordered *
+abbr        * item1
+options     head
+
+    * ${1:list 1}
+    * ${2:list 2}
+    * ${3:list 3}
+snippet     list un-ordered +
+abbr        + item1
+options     head
+
+    + ${1:list 1}
+    + ${2:list 2}
+    + ${3:list 3}
+
+# ordered list
+# 1. ...
+# 2. ...
+snippet     list ordered 1.
+abbr        1. item1
+options     head
+
+    1. ${1:list 1}
+    2. ${2:list 2}
+    3. ${3:list 3}
+
+# code block: <pre>, <code>
+# 4 spaces or Tab indent.
+
+# separate line
+# * * *
+# ***
+# ******
+# - - -
+# -----------
+snippet     line ----
+abbr        -----
+options     head
+    -------------
+    ${0}
+snippet     line ****
+abbr        *****
+options     head
+    * * *
+    ${0}
+
+# link
+# inline style & reference style.
+snippet     link inline
+abbr        [title](url)
+    [${1:title}](${2:URL}) ${0}
+snippet     link reference
+abbr        [title](id) -> [id]: URL
+    [${1:title}][${2:id: 1/a/words}] ${0}
+    ${5:move to begin of line}[$2]: ${3:URL, /path/to/file(relative)} "${4:long title}"
+snippet     link reference shadow
+abbr        [title][] -> [title] URL
+    [${1:title}][] ${0}
+    ${4:move to begin of line}[$1]: ${2:URL, /path/to/file(relative)} "${3:long title}"
+
+# emphasis
+snippet     em italic *string*
+abbr        *string*
+    *${1:emphasis <em>}* ${0}
+snippet     em italic _string_
+abbr        _string_
+    _${1:emphasis <em>}_ ${0}
+snippet     em bold **string**
+abbr        **string**
+    **${1:emphasis <em>}** ${0}
+snippet     em bold __string__
+abbr        __string__
+    __${1:emphasis <em>}__ ${0}
+
+# code
+# `printf()`
+
+# Image
+# ![alter text](URL)
+# ------------------
+# ![alter text][ID]
+# [ID]: URL "Title"
+snippet     img inline
+abbr        ![alt](url)
+options     head
+    ![${1:alt title}](${2:/path/to/img.jpg}) ${0}
+snippet     img reference
+abbr        ![alt](id) -> [id]: URL
+options     head
+    ![${1:1}][${2:2}] ${0}
+    [$2]: ${3:url/to/image} "$1"
+
+
+# FIXME neocomplcache-snippet-complete can not handle ```.
+# ```
+# code snip
+# .........
+# ```
+
+# special escape characters
+snippet     copyright
+abbr        © copyright
+    &copy; `strftime('%Y')` stardiviner. All rights reserved.
+snippet     &
+abbr        &amp;
+    &amp;
+snippet     <
+abbr        &lt;
+    &lt;
+snippet     \
+abbr        \\
+alias       backslash
+    \\
+# snippet     <
+# abbr        \<
+#     \<
+# snippet     >
+# abbr        \>
+#     \>
+snippet     *
+abbr        \*
+    \*
