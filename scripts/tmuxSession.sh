@@ -21,8 +21,8 @@ elif [ -n "$SCREEN" ]; then
 fi
 
 # session name
-session1=Daily
-session2=Wiki
+session1=daily
+session2=data
 
 #if-shell shell-command command [command]
 
@@ -33,7 +33,7 @@ if [ $? != 0 ]; then
 
     # [ 1 command line prompt ]
     tmux new-session -d -s $session1 -n network 'python ~/censorship/GoAgent/goagent-1.0/goagent/local/proxy.py'
-    tmux split-window -t $session1 -h 'bwm-ng'
+    # tmux split-window -t $session1 -h 'bwm-ng'
     # tmux split-window -t $session1 -h 'bmon'
     # tmux split-window -t $session1 -h 'ifstat -w -z -S'
     # split-window -h 'cat ~/Git/dotfiles/sudo.pass | sudo -t nethogs -d 3 ppp0'
@@ -47,8 +47,6 @@ if [ $? != 0 ]; then
         'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Dreams/Dreams.wiki'
     tmux split-window -t $session1:2.2 -v -p 60 \
         'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Ideas/Ideas.wiki'
-    tmux split-window -t $session1:2.1 -v -p 30 \
-        'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Me/Experience/Experience.wiki'
     tmux select-pane -t $session1:2.1
     #split-window -h -p 35 'task shell' # taskwarrior shell
 
@@ -94,7 +92,7 @@ if [ $? != 0 ]; then
     # [ Wiki/vimwiki ]
     # [ Linux ]
     tmux new-session -d -s $session2 -n linux \
-        'vim ~/Wiki/vimwiki/wiki/Linux/Linux.wiki'
+        'vim ~/Wiki/vimwiki/wiki/Systems/Systems.wiki'
     # [ Program ]
     tmux new-window -t $session2 -n program \
         'vim ~/Wiki/vimwiki/wiki/program/program.wiki'
@@ -105,12 +103,6 @@ if [ $? != 0 ]; then
         'vim ~/Wiki/vimwiki/wiki/program/Ruby/Ruby.wiki'
     tmux new-window -t $session2 -n Python \
         'vim ~/Wiki/vimwiki/wiki/program/Python/Python.wiki'
-    tmux new-window -t $session2 -n JavaScript \
-        'vim ~/Wiki/vimwiki/wiki/program/JavaScript/JavaScript.wiki'
-    tmux new-window -t $session2 -n Go \
-        'vim ~/Wiki/vimwiki/wiki/program/Go/Go.wiki'
-    tmux new-window -t $session2 -n C \
-        'vim ~/Wiki/vimwiki/wiki/program/C/C.wiki'
     # [ others ]
     # tmux new-window -t $session2 -n misc
     # new-session -d -s Daily "elinks http://www.phrack.org/issues.html"
