@@ -1,0 +1,15 @@
+snippet foldmarker "foldmarker format {{{ ... }}}"
+  `substitute(&commentstring, '%s', '', "")` ${1:header} {{{
+  ${2:statements}
+  `substitute(&commentstring, '%s', '', "")` }}}
+endsnippet
+snippet fm "foldmarker format {{{ ... }}}"
+  `substitute(&commentstring, '%s', '', "")` ${1:header} {{{
+  ${2:statements}
+  `substitute(&commentstring, '%s', '', "")` }}}
+endsnippet
+snippet fold "fold {{{" b
+  `substitute(&commentstring, '%s', '', "")` ${1:header} {{{
+  ${2:statements}
+  `substitute(&commentstring, '%s', '', "")` }}}
+endsnippet
