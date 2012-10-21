@@ -1,0 +1,64 @@
+# syntax {{{
+snippet comment "comment"
+###
+${1:multiple lines comment}
+###
+endsnippet
+snippet ### "comment"
+###
+${1:multiple lines comment}
+###
+endsnippet
+
+# variable
+snippet var "variable"
+${1:myVariable} = ${2:"string??"}
+endsnippet
+
+# scope
+snippet global "create a global variable"
+${1:exports} = this
+$1.${2:myVariable} = ${3:"string??"}
+endsnippet
+
+# function
+snippet func "function"
+${1:function name} = ->
+    ${2:statements}
+endsnippet
+
+# object literal
+snippet object "object literal"
+${1:object literal} = {${2:key: value}}
+endsnippet
+
+# array
+snippet array "array"
+${1:array name} = [${1:array1, array2}]
+endsnippet
+
+# for (loop, iterate)
+snippet for "for ..."
+for ${1:iterator, i} in ${2:sequence}
+    ${3:statements}
+endsnippet
+
+snippet iterate "one line iterate"
+${1:expression} for ${2:iterator} in ${3:sequence}${4: condition expr}
+endsnippet
+
+# object-class
+snippet class "create a new class"
+class ${1:class name}
+    constructor: (${2:@param}) ->
+endsnippet
+
+snippet new "instance"
+${1:new instance} = new ${1:class}
+endsnippet
+
+snippet constructor "constructor"
+constructor
+endsnippet
+
+# }}}
