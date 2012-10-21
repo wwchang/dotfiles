@@ -1208,9 +1208,9 @@ endif
         " options
         " let g:neobundle#types#raw#calc_hash_command = '' " 'sha1sum'/'md5sum'
         let g:neobundle#install_max_processes = 5 " async update
-        let g:neobundle#default_options = {
-                    \ 'rev': {'type__update_style': 'current'},
-                    \ }
+        " let g:neobundle#default_options = {
+        "             \ 'rev': {'type__update_style': 'default'},
+        "             \ }
 
         " check neobundle installed {{{
         fun! InstallNeoBundle(path)
@@ -1583,7 +1583,7 @@ endif
         NeoBundle 'undx/vim-gocode'
         NeoBundle 'jnwhiteh/vim-golang'
         " Lua
-        NeoBundle 'xolox/vim-lua-ftplugin'
+        " NeoBundle 'xolox/vim-lua-ftplugin'
         " NeoBundle 'vim-scripts/lua_omni'
         " NeoBundle 'vim-scripts/luarefvim'
         " NeoBundle 'xolox/vim-lua-inspect'
@@ -1699,7 +1699,7 @@ endif
         " NeoBundle 'vim-scripts/ditaa', {'external_commands': ['ditaa']}
         " IM
         " NeoBundle 'vimim/vimim'
-        NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
+        " NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
         " binary files
         " NeoBundle 'rbtnn/hexript.vim', {
         "             \ 'depends': [ 'Shougo/vimproc', ],
