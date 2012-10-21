@@ -1208,6 +1208,9 @@ endif
         " options
         " let g:neobundle#types#raw#calc_hash_command = '' " 'sha1sum'/'md5sum'
         let g:neobundle#install_max_processes = 5 " async update
+        let g:neobundle#default_options = {
+                    \ 'rev': {'type__update_style': 'current'},
+                    \ }
 
         " check neobundle installed {{{
         fun! InstallNeoBundle(path)
