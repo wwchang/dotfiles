@@ -2205,7 +2205,10 @@ syntax on
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 2
             let g:neocomplcache_source_completion_length['syntax_complete'] = 2
+            let g:neocomplcache_source_completion_length['omni_complete'] = 2
             let g:neocomplcache_source_completion_length['vim_complete'] = 2
+            let g:neocomplcache_source_completion_length['abbrev_complete'] = 2
+            let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
             " TODO
