@@ -1,0 +1,23 @@
+snippet     ftplugin.skeleton.did_ftplugin_loaded
+abbr        if exists("b:did_ftplugin_loaded") > finish > endif
+alias       ftplugin.did_loaded
+options     head
+    if exists("${1:b:did_ftplugin_`expand("%:r")`_loaded}")
+        finish
+    endif
+    let $1 = 1
+
+snippet     ftplugin.skeleton.define-new-filetype
+abbr        define a new filetype
+alias       ftplugin.new-filetype
+options     head
+    au BufNewFile,BufRead *.${1:extension} set filetype=${2:filetype}
+
+snippet     ftplugin.skeleton.undo
+abbr        let b:undo_ftplugin = "setlocal option<" ...
+alias       ftplugin.undo
+options     head
+    let b:undo_ftplugin = "setlocal ${1:fo< com< tw< commentstring<}" .
+        \ "| unlet ${2:b:match_ignorecase b:match_words b:match_skip}"
+
+# vim:foldmethod=marker

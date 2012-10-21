@@ -1,0 +1,51 @@
+# TODO make sure those placeholder.
+snippet     syntax.skeleton.syntax
+abbr        syntax file beginning
+alias       syntax.file.beginning
+options     head
+    if exists("b:current_syntax")
+        finish
+    endif
+
+    " :help :syn-keyword
+    " :help 'iskeyword'
+    " :help group-name
+    " :help :highlight
+    syntax keyword ${2:group-name}${3: ${4:options\}} ${5:keyword}${6: ${7:options\}}
+    highlight link ${8:from-group} ${9:to-group}
+
+    let b:current_syntax = "${1:syntax name}"
+
+snippet     syntax.skeleton.keyword
+abbr        syntax keyword {Group} {option} {keyword}
+alias       syntax.keyword
+options     head
+    syntax keyword ${1:Group}${2: ${3:options:contained\}} ${4:keyword}
+
+snippet     syntax.skeleton.match
+abbr        syntax match {Group} {option} {pattern}
+alias       syntax.match
+options     head
+    syntax match ${1:Group}${2: ${3:options\}} ${4:excludenl} ${5:pattern}
+
+snippet     syntax.skeleton.region
+abbr        syntax region {Group} {option} {region}
+alias       syntax.region
+options     head
+    syntax region ${1:Group}${2: ${3:options\}}
+                [matchgroup=${4:Group}]
+                [keepend]
+                [extend]
+                [excludenl]
+                start={start_pattern} ..
+                [skip={skip_pattern}]
+                end={end_pattern} ..
+                [{options}]
+
+snippet     syntax.skeleton.link
+abbr        highlight link {Group} {Group}
+alias       syntax.link
+options     head
+    highlight link ${1:from-group} ${2:to-group}
+
+# vim:foldmethod=marker

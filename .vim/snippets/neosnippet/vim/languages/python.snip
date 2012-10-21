@@ -1,0 +1,25 @@
+# TODO make sure there is not indent tabs or spaces before python << EOF.
+# TODO if endmarker is omitted after '<<', the a dot '.' is used after script.
+# python <<
+# print("hi")
+# .
+
+snippet     python.skeleton.EOF
+abbr        python << EOF ... EOF
+alias       python.EOF
+options     head
+    python << ${1:EOF/PYTHONEOF}
+    import vim
+    ${2:code here}
+    $1
+
+snippet     python.skeleton.except vim.error
+abbr        try .. except vim.error: ..
+alias       python.except-vim.error
+options     head
+    try:
+        ${1:statements}
+    except vim.error:
+        ${2:statements}
+
+# vim:foldmethod=marker

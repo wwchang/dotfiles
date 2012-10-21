@@ -1,0 +1,39 @@
+snippet     oop.object
+abbr        create an object
+alias       object
+options     head
+    let ${1:object name} = {'${2:method}': function("${3:$1.$2${4:/filename#funcname}}")}
+
+snippet     oop.method
+abbr        create an object method
+alias       method
+options     head
+    fun! ${1:object}.${2:method}(${3:args, ...}) dict
+        return ${4:commands: self.${5:object attribute}}
+    endfun
+
+snippet     oop.object skeleton
+abbr        create an object [Dict.func]
+alias       object-skeleton
+options     head
+    let ${1:object: Dict} = {}
+    fun! $1.${2:method}(${3:line, args, ...}) dict
+        return join(map(split(a:$3), 'get(self.${5:object's attr}, v:val, "???")'))
+    endfun
+    let ${6:new object} = copy($1)
+    let $6.$5 = {'${7:key}': ${8:value},}
+    echo $6.$2(${9:args})
+
+snippet     oop.method skeleton
+abbr        create an object method [funcref]
+alias       method-skeleton
+options     head
+    let ${1:object name} = {'${2:attribute}': ${3:dict value}}
+
+    fun! $1.${4:method}(${5:args}) dict
+        return ${6:something: self.$2}
+    endfun
+
+    echo $1.$4(${7:args})
+
+# vim:foldmethod=marker

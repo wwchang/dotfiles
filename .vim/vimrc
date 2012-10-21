@@ -1155,14 +1155,6 @@ endif
 
 " ----------------------------------------------------------------
 
-" [ plugins list ] {{{
-" [[ addons manager: VAM, neobundle, vundle, pathogen, tplugin, ]] {{{
-    " [ tplugin ] {{{ An on-demand runtimepath manager and plugin loader for Vim
-	" Put this close to the top of your vimrc file
-	" runtime macros/tplugin.vim
-	" runtime bundles/tplugin_vim/macros/tplugin.vim
-    " }}}
-
 " [[ addons manager: VAM, neobundle, vundle, pathogen, tplugin, ]] {{{
     " [ pathogen ] {{{ .vim/bundle/
         " " .vim/autoload/pathogen.vim || .vim/bundle/* || :Helptags ||
@@ -1310,6 +1302,8 @@ endif
                         \ ],
                     \ 'directory': 'neobundle',
                     \ }
+
+        " [ Vim improve ] {{{
         NeoBundle 'Shougo/vimproc', {
             \ 'build': {
                 \ 'windows': 'echo "vimproc binary file does not support Windows."',
@@ -1395,6 +1389,9 @@ endif
         " NeoBundle 'mbadran/headlights'
         " modeline
         NeoBundle 'ciaranm/securemodelines'
+        " profile/debug
+        " NeoBundle 'tomtom/startup_profile_vim'
+        " NeoBundle 'dahu/VimLint'
         " }}}
 
         " [ Vim libraries/frameworks ] {{{
@@ -1429,10 +1426,7 @@ endif
         " NeoBundle 'vim-scripts/Manuals'
         NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " snippets
-        " NeoBundle 'Shougo/neocomplcache-snippets-complete', {
-        "             \ 'depends': 'Shougo/neocomplcache',
-        "             \ 'rev': 'neosnippet',
-        "             \ }
+        NeoBundle 'Shougo/neosnippet'
         NeoBundle 'SirVer/ultisnips'
         " NeoBundle 'drmingdrmer/xptemplate'
         " NeoBundle 'garbas/vim-snipmate'
@@ -1606,7 +1600,8 @@ endif
         " NeoBundle 'jgdavey/vim-turbux'
         " NeoBundle 'skwp/vim-ruby-conque'
         " Python
-        NeoBundle 'vim-scripts/pythoncomplete'
+        NeoBundle 'davidhalter/jedi-vim'
+        " NeoBundle 'vim-scripts/pythoncomplete'
         " NeoBundle 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
         " NeoBundle 'kevinw/pyflakes-vim'
         NeoBundle 'jmcantrell/vim-virtualenv', {'external_commands': ['virtualenv']}
@@ -1754,8 +1749,6 @@ endif
         NeoBundle 'bitc/vim-bad-whitespace'
         NeoBundle 'thinca/vim-visualstar'
         NeoBundle 'vim-scripts/SpitVspit'
-        " NeoBundle 'dahu/VimLint'
-        " NeoBundle 'tomtom/startup_profile_vim'
         " NeoBundle 'mikewest/vimroom'
         " }}}
         " }}}
@@ -2091,13 +2084,16 @@ syntax on
             endif
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
-            " rsense plugin -> RsenseCompleteFunction
-            " vim-ruby plugin -> rubycomplete#Complete
+            " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
+            " rsense plugin                 -> RsenseCompleteFunction
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
+            " python3complete#Complete  -- Python3 Vim default omni
+            " jedi#complete             -- plugin jedi-vim omni
             if has('python3/dyn') || has('python3')
-                let g:neocomplcache_omni_functions['python'] = 'python3complete#Complete' " default python3 omni
+                let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
             elseif has('python/dyn') || has('python')
-                let g:neocomplcache_omni_functions['python'] = 'pythoncomplete#Complete' " default python omni
+                let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
             endif
             " clang compiler front / ctags / omni complete ==> C, cpp, Go
             let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " plugin gocode
@@ -2110,7 +2106,7 @@ syntax on
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
             let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
-            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default / plugin SQLComplete.vim
             let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
             let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
@@ -2147,10 +2143,10 @@ syntax on
             endif
             " let g:neocomplcache_ctags_arguments_list['_'] = ''
             " let g:neocomplcache_ctags_arguments_list['c'] =
+            "     \ '-R --sort=1 --c-kinds=+p --fields=+iaS --extra=+q -I __wur'
             " let g:neocomplcache_ctags_arguments_list['cpp'] =
-            " let g:neocomplcache_ctags_arguments_list['python'] =
-            " let g:neocomplcache_ctags_arguments_list['ruby'] =
-            " let g:neocomplcache_ctags_arguments_list['go'] =
+            "     \ '-R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q -I __wur' .
+            "     \ '--language-force=C++'
             if !exists('g:neocomplcache_tags_filter_patterns')
                 let g:neocomplcache_tags_filter_patterns = {}
             endif
@@ -2201,12 +2197,18 @@ syntax on
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
             let g:neocomplcache_source_completion_length['tags_complete'] = 2
             let g:neocomplcache_source_completion_length['syntax_complete'] = 2
+            let g:neocomplcache_source_completion_length['omni_complete'] = 2
             let g:neocomplcache_source_completion_length['vim_complete'] = 2
+            let g:neocomplcache_source_completion_length['abbrev_complete'] = 2
+            let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
             " TODO
             let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
             let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
+            " buffer local source
+            " In command-line window, only use 'vim_complete' source.
+            autocmd CmdwinEnter * let b:neocomplcache_sources_list = ['vim_complete']
             " }}}
             " same filetypes {{{
             " a dictionary to connect file type mutually.
@@ -2936,23 +2938,36 @@ syntax on
 
         " indexer.tar.gz
 
-        " gtags.vim {{{
-            " | http://www.vim.org/scripts/script.php?script_id=893#0.6
-            " $ sudo apt-get install global || .vim/plugin/gtags.vim
-            " The gtags.vim plugin script integrates the GNU GLOBAL source code
-            " tag system with Vim.  About the details, see
+        " gtags.vim {{{ Integrates GNU GLOBAL source code tag system with Vim.
+            " Usage:
             " http://www.gnu.org/software/global/.
-            " First of all, you must execute gtags at the root of source
-            " directory to make tag files.
-            " $ cd /var/src ; gtags
-            " General form of Gtags command is as follows:
-            " :Gtags [option] pattern
-            " To go to func, you can say :Gtags func
-            " Input completion is available. <Tab>
-            " QucikFix windows, go to any entry with commands: :cn :cp :ccN :cl
-            " You can use POSIX regular expression too. :Gtags ^[sg]et_
-            " To go to the referenced point of func. add -r option. :Gtags -r func
-            " More details please refer vim/plugin/gtags.vim
+            " - first execute gtags (global) at root of project directory.
+            "   $ cd /var/src ; gtags
+            " - search with plugin command:
+            "   <Tab> to complete, and regex for pattern
+            "   :Gtags [option] pattern
+            "   - [option]
+            "       -r      -- go to the referenced point of func
+            "       -s      -- go to any symbols which are not defined in GTAGS
+            "       -g      -- go to any string other than symbol
+            "       -f main.c   -- get list of objects in a file 'main.c'
+            "       -f %        -- if you are editing 'main.c' itself. use '%'
+            "       -P /dir/    -- browse project files
+            "       -P \.h$     -- all include files '*.h'
+            "       -P init     -- all paths includes 'init'
+            "       -i          -- ignorecase e.g. '-gi'
+            "       -ge -C      -- search a pattern which starts with a hyphen like
+            "                   '-C' then use -e option like grep.
+            "       -go pattern -- search both source and text
+            "       -gO pattern -- only text file
+            "   - :Gozilla -- display on mozilla browser
+            " - quickfix list.
+            let Gtags_Auto_Map = 1 " use gtags.vim default mappings.
+            let g:Gtags_OpenQuickfixWindow = 1 " open quickfix window by default
+            let g:Gtags_VerticalWindow = 0 " horizontal window
+        " }}}
+
+        " unite-gtags {{{
         " }}}
 
         " taggatron {{{ A simple tag file manager for vim.
@@ -3649,6 +3664,20 @@ syntax on
         " }}}
 
         " Manuals {{{ An extensible help system
+            " Supports:
+            " t -- show help text for keyword
+            " k -- list similar keywords (and find help for the selected one)
+            " g -- grep the manuals to find occurences of the word
+            "   - vimhelp (tkg) -- internal vim help
+            "   - extvimhelp (tkg) -- external help in vimhelp format.
+            "   - man (t) -- unix man
+            "   - pydoc (tg) -- python documentation
+            "   - pydiction (k) -- use the dictionary produced by vimscript#850
+            "   - cmakeref (tkg) -- vimscript#3045, use extvimhelp
+            "   - cssref (tkg) -- vimscript#918, use extvimhelp
+            "   - crefvim (tkg) -- vimscript#614, vimscript#2353, use extvimhelp
+            "   - luarefvim (tkg) -- vimscript#1291, use extvimhelp
+            "   - dict (t) -- find a dictionary entry using the dict program
         " }}}
 
         " unite-help {{{ Vim :help command in unite interface through doc tags file
@@ -4046,12 +4075,17 @@ syntax on
             let NERDChristmasTree = 1 " colourful. =0 for more vanilla looking tree.
             let NERDTreeAutoCenter = 1 " default = 1.
             let NERDTreeAutoCenterThreshold = 3 " default = 3.
+            let NERDTreeAutoDeleteBuffer = 1 " auto delete buffer after deleting or renaming
             let NERDTreeCaseSensitiveSort = 0 " default = 0.
             let NERDTreeChDirMode = 2 " 0/1/2
             let NERDTreeHighlightCursorline = 1 " highlight cursorline.
             let NERDTreeHijackNetrw = 1 " for :edit <dir> open 'secondary' NERD tree.
-            let NERDTreeIgnore = ['\~$', '\.log', '\.pyo', '\.pyc', '\.swp', '\.bak', '\.git', '\.hg']
-            let NERDTreeBookmarksFile="$HOME/.vimNERDTreeBookmarks"
+            let NERDTreeIgnore = [
+                        \ '\~$', '\.swp', '\.bak', '\.log',
+                        \ '\.pyo', '\.pyc',
+                        \ '\.git', '\.hg'
+                        \ ]
+            let NERDTreeBookmarksFile = "$HOME/.vimNERDTreeBookmarks"
             let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
             let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
             let NERDTreeShowHidden = 0 " does not show hidden files.
@@ -4106,83 +4140,7 @@ syntax on
             let g:vimfiler_as_default_explorer = 1 " behaves as netrw
         " }}}
 
-        " easybuffer {{{ quickly switch between buffers using corresponding keys
-        " or buffer numbers displayed in easybuffer quick switch window
-            " Usage: :EasyBuffer
-        " }}}
-    " }}}
-
-    " [ buffers ] {{{
-        " Tagma_Buffer_Manager {{{
-            " h/<Tab> , l/<S-Tab>. <Cr>/o S/s V/v Ctrl-[hjkl]
-            " :MgrToggle :help TagmaBufMgr
-            let g:TagmaBufMgrAutoDisplay = 1 " =0 to disable autodisplay.
-            let g:TagmaBufMgrBufferNumbers = 1 " buffer number
-            let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
-            let g:TagmaBufMgrLastWindow = 1 " default =0.
-            let g:TagmaBufMgrLocation = 'T' " Top, Bottom, Left, Right, Float
-            let g:TagmaBufMgrMapCArrow = 1 " Ctrl-Arrow
-            let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
-            let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
-            let g:TagmaBufMgrPopUp = 1 " Right-Click PopUp menu
-            let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
-            let g:TagmaBufMgrLastLine = 0 " Display Manager Window on last line
-        " }}}
-
-        " minibufexplorer {{{
-            let g:miniBufExplSplitBelow = 0  " position at bottom or top.
-            let g:miniBufExplSplitToEdge = 1 " force MBR to open at the edge of screen
-            let g:miniBufExplorerMoreThanOne = 1 " open when more than one.
-            let g:miniBufExplMapWindowNavVim = 1 " Ctrl + h/j/k/l
-            let g:miniBufExplMapWindowNavArrows = 0 " Ctrl + Arrow keys
-            let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
-            let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
-            let g:miniBufExplUseSingleClick = 1 " single click or tabs.
-            let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
-            let g:miniBufExplCloseOnSelect = 0 " close after select buffer.
-            let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
-            let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
-            " let g:miniBufExplForceSyntaxEnable = 1 " conflict with Powerline.
-            let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
-            let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
-            let g:miniBufExplMaxSize = 0
-            let g:miniBufExplMinSize = 1
-            " Vertical mode
-            " let g:miniBufExplVSplit = 20   " column width in chars in virtical.
-            " let g:miniBufExplMaxSize = <max width: default 0>
-            " let g:miniBufExplMinSize = <min width: default 1>
-            " MiniBufExpl Colors
-            hi MBENormal guifg=#808080 ctermfg=250
-            hi MBEChanged guifg=#CD5907 ctermfg=208 cterm=bold
-            hi MBEVisibleNormal guifg=#5DC2D6 ctermfg=024
-            hi MBEVisibleNormalActive guifg=#5DC2D6 ctermfg=026 cterm=bold
-            hi MBEVisibleChanged guifg=#F1266F ctermfg=208 cterm=bold
-            hi MBEVisibleChangedActive guifg=#F1266F ctermfg=232 ctermbg=208 cterm=bold
-            " FIXME how to auto open MiniBufExpl
-        " }}}
-
-        " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
-            " Usage:
-            " :LustyFilesystemExplorer
-            " :LustyFilesystemExplorerFromHere
-            " :LustyBufferExplorer
-            " :LustyBufferGrep (for searching through all open buffers)
-            " <Leader>lf  - Opens filesystem explorer.
-            " <Leader>lr  - Opens filesystem explorer at the directory of the current file.
-            " <Leader>lb  - Opens buffer explorer.
-            " <Leader>lg  - Opens buffer grep.
-            " <Leader>lj  - Launch the juggler.
-            set hidden
-        " }}}
-
-        " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
-            let g:loaded_tabman = 0 " set 1 to disable plugin completely
-            let g:tabman_toggle = '<leader>tm'
-            let g:tabman_width = 25
-            let g:tabman_side = 'left'
-            let g:tabman_specials = 0 " show help and quickfix window created by plugin
-            let g:tabman_number = 0 " disable line number in TabMan
-        " }}}
+        " LustyExplorer : A lightweight fast file manager.
     " }}}
 
     " [ REPL (Read-eval-print loop) ] {{{
@@ -4330,7 +4288,9 @@ syntax on
 " [ languages ] {{{
     " [ VimL ] {{{
         " vesting {{{ best VimScript VimL test framework.
-        " TODO
+        " }}}
+
+        " vim-unittest {{{ Unit Testing for Vim scripts.
         " }}}
 
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
@@ -4456,34 +4416,35 @@ syntax on
         " }}}
 
         " rsense {{{
+            " Usage:
             " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
             "   You can infer types of an expression at point by
-	    "   :RSenseTypeHelp.
+            "   :RSenseTypeHelp.
             " 2. Definition Jump
             "   You can jump to definition of a method or a constant you are
             "   pointing at by
-	    "   :RSenseJumpToDefinition.
+            "   :RSenseJumpToDefinition.
             " 3. Where Is
             "   You can find which class/method you are editing by
             "   :RSenseWhereIs.
-	    " other commands:
-	    " :RSenseVersion
-	    "	See RSense version.
-	    " :RSenseOpenProject
-	    "	Open a project of specified directory.
-	    " :RSenseCloseProject
-	    "	Close currently opened project.
-	    " :RSenseServiceStart
-	    "	Start Windows service.
-	    " :RSenseServiceStop
-	    "	STop Windows service.
-	    " :RSenseServiceStatus
-	    "	Show Windows service status.
-	    " :RSenseClear
-	    "	Clear current environment.
-	    " :RSenseExit
-	    "	Exit RSense server.
+            " Commands:
+            " :RSenseOpenProject
+            "	Open a project of specified directory.
+            " :RSenseCloseProject
+            "	Close currently opened project.
+            " :RSenseServiceStart
+            "	Start Windows service.
+            " :RSenseServiceStop
+            "	STop Windows service.
+            " :RSenseServiceStatus
+            "	Show Windows service status.
+            " :RSenseClear
+            "	Clear current environment.
+            " :RSenseExit
+            "	Exit RSense server.
+            " :RSenseVersion
+            "	See RSense version.
             let g:rsenseHome = $RSENSE_HOME
             let g:rsenseUseOmniFunc = 1 " start completion automatically
         " }}}
@@ -4624,6 +4585,10 @@ syntax on
         " }}}
 
         " [ complete ] {{{
+            " jedi-vim {{{ jedi for Vim awesome Python autocomplete
+                " set omnifunc=jedi#complete
+            " }}}
+
             " pythoncomplete {{{ updated version of python omni completion
             " }}}
         " }}}
@@ -4860,41 +4825,86 @@ syntax on
     " }}}
 
     " [ SQL ] {{{
-        " :h ft_sql.txt,
-            let msql_sql_query = 1 " like SQL highlighting inside Strings.
-            let msql_minlines = 200 " for syncing, minlines defaults to 100.
-            let g:sql_type_default = 'mysql' " or 'sqlanywhere'
+        " SQLComplete.vim (vim default) {{{ Vim SQL omni completion
+            " Features:
+            "   Completion for the SQL language includes:
+            "   * static
+            "   - statements, functions, keywords, operators, database options
+            "   * dynamic
+            "   - tables, procedures, views, column lists,
+            "   * The SQL completion plugin can be used in conjunction with
+            "   other completion plugins. e.g. PHP.
+            " Usage:
+            "   - :SQLSetType [sql type]<Tab> -- work with different databases.
+            "           -- without arguments will set back to default.
+            "   * static:
+            "       - <C-c>a -- syntax
+            "       - <C-c>k -- keyword
+            "       - <C-c>f -- function
+            "       - <C-c>o -- option
+            "       - <C-c>t -- type
+            "       - <C-c>s -- statement
+            "   * dynamic:
+            "       - <C-c>t -- table list
+            "       - <C-c>p -- procedure
+            "       - <C-c>v -- view list
+            "       - <C-c>c -- column list
+            "       - Drilling In / Out:
+            "           - When viewing a popup menu display the list of tables,
+            "           you can press `<Right>`, this will replace the table
+            "           current highlighted with the column list for that table.
+            "           - When viewing a popup menu display the list of columns,
+            "           you can press `<Left>`, this will replace the column
+            "           list with the list of tables.
+            "           - This allow you to quickly drill down into a table to
+            "           view it's columns and back again.
+            "               g:ftplugin_sql_omni_key_right = '<Right>'
+            "               g:ftplugin_sql_omni_key_left  = '<Left>'
+            "       - <C-c>R    -- re-caching database lists.
 
-            " [ OmniCompletion SQL static/dynamic ] {{{ :help ft-sql-omni
-                " [ static mode ] {{{
-                " All, Statement, Functions, Keywords, Options, Types.
-                let g:ftplugin_sql_omni_key = '<C-C>'
-                imap <buffer> <C-C>a <C-\><C-O>:call sqlcomplete#Map('syntax')<CR><C-X><C-O>
-                imap <buffer> <C-C>k <C-\><C-O>:call sqlcomplete#Map('sqlKeyword')<CR><C-X><C-O>
-                imap <buffer> <C-C>f <C-\><C-O>:call sqlcomplete#Map('sqlFunction')<CR><C-X><C-O>
-                imap <buffer> <C-C>o <C-\><C-O>:call sqlcomplete#Map('sqlOption')<CR><C-X><C-O>
-                imap <buffer> <C-C>T <C-\><C-O>:call sqlcomplete#Map('sqlType')<CR><C-X><C-O>
-                imap <buffer> <C-C>s <C-\><C-O>:call sqlcomplete#Map('sqlStatement')<CR><C-X><C-O>
-                " }}}
+            " used in conjunction with the syntaxcomplete plugin
+            let g:omni_syntax_group_include_sql = ""
+            let g:omni_syntax_group_exclude_sql = ""
+            let g:omni_sql_use_tbl_alias = 'a' " default option to verify table alias
+            " default syntax items to precache
+            let g:omni_sql_precache_syntax_groups = [
+                        \ 'syntax',
+                        \ 'sqlKeyword',
+                        \ 'sqlFunction',
+                        \ 'sqlOption',
+                        \ 'sqlType',
+                        \ 'sqlStatement'
+                        \ ]
+            let g:omni_sql_ignorecase = 1 " 1/&ignorecase
+            let g:omni_sql_include_owner = 0 " table list include owner name when completion
+            let g:omni_sql_default_compl_type = 'table' " default type of completion
 
-                " [ dynamic mode ] {{{
-                "       Table List, Procedure List, View List, Column List.
-                " <C-C>     t           p               v       c
-                " Require: dbext.vim
-                    " Drilling In / Out: replace column <-> table when viewing popup window.
-                let g:ftplugin_sql_omni_key_right = '<Right>'
-                let g:ftplugin_sql_omni_key_left  = '<Left>'
-                imap <buffer> <C-C>R <C-\><C-O>:call sqlcomplete#Map('ResetCache')<CR><C-X><C-O>
-                " }}}
+            " static mode
+            let g:ftplugin_sql_omni_key = '<C-C>'
+            imap <buffer> <C-c>a <C-\><C-O>:call sqlcomplete#Map('syntax')<CR><C-X><C-O>
+            imap <buffer> <C-c>k <C-\><C-O>:call sqlcomplete#Map('sqlKeyword')<CR><C-X><C-O>
+            imap <buffer> <C-c>f <C-\><C-O>:call sqlcomplete#Map('sqlFunction')<CR><C-X><C-O>
+            imap <buffer> <C-c>o <C-\><C-O>:call sqlcomplete#Map('sqlOption')<CR><C-X><C-O>
+            imap <buffer> <C-c>T <C-\><C-O>:call sqlcomplete#Map('sqlType')<CR><C-X><C-O>
+            imap <buffer> <C-c>s <C-\><C-O>:call sqlcomplete#Map('sqlStatement')<CR><C-X><C-O>
+
+            " dynamic mode
+            let g:ftplugin_sql_omni_key_right = '<Right>' " <Right>, TODO <C-l>
+            let g:ftplugin_sql_omni_key_left  = '<Left>' " <Left>, TODO <C-h>
+            imap <buffer> <C-c>R <C-\><C-O>:call sqlcomplete#Map('ResetCache')<CR><C-X><C-O>
 
             " Completion Customization
             " let omni_sql_no_default_maps = 1
             let omni_sql_ignorecase = 1
             let omni_sql_include_owner = 1
-            let omni_sql_precache_syntax_groups = ['syntax', 'sqlKeyword', 'sqlFunction', 'sqlOption', 'sqlType', 'sqlStatement']
-            " }}}
+            let omni_sql_precache_syntax_groups = [
+                        \ 'syntax',
+                        \ 'sqlKeyword', 'sqlFunction', 'sqlOption',
+                        \ 'sqlType', 'sqlStatement',
+                        \ ]
+        " }}}
 
-        " Dbext {{{ enable Vim to access several databases
+        " dbext.vim {{{ enable Vim to access several databases
             " \sbp -- SQL Buffer Prompt.
             " \se  -- SQL Execute
             " \sel -- SQL Execute Line
@@ -6484,6 +6494,109 @@ syntax on
         " layoutManager : Create layouts from tabs, templates and windows and control them.
     " }}}
 
+    " [ tab ] {{{
+        " Tabman {{{ <Leader>tm, :TMToogle, || ? [count] <cr> e x b t o O l h <Tab> r
+            let g:loaded_tabman = 0 " set 1 to disable plugin completely
+            let g:tabman_toggle = '<leader>tm'
+            let g:tabman_width = 25
+            let g:tabman_side = 'left'
+            let g:tabman_specials = 0 " show help and quickfix window created by plugin
+            let g:tabman_number = 0 " disable line number in TabMan
+        " }}}
+    " }}}
+
+    " [ buffers ] {{{
+        " TagmaBufMgr {{{
+            " Usage:
+            "   :MgrToggle
+            " Mappings:
+            "   - switch
+            "       - h/<Tab>, l/<S-Tab>, Ctrl-[hjkl]
+            "   - open
+            "       - <Cr>/O/o S/s V/v
+            "   - delete/close
+            "       - D/d C/c
+            "   - refresh
+            "       - R/r
+            "   - help
+            "       - ?/H
+            " Buffer status flags:
+            "   - + -- been modified
+            "   - ? -- is help buffer
+            "   - $ -- is quickfix or location-list buffer
+            "   - & -- buffer is not loaded, not displayed in a window.
+            " TODO :help TagmaBufMgr
+            let g:TagmaBufMgrAutoDisplay = 1 " auto display
+            let g:TagmaBufMgrBufferNumbers = 1 " show buffer number
+            let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
+            let g:TagmaBufMgrLastWindow = 1 " close the last window quits Vim
+            let g:TagmaBufMgrLocation = 'T' " [T]op, [B]ottom, [L]eft, [R]ight, [F]loat
+            if g:TagmaBufMgrLocation ==# 'B'
+                let g:TagmaBufMgrLastLine = 1 " display on the last line without statusline
+            else
+                let g:TagmaBufMgrLastLine = 0
+            endif
+            let g:TagmaBufMgrMapCArrow = 0 " Ctrl-Arrow
+            let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
+            let g:TagmaBufMgrMapCTab = 0 " Ctrl-Tab, Ctrl-Shift-Tab
+            let g:TagmaBufMgrMapMouseFB = 0 " Mouse Forward/Back buttons
+            let g:TagmaBufMgrPopUp = 0 " Right-Click PopUp menu
+            let g:TagmaBufMgrPrefix = '<Leader>tb' " prefix for all commands.
+            let g:TagmaBufMgrWidth = 25 " when at the Left or Right.
+        " }}}
+
+        " minibufexplorer {{{
+            let g:miniBufExplSplitBelow = 0  " position at bottom or top.
+            let g:miniBufExplSplitToEdge = 1 " force MBR to open at the edge of screen
+            let g:miniBufExplorerMoreThanOne = 1 " open when more than one.
+            let g:miniBufExplMapWindowNavVim = 1 " Ctrl + h/j/k/l
+            let g:miniBufExplMapWindowNavArrows = 0 " Ctrl + Arrow keys
+            let g:miniBufExplMapCTabSwitchBufs = 1 " <C-TAB> and <C-S-TAB>
+            let g:miniBufExplMapCTabSwitchWindows = 0 " <C-TAB> and <C-S-TAB>
+            let g:miniBufExplUseSingleClick = 1 " single click or tabs.
+            let g:miniBufExplModSelTarget = 1 " if use other explorer like TagList.
+            let g:miniBufExplCloseOnSelect = 0 " close after select buffer.
+            let g:miniBufExplCheckDupeBufs = 0 " when >15 buffers
+            let g:miniBufExplShowBufNumbers = 1 " show buffer number, 0 to omit them
+            " let g:miniBufExplForceSyntaxEnable = 1 " conflict with Powerline.
+            let g:miniBufExplorerDebugLevel = 0  " MBE serious errors output. [0/4/10]
+            let g:miniBufExplorerDebugMode  = 1  " Uses VIM's echo function
+            let g:miniBufExplMaxSize = 0
+            let g:miniBufExplMinSize = 1
+            " Vertical mode
+            " let g:miniBufExplVSplit = 20   " column width in chars in virtical.
+            " let g:miniBufExplMaxSize = <max width: default 0>
+            " let g:miniBufExplMinSize = <min width: default 1>
+            " MiniBufExpl Colors
+            hi MBENormal guifg=#808080 ctermfg=250
+            hi MBEChanged guifg=#CD5907 ctermfg=208 cterm=bold
+            hi MBEVisibleNormal guifg=#5DC2D6 ctermfg=024
+            hi MBEVisibleNormalActive guifg=#5DC2D6 ctermfg=026 cterm=bold
+            hi MBEVisibleChanged guifg=#F1266F ctermfg=208 cterm=bold
+            hi MBEVisibleChangedActive guifg=#F1266F ctermfg=232 ctermbg=208 cterm=bold
+            " FIXME how to auto open MiniBufExpl
+        " }}}
+
+        " LustyJuggler {{{ fast and responsive way to manage files and buffers in Vim.
+            " Usage:
+            " :LustyFilesystemExplorer
+            " :LustyFilesystemExplorerFromHere
+            " :LustyBufferExplorer
+            " :LustyBufferGrep (for searching through all open buffers)
+            " <Leader>lf  - Opens filesystem explorer.
+            " <Leader>lr  - Opens filesystem explorer at the directory of the current file.
+            " <Leader>lb  - Opens buffer explorer.
+            " <Leader>lg  - Opens buffer grep.
+            " <Leader>lj  - Launch the juggler.
+            set hidden
+        " }}}
+
+        " easybuffer {{{ quickly switch between buffers using corresponding keys
+        " or buffer numbers displayed in easybuffer quick switch window
+            " Usage: :EasyBuffer
+        " }}}
+    " }}}
+
     " [ conceal ] {{{
         " vim-ocaml-conceal
     " }}}
@@ -6511,21 +6624,22 @@ syntax on
             " - tinykeymap#PressEnter()
             " * :Tinykeymap
             "
-            " gt               --  tabs
-            " windows          --  <C-W>
+            " tabs             --  gt
+            " windows          --  <C-w>
             " buffers          --  <Leader>mb
             " diff             --  <Leader>md
             " filter           --  <Leader>mf
             " lines            --  <Leader>ml
             " location list    --  <Leader>mo
             " quickfix         --  <Leader>mq
-            " undo             --  <Leader>mu
+            " undotree         --  <Leader>mu
             " quickfixsigns    --  <Leader>ms
 
             " list of tinykeymaps be loaded on startup
-            let g:tinykeymaps_default = "*" " wildcard * to load all tinykeymaps.
+            let g:tinykeymaps_default = ['*'] " wildcard * to load all tinykeymaps.
             let g:tinykeymap#mapleader = mapleader . 'm'
-            let g:tinykeymap#conflict = 4 " 0/1/2/3/4 -- throw an error
+            let g:tinykeymap#maplocalleader = maplocalleader . 'm'
+            let g:tinykeymap#conflict = 2 " 0/1/2/3/4 -- create a new lead map and display a message
             let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
         " }}}
 

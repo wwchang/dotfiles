@@ -1,0 +1,102 @@
+# TODO var1 -> (visual select "var1") -> <Tab> -> input any function -> func(var1)
+# snippet "\a" "visual to surround with function"
+# `!p snip.rv = match.group(0)`(${VISUAL})
+
+# shebang #! {{{
+# shebang -> `:help :#!`
+snippet     #! VimL shebang
+abbr        #!/usr/bin/env vim -S
+options     head
+    #!/usr/bin/env vim -S
+    echo "this is a Vim script"
+
+    ${1:statements}
+
+    quit
+# }}}
+
+# execute {{{
+snippet     execute
+abbr        execute "{commands}"
+alias       exec
+    execute "${1:command string}"
+
+snippet     execute silent
+abbr        silent! execute "{commands/normal!}"
+alias       exec-silent
+    silent${1:!} execute "${2:commands/normal!}"
+
+snippet     execute normal
+abbr        execute "normal! {normal operations}"
+alias       exec-normal
+    execute "normal! ${1:normal operations}"
+# }}}
+
+# mappings {{{
+snippet     map buffer-local
+abbr        map <buffer> {Mapping} {Command}
+    map <buffer> <unique> ${1:mapping: <LocalLeader>a} ${2:command/function}
+# }}}
+
+# regex {{{
+snippet     regex very magic
+abbr        '/\v{regex}' [very magic]
+alias       regex
+    '/\v${1:regex}'
+
+snippet     substitute
+abbr        substitute('expr', 'pattern', 'sub', 'flag')
+    substitute(${1:expr}, '${2:pattern}', '${3:substitute}', "${4:flags: empty/g}")
+# }}}
+
+# command {{{
+snippet     command
+abbr        command {attr} {Name} {call func}
+alias       cmd
+    command${2:attr: argument/complete/range/special} ${1:Name} ${3:call Func()}
+# }}}
+
+# escape {{{
+snippet     escape
+abbr        escape() / shellescape()
+    escape(${1:escaped characters like: '})
+    shellescape(${2:escaped characters: expand("<cWORD>")})
+# }}}
+
+# echo: echohl, verbose {{{
+snippet     echohl oneline
+abbr        echohl {HLGroup} | echomsg "{msg}" | echohl None
+alias       echohl
+    echohl ${1:HlGroup:WarningMsg} | echomsg "${2:message}" | echohl None
+
+snippet     echohl multiline
+abbr        echohl {HLGroup} > echomsg "{msg}" > echohl None
+    echohl ${1:Highligh Group:WarningMsg}
+    echo ${2:"message"}
+    echohl None
+
+snippet     verbose
+abbr        verbose {cmd/func/map} {Cmd/Func/Map}
+    verbose ${1:command/function/map} ${2:Cmd/Func/Map}
+# }}}
+
+# set/setlocal {{{
+snippet     setlocal append flag
+abbr        setlocal option& option+={value}
+alias       setlocal
+    setlocal ${1:option}& $1+=${2:flags,or,items}
+
+snippet     setlocal reset
+abbr        setlocal option< (set local option to global value)
+    setlocal ${1:option}<
+# }}}
+
+# quick snippets {{{
+snippet     return
+abbr        return {expr}
+alias       r
+options     head
+    return ${1:expression}
+# }}}
+
+# vim:foldmethod=marker
