@@ -1,0 +1,150 @@
+snippet     plugin.skeleton.header
+abbr        File: Last Change: Author: License:
+options     head
+    " File:         `expand('%:t')`
+    " Last Change:	`strftime("%B %d, %Y")`
+    " Author:       ${1:stardiviner, Email: [numbchild A/T G/mail dot com]}
+    " Description:  ${2:what features this plugin provided ?}
+    " License:      ${3:what license ?}
+
+    $0
+
+snippet     plugin.skeleton.loaded
+abbr        if exists("g:loaded_plugin") > finish > endif
+options     head
+    if exists('${1:did_`expand('%:r')`_loaded}') || &cp || v:version < `expand(v:version)`
+        finish
+    endif
+    let $1 = 1
+
+    ${0}
+
+snippet     plugin.skeleton.store-cpoptions
+abbr        store cpoptions option value
+alias       cpoptions.store
+options     head
+    let s:save_cpo = &cpo
+    set cpo&vim
+
+    ${1:statements}
+
+    let &cpo = s:save_cpo
+
+snippet     plugin.skeleton.hasmapto
+abbr        if !hasmapto() .. endif
+alias       if.hasmapto
+options     head
+    if !hasmapto('${1:<Plug>Func}')
+        map <unique> ${2:<Leader>a} $1
+    endif
+
+# unload functions when source plugin again
+snippet     plugin.skeleton.unload-function
+abbr        unload function: if exists() > delfun Func
+alias       function.unload
+options     head
+    " This is the ${1:???} package
+    if exists("$1_loaded")
+        delfun ${2:first function name}
+        delfun ${3:second function name}
+    endif
+
+    ${4:functions}
+
+    let $1_loaded = 1
+
+snippet     plugin.skeleton.noremap modes [n/v/i]
+abbr        [n/v/i]noremap <SID>Func statement
+alias       noremap.modes
+options     head
+    ${1:noremap: nnoremap/vnoremap/inoremap} <SID>${2:FuncName} ${3:statements}
+
+snippet     plugin.skeleton.nnoremap
+abbr        three nnoremap <unique> -> <Plug> -> <SID>
+alias       nnoremap
+options     head
+    noremap <unique> ${1:Map} <Plug>${2:Func: TypecorrAdd}
+    noremap <unique> <script> <Plug>$2 <SID>${3:Func: Add}
+    noremap <SID>$3 :call <SID>$3(${4:func arguments})<CR>
+
+snippet     plugin.skeleton.nnoremap-if-hasmapto
+abbr        if !hasmapto() > nnoremap <Plug> <SID> > endif
+alias       nnoremap.if-hasmapto
+options     head
+    if !hasmapto('<Plug>TypecorrAdd')
+        noremap <unique> ${1:<Leader>a} <Plug>${2:Func: TypecorrAdd}
+        noremap <unique> <script> <Plug>$2 <SID>${3:Func: Add}
+        noremap <SID>$3 :call <SID>$3(${4:func arguments})<CR>
+    endif
+
+snippet     plugin.skeleton.command-if-exists
+abbr        if !exists() > command > endif
+alias       command.if-exists
+options     head
+    if !exists(":${1:Command}")
+        command${2:attr:!,",b} -nargs=${2:arg number:0,1,*,?,+} $1 ${3:call s:Add(<q-args>, 0)}
+    endif
+
+snippet     plugin.skeleton.operator
+abbr        operator motions
+alias       operator.motions
+options     head
+    nnoremap <leader>g :set operatorfunc=<SID>$1<cr>g@
+    vnoremap <leader>g :<c-u>call <SID>$1(visualmode())<cr>
+
+    fun! s:${1:name}(${2:type/...})
+        let saved_unnamed_register = @@
+
+        if a:type ==# 'v'
+            normal! \`<v\`>y
+        elseif a:type ==# 'char'
+            normal! \`[v\`]y
+        else
+            return
+        endif
+
+        silent execute "${3:grep! -R} " . shellescape(@@)
+
+        let @@ = saved_unnamed_register
+    endfun
+
+snippet     plugin.skeleton.commentchar
+abbr        get filetype comment char
+alias       commentchar
+options     head
+    substitute(&commentstring, '%s', '', "")$0
+
+# global variable, default option.
+snippet     plugin.skeleton.option global g:
+abbr        if !exists("g:option") > let g:option = > endif
+alias       option.global
+options     head
+    if !exists("g:${1:option}")
+        let g:$1 = ${2:value}
+    endif
+
+snippet     plugin.skeleton.option default
+abbr        func! s:SetOptionDefault() .. endfunc > call s:SetOptionDefault()
+alias       option.set-default
+options     head
+    function! s:SetOptionDefault(option, default)
+        if !exists(a:option)
+            execute 'let ' . a:option . '=' . string(a:default)
+        endif
+    endfunction
+
+    " ${1:comment for first global option}
+    call s:SetOptionDefault('g:${2:global option}', ${3:default value: 1, 'str'})
+    " ${4:comment for first global option}
+    call s:SetOptionDefault('g:${5:global option}', ${6:default value: 1, 'str'})
+
+snippet     plugin.skeleton.redirection
+abbr        redir [>,>>,=>,==>] {var/file/reg}
+alias       redir,redirection
+options     head
+    redir ${1:>,>>,=>,==>} ${2:variable/file/@a-z/}
+    ${3:statements: silent! iabbrev}
+    redir END
+    $0
+
+# vim:foldmethod=marker
