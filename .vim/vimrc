@@ -2266,6 +2266,7 @@ syntax on
             let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
             let g:neocomplcache_text_mode_filetypes['markdown'] = 1
             let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
+            let g:neocomplcache_text_mode_filetypes['text'] = 1
             " }}}
 
             " }}}
