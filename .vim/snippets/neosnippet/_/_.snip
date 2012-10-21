@@ -1,0 +1,53 @@
+# Global snippets
+
+# [ date ]
+snippet     date
+    `strftime("%d %b %Y")`
+
+snippet     date full
+alias       df
+    `strftime("%Y-%m-%dT%H:%M:%S")`
+
+snippet     date day
+alias       dd
+    `strftime("%Y-%m-%d")`
+
+snippet     date time
+alias       dt
+    `strftime("%H:%M:%S")`
+
+# [ file info ]
+snippet     lastchange
+abbr        Last Change: TIME
+    Last Change: `strftime("%Y-%m-%d %H:%M")`
+
+snippet     filename
+abbr        current filename
+    Filename: `expand("%")`
+
+# [ author info ]
+snippet     author
+abbr        stardiviner, Email: [numbchild ..]
+    stardiviner, Email: [numbchild A/T G/mail dot com]
+snippet     author email
+abbr        Email: [numbchild ..]
+    Email: [numbchild A/T G/mail dot com]
+snippet     author nick
+abbr        stardiviner 占星师
+    stardiviner 占星师
+
+# [ Vim ]
+# FIXME the comment character not always correct
+# 1. `substitute(&commentstring, '%s', '', "")`
+# 2. `substitute(&comments, '^\(.*,\|^\):\([^,]\+\)', '\2', '')`
+snippet     modeline
+abbr        # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=2/4
+options     head
+    `substitute(&commentstring, '%s', '', "")` vim:fdm=marker:fmr={{{,}}}:expandtab:sw=${1:2/4}:sts=$1
+
+snippet     marker
+abbr        # {{{ > ... > }}}
+options     head
+    `substitute(&commentstring, '%s', '', "")` ${1:header} {{{
+    ${2:statements}
+    `substitute(&commentstring, '%s', '', "")` }}}
