@@ -1429,10 +1429,7 @@ endif
         " NeoBundle 'vim-scripts/Manuals'
         NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " snippets
-        " NeoBundle 'Shougo/neocomplcache-snippets-complete', {
-        "             \ 'depends': 'Shougo/neocomplcache',
-        "             \ 'rev': 'neosnippet',
-        "             \ }
+        NeoBundle 'Shougo/neosnippet'
         NeoBundle 'SirVer/ultisnips'
         " NeoBundle 'drmingdrmer/xptemplate'
         " NeoBundle 'garbas/vim-snipmate'
