@@ -1436,7 +1436,7 @@ endif
         " NeoBundle 'scrooloose/snipmate-snippets'
         " tags/cscope
         NeoBundle 'majutsushi/tagbar', { 'external_commands': ['ctags'], }
-        NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
+        " NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
         " NeoBundle 'abudden/TagHighlight'
         NeoBundle 'xolox/vim-easytags', { 'external_commands': ['ctags'], }
         " NeoBundle 'basilgor/vim-autotags', { 'external_commands': ['ctags', 'cscope', 'md5sum'] }
@@ -1447,7 +1447,7 @@ endif
         " NeoBundle 'https://bitbucket.org/madevgeny/yate.git'
         " NeoBundle 'brookhong/cscope.vim', {'external_commands': ['cscope']}
         NeoBundle 'NagatoPain/cscope.vim', {'external_commands': ['cscope']}
-        NeoBundle 'vim-scripts/CCTree'
+        " NeoBundle 'vim-scripts/CCTree'
         " NeoBundle 'wesleyche/SrcExpl'
         " NeoBundle 'joonty/vim-taggatron', {'external_commands': ['ctags']}
         " file manager
@@ -1463,15 +1463,9 @@ endif
         " NeoBundle 'troydm/easybuffer.vim'
         NeoBundle 'airblade/vim-rooter'
         " compile & run
-        NeoBundle 'xuhdev/SingleCompile', {
-                    \ 'external_commands': [
-                    \ ],
-                    \ }
+        NeoBundle 'xuhdev/SingleCompile'
         " syntax checker
-        NeoBundle 'scrooloose/syntastic', {
-                    \ 'external_commands': [
-                    \ ],
-                    \ }
+        NeoBundle 'scrooloose/syntastic'
         " search [grep, MRU, files]
         " NeoBundle 'kien/ctrlp.vim'
         " NeoBundle 'wincent/Command-T'
@@ -1520,10 +1514,10 @@ endif
         NeoBundle 'tomtom/tcomment_vim'
         " NeoBundle 'scrooloose/nerdcommenter'
         " NeoBundle 'tpope/vim-commentary'
-        NeoBundle 'mklabs/vim-cowsay', {
-                    \ 'depends': ['tomtom/tcomment_vim'],
-                    \ 'external_commands': ['cowsay'],
-                    \ }
+        " NeoBundle 'mklabs/vim-cowsay', {
+        "             \ 'depends': ['tomtom/tcomment_vim'],
+        "             \ 'external_commands': ['cowsay'],
+        "             \ }
         " Tabular
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
@@ -1533,7 +1527,7 @@ endif
         " NeoBundle 'kablamo/VimDebug'
         " NeoBundle 'skibyte/gdb-from-vim'
         " Task List
-        NeoBundle 'LStinson/TagmaTasks'
+        " NeoBundle 'LStinson/TagmaTasks'
         " NeoBundle 'vim-scripts/TaskList.vim'
         NeoBundle 'TaskMotions', { 'depends': ['vim-scripts/CountJump'] }
         " License
@@ -1542,19 +1536,19 @@ endif
 
         " [ languages ] {{{
         " VimL
-        NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
+        " NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         " NeoBundle 'taichouchou2/vim-rsense'
         " NeoBundle 'vadv/rubycomplete'
-        " NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
+        NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
         NeoBundle 'tpope/vim-rails'
         " NeoBundle 'ujihisa/unite-gem'
         NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
-        NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
-        NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
+        " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
+        " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
         " NeoBundle 'ujihisa/neco-rake', {
         " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
         " 	    \ 'external_commands': ['rake'],
@@ -1589,15 +1583,15 @@ endif
         NeoBundle 'undx/vim-gocode'
         NeoBundle 'jnwhiteh/vim-golang'
         " Lua
-        " NeoBundle 'xolox/vim-lua-ftplugin'
+        NeoBundle 'xolox/vim-lua-ftplugin'
         " NeoBundle 'vim-scripts/lua_omni'
         " NeoBundle 'vim-scripts/luarefvim'
         " NeoBundle 'xolox/vim-lua-inspect'
         " SQL
-        NeoBundle 'vim-scripts/dbext.vim'
+        NeoBundle 'vim-scripts/SQLComplete.vim', {'depends': ['vim-scripts/dbext.vim']}
         NeoBundle 'mattn/vdbi-vim'
         " NoSQL
-        " NeoBundle 'vim-scripts/nosql.vim'
+        NeoBundle 'vim-scripts/nosql.vim'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
         " NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -1612,22 +1606,22 @@ endif
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'skammer/vim-css-color'
-        " Vim runtime files for Haml, Sass, and SCSS
-        " NeoBundle 'tpope/vim-haml'
-        " LESS
-        " NeoBundle 'groenewege/vim-less'
-        " SCSS
-        " NeoBundle 'cakebaker/scss-syntax.vim'
-        " Stylus
-        " NeoBundle 'wavded/vim-stylus'
+            " Vim runtime files for Haml, Sass, and SCSS
+            " NeoBundle 'tpope/vim-haml'
+            " LESS
+            " NeoBundle 'groenewege/vim-less'
+            " SCSS
+            " NeoBundle 'cakebaker/scss-syntax.vim'
+            " Stylus
+            " NeoBundle 'wavded/vim-stylus'
         " JavaScript
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
         NeoBundle 'jelera/vim-javascript-syntax'
-        NeoBundle 'hallettj/jslint.vim'
+        " NeoBundle 'hallettj/jslint.vim'
         " NeoBundle 'walm/jshint.vim'
         " jQuery
-        NeoBundle 'itspriddle/vim-jquery'
+        " NeoBundle 'itspriddle/vim-jquery'
         " JSON
         " NeoBundle 'alfredodeza/jacinto.vim'
         " CoffeeScript
@@ -1651,7 +1645,7 @@ endif
         " NeoBundle 'mattn/lisper-vim'
         " NeoBundle 'paredit.vim'
         " Haskell
-        NeoBundle 'ujihisa/neco-ghc', { 'external_commands': {'unix': 'ghc-mod'} }
+        " NeoBundle 'ujihisa/neco-ghc', { 'external_commands': {'unix': 'ghc-mod'} }
         " NeoBundle 'eagletmt/ghcmod-vim', {
         "             \ 'depends': 'Shougo/vimproc',
         "             \ 'external_commands': {'unix': 'ghc-mod'},
@@ -1659,19 +1653,19 @@ endif
         "             \ }
         " NeoBundle 'dag/vim2hs'
         " Perl
-        NeoBundle 'c9s/perlomni.vim'
+        " NeoBundle 'c9s/perlomni.vim'
         " R
-        " NeoBundle 'jcfaria/Vim-R-plugin', {
-        "             \ 'depends': ['jalvesaq/VimCom'],
-        "             \ }
+        NeoBundle 'jcfaria/Vim-R-plugin', {
+                    \ 'depends': ['jalvesaq/VimCom',],
+                    \ }
         " NeoBundle 'vim-scripts/R.vim'
         " NeoBundle 'vim-scripts/GNU-R'
         " Assembly
-        NeoBundle 'pksunkara/vim-dasm'
+        " NeoBundle 'pksunkara/vim-dasm'
         " Markdown
         NeoBundle 'tpope/vim-markdown'
         " NeoBundle 'suan/vim-instant-markdown'
-        " NeoBundle 'greyblake/vim-preview'
+        NeoBundle 'greyblake/vim-preview'
         " NeoBundle 'jeffbuttars/Vimdown'
         " pacdoc
         " NeoBundle 'vim-pandoc/vim-pandoc'
@@ -1705,12 +1699,12 @@ endif
         " NeoBundle 'vim-scripts/ditaa', {'external_commands': ['ditaa']}
         " IM
         " NeoBundle 'vimim/vimim'
-        NeoBundle 'NagatoPain/vimim', {'rev': 'develop'}
+        NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
         " binary files
-        NeoBundle 'rbtnn/hexript.vim', {
-                    \ 'depends': [ 'Shougo/vimproc', ],
-                    \ 'external_commands': {'unix': 'xxd',},
-                    \ }
+        " NeoBundle 'rbtnn/hexript.vim', {
+        "             \ 'depends': [ 'Shougo/vimproc', ],
+        "             \ 'external_commands': {'unix': 'xxd',},
+        "             \ }
         " NeoBundle 'tpope/vim-afterimage'
         " time
         " NeoBundle 'mnick/vim-pomodoro'
