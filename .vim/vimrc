@@ -1305,13 +1305,13 @@ endif
 
         " [ Vim improve ] {{{
         NeoBundle 'Shougo/vimproc', {
-            \ 'build': {
-                \ 'windows': 'echo "vimproc binary file does not support Windows."',
-                \ 'unix': 'make -f make_unix.mak',
-                \ 'mac': 'make -f make_mac.mak',
-                \ 'cygwin': 'make -f make_cygwin.mak',
-                \ },
-            \ }
+                    \ 'build': {
+                    \ 'windows': 'echo "vimproc binary file does not support Windows."',
+                    \ 'unix': 'make -f make_unix.mak',
+                    \ 'mac': 'make -f make_mac.mak',
+                    \ 'cygwin': 'make -f make_cygwin.mak',
+                    \ },
+                    \ }
         " NeoBundle 'xolox/vim-shell'
         NeoBundle 'Lokaltog/vim-powerline'
         NeoBundle 'tyru/current-func-info.vim'
@@ -1356,10 +1356,10 @@ endif
         " NeoBundle 'nanotech/jellybeans.vim'
         " NeoBundle 'w0ng/vim-hybrid'
         " NeoBundle 'ciaranm/inkpot'
-            " colorsets
-            " NeoBundle 'altercation/solarized'
-            " NeoBundle 'chriskempson/tomorrow-theme'
-            " NeoBundle 'hukl/Smyck-Color-Scheme'
+        " colorsets
+        " NeoBundle 'altercation/solarized'
+        " NeoBundle 'chriskempson/tomorrow-theme'
+        " NeoBundle 'hukl/Smyck-Color-Scheme'
         " Register
         NeoBundle 'tpope/vim-repeat'
         " Motion : text object,
@@ -1400,11 +1400,11 @@ endif
         " NeoBundle 'tomtom/prototype_vim'
         " NeoBundle 'megaannum/self'
         NeoBundle 'mattn/webapi-vim'
-            " NeoBundle 'vim-jp/vital.vim'
-            " NeoBundle 'tomtom/vimtlib'
+        " NeoBundle 'vim-jp/vital.vim'
+        " NeoBundle 'tomtom/vimtlib'
         " NeoBundle 'https://bitbucket.org/ZyX_I/frawor', { 'type': 'hg' }
-            " NeoBundle 'dahu/Chroma'
-            " NeoBundle 'dahu/vimple'
+        " NeoBundle 'dahu/Chroma'
+        " NeoBundle 'dahu/vimple'
         " }}}
 
         " [ program ] {{{
@@ -1414,12 +1414,12 @@ endif
         " help
         NeoBundle 'thinca/vim-ref', {
                     \ 'external_commands': [
-                        \ 'refe', 'pydoc', 'perldoc',
-                        \ 'erl',
-                        \ 'w3m',
-                        \ ]
+                    \ 'refe', 'pydoc', 'perldoc',
+                    \ 'erl',
+                    \ 'w3m',
+                    \ ]
                     \ }
-                    " FIXME 'clj' for Clojure, 'rsense' for Ruby.
+        " FIXME 'clj' for Clojure, 'rsense' for Ruby.
         " NeoBundle 'powerman/vim-plugin-viewdoc', {
         "             \ 'external_commands': ['pydoc', 'perldoc', 'man'],
         "             \ }
@@ -1465,41 +1465,41 @@ endif
         " compile & run
         NeoBundle 'xuhdev/SingleCompile', {
                     \ 'external_commands': [
-                        \ 'ruby', 'python', 'php', 'perl',
-                        \ 'bash', 'zsh', 'sh',
-                        \ 'gcc', 'clang',
-                        \ 'make', 'cmake',
-                        \ 'lua',
-                        \ 'firefox', 'gcj', 'js', 'nodejs', 'gjs',
-                        \ 'clisp', 'gcl',
-                        \ 'ghc',
-                        \ 'escript',
-                        \ 'gfortran',
-                        \ 'markdown',
-                        \ 'latex',
-                        \ ],
+                    \ 'ruby', 'python', 'php', 'perl',
+                    \ 'bash', 'zsh', 'sh',
+                    \ 'gcc', 'clang',
+                    \ 'make', 'cmake',
+                    \ 'lua',
+                    \ 'firefox', 'gcj', 'js', 'nodejs', 'gjs',
+                    \ 'clisp', 'gcl',
+                    \ 'ghc',
+                    \ 'escript',
+                    \ 'gfortran',
+                    \ 'markdown',
+                    \ 'latex',
+                    \ ],
                     \ }
         " syntax checker
         NeoBundle 'scrooloose/syntastic', {
                     \ 'external_commands': [
-                        \ 'zsh', 'bash',
-                        \ 'ruby', 'python', 'flake8', 'php', 'perl',
-                        \ 'clisp',
-                        \ 'go',
-                        \ 'luac',
-                        \ 'gcc', 'clang',
-                        \'g++', 'clang++',
-                        \ 'coffee',
-                        \ 'tidy',
-                        \ 'xmllint',
-                        \ 'lacheck',
-                        \ 'ghc-mod',
-                        \ 'escript',
-                        \ 'gfortran',
-                        \ 'cucumber',
-                        \ 'javac',
-                        \ 'nasm',
-                        \ ],
+                    \ 'zsh', 'bash',
+                    \ 'ruby', 'python', 'flake8', 'php', 'perl',
+                    \ 'clisp',
+                    \ 'go',
+                    \ 'luac',
+                    \ 'gcc', 'clang',
+                    \'g++', 'clang++',
+                    \ 'coffee',
+                    \ 'tidy',
+                    \ 'xmllint',
+                    \ 'lacheck',
+                    \ 'ghc-mod',
+                    \ 'escript',
+                    \ 'gfortran',
+                    \ 'cucumber',
+                    \ 'javac',
+                    \ 'nasm',
+                    \ ],
                     \ }
         " search [grep, MRU, files]
         " NeoBundle 'kien/ctrlp.vim'
@@ -1528,13 +1528,13 @@ endif
         "                     \ ]
         "                 \ ],
         "             \ }
-                    " (optional depends):
-                        " - Command-T
-                        " - ctrlp
-                        " - FuzzyFinder
-                        " - unite
-                        " - ku
-                        " - tlib
+        " (optional depends):
+        " - Command-T
+        " - ctrlp
+        " - FuzzyFinder
+        " - unite
+        " - ku
+        " - tlib
         NeoBundle 'tpope/vim-git'
         NeoBundle 'tpope/vim-fugitive', {'external_commands': ['git']}
         NeoBundle 'gregsexton/gitv', {'external_commands': ['git']}
@@ -1609,8 +1609,8 @@ endif
         NeoBundle 'ehamberg/vim-cute-python', { 'rev': 'moresymbols' }
         " NeoBundle 'alfredodeza/pytest.vim'
         " NeoBundle 'julienr/vimux-pyutils'
-            " Django
-            " NeoBundle 'yodiaditya/vim-pydjango'
+        " Django
+        " NeoBundle 'yodiaditya/vim-pydjango'
         " C / C++(cpp)
         NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
@@ -1641,24 +1641,24 @@ endif
         NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
         NeoBundle 'hail2u/vim-css3-syntax'
         NeoBundle 'skammer/vim-css-color'
-            " Vim runtime files for Haml, Sass, and SCSS
-            " NeoBundle 'tpope/vim-haml'
-            " LESS
-            " NeoBundle 'groenewege/vim-less'
-            " SCSS
-            " NeoBundle 'cakebaker/scss-syntax.vim'
-            " Stylus
-            " NeoBundle 'wavded/vim-stylus'
+        " Vim runtime files for Haml, Sass, and SCSS
+        " NeoBundle 'tpope/vim-haml'
+        " LESS
+        " NeoBundle 'groenewege/vim-less'
+        " SCSS
+        " NeoBundle 'cakebaker/scss-syntax.vim'
+        " Stylus
+        " NeoBundle 'wavded/vim-stylus'
         " JavaScript
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
         NeoBundle 'jelera/vim-javascript-syntax'
         NeoBundle 'hallettj/jslint.vim'
         " NeoBundle 'walm/jshint.vim'
-            " jQuery
-            NeoBundle 'itspriddle/vim-jquery'
-            " JSON
-            " NeoBundle 'alfredodeza/jacinto.vim'
+        " jQuery
+        NeoBundle 'itspriddle/vim-jquery'
+        " JSON
+        " NeoBundle 'alfredodeza/jacinto.vim'
         " CoffeeScript
         " NeoBundle 'kchmck/vim-coffee-script'
         " NeoBundle 'lukaszkorecki/CoffeeTags', {'depends': 'majutsushi/tagbar'}
@@ -1702,11 +1702,11 @@ endif
         " NeoBundle 'suan/vim-instant-markdown'
         " NeoBundle 'greyblake/vim-preview'
         " NeoBundle 'jeffbuttars/Vimdown'
-            " pacdoc
-            " NeoBundle 'vim-pandoc/vim-pandoc'
-            " NeoBundle 'vim-pandoc/vim-pandoc-extras'
-            " Textile
-            " NeoBundle 'timcharper/textile.vim'
+        " pacdoc
+        " NeoBundle 'vim-pandoc/vim-pandoc'
+        " NeoBundle 'vim-pandoc/vim-pandoc-extras'
+        " Textile
+        " NeoBundle 'timcharper/textile.vim'
         " }}}
 
         " [ frameworks ] {{{
