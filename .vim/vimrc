@@ -1339,6 +1339,7 @@ endif
         " NeoBundle 'spolu/dwm.vim'
         " Buffer
         " NeoBundle 'fholgado/minibufexpl.vim'
+        NeoBundle 'LStinson/TagmaBufMgr'
         " NeoBundle 'jeetsukumaran/vim-buffergator'
         " Tab
         " NeoBundle 'kien/tabman.vim'
@@ -1442,6 +1443,7 @@ endif
         NeoBundle 'NagatoPain/vim-easytags', { 'external_commands': ['ctags'],
                     \ 'rev': 'tags_writable',
                     \ 'type__update_style': 'current',
+                    \ 'directory': 'easytags',
                     \ }
         " NeoBundle 'basilgor/vim-autotags', { 'external_commands': ['ctags', 'cscope', 'md5sum'] }
         " NeoBundle 'indexer.tar.gz', {
