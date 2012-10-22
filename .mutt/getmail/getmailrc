@@ -68,7 +68,7 @@ delete_dup_msgids = True
 server = pop.gmail.com
 port = 995
 username = numbchild@gmail.com
-password = PASSWORD
+password = sqhlsflsspssbiqy
 # }}}
 
 # [ IMAP Retriver ] {{{
@@ -123,43 +123,43 @@ verbose = 1
 # Log messages to syslog instead of stdout.
 # message_log_syslog = True
 # message_log = ~/.getmail.log
-# if set, getmail retrieves all available messages. If unset, getmail only 
+# if set, getmail retrieves all available messages. If unset, getmail only
 # retrieves messages it
 # has not seen before. Default: True.
 read_all = False
-# if set, getmail will delete messages after retrieving and successfully 
+# if set, getmail will delete messages after retrieving and successfully
 # delivering them. If
-# unset, getmail will leave messages on the server after retrieving them. 
+# unset, getmail will leave messages on the server after retrieving them.
 # Default: False.
 delete = True
-# if set, getmail will delete messages this number of days after first seeing 
+# if set, getmail will delete messages this number of days after first seeing
 # them, if they have
-# been retrieved and delivered. This, in effect, leaves messages on the server 
-# for a configurable number of days after retrieving them. Note that the delete 
-# parameter has higher priority; if both are set, the messages will be deleted 
+# been retrieved and delivered. This, in effect, leaves messages on the server
+# for a configurable number of days after retrieving them. Note that the delete
+# parameter has higher priority; if both are set, the messages will be deleted
 # immediately. Default: 0, which means not to enable this feature.
 delete_after = 0
-# if set, getmail will retrieve messages totalling up to this number of bytes 
-# before closing the session with the server. This can be useful if you do not 
-# want large messages causing large bursts of network traffic. Default: 0, which 
-# means not to enable this feature.  Note that message sizes reported by the 
-# server are used, and therefore may vary slightly from the actual size on disk 
+# if set, getmail will retrieve messages totalling up to this number of bytes
+# before closing the session with the server. This can be useful if you do not
+# want large messages causing large bursts of network traffic. Default: 0, which
+# means not to enable this feature.  Note that message sizes reported by the
+# server are used, and therefore may vary slightly from the actual size on disk
 # after message retrieval.
 max_bytes_per_session = 0
-# if set, getmail will not retrieve messages larger than this number of bytes.  
+# if set, getmail will not retrieve messages larger than this number of bytes.
 # Default: 0, which means not to enable this feature.
 max_message_size = 0
-# if set, getmail will process a maximum of this number of messages before 
-# closing the session with the server. This can be useful if your network or the 
-# server is particuarly unreliable.  Default: 0, which means not to enable this 
+# if set, getmail will process a maximum of this number of messages before
+# closing the session with the server. This can be useful if your network or the
+# server is particuarly unreliable.  Default: 0, which means not to enable this
 # feature.  =1 to mitigate the duplicates
 max_messages_per_session = 10
-# if set, getmail adds a Delivered-To: header field to the message. If unset, it 
-# will not do so.  Default: True. Note that this field will contain the envelope 
-# recipient of the message if the retriever in use is a multidrop retriever; 
+# if set, getmail adds a Delivered-To: header field to the message. If unset, it
+# will not do so.  Default: True. Note that this field will contain the envelope
+# recipient of the message if the retriever in use is a multidrop retriever;
 # otherwise it will contain the string "unknown".
 delivered_to = True
-# if set, getmail adds a Received: header field to the message. If unset, it 
+# if set, getmail adds a Received: header field to the message. If unset, it
 # will not do so.
 # Default: True.
 received = True
