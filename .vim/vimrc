@@ -1438,7 +1438,11 @@ endif
         NeoBundle 'majutsushi/tagbar', { 'external_commands': ['ctags'], }
         " NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
         " NeoBundle 'abudden/TagHighlight'
-        NeoBundle 'xolox/vim-easytags', { 'external_commands': ['ctags'], }
+        " NeoBundle 'xolox/vim-easytags', { 'external_commands': ['ctags'] }
+        NeoBundle 'NagatoPain/vim-easytags', { 'external_commands': ['ctags'],
+                    \ 'rev': 'tags_writable',
+                    \ 'type__update_style': 'current',
+                    \ }
         " NeoBundle 'basilgor/vim-autotags', { 'external_commands': ['ctags', 'cscope', 'md5sum'] }
         " NeoBundle 'indexer.tar.gz', {
         "             \ 'depends': ['DfrankUtil', 'vimprj'],
