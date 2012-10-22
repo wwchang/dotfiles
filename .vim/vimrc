@@ -3952,7 +3952,7 @@ syntax on
         " }}}
 
         " gf-diff : extend gf and other commands.
-        " Usage: open code file in 'diff' output with 'gf'.
+            " Usage: open code file in 'diff' output with 'gf'.
 
         " svndiff%1881 : show diff signs for svn/git.
 
@@ -4675,6 +4675,7 @@ syntax on
 
             " python_open_module : open the python module on cursor
                 " FIXME cannot open module like from .module import text,
+                " custom in gf-user plugin.
                 " or from kk.jj import text.
                 let g:pom_key_open='<LocalLeader>oo' " open module in the current window
                 let g:pom_key_open_in_win='<LocalLeader>ow' " open module in a new window
@@ -5797,8 +5798,6 @@ syntax on
             nmap <C-M-o>  <Plug>(exjumplist-go-first)
             nmap <M-)>  <Plug>(exjumplist-next-buffer)
             nmap <M-(>  <Plug>(exjumplist-previous-buffer)
-
-        " gf-user: extend 'gf' operation to open code file.
     " }}}
 
     " [ bookmark & mark ] {{{
@@ -7196,6 +7195,29 @@ syntax on
     " }}}
 
     " [ translate ] {{{
+    " }}}
+
+    " [ motions ] {{{
+        " gf-user {{{ provide framework to extend 'gf' operation to open file.
+            " Usage:
+            " functions:
+            "   - gf#user#extend({funcname}, {priority})
+            "       -- register an extension.
+            "   - gf#user#set_priority({funcname}, {priority})
+            "       -- customize the priority for an extension.
+            " key mappings: (support modes: n,v)
+            "   - {lhs}     {rhs} (named key mappings)
+            "   - gf        <Plug>(gf-user-gf)
+            "   - gF        <Plug>(gf-user-gF)
+            "   - <C-w>f    <Plug>(gf-user-<C-w>f)
+            "   - <C-w><C-f> <Plug>(gf-user-<C-w><C-f>)
+            "   - <C-w>F    <Plug>(gf-user-<C-w>F)
+            "   - <C-w>gf   <Plug>(gf-user-<C-w>gf)
+            "   - <C-w>gF   <Plug>(gf-user-<C-w>gF)
+
+            " diff
+                " plugin gf-diff
+        " }}}
     " }}}
 
     " [ format ] {{{
