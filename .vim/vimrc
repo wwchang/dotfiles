@@ -1516,6 +1516,7 @@ endif
         " NeoBundle 'sjl/splice.vim'
         NeoBundle 'ConflictDetection'
         NeoBundle 'ConflictMotions', { 'depends': ['vim-scripts/CountJump'] }
+        " NeoBundle 'junkblocker/patchreview-vim'
         " comment
         NeoBundle 'tomtom/tcomment_vim'
         " NeoBundle 'scrooloose/nerdcommenter'
@@ -1573,6 +1574,7 @@ endif
         " Python
         NeoBundle 'davidhalter/jedi-vim'
         " NeoBundle 'vim-scripts/pythoncomplete'
+        " NeoBundle 'klen/python-mode'
         " NeoBundle 'fs111/pydoc.vim', {'external_commands': ['pydoc']}
         " NeoBundle 'kevinw/pyflakes-vim'
         NeoBundle 'jmcantrell/vim-virtualenv', {'external_commands': ['virtualenv']}
