@@ -4055,7 +4055,6 @@ syntax on
             "let NERDTreeMinimalUI =
             let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 
-
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
 
             " au FileType nerdtree
@@ -7198,13 +7197,14 @@ syntax on
     " }}}
 
     " [ motions ] {{{
-        " gf-user {{{ provide framework to extend 'gf' operation to open file.
+        " gf-user {{{ framework of extend 'gf' operation to open file
             " Usage:
             " functions:
             "   - gf#user#extend({funcname}, {priority})
             "       -- register an extension.
             "   - gf#user#set_priority({funcname}, {priority})
             "       -- customize the priority for an extension.
+            "   - gf#{name}#find
             " key mappings: (support modes: n,v)
             "   - {lhs}     {rhs} (named key mappings)
             "   - gf        <Plug>(gf-user-gf)
@@ -7217,6 +7217,15 @@ syntax on
 
             " diff
                 " plugin gf-diff
+            " python import module file {{{
+            " TODO
+            " 0. reference gf-diff plugin
+            " 1. two style
+            "   - import module
+            "   - from library import module
+            " 2. find module path from Python findfile("{module_name}", '')
+            " }}}
+            "
         " }}}
     " }}}
 
