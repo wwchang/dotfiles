@@ -45,7 +45,7 @@ arguments = ("-f", "%(sender)", "-m", "/home/chris/.mutt/procmail/procmailrc")
 [options]
 verbose = 1
 read_all = False
-delete = False
+delete = True
 delete_after = 0
 max_bytes_per_session = 0
 max_message_size = 0
