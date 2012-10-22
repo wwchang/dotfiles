@@ -138,7 +138,7 @@ delete = True
 # for a configurable number of days after retrieving them. Note that the delete
 # parameter has higher priority; if both are set, the messages will be deleted
 # immediately. Default: 0, which means not to enable this feature.
-delete_after = 0
+delete_after = 5
 # if set, getmail will retrieve messages totalling up to this number of bytes
 # before closing the session with the server. This can be useful if you do not
 # want large messages causing large bursts of network traffic. Default: 0, which
