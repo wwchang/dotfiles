@@ -1357,7 +1357,7 @@ endif
         " NeoBundle 'vim-scripts/AutoClose'
         " NeoBundle 'Raimondi/delimitMate'
         NeoBundle 'kien/rainbow_parentheses.vim'
-        " NeoBundle 'tpope/vim-endwise'
+        NeoBundle 'tpope/vim-endwise'
         " Undo
         NeoBundle 'mbbill/undotree'
         " Colorscheme
