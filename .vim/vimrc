@@ -1558,7 +1558,6 @@ endif
         NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
-        NeoBundle 'tpope/vim-rails'
         " NeoBundle 'ujihisa/unite-gem'
         NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
@@ -1589,8 +1588,6 @@ endif
         NeoBundle 'ehamberg/vim-cute-python', { 'rev': 'moresymbols' }
         " NeoBundle 'alfredodeza/pytest.vim'
         " NeoBundle 'julienr/vimux-pyutils'
-        " Django
-        " NeoBundle 'yodiaditya/vim-pydjango'
         " C / C++(cpp)
         NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
         " NeoBundle 'yandy/vim-omnicppcomplete'
@@ -1696,6 +1693,10 @@ endif
         " [ frameworks ] {{{
         " Android
         " NeoBundle 'pwicks86/eclim-for-vundle'
+        " Ruby on Rails (RoR)
+        " NeoBundle 'tpope/vim-rails'
+        " Django
+        " NeoBundle 'yodiaditya/vim-pydjango'
         " }}}
 
         " [ tools ] {{{
