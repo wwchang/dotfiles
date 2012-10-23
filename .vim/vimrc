@@ -4586,7 +4586,19 @@ syntax on
 
         " [ complete ] {{{
             " jedi-vim {{{ jedi for Vim awesome Python autocomplete
+                " Usage:
                 " set omnifunc=jedi#complete
+                let g:jedi#auto_initialization = 1
+                let g:jedi#goto_command = '<Leader>g'
+                let g:jedi#use_tabs_not_buffers = 1
+                let g:jedi#get_definition_command = '<Leader>d'
+                let g:jedi#related_names_command = '<Leader>n'
+                let g:jedi#rename_command = '<Leader>r'
+                let g:jedi#popup_on_dot = 1 " do not auto select first candidate
+                let g:jedi#pydoc = 'K' " pydoc mapping
+                let g:jedi#show_function_definition = 1 " show function def when completion
+                let g:jedi#function_definition_escape = '≡'
+                let g:jedi#auto_close_doc = 1
             " }}}
 
             " pythoncomplete {{{ updated version of python omni completion
