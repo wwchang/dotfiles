@@ -2301,8 +2301,9 @@ syntax on
             " buffer_complete            -> [B] {buffername}
             " syntax_complete            -> [S] {syntax-keyword}
             " include_complete           -> [FI] or [I]
-            " snippets_complete          -> [Snip] (none placeholders) or
-            "                               <Snip> (contains placeholders)
+            " snippets_complete          -> [Snip] (none placeholder or one) or
+            "                               <Snip> (multiple placeholders)
+            "                               you must jump
             " vim_complete               -> [vim] type
             " omni_complete              -> [O]
             " tags_complete              -> [T]
