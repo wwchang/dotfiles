@@ -1062,35 +1062,6 @@ endif
     endfunction
     " }}}
 
-    " [ tags ] {{{
-        " ctagsloader {{{
-        " This script will automatically traverse your path tree from the
-        " current directory all the way to root and load tags files found along
-        " the way.
-        function! SetCTags()
-            let curdir = split(substitute(system('pwd'), "\n", "", ""), "/")
-            let ctagdir = ""
-            for folder in curdir
-                let ctagdir .= "/" . folder
-                let ctagfile = substitute(system('ls ' . ctagdir . '/tags'), "\n", "", "")
-                if match(ctagfile, "^.*tags$") != -1
-                    execute 'autocmd BufEnter * :setlocal tags+=' . ctagfile
-                else
-                    let ctagfile = substitute(system('ls ' . ctagdir . '/TAGS'), "\n", "", "")
-                    if match(ctagfile, "^.*TAGS$") != -1
-                        execute 'autocmd BufEnter * :setlocal tags+=' . ctagfile
-                    endif
-                endif
-            endfor
-            unlet ctagdir
-            unlet ctagfile
-            unlet curdir
-        endfunc
-
-        " call SetCTags()
-        " }}}
-    " }}}
-
     " [ translate ] {{{
     nnoremap <silent> <Leader>d :!sdcv <cword><CR>
     vnoremap <silent> <Leader>d y:!sdcv <C-R>"<CR>
