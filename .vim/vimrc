@@ -2162,11 +2162,12 @@ syntax on
             " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
             " buffer local source, In command-line window, only use 'vim_complete' source.
             autocmd CmdwinEnter * let b:neocomplcache_sources_list = ['vim_complete']
-            if !exists('g:neocomplcache_source_disable')
-                let g:neocomplcache_source_disable = {}
+            if !exists('g:neocomplcache_disabled_sources_list')
+                let g:neocomplcache_disabled_sources_list = {}
             endif
-            " let g:neocomplcache_source_disable['dictionary_complete'] = 1
-            let g:neocomplcache_source_disable['clang_complete'] = 1 " avoid clang's error
+            let g:neocomplcache_disabled_sources_list['c'] = ['clang_complete'] " avoid clang_complete error
+            let g:neocomplcache_disabled_sources_list['ruby'] = ['dictionary_complete']
+            let g:neocomplcache_disabled_sources_list['python'] = ['dictionary_complete']
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
