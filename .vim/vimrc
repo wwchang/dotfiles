@@ -1635,10 +1635,10 @@ endif
         NeoBundle 'jelera/vim-javascript-syntax'
         " NeoBundle 'hallettj/jslint.vim'
         " NeoBundle 'walm/jshint.vim'
-        " jQuery
-        " NeoBundle 'itspriddle/vim-jquery'
-        " JSON
-        " NeoBundle 'alfredodeza/jacinto.vim'
+            " jQuery
+            " NeoBundle 'itspriddle/vim-jquery'
+            " JSON
+            " NeoBundle 'alfredodeza/jacinto.vim'
         " CoffeeScript
         " NeoBundle 'kchmck/vim-coffee-script'
         " NeoBundle 'lukaszkorecki/CoffeeTags', {'depends': 'majutsushi/tagbar'}
