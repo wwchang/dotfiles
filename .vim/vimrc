@@ -4588,7 +4588,7 @@ syntax on
                 let g:jedi#related_names_command = '<Leader>n'
                 let g:jedi#rename_command = '<Leader>r'
                 let g:jedi#popup_on_dot = 0 " not auto select first candidate for neocomplcache
-                let g:jedi#pydoc = 'K' " pydoc mapping
+                let g:jedi#pydoc = '' " 'K', pydoc mapping
                 let g:jedi#show_function_definition = 1 " show function def when completion
                 let g:jedi#function_definition_escape = '≡'
                 let g:jedi#auto_close_doc = 1
