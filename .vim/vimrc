@@ -40,11 +40,6 @@
 " endfor
 " }}}
 
-" [[ DISPLAY ]] {{{
-if $DISPLAY != ""
-endif
-" }}}
-
 " [[ Vim Settings ]] {{{
     " vimrc set options howto
     " :help options.txt, :options/:browse set, to show all setted options.
@@ -71,6 +66,11 @@ endif
     set ttybuiltin " on: the builtin termcaps are searched before external ones.
     set ttyscroll=100 " small number to speed up displaying.
     set ttyfast " for tmux, screen. when TERM=screen, rxvt etc.
+    " }}}
+
+    " [ DISPLAY ] {{{
+    if $DISPLAY != ""
+    endif
     " }}}
 
     " [ system detection ] {{{
@@ -902,9 +902,6 @@ endif
 
     " help/doc/reference {{{
     " }}}
-
-    " reformat paragraph
-    nnoremap <silent> Q gqap
 
     " / ? search {{{
     " very magic regex in search with '\v', and always enable 'hlsearch' before search
