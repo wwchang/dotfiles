@@ -1680,6 +1680,10 @@ endif
         " NeoBundle 'vim-pandoc/vim-pandoc-extras'
         " Textile
         " NeoBundle 'timcharper/textile.vim'
+        " XQuery
+        " NeoBundle 'dlam26/xqueryvim'
+        " NeoBundle 'coledarr/vim-xqmarklogic'
+        " NeoBundle 'actionshrimp/vim-xpath'
         " }}}
 
         " [ frameworks ] {{{
@@ -5621,10 +5625,13 @@ syntax on
     " }}}
 
     " [ XQuery ] {{{
-        " XQuery-indentomnicompleteftplugin {{{ indent/omnicomplete/ftplugin
+        " xqueryvim {{{ indent/omnicomplete/ftplugin
         " }}}
 
         " vim-xqmarklogic {{{ ftplugin to run an xquery against a MarkLogic server
+        " }}}
+
+        " vim-xpath {{{ XPath search plugin for Vim
         " }}}
     " }}}
 " }}}
