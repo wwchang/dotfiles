@@ -3931,8 +3931,8 @@ syntax on
             "       - --all
             "       - <since>..<until>
             "       - --merges
-            "       - -S<string>
-            "       - -G<regex>
+            "       - -S<string> -- search literal text
+            "       - -G<regex> -- search with regex
             "   - back to working revision file
             "       press <Enter> on top line:
             "       -- [filename] --
