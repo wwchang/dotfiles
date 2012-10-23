@@ -5591,21 +5591,30 @@ syntax on
 " }}}
 
 " [ Frameworks ] {{{
-    " [ Android ] {{{
-        " Eclim {{{ bring Eclipse functionality to Vim support various languages
-            " code complete: <C-X><C-U>
-            " :Validate/:w to check syntax error.
+    " [ Mobile ] {{{
+        " [ Android ] {{{
+            " Eclim {{{ bring Eclipse functionality to Vim support various languages
+                " code complete: <C-X><C-U>
+                " :Validate/:w to check syntax error.
+            " }}}
         " }}}
     " }}}
 
-    " [ RoR: Ruby on Rails ] {{{
+    " [ Web ] {{{
+        " [ RoR: Ruby on Rails ] {{{
+        " }}}
+
+        " [ Django ] {{{
+        " }}}
     " }}}
 
-    " [ Qt ] {{{
-    " }}}
+    " [ GUI ] {{{
+        " [ Qt ] {{{
+        " }}}
 
-    " [ Gtk ] {{{
-    " gtk-vim-syntax : Syntax highlighting for GLib, Gtk+, Xlib, Gimp, Gstreamer, and more.
+        " [ Gtk ] {{{
+        " gtk-vim-syntax : Syntax highlighting for GLib, Gtk+, Xlib, Gimp, Gstreamer, and more.
+        " }}}
     " }}}
 " }}}
 
