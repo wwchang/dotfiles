@@ -1973,12 +1973,7 @@ syntax on
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " wildcard '*', '-' for input-saving
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
-            " 1: 'InsertCharPre' event, version >= 7.3.461
-            if v:version == 703 && has("patch461")
-                let g:neocomplcache_enable_insert_char_pre = 1
-            else
-                let g:neocomplcache_enable_insert_char_pre = 0
-            endif
+            let g:neocomplcache_enable_insert_char_pre = 1 " 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
@@ -4307,6 +4302,14 @@ syntax on
         " }}}
     " }}}
 
+    " [ regexp ] {{{ Regular Expression
+        " VimRegEx {{{ Regular Expression Developer for Vim
+            " Usage:
+            " :Vimrex -- opens within the current vim session.
+            " :VimRegEx -- starts a new vim.
+        " }}}
+    " }}}
+
     " [ Ruby ] {{{
         let ruby_operators = 1 " highlight operations
         let ruby_space_errors = 1 " highlight space errors
@@ -4495,19 +4498,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ regexp ] {{{ Regular Expression
-        " VimRegEx {{{ Regular Expression Developer for Vim
-            " Usage:
-            " :Vimrex -- opens within the current vim session.
-            " :VimRegEx -- starts a new vim.
-        " }}}
-    " }}}
-
     " [ Python ] {{{
-        " if has('python3/dyn') || has('python/dyn')
-        "             \ || has('python3') || has('python')
-        " endif
-
         " [ IDE ] {{{
             " Python-mode-klen {{{ Python IDE.
                 " K: doc <C-space>: Rope autocomp
