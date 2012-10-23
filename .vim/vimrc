@@ -2036,6 +2036,7 @@ syntax on
             endif
             " . -> methods, :: -> class method, # -> instance method.
             let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
+            let g:neocomplcache_force_omni_patterns['python'] = '[^. \t]\.\w*'
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
@@ -4585,7 +4586,7 @@ syntax on
                 let g:jedi#get_definition_command = '<Leader>d'
                 let g:jedi#related_names_command = '<Leader>n'
                 let g:jedi#rename_command = '<Leader>r'
-                let g:jedi#popup_on_dot = 1 " do not auto select first candidate
+                let g:jedi#popup_on_dot = 0 " not auto select first candidate for neocomplcache
                 let g:jedi#pydoc = 'K' " pydoc mapping
                 let g:jedi#show_function_definition = 1 " show function def when completion
                 let g:jedi#function_definition_escape = '≡'
