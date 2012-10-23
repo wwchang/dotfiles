@@ -7049,7 +7049,7 @@ syntax on
             " Commands: ':Engspchk'
             " Keys:
             "   - <leftmouse>/<rightmouse>/<middlemouse>.
-            set mouse=n
+            " set mouse=n
             let g:spchkmouse = 1
             let g:spchkautonext = 1
             let g:spchkdialect = "usa" " 'usa', 'can', 'uk'
