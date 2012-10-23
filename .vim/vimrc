@@ -3871,6 +3871,28 @@ syntax on
             " Usage:
             "   - :Git[!] [args]
             "   - :Gstatus
+            "       - <C-n/p> -- next/previous file
+            "       - <CR>  -- :Gedit
+            "       - -     -- :Git add
+            "       - -     -- :Git reset (staged files)
+            "       - C     -- :Gcommit
+            "       - cA    -- :Gcommit --amend --reuse-message=HEAD
+            "       - ca    -- :Gcommit --amend
+            "       - cc    -- :Gcommit
+            "       - cva   -- :Gcommit --amend --verbose
+            "       - cvc   -- :Gcommit --verbose
+            "       - D     -- :Gdiff
+            "       - ds    -- :Gsdiff
+            "       - dv    -- :Gvdiff
+            "       - dp    -- :Git! diff (p for patch; use :Gw to apply)
+            "       - dp    -- :Git add --intent-to-add (untracked files)
+            "       - o     -- :Gsplit
+            "       - O     -- :Gtabedit
+            "       - p     -- :Git add --patch
+            "       - p     -- :Git reset --patch (staged files)
+            "       - q     -- close status
+            "       - R     -- reload status
+            "       - S     -- :Gvsplit
             "   - :Gcommit [args]
             "   - :Gedit/:Gsplit/:Gvsplit/:Gtabedit/:Gpedit [revision]
             "   - :Gwrite/:Gwq {path}
