@@ -2028,9 +2028,10 @@ syntax on
             " }}}
             " omni patterns {{{
             " every filetype or 'omnifunc' need omni_patterns setted, if not
-            " setted, neocomplcache will not call omnifunc. partial omnifunc has
-            " problem when neocomplcache call. (e.g. rubycomplete, clang_complete).
-            " so you should use force_omni_patterns instead.
+            " setted, neocomplcache will not call omnifunc.
+            " - omni_patterns is neocomplcache calls omnifunc
+            " - force_omni_patterns is fallback to Vim calls omnifunc,
+            "   most neocomplcache features are disabled.
             if !exists('g:neocomplcache_force_omni_patterns')
                 let g:neocomplcache_force_omni_patterns = {}
             endif
