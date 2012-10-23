@@ -2160,6 +2160,8 @@ syntax on
             endif
             " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
             " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
+            " buffer local source, In command-line window, only use 'vim_complete' source.
+            autocmd CmdwinEnter * let b:neocomplcache_sources_list = ['vim_complete']
             if !exists('g:neocomplcache_source_disable')
                 let g:neocomplcache_source_disable = {}
             endif
@@ -2183,9 +2185,6 @@ syntax on
             " TODO
             let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
             let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
-            " buffer local source
-            " In command-line window, only use 'vim_complete' source.
-            autocmd CmdwinEnter * let b:neocomplcache_sources_list = ['vim_complete']
             " }}}
             " same filetypes {{{
             " a dictionary to connect file type mutually.
