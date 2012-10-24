@@ -1510,6 +1510,7 @@ endif
         " SQL
         NeoBundle 'vim-scripts/SQLComplete.vim', {'depends': ['vim-scripts/dbext.vim']}
         NeoBundle 'mattn/vdbi-vim'
+        NeoBundle 'git@github.com:NagatoPain/AutoSQLUpperCase.vim.git'
         " NoSQL
         NeoBundle 'vim-scripts/nosql.vim'
         " HTML
