@@ -5120,19 +5120,19 @@ syntax on
             " [Optional extensions]
             " extension scripts under the 'autoload/js/' will be loaded with set
             " list to 'g:jscomplete_use' or 'b:jscomplete_use' in ~/.vimrc
-            " dom: adding DOM keywords completion.
-            " moz: Mozilla JavaScript keywords.
-            " xpcom: Mozilla XPCOM component keywords.
-            " es6th: ECMAScript keywords.
-            let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th',]
+            "   - dom: adding DOM keywords completion.
+            "   - moz: Mozilla JavaScript keywords.
+            "   - xpcom: Mozilla XPCOM component keywords.
+            "   - es6th: ECMAScript keywords.
             " :JSCompleteUse for loading jscomplete's extensions.
             " :JSCompleteUse [<pluginName>, ...]
             " show loaded and non-loaded extensions if omitted arguments
             "   + => loaded extensions.
             "   - => non-loaded extensions.
+            let g:jscomplete_use = ['dom', 'moz', 'xpcom', 'es6th',]
         " }}}
 
-        " jshint.vim : Vim plugin and command line tool for running JSLint.
+        " jslint.vim : Vim plugin and command line tool for running JSLint.
             " :JSLintUpdate
             let g:JSLintHighlightErrorLine = 1
 
