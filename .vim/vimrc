@@ -1596,6 +1596,8 @@ endif
         " NeoBundle 'dlam26/xqueryvim'
         " NeoBundle 'coledarr/vim-xqmarklogic'
         " NeoBundle 'actionshrimp/vim-xpath'
+        " JSON
+        NeoBundle 'vim-scripts/JSON.vim'
         " }}}
 
         " [ frameworks ] {{{
