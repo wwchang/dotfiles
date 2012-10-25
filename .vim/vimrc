@@ -853,7 +853,6 @@ endif
 " }}}
 
 " [[ mappings ]] {{{
-
     " F1~12 {{{
     function! ShowFuncKeys(bang)
         for i in range(1,12)
@@ -867,6 +866,22 @@ endif
     endfunction
     com! -bang ShowFuncKeys :call ShowFuncKeys(<q-bang>)
     ":ShowFuncKeys
+    " }}}
+
+    " [ ins-completion ] {{{ C-n/p, CTRL-E: stop, CTRL-Y: accept.
+    " i_CTRL-X_CTRL-L               -- whole lines
+    " i_CTRL-X_CTRL-N               -- keywords in current file
+    " i_CTRL-X_CTRL-K               -- keywords in dictionary
+    " i_CTRL-X_CTRL-T               -- keywords in thesaurus, thesaurus-style
+    " i_CTRL-X_CTRL-I               -- keywords in the current and included files
+    " i_CTRL-X_CTRL-]               -- tags
+    " i_CTRL-X_CTRL-F               -- file names
+    " i_CTRL-X_CTRL-D               -- definitions or macros
+    " i_CTRL-X_CTRL-V               -- vim command-line
+    " i_CTRL-X_CTRL-U               -- user defined completion
+    " i_CTRL-X_CTRL-O               -- omni completion
+    " i_CTRL-X_s                    -- spelling suggestions
+    " i_CTRL-N                      -- keyword in 'complete'
     " }}}
 
     " windows navigation {{{
@@ -929,22 +944,6 @@ endif
     " speed up pressing
     " inoremap jk <esc>
     " inoremap <esc> <nop> " (no operation)
-
-    " [ ins-completion ] {{{ C-n/p, CTRL-E: stop, CTRL-Y: accept.
-    " i_CTRL-X_CTRL-L               -- whole lines
-    " i_CTRL-X_CTRL-N               -- keywords in current file
-    " i_CTRL-X_CTRL-K               -- keywords in dictionary
-    " i_CTRL-X_CTRL-T               -- keywords in thesaurus, thesaurus-style
-    " i_CTRL-X_CTRL-I               -- keywords in the current and included files
-    " i_CTRL-X_CTRL-]               -- tags
-    " i_CTRL-X_CTRL-F               -- file names
-    " i_CTRL-X_CTRL-D               -- definitions or macros
-    " i_CTRL-X_CTRL-V               -- vim command-line
-    " i_CTRL-X_CTRL-U               -- user defined completion
-    " i_CTRL-X_CTRL-O               -- omni completion
-    " i_CTRL-X_s                    -- spelling suggestions
-    " i_CTRL-N                      -- keyword in 'complete'
-    " }}}
 " }}}
 
 " [[ commands ]] {{{
@@ -960,7 +959,6 @@ endif
 " you can call function with ":source file.vim" then ":call"
 
     " [ <Tab> completion ] {{{
-        " SuperCleverTab() for omni-completion or insert <Tab>
         function! MyTabComplete()
             if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
                 return "\<Tab>"
@@ -970,7 +968,8 @@ endif
                     return "\<C-X>\<C-O>"
                 " use dictionary option with /usr/share/dict/words
                 elseif &dictionary != ''
-                    return "<C-X>\<C-K>"
+                    return "\<C-X>\<C-K>"
+                " select next candidate
                 else
                     return "\<C-X>\<C-N>"
                 endif
@@ -1978,7 +1977,7 @@ syntax on
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
-            " jedi#complete             -- plugin jedi-vim omni
+            " jedi#complete             -- plugin jedi-vim omni use jedi python autocomplete
             if has('python3/dyn') || has('python3')
                 let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
             elseif has('python/dyn') || has('python')
@@ -2270,18 +2269,19 @@ syntax on
             " }}}
 
             " [ key mappings ] {{{
-                " <Tab> -- complete or jump in snippet placeholder.
-                " <C-j> -- next popup selection or jump forwards in snippet placeholder
-                " <C-k> -- prev popup selection or jump backward in snippet placeholder
-                " <C-n> -- next popup selection.
-                " <C-p> -- prev popup selection.
+                " <Tab> -- start complete or jump in snippet placeholder.
+                " <C-n> -- [n]ext popup selection.
+                " <C-p> -- [p]revious popup selection.
+                " <C-j> -- jump forwards in snippet placeholder
+                " <C-k> -- jump backward in snippet placeholder
                 " <C-o> -- manual omni complete.
-                " <C-y> -- smart close popup.
-                " <C-e> -- cancel popup.
+                " <C-y> -- [y]es, smart close popup.
+                " <C-e> -- [e]nd, cancel popup.
                 " <C-g> -- undo completion.
                 " <C-h> -- smart close popup.
                 " <C-l> -- common string complete.
                 " <BS>  -- smart close popup.
+                " <CR>  -- choose selected candidate and close popup.
 
                 inoremap <expr> <C-x><C-f> neocomplcache#manual_filename_complete()
                 inoremap <expr> <C-o> neocomplcache#manual_omni_complete()
@@ -2293,7 +2293,7 @@ syntax on
                 " dot candidate can not auto popup in next string after dot.
                 " without ."\<C-h>"
                 inoremap <expr> <C-h> neocomplcache#smart_close_popup()
-                inoremap <expr> <BS>  neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr> <BS>  neocomplcache#smart_close_popup() . "\<C-h>"
 
                 " <CR>: close popup and save indent.
                 " inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
