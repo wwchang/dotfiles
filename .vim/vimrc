@@ -934,6 +934,29 @@ endif
     nnoremap <Leader>nh :nohlsearch<CR>
     " }}}
 
+    " tags {{{
+    " TODO
+    fun! TagQuery(type, query) abort
+        try
+            " 1. like default <C-]> directly jump to tag.
+            exec ":tag " . a:type . a:query
+            " 2. use :tselect or other command, check whether has multiple tags.
+            " if has, then open quickfix or location-list window.
+            " 3. :ptag -> open in preview window
+            " 4. open tag in a horizontal window. also jump to split window
+            " directly, set this split window with special, map 'q' to close window.
+            " :stag / :stselect
+            " 5. set option to select upper different styles.
+        " catch E426: tag not found: a.query
+        catch /^Vim\%((\a\+)\)\=:E426/	" catch error E123
+            echohl WarningMsg | echomsg "tag query failed" | echohl None
+        endtry
+    endfun
+
+    nnoremap <C-]> :call TagQuery('', expand('<cword>'))<CR>
+    vnoremap <C-]> y:call TagQuery('', @")<CR>
+    " }}}
+
     " NOTICE use nonrecursive mapping.
     " Each of the *map commands has a *noremap counterpart that ignores other mappings
     " nnoremap, vnoremap, and inoremap. onoremap(operator).
