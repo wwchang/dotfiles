@@ -2315,6 +2315,9 @@ syntax on
 
                 " ------------------------------------------------------------
                 " { neosnippet } {{{
+                " imap <expr> <Tab> neosnippet#expandable() ?
+                "             \ "\<Plug>(neosnippet_expand)"
+                "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
                 " }}}
 
                 " { UltiSnips } {{{
@@ -2462,7 +2465,7 @@ syntax on
             " expand snippet trigger
             imap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand)"
-                        \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                        \ : "\<Tab>"
             " jump to next placeholder
             smap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand_or_jump)"
