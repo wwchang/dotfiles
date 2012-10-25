@@ -1000,7 +1000,8 @@ endif
         endfunction
 
         if !hasmapto('<Tab>')
-            inoremap <Tab> <C-R>=MyTabComplete()<cr>
+            " inoremap <Tab> <C-R>=MyTabComplete()<cr>
+            inoremap <expr> <Tab> MyTabComplete()
         endif
     " }}}
 
