@@ -1011,12 +1011,12 @@ endif
                 :w
             endfunction
 
+            " let scriptExecutionList = ['sh', 'rb', 'py', 'pl']
+
             augroup ScriptExecutePermission
                 autocmd!
+                " autocmd BufWritePost *.[sh|rb|py|pl] :call ScriptExecute()
                 autocmd BufWritePost *.sh :call ScriptExecute()
-                " autocmd BufWritePost *.rb :call ScriptExecute()
-                " autocmd BufWritePost *.py :call ScriptExecute()
-                " autocmd BufWritePost *.pl :call ScriptExecute()
             augroup END
         " }}}
     " }}}
