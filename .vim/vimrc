@@ -961,7 +961,7 @@ endif
 
     " [ <Tab> completion ] {{{
         " SuperCleverTab() for omni-completion or insert <Tab>
-        function! SuperCleverTab()
+        function! MyTabComplete()
             if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
                 return "\<Tab>"
             else
@@ -978,7 +978,7 @@ endif
         endfunction
 
         if !hasmapto('<Tab>')
-            inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+            inoremap <Tab> <C-R>=MyTabComplete()<cr>
         endif
     " }}}
 
