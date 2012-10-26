@@ -23,10 +23,12 @@ unignore User-Agent
 unignore X-Junked-Because
 unignore X-SpamProbe
 unignore X-Virus-hagbard
+# bogofilter line
+unignore X-Bogosity
 unignore X-PGP-Key-ID
 
 # Now order the visable header lines
-hdr_order From To Subject CC BCC Reply-To Mail-Followup-To Date Organization Newsgroups User-Agent X-Mailer X-PGP-Key-ID
+hdr_order From To Subject CC BCC Reply-To Mail-Followup-To Date Organization Newsgroups User-Agent X-Mailer X-Bogosity X-PGP-Key-ID
 
 # set from = 'stardiviner <numbchild@gmail.com>'
 # set different from information when replying according to accounts

@@ -1,4 +1,6 @@
-" indent
+" syntax
+
+"  indent
 setlocal expandtab
 setlocal tabstop=2 shiftwidth=2 softtabstop=2
 setlocal autoindent
@@ -6,4 +8,5 @@ setlocal autoindent
 " help (K)
 setlocal keywordprg=ri
 
-" setlocal omnifunc=rubycomplete#Complete
+" omni
+setlocal omnifunc=rubycomplete#Complete

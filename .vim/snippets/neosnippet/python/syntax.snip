@@ -1,0 +1,138 @@
+# header {{{
+snippet     #!
+abbr        #!/usr/bin/env python
+alias		env
+options		head
+	#!/usr/bin/env python
+	# encoding: utf-8
+
+	${0}
+# }}}
+
+# import {{{
+snippet     import
+abbr        import {library}
+alias		i
+options		head
+	import ${1:module/library/package}
+
+snippet     from
+abbr        from {module} import {objects}
+options		head
+	from ${1:module/library/package} import ${2:objects}
+# }}}
+
+# Docstring {{{
+snippet     docs
+abbr        docstring
+options		head
+	'''${1:The short first line.}
+
+	${2:the rest Docsting.}'''
+	${0}
+
+snippet     docs short
+abbr        short Docstring
+options		head
+	'''${1:The short first line.}
+	${2:rest}'''
+
+snippet     docs long
+abbr        long Docstring
+options		head
+	'''${1:The short first line.}
+
+	${2:the rest Docsting.}'''
+	${0}
+# }}}
+
+# control flow {{{
+# if
+
+# while
+
+# for
+
+# with
+snippet     with
+abbr        with {condition}: ...
+options     head
+	with ${1:condtion}:
+		${2:statements}
+
+# try .. except
+snippet     try except
+abbr        try .. except ..
+options		head
+	try:
+		${1:statements}
+	except ${2:Exceptions}:
+		${3:statements}
+
+snippet     try except > finally
+abbr        try: .. except: .. finally: ..
+options		head
+	try:
+		${1:statements}
+	except ${2:Exceptions}:
+		${3:statements}
+	finally:
+		${4:statements}
+# }}}
+
+# function {{{
+snippet     def
+abbr        def func(*args, **kwargs): ...
+alias		func,function
+options		head
+	def ${1:funcName}(${2:*args, **kwargs}):
+		${3:pass}
+# }}}
+
+# class {{{
+#snippet     class
+#abbr        class Class(Class): """Docstring""" + def __init__(self, ):
+#options	head
+#	class ${1:Name}(${2:Classes}):
+#		"""${3:class Docstring}"""
+#		def __init__(self, ${4}):
+#			"""${5:__init__ Docstring}"""
+#			${6:pass}
+#
+#		${0}
+# }}}
+
+# statements {{{
+# lambda
+snippet     lambda
+abbr        var = lambda vars : expr
+	${1:var} = lambda ${2:vars} : ${3:action}
+	${0}
+
+# decorator
+snippet     decorator
+abbr        @decorator(args) > def func: ...
+options		head
+	@${1:decorator}${2:(${3:arguments\})}
+	${4:@${5:second decorator\}${6:(arguments)\}}
+	def ${7:function}(${8:arguments}):
+		${9:statements}
+# }}}
+
+# [ data types ] {{{
+snippet     list
+abbr        [1, 2, 3]
+	[${1:item1}${2:, ${3:item2\}}]
+snippet     tuple
+abbr        (1, 2, 3)
+	(${1:item1}${2:, ${3:item2\}})
+snippet     dictionary
+abbr        {'one': 1, 'two': 2}
+alias       dict
+	{${1:key}: ${2:value}, ${3:key\}: ${4:value}}
+snippet     set
+abbr        {1, 2, 3}
+	{${1:item1}, ${2:item2}}
+# }}}
+
+# vim:fdm=marker:fmr={{{,}}}:noexpandtab

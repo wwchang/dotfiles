@@ -1,0 +1,36 @@
+snippet     print
+abbr        print()
+alias		p
+	print(${1})
+
+snippet     return
+abbr        return ...
+alias       r
+	return ${1}
+
+snippet     Docstring File Docstring
+abbr        File Docstring -> Author: File: Date:
+options		head
+	'''
+	Author: stardiviner${1}
+	File: ${2:filename}
+	Date: `strftime("%d %b %Y")`
+	'''
+
+snippet     if main
+abbr        if __name__ == "__main__": ...
+options		head
+	if __name__ == "__main__":
+		${1:main()}
+
+snippet     if --help
+abbr        if len(sys.argv) == 1 or .. "-h", "--help"
+options		head
+	if len(sys.argv) == 1 or sys.argv[1] in {"-h", "--help"}:
+		print("Usage: {0} ${1:file1 [file2 [... fileN]]}").format(sys.argv[0])
+		sys.exit()
+
+	args = sys.argv[1:]
+	${0}
+
+# vim:fdm=marker:fmr={{{,}}}:noexpandtab
