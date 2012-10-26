@@ -1,10 +1,5 @@
 " Author: stardiviner ( numbchild at gmail dot com )
 
-" TODO
-" :e ftplugin/example.template
-" :help ftplugin
-" write some language specified filetype settings into ftplugin/
-
 " [[ vimrc structure ]] {{{
 " .vimrc -- global settings
 " .vim/
@@ -2130,7 +2125,6 @@ syntax on
             let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
-            " TODO
             let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
             let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
             " }}}
@@ -2847,7 +2841,6 @@ syntax on
             " - AutotagsUpdate()
             " - AutotagsAdd()
             " - AutotagsRemove()
-            " FIXME make this automatically or create a command for it.
             " command! -nargs=? AutotagsUpdate :call AutotagsUpdate()<CR>
             let g:autotagsdir = $HOME."/tmp/vim/tags/autotags.vim"
             let g:autotags_global = $HOME . "/.autotags/global_tags"
@@ -3347,14 +3340,6 @@ syntax on
                         \ 'vimMzSchemeRegion': 'scheme',
                         \ 'vimPerlRegion': 'perl',
                         \ }
-            "\ 'VimwikiPre': '??'
-            " FIXME how to define 'vimwikiRubyRegion' etc ? for use in
-            " vimwiki embed syntax ?
-            " the dictionary key is a syntax group defined by vimwiki.
-            " so you need to add code to syntax file.
-            " you can write a function to get filetype from context, and
-            " treat it as function parameter.
-            " write this function at here.
             " let g:tcomment#replacements_c = {} " replacement for c filetype
             " let g:tcommentBlockC = {} " generic c-like block comments.
             " let g:tcommentBlockC2 = {} " generic c-like block comments (alternative markup)
@@ -4224,10 +4209,6 @@ syntax on
                         \ 'Rakefile', 'Makefile',
                         \ ]
             let g:rooter_use_lcd = 0 " use :lcd to locally
-
-            " TODO implement this in VimL
-            " Recursively add directories from a project with *.h in them to user_options
-            " au FileType c,cpp let g:clang_user_options = "-I" . system("find . -print0 -iname *.h | xargs -0 -r -n 1 dirname | grep -v .git | sort -u | sed ':a;N;$!ba;s/\n/ -I/g'")
         " }}}
     " }}}
 " }}}
@@ -4417,7 +4398,6 @@ syntax on
 
         " unite-gem {{{ A Unite plugin for RubyGems (search)
             " :Unite gem -input=
-            " XXX very slow
         " }}}
 
         " rbrepl.vim {{{ allows you to run a Ruby REPL inside a VIM buffer.
@@ -5041,7 +5021,6 @@ syntax on
                 "   - Support microdata
                 "   - Support RDFa.
                 "   - Support WAI-ARIA.
-                " TODO learn upper features reference can find link in script readme.
                 " enable event-handler attributes support:
                 let g:html5_event_handler_attributes_complete = 1
                 " enable RDFa attributes support:
@@ -6460,7 +6439,6 @@ syntax on
             "   - ? -- is help buffer
             "   - $ -- is quickfix or location-list buffer
             "   - & -- buffer is not loaded, not displayed in a window.
-            " TODO :help TagmaBufMgr
             let g:TagmaBufMgrAutoDisplay = 1 " auto display
             let g:TagmaBufMgrBufferNumbers = 1 " show buffer number
             let g:TagmaBufMgrCloseSelect = 0 " close buffer when selected.
