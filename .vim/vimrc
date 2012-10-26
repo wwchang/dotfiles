@@ -212,12 +212,11 @@
     set tagrelative
     " }}}
 
-    " [ cscope ] {{{
-    "	    <C-\> [s/g/d/c/t/e/f/i]
-    " :cscope [add/find/kill/reset/show], :scscope (split), :lcscope, :cstag,
-    " ------------
+    " [ cscope ] {{{ <C-\> [s/g/d/c/t/e/f/i]
     "	$ cscope -b -- build up cscope database for source code.
     "	$ cscope -R -- recursively
+    " ------------
+    "   :cscope [add/find/kill/reset/show], :scscope (split), :lcscope, :cstag,
     "	:cscope add cscope.out -- add database to vim. establishes a connection.
     if has("cscope")
         set cscopeprg=cscope " cscope program.
@@ -1271,7 +1270,7 @@ endif
         NeoBundle 'chrisbra/Recover.vim'
         " Complete
         " NeoBundle 'ervandew/supertab'
-        NeoBundle 'caio/querycommandcomplete.vim'
+        " NeoBundle 'caio/querycommandcomplete.vim'
         " Windows
         " NeoBundle 'roman/golden-ratio'
         " NeoBundle 'spolu/dwm.vim'
@@ -1287,7 +1286,7 @@ endif
         " NeoBundle 'Townk/vim-autoclose'
         " NeoBundle 'vim-scripts/AutoClose'
         " NeoBundle 'Raimondi/delimitMate'
-        NeoBundle 'kien/rainbow_parentheses.vim'
+        " NeoBundle 'kien/rainbow_parentheses.vim'
         NeoBundle 'tpope/vim-endwise'
         " Undo
         NeoBundle 'mbbill/undotree'
@@ -1324,13 +1323,13 @@ endif
         NeoBundle 'zef/vim-cycle'
         " NeoBundle 'tpope/vim-speeddating'
         " NeoBundle 'myusuf3/numbers.vim'
-        NeoBundle 'kana/vim-gf-diff'
         NeoBundle 'kana/vim-gf-user'
+        NeoBundle 'kana/vim-gf-diff'
         " NeoBundle 'junkblocker/patchreview-vim'
         " menu
         " NeoBundle 'mbadran/headlights'
         " modeline
-        NeoBundle 'ciaranm/securemodelines'
+        " NeoBundle 'ciaranm/securemodelines'
         " profile/debug
         " NeoBundle 'tomtom/startup_profile_vim'
         " NeoBundle 'dahu/VimLint'
@@ -1353,20 +1352,6 @@ endif
         " complete
         NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
-        " help
-        NeoBundle 'thinca/vim-ref', {
-                    \ 'external_commands': [
-                    \ 'refe', 'pydoc', 'perldoc',
-                    \ 'erl',
-                    \ 'w3m',
-                    \ ]
-                    \ }
-        " FIXME 'clj' for Clojure, 'rsense' for Ruby.
-        " NeoBundle 'powerman/vim-plugin-viewdoc', {
-        "             \ 'external_commands': ['pydoc', 'perldoc', 'man'],
-        "             \ }
-        " NeoBundle 'vim-scripts/Manuals'
-        NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " snippets
         NeoBundle 'Shougo/neosnippet'
         NeoBundle 'SirVer/ultisnips'
@@ -1394,40 +1379,26 @@ endif
         " NeoBundle 'vim-scripts/CCTree'
         " NeoBundle 'wesleyche/SrcExpl'
         " NeoBundle 'joonty/vim-taggatron', {'external_commands': ['ctags']}
-        " file manager
-        NeoBundle 'scrooloose/nerdtree'
-        NeoBundle 'ivalkeen/nerdtree-execute', { 'depends': ['scrooloose/nerdtree'] }
-        NeoBundle 'toritori0318/vim-nerdtree-plugin', {
-                    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
-                    \ 'directory': 'nerdtree-plugin',
+        " help
+        NeoBundle 'thinca/vim-ref', {
+                    \ 'external_commands': [
+                        \ 'refe', 'pydoc', 'perldoc',
+                        \ 'erl',
+                        \ 'w3m',
+                    \ ]
                     \ }
-        " NeoBundle 'troydm/easytree.vim'
-        " NeoBundle 'vim-scripts/project.tar.gz'
-        " NeoBundle 'Shougo/vimfiler'
-        " NeoBundle 'troydm/easybuffer.vim'
-        NeoBundle 'airblade/vim-rooter'
-        " compile & run
-        NeoBundle 'xuhdev/SingleCompile'
-        " syntax checker
-        NeoBundle 'scrooloose/syntastic'
+        " FIXME 'clj' for Clojure, 'rsense' for Ruby.
+        " NeoBundle 'powerman/vim-plugin-viewdoc', {
+        "             \ 'external_commands': ['pydoc', 'perldoc', 'man'],
+        "             \ }
+        " NeoBundle 'vim-scripts/Manuals'
+        " NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " search [grep, MRU, files]
         " NeoBundle 'kien/ctrlp.vim'
         " NeoBundle 'wincent/Command-T'
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
         " NeoBundle 't9md/vim-unite-ack'
-        " regex
-        " NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
-        " syntax / indent / fold
-        NeoBundle 'nathanaelkane/vim-indent-guides'
-        " NeoBundle 'ciaranm/detectindent'
-        NeoBundle 'conormcd/matchindent.vim'
-        NeoBundle 'vim-scripts/simplefold'
-        " REPL (Read-eval-print loop)
-        " NeoBundle 'jpalardy/vim-slime'
-        NeoBundle 'krisajenkins/vim-pipe'
-        " Narrow Region
-        " NeoBundle 'chrisbra/NrrwRgn'
         " VCS
         " NeoBundle 'https://bitbucket.org/ZyX_I/aurum', {
         "             \ 'type': 'hg',
@@ -1455,6 +1426,26 @@ endif
         NeoBundle 'ConflictDetection'
         NeoBundle 'ConflictMotions', { 'depends': ['vim-scripts/CountJump'] }
         " NeoBundle 'junkblocker/patchreview-vim'
+        " syntax / indent / fold
+        NeoBundle 'nathanaelkane/vim-indent-guides'
+        " NeoBundle 'ciaranm/detectindent'
+        NeoBundle 'conormcd/matchindent.vim'
+        NeoBundle 'vim-scripts/simplefold'
+        " regex
+        " NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
+        " REPL (Read-eval-print loop)
+        " NeoBundle 'jpalardy/vim-slime'
+        NeoBundle 'krisajenkins/vim-pipe'
+        " Narrow Region
+        " NeoBundle 'chrisbra/NrrwRgn'
+        " compile & run
+        NeoBundle 'xuhdev/SingleCompile'
+        " syntax checker
+        NeoBundle 'scrooloose/syntastic'
+        " debugger
+        " NeoBundle 'joonty/vdebug'
+        " NeoBundle 'kablamo/VimDebug'
+        " NeoBundle 'skibyte/gdb-from-vim'
         " comment
         NeoBundle 'tomtom/tcomment_vim'
         " NeoBundle 'scrooloose/nerdcommenter'
@@ -1463,14 +1454,22 @@ endif
         "             \ 'depends': ['tomtom/tcomment_vim'],
         "             \ 'external_commands': ['cowsay'],
         "             \ }
+        " file manager
+        NeoBundle 'scrooloose/nerdtree'
+        NeoBundle 'ivalkeen/nerdtree-execute', { 'depends': ['scrooloose/nerdtree'] }
+        NeoBundle 'toritori0318/vim-nerdtree-plugin', {
+                    \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
+                    \ 'directory': 'nerdtree-plugin',
+                    \ }
+        " NeoBundle 'troydm/easytree.vim'
+        " NeoBundle 'vim-scripts/project.tar.gz'
+        " NeoBundle 'Shougo/vimfiler'
+        " NeoBundle 'troydm/easybuffer.vim'
+        NeoBundle 'airblade/vim-rooter'
         " Tabular
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
         " NeoBundle 'vim-scripts/filter'
-        " debugger
-        " NeoBundle 'joonty/vdebug'
-        " NeoBundle 'kablamo/VimDebug'
-        " NeoBundle 'skibyte/gdb-from-vim'
         " Task List
         " NeoBundle 'LStinson/TagmaTasks'
         " NeoBundle 'vim-scripts/TaskList.vim'
@@ -5977,7 +5976,7 @@ syntax on
     " [ history/undo ] {{{ <F10>
         " Vim's builtin undo tree:
             " "u" -> undo
-            " "<C-R>" -> redo
+            " "<C-r>" -> redo
             " :undo (is useful if you know what change you want to jump to.)
             " [count]g-, [count]g+ (are useful if you don't know exactly what
             " the change number is.)
