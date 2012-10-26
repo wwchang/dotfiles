@@ -1333,6 +1333,8 @@ endif
         " profile/debug
         " NeoBundle 'tomtom/startup_profile_vim'
         " NeoBundle 'dahu/VimLint'
+        " startup
+        " NeoBundle 'tomtom/tplugin_vim'
         " }}}
 
         " [ Vim libraries/frameworks ] {{{
@@ -1358,7 +1360,7 @@ endif
         " NeoBundle 'drmingdrmer/xptemplate'
         " NeoBundle 'garbas/vim-snipmate'
         " NeoBundle 'scrooloose/snipmate-snippets'
-        " tags/cscope
+        " tags/cscope/gtags
         NeoBundle 'majutsushi/tagbar', { 'external_commands': ['ctags'], }
         " NeoBundle 'vim-scripts/taglist.vim', { 'external_commands': ['ctags'], }
         " NeoBundle 'abudden/TagHighlight'
@@ -1369,6 +1371,7 @@ endif
                     \ 'directory': 'easytags',
                     \ }
         " NeoBundle 'basilgor/vim-autotags', { 'external_commands': ['ctags', 'cscope', 'md5sum'] }
+        " NeoBundle 'vim-scripts/AutoTag'
         " NeoBundle 'indexer.tar.gz', {
         "             \ 'depends': ['DfrankUtil', 'vimprj'],
         "             \ 'external_commands': ['ctags'],
@@ -1379,6 +1382,8 @@ endif
         " NeoBundle 'vim-scripts/CCTree'
         " NeoBundle 'wesleyche/SrcExpl'
         " NeoBundle 'joonty/vim-taggatron', {'external_commands': ['ctags']}
+        " NeoBundle 'vim-scripts/gtags.vim'
+        " NeoBundle 'daisuzu/unite-gtags'
         " help
         NeoBundle 'thinca/vim-ref', {
                     \ 'external_commands': [
@@ -1423,6 +1428,7 @@ endif
         NeoBundle 'vim-scripts/hgrev', {'external_commands': ['hg']}
         " NeoBundle 'taq/vim-git-branch-info'
         " NeoBundle 'sjl/splice.vim'
+        " NeoBundle 'ghewgill/vim-scmdiff'
         NeoBundle 'ConflictDetection'
         NeoBundle 'ConflictMotions', { 'depends': ['vim-scripts/CountJump'] }
         " NeoBundle 'junkblocker/patchreview-vim'
@@ -1430,12 +1436,13 @@ endif
         NeoBundle 'nathanaelkane/vim-indent-guides'
         " NeoBundle 'ciaranm/detectindent'
         NeoBundle 'conormcd/matchindent.vim'
-        NeoBundle 'vim-scripts/simplefold'
+        " NeoBundle 'vim-scripts/simplefold'
+        " NeoBundle 'Shougo/vim-ft-vim_fold'
         " regex
         " NeoBundle 'Raimondi/VimRegEx.vim', { 'depends': ['vsutil.vim'] }
         " REPL (Read-eval-print loop)
         " NeoBundle 'jpalardy/vim-slime'
-        NeoBundle 'krisajenkins/vim-pipe'
+        " NeoBundle 'krisajenkins/vim-pipe'
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
         " compile & run
@@ -1459,7 +1466,6 @@ endif
         NeoBundle 'ivalkeen/nerdtree-execute', { 'depends': ['scrooloose/nerdtree'] }
         NeoBundle 'toritori0318/vim-nerdtree-plugin', {
                     \ 'depends': ['scrooloose/nerdtree', 'mileszs/ack.vim'],
-                    \ 'directory': 'nerdtree-plugin',
                     \ }
         " NeoBundle 'troydm/easytree.vim'
         " NeoBundle 'vim-scripts/project.tar.gz'
@@ -1481,14 +1487,12 @@ endif
         " [ languages ] {{{
         " VimL
         " NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
+        " NeoBundle 'h1mesuke/vim-unittest'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         " NeoBundle 'taichouchou2/vim-rsense'
         " NeoBundle 'vadv/rubycomplete'
         NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
-        " NeoBundle 'astashov/vim-ruby-debugger'
-        " NeoBundle 'ecomba/vim-ruby-refactoring'
-        " NeoBundle 'ujihisa/unite-gem'
         NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
@@ -1499,6 +1503,10 @@ endif
         " NeoBundle 'ujihisa/neco-rubymf', {
         " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
         " 	    \ }
+        " NeoBundle 'astashov/vim-ruby-debugger'
+        " NeoBundle 'ecomba/vim-ruby-refactoring'
+        " NeoBundle 'ujihisa/unite-gem'
+        " NeoBundle 'tpope/gem-ctags'
         " NeoBundle 'nelstrom/vim-textobj-rubyblock'
         " NeoBundle 'Bogdanp/rbrepl.vim'
         " NeoBundle 'janx/vim-rubytest'
@@ -1507,6 +1515,7 @@ endif
         " NeoBundle 'cloud8421/vimux-cucumber'
         " NeoBundle 'jgdavey/vim-turbux'
         " NeoBundle 'skwp/vim-ruby-conque'
+        " NeoBundle 'tomtom/spec_vim'
         " Python
         NeoBundle 'davidhalter/jedi-vim'
         " NeoBundle 'vim-scripts/pythoncomplete'
@@ -1530,9 +1539,10 @@ endif
         " NeoBundle 'vim-scripts/luarefvim'
         " NeoBundle 'xolox/vim-lua-inspect'
         " SQL
-        NeoBundle 'vim-scripts/SQLComplete.vim', {'depends': ['vim-scripts/dbext.vim']}
+        NeoBundle 'vim-scripts/SQLComplete.vim', {'depends': ['edsono/vim-dbext']}
         NeoBundle 'mattn/vdbi-vim'
-        NeoBundle 'git@github.com:NagatoPain/AutoSQLUpperCase.vim.git'
+        NeoBundle 'NagatoPain/AutoSQLUpperCase.vim'
+        " NeoBundle 'vim-scripts/sql.vim--Stinson'
         " NoSQL
         NeoBundle 'vim-scripts/nosql.vim'
         " HTML
@@ -1540,6 +1550,7 @@ endif
         " NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
         NeoBundle 'gregsexton/MatchTag'
         NeoBundle 'othree/html5.vim'
+        " NeoBundle 'othree/html5-syntax'
         " NeoBundle 'tpope/vim-ragtag'
         " XML
         " NeoBundle 'sukima/xmledit'
@@ -1635,6 +1646,7 @@ endif
         " [ tools ] {{{
         " Wiki / Note / Org
         NeoBundle 'https://code.google.com/p/vimwiki/', { 'rtp': 'src' }
+        " NeoBundle 'vim-scripts/HyperList'
         " NeoBundle 'danchoi/soywiki'
         " NeoBundle 'xolox/vim-notes'
         " NeoBundle 'hsitz/VimOrganizer'
@@ -1658,6 +1670,7 @@ endif
         "             \ 'depends': [ 'Shougo/vimproc', ],
         "             \ 'external_commands': {'unix': 'xxd',},
         "             \ }
+        " NeoBundle 'Shougo/vinarise'
         " NeoBundle 'tpope/vim-afterimage'
         " time
         " NeoBundle 'mnick/vim-pomodoro'
