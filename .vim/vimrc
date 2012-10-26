@@ -4263,11 +4263,6 @@ syntax on
     " }}}
 
     " [ Ruby ] {{{
-        let ruby_operators = 1 " highlight operations
-        let ruby_space_errors = 1 " highlight space errors
-        let ruby_fold = 1
-        "let ruby_no_comment_fold = 1
-
         " vim-ruby {{{
             " :help vim-ruby.txt ft-ruby-syntax.txt ft-ruby-omni.txt
             " Usage:
@@ -4767,15 +4762,6 @@ syntax on
     " }}}
 
     " [ Shell ] {{{
-        " vim shell settings :
-            let g:is_sh = 1 " default: Bourne shell.
-            let g:sh_fold_enabled = 3 " 1: function, 2: heredoc, 4: if/do/for
-            let sh_minlines = 200
-            "let sh_maxlines = 100
-            " iskeyword:
-            "let g:sh_isk =
-            "let g:sh_noisk = 1
-
         " bash-support {{{ Bash Support implements a bash-IDE for Vim/gVim.
         " }}}
     " }}}
@@ -5226,17 +5212,6 @@ syntax on
     " }}}
 
     " [ PHP ] {{{
-        let php_sql_query = 1 " highlight SQL syntax in strings.
-        let php_baselib = 1 " highlight Baselib methods.
-        let php_htmlInStrings = 1 " HTML syntax highlight inside strings.
-        let php_oldStyle = 1 " use the old colorstyle.
-        let php_asp_tags = 1 " enable highlight ASP-style short tags.
-        let php_noShortTags = 1 " disable short tags
-        let php_parent_error_close = 1 " highlight parent error ] or )
-        let php_parent_error_open = 1 " skip php end tag, if exists, open (, [
-        let php_folding = 1 " folding for classes and functions.
-        let php_sync_method = -1 " selecting syncing method. -1/0/>0
-
         " [ completion ] {{{
             " phpcomplete {{{ Improved PHP omnicompletion.
             " }}}
@@ -5464,12 +5439,6 @@ syntax on
     " }}}
 
     " [ Lua ] {{{
-        "let lua_version = 4 " activate Lua 4.0 syntax highlight
-        let lua_version = 5 " activate Lua 5.0 syntax highlight
-            " to restore highlighting for Lua 5.1:
-            "let lua_version = 5
-            "let lua_subversion = 1
-
         " lua {{{ Lua filetype plugin for Vim
             " let g:lua_path =
             let g:lua_check_syntax= 1
