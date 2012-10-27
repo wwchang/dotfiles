@@ -104,7 +104,6 @@
     set cmdheight=2     " Prevent 'Press Enter' message after most commands
     set shortmess=xtToO " Limit Vim's 'hit-enter' messages
     set wildchar=<Tab>     " <Tab> to complete in cmdline.
-    set wildignorecase     " ignore case when completing file names and directories.
     " cmdline-window
     set cmdwinheight=10
     " }}}
@@ -149,27 +148,6 @@
     " set colorcolumn=4,+1
         " add bellowing to colorscheme file.
         "hi ColorColumn     ctermfg=None ctermbg=233
-    " }}}
-
-    " [ buffer ] {{{
-    " set autowrite                    " auto write when changed
-    " set autowriteall
-    set autochdir
-    set autoread         " auto read changed files
-    set updatetime=3000  " swap write to disk, and for CursorHold event
-    set confirm          " prompt to save unsaved changes when exiting
-    if has("vms")
-        set nobackup " do not keep a backup file, use version instead
-    else
-        set backup		" keep a backup file
-    endif
-    if isdirectory(expand("~/.backup-vim"))
-        set backupdir=$HOME/.backup-vim/  " backup dir
-    else
-        call system("mkdir " . expand("~/.backup-vim"))
-    endif
-    set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
-    set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
 
     " [ tags ] {{{
@@ -300,7 +278,7 @@
         set matchtime=5
     " }}}
 
-    " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
+    " [ spell check ] {{{ ]s [s zg zw zuw zug z= :help spell.txt
     set nospell
     set dictionary=/usr/share/dict/words " dictionary for spell.
     augroup ToggleSpell
@@ -343,6 +321,7 @@
     set wildignore+=*.swp,*~,*.o,*.obj,*.py[co]
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
     " set wildignore+=.git\*,.hg\*,.svn\*        " Windows
+    set wildignorecase     " ignore case when completing file names and directories.
 
     set infercase " adjust ins-completion case for ..th completion.
     set report=0 " always report changed lines
@@ -522,12 +501,6 @@ endif
     set numberwidth=2 " minimal number of columns for line number.
     " }}}
 
-    " [ window ] {{{
-    " <C-w> [s/v/+/-/</>/|/-]
-    " set winfixheight
-    " set winfixwidth
-    " }}}
-
     " [ colorscheme ] {{{
     " if $COLORTERM == 'gnome-terminal'
     if $TERM ==? "rxvt-unicode-256color"
@@ -628,6 +601,33 @@ endif
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
+    " }}}
+
+    " [ buffer ] {{{
+    " set autowrite                    " auto write when changed
+    " set autowriteall
+    set autochdir
+    set autoread         " auto read changed files
+    set updatetime=3000  " swap write to disk, and for CursorHold event
+    set confirm          " prompt to save unsaved changes when exiting
+    if has("vms")
+        set nobackup " do not keep a backup file, use version instead
+    else
+        set backup		" keep a backup file
+    endif
+    if isdirectory(expand("~/.backup-vim"))
+        set backupdir=$HOME/.backup-vim/  " backup dir
+    else
+        call system("mkdir " . expand("~/.backup-vim"))
+    endif
+    set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
+    set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
+    set switchbuf=useopen   " behavior of switching between special buffers
+    " }}}
+
+    " [ window ] {{{ <C-w> [s/v/+/-/</>/|/-]
+    " set winfixheight
+    " set winfixwidth
     " }}}
 
     " [ tab ] {{{
@@ -1241,10 +1241,10 @@ endif
         " [ Vim improve ] {{{
         NeoBundle 'Shougo/vimproc', {
                     \ 'build': {
-                    \ 'windows': 'echo "vimproc binary file does not support Windows."',
-                    \ 'unix': 'make -f make_unix.mak',
-                    \ 'mac': 'make -f make_mac.mak',
-                    \ 'cygwin': 'make -f make_cygwin.mak',
+                        \ 'windows': 'echo "vimproc binary file does not support Windows."',
+                        \ 'unix': 'make -f make_unix.mak',
+                        \ 'mac': 'make -f make_mac.mak',
+                        \ 'cygwin': 'make -f make_cygwin.mak',
                     \ },
                     \ }
         " NeoBundle 'xolox/vim-shell'
@@ -1491,13 +1491,9 @@ endif
         NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
-        " NeoBundle 'ujihisa/neco-rake', {
-        " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
-        " 	    \ 'external_commands': ['rake'],
-        " 	    \ }
-        " NeoBundle 'ujihisa/neco-rubymf', {
-        " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
-        " 	    \ }
+        NeoBundle 'ujihisa/neco-ruby'
+        NeoBundle 'ujihisa/neco-rubymf'
+        NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
         " NeoBundle 'ujihisa/unite-gem'
@@ -1567,6 +1563,7 @@ endif
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
         NeoBundle 'jelera/vim-javascript-syntax'
+        " NeoBundle 'int3/vim-taglist-plus'
         " NeoBundle 'hallettj/jslint.vim'
         " NeoBundle 'walm/jshint.vim'
             " jQuery
@@ -1659,7 +1656,7 @@ endif
         " NeoBundle 'vim-scripts/ditaa', {'external_commands': ['ditaa']}
         " IM
         " NeoBundle 'vimim/vimim'
-        " NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
+        NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
         " binary files
         " NeoBundle 'rbtnn/hexript.vim', {
         "             \ 'depends': [ 'Shougo/vimproc', ],
@@ -1927,9 +1924,9 @@ syntax on
             let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
             let g:neocomplcache_tags_caching_limit_file_size = 500000 " tags file size
             let g:neocomplcache_release_cache_time = 900
-                " use :NeoComplCacheCachingTags command to make cache.
-            let g:neocomplcache_disable_caching_file_path_pattern = '' " pattern of buffer un-cache
-            let g:neocomplcache_lock_buffer_name_pattern = '' " pattern of buffer do not auto-complete
+            let g:neocomplcache_disable_caching_file_path_pattern = '' " buffer un-cache
+            let g:neocomplcache_lock_buffer_name_pattern = '' " buffer do not auto-complete
+            " neocomplcache#compare_rank,
             let g:neocomplcache_compare_function = 'neocomplcache#compare_rank'
             let g:neocomplcache_enable_prefetch = 1
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
@@ -2005,6 +2002,7 @@ syntax on
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
             " rsense plugin                 -> RsenseCompleteFunction
+            " neco-ruby, neco-rubymf        ->
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
@@ -2125,6 +2123,8 @@ syntax on
             let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
+            let g:neocomplcache_source_completion_length['ruby'] = 2 " plugin neco-ruby
+            let g:neocomplcache_source_completion_length['rubymf'] = 2 " plugin neco-rubymf
             let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
             let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
             " }}}
@@ -2231,25 +2231,6 @@ syntax on
             " [ complete candidates: priority ] {{{
             " control each source's completion candidate priority.
             " The higher value is, the higher priority.
-
-            " abbrev_complete            -> [A]
-            " filename_complete          -> [F] {filename}
-            " dictionary_complete        -> [D] {words}
-            " member_complete            -> [M] member
-            " buffer_complete            -> [B] {buffername}
-            " syntax_complete            -> [S] {syntax-keyword}
-            " include_complete           -> [FI] or [I]
-            " snippets_complete          -> [Snip] (none placeholder or one) or
-            "                               <Snip> (multiple placeholders)
-            "                               you must jump
-            " vim_complete               -> [vim] type
-            " omni_complete              -> [O]
-            " tags_complete              -> [T]
-            " other plugin sources       -> [plugin-name-prefix]
-            " other completefunc sources -> [plugin-name-prefix]
-            " other ftplugin sources     -> [plugin-name-prefix]
-
-            " default
             let g:neocomplcache_source_rank = {
                         \ 'abbrev_complete' : 500,
                         \ 'filename_complete' : 5,
@@ -2665,9 +2646,6 @@ syntax on
             let g:tagbar_indent = 1 " indent for compact view.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
-            " let g:tagbar_type_javascript = {
-            "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
-            "             \ }
 
             " Ruby {{{
             let g:tagbar_type_ruby = {
@@ -2693,6 +2671,12 @@ syntax on
                             \'c:const'
                             \ ]
                         \ }
+            " }}}
+
+            " JavaScript {{{ FIXME
+            " let g:tagbar_type_javascript = {
+            "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
+            "             \ }
             " }}}
 
             " Markdown {{{
@@ -4270,7 +4254,10 @@ syntax on
             " autocmd FileType ruby compiler ruby
         " }}}
 
-        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
+        " neco-ruby {{{ A neocomplcache source plugin for Ruby.
+        " }}}
+
+        " neco-rubymf {{{ A neocomplcache plugin to integrate methodfinder
             " Requires:
             "   - Ruby 1.9.3
             "   - gem install methodfinder
@@ -5118,7 +5105,7 @@ syntax on
         " }}}
 
         " vim-javascript-syntax {{{ Enhanced Javascript Syntax for Vim
-            au FileType javascript call JavaScriptFold()
+            " au FileType javascript call JavaScriptFold()
         " }}}
 
         " jscomplete-vim {{{ vim omnifunc for JavaScript

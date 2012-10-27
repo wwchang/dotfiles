@@ -8,7 +8,7 @@ snippet     python.skeleton.EOF
 abbr        python << EOF ... EOF
 alias       python.EOF
 options     head
-    python << ${1:EOF/PYTHONEOF}
+    python << ${1:PYTHONEOF}
     import vim
     ${2:code here}
     $1
