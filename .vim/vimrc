@@ -2232,19 +2232,19 @@ syntax on
             " control each source's completion candidate priority.
             " The higher value is, the higher priority.
             let g:neocomplcache_source_rank = {
-                        \ 'abbrev_complete' : 500,
-                        \ 'filename_complete' : 5,
-                        \ 'dictionary_complete' : 6,
-                        \ 'member_complete' : 7,
+                        \ 'abbrev_complete' : 400,
+                        \ 'filename_complete' : 10,
+                        \ 'dictionary_complete' : 5,
                         \ 'buffer_complete' : 9,
-                        \ 'syntax_complete' : 10,
+                        \ 'member_complete' : 7,
                         \ 'include_complete' : 700,
-                        \ 'snippets_complete' : 400,
-                        \ 'vim_complete' : 300,
+                        \ 'syntax_complete' : 150,
                         \ 'omni_complete' : 300,
                         \ 'tags_complete' : 350,
-                        \ 'other plugin sources' : 5,
-                        \ 'other completefunc sources' : 15,
+                        \ 'vim_complete' : 300,
+                        \ 'snippets_complete' : 500,
+                        \ 'other plugin sources' : 15,
+                        \ 'other completefunc sources' : 25,
                         \ 'other ftplugin sources' : 100,
                         \ }
                         " \ 'keyword_complete' : 8, " deleted
