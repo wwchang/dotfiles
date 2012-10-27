@@ -1563,6 +1563,7 @@ endif
         NeoBundle 'pangloss/vim-javascript'
         NeoBundle 'teramako/jscomplete-vim'
         NeoBundle 'jelera/vim-javascript-syntax'
+        " NeoBundle 'int3/vim-taglist-plus'
         " NeoBundle 'hallettj/jslint.vim'
         " NeoBundle 'walm/jshint.vim'
             " jQuery
