@@ -1492,13 +1492,8 @@ endif
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
         NeoBundle 'ujihisa/neco-ruby'
-        " NeoBundle 'ujihisa/neco-rubymf', {
-        " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
-        " 	    \ }
-        " NeoBundle 'ujihisa/neco-rake', {
-        " 	    \ 'depends': ['Shougo/neocomplcache', 'Shougo/vimshell'],
-        " 	    \ 'external_commands': ['rake'],
-        " 	    \ }
+        NeoBundle 'ujihisa/neco-rubymf'
+        NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
         " NeoBundle 'ujihisa/unite-gem'
@@ -2006,6 +2001,7 @@ syntax on
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
             " rsense plugin                 -> RsenseCompleteFunction
+            " neco-ruby, neco-rubymf        ->
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
@@ -2126,6 +2122,8 @@ syntax on
             let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             let g:neocomplcache_source_completion_length['snippets_complete'] = 1
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
+            let g:neocomplcache_source_completion_length['ruby'] = 2 " plugin neco-ruby
+            let g:neocomplcache_source_completion_length['rubymf'] = 2 " plugin neco-rubymf
             let g:neocomplcache_source_completion_length['js_complete'] = 2 " plugin jscomplete.vim
             let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
             " }}}
