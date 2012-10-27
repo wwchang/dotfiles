@@ -278,7 +278,7 @@
         set matchtime=5
     " }}}
 
-    " [ spell check ] {{{ C-X,C-N,C-P ]s [s zg zw zuw zug z= :help spell.txt
+    " [ spell check ] {{{ ]s [s zg zw zuw zug z= :help spell.txt
     set nospell
     set dictionary=/usr/share/dict/words " dictionary for spell.
     augroup ToggleSpell
@@ -4254,10 +4254,10 @@ syntax on
             " autocmd FileType ruby compiler ruby
         " }}}
 
-        " neco-ruby {{{ neocomplcache completion Ruby source.
+        " neco-ruby {{{ A neocomplcache source plugin for Ruby.
         " }}}
 
-        " neco-rubymf {{{ a neocomplcache plugin to integrate methodfinder
+        " neco-rubymf {{{ A neocomplcache plugin to integrate methodfinder
             " Requires:
             "   - Ruby 1.9.3
             "   - gem install methodfinder
