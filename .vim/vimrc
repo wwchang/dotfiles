@@ -1927,9 +1927,9 @@ syntax on
             let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
             let g:neocomplcache_tags_caching_limit_file_size = 500000 " tags file size
             let g:neocomplcache_release_cache_time = 900
-                " use :NeoComplCacheCachingTags command to make cache.
-            let g:neocomplcache_disable_caching_file_path_pattern = '' " pattern of buffer un-cache
-            let g:neocomplcache_lock_buffer_name_pattern = '' " pattern of buffer do not auto-complete
+            let g:neocomplcache_disable_caching_file_path_pattern = '' " buffer un-cache
+            let g:neocomplcache_lock_buffer_name_pattern = '' " buffer do not auto-complete
+            " neocomplcache#compare_rank, sort()
             let g:neocomplcache_compare_function = 'neocomplcache#compare_rank'
             let g:neocomplcache_enable_prefetch = 1
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
@@ -2231,25 +2231,6 @@ syntax on
             " [ complete candidates: priority ] {{{
             " control each source's completion candidate priority.
             " The higher value is, the higher priority.
-
-            " abbrev_complete            -> [A]
-            " filename_complete          -> [F] {filename}
-            " dictionary_complete        -> [D] {words}
-            " member_complete            -> [M] member
-            " buffer_complete            -> [B] {buffername}
-            " syntax_complete            -> [S] {syntax-keyword}
-            " include_complete           -> [FI] or [I]
-            " snippets_complete          -> [Snip] (none placeholder or one) or
-            "                               <Snip> (multiple placeholders)
-            "                               you must jump
-            " vim_complete               -> [vim] type
-            " omni_complete              -> [O]
-            " tags_complete              -> [T]
-            " other plugin sources       -> [plugin-name-prefix]
-            " other completefunc sources -> [plugin-name-prefix]
-            " other ftplugin sources     -> [plugin-name-prefix]
-
-            " default
             let g:neocomplcache_source_rank = {
                         \ 'abbrev_complete' : 500,
                         \ 'filename_complete' : 5,
