@@ -104,7 +104,6 @@
     set cmdheight=2     " Prevent 'Press Enter' message after most commands
     set shortmess=xtToO " Limit Vim's 'hit-enter' messages
     set wildchar=<Tab>     " <Tab> to complete in cmdline.
-    set wildignorecase     " ignore case when completing file names and directories.
     " cmdline-window
     set cmdwinheight=10
     " }}}
@@ -149,27 +148,6 @@
     " set colorcolumn=4,+1
         " add bellowing to colorscheme file.
         "hi ColorColumn     ctermfg=None ctermbg=233
-    " }}}
-
-    " [ buffer ] {{{
-    " set autowrite                    " auto write when changed
-    " set autowriteall
-    set autochdir
-    set autoread         " auto read changed files
-    set updatetime=3000  " swap write to disk, and for CursorHold event
-    set confirm          " prompt to save unsaved changes when exiting
-    if has("vms")
-        set nobackup " do not keep a backup file, use version instead
-    else
-        set backup		" keep a backup file
-    endif
-    if isdirectory(expand("~/.backup-vim"))
-        set backupdir=$HOME/.backup-vim/  " backup dir
-    else
-        call system("mkdir " . expand("~/.backup-vim"))
-    endif
-    set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
-    set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
     " }}}
 
     " [ tags ] {{{
@@ -343,6 +321,7 @@
     set wildignore+=*.swp,*~,*.o,*.obj,*.py[co]
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
     " set wildignore+=.git\*,.hg\*,.svn\*        " Windows
+    set wildignorecase     " ignore case when completing file names and directories.
 
     set infercase " adjust ins-completion case for ..th completion.
     set report=0 " always report changed lines
@@ -522,12 +501,6 @@ endif
     set numberwidth=2 " minimal number of columns for line number.
     " }}}
 
-    " [ window ] {{{
-    " <C-w> [s/v/+/-/</>/|/-]
-    " set winfixheight
-    " set winfixwidth
-    " }}}
-
     " [ colorscheme ] {{{
     " if $COLORTERM == 'gnome-terminal'
     if $TERM ==? "rxvt-unicode-256color"
@@ -628,6 +601,33 @@ endif
     "             | | +-- "h" Normal and Visual (not recommended)
     "             | +-- <Space> Normal and Visual
     "             +-- <BS> Normal and Visual
+    " }}}
+
+    " [ buffer ] {{{
+    " set autowrite                    " auto write when changed
+    " set autowriteall
+    set autochdir
+    set autoread         " auto read changed files
+    set updatetime=3000  " swap write to disk, and for CursorHold event
+    set confirm          " prompt to save unsaved changes when exiting
+    if has("vms")
+        set nobackup " do not keep a backup file, use version instead
+    else
+        set backup		" keep a backup file
+    endif
+    if isdirectory(expand("~/.backup-vim"))
+        set backupdir=$HOME/.backup-vim/  " backup dir
+    else
+        call system("mkdir " . expand("~/.backup-vim"))
+    endif
+    set backupcopy=auto " auto, breakhardlink(for hardlink, to create separate swap)
+    set dir=.,~/.tmp,/var/tmp,/tmp  " swap file dir
+    set switchbuf=useopen   " behavior of switching between special buffers
+    " }}}
+
+    " [ window ] {{{ <C-w> [s/v/+/-/</>/|/-]
+    " set winfixheight
+    " set winfixwidth
     " }}}
 
     " [ tab ] {{{
@@ -1241,10 +1241,10 @@ endif
         " [ Vim improve ] {{{
         NeoBundle 'Shougo/vimproc', {
                     \ 'build': {
-                    \ 'windows': 'echo "vimproc binary file does not support Windows."',
-                    \ 'unix': 'make -f make_unix.mak',
-                    \ 'mac': 'make -f make_mac.mak',
-                    \ 'cygwin': 'make -f make_cygwin.mak',
+                        \ 'windows': 'echo "vimproc binary file does not support Windows."',
+                        \ 'unix': 'make -f make_unix.mak',
+                        \ 'mac': 'make -f make_mac.mak',
+                        \ 'cygwin': 'make -f make_cygwin.mak',
                     \ },
                     \ }
         " NeoBundle 'xolox/vim-shell'
@@ -1659,7 +1659,7 @@ endif
         " NeoBundle 'vim-scripts/ditaa', {'external_commands': ['ditaa']}
         " IM
         " NeoBundle 'vimim/vimim'
-        " NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
+        NeoBundle 'NagatoPain/vimim', {'rev': 'develop', 'type__update_style': 'current'}
         " binary files
         " NeoBundle 'rbtnn/hexript.vim', {
         "             \ 'depends': [ 'Shougo/vimproc', ],
@@ -2665,9 +2665,6 @@ syntax on
             let g:tagbar_indent = 1 " indent for compact view.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
-            " let g:tagbar_type_javascript = {
-            "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
-            "             \ }
 
             " Ruby {{{
             let g:tagbar_type_ruby = {
@@ -2693,6 +2690,12 @@ syntax on
                             \'c:const'
                             \ ]
                         \ }
+            " }}}
+
+            " JavaScript {{{ FIXME
+            " let g:tagbar_type_javascript = {
+            "             \ 'ctagsbin' : '/usr/local/bin/jsctags',
+            "             \ }
             " }}}
 
             " Markdown {{{
@@ -5118,7 +5121,7 @@ syntax on
         " }}}
 
         " vim-javascript-syntax {{{ Enhanced Javascript Syntax for Vim
-            au FileType javascript call JavaScriptFold()
+            " au FileType javascript call JavaScriptFold()
         " }}}
 
         " jscomplete-vim {{{ vim omnifunc for JavaScript
