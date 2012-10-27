@@ -1925,8 +1925,7 @@ syntax on
             let g:neocomplcache_release_cache_time = 900
             let g:neocomplcache_disable_caching_file_path_pattern = '' " buffer un-cache
             let g:neocomplcache_lock_buffer_name_pattern = '' " buffer do not auto-complete
-            " neocomplcache#compare_rank,
-            let g:neocomplcache_compare_function = 'neocomplcache#compare_rank'
+            let g:neocomplcache_compare_function = 'neocomplcache#compare_rank' " sort candidates
             let g:neocomplcache_enable_prefetch = 1
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
             let g:neocomplcache_temporary_dir = '~/.neocomplcache'
