@@ -1664,6 +1664,8 @@ endif
         "             \ }
         " NeoBundle 'Shougo/vinarise'
         " NeoBundle 'tpope/vim-afterimage'
+        " post/paste
+        NeoBundle 'tangledhelix/vim-octopress'
         " time
         " NeoBundle 'mnick/vim-pomodoro'
         " others
@@ -7005,6 +7007,8 @@ syntax on
             let tumblr_tumblelog = 'stardiviner.tumblr.com'
             " let tumblr_http_proxy =
         " }}}
+
+        " vim-octopress : syntax highlighting for Octopress post and page files
 
         " wwwsearch {{{ Search WWW easily from Vim.
             " Usage:
