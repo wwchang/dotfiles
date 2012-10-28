@@ -318,7 +318,7 @@
 
     " [ wildignore ]
     " ignore those files when completion.
-    set wildignore+=*.swp,*~,*.o,*.obj,*.py[co]
+    set wildignore=*.swp,*~,
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
     " set wildignore+=.git\*,.hg\*,.svn\*        " Windows
     set wildignorecase     " ignore case when completing file names and directories.
