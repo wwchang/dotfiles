@@ -968,7 +968,9 @@ endif
     " command! -nargs=* -complete=help HG helpgrep <args>
 
     " `:write !sudo tee %` hack ->
-    command! -bar -nargs=0 SudoWrite  :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
+    command! -bar -nargs=0 SudoWrite  :setlocal nomodified
+                \ | silent exec 'write !sudo tee % >/dev/null'
+                \ | let &modified = v:shell_error
 " }}}
 
 " [[ functions ]] {{{
