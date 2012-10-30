@@ -539,6 +539,12 @@ options     head
 # }}}
 
 # <div>, <span> {{{
+snippet div
+abbr    <div> .. </div>
+    <div>
+        ${3}
+    </div>
+    ${0}
 snippet div id=""
 abbr    <div id=""> .. </div>
     <div id="${1}">
@@ -549,12 +555,6 @@ snippet div class=""
 abbr    <div class=""> .. </div>
     <div class="${1}">
         ${2}
-    </div>
-    ${0}
-snippet div
-abbr    <div> .. </div>
-    <div ${1:id="${2:someid\}"}>
-        ${3}
     </div>
     ${0}
 snippet span

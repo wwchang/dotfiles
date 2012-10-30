@@ -318,7 +318,7 @@
 
     " [ wildignore ]
     " ignore those files when completion.
-    set wildignore+=*.swp,*~,*.o,*.obj,*.py[co]
+    set wildignore=*.swp,*~,
     " set wildignore+=*/.git/*,*/.hg/*,*/.svn/*  " Linux/MacOSX
     " set wildignore+=.git\*,.hg\*,.svn\*        " Windows
     set wildignorecase     " ignore case when completing file names and directories.
@@ -968,7 +968,9 @@ endif
     " command! -nargs=* -complete=help HG helpgrep <args>
 
     " `:write !sudo tee %` hack ->
-    command! -bar -nargs=0 SudoWrite  :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
+    command! -bar -nargs=0 SudoWrite  :setlocal nomodified
+                \ | silent exec 'write !sudo tee % >/dev/null'
+                \ | let &modified = v:shell_error
 " }}}
 
 " [[ functions ]] {{{
@@ -1248,7 +1250,7 @@ endif
                     \ },
                     \ }
         " NeoBundle 'xolox/vim-shell'
-        NeoBundle 'Lokaltog/vim-powerline'
+        NeoBundle 'Lokaltog/vim-powerline', {'rev': 'develop'}
         NeoBundle 'tyru/current-func-info.vim'
         " quickfix, marks, signatures, status
         NeoBundle 'tomtom/quickfixsigns_vim', {
@@ -1664,6 +1666,8 @@ endif
         "             \ }
         " NeoBundle 'Shougo/vinarise'
         " NeoBundle 'tpope/vim-afterimage'
+        " post/paste
+        NeoBundle 'tangledhelix/vim-octopress'
         " time
         " NeoBundle 'mnick/vim-pomodoro'
         " others
@@ -1913,7 +1917,6 @@ syntax on
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
             let g:neocomplcache_enable_insert_char_pre = 1 " 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
-            let g:neocomplcache_disable_select_mode_mappings = 1
             let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 0 " ArgumentExcep -> ArE (not AE)
@@ -1926,8 +1929,7 @@ syntax on
             let g:neocomplcache_release_cache_time = 900
             let g:neocomplcache_disable_caching_file_path_pattern = '' " buffer un-cache
             let g:neocomplcache_lock_buffer_name_pattern = '' " buffer do not auto-complete
-            " neocomplcache#compare_rank,
-            let g:neocomplcache_compare_function = 'neocomplcache#compare_rank'
+            let g:neocomplcache_compare_function = 'neocomplcache#compare_rank' " sort candidates
             let g:neocomplcache_enable_prefetch = 1
             let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
             let g:neocomplcache_temporary_dir = '~/.neocomplcache'
@@ -2083,7 +2085,7 @@ syntax on
             if !exists('g:neocomplcache_include_functions')
                 let g:neocomplcache_include_functions = {}
             endif
-            let g:neocomplcache_include_max_processes = 25
+            let g:neocomplcache_include_max_processes = 20
             if !exists('g:neocomplcache_include_exprs')
                 let g:neocomplcache_include_exprs = {}
             endif
@@ -2091,7 +2093,7 @@ syntax on
                 let g:neocomplcache_filename_include_exts = {}
             endif
             let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
-            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            " let g:neocomplcache_filename_include_exts['python'] = ['py']
             " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
             " }}}
             " sources {{{
@@ -2232,19 +2234,19 @@ syntax on
             " control each source's completion candidate priority.
             " The higher value is, the higher priority.
             let g:neocomplcache_source_rank = {
-                        \ 'abbrev_complete' : 500,
-                        \ 'filename_complete' : 5,
-                        \ 'dictionary_complete' : 6,
-                        \ 'member_complete' : 7,
+                        \ 'abbrev_complete' : 400,
+                        \ 'filename_complete' : 10,
+                        \ 'dictionary_complete' : 5,
                         \ 'buffer_complete' : 9,
-                        \ 'syntax_complete' : 10,
+                        \ 'member_complete' : 7,
                         \ 'include_complete' : 700,
-                        \ 'snippets_complete' : 400,
-                        \ 'vim_complete' : 300,
+                        \ 'syntax_complete' : 150,
                         \ 'omni_complete' : 300,
                         \ 'tags_complete' : 350,
-                        \ 'other plugin sources' : 5,
-                        \ 'other completefunc sources' : 15,
+                        \ 'vim_complete' : 300,
+                        \ 'snippets_complete' : 500,
+                        \ 'other plugin sources' : 15,
+                        \ 'other completefunc sources' : 25,
                         \ 'other ftplugin sources' : 100,
                         \ }
                         " \ 'keyword_complete' : 8, " deleted
@@ -2436,16 +2438,29 @@ syntax on
         " }}}
     " }}}
 
-    " [ snippets ] {{{ <Tab>, <C-j/k> / <C-f/b>
+    " [ snippets ] {{{ <Tab>, {Visual}<Tab>, <C-j/k> / <C-f/b>
         " neosnippet {{{
+            " Usage:
+            "   - str<Tab>  -- expand snippet trigger
+            "   - <`placeholder`> (<C-j>) -- jump to next placeholder
+            "   - {Visual:string}<Tab>  -- expand inputted trigger by selected target text.
+            " Functions:
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
             " key mappings:
             "   - <Plug>(neosnippet_expand_or_jump)
+            "   - s_<Plug>(neosnippet_expand_or_jump)
             "   - <Plug>(neosnippet_jump_or_expand)
+            "   - s_<Plug>(neosnippet_jump_or_expand)
             "   - <Plug>(neosnippet_expand)
+            "   - s_<Plug>(neosnippet_expand)
             "   - <Plug>(neosnippet_jump)
+            "   - s_<Plug>(neosnippet_jump)
             "   - i_<Plug>(neosnippet_start_snippet)
+            "   - x_<Plug>(neosnippet_expand_target)
+            "       -- expand inputted trigger by selected target text.
+            "   - x_<Plug>(neosnippet_register_oneshot_snippet)
+            "       -- register oneshot snippet in current buffer.
             "   - neosnippet#expandable()
             "   - neosnippet#jumpable()
             " unite.vim
@@ -2476,14 +2491,20 @@ syntax on
             " expand snippet trigger
             imap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand)"
+                        \ : pumvisible() ? "\<C-n>"
                         \ : "\<Tab>"
-            " jump to next placeholder
             smap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand_or_jump)"
                         \ : "\<Tab>"
+            " jump to next placeholder
             imap <expr> <C-j> neosnippet#jumpable() ?
                         \ "\<Plug>(neosnippet_jump)"
                         \ : "\<C-j>"
+            smap <expr> <C-j> neosnippet#jumpable() ?
+                        \ "\<Plug>(neosnippet_jump)"
+                        \ : "\<C-j>"
+            " expand inputted trigger by selected target text.
+            xmap <Tab> <Plug>(neosnippet_expand_target)
             " regex search snippets in unite
             imap <C-k> <Plug>(neosnippet_start_unite_snippet)
             nnoremap <buffer> <Leader>es
@@ -4006,12 +4027,23 @@ syntax on
             let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
             let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
             let NERDTreeShowHidden = 0 " does not show hidden files.
+            let NERDTreeShowFiles = 1 " show files in the tree on startup
             let NERDTreeShowLineNumbers = 0 " do not show line numbers, default=0
+            let NERDTreeSortOrder = [
+                        \ '\/$', '*',
+                        \ '\.rb$', '\.py$', '\.sh$',
+                        \ '\.vim$',
+                        \ '\.c$', '\.go$', '\.cpp$',
+                        \ '\.lisp$',
+                        \ '\.js$', '\.html$', '\.css$',
+                        \ '\.php$',
+                        \ '\.swp$', '\.bak$', '\~$',
+                        \ ]
+            let NERDTreeStatusline = '%{b:NERDTreeRoot.path.strForOS(0)}'
             let NERDTreeWinPos = "left" " NERD-tree window position.
             let NERDTreeWinSize = 25 " window size, default=31.
-            "let NERDTreeDirArrows =
-            "new own syntax highlight gnap.
-            "let NERDTreeMinimalUI =
+            let NERDTreeMinimalUI = 0 " disable Bookmarks label and ? for help text
+            let NERDTreeDirArrows = 1
             let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
@@ -5861,7 +5893,7 @@ syntax on
                         \ }
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
-            let g:Powerline_colorscheme = "default" " default, skwp
+            let g:Powerline_colorscheme = "default" " default, solarized(256/16)
             let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
             let g:Powerline_mode_n  = " N " " normal
             let g:Powerline_mode_i  = "INSERT" " insert
@@ -6319,6 +6351,7 @@ syntax on
                 " such as trailing whitespace, tabs, newlines, when displayed
                 " using :set list can be set to one of three levels depending on
                 " your needs. Default value is normal with high and low options.
+
         " jellybeans.vim
             " colorscheme jellybeans
             " let g:jellybeans_overrides = {
@@ -6327,9 +6360,11 @@ syntax on
             "                 \ 'ctermfg': 'Black', 'ctermbg': 'Yellow',
             "                 \ 'attr': 'bold' },
             "             \ }
+
         " vim-hybrid
             " let g:hybrid_use_Xresources = 1
             " colorscheme hybrid
+
         " Lucius
     " }}}
 
@@ -7007,6 +7042,8 @@ syntax on
             let tumblr_tumblelog = 'stardiviner.tumblr.com'
             " let tumblr_http_proxy =
         " }}}
+
+        " vim-octopress : syntax highlighting for Octopress post and page files
 
         " wwwsearch {{{ Search WWW easily from Vim.
             " Usage:

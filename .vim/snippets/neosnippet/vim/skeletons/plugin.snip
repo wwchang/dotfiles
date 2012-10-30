@@ -147,4 +147,26 @@ options     head
     redir END
     $0
 
+snippet     plugin.skeleton.options
+abbr        for [key, val] in s:options
+    let s:options = {
+        \ '${1:option1}': ${2:value},
+        \ '${3:option2}': ${4:value},
+        \ }
+    for [key, value] in items(s:options)
+        if !exists('g:${5:plugin_name}#' . key)
+            exec 'let g:$5#' . key . ' = ' . value
+        endif
+    endfor
+
+snippet     plugin.skeleton.set-option-default
+abbr        let g:opt = get(g:, 'opt', {default})
+    let g:${1:option name} = get(g:, '$1', ${2:default value})
+
+# TODO
+snippet     plugin.skeleton.command range as args
+abbr        command! -nargs=* -range Cmd call s:func(<q-arg> <line1>, <line2>)
+options     head
+    command! -nargs=* -range -bang ${1:command} call ${2:s:func}(shellescape(<q-args>), <bang>0, <line1>, <line2>)
+
 # vim:foldmethod=marker
