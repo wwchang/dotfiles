@@ -183,8 +183,8 @@ if &t_Co > 255
     hi Operator        ctermfg=161  ctermbg=232 cterm=bold
 
     " Pop complete menu   154 brightgreen  198 pink  038 light blue
-    hi Pmenu           ctermfg=016 ctermbg=255  cterm=none
-    hi PmenuSel        ctermfg=016 ctermbg=039  cterm=none
+    hi Pmenu           ctermfg=016  ctermbg=255  cterm=none
+    hi PmenuSel        ctermfg=016  ctermbg=075  cterm=none
     hi PmenuSbar       ctermfg=none ctermbg=238  cterm=none
     " scroll forward small bar
     hi PmenuThumb      ctermfg=none ctermbg=111  cterm=none
