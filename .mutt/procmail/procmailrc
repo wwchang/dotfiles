@@ -325,8 +325,8 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     * ^List-Id: .*webpy\.googlegroups\.com
     Python/webpy/
     :0
-    * ^List-Id: .*sphinx-dev\.googlegroups\.com
-    Python/sphinx-dev/
+    * ^List-Id: .*sphinx-users\.googlegroups\.com
+    Python/sphinx/
     # }}}
 
     # [ Go ] {{{
