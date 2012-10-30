@@ -2440,14 +2440,27 @@ syntax on
 
     " [ snippets ] {{{ <Tab>, <C-j/k> / <C-f/b>
         " neosnippet {{{
+            " Usage:
+            "   - str<Tab>  -- expand snippet trigger
+            "   - <`placeholder`> (<C-j>) -- jump to next placeholder
+            "   - {Visual:string}<Tab>  -- expand inputted trigger by selected target text.
+            " Functions:
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
             " key mappings:
             "   - <Plug>(neosnippet_expand_or_jump)
+            "   - s_<Plug>(neosnippet_expand_or_jump)
             "   - <Plug>(neosnippet_jump_or_expand)
+            "   - s_<Plug>(neosnippet_jump_or_expand)
             "   - <Plug>(neosnippet_expand)
+            "   - s_<Plug>(neosnippet_expand)
             "   - <Plug>(neosnippet_jump)
+            "   - s_<Plug>(neosnippet_jump)
             "   - i_<Plug>(neosnippet_start_snippet)
+            "   - x_<Plug>(neosnippet_expand_target)
+            "       -- expand inputted trigger by selected target text.
+            "   - x_<Plug>(neosnippet_register_oneshot_snippet)
+            "       -- register oneshot snippet in current buffer.
             "   - neosnippet#expandable()
             "   - neosnippet#jumpable()
             " unite.vim
@@ -2478,14 +2491,20 @@ syntax on
             " expand snippet trigger
             imap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand)"
+                        \ : pumvisible() ? "\<C-n>"
                         \ : "\<Tab>"
-            " jump to next placeholder
             smap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand_or_jump)"
                         \ : "\<Tab>"
+            " jump to next placeholder
             imap <expr> <C-j> neosnippet#jumpable() ?
                         \ "\<Plug>(neosnippet_jump)"
                         \ : "\<C-j>"
+            smap <expr> <C-j> neosnippet#jumpable() ?
+                        \ "\<Plug>(neosnippet_jump)"
+                        \ : "\<C-j>"
+            " expand inputted trigger by selected target text.
+            xmap <Tab> <Plug>(neosnippet_expand_target)
             " regex search snippets in unite
             imap <C-k> <Plug>(neosnippet_start_unite_snippet)
             nnoremap <buffer> <Leader>es
