@@ -36,6 +36,15 @@ alias       exec-normal
 snippet     map buffer-local
 abbr        map <buffer> {Mapping} {Command}
     map <buffer> <unique> ${1:mapping: <LocalLeader>a} ${2:command/function}
+
+snippet     map internal
+abbr        map <Plug>(name) func
+    ${1:n,i,s,v}noremap <silent><expr> <Plug>(${2:map name})
+        \ ${3:func name: neosnippet#expand()}
+
+# TODO
+#snippet     map scriptid
+#abbr        map <SID>
 # }}}
 
 # regex {{{
@@ -47,6 +56,14 @@ alias       regex
 snippet     substitute
 abbr        substitute('expr', 'pattern', 'sub', 'flag')
     substitute(${1:expr}, '${2:pattern}', '${3:substitute}', "${4:flags: empty/g}")
+# }}}
+
+# normal! {{{
+# the bang '!' behind 'normal' prevents Vim from using user-defined normal mode
+# mappings when executing the commands.
+snippet     normal
+abbr        normal! {normal operations}
+    normal! ${1:normal operations}
 # }}}
 
 # command {{{
@@ -89,6 +106,9 @@ alias       setlocal
 snippet     setlocal reset
 abbr        setlocal option< (set local option to global value)
     setlocal ${1:option}<
+# }}}
+
+# VimL functions {{{
 # }}}
 
 # quick snippets {{{
