@@ -2085,7 +2085,7 @@ syntax on
             if !exists('g:neocomplcache_include_functions')
                 let g:neocomplcache_include_functions = {}
             endif
-            let g:neocomplcache_include_max_processes = 25
+            let g:neocomplcache_include_max_processes = 20
             if !exists('g:neocomplcache_include_exprs')
                 let g:neocomplcache_include_exprs = {}
             endif
@@ -2093,7 +2093,7 @@ syntax on
                 let g:neocomplcache_filename_include_exts = {}
             endif
             let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
-            let g:neocomplcache_filename_include_exts['python'] = ['py', 'pyw']
+            " let g:neocomplcache_filename_include_exts['python'] = ['py']
             " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
             " }}}
             " sources {{{
