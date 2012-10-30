@@ -1,0 +1,39 @@
+snippet     octopress.excerpts
+abbr        <!--more--> split post for an excerpt
+options     head
+  <!--more-->
+
+snippet     octopress.videotag html5
+abbr        {% video url/to/video [width height] [url/to/poster] %}
+options     head
+  {% video ${1:url/to/video} ${2:${3:width} ${4:height\}}${5: url/to/poster} %}
+
+snippet     octopress.imagetag
+abbr        {% img /path/to/image [width height] %}
+options     head
+  {% img ${4:class name: right} ${1:/path/to/image}${2: width height} ${3:title [alt text]} %}
+
+snippet     octopress.blockquote
+abbr        {% blockquote [source link] %} ... {% endblockquote %}
+options     head
+  {% blockquote${1: ${2:author,source\} ${3:link\}} %}
+  ${4:quote string}
+  {% endblockquote %}
+
+snippet     octopress.pullquote
+abbr        {% pullquote %} ... {% endpullquote %}
+options     head
+  {% pullquote %}
+  ${1:quote string}
+  {% endpullquote %}
+
+snippet     octopress.render_partial
+abbr        {% render_partial path/to/file %}
+options     head
+  {% render_partial ${1:path/to/file.markdown} %}
+  ${2:be sure file is in source/ repository}
+
+snippet     octopress.jsfiddle
+abbr        {% jsfiddle shorttag [tabs] [height width] %}
+options     head
+  {% jsfiddle ${1:shorttag}${2: ${3:height\} ${4:width\}} %}

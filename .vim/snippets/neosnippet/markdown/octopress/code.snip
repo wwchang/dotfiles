@@ -1,0 +1,23 @@
+snippet     octopress.code backtick
+abbr        ```lang > code snippet ```
+options     head
+  \`\`\` ${1:language}${2: ${3:title\} ${4:url\}}
+  ${5:code snippet}
+  \`\`\`
+
+snippet     octopress.code gist
+abbr        {% gist gist_id [filename] %}
+options     head
+  {% ${1:gist} ${2:gist_id}${3: ${4:filename\}} %}
+
+snippet     octopress.code include
+abbr        {% include_code [title] [lang] path/to/file %}
+options     head
+  {% include_code ${1:path/to/file} ${2:lang}${3: ${4:title\}} %}
+
+snippet     octopress.code inline
+abbr        {% codeblock %} ... {% endcodeblock %}
+options     head
+  {% codeblock ${1:lang}${2: ${3:title} ${4:url\}} %}
+  ${5:code snippet}
+  {% endcodeblock %}
