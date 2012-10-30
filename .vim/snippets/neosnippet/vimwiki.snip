@@ -1,53 +1,55 @@
 snippet     link
 abbr        [[URL|alternate text]]
-    [[${1:URL/path}|${2:alternate text}]] ${0}
+    [[${1:TARGET:URL/path}|${2:#:alternate text}]] ${0}
 
 snippet     image
 abbr        {{local:path}}
-    {{local:${1:path/to/file}}}
+    {{local:${1:TARGET:path/to/file}}}
 
 snippet     utl
 abbr        utl link <url:URL>
 alias       url
-    <url:${1:URL}>
+    <url:${1:TARGET:URL}>
 
 snippet     code
 abbr        {{{code > ... }}}
 alias       syntax
 options     head
-    {{{${1:language: ruby/python/lisp/c}
-    ${1:code here}
+    {{{${1:#:language: ruby/python/lisp/c}
+    ${1:TARGET:code here}
     }}}
 
 snippet     formula inline
 abbr        $ formula $
-    $ ${1:formula} $
+    $ ${1:TARGET:formula} $
 
 snippet     formula long
 abbr        match formula
 alias       equation
 options     head
     {{$
-    ${1:match formula}
+    ${1:TARGET:math formula}
     }}
 
 snippet     bold
 abbr        *bold*
 alias       b
-    *${1:text}*
+    *${1:TARGET:text}*
 snippet     italic
 abbr        _italic_
 alias       i
-    _${1:text}_
+    _${1:TARGET:text}_
 snippet     strike
 abbr        ~~strike~~
 alias       s
-    ~~${1:text}~~
+    ~~${1:TARGET:text}~~
 snippet     superscript
 abbr        6⁶
 alias       sup
-    ^${1:superscript 6⁶}^
+    ^${1:TARGET:superscript 6⁶}^
 snippet     subscript
 abbr        6₆
 alias       sub
-    ,,${1:subscript 6₆},,
+    ,,${1:TARGET:subscript 6₆},,
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

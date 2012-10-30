@@ -2,23 +2,23 @@ snippet     if version.patch
 abbr        if v:version >= 703 && has('patch519')
 options     head
     if v:version > ${1:703} || v:version == $1 && has('${2:patch519}')
-        ${3:statements}
+        ${3:#:statements}
     endif
 
 snippet     if.has.python3
 abbr        if has('python3/dyn') || has('python3')
 options     head
     if has('python3/dyn') || has('python3')
-        ${1:statements}
+        ${1:#:statements}
     elseif has('python/dyn') || has('python')
-        ${2:statements}
+        ${2:#:statements}
     endif
 
 snippet     if.has.gui
 abbr        if has('gui') && has('gui_running')
 options     head
     if has('gui') && has('gui_running')
-        ${1:statements}
+        ${1:#:statements}
     endif
 
 snippet     if.has.DISPLAY
@@ -26,14 +26,14 @@ abbr        if $DISPLAY != ''
 alias       if.has.X11
 options     head
     if $DISPLAY != ''
-        ${1:statements}
+        ${1:#:statements}
     endif
 
 snippet     if.exists
 abbr        if !exists("") .. endif
 options     head
     if !exists("${1}")
-        ${2:statements}
+        ${2:#:statements}
     endif
 
 # monitor buffer is changed to perform actions when changed.
@@ -41,9 +41,9 @@ snippet     if.has.changetick
 abbr        if {changetick} != b:changetick
 alias       changetick
 options     head
-    if ${1:my_changetick} != b:changetick
+    if ${1:#:my_changetick} != b:changetick
         let $1 = b:changetick
-        call ${2:My_Update()}
+        call ${2:#:My_Update()}
     endif
 
-# vim:foldmethod=marker
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

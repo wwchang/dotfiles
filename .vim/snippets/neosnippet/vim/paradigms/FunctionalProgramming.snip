@@ -1,2 +1,115 @@
+# Same List & Dict functions {{{
+snippet     get()
+abbr        get({list/dict}, {idx/key}[, {default}]) get item/entry without error for wrong index/key
+    get(${1:List/Dict}, ${2:index/key}${3:, ${4:default\}})
 
-# vim:foldmethod=marker
+snippet     len()
+abbr        len({expr}) number of items/entries in List/Dict
+    len(${1:expr})
+
+snippet     empty()
+abbr        empty({expr}) check if List/Dict is empty
+    empty(${1:expr: List/Dict})
+
+snippet     remove()
+abbr        remove({list/dict}, {idx/key}[, {end}]) remove items/entries from List/Dict
+    remove(${1:List/Dict}, ${2:index/key}${3:, ${4:end\}})
+
+snippet     extend()
+abbr        extend({expr1}, {expr2}[, {expr3}]) append List/Dict to List/Dict
+    extend(${1:expr1}, ${2:expr2}${3: ${4:expr3\}})
+
+snippet     filter()
+abbr        filter({expr}, 'eval string') remove selected items/entries from List/Dict
+    filter(${1:expr}, '${3:eval string, v:val}')
+
+snippet     map()
+abbr        map({expr}, 'eval string') change each List item/Dict entry
+    map(${1:expr}, '${2:eval string, v:val}')
+
+snippet     copy()
+abbr        copy({expr}) make shallow copy of List/Dict
+    copy(${1:expr})
+
+snippet     deepcopy()
+abbr        deepcopy({expr}[, {noref}]) make full copy of List/Dict
+    deepcopy(${1:expr}${2:, ${3:noref\}})
+
+snippet     string()
+abbr        string({expr}) String representation of List/Dict
+    string(${1:expr})
+
+snippet     max()
+abbr        max({list/dict}) maximum value in List/Dict
+    max(${1:List/Dict})
+
+snippet     min()
+abbr        min({list/dict}) minimum value in List/Dict
+    min(${1:List/Dict})
+
+snippet     count()
+abbr        count({comp}, {expr}[, {ic}, {start}]) count times value appears in List/Dict
+    count(${1:comp}, ${2:expr}${3:, ${4:ic\}, ${5:start\}})
+# }}}
+
+# List functions {{{ :h list-functions
+snippet     insert()
+abbr        insert({list}, {item}[, {idex}]) insert an item to List
+    insert(${1:List}, ${2:item}${3:, ${4:index\}})
+
+snippet     add()
+abbr        add({list}, {expr}) append an item to List
+    add(${1:List}, ${2:expr})
+
+snippet     sort()
+abbr        sort({list}, {func}[, {dict}]) sort List
+    sort(${1:List}, ${2:func}${3:, ${4:dict\}})
+
+snippet     reverse()
+abbr        reverse({list}) reverse the order of List
+    reverse(${1:List})
+
+snippet     split()
+abbr        split({expr}, {pattern}) split String into List
+    split(${1:expr}, ${2:pattern}${3:, ${4:keepempty\}})
+
+snippet     join()
+abbr        join({list}, {sep}) join List items into a String
+    join(${1:List}, ${2:separate})
+
+snippet     range()
+abbr        range({expr}, {max}, {stride}) return a List with a sequence of numbers
+    range(${1:expr}${2:, ${3:max\}, ${4:stride\}})
+
+snippet     call()
+abbr        call({func}, {arglist}[, {dict}]) call function with List as arguments
+    call(${1:func}, ${2:arglist}${3:, ${4:dict\}})
+
+snippet     index()
+abbr        index({list}, {expr}[, {start}, {ic}]) index of a value in List
+    index(${1:List}, ${2:expr}${3:, ${4:start\}, ${5:ic -> ignorecase\}})
+
+snippet     repeat()
+abbr        repeat({expr}, {count}) repeat a List multiple times
+    repeat(${1:expr}, ${2:count})
+# }}}
+
+# Dictionary functions {{{ :h dict-functions
+snippet     has_key()
+abbr        has_key({dict}, {key}) check whether key appears in Dict
+    has_key(${1:Dict}, ${2:key})
+
+snippet     keys()
+abbr        keys({dict}) get List of Dict keys
+    keys(${1:Dict})
+
+snippet     values()
+abbr        values({dict}) get List of Dict values
+    values(${1:Dict})
+
+snippet     items()
+abbr        items({dict}) get List of Dict key-value pairs
+    items(${1:Dict})
+# }}}
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

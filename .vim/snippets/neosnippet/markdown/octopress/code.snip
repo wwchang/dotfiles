@@ -2,7 +2,7 @@ snippet     octopress.code backtick
 abbr        ```lang > code snippet ```
 options     head
   \`\`\` ${1:language}${2: ${3:title\} ${4:url\}}
-  ${5:code snippet}
+  ${5:TARGET:code snippet}
   \`\`\`
 
 snippet     octopress.code gist
@@ -19,5 +19,7 @@ snippet     octopress.code inline
 abbr        {% codeblock %} ... {% endcodeblock %}
 options     head
   {% codeblock ${1:lang}${2: ${3:title} ${4:url\}} %}
-  ${5:code snippet}
+  ${5:TARGET:code snippet}
   {% endcodeblock %}
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

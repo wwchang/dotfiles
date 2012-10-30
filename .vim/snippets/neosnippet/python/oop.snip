@@ -4,52 +4,51 @@ snippet     class OOP
 abbr        class Class(Class): """Docstring""" + def __init__(self, ):
 options		head
 	class ${1:Name}(${2:Classes}):
-		"""${3:class Docstring}"""
+		"""${3:#:class Docstring}"""
 		def __init__(self, ${4}):
-			"""${5:__init__ Docstring}"""
-			${6:pass}
+			"""${5:#:__init__ Docstring}"""
+			${6:#:pass}
 
 		${0}
 
 snippet     self
 abbr        self.
-alias		.
 	self.${1}
 
 # __magic__
 snippet     magic
 abbr        __magic__
 alias		_
-	__${1:init}__${2}
+	__${1:#:init}__${2}
 	${0}
 
 snippet     init
 abbr        def __init__(self, ..): ...
 options		head
-	def __init__(self${1:, *args, **kwargs}):
-		${2:statements}
+	def __init__(self${1:#:, *args, **kwargs}):
+		${2:#:statements}
 
 snippet     def	define method
 abbr        def method(self, ..): ...
 alias		method
 options		head
-	def ${1:name}(self${2:, *args, **kwargs}):
-		"""${3:method Docstring}"""
-		${4:pass}
+	def ${1:name}(self${2:#:, *args, **kwargs}):
+		"""${3:#:method Docstring}"""
+		${4:#:pass}
 
 snippet     attribute internal
 abbr        def __attribute(args): ...
 options		head
-	def __${1:attribute}(self${2:, *args, **kwargs}):
-		"""${3:attribute Docstring}"""
-		${4:statements}
+	def __${1:attribute}(self${2:#:, *args, **kwargs}):
+		"""${3:#:attribute Docstring}"""
+		${4:#:statements}
 
 snippet     property
 abbr        @property > def Property(self, args): ...
 options		head
 	@property
-	def ${1:Property}(self${2:, *args, **kwargs}):
-		${3:statements}
+	def ${1:Property}(self${2:#:, *args, **kwargs}):
+		${3:#:statements}
 
 # class property (setter, getter, deleter)
 snippet		property Setter
@@ -77,9 +76,4 @@ options		head
 			${4:self._$1 = value}
 	${0}
 
-snippet init "def __init__(self, ...)" b
-def __init__(self${1:, ${2:arg}}):
-    ${3:statements}
-endsnippet
-
-# vim:noexpandtab:fdm=marker:fmr={{{,}}}
+# vim:fdm=marker:fmr={{{,}}}:noexpandtab:sw=4:sts=4

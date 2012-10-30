@@ -2,14 +2,14 @@ snippet     oop.object
 abbr        create an object
 alias       object
 options     head
-    let ${1:object name} = {'${2:method}': function("${3:$1.$2${4:/filename#funcname}}")}
+    let ${1:object name} = {'${2:method}': function("${3:$1.$2${4:/filename#funcname\}}")}
 
 snippet     oop.method
 abbr        create an object method
 alias       method
 options     head
     fun! ${1:object}.${2:method}(${3:args, ...}) dict
-        return ${4:commands: self.${5:object attribute}}
+        return ${4:commands: self.${5:object attribute\}}
     endfun
 
 snippet     oop.object skeleton
@@ -31,9 +31,9 @@ options     head
     let ${1:object name} = {'${2:attribute}': ${3:dict value}}
 
     fun! $1.${4:method}(${5:args}) dict
-        return ${6:something: self.$2}
+        return ${6:#:something: self.$2}
     endfun
 
     echo $1.$4(${7:args})
 
-# vim:foldmethod=marker
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

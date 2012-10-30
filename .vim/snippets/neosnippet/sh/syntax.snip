@@ -9,46 +9,46 @@ snippet     func
 abbr        function NAME () {...}
 alias       function
 options     head
-    function ${1:NAME} () {
-    	${2:compound commands}
+    function ${1:#:func_name} () {
+    	${2:#:statements}
     }
 
 snippet     if
 abbr        if ...; then ..; fi
 options     head
-    if ${1:condition} ; then
-        ${2:compound commands}
+    if ${1:#:condition} ; then
+        ${2:#:statements}
     fi
 
 snippet     if else
 abbr        if ..; then ..; else ..; fi
 options     head
-    if ${1:condition}; then
-        ${2:compound commands}
+    if ${1:#:condition}; then
+        ${2:#:statements}
     else
-        ${3:compound commands}
+        ${3:#:statements}
     fi
 
 snippet     if elif
 abbr        if ..; then ..; else ..; fi
 options     head
-    if ${1:condition}; then
-        ${2:compound commands}
+    if ${1:#:condition}; then
+        ${2:#:statements}
     elif
-        ${3:compound commands}
+        ${3:#:statements}
     fi
 
 snippet     else
 abbr        else ..;
 options     head
     else
-        ${1:compound commands}
+        ${1:#:statements}
 
 snippet     elif
 abbr        elif ..;
 options     head
     elif
-        ${1:compound commands}
+        ${1:#:statements}
 
 snippet     help doc
 abbr        cat << EOF ... EOF
@@ -57,3 +57,5 @@ options     head
     cat << EOF
     	${1}
     EOF
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

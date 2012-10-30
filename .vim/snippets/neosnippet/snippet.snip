@@ -6,10 +6,12 @@ options     head
     abbr        ${3:abbr}
     alias       ${4:alias}
     options     ${5:head/word/indent}
-        ${6:snippet code: #:comment, TARGET:}
+        ${6:code: #:comment, TARGET:}
 
 snippet     snippet nested
 abbr        ${1:id="${2:nested\}"}
 alias       snip_nested,nested_snippet
 options     word
     ${${1:N}:${2:placeholder: #:comment, TARGET}\}
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

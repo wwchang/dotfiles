@@ -4,8 +4,8 @@ options     head
     " File:         `expand('%:t')`
     " Last Change:	`strftime("%B %d, %Y")`
     " Author:       ${1:stardiviner, Email: [numbchild A/T G/mail dot com]}
-    " Description:  ${2:what features this plugin provided ?}
-    " License:      ${3:what license ?}
+    " Description:  ${2:#:what features this plugin provided ?}
+    " License:      ${3:#:what license ?}
 
     $0
 
@@ -26,7 +26,7 @@ options     head
     let s:save_cpo = &cpo
     set cpo&vim
 
-    ${1:statements}
+    ${1:#:statements}
 
     let &cpo = s:save_cpo
 
@@ -45,8 +45,8 @@ alias       function.unload
 options     head
     " This is the ${1:???} package
     if exists("$1_loaded")
-        delfun ${2:first function name}
-        delfun ${3:second function name}
+        delfun ${2:#:first function name}
+        delfun ${3:#:second function name}
     endif
 
     ${4:functions}
@@ -57,7 +57,7 @@ snippet     plugin.skeleton.noremap modes [n/v/i]
 abbr        [n/v/i]noremap <SID>Func statement
 alias       noremap.modes
 options     head
-    ${1:noremap: nnoremap/vnoremap/inoremap} <SID>${2:FuncName} ${3:statements}
+    ${1:#:[n/v/i]}noremap <SID>${2:FuncName} ${3:statements}
 
 snippet     plugin.skeleton.nnoremap
 abbr        three nnoremap <unique> -> <Plug> -> <SID>
@@ -82,7 +82,7 @@ abbr        if !exists() > command > endif
 alias       command.if-exists
 options     head
     if !exists(":${1:Command}")
-        command${2:attr:!,",b} -nargs=${2:arg number:0,1,*,?,+} $1 ${3:call s:Add(<q-args>, 0)}
+        command${2:attr:!,",b} -nargs=${2:#:0,1,*,?,+} $1 ${3:call s:Add(<q-args>, 0)}
     endif
 
 snippet     plugin.skeleton.operator
@@ -133,9 +133,9 @@ options     head
         endif
     endfunction
 
-    " ${1:comment for first global option}
+    " ${1:#:comment for first global option}
     call s:SetOptionDefault('g:${2:global option}', ${3:default value: 1, 'str'})
-    " ${4:comment for first global option}
+    " ${4:#:comment for first global option}
     call s:SetOptionDefault('g:${5:global option}', ${6:default value: 1, 'str'})
 
 snippet     plugin.skeleton.redirection
@@ -143,7 +143,7 @@ abbr        redir [>,>>,=>,==>] {var/file/reg}
 alias       redir,redirection
 options     head
     redir ${1:>,>>,=>,==>} ${2:variable/file/@a-z/}
-    ${3:statements: silent! iabbrev}
+    ${3:#:statements: silent! iabbrev}
     redir END
     $0
 
@@ -169,4 +169,4 @@ abbr        command! -nargs=* -range Cmd call s:func(<q-arg> <line1>, <line2>)
 options     head
     command! -nargs=* -range -bang ${1:command} call ${2:s:func}(shellescape(<q-args>), <bang>0, <line1>, <line2>)
 
-# vim:foldmethod=marker
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

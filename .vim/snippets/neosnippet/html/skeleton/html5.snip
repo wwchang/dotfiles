@@ -1,0 +1,23 @@
+snippet     html5
+abbr        html > head+body > header+content+footer
+options     head
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>${1:#:title}</title>
+            <meta charset="utf-8" />
+        </head>
+        <body>
+            <header>
+                ${2:#:header}
+            </header>
+            <content>
+                ${3:#:content}
+            </content>
+            <footer>
+                ${4:#:footer}
+            </footer>
+        </body>
+    </html>
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

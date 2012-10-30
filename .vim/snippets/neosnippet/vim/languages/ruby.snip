@@ -2,8 +2,8 @@ snippet     ruby.skeleton.EOF
 abbr        ruby << EOF ... EOF
 alias       ruby.EOF
 options     head
-    ruby << ${1:RUBYEOF}
-    ${2:code here}
-    $1
+    ruby << RUBYEOF
+    ${2:#:code here}
+    RUBYEOF
 
-# vim:foldmethod=marker
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4
