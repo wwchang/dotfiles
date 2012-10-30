@@ -108,6 +108,7 @@
 #       - word  --> mean snippet is expanded by word boundary,
 #                   Note: the trigger must be word (digits or alphabet chars or "_")
 #       - head  --> mean snippet is enabled only in line head.
+#       - indent --> means neosnippet indents in expanded line.
 # >
 # snippet       date
 # options       word
