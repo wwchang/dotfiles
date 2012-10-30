@@ -1250,7 +1250,7 @@ endif
                     \ },
                     \ }
         " NeoBundle 'xolox/vim-shell'
-        NeoBundle 'Lokaltog/vim-powerline'
+        NeoBundle 'Lokaltog/vim-powerline', {'rev': 'develop'}
         NeoBundle 'tyru/current-func-info.vim'
         " quickfix, marks, signatures, status
         NeoBundle 'tomtom/quickfixsigns_vim', {
