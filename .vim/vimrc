@@ -5882,7 +5882,7 @@ syntax on
                         \ }
             "let g:Powerline_dividers_override = ['>>', '>', '<<', '<']
             let g:Powerline_theme = "default" " default, skwp
-            let g:Powerline_colorscheme = "default" " default, skwp
+            let g:Powerline_colorscheme = "default" " default, solarized(256/16)
             let g:Powerline_stl_path_style = "filename" " filename/short/relative/full
             let g:Powerline_mode_n  = " N " " normal
             let g:Powerline_mode_i  = "INSERT" " insert
