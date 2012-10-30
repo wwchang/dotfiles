@@ -2438,7 +2438,7 @@ syntax on
         " }}}
     " }}}
 
-    " [ snippets ] {{{ <Tab>, <C-j/k> / <C-f/b>
+    " [ snippets ] {{{ <Tab>, {Visual}<Tab>, <C-j/k> / <C-f/b>
         " neosnippet {{{
             " Usage:
             "   - str<Tab>  -- expand snippet trigger
@@ -6340,6 +6340,7 @@ syntax on
                 " such as trailing whitespace, tabs, newlines, when displayed
                 " using :set list can be set to one of three levels depending on
                 " your needs. Default value is normal with high and low options.
+
         " jellybeans.vim
             " colorscheme jellybeans
             " let g:jellybeans_overrides = {
@@ -6348,9 +6349,11 @@ syntax on
             "                 \ 'ctermfg': 'Black', 'ctermbg': 'Yellow',
             "                 \ 'attr': 'bold' },
             "             \ }
+
         " vim-hybrid
             " let g:hybrid_use_Xresources = 1
             " colorscheme hybrid
+
         " Lucius
     " }}}
 
