@@ -4232,6 +4232,8 @@ syntax on
 " [ languages ] {{{
     " [ VimL ] {{{
         " vesting {{{ best VimScript VimL test framework.
+            " Usage:
+                " run test cases under './vest/*.vim' with command :Unite vesting:.
         " }}}
 
         " vim-unittest {{{ Unit Testing for Vim scripts.
