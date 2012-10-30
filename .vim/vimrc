@@ -4027,12 +4027,23 @@ syntax on
             let NERDTreeQuitOnOpen = 0 " does not close after open. default=0.
             let NERDTreeShowBookmarks = 1 " show Bookmarks when open NERD-tree.
             let NERDTreeShowHidden = 0 " does not show hidden files.
+            let NERDTreeShowFiles = 1 " show files in the tree on startup
             let NERDTreeShowLineNumbers = 0 " do not show line numbers, default=0
+            let NERDTreeSortOrder = [
+                        \ '\/$', '*',
+                        \ '\.rb$', '\.py$', '\.sh$',
+                        \ '\.vim$',
+                        \ '\.c$', '\.go$', '\.cpp$',
+                        \ '\.lisp$',
+                        \ '\.js$', '\.html$', '\.css$',
+                        \ '\.php$',
+                        \ '\.swp$', '\.bak$', '\~$',
+                        \ ]
+            let NERDTreeStatusline = '%{b:NERDTreeRoot.path.strForOS(0)}'
             let NERDTreeWinPos = "left" " NERD-tree window position.
             let NERDTreeWinSize = 25 " window size, default=31.
-            "let NERDTreeDirArrows =
-            "new own syntax highlight gnap.
-            "let NERDTreeMinimalUI =
+            let NERDTreeMinimalUI = 0 " disable Bookmarks label and ? for help text
+            let NERDTreeDirArrows = 1
             let NERDTreeCasadeOpenSingleChildDir = 1 " cascade single child directory
 
             nnoremap <silent> <F11> :NERDTreeToggle<CR>
