@@ -74,6 +74,19 @@
 #               ${2}
 #           endif
 # <
+
+# TARGET placeholder
+# If the default value starts with "TARGET:", neosnippet will insert selected
+# text in "<Plug>(neosnippet_expand_target)".
+# >
+#       snippet if
+#       abbr    if .. endif
+#       options head
+#           if ${1:#:condition}
+#               ${2:TARGET}
+#           endif
+# <
+
 # [ _ ]
 # '_' snippet feature is supported. '_' snippet is loaded in all filetypes.
 
