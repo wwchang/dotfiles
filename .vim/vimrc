@@ -2496,7 +2496,10 @@ syntax on
             smap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand_or_jump)"
                         \ : "\<Tab>"
+            imap <C-k> <Plug>(neosnippet_start_unite_snippet)
             " jump to next placeholder
+            " imap <C-j> <Plug>(neosnippet_jump)
+            " smap <C-j> <Plug>(neosnippet_jump)
             imap <expr> <C-j> neosnippet#jumpable() ?
                         \ "\<Plug>(neosnippet_jump)"
                         \ : "\<C-j>"
@@ -2505,8 +2508,8 @@ syntax on
                         \ : "\<C-j>"
             " expand inputted trigger by selected target text.
             xmap <Tab> <Plug>(neosnippet_expand_target)
+            xmap <C-k> <Plug>(neosnippet_start_unite_snippet_target)
             " regex search snippets in unite
-            imap <C-k> <Plug>(neosnippet_start_unite_snippet)
             nnoremap <buffer> <Leader>es
                 \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
                 " \ . &filetype<CR>
