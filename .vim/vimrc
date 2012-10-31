@@ -2004,7 +2004,6 @@ syntax on
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
             " rsense plugin                 -> RsenseCompleteFunction
-            " neco-ruby, neco-rubymf        ->
             let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
@@ -2461,6 +2460,7 @@ syntax on
             "       -- expand inputted trigger by selected target text.
             "   - x_<Plug>(neosnippet_register_oneshot_snippet)
             "       -- register oneshot snippet in current buffer.
+            "   - i_<Plug>(neosnippet_start_unite_snippet)
             "   - neosnippet#expandable()
             "   - neosnippet#jumpable()
             " unite.vim
@@ -5656,7 +5656,7 @@ syntax on
 
             let g:unite_update_time = 500 " update time interval of candidates
             let g:unite_enable_start_insert = 1 " startup into insert mode
-            let g:unite_split_rule = "topleft"
+            let g:unite_split_rule = "topleft" " unite split window position
             let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
             let g:unite_winheight = 15
             let g:unite_winwidth = 50
@@ -5985,13 +5985,13 @@ syntax on
         " undotree {{{ Display your undo history in a graph.
             " Usage:
             " ?, u, <C-r>, g+, g-, :earlier, :later.
-            let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_SplitLocation = 'topleft'
-            let g:undotree_SplitWidth = 35
+            let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_diffAutoOpen = 1
+            let g:undotree_SplitWidth = 35
             let g:undotree_diffpanelHeight = 25
-            let g:undotree_RelativeTimestamp = 1
             let g:undotree_TreeNodeShape = '*'
+            let g:undotree_RelativeTimestamp = 1
             let g:undotree_HighlightChangedText = 1 " highlight changed text line
             let g:undotree_HighlightSyntax = "UnderLined"
 
