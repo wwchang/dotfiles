@@ -1487,7 +1487,7 @@ endif
         NeoBundle 'h1mesuke/vim-unittest'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
-        " NeoBundle 'taichouchou2/vim-rsense'
+        NeoBundle 'taichouchou2/vim-rsense'
         " NeoBundle 'vadv/rubycomplete'
         NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
         NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
@@ -2004,7 +2004,7 @@ syntax on
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
             " rsense plugin                 -> RsenseCompleteFunction
-            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            let g:neocomplcache_omni_functions['ruby'] = 'RsenseCompleteFunction'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
             " jedi#complete             -- plugin jedi-vim omni use jedi python autocomplete
