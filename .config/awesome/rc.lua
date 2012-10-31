@@ -1048,7 +1048,7 @@ end
             },
             foursquare,
             datewidget, datetext, separator_sign,
-            weatherwidget, weathertext, separator_sign,
+            --weatherwidget, weathertext, separator_sign,
             volwidget, voltext,
             separator_sign,
             -- fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fstext,
