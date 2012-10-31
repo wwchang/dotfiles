@@ -1483,8 +1483,8 @@ endif
 
         " [ languages ] {{{
         " VimL
-        " NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
-        " NeoBundle 'h1mesuke/vim-unittest'
+        NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
+        NeoBundle 'h1mesuke/vim-unittest'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         " NeoBundle 'taichouchou2/vim-rsense'
