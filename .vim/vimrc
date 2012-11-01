@@ -1283,7 +1283,7 @@ endif
         " NeoBundle 'Townk/vim-autoclose'
         " NeoBundle 'vim-scripts/AutoClose'
         " NeoBundle 'Raimondi/delimitMate'
-        " NeoBundle 'kien/rainbow_parentheses.vim'
+        NeoBundle 'kien/rainbow_parentheses.vim'
         NeoBundle 'tpope/vim-endwise'
         " Undo
         NeoBundle 'mbbill/undotree'
@@ -4186,12 +4186,32 @@ syntax on
         " endwise : end certain structures automatically. if, do, def ...
 
         " Rainbow_Parentheses_Improved {{{ show parentheses in different color
-            " Usage: :RainbowToggle, rainbow#toggle()
-            " au syntax * call rainbow#load([
-            "             \ ['(',')'],['\[','\]'],['{','}'],
-            "             \ ['begin','end'],
-            "             \ ])
-            " au syntax * call rainbow#activate()
+            " Usage: :RainbowParenthesesToggle
+            let g:rbpt_colorpairs = [
+                        \ ['brown',       'RoyalBlue3'],
+                        \ ['Darkblue',    'SeaGreen3'],
+                        \ ['darkgray',    'DarkOrchid3'],
+                        \ ['darkgreen',   'firebrick3'],
+                        \ ['darkcyan',    'RoyalBlue3'],
+                        \ ['darkred',     'SeaGreen3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['brown',       'firebrick3'],
+                        \ ['gray',        'RoyalBlue3'],
+                        \ ['black',       'SeaGreen3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['Darkblue',    'firebrick3'],
+                        \ ['darkgreen',   'RoyalBlue3'],
+                        \ ['darkcyan',    'SeaGreen3'],
+                        \ ['darkred',     'DarkOrchid3'],
+                        \ ['red',         'firebrick3'],
+                        \ ]
+            let g:rbpt_max = 16
+            let g:rbpt_loadcmd_toggle = 0
+            " always on
+            au VimEnter * RainbowParenthesesToggle
+            au Syntax * RainbowParenthesesLoadRound
+            au Syntax * RainbowParenthesesLoadSquare
+            au Syntax * RainbowParenthesesLoadBraces
         " }}}
 
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
