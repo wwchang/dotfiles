@@ -1294,6 +1294,8 @@ endif
         " NeoBundle 'nanotech/jellybeans.vim'
         " NeoBundle 'w0ng/vim-hybrid'
         " NeoBundle 'ciaranm/inkpot'
+        " colorscheme utilities
+        NeoBundle 'rking/vim-detailed'
         " colorsets
         " NeoBundle 'altercation/solarized'
         " NeoBundle 'chriskempson/tomorrow-theme'
@@ -6401,6 +6403,8 @@ syntax on
             " colorscheme hybrid
 
         " Lucius
+
+        " vim-detailed
     " }}}
 
     " [ syntax for *** ] {{{
