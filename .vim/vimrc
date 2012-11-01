@@ -1604,14 +1604,16 @@ endif
         "             \ 'build': { 'unix': 'cabal install ghc-mod' },
         "             \ }
         " NeoBundle 'dag/vim2hs'
-        " Perl
-        " NeoBundle 'c9s/perlomni.vim'
         " R
         NeoBundle 'jcfaria/Vim-R-plugin', {
                     \ 'depends': ['jalvesaq/VimCom',],
                     \ }
         " NeoBundle 'vim-scripts/R.vim'
         " NeoBundle 'vim-scripts/GNU-R'
+        " Scala
+        " NeoBundle 'megaannum/vimside'
+        " Perl
+        " NeoBundle 'c9s/perlomni.vim'
         " Assembly
         " NeoBundle 'pksunkara/vim-dasm'
         " Markdown
@@ -5465,6 +5467,11 @@ syntax on
         " - Displaying the type of sub-expressions (ghc-mod type)
         " - Displaying error/warning messages and their locations (ghc-mod check and ghc-mod lint)
         " - Displaying the expansion of splices (ghc-mod expand)
+        " }}}
+    " }}}
+
+    " [ Scala ] {{{
+        " vimside {{{
         " }}}
     " }}}
 
