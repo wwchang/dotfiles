@@ -2522,7 +2522,7 @@ syntax on
                 " \ . &filetype<CR>
 
             " for snippets_complete marker.
-            if has('conceal')
+            if has('conceal') && !exists('g:loaded_neosnippet')
                 set conceallevel=2 concealcursor=i
             endif
         " }}}
@@ -4011,7 +4011,7 @@ syntax on
             "   -- reviewing a previously applied patch.
     " }}}
 
-    " [ FileManager ] {{{ <F11>
+    " [ File Manager ] {{{ <F11>
         " NERDtree {{{ <F11> :NERDTree [dir|bookmark-name]
             " Usage:
             "   Keys:
@@ -6703,8 +6703,7 @@ syntax on
             let g:vimwiki_ext2syntax = {
                         \ 'wiki': 'default',
                         \ }
-                        " \ 'md': 'markdown',
-                        " \ 'mkd': 'markdown',
+                        " \ 'markdown': 'markdown',
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
@@ -7091,6 +7090,8 @@ syntax on
         " }}}
 
         " vim-octopress : syntax highlighting for Octopress post and page files
+            " Usage:
+            " :Octopress {task}<Tab>
 
         " wwwsearch {{{ Search WWW easily from Vim.
             " Usage:
