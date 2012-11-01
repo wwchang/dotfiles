@@ -1483,8 +1483,9 @@ endif
 
         " [ languages ] {{{
         " VimL
-        NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
-        NeoBundle 'h1mesuke/vim-unittest'
+        " NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
+        " NeoBundle 'h1mesuke/vim-unittest'
+        " NeoBundle 'kana/vim-vspec'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         NeoBundle 'taichouchou2/vim-rsense'
@@ -4254,19 +4255,24 @@ syntax on
 
 " [ languages ] {{{
     " [ VimL ] {{{
-        " vesting {{{ best VimScript VimL test framework.
-            " Usage:
+        " [ test ] {{{
+            " vesting {{{ best VimScript VimL test framework.
+                " Usage:
                 " run test cases under './vest/*.vim' with command :Unite vesting:.
-        " }}}
+            " }}}
 
-        " vim-unittest {{{ Unit Testing for Vim scripts.
+            " vim-unittest {{{ Unit Testing for Vim scripts.
+            " }}}
+
+            " vim-vspec {{{ Testing framework for Vim script
+            " }}}
+
+            " runVimTests {{{ A testing framework for Vim.
+            " }}}
         " }}}
 
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
             " :h vimsupport.
-        " }}}
-
-        " runVimTests {{{ A testing framework for Vim.
         " }}}
 
         " Self {{{ Vim prototype object system.
