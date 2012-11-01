@@ -1554,9 +1554,10 @@ endif
         " NeoBundle 'vim-scripts/onsgmls.vim'
         " NeoBundle 'vim-scripts/xmlwf.vim', {'external_commands': ['xmlwf']}
         " CSS
-        NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-        NeoBundle 'hail2u/vim-css3-syntax'
-        NeoBundle 'skammer/vim-css-color'
+        " NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+        " NeoBundle 'hail2u/vim-css3-syntax'
+        " NeoBundle 'skammer/vim-css-color'
+        " NeoBundle 'vim-scripts/css3-mod'
             " Vim runtime files for Haml, Sass, and SCSS
             " NeoBundle 'tpope/vim-haml'
             " LESS
