@@ -1469,6 +1469,7 @@ endif
         " NeoBundle 'Shougo/vimfiler'
         " NeoBundle 'troydm/easybuffer.vim'
         NeoBundle 'airblade/vim-rooter'
+        NeoBundle 'gcmt/ozzy.vim'
         " Tabular
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
@@ -4093,6 +4094,9 @@ syntax on
         " }}}
 
         " LustyExplorer : A lightweight fast file manager.
+
+        " Ozzy.vim {{{ quick file launcher for Vim with database supports.
+        " }}}
     " }}}
 
     " [ REPL (Read-eval-print loop) ] {{{
