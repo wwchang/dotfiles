@@ -1353,7 +1353,7 @@ endif
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
         " snippets
         NeoBundle 'Shougo/neosnippet'
-        NeoBundle 'SirVer/ultisnips'
+        " NeoBundle 'SirVer/ultisnips'
         " NeoBundle 'drmingdrmer/xptemplate'
         " NeoBundle 'garbas/vim-snipmate'
         " NeoBundle 'scrooloose/snipmate-snippets'
