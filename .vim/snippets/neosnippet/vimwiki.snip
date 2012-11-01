@@ -1,16 +1,46 @@
+# Link {{{
 snippet     link
 abbr        [[URL|alternate text]]
     [[${1:TARGET:URL/path}|${2:#:alternate text}]] ${0}
+
+snippet     thumbnail
+abbr        [[LINK|{thumbnail}]]
+    [[${1:LINK}|${2:LINK(thumbnail)}]]
 
 snippet     image
 abbr        {{local:path}}
     {{local:${1:TARGET:path/to/file}}}
 
+# for utl.vim plugin
 snippet     utl
 abbr        utl link <url:URL>
 alias       url
     <url:${1:TARGET:URL}>
+# }}}
 
+# Schemes {{{
+snippet     scheme interwiki
+abbr        [[wiki#:TITLE]]
+alias       interwiki
+    [[wiki${1:wiki Number}:${2:TITLE}|${3:description}]]
+
+snippet     scheme diary
+abbr        [[diary:2012-10-31]]
+alias       diary
+    [[diary:${1:`strftime("%Y-%m-%d")`}]]
+
+snippet     scheme local
+abbr        [[local:path|desc]]
+alias       local
+    [[local:${1:path/to/file}|${2:description}]]
+
+snippet     scheme file
+abbr        [[file:///path/to/file]]
+alias       file
+    [[file:///${1:path/to/file}]]
+# }}}
+
+# highlight: code, formula {{{
 snippet     code
 abbr        {{{code > ... }}}
 alias       syntax
@@ -30,7 +60,9 @@ options     head
     {{$
     ${1:TARGET:math formula}
     }}
+# }}}
 
+# font face {{{
 snippet     bold
 abbr        *bold*
 alias       b
@@ -51,5 +83,6 @@ snippet     subscript
 abbr        6₆
 alias       sub
     ,,${1:TARGET:subscript 6₆},,
+# }}}
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

@@ -99,9 +99,10 @@
 # alias hoge hogera hogehoge
 # <
 
-# [ sync ]
+# [ sync / mirror ]
 # Synchronized placeholder feature is supported. $1 is synchronized to ${1}.
-# When you jump to next, it is synchlonized. $0 is last jump placeholder.
+# When you jump to next, it is synchlonized. ${0} is last jump placeholder.
+# And $0 is the mirror of ${0} .
 
 # [ options ]
 # 'options':

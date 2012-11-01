@@ -7,7 +7,7 @@ options     head
     " Description:  ${2:#:what features this plugin provided ?}
     " License:      ${3:#:what license ?}
 
-    $0
+    ${0}
 
 snippet     plugin.skeleton.loaded
 abbr        if exists("g:loaded_plugin") > finish > endif
@@ -112,7 +112,7 @@ snippet     plugin.skeleton.commentchar
 abbr        get filetype comment char
 alias       commentchar
 options     head
-    substitute(&commentstring, '%s', '', "")$0
+    substitute(&commentstring, '%s', '', "")${0}
 
 # global variable, default option.
 snippet     plugin.skeleton.option global g:
@@ -145,7 +145,7 @@ options     head
     redir ${1:>,>>,=>,==>} ${2:variable/file/@a-z/}
     ${3:#:statements: silent! iabbrev}
     redir END
-    $0
+    ${0}
 
 snippet     plugin.skeleton.options
 abbr        for [key, val] in s:options
@@ -168,5 +168,16 @@ snippet     plugin.skeleton.command range as args
 abbr        command! -nargs=* -range Cmd call s:func(<q-arg> <line1>, <line2>)
 options     head
     command! -nargs=* -range -bang ${1:command} call ${2:s:func}(shellescape(<q-args>), <bang>0, <line1>, <line2>)
+
+
+snippet     complete Command custom complete func
+abbr        func! s:Complete(ArgLead, CmdLine, CursorPos) > return > endfunc
+alias       w
+options     head
+    func! s:Complete(ArgLead, CmdLine, CursorPos)
+        return "${1:one\ntwo\nthree\n}"
+    endfunc
+
+    command! -complete=custom,s:Complete
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4
