@@ -89,12 +89,12 @@ options     head
 # ******
 # - - -
 # -----------
-snippet     line ----
+snippet     line dash
 abbr        -----
 options     head
     -------------
     ${0}
-snippet     line ****
+snippet     line star
 abbr        *****
 options     head
     * * *
@@ -115,16 +115,16 @@ abbr        [title][] -> [title] URL
     [$1]: ${2:TARGET:URL, /path/to/file(relative)} "${3:#:long title}"
 
 # emphasis
-snippet     em italic *string*
+snippet     em italic star
 abbr        *string*
     *${1:#:emphasis <em>}* ${0}
-snippet     em italic _string_
+snippet     em italic underscore
 abbr        _string_
     _${1:#:emphasis <em>}_ ${0}
-snippet     em bold **string**
+snippet     em bold star
 abbr        **string**
     **${1:#:emphasis <em>}** ${0}
-snippet     em bold __string__
+snippet     em bold underscore
 abbr        __string__
     __${1:#:emphasis <em>}__ ${0}
 
