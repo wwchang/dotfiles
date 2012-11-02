@@ -4101,6 +4101,28 @@ syntax on
         " LustyExplorer : A lightweight fast file manager.
 
         " Ozzy.vim {{{ quick file launcher for Vim with database supports.
+            " Usage:
+            " :Ozzy <filename>
+            " :Ozzy partial-directory/filename
+            " :Ozzy directory/  -- open all files under directory/ (Note '/')
+            let g:ozzy_mode = "context" " most frequent, most recent, context.
+            let g:ozzy_freeze = 0 " freeze, no more added.
+            let g:ozzy_scope = '' " absolute path, . , .. , ... ,
+            let g:ozzy_ignore_ext = 1 " ignore file extension
+            let g:ozzy_ignore = ['*.swp', '*~', '*.bak',]
+            let g:ozzy_keep = 100 " keep 100 days if not accessed. then removed.
+            let g:ozzy_what_in_project_root = [
+                        \ '.git', '.hg', '.svn',
+                        \ 'Rakefile', 'Makefile',
+                        \ ]
+            let g:ozzy_ignore_case = 1
+            let g:ozzy_max_num_files_to_open = 5 " 0: unlimited
+            let g:ozzy_enable_shortcuts = 1
+            let g:ozzy_most_frequent_flag = 'F'
+            let g:ozzy_most_recent_flag = 'R'
+            let g:ozzy_context_flag = 'C'
+            let g:ozzy_freeze_off_flag = ''
+            let g:ozzy_freeze_on_flag = 'freeze'
         " }}}
     " }}}
 
