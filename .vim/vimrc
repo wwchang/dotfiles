@@ -1447,6 +1447,7 @@ endif
         " compile & run & Make
         NeoBundle 'xuhdev/SingleCompile'
         " NeoBundle 'johnsyweb/vim-makeshift'
+        " NeoBundle 'Ignotus/vim-cmake-project'
         " syntax checker
         NeoBundle 'scrooloose/syntastic'
         " debugger
@@ -3776,6 +3777,9 @@ syntax on
         " }}}
 
         " vim-makeshift {{{ Selects the right 'makeprg' for your build system
+        " }}}
+
+        " vim-cmake-project {{{ cmake project management plugin for VIM
         " }}}
     " }}}
 
