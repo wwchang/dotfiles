@@ -1444,6 +1444,7 @@ endif
         " NeoBundle 'krisajenkins/vim-pipe'
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
+        NeoBundle 'thinca/vim-partedit'
         " compile & run & Make
         NeoBundle 'xuhdev/SingleCompile'
         " NeoBundle 'johnsyweb/vim-makeshift'
@@ -6214,7 +6215,18 @@ syntax on
             "   - {Visual select} \nr
         " }}}
 
+        " vim-narrow : https://github.com/kana/vim-narrow
+        " vim-narrow : https://github.com/jkramer/vim-narrow
+
         " partedit {{{ Edit part of buffer by another buffer.
+            " Usage:
+            " :[range]Partedit [options]...
+            "   - e.g. :Partedit -opener new -filetype vim -prefix "> "
+            " :ParteditEnd
+            let g:partedit#opener = 'new' " '' (:edit), 'new', 'vsplit', '=expr'
+            " let g:partedit#prefix = '> '
+            " let g:partedit#filetype = ''
+            let g:partedit#auto_prefix = 1
         " }}}
     " }}}
 
