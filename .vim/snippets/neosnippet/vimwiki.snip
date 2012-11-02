@@ -1,3 +1,95 @@
+# Typefaces {{{
+snippet     bold
+abbr        *bold*
+alias       b
+    *${1:TARGET:text}*
+snippet     italic
+abbr        _italic_
+alias       i
+    _${1:TARGET:text}_
+snippet     code inline
+abbr        `code (no syntax) text`
+alias       c
+options     word
+    \` ${1:code text} \`
+snippet     strike
+abbr        ~~strike~~
+alias       s
+    ~~${1:TARGET:text}~~
+snippet     superscript
+abbr        6⁶
+alias       sup
+    ^${1:TARGET:superscript 6⁶}^
+snippet     subscript
+abbr        6₆
+alias       sub
+    ,,${1:TARGET:subscript 6₆},,
+# }}}
+
+# Headers {{{
+snippet     header 1
+abbr        = header level 1 =
+alias       h1
+options     head
+    = ${1:TARGET:header} =
+snippet     header 2
+abbr        == header level 2 ==
+alias       h2
+options     head
+    == ${1:TARGET:header} ==
+snippet     header 3
+abbr        === header level 3 ===
+alias       h3
+options     head
+    === ${1:TARGET:header} ===
+snippet     header 4
+abbr        ==== header level 4 ====
+alias       h4
+options     head
+    ==== ${1:TARGET:header} ====
+snippet     header 5
+abbr        ===== header level 5 =====
+alias       h5
+options     head
+    ===== ${1:TARGET:header} =====
+snippet     header 6
+abbr        ====== header level 6 ======
+alias       h6
+options     head
+    ====== ${1:TARGET:header} ======
+# }}}
+
+# Lists {{{
+snippet     list unordered star
+abbr        * list item
+options     head
+    * ${1:item1}
+    * ${2:item2}
+snippet     list unordered dash
+abbr        - list item
+options     head
+    - ${1:item1}
+    - ${2:item2}
+snippet     list unordered mix
+abbr        */- list item
+options     indent
+    * ${1:item1}
+    * ${2:item2}
+        - ${1:item2.1}
+        - ${2:item2.2}
+snippet     list ordered hash
+abbr        # list item
+options     head
+    # ${1:item1}
+    # ${2:item2}
+snippet     list definition
+abbr        Term 1:: Definition 1
+options     head
+    ${1:Term 1}:: ${2:Definition 1}
+    ${3:Term 2}::
+    ::${4:Definition 3}
+# }}}
+
 # Link {{{
 snippet     link
 abbr        [[URL|alternate text]]
@@ -5,7 +97,7 @@ abbr        [[URL|alternate text]]
 
 snippet     thumbnail
 abbr        [[LINK|{thumbnail}]]
-    [[${1:LINK}|${2:LINK(thumbnail)}]]
+    [[${1:TARGET:LINK}|${2:LINK(thumbnail)}]]
 
 snippet     image
 abbr        {{local:path}}
@@ -32,21 +124,28 @@ alias       diary
 snippet     scheme local
 abbr        [[local:path|desc]]
 alias       local
-    [[local:${1:path/to/file}|${2:description}]]
+    [[local:${1:path/to/file}|${2:TARGET:description}]]
 
 snippet     scheme file
 abbr        [[file:///path/to/file]]
 alias       file
-    [[file:///${1:path/to/file}]]
+    [[file:///${1:TARGET:path/to/file}]]
 # }}}
 
 # highlight: code, formula {{{
-snippet     code
+snippet     code block
 abbr        {{{code > ... }}}
 alias       syntax
 options     head
     {{{${1:#:language: ruby/python/lisp/c}
-    ${1:TARGET:code here}
+    ${2:TARGET:code here}
+    }}}
+
+snippet     code block attribute
+abbr        {{{class="" code > ... }}}
+options     head
+    {{{class="${1:brush: ruby}"
+    ${2:TARGET:code here}
     }}}
 
 snippet     formula inline
@@ -62,27 +161,17 @@ options     head
     }}
 # }}}
 
-# font face {{{
-snippet     bold
-abbr        *bold*
-alias       b
-    *${1:TARGET:text}*
-snippet     italic
-abbr        _italic_
-alias       i
-    _${1:TARGET:text}_
-snippet     strike
-abbr        ~~strike~~
-alias       s
-    ~~${1:TARGET:text}~~
-snippet     superscript
-abbr        6⁶
-alias       sup
-    ^${1:TARGET:superscript 6⁶}^
-snippet     subscript
-abbr        6₆
-alias       sub
-    ,,${1:TARGET:subscript 6₆},,
+# comment {{{
+snippet     comment
+abbr        %% comment
+options     head
+    %% ${1:#:comment}
+
+snippet     line horizontal
+abbr        ---- <hr />
+alias       hr
+options     head
+    ----
 # }}}
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4
