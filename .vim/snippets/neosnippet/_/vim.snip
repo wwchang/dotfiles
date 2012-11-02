@@ -6,11 +6,12 @@ abbr        # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=2/4
 options     head
     `substitute(&commentstring, '%s', '', "")` vim:fdm=marker:fmr={{{,}}}:expandtab:sw=${1:2/4}:sts=$1
 
-snippet     marker
+snippet     fold
 abbr        # {{{ > ... > }}}
+alias       marker
 options     head
     `substitute(&commentstring, '%s', '', "")` ${1:#:header} {{{
-    ${2:statements}
+    ${2:TARGET:statements}
     `substitute(&commentstring, '%s', '', "")` }}}
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

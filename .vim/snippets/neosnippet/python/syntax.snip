@@ -81,11 +81,11 @@ options		head
 # }}}
 
 # function {{{
-snippet     def
-abbr        def func(*args, **kwargs): ...
-alias		func,function
+snippet     function
+abbr        def {name}({parameters}): ...
+alias		def,func
 options		head
-	def ${1:funcName}(${2:#:*args, **kwargs}):
+	def ${1:name}(${2:#:parameters: *args, **kwargs}):
 		${3:TARGET:pass}
 # }}}
 

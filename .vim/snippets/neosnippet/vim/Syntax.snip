@@ -142,26 +142,26 @@ options     head
 
 # function {{{
 snippet     function
-abbr        fun! s:funcname(args) abort .. endfun
+abbr        fun! s:{name}({arguments}) abort .. endfun
 alias       func
 options     head
-    fun! ${1:s:}${2:func_name}(${3:args, ...}) abort
+    fun! ${1:s:}${2:name}(${3:arguments}) abort
         ${4:#:statements -> arguments: a:0, a:1, a:000[0]}
     endfun
 
 snippet     function.range
-abbr        fun! s:funcname(args) range .. endfun
+abbr        fun! s:funcname(arguments) range .. endfun
 alias       func.range
 options     head
-    fun! ${1:s:}${2:func_name}(${3:args, ...}) range
+    fun! ${1:s:}${2:name}(${3:arguments}) range
         ${4:#:statements -> arguments: a:firstline, a:lastline}
     endfun
 
 snippet     function.dict
-abbr        fun! Dict.func(args) dict .. endfun
+abbr        fun! Dict.func(arguments) dict .. endfun
 alias       func.dict
 options     head
-    fun! ${1:Dict}.${2:func}(${3:args, ...}) dict
+    fun! ${1:Dict}.${2:func}(${3:arguments}) dict
         ${4:#:statements -> arguments: a:0, a:1, a:000[0]}
     endfun
 # }}}
