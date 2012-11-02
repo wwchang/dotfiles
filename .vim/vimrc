@@ -6191,21 +6191,40 @@ syntax on
             " Interrupt any command running in the runner pane
             nnoremap <Leader>rs :VimuxInterruptRunner<CR>
         " }}}
+    " }}}
 
+    " [ Narrow Region ] {{{
         " inline_edit {{{ Edit code that's embedded within other code.
-            " Visual select -> <Leader>e - any area that you mark.
-            " JS/CSS in HTML, SQL in RUby, code in markdown, Django block in template.
-            if exists('g:loaded_inline_edit')
-                " normal mode:
-                nnoremap <leader>e :InlineEdit<cr>
-                " visual mode:
-                xnoremap <leader>e :InlineEdit<cr>
-                " insert mode:
-                inoremap <c-e> <esc>:InlineEdit<cr>a
-                let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
-                " detect <script> <style> tags like HTML
-                let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
-            endif
+            " Usage:
+            " <Leader>e - in defined markers.
+            " {Visual}<Leader>e {filetype} - any area that you mark.
+            " Supports:
+            "   - JS/CSS in HTML
+            "   - SQL in RUby
+            "   - code in markdown
+            "   - Django block in template.
+            " normal mode:
+            nnoremap <leader>e :InlineEdit<cr>
+            " visual mode:
+            xnoremap <leader>e :InlineEdit<cr>
+            " insert mode:
+            inoremap <c-e> <esc>:InlineEdit<cr>a
+            let b:inline_edit_autowrite = 0 " 1: save proxy to buffer instead of write
+            " detect <script> <style> tags like HTML
+            " TODO add Ruby/Python HTML file extensions
+            let b:inline_edit_html_like_filetypes = []
+            let b:inline_edit_proxy_type = "scratch" " 'scratch', 'tempfile'
+            " FIXME this vim-vim not work.
+            " reference bundle/inline_edit.vim/plugin/inline_edit.vim
+            let b:inline_edit_patterns = [
+                \   {
+                \   'main_filetype':        'vim',
+                \   'sub_filetype':         'vim',
+                \   'indent_adjustment':    1,
+                \   'start':                'fun\%[ction!]',
+                \   'end':                  'endfun\%[ction]',
+                \   },
+                \ ]
         " }}}
 
         " NrrwRgn (NarrowRegion) {{{ A Narrow Region Plugin similar to Emacs
