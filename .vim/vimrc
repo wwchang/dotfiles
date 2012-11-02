@@ -1444,6 +1444,8 @@ endif
         " NeoBundle 'krisajenkins/vim-pipe'
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
+        " NarrowRegion
+        NeoBundle 'AndrewRadev/inline_edit.vim'
         NeoBundle 'kana/vim-narrow', {'directory': 'vim-narrow-kana'}
         NeoBundle 'jkramer/vim-narrow', {'directory': 'vim-narrow-jkramer'}
         NeoBundle 'thinca/vim-partedit'
