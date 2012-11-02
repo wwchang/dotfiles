@@ -1445,11 +1445,11 @@ endif
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
         " NarrowRegion
-        NeoBundle 'AndrewRadev/inline_edit.vim'
         NeoBundle 'chrisbra/NrrwRgn'
         NeoBundle 'kana/vim-narrow', {'directory': 'vim-narrow-kana'}
         NeoBundle 'jkramer/vim-narrow', {'directory': 'vim-narrow-jkramer'}
         NeoBundle 'thinca/vim-partedit'
+        NeoBundle 'AndrewRadev/inline_edit.vim'
         " compile & run & Make
         NeoBundle 'xuhdev/SingleCompile'
         " NeoBundle 'johnsyweb/vim-makeshift'
@@ -6195,6 +6195,35 @@ syntax on
     " }}}
 
     " [ Narrow Region ] {{{
+        " NrrwRgn {{{ A Narrow Region Plugin similar to Emacs
+            " Usage:
+            "   - :[range]NarrowRegion[!]
+            "   - :NarrowWindow[!]
+            "   - :WidenRegion[!]
+            "   - :[range]NRPrepare[!] -- add marked lines
+            "   - :NRV[!]   -- last selected in visual mode.
+            "   - {Visual select} \nr -> write buffer.
+            "   - *Recursively open Narrow Region
+            " TODO `:help nrrwrgn.txt`
+            let g:nrrw_rgn_vert = 0 " vertical split buffer
+            let g:nrrw_rgn_wdth = 30 " width/height
+            " let g:nrrw_rgn_hl = 'Search'
+            " let g:nrrw_rgn_nohl = 1 " turn off highlighting
+            if !exists('g:nrrw_custom_options')
+                let g:nrrw_custom_options = {}
+            endif
+            " let g:nrrw_custom_options['filetype'] = 'python'
+            let g:nrrw_topbot_leftright = 'topleft'
+            " let g:nrrw_rgn_protect = 'n'
+            " hooks
+            " let b:nrrw_aucmd_create = "set ft=csv|%ArrangeCol"
+
+            " xnoremap <Leader>nr <Plug>NrrwrgnDo
+        " }}}
+
+        " vim-narrow : https://github.com/kana/vim-narrow
+        " vim-narrow : https://github.com/jkramer/vim-narrow
+
         " inline_edit {{{ Edit code that's embedded within other code.
             " Usage:
             " <Leader>e - in defined markers.
@@ -6227,35 +6256,6 @@ syntax on
                 \   },
                 \ ]
         " }}}
-
-        " NrrwRgn {{{ A Narrow Region Plugin similar to Emacs
-            " Usage:
-            "   - :[range]NarrowRegion[!]
-            "   - :NarrowWindow[!]
-            "   - :WidenRegion[!]
-            "   - :[range]NRPrepare[!] -- add marked lines
-            "   - :NRV[!]   -- last selected in visual mode.
-            "   - {Visual select} \nr -> write buffer.
-            "   - *Recursively open Narrow Region
-            " TODO `:help nrrwrgn.txt`
-            let g:nrrw_rgn_vert = 0 " vertical split buffer
-            let g:nrrw_rgn_wdth = 30 " width/height
-            " let g:nrrw_rgn_hl = 'Search'
-            " let g:nrrw_rgn_nohl = 1 " turn off highlighting
-            if !exists('g:nrrw_custom_options')
-                let g:nrrw_custom_options = {}
-            endif
-            " let g:nrrw_custom_options['filetype'] = 'python'
-            let g:nrrw_topbot_leftright = 'topleft'
-            " let g:nrrw_rgn_protect = 'n'
-            " hooks
-            " let b:nrrw_aucmd_create = "set ft=csv|%ArrangeCol"
-
-            " xnoremap <Leader>nr <Plug>NrrwrgnDo
-        " }}}
-
-        " vim-narrow : https://github.com/kana/vim-narrow
-        " vim-narrow : https://github.com/jkramer/vim-narrow
 
         " partedit {{{ Edit part of buffer by another buffer.
             " Usage:
