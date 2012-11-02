@@ -1444,8 +1444,9 @@ endif
         " NeoBundle 'krisajenkins/vim-pipe'
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
-        " compile & run
+        " compile & run & Make
         NeoBundle 'xuhdev/SingleCompile'
+        " NeoBundle 'johnsyweb/vim-makeshift'
         " syntax checker
         NeoBundle 'scrooloose/syntastic'
         " debugger
@@ -3772,6 +3773,9 @@ syntax on
             endif
 
             nnoremap <F5> :SCCompileRun<cr>
+        " }}}
+
+        " vim-makeshift {{{ Selects the right 'makeprg' for your build system
         " }}}
     " }}}
 
