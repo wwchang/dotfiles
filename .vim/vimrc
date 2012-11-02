@@ -1497,6 +1497,7 @@ endif
         " NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
         " NeoBundle 'h1mesuke/vim-unittest'
         " NeoBundle 'kana/vim-vspec'
+        NeoBundle 'coot/vim_ftpdev'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
         NeoBundle 'taichouchou2/vim-rsense'
@@ -4314,6 +4315,9 @@ syntax on
 
             " runVimTests {{{ A testing framework for Vim.
             " }}}
+        " }}}
+
+        " vim_ftpdev {{{ jump to local/global declaration with gd/gD
         " }}}
 
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
