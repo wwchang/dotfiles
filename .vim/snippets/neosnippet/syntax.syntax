@@ -11,6 +11,36 @@
 # abbr    {abbr_name}    -> the completion abbreviation
 # options head           -> means this snippet is enabled only in line head.
 
+# [ snippet comment string ]
+# But it must be in head.
+# >
+#       #{string}
+#       # It is comment string
+#           # It is not comment string
+# <
+
+# [ empty line ]
+# neosnippet ignores empty line in snippet. If you want to insert empty line,
+# you must insert Spaces or Tabs.
+
+# [ options ]
+# 'options':
+#       - word  --> mean snippet is expanded by word boundary,
+#                   Note: the trigger must be word (digits or alphabet chars or "_")
+#       - head  --> mean snippet is enabled only in line head.
+#       - indent --> means neosnippet indents in expanded line.
+# >
+# snippet       date
+# options       word
+# <
+
+# [ regexp ]
+# neosnippet support regexp.
+# >
+#   snippet     trigger
+#   regexp      '^% '
+# <
+
 # [ delete ]
 # If you want to overwrite snippet explicitly:
 # >
@@ -19,7 +49,7 @@
 # and redefine the snippet.
 
 # [ include ]
-# When including external files or other snippet file's snippets are overwrited.
+# When including external files or other snippet file's snippets are overwritten.
 # you will not be warned.
 # Snippet include feature is available.
 # >
@@ -91,7 +121,7 @@
 # '_' snippet feature is supported. '_' snippet is loaded in all filetypes.
 
 # [ snipMate ]
-# And neosnippet can load snipMate snippets.
+# neosnippet is compatible with snipMate snippets.
 
 # [ alias ]
 # Alias feature is supported. Separator is ' ' or ','.
@@ -101,19 +131,8 @@
 
 # [ sync / mirror ]
 # Synchronized placeholder feature is supported. $1 is synchronized to ${1}.
-# When you jump to next, it is synchlonized. ${0} is last jump placeholder.
+# When you jump to next, it is synchronized. ${0} is last jump placeholder.
 # And $0 is the mirror of ${0} .
-
-# [ options ]
-# 'options':
-#       - word  --> mean snippet is expanded by word boundary,
-#                   Note: the trigger must be word (digits or alphabet chars or "_")
-#       - head  --> mean snippet is enabled only in line head.
-#       - indent --> means neosnippet indents in expanded line.
-# >
-# snippet       date
-# options       word
-# <
 
 # [ ! newline ]
 # The placeholder value can't contains new lines. Below snippet is illegal:
