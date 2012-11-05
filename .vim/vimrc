@@ -1652,6 +1652,8 @@ endif
         " NeoBundle 'tpope/vim-rails'
         " Django
         " NeoBundle 'yodiaditya/vim-pydjango'
+        " Mozilla
+        NeoBundle 'mozfr/mozilla.vim'
         " }}}
 
         " [ tools ] {{{
@@ -5675,6 +5677,11 @@ syntax on
         " }}}
 
         " [ Django ] {{{
+        " }}}
+
+        " [ Mozilla ] {{{
+            " mozilla.vim {{{ extend Vim syntax files for Mozilla contributors and web developers
+            " }}}
         " }}}
     " }}}
 
