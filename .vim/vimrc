@@ -150,7 +150,7 @@
         "hi ColorColumn     ctermfg=None ctermbg=233
     " }}}
 
-    " [ tags ] {{{
+    " [ tags ] {{{ {Visual}<C-]>
     " tags
 	" ':help tagsrch.txt'
 	" {Visual}C-], [count]C-T, {Visual}g], C-w C-], {Visual}g C-],
@@ -588,7 +588,7 @@ endif
     set backspace=indent,eol,start " Better handling of backspace key
     set autoindent " Sane indenting when filetype not recognised
     " set smartindent  " autoindent, smartindent, cindent, indentexpr.
-        " use 'filetype indent on' to per-filetype indent
+        " use 'filetype indent on' to per-filetype indent is better.
     set nostartofline   " Emulate typical editor navigation behaviour
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
@@ -1283,7 +1283,7 @@ endif
         " NeoBundle 'Townk/vim-autoclose'
         " NeoBundle 'vim-scripts/AutoClose'
         " NeoBundle 'Raimondi/delimitMate'
-        NeoBundle 'kien/rainbow_parentheses.vim'
+        " NeoBundle 'kien/rainbow_parentheses.vim'
         NeoBundle 'tpope/vim-endwise'
         " Undo
         NeoBundle 'mbbill/undotree'
@@ -1446,10 +1446,10 @@ endif
         " NeoBundle 'chrisbra/NrrwRgn'
         " NarrowRegion
         NeoBundle 'chrisbra/NrrwRgn'
-        NeoBundle 'kana/vim-narrow', {'directory': 'vim-narrow-kana'}
-        NeoBundle 'jkramer/vim-narrow', {'directory': 'vim-narrow-jkramer'}
-        NeoBundle 'thinca/vim-partedit'
+        " NeoBundle 'kana/vim-narrow', {'directory': 'vim-narrow-kana'}
+        " NeoBundle 'jkramer/vim-narrow', {'directory': 'vim-narrow-jkramer'}
         NeoBundle 'AndrewRadev/inline_edit.vim'
+        " NeoBundle 'thinca/vim-partedit'
         " compile & run & Make
         NeoBundle 'xuhdev/SingleCompile'
         " NeoBundle 'johnsyweb/vim-makeshift'
@@ -1479,7 +1479,7 @@ endif
         " NeoBundle 'Shougo/vimfiler'
         " NeoBundle 'troydm/easybuffer.vim'
         NeoBundle 'airblade/vim-rooter'
-        NeoBundle 'gcmt/ozzy.vim'
+        " NeoBundle 'gcmt/ozzy.vim'
         " Tabular
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
@@ -1502,12 +1502,12 @@ endif
         NeoBundle 'vim-ruby/vim-ruby'
         NeoBundle 'taichouchou2/vim-rsense'
         " NeoBundle 'vadv/rubycomplete'
-        NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
+        " NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
         NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
         NeoBundle 'ujihisa/neco-ruby'
-        NeoBundle 'ujihisa/neco-rubymf'
+        " NeoBundle 'ujihisa/neco-rubymf', {'build': {'unix': 'gem install methodfinder'}}
         NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
@@ -2460,6 +2460,8 @@ syntax on
             "   - <`placeholder`> (<C-j>) -- jump to next placeholder
             "   - {Visual:string}<Tab>  -- expand inputted trigger by selected target text.
             " Functions:
+            "  :NeoSnippetSource [filetype]
+            "   -- load [filetype] snippets for current buffer.
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
             " key mappings:
@@ -2486,8 +2488,9 @@ syntax on
             "       - expand
             "       - edit
             "       - preview
-            " neosnippet                 -> [Snip] (no placeholders)
-            " neosnippet                 -> <Snip> (contain placeholders)
+            " neosnippet  -> [Snip] (no placeholders)
+            " neosnippet  -> <Snip> (contain placeholders)
+            " neosnippet  -> `Snip` (partial match)
 
             let g:neosnippet#snippets_directory = "~/.vim/snippets/neosnippet/"
             let g:neosnippet#disable_select_mode_mappings = 1
@@ -2500,6 +2503,7 @@ syntax on
             let g:neosnippet#disable_runtime_snippets = {
                         \ '_': 1,
                         \ }
+            let g:neosnippet#enable_snipmate_compatibility = 0 " snipMate compatibility
 
             if !exists('g:loaded_neosnippet')
             endif
@@ -2664,7 +2668,7 @@ syntax on
         " TagmaLast : Update the 'Last Changed' line in a file.
     " }}}
 
-    " [ tags/cscope ] {{{ <F12>
+    " [ tags/cscope ] {{{ {Visual}<C-]>, <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
             " access symbols:
@@ -4138,6 +4142,9 @@ syntax on
             let g:ozzy_context_flag = 'C'
             let g:ozzy_freeze_off_flag = ''
             let g:ozzy_freeze_on_flag = 'freeze'
+            let g:ozzy_filter_inspector_by_scope = 0
+            let g:ozzy_hide_scope_inspector = 0
+            let g:ozzy_show_inspector_env = 1
         " }}}
     " }}}
 
@@ -6259,6 +6266,7 @@ syntax on
                 \   'end':                  'endfun\%[ction]',
                 \   },
                 \ ]
+            " }}}
         " }}}
 
         " partedit {{{ Edit part of buffer by another buffer.
@@ -6497,7 +6505,7 @@ syntax on
 
         " Lucius
 
-        " vim-detailed
+        " vim-detailed : more detailed than scheme
     " }}}
 
     " [ syntax for *** ] {{{
