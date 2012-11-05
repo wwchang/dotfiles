@@ -4353,7 +4353,7 @@ syntax on
                 " Ruby motions
                 " Ruby text objects
             " syntax
-            let ruby_no_expensive = 1 " smart end color etc
+            " let ruby_no_expensive = 1 " smart end color etc
             let ruby_minlines = 100
             let ruby_operators = 1 " highlight operators
             let ruby_space_errors = 0 " highlight whitespace erros
