@@ -1696,6 +1696,8 @@ endif
         NeoBundle 'thinca/vim-visualstar'
         NeoBundle 'vim-scripts/SpitVspit'
         " NeoBundle 'mikewest/vimroom'
+        " UNIX
+        NeoBundle 'tpope/vim-eunuch'
         " }}}
         " }}}
 
@@ -6823,6 +6825,11 @@ syntax on
 
     " TUI (Text User Interface) {{{
         " forms {{{ A Vim TUI library.
+        " }}}
+    " }}}
+
+    " [ UNIX ] {{{
+        " vim-eunuch {{{ Vim sugar for the UNIX shell commands that need it the most.
         " }}}
     " }}}
 
