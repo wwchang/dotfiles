@@ -304,7 +304,7 @@
     "            | `-windows buffers
     "            `-the current buffer
     set completeopt=menuone " menu,menuone,longest,preview
-    set completeopt+=longest
+    set completeopt+=longest " press CTRL-L to insert longest common text of matches
     set completeopt-=preview " dont show preview window
 
     " [ popup menu ]
