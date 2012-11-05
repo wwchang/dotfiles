@@ -304,6 +304,7 @@
     "            | `-windows buffers
     "            `-the current buffer
     set completeopt=menuone " menu,menuone,longest,preview
+    set completeopt+=longest
     set completeopt-=preview " dont show preview window
 
     " [ popup menu ]
