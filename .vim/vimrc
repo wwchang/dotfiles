@@ -6255,15 +6255,93 @@ syntax on
             " TODO add Ruby/Python HTML file extensions
             let b:inline_edit_html_like_filetypes = []
             let b:inline_edit_proxy_type = "scratch" " 'scratch', 'tempfile'
-            " FIXME this vim-vim not work.
-            " reference bundle/inline_edit.vim/plugin/inline_edit.vim
-            let b:inline_edit_patterns = [
+
+            " TODO
+            " Customization {{{
+            let g:inline_edit_patterns = [
                 \   {
                 \   'main_filetype':        'vim',
                 \   'sub_filetype':         'vim',
-                \   'indent_adjustment':    1,
-                \   'start':                'fun\%[ction!]',
-                \   'end':                  'endfun\%[ction]',
+                \   'indent_adjustment':    0,
+                \   'start':                '\<fun\%[ction!]\>',
+                \   'end':                  '\<endfun\%[ction]\>',
+                \   },
+                \   {
+                \   'main_filetype':        'vim',
+                \   'sub_filetype':         'ruby',
+                \   'indent_adjustment':    0,
+                \   'start':                'ruby\s<<\sRUBYEOF',
+                \   'end':                  'RUBYEOF',
+                \   },
+                \   {
+                \   'main_filetype':        'vim',
+                \   'sub_filetype':         'python',
+                \   'indent_adjustment':    0,
+                \   'start':                'python\s<<\sPYTHONEOF',
+                \   'end':                  'PYTHONEOF',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'ruby',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{ruby',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'python',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{python',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'lisp',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{lisp',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'vim',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{vim',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'go',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{go',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'c',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{c',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'javascript',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{javascript',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'html',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{html',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'css',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{css',
+                \   'end':                  '}}}',
                 \   },
                 \ ]
             " }}}
