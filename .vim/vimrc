@@ -1504,7 +1504,8 @@ endif
         NeoBundle 'taichouchou2/vim-rsense'
         " NeoBundle 'vadv/rubycomplete'
         " NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
-        NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
+        NeoBundle 'tpope/vim-rvm'
+        " NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
         NeoBundle 'ujihisa/neco-ruby'
@@ -2179,13 +2180,13 @@ syntax on
             endif
             let g:neocomplcache_context_filetype_lists['vimwiki'] = [
                         \ {
-                            \ 'filetype': 'python',
-                            \ 'start': '^\s*{{{python$',
+                            \ 'filetype': 'ruby',
+                            \ 'start': '^\s*{{{ruby$',
                             \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                            \ 'filetype': 'ruby',
-                            \ 'start': '^\s*{{{ruby$',
+                            \ 'filetype': 'python',
+                            \ 'start': '^\s*{{{python$',
                             \ 'end': '^\s*}}}',
                         \ },
                         \ {
@@ -5094,7 +5095,8 @@ syntax on
     " [ Web: HTML5 & CSS, XML ] {{{
         " [ HTML5 ] {{{
             " ZenCoding {{{ powerful abbreviation engine. "<C-Y>[,vn...]"
-                " Usage: :verbose map <c-y>  --> to show all ZenCoding mappings.
+                " Usage:
+                " :verbose map <c-y>  --> to show all ZenCoding mappings.
                 let g:user_zen_leader_key = '<c-y>' " prefix.
                 " define tag's behavior.
                 let g:user_zen_settings = {
