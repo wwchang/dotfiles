@@ -2044,7 +2044,9 @@ syntax on
             let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
-            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
+            " htmlcomplete#CompleteTags         -> html5 plugin
+            " zencoding#CompleteTag             -> ZenCoding plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
             let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default / plugin SQLComplete.vim
             let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
