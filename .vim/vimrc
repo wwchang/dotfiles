@@ -1399,7 +1399,7 @@ endif
         " NeoBundle 'vim-scripts/Manuals'
         " NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " search [grep, MRU, files]
-        " NeoBundle 'kien/ctrlp.vim'
+        NeoBundle 'kien/ctrlp.vim'
         " NeoBundle 'wincent/Command-T'
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
