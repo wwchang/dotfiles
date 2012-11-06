@@ -4493,7 +4493,7 @@ syntax on
         " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
 
-        " rsense {{{
+        " vim-rsense {{{
             " Usage:
             " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
@@ -4525,6 +4525,7 @@ syntax on
             "	See RSense version.
             let g:rsenseHome = $RSENSE_HOME
             let g:rsenseUseOmniFunc = 1 " start completion automatically
+            let g:rsenseMatchFunc = ".*"
         " }}}
 
         " ruby-debugger {{{ debug Ruby App with ruby-debug-ide gem
@@ -5158,8 +5159,8 @@ syntax on
             " }}}
 
             " Sparkup {{{ Sparkup lets you write HTML code faster.
-		let g:sparkupExecuteMapping = '<c-e>' " expand/execute sparkup
-		let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
+            let g:sparkupExecuteMapping = '<c-e>' " expand/execute sparkup
+            let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
             " }}}
 
             " html5 {{{ HTML5 omnifunc and syntax for Vim.
