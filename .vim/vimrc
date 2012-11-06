@@ -2235,6 +2235,38 @@ syntax on
                             \ 'end': '^\s*}}}',
                         \ },
                         \ ]
+            let g:neocomplcache_context_filetype_lists['markdown'] = [
+                        \ {
+                            \ 'filetype':   'ruby',
+                            \ 'start':      '^\s*```ruby$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'python',
+                            \ 'start':      '^\s*```python$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'c',
+                            \ 'start':      '^\s*```c$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'go',
+                            \ 'start':      '^\s*```go$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'javascript',
+                            \ 'start':      '^\s*```javascript$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'html',
+                            \ 'start':      '^\s*```html$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ ]
             " }}}
             " text mode filetypes {{{
             " in text mode, neocomplcache supports word convertion to write English.
