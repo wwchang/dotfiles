@@ -1536,7 +1536,9 @@ endif
         " NeoBundle 'alfredodeza/pytest.vim'
         " NeoBundle 'julienr/vimux-pyutils'
         " C / C++(cpp)
-        NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
+        NeoBundle 'Shougo/neocomplcache-clang', {
+                    \ 'depends': ['Shougo/neocomplcache', 'Rip-Rip/clang_complete'],
+                    \ }
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
         NeoBundle 'undx/vim-gocode'
@@ -1618,7 +1620,7 @@ endif
         " NeoBundle 'dag/vim2hs'
         " R
         NeoBundle 'jcfaria/Vim-R-plugin', {
-                    \ 'depends': ['jalvesaq/VimCom',],
+                    \ 'depends': ['jalvesaq/VimCom', 'Shougo/vimshell',],
                     \ }
         " NeoBundle 'vim-scripts/R.vim'
         " NeoBundle 'vim-scripts/GNU-R'
@@ -1898,6 +1900,22 @@ syntax on
     " }}}
 
     " [ completion: autocomplete popup menu candidates ] {{{
+        " key bindings {{{
+            " <Tab> -- start complete or jump in snippet placeholder.
+            " <C-n> -- [n]ext popup selection.
+            " <C-p> -- [p]revious popup selection.
+            " <C-j> -- jump forwards in snippet placeholder
+            " <C-k> -- jump backward in snippet placeholder
+            " <C-o> -- manual omni complete.
+            " <C-y> -- [y]es, smart close popup.
+            " <C-e> -- [e]nd, cancel popup.
+            " <C-g> -- undo completion.
+            " <C-h> -- smart close popup.
+            " <C-l> -- common string complete.
+            " <BS>  -- smart close popup.
+            " <CR>  -- choose selected candidate and close popup.
+        " }}}
+
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
@@ -2338,20 +2356,6 @@ syntax on
             " }}}
 
             " [ key mappings ] {{{
-                " <Tab> -- start complete or jump in snippet placeholder.
-                " <C-n> -- [n]ext popup selection.
-                " <C-p> -- [p]revious popup selection.
-                " <C-j> -- jump forwards in snippet placeholder
-                " <C-k> -- jump backward in snippet placeholder
-                " <C-o> -- manual omni complete.
-                " <C-y> -- [y]es, smart close popup.
-                " <C-e> -- [e]nd, cancel popup.
-                " <C-g> -- undo completion.
-                " <C-h> -- smart close popup.
-                " <C-l> -- common string complete.
-                " <BS>  -- smart close popup.
-                " <CR>  -- choose selected candidate and close popup.
-
                 inoremap <expr> <C-x><C-f> neocomplcache#manual_filename_complete()
                 inoremap <expr> <C-o> neocomplcache#manual_omni_complete()
                 inoremap <expr> <C-l> neocomplcache#complete_common_string()
@@ -5011,6 +5015,7 @@ syntax on
             "   - :RAddLibToList [[lib1] [lib2]] -- add the objects of libraries.
             "   - :RSourceDir   -- source all .R files in a directory.
             "   - :RBuildTags   -- build tags file
+            "   - :Rinsert      -- insert output of R command
             "   - <Plug>RStart  -- \rf to start R
             "   - <Plug>RDSendSelection     -- send visual selected
             "   - <Plug>RDSendLine          -- send current line
