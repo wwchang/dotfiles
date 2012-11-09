@@ -2044,7 +2044,7 @@ syntax on
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
-            " vim-rsense plugin                 -> RSenseCompleteFunction
+            " vim-rsense plugin             -> RSenseCompleteFunction
             let g:neocomplcache_omni_functions['ruby'] = 'RSenseCompleteFunction'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
@@ -5016,6 +5016,7 @@ syntax on
             "   - :RSourceDir   -- source all .R files in a directory.
             "   - :RBuildTags   -- build tags file
             "   - :Rinsert      -- insert output of R command
+            "   - :Rformat      -- call tidy.source() of formatR package
             "   - <Plug>RStart  -- \rf to start R
             "   - <Plug>RDSendSelection     -- send visual selected
             "   - <Plug>RDSendLine          -- send current line
