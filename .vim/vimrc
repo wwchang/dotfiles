@@ -6821,8 +6821,10 @@ syntax on
 
             " list of tinykeymaps be loaded on startup
             let g:tinykeymaps_default = ['*'] " wildcard * to load all tinykeymaps.
-            let g:tinykeymap#mapleader = mapleader . 'm'
-            let g:tinykeymap#maplocalleader = maplocalleader . 'm'
+            let g:tinykeymap#mapleader =
+                        \ (exists('g:mapleader') ? g:mapleader : '#') . '#m'
+            let g:tinykeymap#maplocalleader =
+                        \ (exists('g:maplocalleader') ? g:maplocalleader : '\') . '\m'
             let g:tinykeymap#conflict = 2 " 0/1/2/3/4 -- create a new lead map and display a message
             let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
         " }}}
