@@ -1508,9 +1508,9 @@ endif
         " NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
-        NeoBundle 'ujihisa/neco-ruby'
+        " NeoBundle 'ujihisa/neco-ruby'
         " NeoBundle 'ujihisa/neco-rubymf', {'build': {'unix': 'gem install methodfinder'}}
-        NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
+        " NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
         " NeoBundle 'ujihisa/unite-gem'
@@ -1656,7 +1656,7 @@ endif
         " Django
         " NeoBundle 'yodiaditya/vim-pydjango'
         " Mozilla
-        NeoBundle 'mozfr/mozilla.vim'
+        " NeoBundle 'mozfr/mozilla.vim'
         " }}}
 
         " [ tools ] {{{
@@ -2304,7 +2304,7 @@ syntax on
 
             " }}}
 
-            " [ complete candidates: priority ] {{{
+            " [ complete candidates: priority/rank ] {{{
             " control each source's completion candidate priority.
             " The higher value is, the higher priority.
             let g:neocomplcache_source_rank = {
@@ -3362,7 +3362,8 @@ syntax on
             " Usage:
             " - tcomment#DefineType() to override and define file-type comment string.
             "   - g[c/C]{motion}    :: toggle comments.
-            "   - <c-_>{action}	:: :TComment actions.
+            "   - gc<count>c        :: maps that set the 'count' attribute
+            "   - <c-_>{action}	    :: :TComment actions.
             let g:tcommentMapLeader1 = '<c-_>'
             let g:tcommentMapLeader2 = '<Leader>_'
             let g:tcommentMapLeaderOp1 = 'gc'
