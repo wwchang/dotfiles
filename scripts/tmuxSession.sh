@@ -26,7 +26,7 @@ session2=data
 
 #if-shell shell-command command [command]
 
-# [ Session 1: Daily ] {{{
+# [ Session 1: daily ] {{{
 
 tmux has-session -t $session1
 if [ $? != 0 ]; then
@@ -41,10 +41,12 @@ if [ $? != 0 ]; then
     # select-layout main-horizontal
 
     # [ 2 GTD ]
-    tmux new-window -t $session1 -n note \
-        'vim "-c set nospell" ~/Wiki/vimwiki/wiki/plan.wiki'
+    tmux new-window -t $session1 -n Map \
+        'vim "-c set nospell" ~/Wiki/vimwiki/wiki/tasks.wiki'
     tmux split-window -t $session1:2.1 -h -p 40 \
         'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Dreams/Dreams.wiki'
+    tmux split-window -t $session1:2.1 -v -p 60 \
+        'vim "-c set nospell" ~/Wiki/vimwiki/wiki/programming\ map.wiki'
     tmux split-window -t $session1:2.2 -v -p 60 \
         'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Ideas/Ideas.wiki'
     tmux select-pane -t $session1:2.1
@@ -85,29 +87,25 @@ else
 fi
 # }}}
 
-# [ Session 2: Wiki ] {{{
+# [ Session 2: data ] {{{
 tmux has-session -t $session2
 if [ $? != 0 ]; then
 
     # [ Wiki/vimwiki ]
     # [ Linux ]
-    tmux new-session -d -s $session2 -n linux \
+    tmux new-session -d -s $session2 -n System \
         'vim ~/Wiki/vimwiki/wiki/Systems/Systems.wiki'
     # [ Program ]
     tmux new-window -t $session2 -n program \
         'vim ~/Wiki/vimwiki/wiki/program/program.wiki'
     # [ Languages ]
-    tmux new-window -t $session2 -n lang \
-        'vim ~/Wiki/vimwiki/wiki/program/Languages.wiki'
     tmux new-window -t $session2 -n Ruby \
         'vim ~/Wiki/vimwiki/wiki/program/Ruby/Ruby.wiki'
-    tmux new-window -t $session2 -n Python \
-        'vim ~/Wiki/vimwiki/wiki/program/Python/Python.wiki'
     # [ others ]
     # tmux new-window -t $session2 -n misc
-    # new-session -d -s Daily "elinks http://www.phrack.org/issues.html"
+    # new-session -d -s daily "elinks http://www.phrack.org/issues.html"
 
-    tmux select-pane -t $session2:8.1
+    tmux select-pane -t $session2:4.1
 
     echo "Session $session2 has been created."
 else
@@ -118,4 +116,4 @@ fi
 
 exit 0
 
-# vim: fdm=marker
+# vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
