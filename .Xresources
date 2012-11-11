@@ -361,8 +361,8 @@ URxvt*highlightTextColor: #151515
 ! *foreground:            S_base0
 *background:            #121212
 *foreground:            #d0d0d0
-*fading:                40
-*fadeColor:             S_base03
+! *fading:                40
+! *fadeColor:             S_base03
 *cursorColor:           S_base1
 *pointerColorBackground:S_base01
 *pointerColorForeground:S_base1
