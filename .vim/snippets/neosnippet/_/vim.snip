@@ -4,7 +4,8 @@
 snippet     modeline
 abbr        # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=2/4
 options     head
-    `substitute(&commentstring, '%s', '', "")` vim:fdm=marker:fmr={{{,}}}:expandtab:sw=${1:2/4}:sts=$1
+    ${0}
+    `substitute(&commentstring, '%s', '', "")` vim:et:ts=${1:2/4}:bs=$1:sw=$1:fdm=marker:fmr={{{,}}}
 
 snippet     fold
 abbr        # {{{ > ... > }}}

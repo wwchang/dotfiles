@@ -9,6 +9,18 @@ options     head
 
     ${0}
 
+snippet     plugin.skeleton.cpoptions
+abbr        let s:save_cpo = &cpo .. set cpo&vim ...
+alias       save_cpo
+options     head
+    let s:save_cpo = &cpo
+    set cpo&vim
+
+    ${1:code}
+
+    let &cpo = s:save_cpo
+    unlet s:save_cpo
+
 snippet     plugin.skeleton.loaded
 abbr        if exists("g:loaded_plugin") > finish > endif
 options     head
@@ -77,12 +89,20 @@ options     head
         noremap <SID>$3 :call <SID>$3(${4:func arguments})<CR>
     endif
 
-snippet     plugin.skeleton.command-if-exists
+snippet     plugin.skeleton.if.exists command
 abbr        if !exists() > command > endif
-alias       command.if-exists
+alias       if.exists.command
 options     head
     if !exists(":${1:Command}")
         command${2:attr:!,",b} -nargs=${2:#:0,1,*,?,+} $1 ${3:call s:Add(<q-args>, 0)}
+    endif
+
+snippet     plugin.skeleton.if.exists function
+abbr        if exists('*func') ... endif
+alias       if.exists.function
+options     head
+    if exists("*${1:function}")
+        ${2:statements}
     endif
 
 snippet     plugin.skeleton.operator
@@ -170,9 +190,8 @@ options     head
     command! -nargs=* -range -bang ${1:command} call ${2:s:func}(shellescape(<q-args>), <bang>0, <line1>, <line2>)
 
 
-snippet     complete Command custom complete func
+snippet     plugin.skeleton.command complete func
 abbr        func! s:Complete(ArgLead, CmdLine, CursorPos) > return > endfunc
-alias       w
 options     head
     func! s:Complete(ArgLead, CmdLine, CursorPos)
         return "${1:one\ntwo\nthree\n}"

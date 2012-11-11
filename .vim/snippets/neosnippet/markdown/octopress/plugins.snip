@@ -27,6 +27,13 @@ options     head
   ${1:quote string}
   {% endpullquote %}
 
+snippet     octopress.raw
+abbr        {% raw %} .. {% endraw %}
+options     head
+    {% raw %}
+    ${1:RAW}
+    {% endraw %}
+
 snippet     octopress.render_partial
 abbr        {% render_partial path/to/file %}
 options     head

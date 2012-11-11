@@ -24,15 +24,15 @@ abbr    'key': value,
 snippet function-reference
 abbr    let Funcref = function(MyFunc)
 alias   funcref
-    let ${1:Funcref} = function("${2:MyFunc/s:myfunc}")
-    ${3:echo $1 or call $1()}
+    let ${1:Funcref} = function("${2:#:MyFunc/s:myfunc}")
+    ${3:#:echo $1 or call $1()}
 
 snippet     dictionary-funcion
 abbr        func! Dict.func() dict .. endfunc
 alias       dictfunc
 options     head
-    func! ${1:Dict}.${2:func}(${3:args, ...}) dict
-        return join(map(split(a:$3), 'get(self.${4:Dict's item}, v:val, "???")'))
+    func! ${1:Dict}.${2:func}(${3:#:args, ...}) dict
+        return join(map(split(a:$3), 'get(self.${4:Dict's item}, v:val, "${4:#:default}")'))
     endf
 # }}}
 
@@ -86,7 +86,7 @@ options     head
 snippet     for
 abbr        for [var] in {iterator} .. endfor
 options     head
-    for ${1:variable} in ${2:iterator}
+    for ${1:#:variable} in ${2:#:iterator}
         ${3:#:statements}
     endfor
 
@@ -115,7 +115,7 @@ abbr        try > catch {ERROR} > endtry
 options     head
     try
         ${1:#:statements: continue/break/throw}
-    catch ${2:/${3:pattern: empty, E484, Vim(cmdname):{errmsg\\} \}/}
+    catch ${2:#:/${3:pattern: empty, E484, Vim(cmdname):{errmsg\\} \}/}
         ${4:#:statements: continue/break/throw}
     endtry
 
@@ -131,13 +131,13 @@ options     head
 snippet     catch
 abbr        catch /Error pattern/
 options     head
-    catch /${1:pattern: empty, E484:, Vim(cmdname):{errmsg\\} optional}/
+    catch /${1:#:pattern: empty, E484:, Vim(cmdname):{errmsg\\} optional}/
         ${2:#:statements -> continue/break/throw}
 
 snippet     throw
 abbr        throw {expr}
 options     head
-    throw ${1:expr}
+    throw ${1:#:expr}
 # }}}
 
 # function {{{
@@ -145,7 +145,7 @@ snippet     function
 abbr        fun! s:{name}({arguments}) abort .. endfun
 alias       func
 options     head
-    fun! ${1:s:}${2:name}(${3:arguments}) abort
+    fun! ${1:#:s:}${2:name}(${3:#:arguments}) abort
         ${4:#:statements -> arguments: a:0, a:1, a:000[0]}
     endfun
 
@@ -153,7 +153,7 @@ snippet     function.range
 abbr        fun! s:funcname(arguments) range .. endfun
 alias       func.range
 options     head
-    fun! ${1:s:}${2:name}(${3:arguments}) range
+    fun! ${1:#:s:}${2:name}(${3:#:arguments}) range
         ${4:#:statements -> arguments: a:firstline, a:lastline}
     endfun
 
@@ -161,7 +161,7 @@ snippet     function.dict
 abbr        fun! Dict.func(arguments) dict .. endfun
 alias       func.dict
 options     head
-    fun! ${1:Dict}.${2:func}(${3:arguments}) dict
+    fun! ${1:Dict}.${2:func}(${3:#:arguments}) dict
         ${4:#:statements -> arguments: a:0, a:1, a:000[0]}
     endfun
 # }}}
@@ -188,12 +188,12 @@ alias       ternary_recursive
 # map()
 snippet     map
 abbr        map(expr)
-    map(${1:expr: list/dict}, ${2:eval string: v:val is item in expr})
+    map(${1:#:expr: list/dict}, ${2:#:eval string: v:val is item in expr})
 
 # filter()
 snippet     filter
 abbr        filter(expr)
-    filter(${1:expr: list/dict}, ${2:eval string: v:val is item in expr})
+    filter(${1:#:expr: list/dict}, ${2:#:eval string: v:val is item in expr})
 # }}}
 
 # autocmd & augroup {{{

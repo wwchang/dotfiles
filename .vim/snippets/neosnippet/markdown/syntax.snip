@@ -82,6 +82,13 @@ options     head
 
 # code block: <pre>, <code>
 # 4 spaces or Tab indent.
+snippet     code block
+abbr        ``` ruby ... ```
+alias       syntax
+options     head
+    \`\`\` ${1:language}
+    ${2:#:code}
+    \`\`\`
 
 # separate line
 # * * *
