@@ -21,8 +21,7 @@ elif [ -n "$SCREEN" ]; then
 fi
 
 # session name
-session1=daily
-session2=data
+session1=subtle
 
 #if-shell shell-command command [command]
 
@@ -43,73 +42,39 @@ if [ $? != 0 ]; then
     # [ 2 GTD ]
     tmux new-window -t $session1 -n Map \
         'vim "-c set nospell" ~/Wiki/vimwiki/wiki/tasks.wiki'
-    tmux split-window -t $session1:2.1 -h -p 40 \
-        'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Dreams/Dreams.wiki'
     tmux split-window -t $session1:2.1 -v -p 60 \
         'vim "-c set nospell" ~/Wiki/vimwiki/wiki/programming\ map.wiki'
-    tmux split-window -t $session1:2.2 -v -p 60 \
-        'vim "-c set nospell" ~/Wiki/vimwiki/wiki/Ideas/Ideas.wiki'
     tmux select-pane -t $session1:2.1
-    #split-window -h -p 35 'task shell' # taskwarrior shell
 
     # [ 3 mail & news ]
     tmux new-window -t $session1 -n msg mutt
-    tmux split-window -t $session1:3.1 -h -p 30 'export http_proxy=127.0.0.1:8087 ; canto-fetch ; canto'
-    tmux select-pane -t $session1:3.1
-    tmux set-window-option -t $session1:3 monitor-activity on
+    tmux set-window-option -t $session1:3.1 monitor-activity on
 
-    # [ 4 books ]
+    # [ 4 data ]
     tmux new-window -t $session1 -n data \
-        'ranger /media/backup/Chris/Data/Computer/'
-    tmux split-window -t $session1:4.1 -h \
         'ranger /media/backup/Chris/Data/'
-    tmux split-window -t $session1:4.2 -v -p 40 \
+    tmux split-window -t $session1:4.2 -v -p 60 \
         'ranger ~/Downloads/'
-    tmux split-window -t $session1:4.1 -v -p 40 \
+    tmux split-window -t $session1:4.1 -v -p 50 \
         'ranger /media/rest/MLdonkey/mlnet_incoming/files/'
     tmux select-pane -t $session1:4.1
 
     # [ 5 IRC & bitlbee ]
-    # tmux new-window -t $session1 -n irc 'online.sh && weechat-curses'
-    # tmux set-window-option -t $session1:5 monitor-activity on
+    tmux new-window -t $session1 -n irc 'weechat-curses'
+    tmux set-window-option -t $session1:5.1 monitor-activity on
 
-    # [ 6 music ]
-    # tmux new-window -t $session1 -n music ncmpcpp
-    # tmux split-window -t $session1:6.1 -h alsamixer
-    # tmux select-pane -t $session1:6.1
+    # [ 6 Wiki ]
+    tmux new-window -t $session1 -n Wiki \
+        'vim ~/Wiki/vimwiki/wiki/Systems/Systems.wiki'
+    tmux split-window -t $session1:6.1 -v -p 60 \
+        'vim ~/Wiki/vimwiki/wiki/program/program.wiki'
+    tmux select-pane -t $session1:6.2
 
     tmux select-pane -t $session1:2.1
 
     echo "Session $session1 has been created."
 else
     echo "Session $session1 does not exist."
-
-fi
-# }}}
-
-# [ Session 2: data ] {{{
-tmux has-session -t $session2
-if [ $? != 0 ]; then
-
-    # [ Wiki/vimwiki ]
-    # [ Linux ]
-    tmux new-session -d -s $session2 -n System \
-        'vim ~/Wiki/vimwiki/wiki/Systems/Systems.wiki'
-    # [ Program ]
-    tmux new-window -t $session2 -n program \
-        'vim ~/Wiki/vimwiki/wiki/program/program.wiki'
-    # [ Languages ]
-    tmux new-window -t $session2 -n Ruby \
-        'vim ~/Wiki/vimwiki/wiki/program/Ruby/Ruby.wiki'
-    # [ others ]
-    # tmux new-window -t $session2 -n misc
-    # new-session -d -s daily "elinks http://www.phrack.org/issues.html"
-
-    tmux select-pane -t $session2:4.1
-
-    echo "Session $session2 has been created."
-else
-    echo "Session $session2 does not exist."
 
 fi
 # }}}
