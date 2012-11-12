@@ -23,19 +23,19 @@ set font "DejaVu Sans Mono normal 9"
 # En/Disables recoloring
 set recolor false
 
-# Defines the color value that is used to represent dark colors in recoloring 
+# Defines the color value that is used to represent dark colors in recoloring
 # mode
 set recolor-darkcolor "#FFFFFF"
 
-# Defines the color value that is used to represent light colors in recoloring 
+# Defines the color value that is used to represent light colors in recoloring
 # mode
 set recolor-lightcolor "#000000"
 
-# Defines the color that is used for highlighting parts of the document (e.g.: 
+# Defines the color that is used for highlighting parts of the document (e.g.:
 # show search results)
 set highlight-color "#9FBC00"
 
-# Defines the color that is used to show the current selected highlighted 
+# Defines the color that is used to show the current selected highlighted
 # element (e.g: current search result)
 set highlight-active-color "#00BC00"
 
@@ -44,7 +44,7 @@ set highlight-transparency 0.5
 # }
 
 # page {
-# Defines which auto adjustment mode should be used if a document is loaded.  
+# Defines which auto adjustment mode should be used if a document is loaded.
 # Possible options are “best-fit” and “width”.
 # set adjust-open [best-fit|width|noadjust]
 set adjust-open best-fit
@@ -52,7 +52,7 @@ set adjust-open best-fit
 # The page padding defines the gap in pixels between each rendered page.
 set page-padding 2
 
-# Pages that are not visible get unloaded after some time. Every page that has 
+# Pages that are not visible get unloaded after some time. Every page that has
 # not been visible for page-store-treshold seconds will be unloaded.
 set page-store-threshold 30
 
