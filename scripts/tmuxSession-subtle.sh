@@ -64,9 +64,10 @@ if [ $? != 0 ]; then
     # [ 6 Wiki ]
     tmux new-window -t $session1 -n Wiki \
         'vim ~/Wiki/vimwiki/wiki/program/program.wiki'
-    tmux split-window -t $session1:6.1 -v -p 60 \
+    # [ 7 Ruby ]
+    tmux new-window -t $session1 -n Ruby \
         'vim ~/Wiki/vimwiki/wiki/program/Ruby/Ruby.wiki'
-    tmux select-pane -t $session1:6.2
+    tmux select-pane -t $session1:7.1
 
     tmux select-pane -t $session1:2.1
 
