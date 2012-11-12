@@ -48,7 +48,6 @@ if [ $? != 0 ]; then
 
     # [ 3 mail & news ]
     tmux new-window -t $session1 -n msg mutt
-    tmux set-window-option -t $session1:3.1 monitor-activity on
 
     # [ 4 data ]
     tmux new-window -t $session1 -n data \
@@ -61,13 +60,12 @@ if [ $? != 0 ]; then
 
     # [ 5 IRC & bitlbee ]
     tmux new-window -t $session1 -n irc 'weechat-curses'
-    tmux set-window-option -t $session1:5.1 monitor-activity on
 
     # [ 6 Wiki ]
     tmux new-window -t $session1 -n Wiki \
-        'vim ~/Wiki/vimwiki/wiki/Systems/Systems.wiki'
-    tmux split-window -t $session1:6.1 -v -p 60 \
         'vim ~/Wiki/vimwiki/wiki/program/program.wiki'
+    tmux split-window -t $session1:6.1 -v -p 60 \
+        'vim ~/Wiki/vimwiki/wiki/program/Ruby/Ruby.wiki'
     tmux select-pane -t $session1:6.2
 
     tmux select-pane -t $session1:2.1
