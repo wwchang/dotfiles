@@ -1,0 +1,4 @@
+#define timeline_body_full_width 8
+#define timeline_body_full_height 8
+static unsigned char timeline_body_full_bits[] = {
+   0x00, 0xff, 0x00, 0x7e, 0x7e, 0x00, 0xff, 0x00 };
