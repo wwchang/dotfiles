@@ -193,6 +193,7 @@ end
 # Style for the all views
 style :views do
   foreground  "#757575"
+  font        "xft:DejaVu Sans Mono:pixelsize=15"
 
   # Style for the active views
   style :focus do
