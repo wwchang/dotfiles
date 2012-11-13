@@ -12,6 +12,22 @@
 # +XDG_CONFIG_HOME+.
 #
 
+# [ Contrib ] {{{
+begin
+  require "#{ENV["HOME"]}/compile/subtle-contrib/ruby/launcher.rb"
+  require "#{ENV["HOME"]}/compile/subtle-contrib/ruby/selector.rb"
+
+  Subtle::Contrib::Selector.font  = "xft:DejaVu Sans Mono:pixelsize=13"
+  Subtle::Contrib::Launcher.fonts = [
+    "xft:DejaVu Sans Mono:pixelsize=15",
+    "xft:DejaVu Sans Mono:pixelsize=13"
+  ]
+
+  Subtle::Contrib::Launcher.browser_screen_num = 0
+rescue LoadError
+end
+# }}}
+
 # [ Options ] {{{
 #
 # Following options change behaviour and sizes of the window manager:
@@ -641,6 +657,19 @@ grab "W-y" do
     c.tags  = []
     c.flags = [ :stick ]
   end
+end
+# }}}
+
+# contrib => W-[r/] {{{
+begin
+  grab "W-r" do
+    Subtle::Contrib::Launcher.run
+  end
+
+  grab "W-t" do
+    Subtle::Contrib::Selector.run
+  end
+rescue Error
 end
 # }}}
 # }}}
