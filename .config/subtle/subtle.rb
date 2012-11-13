@@ -129,10 +129,10 @@ screen 1 do
 end
 
 # Example for a second screen:
-#screen 2 do
-#  top    [ :views, :title, :spacer ]
-#  bottom [ ]
-#end
+screen 2 do
+  top    [ :views, :title, :spacer ]
+  bottom [ ]
+end
 # }}}
 
 # [ Styles ] {{{
