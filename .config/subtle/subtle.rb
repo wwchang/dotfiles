@@ -685,14 +685,28 @@ tag "float" do
 end
 
 # Gimp
-tag "gimp_image" do
-  match   :role => "gimp-image-window"
-  gravity :gimp_image
-end
+tag "gimp" do
+  match role: "gimp.*"
 
-tag "gimp_toolbox" do
-  match   :role => "gimp-toolbox$"
-  gravity :gimp_toolbox
+  on_match do |c|
+    c.gravity = ("gimp_" + c.role.split("-")[1]).to_sym
+  end
+end
+# Dia
+tag "dia" do
+  match "dia"
+
+  on_match do |c|
+    c.gravity = ("dia_" + c.role.split("_").first).to_sym
+  end
+end
+# Darktable
+tag "Darktable" do
+  match [:class, :instance] => "[Dd]arktable"
+end
+# Inkscape
+tag "Inkscape" do
+  match [:class, :instance] => "[Ii]nkscape"
 end
 
 tag "gimp_dock" do
