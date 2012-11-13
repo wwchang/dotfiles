@@ -1043,5 +1043,12 @@ sublet :weather_mod do
 end
 # }}}
 
+# [ startup/autostart ] {{{
+on :start do
+  Subtlext::Subtle.spawn "mpd"
+  Subtlext::Subtle.spawn "nm-applet"
+  Subtlext::Subtle.spawn "mlnet"
+end
+# }}}
 
 # vim:et:ts=2:sw=2:fdm=marker:fmr={{{,}}}
