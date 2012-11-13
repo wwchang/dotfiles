@@ -265,51 +265,6 @@ end
 # http://subforge.org/projects/subtle/wiki/Gravity
 #
 
-# Top left
-gravity :top_left,       [   0,   0,  50,  50 ]
-gravity :top_left66,     [   0,   0,  50,  66 ]
-gravity :top_left33,     [   0,   0,  50,  34 ]
-
-# Top
-gravity :top,            [   0,   0, 100,  50 ]
-gravity :top66,          [   0,   0, 100,  66 ]
-gravity :top33,          [   0,   0, 100,  34 ]
-
-# Top right
-gravity :top_right,      [  50,   0,  50,  50 ]
-gravity :top_right66,    [  50,   0,  50,  66 ]
-gravity :top_right33,    [  50,   0,  50,  33 ]
-
-# Left
-gravity :left,           [   0,   0,  50, 100 ]
-gravity :left66,         [   0,   0,  66, 100 ]
-gravity :left33,         [   0,   0,  33, 100 ]
-
-# Center
-gravity :center,         [   0,   0, 100, 100 ]
-gravity :center66,       [  17,  17,  66,  66 ]
-gravity :center33,       [  33,  33,  33,  33 ]
-
-# Right
-gravity :right,          [  50,   0,  50, 100 ]
-gravity :right66,        [  34,   0,  66, 100 ]
-gravity :right33,        [  67,   0,  33, 100 ]
-
-# Bottom left
-gravity :bottom_left,    [   0,  50,  50,  50 ]
-gravity :bottom_left66,  [   0,  34,  50,  66 ]
-gravity :bottom_left33,  [   0,  67,  50,  33 ]
-
-# Bottom
-gravity :bottom,         [   0,  50, 100,  50 ]
-gravity :bottom66,       [   0,  34, 100,  66 ]
-gravity :bottom33,       [   0,  67, 100,  33 ]
-
-# Bottom right
-gravity :bottom_right,   [  50,  50,  50,  50 ]
-gravity :bottom_right66, [  50,  34,  50,  66 ]
-gravity :bottom_right33, [  50,  67,  50,  33 ]
-
 # Gimp
 gravity :gimp_image,     [  10,   0,  80, 100 ]
 gravity :gimp_toolbox,   [   0,   0,  10, 100 ]
@@ -407,6 +362,7 @@ gravity :gimp_dock,      [  90,   0,  10, 100 ]
 # http://subforge.org/projects/subtle/wiki/Grabs
 #
 
+modkey = "W"
 # Jump to view1, view2, ...
 grab "W-S-1", :ViewJump1
 grab "W-S-2", :ViewJump2
@@ -472,32 +428,42 @@ grab "W-Right", :WindowRight
 grab "W-S-k", :WindowKill
 
 # Cycle between given gravities
-grab "W-KP_7", [ :top_left,     :top_left66,     :top_left33     ]
-grab "W-KP_8", [ :top,          :top66,          :top33          ]
-grab "W-KP_9", [ :top_right,    :top_right66,    :top_right33    ]
-grab "W-KP_4", [ :left,         :left66,         :left33         ]
-grab "W-KP_5", [ :center,       :center66,       :center33       ]
-grab "W-KP_6", [ :right,        :right66,        :right33        ]
-grab "W-KP_1", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
-grab "W-KP_2", [ :bottom,       :bottom66,       :bottom33       ]
-grab "W-KP_3", [ :bottom_right, :bottom_right66, :bottom_right33 ]
+gravkeys1 = [ "q", "w", "e", "a", "s", "d", "z", "x", "c" ]
+gravkeys2 = [ "KP_7", "KP_8", "KP_9", "KP_4", "KP_5", "KP_6", "KP_1", "KP_2", "KP_3" ]
 
-# In case no numpad is available e.g. on notebooks
-#grab "W-q", [ :top_left,     :top_left66,     :top_left33     ]
-#grab "W-w", [ :top,          :top66,          :top33          ]
-#grab "W-e", [ :top_right,    :top_right66,    :top_right33    ]
-#grab "W-a", [ :left,         :left66,         :left33         ]
-#grab "W-s", [ :center,       :center66,       :center33       ]
-#grab "W-d", [ :right,        :right66,        :right33        ]
-#
-# QUERTZ
-#grab "W-y", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
-#
-# QWERTY
-#grab "W-z", [ :bottom_left,  :bottom_left66,  :bottom_left33  ]
-#
-#grab "W-x", [ :bottom,       :bottom66,       :bottom33       ]
-#grab "W-c", [ :bottom_right, :bottom_right66, :bottom_right33 ]
+gravities = [
+  [:top_left, :top_left33, :top_left66],
+  [:top, :top33, :top66, :top75],
+  [:top_right, :top_right33, :top_right66],
+  [:left, :left33, :left66],
+  [:center, :center33, :center66],
+  [:right, :right33, :right66],
+  [:bottom_left, :bottom_left25, :bottom_left33, :bottom_left66],
+  [:bottom, :bottom33, :bottom66],
+  [:bottom_right, :bottom_right25, :bottom_right33, :bottom_right66]
+]
+
+gravities.each_index do |i|
+  # Set gravities
+  grab "%s-%s" % [ modkey, gravkeys1[i] ], gravities[i]
+  grab "%s-%s" % [ modkey, gravkeys2[i] ], gravities[i]
+
+  # Focus client with gravity
+  grab "%s-S-%s" % [ modkey, gravkeys1[i] ], lambda { |cur|
+    idx     = 0
+    clients = Subtlext::Client.visible.select { |c|
+      gravities[i].include?(c.gravity.name.to_sym)
+    }
+
+    # Cycle through clients with same gravity
+    if clients.include?(cur)
+      idx = clients.index(cur) + 1
+      idx = 0 if idx >= clients.size
+    end
+
+    clients[idx].focus
+  }
+end
 
 # Exec programs
 grab "W-Return", "x-terminal-emulator"
