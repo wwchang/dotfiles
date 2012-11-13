@@ -812,7 +812,7 @@ tag "terms" do
 end
 
 tag "browser" do
-  match "uzbl|opera|firefox|navigator|(google\-)?chrom[e|ium]"
+  match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
 end
 
 # Placement
