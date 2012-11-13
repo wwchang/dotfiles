@@ -27,7 +27,7 @@ set :border_snap, 10
 set :default_gravity, :center
 
 # Make dialog windows urgent and draw focus
-set :urgent_dialogs, false
+set :urgent_dialogs, true
 
 # Honor resize size hints globally
 set :honor_size_hints, false
