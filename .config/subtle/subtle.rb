@@ -1352,6 +1352,7 @@ on :start do
   Subtlext::Subtle.spawn "mpd"
   Subtlext::Subtle.spawn "nm-applet"
   Subtlext::Subtle.spawn "mlnet"
+  Subtlext::Subtle.spawn "firefox"
 end
 # }}}
 
