@@ -892,6 +892,12 @@ end
 tag "terminal" do
   match "xterm|[u]?rxvt"
   gravity :center
+  resize  false
+end
+
+tag "code" do
+  match "VIM:\ .*"
+  gravity :center
   resize  true
 end
 
@@ -998,7 +1004,7 @@ iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
 view "1. shape ideas into code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
-  match "code|programming"
+  match "code|programming|terminal"
   dynamic false
 end
 
