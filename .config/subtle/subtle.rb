@@ -503,6 +503,12 @@ grab "S-F3" do
   puts Subtlext::VERSION
 end
 
+# MPD ncmpcpp => W-p, W-[, W-] {{{
+grab modkey + "-p", "ncmpcpp toggle"
+grab modkey + "-bracketleft", "ncmpcpp prev"
+grab modkey + "-bracketright", "ncmpcpp next"
+# }}}
+
 # volume => W-[-/+] {{{
 grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
