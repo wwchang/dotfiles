@@ -779,10 +779,77 @@ end
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
 
-view "terms", "terms|default"
-view "www",   "browser"
-view "gimp",  "gimp_.*"
-view "dev",   "editor"
+iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
+
+view "1. shape idea into code " do
+  icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
+  icon_only false
+  match "editor|code|programming"
+  dynamic false
+end
+
+view "2. read " do
+  icon Subtlext::Icon.new("#{iconpath}/pencil.xbm")
+  dynamic false
+  match "reading"
+end
+
+view "3. design " do
+  icon Subtlext::Icon.new("#{iconpath}/paint.xbm")
+  dynamic false
+  match "gimp|Darktable|Inkscape"
+end
+
+view "4. www " do
+  icon Subtlext::Icon.new("#{iconpath}/world.xbm")
+  dynamic false
+  match "browser"
+end
+
+view "5. Ruby " do
+  icon Subtlext::Icon.new("#{iconpath}/ruby.xbm")
+  dynamic false
+  match "ruby"
+  gravity :center
+end
+
+view "6. default " do
+  icon Subtlext::Icon.new("#{iconpath}/quote.xbm")
+  dynamic true
+  match "default"
+  gravity :center
+end
+
+# space = {
+#   :terminal  => Subtlext::Icon.new("#{iconpath}/terminal.xbm"),
+#   :design    => Subtlext::Icon.new("#{iconpath}/paint.xbm"),
+#   :editor    => Subtlext::Icon.new("#{iconpath}/pencil.xbm"),
+#   :ruby      => Subtlext::Icon.new("#{iconpath}/ruby.xbm"),
+#   :bug       => Subtlext::Icon.new("#{iconpath}/bug.xbm"),
+#   :www       => Subtlext::Icon.new("#{iconpath}/world.xbm"),
+#   :shelter   => Subtlext::Icon.new("#{iconpath}/shelter.xbm"),
+#   :cannon    => Subtlext::Icon.new("#{iconpath}/cannon.xbm"),
+#   :ufo       => Subtlext::Icon.new("#{iconpath}/ufo.xbm"),
+#   :void      => Subtlext::Icon.new("#{iconpath}/invader.xbm")
+# }
+#
+# on :view_focus do |v|
+#   views = Hash[*Subtlext::Screen.all.map { |s|
+#     [ s.view.name.to_sym, space[space.keys[s.id]] ] }.flatten
+#   ]
+#
+#   Subtlext::View.all.each do |va|
+#     sym = va.name.to_sym
+#
+#     if views.keys.include?(sym)
+#       va.icon.copy_area(views[sym])
+#     else
+#       va.icon.copy_area(space[va.name.to_sym])
+#     end
+#   end
+#
+#   Subtlext::Subtle.render
+# end
 # }}}
 
 # [ Sublets ] {{{
