@@ -123,6 +123,32 @@ end
 # === Link
 #
 # http://subforge.org/projects/subtle/wiki/Styles
+#
+# Box model
+#
+#                                       Top
+#      +-----------------------------------------------------------------+
+#      |                              Margin                             |
+#      |        +-----------------------------------------------+        |
+#      |        |                     Border                    |        |
+#      |        |        +-----------------------------+        |        |
+#      |        |        |           Padding           |        |        |
+#      |        |        |         +---------+         |        |        |
+# Left | Margin | Border | Padding | Content | Padding | Border | Margin | Right
+#      |        |        |         +---------+         |        |        |
+#      |        |        |           Padding           |        |        |
+#      |        |        +-----------------------------+        |        |
+#      |        |                    Border                     |        |
+#      |        +-----------------------------------------------+        |
+#      |                             Margin                              |
+#      +-----------------------------------------------------------------+
+#                                    Bottom
+#
+#
+# [ title ]
+#   - ^   -- floating
+#   - *   -- sticky
+#   - =   -- zaphod
 
 # Style for all style elements
 style :all do
@@ -322,6 +348,22 @@ gravity :gimp_dock,      [  90,   0,  10, 100 ]
 # [*string*] Start a certain program
 # [*array*]  Cycle through gravities
 # [*lambda*] Run a Ruby proc
+#
+# === Common keys
+#
+# Space
+# Tab
+# Enter / Return
+# F1 - F12
+# Left, Down, Up, Right
+# Next, Prior
+# Page_Up, Page_Down
+# Home, End
+# Insert, Delete
+# Add, Subtract, Multiply, Divide, Equal
+# Decimal
+# Num_Lock
+# Escape
 #
 # === Example
 #
@@ -746,7 +788,15 @@ view "dev",   "editor"
 # [*foreground*]  Default foreground color
 # [*background*]  Default background color
 #
+# === sur (subtle user repository)
 # sur can also give a brief overview about properties:
+#
+# ~/.local/share/subtle/
+# Usage:
+#   - sur install clock
+#   - sur uninstall clock
+#   - sur notes clock
+#   - sur config clock
 #
 # === Example
 #
