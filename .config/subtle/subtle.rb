@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Author::  stardiviner, Email: [numbchild A/T G/mail dot com]
+
 #
 # = Subtle default configuration
 #
@@ -492,6 +493,7 @@ grab modkey + "-C-S-r", :SubtleRestart
 grab modkey + "-C-q", :SubtleQuit
 # }}}
 
+# gravity {{{
 # Cycle between given gravities
 gravkeys1 = [ "q", "w", "e", "a", "s", "d", "z", "x", "c" ]
 gravkeys2 = [ "KP_7", "KP_8", "KP_9", "KP_4", "KP_5", "KP_6", "KP_1", "KP_2", "KP_3" ]
@@ -529,8 +531,9 @@ gravities.each_index do |i|
     clients[idx].focus
   }
 end
+# }}}
 
-# Multimedia keys
+# Multimedia keys {{{
 grab "XF86AudioMute",        :VolumeToggle
 grab "XF86AudioRaiseVolume", :VolumeRaise
 grab "XF86AudioLowerVolume", :VolumeLower
@@ -538,8 +541,8 @@ grab "XF86AudioPlay",        :MpdToggle
 grab "XF86AudioStop",        :MpdStop
 grab "XF86AudioNext",        :MpdNext
 grab "XF86AudioPrev",        :MpdPrevious
+# }}}
 
-# Exec programs
 # terminal
 # grab modkey + "-Return", "x-terminal-emulator"
 grab modkey + "-Return", "urxvt"
@@ -802,12 +805,12 @@ tag "browser" do
   match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
 end
 
-# Placement
 tag "editor" do
   match  "[g]?vim"
   resize true
 end
 
+# Placement
 tag "fixed" do
   geometry [ 10, 10, 100, 100 ]
   stick    true
