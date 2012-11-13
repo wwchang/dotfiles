@@ -269,6 +269,10 @@ end
 gravity :gimp_image,     [  10,   0,  80, 100 ]
 gravity :gimp_toolbox,   [   0,   0,  10, 100 ]
 gravity :gimp_dock,      [  90,   0,  10, 100 ]
+
+# Dia
+gravity :dia_toolbox,    [   0,   0,  15, 100 ]
+gravity :dia_diagram,    [  15,   0,  85, 100 ]
 # }}}
 
 # [ Grabs ] {{{
