@@ -241,6 +241,7 @@ end
 style :title do
   foreground  "#ffffff"
   background  "#1a1a1a"
+  padding     2, 8
   border      "#1a1a1a", 0
 end
 
