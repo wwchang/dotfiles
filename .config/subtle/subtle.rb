@@ -237,7 +237,9 @@ end
 
 # Style for focus window title
 style :title do
-  foreground  "#fecf35"
+  foreground  "#ffffff"
+  background  "#1a1a1a"
+  border      "#1a1a1a", 0
 end
 
 # Style for active/inactive windows
