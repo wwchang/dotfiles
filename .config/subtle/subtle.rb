@@ -631,6 +631,18 @@ grab modkey + "-bracketright", "ncmpcpp next"
 grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
 # }}}
+
+# Scratchpad {{{
+grab "W-y" do
+  if (c = Subtlext::Client.first("scratch"))
+    c.toggle_stick
+    c.focus
+  elsif (c = Subtlext::Subtle.spawn("urxvt -name scratch"))
+    c.tags  = []
+    c.flags = [ :stick ]
+  end
+end
+# }}}
 # }}}
 
 # [ Tags ] {{{
