@@ -866,8 +866,9 @@ tag "gimp_dock" do
   gravity :gimp_dock
 end
 
-tag "gimp_scum" do
-  match role: "gimp-.*|screenshot"
+# Reading
+tag "reading" do
+  match [:class, :instance] => "[Ee]vince|[Zz]athura"
 end
 # }}}
 
