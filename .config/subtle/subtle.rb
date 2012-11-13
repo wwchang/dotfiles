@@ -995,39 +995,39 @@ end
 
 iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
 
-view "code" do
+view "1. shape ideas into code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
   match "code|programming"
   dynamic false
 end
 
-view "read" do
+view "2. read" do
   icon Subtlext::Icon.new("#{iconpath}/pencil.xbm")
   dynamic false
   match "read"
 end
 
-view "design" do
+view "3. design" do
   icon Subtlext::Icon.new("#{iconpath}/paint.xbm")
   dynamic false
   match "design|Gimp|Darktable|Inkscape|Dia"
 end
 
-view "www" do
+view "4. www" do
   icon Subtlext::Icon.new("#{iconpath}/world.xbm")
   dynamic false
   match "www|browser"
 end
 
-view "Ruby" do
+view "5. Ruby" do
   icon Subtlext::Icon.new("#{iconpath}/ruby.xbm")
   dynamic false
   match "Ruby"
   gravity :center
 end
 
-view "default" do
+view "6. default" do
   icon Subtlext::Icon.new("#{iconpath}/quote.xbm")
   dynamic true
   match "default"
