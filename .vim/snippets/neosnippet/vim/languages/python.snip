@@ -8,18 +8,18 @@ snippet     python.skeleton.EOF
 abbr        python << EOF ... EOF
 alias       python.EOF
 options     head
-    python << ${1:PYTHONEOF}
+    python << PYTHONEOF
     import vim
-    ${2:code here}
-    $1
+    ${2:#:code here}
+    PYTHONEOF
 
 snippet     python.skeleton.except vim.error
 abbr        try .. except vim.error: ..
 alias       python.except-vim.error
 options     head
     try:
-        ${1:statements}
+        ${1:#:statements}
     except vim.error:
-        ${2:statements}
+        ${2:#:statements}
 
-# vim:foldmethod=marker
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

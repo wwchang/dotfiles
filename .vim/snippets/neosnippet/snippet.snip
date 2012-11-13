@@ -1,15 +1,21 @@
 snippet     snippet
-abbr        snippet abbr options <snippet code>
+abbr        snippet abbr alias options ..
 alias       snip
 options     head
-    snippet     ${1:trigger}
-    abbr        ${2:abbr}
-    alias       ${3:alias}
-    options     ${4:head/word/indent}
-        ${5:snippet code: #:comment, TARGET:}
+    snippet     ${1:trigger}${2:#: description}
+    abbr        ${3:abbreviation}
+    alias       ${4:alias alias2}
+    options     ${5:head/word/indent}
+        ${6:code: #:comment, TARGET:}
 
 snippet     snippet nested
 abbr        ${1:id="${2:nested\}"}
 alias       snip_nested,nested_snippet
-options     head
-    ${${1:number}:${2:something}\}
+options     word
+    ${${1:N}:${2:placeholder: #:comment, TARGET}\}
+
+snippet     0
+abbr        ${0}
+    ${${1:0}}${0}
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

@@ -1,9 +1,68 @@
+# header {{{
 snippet     #!
 abbr        #!/usr/bin/env ruby
 alias       shebang
 options     head
   #!/usr/bin/env ruby
+  # -*- encoding: utf-8 -*-
 
-  $0
+  ${0}
+# }}}
+
+# method {{{
+snippet     method
+abbr        def func(args) .. end
+alias       def
+  def ${1:name}${2:#:(parameters)}
+    ${3:TARGET:statements}
+  end
+# }}}
+
+# blocks {{{
+snippet     block inline
+abbr        { block }
+  { ${1:TARGET:blocks} }
+
+snippet     block do-end
+abbr        do .. end
+  do
+    ${2:TARGET:code}
+  end
+# }}}
+
+# data types {{{
+# Array {{{
+snippet     array
+abbr        [ 1, 'a', 3.14 ]
+  [ ${1:#:element1}, ${2:#:element2} ]${0}
+
+snippet     array shortcut
+abbr        %w{ elements }
+  %w{ ${1:#:element without quote} ${2} }${0}
+# }}}
+
+# Hash {{{
+snippet     hash
+abbr        { key => value }
+  { ${1:key} => ${2:value}${3:, ${4:key-value pairs\}} }${0}
+
+snippet     hash symbol
+abbr        { :symbol => value }
+  { :${1:symbol} => ${2:value}${3:, ${4:#::apple => 'Apple'\}} }
+  ${0:#:hash[:symbol]}
+
+snippet     hash symbol pair-style
+abbr        { symbol: value }
+  { ${1:symbol}: ${2:value}${3:, ${4:#:apple: 'Apple'\}} }
+  ${0:#:hash[:symbol]}
+# }}}
+# }}}
+
+# comment {{{
+snippet     comment oneline
+abbr        # comment
+  # ${1:comment}
+# }}}
+
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=2:sts=2

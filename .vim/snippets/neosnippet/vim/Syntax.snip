@@ -24,15 +24,15 @@ abbr    'key': value,
 snippet function-reference
 abbr    let Funcref = function(MyFunc)
 alias   funcref
-    let ${1:Funcref} = function("${2:MyFunc/s:myfunc}")
-    ${3:echo $1 or call $1()}
+    let ${1:Funcref} = function("${2:#:MyFunc/s:myfunc}")
+    ${3:#:echo $1 or call $1()}
 
 snippet     dictionary-funcion
 abbr        func! Dict.func() dict .. endfunc
 alias       dictfunc
 options     head
-    func! ${1:Dict}.${2:func}(${3:args, ...}) dict
-        return join(map(split(a:$3), 'get(self.${4:Dict's item}, v:val, "???")'))
+    func! ${1:Dict}.${2:func}(${3:#:args, ...}) dict
+        return join(map(split(a:$3), 'get(self.${4:Dict's item}, v:val, "${4:#:default}")'))
     endf
 # }}}
 
@@ -40,28 +40,28 @@ options     head
 snippet     if
 abbr        if {expr} .. endif
 options     head
-    if ${1:condition}
-        ${2:statement}
+    if ${1:#:condition}
+        ${2:#:statement}
     endif
 
 snippet     if-else
 abbr        if {expr} .. else .. endif
 alias       ifelse
 options     head
-    if ${1:condition}
-        ${2:statements}
+    if ${1:#:condition}
+        ${2:#:statements}
     else
-        ${3:statements}
+        ${3:#:statements}
     endif
 
 snippet     if-elseif
 abbr        if {expr} .. elseif {expr} .. endif
 alias       ifelseif
 options     head
-    if ${1:condition}
-        ${2:statements}
-    elseif ${3:condition}
-        ${4:statements}
+    if ${1:#:condition}
+        ${2:#:statements}
+    elseif ${3:#:condition}
+        ${4:#:statements}
     endif
 
 snippet     else
@@ -73,21 +73,21 @@ options     head
 snippet     elseif
 abbr        elseif {expr} ..
 options     head
-    elseif ${1:condtion}
-        ${2}
+    elseif ${1:#:condtion}
+        ${2:#:statements}
 
 snippet     while
 abbr        while {expr} .. endwhile
 options     head
-    while ${1:condition}
-        ${2:statements}
+    while ${1:#:condition}
+        ${2:#:statements}
     endwhile
 
 snippet     for
 abbr        for [var] in {iterator} .. endfor
 options     head
-    for ${1:variable} in ${2:iterator}
-        ${3:statements}
+    for ${1:#:variable} in ${2:#:iterator}
+        ${3:#:statements}
     endfor
 
 snippet     continue
@@ -106,7 +106,7 @@ snippet     try
 abbr        try > endtry
 options     head
     try
-        ${1:statements: continue/break/throw}
+        ${1:#:statements: continue/break/throw}
     endtry
 
 # FIXME the {errmsg}, how to insert {} literally.
@@ -114,55 +114,55 @@ snippet     try-catch
 abbr        try > catch {ERROR} > endtry
 options     head
     try
-        ${1:statements: continue/break/throw}
-    catch ${2:/${3:pattern: empty, E484, Vim(cmdname):{errmsg\\} \}/}
-        ${4:statements: continue/break/throw}
+        ${1:#:statements: continue/break/throw}
+    catch ${2:#:/${3:pattern: empty, E484, Vim(cmdname):{errmsg\\} \}/}
+        ${4:#:statements: continue/break/throw}
     endtry
 
 snippet     try-finally
 abbr        try > finally > endtry
 options     head
     try
-        ${1:statements -> continue/break/throw}
+        ${1:#:statements -> continue/break/throw}
     finally
-        ${2:statements -> continue/break/throw}
+        ${2:#:statements -> continue/break/throw}
     endtry
 
 snippet     catch
 abbr        catch /Error pattern/
 options     head
-    catch /${1:pattern: empty, E484:, Vim(cmdname):{errmsg\\} optional}/
-        ${2:statements -> continue/break/throw}
+    catch /${1:#:pattern: empty, E484:, Vim(cmdname):{errmsg\\} optional}/
+        ${2:#:statements -> continue/break/throw}
 
 snippet     throw
 abbr        throw {expr}
 options     head
-    throw ${1:expr}
+    throw ${1:#:expr}
 # }}}
 
 # function {{{
 snippet     function
-abbr        fun! s:funcname(args) abort .. endfun
+abbr        fun! s:{name}({arguments}) abort .. endfun
 alias       func
 options     head
-    fun! ${1:s:}${2:func_name}(${3:args, ...}) abort
-        ${4:statements -> arguments: a:0, a:1, a:000[0]}
+    fun! ${1:#:s:}${2:name}(${3:#:arguments}) abort
+        ${4:#:statements -> arguments: a:0, a:1, a:000[0]}
     endfun
 
 snippet     function.range
-abbr        fun! s:funcname(args) range .. endfun
+abbr        fun! s:funcname(arguments) range .. endfun
 alias       func.range
 options     head
-    fun! ${1:s:}${2:func_name}(${3:args, ...}) range
-        ${4:statements -> arguments: a:firstline, a:lastline}
+    fun! ${1:#:s:}${2:name}(${3:#:arguments}) range
+        ${4:#:statements -> arguments: a:firstline, a:lastline}
     endfun
 
 snippet     function.dict
-abbr        fun! Dict.func(args) dict .. endfun
+abbr        fun! Dict.func(arguments) dict .. endfun
 alias       func.dict
 options     head
-    fun! ${1:Dict}.${2:func}(${3:args, ...}) dict
-        ${4:statements -> arguments: a:0, a:1, a:000[0]}
+    fun! ${1:Dict}.${2:func}(${3:#:arguments}) dict
+        ${4:#:statements -> arguments: a:0, a:1, a:000[0]}
     endfun
 # }}}
 
@@ -171,7 +171,7 @@ options     head
 snippet     expr1
 abbr        expr2 ? expr1 : expr1
 alias       ternary_operator
-    ${1:expr2} ? ${2:expr1} : ${3:expr1}
+    ${1:#:expr2} ? ${2:#:expr1} : ${3:#:expr1}
 
 # expr1 recursive
 snippet     expr1 recursive
@@ -188,12 +188,12 @@ alias       ternary_recursive
 # map()
 snippet     map
 abbr        map(expr)
-    map(${1:expr: list/dict}, ${2:eval string: v:val is item in expr})
+    map(${1:#:expr: list/dict}, ${2:#:eval string: v:val is item in expr})
 
 # filter()
 snippet     filter
 abbr        filter(expr)
-    filter(${1:expr: list/dict}, ${2:eval string: v:val is item in expr})
+    filter(${1:#:expr: list/dict}, ${2:#:eval string: v:val is item in expr})
 # }}}
 
 # autocmd & augroup {{{
@@ -201,21 +201,21 @@ snippet     autocmd
 abbr        autocmd {Event} {pattern} {commands}
 alias       au
 options     head
-    autocmd ${1:Event} ${2:pattern} ${3:commands}
+    autocmd ${1:#:Event} ${2:#:pattern} ${3:#:commands}
 
 snippet     autocmd filetype
 abbr        autocmd {Event} {pattern} {commands}
 options     head
-    autocmd FileType ${1:filetype} ${2:commands}
+    autocmd FileType ${1:#:filetype} ${2:#:commands}
 
 snippet     augroup
 abbr        augroup {Group} .. augroup END
 options     head
-    augroup ${1:group name}
+    augroup ${1:#:Group}
         autocmd!
-        autocmd ${2:Event} ${3:pattern} ${4:commands}
-        ${5:second autocmd}
+        autocmd ${2:#:Event} ${3:#:pattern} ${4:#:commands}
+        ${5:#:second autocmd}
     augroup END
 # }}}
 
-# vim:foldmethod=marker
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

@@ -27,6 +27,13 @@ options     head
   ${1:quote string}
   {% endpullquote %}
 
+snippet     octopress.raw
+abbr        {% raw %} .. {% endraw %}
+options     head
+    {% raw %}
+    ${1:RAW}
+    {% endraw %}
+
 snippet     octopress.render_partial
 abbr        {% render_partial path/to/file %}
 options     head
@@ -37,3 +44,5 @@ snippet     octopress.jsfiddle
 abbr        {% jsfiddle shorttag [tabs] [height width] %}
 options     head
   {% jsfiddle ${1:shorttag}${2: ${3:height\} ${4:width\}} %}
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

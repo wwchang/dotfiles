@@ -150,7 +150,7 @@
         "hi ColorColumn     ctermfg=None ctermbg=233
     " }}}
 
-    " [ tags ] {{{
+    " [ tags ] {{{ {Visual}<C-]>
     " tags
 	" ':help tagsrch.txt'
 	" {Visual}C-], [count]C-T, {Visual}g], C-w C-], {Visual}g C-],
@@ -304,6 +304,7 @@
     "            | `-windows buffers
     "            `-the current buffer
     set completeopt=menuone " menu,menuone,longest,preview
+    set completeopt+=longest " press CTRL-L to insert longest common text of matches
     set completeopt-=preview " dont show preview window
 
     " [ popup menu ]
@@ -588,7 +589,7 @@ endif
     set backspace=indent,eol,start " Better handling of backspace key
     set autoindent " Sane indenting when filetype not recognised
     " set smartindent  " autoindent, smartindent, cindent, indentexpr.
-        " use 'filetype indent on' to per-filetype indent
+        " use 'filetype indent on' to per-filetype indent is better.
     set nostartofline   " Emulate typical editor navigation behaviour
   " set whichwrap=b,s,h,l,<,>,~,[,] " everything wraps
     "             | | | | | | | | |
@@ -834,7 +835,7 @@ endif
             let w = winwidth(0) - &foldcolumn - (&number ? 8 : 0)
             let foldSize = 1 + v:foldend - v:foldstart
             let foldSizeStr = " " . foldSize . " lines "
-            let foldLevelStr = repeat("+ ", v:foldlevel) . "「" . v:foldlevel . "」"
+            let foldLevelStr = repeat("+ ", v:foldlevel) . "∾ " . v:foldlevel
             let lineCount = line("$")
             let foldPercentage = "[" . printf("%4.1f", (foldSize*1.0)/lineCount*100) . "%] "
             let expansionString = repeat("┈", w - strlen(foldSizeStr) - strlen(line) - strlen(foldLevelStr) - strlen(foldPercentage))
@@ -1294,6 +1295,8 @@ endif
         " NeoBundle 'nanotech/jellybeans.vim'
         " NeoBundle 'w0ng/vim-hybrid'
         " NeoBundle 'ciaranm/inkpot'
+        " colorscheme utilities
+        NeoBundle 'rking/vim-detailed'
         " colorsets
         " NeoBundle 'altercation/solarized'
         " NeoBundle 'chriskempson/tomorrow-theme'
@@ -1353,7 +1356,7 @@ endif
         " NeoBundle 'https://bitbucket.org/ns9tks/vim-autocomplpop'
         " snippets
         NeoBundle 'Shougo/neosnippet'
-        NeoBundle 'SirVer/ultisnips'
+        " NeoBundle 'SirVer/ultisnips'
         " NeoBundle 'drmingdrmer/xptemplate'
         " NeoBundle 'garbas/vim-snipmate'
         " NeoBundle 'scrooloose/snipmate-snippets'
@@ -1396,7 +1399,7 @@ endif
         " NeoBundle 'vim-scripts/Manuals'
         " NeoBundle 'tsukkee/unite-help', {'depends': 'Shougo/unite.vim'}
         " search [grep, MRU, files]
-        " NeoBundle 'kien/ctrlp.vim'
+        NeoBundle 'kien/ctrlp.vim'
         " NeoBundle 'wincent/Command-T'
         NeoBundle 'vim-scripts/EasyGrep'
         NeoBundle 'mileszs/ack.vim'
@@ -1442,8 +1445,16 @@ endif
         " NeoBundle 'krisajenkins/vim-pipe'
         " Narrow Region
         " NeoBundle 'chrisbra/NrrwRgn'
-        " compile & run
+        " NarrowRegion
+        NeoBundle 'chrisbra/NrrwRgn'
+        " NeoBundle 'kana/vim-narrow', {'directory': 'vim-narrow-kana'}
+        " NeoBundle 'jkramer/vim-narrow', {'directory': 'vim-narrow-jkramer'}
+        NeoBundle 'AndrewRadev/inline_edit.vim'
+        " NeoBundle 'thinca/vim-partedit'
+        " compile & run & Make
         NeoBundle 'xuhdev/SingleCompile'
+        " NeoBundle 'johnsyweb/vim-makeshift'
+        " NeoBundle 'Ignotus/vim-cmake-project'
         " syntax checker
         NeoBundle 'scrooloose/syntastic'
         " debugger
@@ -1469,6 +1480,7 @@ endif
         " NeoBundle 'Shougo/vimfiler'
         " NeoBundle 'troydm/easybuffer.vim'
         NeoBundle 'airblade/vim-rooter'
+        " NeoBundle 'gcmt/ozzy.vim'
         " Tabular
         NeoBundle 'godlygeek/tabular'
         " NeoBundle 'tsaleh/vim-align'
@@ -1485,17 +1497,20 @@ endif
         " VimL
         " NeoBundle 'Shougo/vesting', { 'depends': ['Shougo/unite.vim'] }
         " NeoBundle 'h1mesuke/vim-unittest'
+        " NeoBundle 'kana/vim-vspec'
+        NeoBundle 'coot/vim_ftpdev'
         " Ruby
         NeoBundle 'vim-ruby/vim-ruby'
-        " NeoBundle 'taichouchou2/vim-rsense'
+        NeoBundle 'taichouchou2/vim-rsense'
         " NeoBundle 'vadv/rubycomplete'
-        NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
-        NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
+        " NeoBundle 'danchoi/ri.vim', {'external_commands': ['ri']}
+        NeoBundle 'tpope/vim-rvm'
+        " NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
-        NeoBundle 'ujihisa/neco-ruby'
-        NeoBundle 'ujihisa/neco-rubymf'
-        NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
+        " NeoBundle 'ujihisa/neco-ruby'
+        " NeoBundle 'ujihisa/neco-rubymf', {'build': {'unix': 'gem install methodfinder'}}
+        " NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
         " NeoBundle 'astashov/vim-ruby-debugger'
         " NeoBundle 'ecomba/vim-ruby-refactoring'
         " NeoBundle 'ujihisa/unite-gem'
@@ -1521,7 +1536,9 @@ endif
         " NeoBundle 'alfredodeza/pytest.vim'
         " NeoBundle 'julienr/vimux-pyutils'
         " C / C++(cpp)
-        NeoBundle 'Shougo/neocomplcache-clang', { 'depends': ['Rip-Rip/clang_complete'] }
+        NeoBundle 'Shougo/neocomplcache-clang', {
+                    \ 'depends': ['Shougo/neocomplcache', 'Rip-Rip/clang_complete'],
+                    \ }
         " NeoBundle 'yandy/vim-omnicppcomplete'
         " Go
         NeoBundle 'undx/vim-gocode'
@@ -1550,9 +1567,10 @@ endif
         " NeoBundle 'vim-scripts/onsgmls.vim'
         " NeoBundle 'vim-scripts/xmlwf.vim', {'external_commands': ['xmlwf']}
         " CSS
-        NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
-        NeoBundle 'hail2u/vim-css3-syntax'
-        NeoBundle 'skammer/vim-css-color'
+        " NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+        " NeoBundle 'hail2u/vim-css3-syntax'
+        " NeoBundle 'skammer/vim-css-color'
+        " NeoBundle 'vim-scripts/css3-mod'
             " Vim runtime files for Haml, Sass, and SCSS
             " NeoBundle 'tpope/vim-haml'
             " LESS
@@ -1600,14 +1618,16 @@ endif
         "             \ 'build': { 'unix': 'cabal install ghc-mod' },
         "             \ }
         " NeoBundle 'dag/vim2hs'
-        " Perl
-        " NeoBundle 'c9s/perlomni.vim'
         " R
         NeoBundle 'jcfaria/Vim-R-plugin', {
-                    \ 'depends': ['jalvesaq/VimCom',],
+                    \ 'depends': ['jalvesaq/VimCom', 'Shougo/vimshell',],
                     \ }
         " NeoBundle 'vim-scripts/R.vim'
         " NeoBundle 'vim-scripts/GNU-R'
+        " Scala
+        " NeoBundle 'megaannum/vimside'
+        " Perl
+        " NeoBundle 'c9s/perlomni.vim'
         " Assembly
         " NeoBundle 'pksunkara/vim-dasm'
         " Markdown
@@ -1635,6 +1655,8 @@ endif
         " NeoBundle 'tpope/vim-rails'
         " Django
         " NeoBundle 'yodiaditya/vim-pydjango'
+        " Mozilla
+        " NeoBundle 'mozfr/mozilla.vim'
         " }}}
 
         " [ tools ] {{{
@@ -1677,6 +1699,8 @@ endif
         NeoBundle 'thinca/vim-visualstar'
         NeoBundle 'vim-scripts/SpitVspit'
         " NeoBundle 'mikewest/vimroom'
+        " UNIX
+        NeoBundle 'tpope/vim-eunuch'
         " }}}
         " }}}
 
@@ -1876,6 +1900,22 @@ syntax on
     " }}}
 
     " [ completion: autocomplete popup menu candidates ] {{{
+        " key bindings {{{
+            " <Tab> -- start complete or jump in snippet placeholder.
+            " <C-n> -- [n]ext popup selection.
+            " <C-p> -- [p]revious popup selection.
+            " <C-j> -- jump forwards in snippet placeholder
+            " <C-k> -- jump backward in snippet placeholder
+            " <C-o> -- manual omni complete.
+            " <C-y> -- [y]es, smart close popup.
+            " <C-e> -- [e]nd, cancel popup.
+            " <C-g> -- undo completion.
+            " <C-h> -- smart close popup.
+            " <C-l> -- common string complete.
+            " <BS>  -- smart close popup.
+            " <CR>  -- choose selected candidate and close popup.
+        " }}}
+
         " neocomplcache {{{ Ultimate auto Completion system for Vim.
             " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
             " with vimproc, neocomplcache creates the cache asynchronously.
@@ -1919,8 +1959,8 @@ syntax on
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
             let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
-            let g:neocomplcache_enable_camel_case_completion = 0 " ArgumentExcep -> ArE (not AE)
-            let g:neocomplcache_enable_underbar_completion = 0 " public_html -> pu_h (not p_h)
+            let g:neocomplcache_enable_camel_case_completion = 1 " ArgumentExcep -> AE
+            let g:neocomplcache_enable_underbar_completion = 1 " public_html -> p_h
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
             let g:neocomplcache_fuzzy_completion_start_length = 3 " fuzzy complete min length
             let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
@@ -1981,6 +2021,7 @@ syntax on
             if !exists('g:neocomplcache_omni_patterns')
                 let g:neocomplcache_omni_patterns = {}
             endif
+            let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
             let g:neocomplcache_omni_patterns['python'] = '[^. \t]\.\w*'
             " FIXME this 'go' pattern
             " let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " gocode plugin
@@ -2003,9 +2044,8 @@ syntax on
             " if the key is '_', used for all filetypes.
             let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
             " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
-            " rsense plugin                 -> RsenseCompleteFunction
-            " neco-ruby, neco-rubymf        ->
-            let g:neocomplcache_omni_functions['ruby'] = 'rubycomplete#Complete'
+            " vim-rsense plugin             -> RSenseCompleteFunction
+            let g:neocomplcache_omni_functions['ruby'] = 'RSenseCompleteFunction'
             " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
             " python3complete#Complete  -- Python3 Vim default omni
             " jedi#complete             -- plugin jedi-vim omni use jedi python autocomplete
@@ -2024,7 +2064,9 @@ syntax on
             let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
             let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
             let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
-            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags' " html5 plugin
+            " htmlcomplete#CompleteTags         -> html5 plugin
+            " zencoding#CompleteTag             -> ZenCoding plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
             let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default / plugin SQLComplete.vim
             let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
             let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
@@ -2157,13 +2199,13 @@ syntax on
             endif
             let g:neocomplcache_context_filetype_lists['vimwiki'] = [
                         \ {
-                            \ 'filetype': 'python',
-                            \ 'start': '^\s*{{{python$',
+                            \ 'filetype': 'ruby',
+                            \ 'start': '^\s*{{{ruby$',
                             \ 'end': '^\s*}}}',
                         \ },
                         \ {
-                            \ 'filetype': 'ruby',
-                            \ 'start': '^\s*{{{ruby$',
+                            \ 'filetype': 'python',
+                            \ 'start': '^\s*{{{python$',
                             \ 'end': '^\s*}}}',
                         \ },
                         \ {
@@ -2212,6 +2254,38 @@ syntax on
                             \ 'end': '^\s*}}}',
                         \ },
                         \ ]
+            let g:neocomplcache_context_filetype_lists['markdown'] = [
+                        \ {
+                            \ 'filetype':   'ruby',
+                            \ 'start':      '^\s*```ruby$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'python',
+                            \ 'start':      '^\s*```python$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'c',
+                            \ 'start':      '^\s*```c$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'go',
+                            \ 'start':      '^\s*```go$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'javascript',
+                            \ 'start':      '^\s*```javascript$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ {
+                            \ 'filetype':   'html',
+                            \ 'start':      '^\s*```html$',
+                            \ 'end':        '^\s*```',
+                        \ },
+                        \ ]
             " }}}
             " text mode filetypes {{{
             " in text mode, neocomplcache supports word convertion to write English.
@@ -2230,7 +2304,7 @@ syntax on
 
             " }}}
 
-            " [ complete candidates: priority ] {{{
+            " [ complete candidates: priority/rank ] {{{
             " control each source's completion candidate priority.
             " The higher value is, the higher priority.
             let g:neocomplcache_source_rank = {
@@ -2282,20 +2356,6 @@ syntax on
             " }}}
 
             " [ key mappings ] {{{
-                " <Tab> -- start complete or jump in snippet placeholder.
-                " <C-n> -- [n]ext popup selection.
-                " <C-p> -- [p]revious popup selection.
-                " <C-j> -- jump forwards in snippet placeholder
-                " <C-k> -- jump backward in snippet placeholder
-                " <C-o> -- manual omni complete.
-                " <C-y> -- [y]es, smart close popup.
-                " <C-e> -- [e]nd, cancel popup.
-                " <C-g> -- undo completion.
-                " <C-h> -- smart close popup.
-                " <C-l> -- common string complete.
-                " <BS>  -- smart close popup.
-                " <CR>  -- choose selected candidate and close popup.
-
                 inoremap <expr> <C-x><C-f> neocomplcache#manual_filename_complete()
                 inoremap <expr> <C-o> neocomplcache#manual_omni_complete()
                 inoremap <expr> <C-l> neocomplcache#complete_common_string()
@@ -2445,6 +2505,8 @@ syntax on
             "   - <`placeholder`> (<C-j>) -- jump to next placeholder
             "   - {Visual:string}<Tab>  -- expand inputted trigger by selected target text.
             " Functions:
+            "  :NeoSnippetSource [filetype]
+            "   -- load [filetype] snippets for current buffer.
             " :NeoSnippetMakeCache [filetype]
             " :NeoSnippetEdit [{options}] [filetype]
             " key mappings:
@@ -2461,6 +2523,7 @@ syntax on
             "       -- expand inputted trigger by selected target text.
             "   - x_<Plug>(neosnippet_register_oneshot_snippet)
             "       -- register oneshot snippet in current buffer.
+            "   - i_<Plug>(neosnippet_start_unite_snippet)
             "   - neosnippet#expandable()
             "   - neosnippet#jumpable()
             " unite.vim
@@ -2470,8 +2533,9 @@ syntax on
             "       - expand
             "       - edit
             "       - preview
-            " neosnippet                 -> [Snip] (no placeholders)
-            " neosnippet                 -> <Snip> (contain placeholders)
+            " neosnippet  -> [Snip] (no placeholders)
+            " neosnippet  -> <Snip> (contain placeholders)
+            " neosnippet  -> `Snip` (partial match)
 
             let g:neosnippet#snippets_directory = "~/.vim/snippets/neosnippet/"
             let g:neosnippet#disable_select_mode_mappings = 1
@@ -2484,6 +2548,7 @@ syntax on
             let g:neosnippet#disable_runtime_snippets = {
                         \ '_': 1,
                         \ }
+            let g:neosnippet#enable_snipmate_compatibility = 0 " snipMate compatibility
 
             if !exists('g:loaded_neosnippet')
             endif
@@ -2496,7 +2561,10 @@ syntax on
             smap <expr> <Tab> neosnippet#expandable() ?
                         \ "\<Plug>(neosnippet_expand_or_jump)"
                         \ : "\<Tab>"
+            imap <C-k> <Plug>(neosnippet_start_unite_snippet)
             " jump to next placeholder
+            " imap <C-j> <Plug>(neosnippet_jump)
+            " smap <C-j> <Plug>(neosnippet_jump)
             imap <expr> <C-j> neosnippet#jumpable() ?
                         \ "\<Plug>(neosnippet_jump)"
                         \ : "\<C-j>"
@@ -2505,14 +2573,14 @@ syntax on
                         \ : "\<C-j>"
             " expand inputted trigger by selected target text.
             xmap <Tab> <Plug>(neosnippet_expand_target)
+            xmap <C-k> <Plug>(neosnippet_start_unite_snippet_target)
             " regex search snippets in unite
-            imap <C-k> <Plug>(neosnippet_start_unite_snippet)
             nnoremap <buffer> <Leader>es
                 \ :exec ':NeoSnippetEdit -split -direction=topleft -horizontal'<CR>
                 " \ . &filetype<CR>
 
             " for snippets_complete marker.
-            if has('conceal')
+            if has('conceal') && !exists('g:loaded_neosnippet')
                 set conceallevel=2 concealcursor=i
             endif
         " }}}
@@ -2645,7 +2713,7 @@ syntax on
         " TagmaLast : Update the 'Last Changed' line in a file.
     " }}}
 
-    " [ tags/cscope ] {{{ <F12>
+    " [ tags/cscope ] {{{ {Visual}<C-]>, <F12>
         " Tagbar {{{ <F12> Display tags of a file ordered by scope.
             " <Space> display prototype of a tag. <Enter> jump to tag o: toggle fold
             " access symbols:
@@ -3023,95 +3091,120 @@ syntax on
     " }}}
 
     " [ search: MRU, Text, Regex, ] {{{
-        " CtrlP {{{ <C-P> :CtrlP to full path fuzzy(regex grep) file buffer and MRU.
-            let g:loaded_ctrlp = 0 " =1 to disable plug completely.
+        " CtrlP {{{ fuzzy file, buffer, mru, tag, ... finder with intuiintuitive interface
+            " Usage:
+            "   - <C-p> / :CtrlP
+            "   - in prompt:
+            "       - <c-r> -- toggle regexp search
+            " [ mappings ] {{{
+            " <c-p>     -- open CtrlP prompt. >>>
+            " <tab>     -- auto-complete dir names under current working dir.
+            " <s-tab>   -- focus between the match window and the prompt.
+            " <c-d>     -- full-path or filename only search. >d>
+            " <c-j>,<down>  -- move selection down.
+            " <c-k>,<up>    -- move selection up.
+            " <c-f>,<c-up>  -- scroll to next search mode.
+            " <c-b>,<c-down> -- scroll to previous search mode.
+            " <c-r>     -- regexp mode. r>>
+            " <esc>,<c-c>   -- exit CtrlP
+            " <c-a>     -- move cursor to the start of the prompt.
+            " <c-e>     -- move cursor to the end.
+            " <c-h>,<left>,<c-^> -- move the cursor one char to the left.
+            " <c-l>,<right>,     -- move the cursor one char to the right.
+            " <c-]><bs> -- delete the preceding char.
+            " <del>     -- delete the current char.
+            " <c-w>     -- delete a preceding innder word.
+            " <cr>      -- open selected file in active window.
+            " <c-t>     -- open selected file in new tab after the last tabpage.
+            " <c-v>     -- open selected file in vertical split.
+            " <c-s>,<c-cr>,<c-x> -- open selected file in a horizontal split.
+            " <c-y>     -- create a new file and its parent directories.
+            " <c-n>     -- next string in the prompt's history.
+            " <c-p>     -- previous string in the prompt's history.
+            " <c-z>     -- mark/unmark a file to be opened with <c-o>. <c-y>
+            " <c-o>     -- open files marked by <c-z>
+            " <F5>      -- refresh window. and purge cache.
+            " <F7>      -- wipe MRU list. delete MRU entries marked by <c-z>.
+            " <insert>  -- ...
+            " <esc>,<c-c>,<c-g> -- cancel. exit CtrlP.
+            " }}}
+            let g:loaded_ctrlp = 0 " 1: disable plugin completely.
             let g:ctrl_map = '<c-p>' " for normal mode press Ctrl-P.
             let g:ctrlp_cmd = 'CtrlP' " default command to use when pressing mapping.
             let g:ctrlp_by_filename = 0 " 1: search by filename (not full path)
             let g:ctrlp_regexp = 1 " 1: to set full regexp search as default.
             let g:ctrlp_match_window_bottom = 1 " window position
-            let g:ctrlp_match_window_reversed = 1 " show matching in reverse order
-            let g:ctrlp_max_height = 10
-            let g:ctrlp_switch_buffer = 2 " when file opened, jump to (tag, buffer)
-            let g:ctrlp_reuse_window = 'netrw\|help\|quickfix'
-            let g:ctrlp_working_path_mode = 'rc'
+            " show matching from bottom to top if window position is at bottom.
+            let g:ctrlp_match_window_reversed = g:ctrlp_match_window_bottom
+            let g:ctrlp_max_height = 10 " max height of match window
+            let g:ctrlp_switch_buffer = 'Et' " when already opened, jump to (tag, buffer)
+            let g:ctrlp_reuse_window = 'netrw\|help\|quickfix\|preview'
+            let g:ctrlp_tabpage_position = 'ac' " where to put the new tab page
+            let g:ctrlp_working_path_mode = 'rwa'
             let g:ctrlp_root_markers = ['.git', '.hg', '.svn', '.bzr',]
             let g:ctrlp_use_caching = 1 " 0: disable per-session caching.
-            let g:ctrlp_clear_cache_on_exit = 1
+            let g:ctrlp_clear_cache_on_exit = 0
             let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
-            let g:ctrlp_prompt_mappings = {
-                        \ 'PrtBS()':              ['<bs>', '<c-]>'],
-                        \ 'PrtDelete()':          ['<del>'],
-                        \ 'PrtDeleteWord()':      ['<c-w>'],
-                        \ 'PrtClear()':           ['<c-u>'],
-                        \ 'PrtSelectMove("j")':   ['<c-j>', '<down>'],
-                        \ 'PrtSelectMove("k")':   ['<c-k>', '<up>'],
-                        \ 'PrtHistory(-1)':       ['<c-n>'],
-                        \ 'PrtHistory(1)':        ['<c-p>'],
-                        \ 'AcceptSelection("e")': ['<cr>', '<2-LeftMouse>'],
-                        \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
-                        \ 'AcceptSelection("t")': ['<c-t>', '<MiddleMouse>'],
-                        \ 'AcceptSelection("v")': ['<c-v>', '<RightMouse>'],
-                        \ 'ToggleFocus()':        ['<s-tab>'],
-                        \ 'ToggleRegex()':        ['<c-r>'],
-                        \ 'ToggleByFname()':      ['<c-d>'],
-                        \ 'ToggleType(1)':        ['<c-f>', '<c-up>'],
-                        \ 'ToggleType(-1)':       ['<c-b>', '<c-down>'],
-                        \ 'PrtExpandDir()':       ['<tab>'],
-                        \ 'PrtInsert("w")':       ['<F2>', '<insert>'],
-                        \ 'PrtInsert("s")':       ['<F3>'],
-                        \ 'PrtInsert("v")':       ['<F4>'],
-                        \ 'PrtInsert("+")':       ['<F6>'],
-                        \ 'PrtCurStart()':        ['<c-a>'],
-                        \ 'PrtCurEnd()':          ['<c-e>'],
-                        \ 'PrtCurLeft()':         ['<c-h>', '<left>', '<c-^>'],
-                        \ 'PrtCurRight()':        ['<c-l>', '<right>'],
-                        \ 'PrtClearCache()':      ['<F5>'],
-                        \ 'PrtDeleteMRU()':       ['<F7>'],
-                        \ 'CreateNewFile()':      ['<c-y>'],
-                        \ 'MarkToOpen()':         ['<c-z>'],
-                        \ 'OpenMulti()':          ['<c-o>'],
-                        \ 'PrtExit()':            ['<esc>', '<c-c>', '<c-g>'],
+            let g:ctrlp_show_hidden = 0
+            let g:ctrlp_custom_ignore = {
+                        \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+                        \ 'file': '\v\.(exe|so|dll)$',
+                        \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
                         \ }
-                " in some terminal, <c-h> is <bs>, so use:
-                    " \ 'PrtCurLeft()': ['<left>', '<c-^>']
+            " let g:ctrlp_prompt_mappings = {}
             let g:ctrlp_mruf_max = 250
             let g:ctrlp_mruf_exclude = '/tmp/.*\|/temp/.*' " MacOSX/Linux
-            " let g:ctrlp_mruf_exclude = '^C:\\dev\\tmp\\.*' " Windows
             " let g:ctrlp_mruf_include = '\.py$\|\.rb$'
-            let g:ctrlp_mruf_relative = 0 " 1: show only MRU files in current working dir
+            let g:ctrlp_mruf_relative = 1 " 1: show only MRU files in current working dir
+            let g:ctrlp_mruf_default_order = 0 " 1: disable sorting when searching in MRU mode
             let g:ctrlp_mruf_case_sensitive = 1 " avoid duplicate MRU entries.
-            let g:ctrlp_dotfiles = 1 " =0 to don't scan for dotfiles and dotdirs.
-            let g:ctrlp_custom_ignore = {
-                        \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-                        \ 'file': '\.exe$\|\.so$\|\.dll$',
-                        \ }
-                        " \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
             let g:ctrlp_max_files = 10000 " maximum number of files to scan, 0: no limit.
             let g:ctrlp_max_depth = 40 " maximum depth of a dir tree to recurse into.
-                " specify external tool for listing files instead of Vim's globpath()
-            "let g:ctrlp_user_command = 'find %s -type f' " MacOSX/Linux
-            "let g:ctrlp_user_command = 'find %s -type f | grep (?!tmp/.*)'
-                " use grep to filter the result.
+            " specify external tool for listing files instead of Vim's globpath()
+            " let g:ctrlp_user_command = 'find %s -type f' " MacOSX/Linux
+            " let g:ctrlp_user_command = 'find %s -type f | grep (?!tmp/.*)'
             " let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d' " Windows
             let g:ctrlp_max_history = &history " max of input strings CtrlP remember
                 " 0: to disable prompt's history, <c-n>, <c-p> to browse.
-            let g:ctrlp_open_new_file = 'v' " specify how newly file be opened when <c-y>
+            let g:ctrlp_open_new_file = 'h' " specify how newly file be opened when <c-y>
                 " t: tab, h: horizontal split, v: vertical split, r: current window.
             let g:ctrlp_open_multiple_files = 'v' " open multiple files with <c-z>, <c-o>
             let g:ctrlp_arg_map = 0
                 " 1: <c-o> <c-y> accept extra key as argument to override default
                 " t, h, v, r, <esc>|<c-c> to go back to prompt.
-            let g:ctrlp_follow_symlinks = 0 " 1: follow all symlinks indiscriminately.
-            let g:ctrlp_lazy_update = 0 " only update match window after typing stopped
+            let g:ctrlp_follow_symlinks = 1 " 2: follow all symlinks indiscriminately.
+            let g:ctrlp_lazy_update = 1 " only update match window after typing stopped
             let g:ctrlp_use_migemo = 0 " 1: use Migemo Pattern for Japanese filenames.
             let g:ctrlp_buftag_systemenc = &encoding
-            " let g:ctrlp_buftag_ctags_bin = ''
-            let g:ctrlp_default_input = 0 " seed the prompt with cur file's relat-path
-            let g:ctrlp_match_func = {} " an external fuzzy matching function.
-            let g:ctrlp_buffer_func = {} " after entering and before exiting buffer
-            let g:ctrlp_mruf_default_order = 0 " show only MRU files in pwd
-            let g:ctrlp_tabpage_position = 'ac'
+            " let g:ctrlp_buftag_ctags_bin = '' " ctags bin file path
+            let g:ctrlp_default_input = 1 " seed the prompt with cur file's relat-path
+            let g:ctrlp_abbrev = {}
+            let g:ctrlp_match_func = {'match': 'Function_Name'}
+            let g:ctrlp_buffer_func = {
+                        \ 'enter': 'Function_Name_1',
+                        \ 'exit':  'Function_Name_2',
+                        \ }
+            let g:ctrlp_key_loop = 1
+
+            " file open funcs {{{
+            let g:ctrlp_open_func = {
+                        \ 'files'     : 'CtrlPHTMLOpenFunc',
+                        \ 'buffers'   : 'Function_Name_2',
+                        \ 'mru files' : 'Function_Name_3',
+                        \ }
+
+            fun! CtrlPHTMLOpenFunc(action, line)
+                if a:action == 't' && fnamemodify(a:line, ':e') =~? '^html\?$'
+                    let filename = fnameescape(fnamemodify(a:line, ':p'))
+                    call ctrlp#exit()
+                    silent! execute '!xdg-open' filename
+                elseif a:action == 'x' && fnamemodify(a:line, ':e') !~? '^html\?$'
+                    call feedkeys("\<c-o>")
+                else
+                    call call('ctrlp#acceptfile', [a:action, a:line])
+                endif
+            endf
+            " }}}
 
             " statusline {{{
             " customize the statusline for CtrlP window.
@@ -3146,61 +3239,13 @@ syntax on
             " }}}
 
             " extensions {{{
-            let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir',
-                        \ 'rtscript']
+            let g:ctrlp_extensions = [
+                        \ 'tag', 'buffertag',
+                        \ 'quickfix', 'dir',
+                        \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir',
+                        \ 'rtscript',
+                        \ ]
                 " the order of them in statusline when using <C-f>, <C-b>
-            " }}}
-
-            " file open funcs {{{
-            let g:ctrlp_open_func = {
-                        \ 'files'     : 'CtrlPHTMLOpenFunc',
-                        \ 'buffers'   : 'Function_Name_2',
-                        \ 'mru files' : 'Function_Name_3',
-                        \ }
-
-            fun! CtrlPHTMLOpenFunc(action, line)
-                if a:action == 't' && fnamemodify(a:line, ':e') =~? '^html\?$'
-                    let filename = fnameescape(fnamemodify(a:line, ':p'))
-                    call ctrlp#exit()
-                    silent! execute '!xdg-open' filename
-                elseif a:action == 'x' && fnamemodify(a:line, ':e') !~? '^html\?$'
-                    call feedkeys("\<c-o>")
-                else
-                    call call('ctrlp#acceptfile', [a:action, a:line])
-                endif
-            endf
-            " }}}
-
-            " [ mappings ] {{{
-            " <c-p>     -- open CtrlP prompt. >>>
-            " <c-r>     -- regexp mode. r>>
-            " <c-d>     -- full-path or filename only search. >d>
-            " <c-f>,<c-up>  -- scroll to next search mode.
-            " <c-b>,<c-down> -- scroll to previous search mode.
-            " <tab>     -- auto-complete dir names under current working dir.
-            " <s-tab>   -- focus between the match window and the prompt.
-            " <c-j>,<down>  -- move selection down.
-            " <c-k>,<up>    -- move selection up.
-            " <c-a>     -- move cursor to the start of the prompt.
-            " <c-e>     -- move cursor to the end.
-            " <c-h>,<left>,<c-^> -- move the cursor one char to the left.
-            " <c-l>,<right>,     -- move the cursor one char to the right.
-            " <c-]><bs> -- delete the preceding char.
-            " <del>     -- delete the current char.
-            " <c-w>     -- delete a preceding innder word.
-            " <cr>      -- open selected file in active window.
-            " <c-t>     -- open selected file in new tab after the last tabpage.
-            " <c-v>     -- open selected file in vertical split.
-            " <c-s>,<c-cr>,<c-x> -- open selected file in a horizontal split.
-            " <c-y>     -- create a new file and its parent directories.
-            " <c-n>     -- next string in the prompt's history.
-            " <c-p>     -- previous string in the prompt's history.
-            " <c-z>     -- mark/unmark a file to be opened with <c-o>. <c-y>
-            " <c-o>     -- open files marked by <c-z>
-            " <F5>      -- refresh window. and purge cache.
-            " <F7>      -- wipe MRU list. delete MRU entries marked by <c-z>.
-            " <insert>  -- ...
-            " <esc>,<c-c>,<c-g> -- cancel. exit CtrlP.
             " }}}
         " }}}
 
@@ -3317,7 +3362,8 @@ syntax on
             " Usage:
             " - tcomment#DefineType() to override and define file-type comment string.
             "   - g[c/C]{motion}    :: toggle comments.
-            "   - <c-_>{action}	:: :TComment actions.
+            "   - gc<count>c        :: maps that set the 'count' attribute
+            "   - <c-_>{action}	    :: :TComment actions.
             let g:tcommentMapLeader1 = '<c-_>'
             let g:tcommentMapLeader2 = '<Leader>_'
             let g:tcommentMapLeaderOp1 = 'gc'
@@ -3763,6 +3809,12 @@ syntax on
 
             nnoremap <F5> :SCCompileRun<cr>
         " }}}
+
+        " vim-makeshift {{{ Selects the right 'makeprg' for your build system
+        " }}}
+
+        " vim-cmake-project {{{ cmake project management plugin for VIM
+        " }}}
     " }}}
 
     " [ quickfix & location list ] {{{
@@ -4001,7 +4053,7 @@ syntax on
             "   -- reviewing a previously applied patch.
     " }}}
 
-    " [ FileManager ] {{{ <F11>
+    " [ File Manager ] {{{ <F11>
         " NERDtree {{{ <F11> :NERDTree [dir|bookmark-name]
             " Usage:
             "   Keys:
@@ -4089,6 +4141,34 @@ syntax on
         " }}}
 
         " LustyExplorer : A lightweight fast file manager.
+
+        " Ozzy.vim {{{ quick file launcher for Vim with database supports.
+            " Usage:
+            " :Ozzy <filename>
+            " :Ozzy partial-directory/filename
+            " :Ozzy directory/  -- open all files under directory/ (Note '/')
+            let g:ozzy_mode = "context" " most frequent, most recent, context.
+            let g:ozzy_freeze = 0 " freeze, no more added.
+            let g:ozzy_scope = '' " absolute path, . , .. , ... ,
+            let g:ozzy_ignore_ext = 1 " ignore file extension
+            let g:ozzy_ignore = ['*.swp', '*~', '*.bak',]
+            let g:ozzy_keep = 100 " keep 100 days if not accessed. then removed.
+            let g:ozzy_what_in_project_root = [
+                        \ '.git', '.hg', '.svn',
+                        \ 'Rakefile', 'Makefile',
+                        \ ]
+            let g:ozzy_ignore_case = 1
+            let g:ozzy_max_num_files_to_open = 5 " 0: unlimited
+            let g:ozzy_enable_shortcuts = 1
+            let g:ozzy_most_frequent_flag = 'F'
+            let g:ozzy_most_recent_flag = 'R'
+            let g:ozzy_context_flag = 'C'
+            let g:ozzy_freeze_off_flag = ''
+            let g:ozzy_freeze_on_flag = 'freeze'
+            let g:ozzy_filter_inspector_by_scope = 0
+            let g:ozzy_hide_scope_inspector = 0
+            let g:ozzy_show_inspector_env = 1
+        " }}}
     " }}}
 
     " [ REPL (Read-eval-print loop) ] {{{
@@ -4183,12 +4263,32 @@ syntax on
         " endwise : end certain structures automatically. if, do, def ...
 
         " Rainbow_Parentheses_Improved {{{ show parentheses in different color
-            " Usage: :RainbowToggle, rainbow#toggle()
-            " au syntax * call rainbow#load([
-            "             \ ['(',')'],['\[','\]'],['{','}'],
-            "             \ ['begin','end'],
-            "             \ ])
-            " au syntax * call rainbow#activate()
+            " Usage: :RainbowParenthesesToggle
+            let g:rbpt_colorpairs = [
+                        \ ['brown',       'RoyalBlue3'],
+                        \ ['Darkblue',    'SeaGreen3'],
+                        \ ['darkgray',    'DarkOrchid3'],
+                        \ ['darkgreen',   'firebrick3'],
+                        \ ['darkcyan',    'RoyalBlue3'],
+                        \ ['darkred',     'SeaGreen3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['brown',       'firebrick3'],
+                        \ ['gray',        'RoyalBlue3'],
+                        \ ['black',       'SeaGreen3'],
+                        \ ['darkmagenta', 'DarkOrchid3'],
+                        \ ['Darkblue',    'firebrick3'],
+                        \ ['darkgreen',   'RoyalBlue3'],
+                        \ ['darkcyan',    'SeaGreen3'],
+                        \ ['darkred',     'DarkOrchid3'],
+                        \ ['red',         'firebrick3'],
+                        \ ]
+            let g:rbpt_max = 16
+            let g:rbpt_loadcmd_toggle = 0
+            " always on
+            au VimEnter * RainbowParenthesesToggle
+            au Syntax * RainbowParenthesesLoadRound
+            au Syntax * RainbowParenthesesLoadSquare
+            au Syntax * RainbowParenthesesLoadBraces
         " }}}
 
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
@@ -4231,17 +4331,27 @@ syntax on
 
 " [ languages ] {{{
     " [ VimL ] {{{
-        " vesting {{{ best VimScript VimL test framework.
+        " [ test ] {{{
+            " vesting {{{ best VimScript VimL test framework.
+                " Usage:
+                " run test cases under './vest/*.vim' with command :Unite vesting:.
+            " }}}
+
+            " vim-unittest {{{ Unit Testing for Vim scripts.
+            " }}}
+
+            " vim-vspec {{{ Testing framework for Vim script
+            " }}}
+
+            " runVimTests {{{ A testing framework for Vim.
+            " }}}
         " }}}
 
-        " vim-unittest {{{ Unit Testing for Vim scripts.
+        " vim_ftpdev {{{ jump to local/global declaration with gd/gD
         " }}}
 
         " Vim-Support {{{ Vim Script IDE for Vim/gVim.
             " :h vimsupport.
-        " }}}
-
-        " runVimTests {{{ A testing framework for Vim.
         " }}}
 
         " Self {{{ Vim prototype object system.
@@ -4266,7 +4376,7 @@ syntax on
                 " Ruby motions
                 " Ruby text objects
             " syntax
-            let ruby_no_expensive = 1 " smart end color etc
+            " let ruby_no_expensive = 1 " smart end color etc
             let ruby_minlines = 100
             let ruby_operators = 1 " highlight operators
             let ruby_space_errors = 0 " highlight whitespace erros
@@ -4365,7 +4475,7 @@ syntax on
         " RbREPL {{{ Rub a Ruby REPL in Vim.
         " }}}
 
-        " rsense {{{
+        " vim-rsense {{{
             " Usage:
             " <C-x><C-u> after . and :: to start omni completion.
             " 1. Type Help
@@ -4397,6 +4507,7 @@ syntax on
             "	See RSense version.
             let g:rsenseHome = $RSENSE_HOME
             let g:rsenseUseOmniFunc = 1 " start completion automatically
+            let g:rsenseMatchFunc = ".*"
         " }}}
 
         " ruby-debugger {{{ debug Ruby App with ruby-debug-ide gem
@@ -4905,6 +5016,8 @@ syntax on
             "   - :RAddLibToList [[lib1] [lib2]] -- add the objects of libraries.
             "   - :RSourceDir   -- source all .R files in a directory.
             "   - :RBuildTags   -- build tags file
+            "   - :Rinsert      -- insert output of R command
+            "   - :Rformat      -- call tidy.source() of formatR package
             "   - <Plug>RStart  -- \rf to start R
             "   - <Plug>RDSendSelection     -- send visual selected
             "   - <Plug>RDSendLine          -- send current line
@@ -5000,7 +5113,8 @@ syntax on
     " [ Web: HTML5 & CSS, XML ] {{{
         " [ HTML5 ] {{{
             " ZenCoding {{{ powerful abbreviation engine. "<C-Y>[,vn...]"
-                " Usage: :verbose map <c-y>  --> to show all ZenCoding mappings.
+                " Usage:
+                " :verbose map <c-y>  --> to show all ZenCoding mappings.
                 let g:user_zen_leader_key = '<c-y>' " prefix.
                 " define tag's behavior.
                 let g:user_zen_settings = {
@@ -5029,8 +5143,8 @@ syntax on
             " }}}
 
             " Sparkup {{{ Sparkup lets you write HTML code faster.
-		let g:sparkupExecuteMapping = '<c-e>' " expand/execute sparkup
-		let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
+            let g:sparkupExecuteMapping = '<c-e>' " expand/execute sparkup
+            let g:sparkupNextMapping = '<c-n>' " jump to next empty tag/attribute
             " }}}
 
             " html5 {{{ HTML5 omnifunc and syntax for Vim.
@@ -5431,6 +5545,11 @@ syntax on
         " }}}
     " }}}
 
+    " [ Scala ] {{{
+        " vimside {{{
+        " }}}
+    " }}}
+
     " [ Perl ] {{{
         " perlomni {{{ perl omnicompletion for vim (including base class function compleltions .etc)
         " }}}
@@ -5583,6 +5702,11 @@ syntax on
 
         " [ Django ] {{{
         " }}}
+
+        " [ Mozilla ] {{{
+            " mozilla.vim {{{ extend Vim syntax files for Mozilla contributors and web developers
+            " }}}
+        " }}}
     " }}}
 
     " [ GUI ] {{{
@@ -5654,7 +5778,7 @@ syntax on
 
             let g:unite_update_time = 500 " update time interval of candidates
             let g:unite_enable_start_insert = 1 " startup into insert mode
-            let g:unite_split_rule = "topleft"
+            let g:unite_split_rule = "topleft" " unite split window position
             let g:unite_enable_split_vertically = 0 " 1:split unite window vertically
             let g:unite_winheight = 15
             let g:unite_winwidth = 50
@@ -5983,13 +6107,13 @@ syntax on
         " undotree {{{ Display your undo history in a graph.
             " Usage:
             " ?, u, <C-r>, g+, g-, :earlier, :later.
-            let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_SplitLocation = 'topleft'
-            let g:undotree_SplitWidth = 35
+            let g:undotree_SetFocusWhenToggle = 1
             let g:undotree_diffAutoOpen = 1
+            let g:undotree_SplitWidth = 35
             let g:undotree_diffpanelHeight = 25
-            let g:undotree_RelativeTimestamp = 1
             let g:undotree_TreeNodeShape = '*'
+            let g:undotree_RelativeTimestamp = 1
             let g:undotree_HighlightChangedText = 1 " highlight changed text line
             let g:undotree_HighlightSyntax = "UnderLined"
 
@@ -6111,35 +6235,159 @@ syntax on
             " Interrupt any command running in the runner pane
             nnoremap <Leader>rs :VimuxInterruptRunner<CR>
         " }}}
+    " }}}
 
-        " inline_edit {{{ Edit code that's embedded within other code.
-            " Visual select -> <Leader>e - any area that you mark.
-            " JS/CSS in HTML, SQL in RUby, code in markdown, Django block in template.
-            if exists('g:loaded_inline_edit')
-                " normal mode:
-                nnoremap <leader>e :InlineEdit<cr>
-                " visual mode:
-                xnoremap <leader>e :InlineEdit<cr>
-                " insert mode:
-                inoremap <c-e> <esc>:InlineEdit<cr>a
-                let b:inline_edit_autowrite = 0 " =1, save proxy to buffer instead of write
-                " detect <script> <style> tags like HTML
-                let b:inline_edit_html_like_filetypes = ['vimwiki', 'markdown', 'tex']
+    " [ Narrow Region ] {{{
+        " NrrwRgn {{{ A Narrow Region Plugin similar to Emacs
+            " Usage:
+            "   - :[range]NarrowRegion[!]
+            "   - :NarrowWindow[!]
+            "   - :WidenRegion[!]
+            "   - :[range]NRPrepare[!] -- add marked lines
+            "   - :NRV[!]   -- last selected in visual mode.
+            "   - {Visual select} \nr -> write buffer.
+            "   - *Recursively open Narrow Region
+            " TODO `:help nrrwrgn.txt`
+            let g:nrrw_rgn_vert = 0 " vertical split buffer
+            let g:nrrw_rgn_wdth = 30 " width/height
+            " let g:nrrw_rgn_hl = 'Search'
+            " let g:nrrw_rgn_nohl = 1 " turn off highlighting
+            if !exists('g:nrrw_custom_options')
+                let g:nrrw_custom_options = {}
             endif
+            " let g:nrrw_custom_options['filetype'] = 'python'
+            let g:nrrw_topbot_leftright = 'topleft'
+            " let g:nrrw_rgn_protect = 'n'
+            " hooks
+            " let b:nrrw_aucmd_create = "set ft=csv|%ArrangeCol"
+
+            " xnoremap <Leader>nr <Plug>NrrwrgnDo
         " }}}
 
-        " NrrwRgn (NarrowRegion) {{{ A Narrow Region Plugin similar to Emacs
-            "Narrowing means focussing on a region and making the rest
-            "inaccessible." This is a script emulates Emacs Narrowing feature,
-            "by opening a selected range in a new scratch buffer.  In the
-            "scratch buffer simply save it and the changes will be copied into
-            "the original file.
+        " vim-narrow : https://github.com/kana/vim-narrow
+        " vim-narrow : https://github.com/jkramer/vim-narrow
+
+        " inline_edit {{{ Edit code that's embedded within other code.
             " Usage:
-            "   - :NarrowRegion/:NR, :NarrowWindow/:NW, :WidenRegion[!]
-            "   - {Visual select} \nr
+            " <Leader>e - in defined markers.
+            " {Visual}<Leader>e {filetype} - any area that you mark.
+            " Supports:
+            "   - JS/CSS in HTML
+            "   - SQL in RUby
+            "   - code in markdown
+            "   - Django block in template.
+            " normal mode:
+            nnoremap <leader>e :InlineEdit<cr>
+            " visual mode:
+            xnoremap <leader>e :InlineEdit<cr>
+            " insert mode:
+            inoremap <c-e> <esc>:InlineEdit<cr>a
+            let b:inline_edit_autowrite = 0 " 1: save proxy to buffer instead of write
+            " detect <script> <style> tags like HTML
+            " TODO add Ruby/Python HTML file extensions
+            let b:inline_edit_html_like_filetypes = []
+            let b:inline_edit_proxy_type = "scratch" " 'scratch', 'tempfile'
+
+            " TODO
+            " Customization {{{
+            let g:inline_edit_patterns = [
+                \   {
+                \   'main_filetype':        'vim',
+                \   'sub_filetype':         'vim',
+                \   'indent_adjustment':    0,
+                \   'start':                '\<fun\%[ction!]\>',
+                \   'end':                  '\<endfun\%[ction]\>',
+                \   },
+                \   {
+                \   'main_filetype':        'vim',
+                \   'sub_filetype':         'ruby',
+                \   'indent_adjustment':    0,
+                \   'start':                'ruby\s<<\sRUBYEOF',
+                \   'end':                  'RUBYEOF',
+                \   },
+                \   {
+                \   'main_filetype':        'vim',
+                \   'sub_filetype':         'python',
+                \   'indent_adjustment':    0,
+                \   'start':                'python\s<<\sPYTHONEOF',
+                \   'end':                  'PYTHONEOF',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'ruby',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{ruby',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'python',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{python',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'lisp',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{lisp',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'vim',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{vim',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'go',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{go',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'c',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{c',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'javascript',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{javascript',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'html',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{html',
+                \   'end':                  '}}}',
+                \   },
+                \   {
+                \   'main_filetype':        'vimwiki',
+                \   'sub_filetype':         'css',
+                \   'indent_adjustment':    0,
+                \   'start':                '{{{css',
+                \   'end':                  '}}}',
+                \   },
+                \ ]
+            " }}}
         " }}}
 
         " partedit {{{ Edit part of buffer by another buffer.
+            " Usage:
+            " :[range]Partedit [options]...
+            "   - e.g. :Partedit -opener new -filetype vim -prefix "> "
+            " :ParteditEnd
+            let g:partedit#opener = 'new' " '' (:edit), 'new', 'vsplit', '=expr'
+            " let g:partedit#prefix = '> '
+            " let g:partedit#filetype = ''
+            let g:partedit#auto_prefix = 1
         " }}}
     " }}}
 
@@ -6366,6 +6614,8 @@ syntax on
             " colorscheme hybrid
 
         " Lucius
+
+        " vim-detailed : more detailed than scheme
     " }}}
 
     " [ syntax for *** ] {{{
@@ -6572,8 +6822,10 @@ syntax on
 
             " list of tinykeymaps be loaded on startup
             let g:tinykeymaps_default = ['*'] " wildcard * to load all tinykeymaps.
-            let g:tinykeymap#mapleader = mapleader . 'm'
-            let g:tinykeymap#maplocalleader = maplocalleader . 'm'
+            let g:tinykeymap#mapleader =
+                        \ (exists('g:mapleader') ? g:mapleader : '#') . '#m'
+            let g:tinykeymap#maplocalleader =
+                        \ (exists('g:maplocalleader') ? g:maplocalleader : '\') . '\m'
             let g:tinykeymap#conflict = 2 " 0/1/2/3/4 -- create a new lead map and display a message
             let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
         " }}}
@@ -6597,6 +6849,11 @@ syntax on
 
     " TUI (Text User Interface) {{{
         " forms {{{ A Vim TUI library.
+        " }}}
+    " }}}
+
+    " [ UNIX ] {{{
+        " vim-eunuch {{{ Vim sugar for the UNIX shell commands that need it the most.
         " }}}
     " }}}
 
@@ -6656,8 +6913,7 @@ syntax on
             let g:vimwiki_ext2syntax = {
                         \ 'wiki': 'default',
                         \ }
-                        " \ 'md': 'markdown',
-                        " \ 'mkd': 'markdown',
+                        " \ 'markdown': 'markdown',
             let g:vimwiki_auto_checkbox = 1 " if is not checkbox then create.
             let g:vimwiki_menu = 'Plugin.Vimwiki' " GUI sub menu for available wikies
             let g:vimwiki_listsyms = ' .oOX'
@@ -7044,6 +7300,8 @@ syntax on
         " }}}
 
         " vim-octopress : syntax highlighting for Octopress post and page files
+            " Usage:
+            " :Octopress {task}<Tab>
 
         " wwwsearch {{{ Search WWW easily from Vim.
             " Usage:

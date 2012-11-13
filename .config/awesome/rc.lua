@@ -1048,7 +1048,7 @@ end
             },
             foursquare,
             datewidget, datetext, separator_sign,
-            weatherwidget, weathertext, separator_sign,
+            --weatherwidget, weathertext, separator_sign,
             volwidget, voltext,
             separator_sign,
             -- fs.b.widget, fs.r.widget, fs.h.widget, fs.s.widget, fstext,
@@ -1167,11 +1167,11 @@ root.buttons(awful.util.table.join(
         -- amixer [set/sset] Master [2+/2-/mute/unmute/toggle/]
         -- amixer -q set PCM [2dB+/2dB-/]
         keydoc.group("Volume manipulation"),
-        awful.key({ modkey, "Shift" }, "Up",  function ()
+        awful.key({ modkey }, "equal",  function ()
             awful.util.spawn("amixer set Master 2+", false)
         end, "increase volume"),
         keydoc.group("Volume manipulation"),
-        awful.key({ modkey, "Shift" }, "Down",  function ()
+        awful.key({ modkey }, "minus",  function ()
             awful.util.spawn("amixer set Master 2-", false)
         end, "decrease volume"),
         -- awful.key({ modkey, "Shift" }, "Left",  function ()
@@ -1189,14 +1189,16 @@ root.buttons(awful.util.table.join(
         function ()
             awful.util.spawn_with_shell( "ncmpcpp toggle" )
         end, "toggle ncmpcpp"),
-        -- [ Mod4-(,/.) ] play previouse/next ncmpcpp song.
+        -- [ Mod4-[/] ] play previouse/next ncmpcpp song.
         keydoc.group("Music player manipulation"),
-        awful.key({ modkey }, "period",  function ()
-            awful.util.spawn("mpc next", false)
+        --awful.key({ modkey }, "period",  function ()
+        awful.key({ modkey }, "bracketright",  function ()
+            awful.util.spawn("ncmpcpp next", false)
         end, "ncmpcpp: next song"),
         keydoc.group("Music player manipulation"),
-        awful.key({ modkey }, "comma",  function ()
-            awful.util.spawn("mpc prev", false)
+        --awful.key({ modkey }, "comma",  function ()
+        awful.key({ modkey }, "bracketleft",  function ()
+            awful.util.spawn("ncmpcpp prev", false)
         end, "ncmpcpp: previouse song"),
         -- }}}
 

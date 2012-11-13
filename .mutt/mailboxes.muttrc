@@ -65,7 +65,7 @@ mailboxes =Python/help
 mailboxes =Python/PySide
 # mailboxes =Python/Django
 mailboxes =Python/webpy
-mailboxes =Python/sphinx-dev
+mailboxes =Python/sphinx
 # mailboxes =Python/peps
 
 mailboxes =Go

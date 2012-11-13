@@ -2,32 +2,32 @@
 snippet     h1 setext
 abbr        =========
 options     head
-    ${1:header}
+    ${1:TARGET:header}
     ===========
 snippet     h2 setext
 abbr        ---------
 options     head
-    ${1:header}
+    ${1:TARGET:header}
     -----------
 snippet     h1 atx
 abbr        # header 1 #
 options     head
-    # ${1:header 1} #
+    # ${1:TARGET:header 1} #
     ${0}
 snippet     h2 atx
 abbr        ## header 2 ##
 options     head
-    ## ${1:header 2} ##
+    ## ${1:TARGET:header 2} ##
     ${0}
 snippet     h3 atx
 abbr        ### header 3 ###
 options     head
-    ### ${1:header 3} ###
+    ### ${1:TARGET:header 3} ###
     ${0}
 snippet     h4 atx
 abbr        #### header 4 ####
 options     head
-    #### ${1:header 4} ####
+    #### ${1:TARGET:header 4} ####
     ${0}
 
 # blockquotes and nested blockquotes
@@ -46,42 +46,49 @@ options     head
 # + ...
 # - ...
 # - ...
-snippet     list un-ordered -
+snippet     list un-ordered 1
 abbr        - item1
 options     head
 
-    - ${1:list 1}
-    - ${2:list 2}
-    - ${3:list 3}
+    - ${1:#:list 1}
+    - ${2:#:list 2}
+    - ${3:#:list 3}
 
-snippet     list un-ordered *
+snippet     list un-ordered 2
 abbr        * item1
 options     head
 
-    * ${1:list 1}
-    * ${2:list 2}
-    * ${3:list 3}
-snippet     list un-ordered +
+    * ${1:#:list 1}
+    * ${2:#:list 2}
+    * ${3:#:list 3}
+snippet     list un-ordered 3
 abbr        + item1
 options     head
 
-    + ${1:list 1}
-    + ${2:list 2}
-    + ${3:list 3}
+    + ${1:#:list 1}
+    + ${2:#:list 2}
+    + ${3:#:list 3}
 
 # ordered list
 # 1. ...
 # 2. ...
-snippet     list ordered 1.
+snippet     list ordered numbered
 abbr        1. item1
 options     head
 
-    1. ${1:list 1}
-    2. ${2:list 2}
-    3. ${3:list 3}
+    1. ${1:#:list 1}
+    2. ${2:#:list 2}
+    3. ${3:#:list 3}
 
 # code block: <pre>, <code>
 # 4 spaces or Tab indent.
+snippet     code block
+abbr        ``` ruby ... ```
+alias       syntax
+options     head
+    \`\`\` ${1:language}
+    ${2:#:code}
+    \`\`\`
 
 # separate line
 # * * *
@@ -89,12 +96,12 @@ options     head
 # ******
 # - - -
 # -----------
-snippet     line ----
+snippet     line dash
 abbr        -----
 options     head
     -------------
     ${0}
-snippet     line ****
+snippet     line star
 abbr        *****
 options     head
     * * *
@@ -104,29 +111,29 @@ options     head
 # inline style & reference style.
 snippet     link inline
 abbr        [title](url)
-    [${1:title}](${2:URL}) ${0}
+    [${1:#:title}](${2:TARGET:URL}) ${0}
 snippet     link reference
 abbr        [title](id) -> [id]: URL
-    [${1:title}][${2:id: 1/a/words}] ${0}
-    ${5:move to begin of line}[$2]: ${3:URL, /path/to/file(relative)} "${4:long title}"
+    [${1:#:title}][${2:#:ID: 1/a/words}] ${0}
+    [$2]: ${3:TARGET:URL, /path/to/file(relative)} "${4:#:long title}"
 snippet     link reference shadow
 abbr        [title][] -> [title] URL
     [${1:title}][] ${0}
-    ${4:move to begin of line}[$1]: ${2:URL, /path/to/file(relative)} "${3:long title}"
+    [$1]: ${2:TARGET:URL, /path/to/file(relative)} "${3:#:long title}"
 
 # emphasis
-snippet     em italic *string*
+snippet     em italic star
 abbr        *string*
-    *${1:emphasis <em>}* ${0}
-snippet     em italic _string_
+    *${1:#:emphasis <em>}* ${0}
+snippet     em italic underscore
 abbr        _string_
-    _${1:emphasis <em>}_ ${0}
-snippet     em bold **string**
+    _${1:#:emphasis <em>}_ ${0}
+snippet     em bold star
 abbr        **string**
-    **${1:emphasis <em>}** ${0}
-snippet     em bold __string__
+    **${1:#:emphasis <em>}** ${0}
+snippet     em bold underscore
 abbr        __string__
-    __${1:emphasis <em>}__ ${0}
+    __${1:#:emphasis <em>}__ ${0}
 
 # code
 # `printf()`
@@ -139,12 +146,12 @@ abbr        __string__
 snippet     img inline
 abbr        ![alt](url)
 options     head
-    ![${1:alt title}](${2:/path/to/img.jpg}) ${0}
+    ![${1:#:alt title}](${2:TARGET:/path/to/img.jpg}) ${0}
 snippet     img reference
 abbr        ![alt](id) -> [id]: URL
 options     head
-    ![${1:1}][${2:2}] ${0}
-    [$2]: ${3:url/to/image} "$1"
+    ![${1:#:title}][${2:#:ID}] ${0}
+    [$2]: ${3:TARGET:url/to/image} "$1"
 
 
 # FIXME neocomplcache-snippet-complete can not handle ```.
@@ -175,4 +182,7 @@ alias       backslash
 #     \>
 snippet     *
 abbr        \*
+options     word
     \*
+
+# vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4
