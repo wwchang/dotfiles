@@ -830,6 +830,12 @@ tag "float" do
   float true
 end
 
+tag "stickandfloat" do
+  match  "dialog|subtly|python|gtk.rb|display|pychrom|skype|xev|exe|<unknown>|plugin-container"
+  stick  true
+  float  true
+end
+
 # Gimp
 tag "gimp" do
   match role: "gimp.*"
