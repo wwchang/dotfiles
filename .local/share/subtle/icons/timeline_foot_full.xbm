@@ -1,4 +1,0 @@
-#define timeline_foot_full_width 8
-#define timeline_foot_full_height 8
-static unsigned char timeline_foot_full_bits[] = {
-   0x00, 0xff, 0x80, 0xbe, 0xbe, 0x80, 0xff, 0x00 };
