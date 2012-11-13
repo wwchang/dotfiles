@@ -177,9 +177,10 @@ end
 #
 #
 # [ title ]
-#   - ^   -- floating
-#   - *   -- sticky
-#   - =   -- zaphod
+#   - ^   -- floating mode
+#   - *   -- sticky mode
+#   - +   -- full screen mode
+#   - =   -- zaphod mode
 
 # Style for all style elements
 style :all do
@@ -538,9 +539,13 @@ grab "XF86AudioNext",        :MpdNext
 grab "XF86AudioPrev",        :MpdPrevious
 
 # Exec programs
+# terminal
 # grab modkey + "-Return", "x-terminal-emulator"
 grab modkey + "-Return", "urxvt"
-grab modkey + "-f", "firefox"
+# browser
+grab modkey + "-b", "uzbl"
+# Email
+# grab modkey + "-m", "thunderbird"
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -871,12 +876,10 @@ tag "Inkscape" do
   match [:class, :instance] => "[Ii]nkscape"
 end
 
-# Multimedia
 tag "multimedia" do
   match :class  => "MPlayer"
 end
 
-# Reading
 tag "reading" do
   match [:class, :instance] => "[Ee]vince|[Zz]athura"
 end
