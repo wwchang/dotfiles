@@ -562,20 +562,20 @@ end
 # # This snippet adds nine grabs to move windows on the fly to nine defined views.
 # # It uses tagging for this, creates tags based on the view names and applies
 # # them when needed.
-#
-# on :start do
-#   # Create missing tags
-#   views = Subtlext::View.all.map { |v| v.name }
-#   tags  = Subtlext::Tag.all.map { |t| t.name }
-#
-#   views.each do |v|
-#     unless tags.include?(v)
-#       t = Subtlext::Tag.new(v)
-#       t.save
-#     end
-#   end
-# end
-#
+
+on :start do
+  # Create missing tags
+  views = Subtlext::View.all.map { |v| v.name }
+  tags  = Subtlext::Tag.all.map { |t| t.name }
+
+  views.each do |v|
+    unless tags.include?(v)
+      t = Subtlext::Tag.new(v)
+      t.save
+    end
+  end
+end
+
 # # Add nine <W-S-Number> grabs
 # (1..9).each do |i|
 #   grab "W-S-%d" % [ i ] do |c|
@@ -597,25 +597,12 @@ end
 # end
 # # }}}
 
-# # current view {{{
-# # This snippet works similar to the previous, it adds tags based on the view
-# # names. When there is an untagged window (a window with the default tag only)
-# # it adds the name of the current view as tag, which effectively moves the
-# # window to the current view.
-#
-# on :start do
-#   # Create missing tags
-#   views = Subtlext::View.all.map { |v| v.name }
-#   tags  = Subtlext::Tag.all.map { |t| t.name }
-#
-#   views.each do |v|
-#     unless tags.include?(v)
-#       t = Subtlext::Tag.new(v)
-#       t.save
-#     end
-#   end
-# end
-#
+# current view {{{
+# This snippet works similar to the previous, it adds tags based on the view
+# names. When there is an untagged window (a window with the default tag only)
+# it adds the name of the current view as tag, which effectively moves the
+# window to the current view.
+
 # # Assign tags to clients
 # on :client_create do |c|
 #   view = Subtlext::View.current
