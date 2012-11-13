@@ -541,6 +541,41 @@ end
   end
 end
 # }}}
+
+# current view {{{
+# This snippet works similar to the previous, it adds tags based on the view
+# names. When there is an untagged window (a window with the default tag only)
+# it adds the name of the current view as tag, which effectively moves the
+# window to the current view.
+
+on :start do
+  # Create missing tags
+  views = Subtlext::View.all.map { |v| v.name }
+  tags  = Subtlext::Tag.all.map { |t| t.name }
+
+  views.each do |v|
+    unless tags.include?(v)
+      t = Subtlext::Tag.new(v)
+      t.save
+    end
+  end
+end
+
+# Assign tags to clients
+on :client_create do |c|
+  view = Subtlext::View.current
+  tags = c.tags.map { |t| t.name }
+
+  # Add tag to view
+  view.tag(view.name) unless(view.tags.include?(view.name))
+
+  # Exclusive for clients with default tag only
+  if tags.include?("default") and 1 == tags.size
+    c.tags = [ view.name ]
+  end
+end
+# }}}
+
 # MPD ncmpcpp => W-p, W-[, W-] {{{
 grab modkey + "-p", "ncmpcpp toggle"
 grab modkey + "-bracketleft", "ncmpcpp prev"
