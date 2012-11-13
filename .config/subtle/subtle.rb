@@ -805,7 +805,7 @@ grab modkey + "-plus", "amixer set Master 2+"
 #
 
 # Simple tags
-tag "terms" do
+tag "terminal" do
   match "xterm|[u]?rxvt"
   gravity :center
   resize  true
@@ -952,7 +952,7 @@ iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
 view "1. shape idea into code " do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
-  match "editor|code|programming"
+  match "editor|code|programming|terminal"
   dynamic false
 end
 
