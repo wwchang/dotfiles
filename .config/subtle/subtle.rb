@@ -93,8 +93,39 @@ set :skip_urgent_warp, false
 #
 
 screen 1 do
-  top    [ :views, :title, :spacer, :keychain, :spacer, :tray, :sublets ]
-  bottom [ ]
+  top    [
+          :title, :spacer, :keychain,
+          :center,
+          :uptime,
+          :separator, :clock,
+          :separator, :maildir,
+          :center,
+          :views,
+          # :separator, :keyboard,
+          # :separator, :columns,
+          :separator, :layout,
+          :separator
+         ]
+  bottom [
+          :separator, :mpd, :separator,
+          :spacer,
+          # :separator, :arbi_net,
+          # :separator, :nettraffic,
+          # :separator, :netchart,
+          # :separator, :ipaddr,
+          :separator, :cpu,
+          # :separator, :cpuchart,
+          :separator, :memory,
+          # :separator, :membar,
+          :separator, :temp,
+          # :separator, :freq,
+          # :separator, :weather,
+          # :separator, :tasks,
+          # :separator, :notify,
+          :separator, :volume,
+          :separator, :tray,
+          :separator
+         ]
 end
 
 # Example for a second screen:
