@@ -453,6 +453,8 @@ grab modkey + "-S-space", :WindowFull
 # Toggle sticky mode of window (will be visible on all views)
 grab modkey + "-S-s", :WindowStick
 # Toggle zaphod mode of window (will span across all screens)
+# Zaphod mode:
+#   This mode spans a window across all screens regardless if the window is normally visible there.
 grab modkey + "-S-z", :WindowZaphod
 # Raise window
 grab modkey + "-S-r", :WindowRaise
