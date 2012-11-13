@@ -503,6 +503,44 @@ grab "S-F3" do
   puts Subtlext::VERSION
 end
 
+# move windows {{{ <W-S-Number>
+# This snippet adds nine grabs to move windows on the fly to nine defined views.
+# It uses tagging for this, creates tags based on the view names and applies
+# them when needed.
+
+on :start do
+  # Create missing tags
+  views = Subtlext::View.all.map { |v| v.name }
+  tags  = Subtlext::Tag.all.map { |t| t.name }
+
+  views.each do |v|
+    unless tags.include?(v)
+      t = Subtlext::Tag.new(v)
+      t.save
+    end
+  end
+end
+
+# Add nine <W-S-Number> grabs
+(1..9).each do |i|
+  grab "W-S-%d" % [ i ] do |c|
+    views = Subtlext::View.all
+    names = views.map { |v| v.name }
+
+    # Sanity check
+    if i <= views.size
+      # Tag client
+      tags = c.tags.reject { |t| names.include?(t.name) or "default" == t.name }
+      tags << names[i - 1]
+
+      c.tags = tags
+
+      # Tag view
+      views[i - 1].tag(names[i - 1])
+    end
+  end
+end
+# }}}
 # MPD ncmpcpp => W-p, W-[, W-] {{{
 grab modkey + "-p", "ncmpcpp toggle"
 grab modkey + "-bracketleft", "ncmpcpp prev"
