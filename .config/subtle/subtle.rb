@@ -459,6 +459,15 @@ gravities.each_index do |i|
   }
 end
 
+# Multimedia keys
+grab "XF86AudioMute",        :VolumeToggle
+grab "XF86AudioRaiseVolume", :VolumeRaise
+grab "XF86AudioLowerVolume", :VolumeLower
+grab "XF86AudioPlay",        :MpdToggle
+grab "XF86AudioStop",        :MpdStop
+grab "XF86AudioNext",        :MpdNext
+grab "XF86AudioPrev",        :MpdPrevious
+
 # Exec programs
 # grab modkey + "-Return", "x-terminal-emulator"
 grab modkey + "-Return", "urxvt"
