@@ -363,69 +363,63 @@ gravity :gimp_dock,      [  90,   0,  10, 100 ]
 #
 
 modkey = "W"
-# Jump to view1, view2, ...
-grab "W-S-1", :ViewJump1
-grab "W-S-2", :ViewJump2
-grab "W-S-3", :ViewJump3
-grab "W-S-4", :ViewJump4
 
-# Switch current view
-grab "W-1", :ViewSwitch1
-grab "W-2", :ViewSwitch2
-grab "W-3", :ViewSwitch3
-grab "W-4", :ViewSwitch4
+# [ Views ]
+(1..9).each do |i|
+  # Switch current view
+  grab modkey + "-#{i}", "ViewSwitch#{i}".to_sym
+  # Jump to view1, view2, ...
+  grab modkey + "-A-#{i}", "ViewJump#{i}".to_sym
+  # Move mouse to screen1, screen2, ...
+  grab modkey + "-F#{i}", "ScreenJump#{i}".to_sym
+end
+
+# [ Windows ]
+# Move current window
+grab modkey + "-B1", :WindowMove
+# Resize current window
+grab modkey + "-B3", :WindowResize
+# Toggle floating mode of window
+grab modkey + "-S-f", :WindowFloat
+# Toggle fullscreen mode of window
+grab modkey + "-S-space", :WindowFull
+# Toggle sticky mode of window (will be visible on all views)
+grab modkey + "-S-s", :WindowStick
+# Toggle zaphod mode of window (will span across all screens)
+grab modkey + "-S-z", :WindowZaphod
+# Raise window
+grab modkey + "-S-r", :WindowRaise
+# Lower window
+grab modkey + "-S-l", :WindowLower
+# Kill current window
+grab modkey + "-S-k", :WindowKill
+grab modkey + "-S-h", lambda { |c| c.retag }
+
+# Movement
+{
+ WindowLeft: [ "Left", "h" ], WindowDown:  [ "Down",  "j" ],
+ WindowUp:   [ "Up",   "k" ], WindowRight: [ "Right", "l" ]
+}.each do |k, v|
+  grab "%s-%s" % [ modkey, v.first ], k
+  grab "%s-%s" % [ modkey, v.last  ], k
+end
+# Tabbing
+grab modkey + "-Tab" do
+  Subtlext::Client.recent[1].focus
+end
 
 # Select next and prev view */
-grab "KP_Add",      :ViewNext
-grab "KP_Subtract", :ViewPrev
+grab modkey + "-period",  :ViewNext
+grab modkey + "-comma",   :ViewPrev
 
-# Move mouse to screen1, screen2, ...
-grab "W-A-1", :ScreenJump1
-grab "W-A-2", :ScreenJump2
-grab "W-A-3", :ScreenJump3
-grab "W-A-4", :ScreenJump4
-
+# Reload/Restart {{{
 # Force reload of config and sublets
-grab "W-C-r", :SubtleReload
-
+grab modkey + "-C-r", :SubtleReload
 # Force restart of subtle
-grab "W-C-S-r", :SubtleRestart
-
+grab modkey + "-C-S-r", :SubtleRestart
 # Quit subtle
-grab "W-C-q", :SubtleQuit
-
-# Move current window
-grab "W-B1", :WindowMove
-
-# Resize current window
-grab "W-B3", :WindowResize
-
-# Toggle floating mode of window
-grab "W-f", :WindowFloat
-
-# Toggle fullscreen mode of window
-grab "W-space", :WindowFull
-
-# Toggle sticky mode of window (will be visible on all views)
-grab "W-s", :WindowStick
-
-# Toggle zaphod mode of window (will span across all screens)
-grab "W-equal", :WindowZaphod
-
-# Raise window
-grab "W-r", :WindowRaise
-
-# Lower window
-grab "W-l", :WindowLower
-
-# Select next windows
-grab "W-Left",  :WindowLeft
-grab "W-Down",  :WindowDown
-grab "W-Up",    :WindowUp
-grab "W-Right", :WindowRight
-
-# Kill current window
-grab "W-S-k", :WindowKill
+grab modkey + "-C-q", :SubtleQuit
+# }}}
 
 # Cycle between given gravities
 gravkeys1 = [ "q", "w", "e", "a", "s", "d", "z", "x", "c" ]
@@ -466,7 +460,9 @@ gravities.each_index do |i|
 end
 
 # Exec programs
-grab "W-Return", "x-terminal-emulator"
+# grab modkey + "-Return", "x-terminal-emulator"
+grab modkey + "-Return", "urxvt"
+grab modkey + "-f", "firefox"
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
