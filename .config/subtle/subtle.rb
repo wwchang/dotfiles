@@ -556,78 +556,79 @@ grab "S-F3" do
   puts Subtlext::VERSION
 end
 
-# move windows {{{ <W-S-Number>
-# This snippet adds nine grabs to move windows on the fly to nine defined views.
-# It uses tagging for this, creates tags based on the view names and applies
-# them when needed.
 
-on :start do
-  # Create missing tags
-  views = Subtlext::View.all.map { |v| v.name }
-  tags  = Subtlext::Tag.all.map { |t| t.name }
+# # move windows {{{ <W-S-Number>
+# # This snippet adds nine grabs to move windows on the fly to nine defined views.
+# # It uses tagging for this, creates tags based on the view names and applies
+# # them when needed.
+#
+# on :start do
+#   # Create missing tags
+#   views = Subtlext::View.all.map { |v| v.name }
+#   tags  = Subtlext::Tag.all.map { |t| t.name }
+#
+#   views.each do |v|
+#     unless tags.include?(v)
+#       t = Subtlext::Tag.new(v)
+#       t.save
+#     end
+#   end
+# end
+#
+# # Add nine <W-S-Number> grabs
+# (1..9).each do |i|
+#   grab "W-S-%d" % [ i ] do |c|
+#     views = Subtlext::View.all
+#     names = views.map { |v| v.name }
+#
+#     # Sanity check
+#     if i <= views.size
+#       # Tag client
+#       tags = c.tags.reject { |t| names.include?(t.name) or "default" == t.name }
+#       tags << names[i - 1]
+#
+#       c.tags = tags
+#
+#       # Tag view
+#       views[i - 1].tag(names[i - 1])
+#     end
+#   end
+# end
+# # }}}
 
-  views.each do |v|
-    unless tags.include?(v)
-      t = Subtlext::Tag.new(v)
-      t.save
-    end
-  end
-end
-
-# Add nine <W-S-Number> grabs
-(1..9).each do |i|
-  grab "W-S-%d" % [ i ] do |c|
-    views = Subtlext::View.all
-    names = views.map { |v| v.name }
-
-    # Sanity check
-    if i <= views.size
-      # Tag client
-      tags = c.tags.reject { |t| names.include?(t.name) or "default" == t.name }
-      tags << names[i - 1]
-
-      c.tags = tags
-
-      # Tag view
-      views[i - 1].tag(names[i - 1])
-    end
-  end
-end
-# }}}
-
-# current view {{{
-# This snippet works similar to the previous, it adds tags based on the view
-# names. When there is an untagged window (a window with the default tag only)
-# it adds the name of the current view as tag, which effectively moves the
-# window to the current view.
-
-on :start do
-  # Create missing tags
-  views = Subtlext::View.all.map { |v| v.name }
-  tags  = Subtlext::Tag.all.map { |t| t.name }
-
-  views.each do |v|
-    unless tags.include?(v)
-      t = Subtlext::Tag.new(v)
-      t.save
-    end
-  end
-end
-
-# Assign tags to clients
-on :client_create do |c|
-  view = Subtlext::View.current
-  tags = c.tags.map { |t| t.name }
-
-  # Add tag to view
-  view.tag(view.name) unless(view.tags.include?(view.name))
-
-  # Exclusive for clients with default tag only
-  if tags.include?("default") and 1 == tags.size
-    c.tags = [ view.name ]
-  end
-end
-# }}}
+# # current view {{{
+# # This snippet works similar to the previous, it adds tags based on the view
+# # names. When there is an untagged window (a window with the default tag only)
+# # it adds the name of the current view as tag, which effectively moves the
+# # window to the current view.
+#
+# on :start do
+#   # Create missing tags
+#   views = Subtlext::View.all.map { |v| v.name }
+#   tags  = Subtlext::Tag.all.map { |t| t.name }
+#
+#   views.each do |v|
+#     unless tags.include?(v)
+#       t = Subtlext::Tag.new(v)
+#       t.save
+#     end
+#   end
+# end
+#
+# # Assign tags to clients
+# on :client_create do |c|
+#   view = Subtlext::View.current
+#   tags = c.tags.map { |t| t.name }
+#
+#   # Add tag to view
+#   view.tag(view.name) unless(view.tags.include?(view.name))
+#
+#   # Exclusive for clients with default tag only
+#   if tags.include?("default") and 1 == tags.size
+#     c.tags = [ view.name ]
+#   end
+# end
+# # }}}
 
 # MPD ncmpcpp => W-p, W-[, W-] {{{
 grab modkey + "-p", "ncmpcpp toggle"
