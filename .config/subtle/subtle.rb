@@ -139,10 +139,11 @@ screen 1 do
           # :separator, :weather,
           # :separator, :tasks,
           # :separator, :notify,
-          :separator, :volume,
-          :separator, :tray,
+          # :separator, :volume,
+          # :separator, :tray,
           :separator
          ]
+  view    0
 end
 
 # Example for a second screen:
@@ -635,7 +636,26 @@ end
 #     c.tags = [ view.name ]
 #   end
 # end
-# # }}}
+
+# # Tag a new client with the current view only if it has no other tags
+# on :client_create do |c|
+#   cur = Subtlext::View.current
+#
+#   # Check for empty tags
+#   if (c.tags.empty?)
+#     t = Subtlext::Tag[cur.name] rescue nil
+#
+#     # Create new tag
+#     if (t.nil?)
+#       t = Subtlext::Tag.new(cur.name)
+#       t.save
+#     end
+#
+#     c + t
+#   end
+# end
+
+# }}}
 
 # MPD ncmpcpp => W-p, W-[, W-] {{{
 grab modkey + "-p", "ncmpcpp toggle"
@@ -835,22 +855,6 @@ end
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
 
-# Simple tags
-tag "terminal" do
-  match "xterm|[u]?rxvt"
-  gravity :center
-  resize  true
-end
-
-tag "browser" do
-  match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
-end
-
-tag "editor" do
-  match  "[g]?vim"
-  resize true
-end
-
 # Placement
 tag "fixed" do
   geometry [ 10, 10, 100, 100 ]
@@ -884,8 +888,19 @@ tag "stickandfloat" do
   float  true
 end
 
+# Simple tags
+tag "terminal" do
+  match "xterm|[u]?rxvt"
+  gravity :center
+  resize  true
+end
+
+tag "browser" do
+  match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
+end
+
 # Gimp
-tag "gimp" do
+tag "Gimp" do
   match role: "gimp.*"
 
   on_match do |c|
@@ -893,7 +908,7 @@ tag "gimp" do
   end
 end
 # Dia
-tag "dia" do
+tag "Dia" do
   match "dia"
 
   on_match do |c|
@@ -909,12 +924,12 @@ tag "Inkscape" do
   match [:class, :instance] => "[Ii]nkscape"
 end
 
-tag "multimedia" do
-  match :class  => "MPlayer"
+tag "read" do
+  match [:class, :instance] => "[Ee]vince|[Zz]athura"
 end
 
-tag "reading" do
-  match [:class, :instance] => "[Ee]vince|[Zz]athura"
+tag "multimedia" do
+  match :class  => "MPlayer"
 end
 # }}}
 
@@ -980,39 +995,39 @@ end
 
 iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
 
-view "1. shape idea into code " do
+view "code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
-  match "editor|code|programming|terminal"
+  match "code|programming"
   dynamic false
 end
 
-view "2. read " do
+view "read" do
   icon Subtlext::Icon.new("#{iconpath}/pencil.xbm")
   dynamic false
-  match "reading"
+  match "read"
 end
 
-view "3. design " do
+view "design" do
   icon Subtlext::Icon.new("#{iconpath}/paint.xbm")
   dynamic false
-  match "gimp|Darktable|Inkscape"
+  match "design|Gimp|Darktable|Inkscape|Dia"
 end
 
-view "4. www " do
+view "www" do
   icon Subtlext::Icon.new("#{iconpath}/world.xbm")
   dynamic false
-  match "browser"
+  match "www|browser"
 end
 
-view "5. Ruby " do
+view "Ruby" do
   icon Subtlext::Icon.new("#{iconpath}/ruby.xbm")
   dynamic false
-  match "ruby"
+  match "Ruby"
   gravity :center
 end
 
-view "6. default " do
+view "default" do
   icon Subtlext::Icon.new("#{iconpath}/quote.xbm")
   dynamic true
   match "default"
@@ -1380,7 +1395,7 @@ end
 
 # [ startup/autostart ] {{{
 on :start do
-  Subtlext::Subtle.spawn "mpd"
+  # Subtlext::Subtle.spawn "mpd"
   Subtlext::Subtle.spawn "nm-applet"
   Subtlext::Subtle.spawn "mlnet"
   Subtlext::Subtle.spawn "firefox"
