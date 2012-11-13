@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Author::  stardiviner, Email: [numbchild A/T G/mail dot com]
+
 #
 # = Subtle default configuration
 #
@@ -10,6 +11,22 @@
 # are dependent on the locations specified by +XDG_CONFIG_DIRS+ and
 # +XDG_CONFIG_HOME+.
 #
+
+# [ Contrib ] {{{
+begin
+  require "#{ENV["HOME"]}/compile/subtle-contrib/ruby/launcher.rb"
+  require "#{ENV["HOME"]}/compile/subtle-contrib/ruby/selector.rb"
+
+  Subtle::Contrib::Selector.font  = "xft:DejaVu Sans Mono:pixelsize=13"
+  Subtle::Contrib::Launcher.fonts = [
+    "xft:DejaVu Sans Mono:pixelsize=15",
+    "xft:DejaVu Sans Mono:pixelsize=13"
+  ]
+
+  Subtle::Contrib::Launcher.browser_screen_num = 0
+rescue LoadError
+end
+# }}}
 
 # [ Options ] {{{
 #
@@ -492,6 +509,7 @@ grab modkey + "-C-S-r", :SubtleRestart
 grab modkey + "-C-q", :SubtleQuit
 # }}}
 
+# gravity {{{
 # Cycle between given gravities
 gravkeys1 = [ "q", "w", "e", "a", "s", "d", "z", "x", "c" ]
 gravkeys2 = [ "KP_7", "KP_8", "KP_9", "KP_4", "KP_5", "KP_6", "KP_1", "KP_2", "KP_3" ]
@@ -529,8 +547,9 @@ gravities.each_index do |i|
     clients[idx].focus
   }
 end
+# }}}
 
-# Multimedia keys
+# Multimedia keys {{{
 grab "XF86AudioMute",        :VolumeToggle
 grab "XF86AudioRaiseVolume", :VolumeRaise
 grab "XF86AudioLowerVolume", :VolumeLower
@@ -538,8 +557,8 @@ grab "XF86AudioPlay",        :MpdToggle
 grab "XF86AudioStop",        :MpdStop
 grab "XF86AudioNext",        :MpdNext
 grab "XF86AudioPrev",        :MpdPrevious
+# }}}
 
-# Exec programs
 # terminal
 # grab modkey + "-Return", "x-terminal-emulator"
 grab modkey + "-Return", "urxvt"
@@ -562,20 +581,20 @@ end
 # # This snippet adds nine grabs to move windows on the fly to nine defined views.
 # # It uses tagging for this, creates tags based on the view names and applies
 # # them when needed.
-#
-# on :start do
-#   # Create missing tags
-#   views = Subtlext::View.all.map { |v| v.name }
-#   tags  = Subtlext::Tag.all.map { |t| t.name }
-#
-#   views.each do |v|
-#     unless tags.include?(v)
-#       t = Subtlext::Tag.new(v)
-#       t.save
-#     end
-#   end
-# end
-#
+
+on :start do
+  # Create missing tags
+  views = Subtlext::View.all.map { |v| v.name }
+  tags  = Subtlext::Tag.all.map { |t| t.name }
+
+  views.each do |v|
+    unless tags.include?(v)
+      t = Subtlext::Tag.new(v)
+      t.save
+    end
+  end
+end
+
 # # Add nine <W-S-Number> grabs
 # (1..9).each do |i|
 #   grab "W-S-%d" % [ i ] do |c|
@@ -597,25 +616,12 @@ end
 # end
 # # }}}
 
-# # current view {{{
-# # This snippet works similar to the previous, it adds tags based on the view
-# # names. When there is an untagged window (a window with the default tag only)
-# # it adds the name of the current view as tag, which effectively moves the
-# # window to the current view.
-#
-# on :start do
-#   # Create missing tags
-#   views = Subtlext::View.all.map { |v| v.name }
-#   tags  = Subtlext::Tag.all.map { |t| t.name }
-#
-#   views.each do |v|
-#     unless tags.include?(v)
-#       t = Subtlext::Tag.new(v)
-#       t.save
-#     end
-#   end
-# end
-#
+# current view {{{
+# This snippet works similar to the previous, it adds tags based on the view
+# names. When there is an untagged window (a window with the default tag only)
+# it adds the name of the current view as tag, which effectively moves the
+# window to the current view.
+
 # # Assign tags to clients
 # on :client_create do |c|
 #   view = Subtlext::View.current
@@ -640,6 +646,31 @@ grab modkey + "-bracketright", "ncmpcpp next"
 # volume => W-[-/+] {{{
 grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
+# }}}
+
+# Scratchpad {{{
+grab "W-y" do
+  if (c = Subtlext::Client.first("scratch"))
+    c.toggle_stick
+    c.focus
+  elsif (c = Subtlext::Subtle.spawn("urxvt -name scratch"))
+    c.tags  = []
+    c.flags = [ :stick ]
+  end
+end
+# }}}
+
+# contrib => W-[r/] {{{
+begin
+  grab "W-r" do
+    Subtle::Contrib::Launcher.run
+  end
+
+  grab "W-t" do
+    Subtle::Contrib::Selector.run
+  end
+rescue Error
+end
 # }}}
 # }}}
 
@@ -815,12 +846,12 @@ tag "browser" do
   match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
 end
 
-# Placement
 tag "editor" do
   match  "[g]?vim"
   resize true
 end
 
+# Placement
 tag "fixed" do
   geometry [ 10, 10, 100, 100 ]
   stick    true
