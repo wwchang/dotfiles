@@ -226,6 +226,7 @@ end
 # Style for sublets
 style :sublets do
   foreground  "#757575"
+  icon        "#757575"
 end
 
 # Style for separator
