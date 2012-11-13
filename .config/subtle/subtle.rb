@@ -806,6 +806,241 @@ view "dev",   "editor"
 #
 # http://subforge.org/projects/subtle/wiki/Hooks
 #
+
+sublet :layout do
+  style   :layout
+  border  2
+  def_layout  "none"
+end
+
+sublet :clock do
+  interval      60
+  style         :clock2
+  format_string "%H:%M"
+end
+
+sublet :keyboard do
+  interval 600
+  style :keyboard
+  layout "qwertz"
+  # width "integer" "Width of screen"
+  height 200
+  button_fg "#000000"
+  button_bg "#ffffff"
+  button_shadow "#a8a8a8"
+  button_alt "#cdcdcd"
+  background "#d0d0d0"
+end
+
+sublet :arbi_cpu do
+  interval 60
+  style   :arbi_cpu
+end
+
+sublet :cpuchart do
+  interval 180
+  style :cpuchart
+end
+
+sublet :memory do
+  interval 60
+  style :memory
+end
+
+sublet :arbi_ram do
+  interval 60
+  style   :arbi_ram
+end
+
+sublet :arbi_temperature do
+  interval 600
+  style :arbi_temperature
+end
+
+sublet :membar do
+  interval 120
+  style   :membar
+  width   50
+  height  10
+  # font   "FONT"
+end
+
+sublet :loadavg do
+  interval 120
+  style :loadavg
+end
+
+sublet :uptime do
+  interval 300
+  style :uptime
+end
+
+# temperature
+sublet :temp do
+  interval 600
+  style :temp
+  scale "C"
+  show_name true
+  # monitors string/array
+  separator "|"
+end
+
+sublet :freq do
+  interval 600
+  style :freq
+end
+
+sublet :battery do
+  interval 600
+  style :battery
+  # path "/sys/class/power_supply/B*"
+  # colors {hash}
+  color_icon true
+  color_text true
+end
+
+sublet :nettraffic do
+  interval 60
+  style :nettraffic
+end
+
+sublet :netchart do
+  interval 60
+  style :netchart
+  device "ppp0"
+  # title ""
+  rx_color "#ff0000"
+  tx_color "#0000ff"
+  # bg_color "Color of panel"
+  width 30
+  height 10
+end
+
+sublet :arbi_net do
+  interval 60
+  style :arbi_net
+  interfaces ["eth0", "wlan0", "ppp0"]
+end
+
+sublet :arbi_eth0_wlan0 do
+  interval 60
+  style :arbi_eth0_wlan0
+end
+
+sublet :wifi do
+  interval 180
+  style :wifi
+  device "wlan0"
+end
+
+sublet :ipaddr do
+  interval 600
+  style :ipaddr
+end
+
+sublet :columns do
+  interval 120
+  style :columns
+  border 2
+end
+
+sublet :volume do
+  interval 120
+  style :volume
+  step 5
+end
+
+sublet :mpd do
+  interval 60
+  style :mpd
+  host "localhost"
+  port 6600
+  def_action  "toggle"
+  wheel_up  "next"
+  wheel_down "previous"
+  # format_string "%note%%artist% - %album%"
+  format_string "%title% - %artist%"
+  show_icons  true
+  show_pause true
+  show_colors true
+  not_running_text "-- not running --"
+  stop_text "mpd stopped"
+  pause_text "-- paused --"
+  blank_text "n/a"
+  note_color "#ffffff"
+  artist_color "#757575"
+  album_color "#757575"
+  title_color "#757575"
+  track_color "#757575"
+  id_color "#757575"
+  pause_color "#757575"
+  stop_color "#757575"
+end
+
+sublet :maildir do
+  interval 600
+  style :maildir
+  dir "#{ENV["HOME"]}/Mails"
+  label "Mail"
+end
+
+sublet :notify do
+  interval 120
+  style :notify
+  font "-*-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+  foreground "sublets_fg"
+  background "sublets_bg"
+  highlight "focus_fg"
+end
+
+sublet :tasks do
+  interval 120
+  style :tasks
+  color_active "focus_fg"
+  color_inactive "views_fg"
+  color_separator "sublets_fg"
+  separator "|"
+  modes true
+end
+
+sublet :conky do
+  interval 60
+  style :conky
+end
+
+sublet :weather do
+  interval 7200
+  style :weather
+  locale "cn"
+  units "f"
+  location "Zhe-Jiang"
+  direction "right"
+  forecast_length 3
+  hide_current false
+  current_label "Now"
+  temp_suffix ''
+  sep '/'
+  day_color "#757575"
+  temp_color "#B8B8B8"
+  sep_color "#FECF35"
+end
+
+sublet :weather_mod do
+  interval 7200
+  style :weather_mod
+  locale "cn"
+  units "f"
+  location "Zhe-Jiang"
+  direction "right"
+  forecast_length 3
+  hide_current false
+  current_label "Now"
+  temp_suffix ''
+  sep '/'
+  day_color "#757575"
+  temp_color "#B8B8B8"
+  sep_color "#FECF35"
+end
 # }}}
 
 
