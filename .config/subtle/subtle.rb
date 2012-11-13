@@ -250,10 +250,11 @@ end
 
 # Style for subtle
 style :subtle do
-  margin      0, 0, 0, 0
-  panel       "#202020"
   background  "#3d3d3d"
   stipple     "#757575"
+  margin      0, 0, 0, 0
+  panel       "#202020"
+  panel_bottom "#202020"
 end
 # }}}
 
