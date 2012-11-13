@@ -861,9 +861,9 @@ tag "Inkscape" do
   match [:class, :instance] => "[Ii]nkscape"
 end
 
-tag "gimp_dock" do
-  match   :role => "gimp-dock"
-  gravity :gimp_dock
+# Multimedia
+tag "multimedia" do
+  match :class  => "MPlayer"
 end
 
 # Reading
