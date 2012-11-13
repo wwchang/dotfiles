@@ -795,8 +795,15 @@ grab modkey + "-plus", "amixer set Master 2+"
 #
 
 # Simple tags
-tag "terms",   "xterm|[u]?rxvt"
-tag "browser", "uzbl|opera|firefox|navigator"
+tag "terms" do
+  match "xterm|[u]?rxvt"
+  gravity :center
+  resize  true
+end
+
+tag "browser" do
+  match "uzbl|opera|firefox|navigator|(google\-)?chrom[e|ium]"
+end
 
 # Placement
 tag "editor" do
