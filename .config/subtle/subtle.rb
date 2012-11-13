@@ -196,17 +196,30 @@ style :views do
 
   # Style for the active views
   style :focus do
-    foreground  "#fecf35"
+    padding     1, 8, 0, 8
+    foreground  "#ffffff"
+    background  "#1a1a1a"
+    border_bottom "#5fd7ff", 3
+    icon          "#5fd7ff"
   end
 
   # Style for urgent window titles and views
   style :urgent do
-    foreground  "#ff9800"
+    padding     1, 8, 0, 8
+    border      0
+    foreground  "#a8a8a8"
+    background  "#1a1a1a"
+    border_bottom "#DF8787", 3
+    icon          "#DF8787"
   end
 
   # Style for occupied views (views with clients)
   style :occupied do
-    foreground  "#b8b8b8"
+    padding     1, 8, 0, 8
+    foreground  "#a8a8a8"
+    background  "#1a1a1a"
+    border_bottom "#595959", 3
+    icon          "#595959"
   end
 end
 
