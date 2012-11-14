@@ -1336,7 +1336,7 @@ end
 sublet :maildir do
   interval 600
   style :maildir
-  dir "#{ENV["HOME"]}/Mails"
+  dir "#{ENV["HOME"]}/Mails/INBOX/new"
   label "Mail"
 end
 
