@@ -1401,7 +1401,7 @@ end
 
 # [ startup/autostart ] {{{
 on :start do
-  # Subtlext::Subtle.spawn "mpd"
+  Subtlext::Subtle.spawn "mpd"
   Subtlext::Subtle.spawn "nm-applet"
   Subtlext::Subtle.spawn "mlnet"
   Subtlext::Subtle.spawn "firefox"
