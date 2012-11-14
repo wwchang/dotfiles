@@ -891,7 +891,7 @@ end
 # Simple tags
 tag "terminal" do
   match "xterm|[u]?rxvt"
-  gravity :center
+  gravity :right
   resize  false
 end
 
@@ -903,6 +903,7 @@ end
 
 tag "browser" do
   match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
+  gravity :left
 end
 
 # Gimp
@@ -932,10 +933,12 @@ end
 
 tag "read" do
   match [:class, :instance] => "[Ee]vince|[Zz]athura"
+  gravity :left
 end
 
 tag "multimedia" do
   match :class  => "MPlayer"
+  gravity :right66
 end
 # }}}
 
