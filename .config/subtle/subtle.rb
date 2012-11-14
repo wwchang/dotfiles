@@ -451,7 +451,7 @@ gravity :dia_diagram,    [  15,   0,  85, 100 ]
 
 modkey = "W"
 
-# [ Views ]
+# [ Views/Screen ] {{{
 (1..9).each do |i|
   # Switch current view
   grab modkey + "-#{i}", "ViewSwitch#{i}".to_sym
@@ -461,7 +461,12 @@ modkey = "W"
   grab modkey + "-F#{i}", "ScreenJump#{i}".to_sym
 end
 
-# [ Windows ]
+# Select next and prev view */
+grab modkey + "-period",  :ViewNext
+grab modkey + "-comma",   :ViewPrev
+# }}}
+
+# [ Windows ] {{{
 # Move current window
 grab modkey + "-B1", :WindowMove
 # Resize current window
@@ -483,8 +488,9 @@ grab modkey + "-S-l", :WindowLower
 # Kill current window
 grab modkey + "-S-k", :WindowKill
 grab modkey + "-S-h", lambda { |c| c.retag }
+# }}}
 
-# Movement
+# Movement {{{
 {
  WindowLeft: [ "Left", "h" ], WindowDown:  [ "Down",  "j" ],
  WindowUp:   [ "Up",   "k" ], WindowRight: [ "Right", "l" ]
@@ -496,10 +502,7 @@ end
 grab modkey + "-Tab" do
   Subtlext::Client.recent[1].focus
 end
-
-# Select next and prev view */
-grab modkey + "-period",  :ViewNext
-grab modkey + "-comma",   :ViewPrev
+# }}}
 
 # Reload/Restart {{{
 # Force reload of config and sublets
@@ -576,7 +579,6 @@ end
 grab "S-F3" do
   puts Subtlext::VERSION
 end
-
 
 # # move windows {{{ <W-S-Number>
 # # This snippet adds nine grabs to move windows on the fly to nine defined views.
