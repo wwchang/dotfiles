@@ -1959,7 +1959,7 @@ syntax on
             let g:neocomplcache_cursor_hold_i_time = 300 " time of auto complete
             let g:neocomplcache_enable_insert_char_pre = 1 " 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
-            let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
+            let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
             let g:neocomplcache_enable_camel_case_completion = 1 " ArgumentExcep -> AE
             let g:neocomplcache_enable_underbar_completion = 1 " public_html -> p_h
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
