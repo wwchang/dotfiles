@@ -277,16 +277,16 @@ style :sublets do
   icon        "#757575"
   # nested
   style :clock do
-    foreground "#5fd7ff"
+    foreground "#afff00"
     icon       "#757575"
   end
   style :uptime do
     foreground "#ff9800"
-    icon       "#757575"
+    icon       "#ff9800"
   end
   style :maildir do
     foreground "#5fd7ff"
-    icon       "#757575"
+    icon       "#5fd7ff"
   end
 end
 # }}}
