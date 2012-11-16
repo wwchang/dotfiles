@@ -1297,10 +1297,12 @@ endif
         " NeoBundle 'ciaranm/inkpot'
         " colorscheme utilities
         NeoBundle 'rking/vim-detailed'
-        " colorsets
+        " Colorsets
         " NeoBundle 'altercation/solarized'
         " NeoBundle 'chriskempson/tomorrow-theme'
         " NeoBundle 'hukl/Smyck-Color-Scheme'
+        " Window
+        NeoBundle 'vim-scripts/SpitVspit'
         " Register
         NeoBundle 'tpope/vim-repeat'
         " Motion : text object,
@@ -1697,7 +1699,6 @@ endif
         " NeoBundle 'thinca/vim-quickrun'
         NeoBundle 'bitc/vim-bad-whitespace'
         NeoBundle 'thinca/vim-visualstar'
-        NeoBundle 'vim-scripts/SpitVspit'
         " NeoBundle 'mikewest/vimroom'
         " UNIX
         NeoBundle 'tpope/vim-eunuch'
@@ -1955,10 +1956,10 @@ syntax on
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " wildcard '*', '-' for input-saving
             let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
+            let g:neocomplcache_cursor_hold_i_time = 300 " time of auto complete
             let g:neocomplcache_enable_insert_char_pre = 1 " 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
             let g:neocomplcache_enable_auto_delimiter = 0 " auto insert delimiter
-            let g:neocomplcache_cursor_hold_i_time = 100 " time of auto complete
             let g:neocomplcache_enable_camel_case_completion = 1 " ArgumentExcep -> AE
             let g:neocomplcache_enable_underbar_completion = 1 " public_html -> p_h
             let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
@@ -2298,8 +2299,8 @@ syntax on
             endif
             let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
             let g:neocomplcache_text_mode_filetypes['markdown'] = 1
-            let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
             let g:neocomplcache_text_mode_filetypes['text'] = 1
+            let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
             " }}}
 
             " }}}
@@ -3362,8 +3363,9 @@ syntax on
             " Usage:
             " - tcomment#DefineType() to override and define file-type comment string.
             "   - g[c/C]{motion}    :: toggle comments.
-            "   - gc<count>c        :: maps that set the 'count' attribute
-            "   - <c-_>{action}	    :: :TComment actions.
+            "   - gc<count>c{motion}        :: toggle comment text with count argument
+            "   - <C-_>i                    :: :TCommentInline
+            "   - <C-_><count>	            :: :TComment actions.
             let g:tcommentMapLeader1 = '<c-_>'
             let g:tcommentMapLeader2 = '<Leader>_'
             let g:tcommentMapLeaderOp1 = 'gc'
@@ -6650,9 +6652,10 @@ syntax on
     " [ window ] {{{
         " SpitVspit {{{ Powerful multiple files splitting; split/vsplit/edit.
             " Usage:
-            "   - :Spit[Up/Down]
-            "   - :[V/W]spit[Left/Right]
-            let g:loaded_SpitVspit = 0 " =1 to disable load script.
+            "   - :Spit[Up/Down] [arguments: *]
+            "   - :[V/W]spit[Left/Right] [arguments: *]
+            "   - :E [arguments: *]
+            let g:loaded_SpitVspit = 0 " 1: to disable load script.
         " }}}
 
         " golden-ratio {{{ Automatic resizing of Vim windows to the golden ratio
@@ -6807,6 +6810,7 @@ syntax on
             " - tinykeymap#Load()
             " - tinykeymap#Complete()
             " - tinykeymap#PressEnter()
+            " - tinykeymap#Call()
             " * :Tinykeymap
             "
             " tabs             --  gt
@@ -6821,13 +6825,16 @@ syntax on
             " quickfixsigns    --  <Leader>ms
 
             " list of tinykeymaps be loaded on startup
+            let g:tinykeymap#debug = 0 " help debug.
             let g:tinykeymaps_default = ['*'] " wildcard * to load all tinykeymaps.
             let g:tinykeymap#mapleader =
-                        \ (exists('g:mapleader') ? g:mapleader : '#') . '#m'
+                        \ (exists('g:mapleader') ? g:mapleader : ',') . 'm'
             let g:tinykeymap#maplocalleader =
-                        \ (exists('g:maplocalleader') ? g:maplocalleader : '\') . '\m'
-            let g:tinykeymap#conflict = 2 " 0/1/2/3/4 -- create a new lead map and display a message
-            let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's' " quickfixsigns plugin
+                        \ (exists('g:maplocalleader') ? g:maplocalleader : '\') . 'm'
+            let g:tinykeymap#conflict = 2
+            " 0/1/2/3/4 -- create a new lead map and display a message
+            " quickfixsigns plugin
+            let g:tinykeymap#map#quickfixsigns#map = g:tinykeymap#mapleader . 's'
         " }}}
 
         " vim-addon-actions {{{ customization for key bindings
@@ -7625,7 +7632,7 @@ syntax on
             " let g:utl_cfg_hdl_mt_text_directory = ':silent !nautilus "%p" &'
             let g:utl_cfg_hdl_mt_text_directory=g:utl_cfg_hdl_mt_text_directory__cmd
             " application/pdf
-            let g:utl_cfg_hdl_mt_application_pdf = ":silent !evince '%p' &"
+            let g:utl_cfg_hdl_mt_application_pdf = ":silent !zathura '%p' &"
             " TODO application/djvu
             let g:utl_cfg_hdl_mt_application_djvu = ":silent !evince '%p' &"
             " application/chm
