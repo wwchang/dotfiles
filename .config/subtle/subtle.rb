@@ -591,12 +591,17 @@ grab "XF86AudioPrev",        :MpdPrevious
 # }}}
 
 # terminal
-# grab modkey + "-Return", "x-terminal-emulator"
-grab modkey + "-Return", "urxvt"
+# "x-terminal-emulator", "urxvt",
+terminal = "urxvt"
+grab modkey + "-Return", terminal
 # browser
-grab modkey + "-b", "uzbl"
+# "uzbl", "uzbl-tabbed", "luakit", "jumanji", "firefox", "chromium",
+browser = "uzbl-tabbed"
+grab modkey + "-b", browser
 # Email
-# grab modkey + "-m", "thunderbird"
+# "urxvt -name email -e sh -c 'mutt'", "thunderbird"
+email = "urxvt -name email -e sh -c 'mutt'"
+grab modkey + "-m", email
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
