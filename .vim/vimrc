@@ -2166,7 +2166,7 @@ syntax on
             let g:neocomplcache_source_completion_length['vim_complete'] = 3
             let g:neocomplcache_source_completion_length['abbrev_complete'] = 2
             let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
-            let g:neocomplcache_source_completion_length['snippets_complete'] = 1
+            let g:neocomplcache_source_completion_length['snippets_complete'] = 2
             let g:neocomplcache_source_completion_length['look'] = 3 " plugin neco-look
             let g:neocomplcache_source_completion_length['ruby'] = 2 " plugin neco-ruby
             let g:neocomplcache_source_completion_length['rubymf'] = 2 " plugin neco-rubymf
