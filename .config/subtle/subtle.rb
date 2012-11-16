@@ -143,6 +143,7 @@ screen 1 do
           # :separator, :weather,
           # :separator, :tasks,
           # :separator, :notify,
+          # :separator, :betternotify,
           # :separator, :volume,
           # :separator, :tray,
           :separator
@@ -1156,6 +1157,8 @@ end
 #   - sur notes clock
 #   - sur config clock
 #
+#   - sur template hello
+#
 # === Example
 #
 #   sur config clock
@@ -1401,6 +1404,15 @@ sublet :notify do
   foreground "sublets_fg"
   background "sublets_bg"
   highlight "focus_fg"
+end
+
+sublet :betternotify do
+  interval 60
+  style :betternotify
+  font "-*-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+  foreground "sublets_fg"
+  background "sublets_bg"
+  highlight  "focus_fg"
 end
 
 sublet :tasks do
