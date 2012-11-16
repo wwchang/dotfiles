@@ -65,6 +65,10 @@ set :skip_urgent_warp, false
 # set :wmname, "LG3D"
 # }}}
 
+# Environment {{{
+iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
+# }}}
+
 # [ Screen ] {{{
 #
 # Generally subtle comes with two panels per screen, one on the top and one at
@@ -154,6 +158,7 @@ end
 # }}}
 
 # [ Styles ] {{{
+# Styles can be "nested".
 #
 # Styles define various properties of styleable items in a CSS-like syntax.
 #
@@ -195,12 +200,14 @@ end
 #
 #
 # [ title ]
-#   - ^   -- floating mode
+#   - ~   -- resize
 #   - *   -- sticky mode
+#   - ^   -- floating mode
 #   - +   -- full screen mode
 #   - =   -- zaphod mode
+#   - !   -- fixed
 
-# Style for all style elements
+# :all {{{ Style for all style elements
 style :all do
   background  "#202020"
   icon        "#757575"
@@ -208,8 +215,9 @@ style :all do
   padding     0, 3
   font        "xft:DejaVu Sans Mono:pixelsize=14"
 end
+# }}}
 
-# Style for the all views
+# :views {{{ Style for the all views
 style :views do
   foreground  "#757575"
   font        "xft:DejaVu Sans Mono:pixelsize=15"
@@ -242,36 +250,47 @@ style :views do
     icon          "#595959"
   end
 end
+# }}}
 
-# Style for sublets
-style :sublets do
-  foreground  "#757575"
-  icon        "#757575"
-end
-
-# Style for separator
-style :separator do
-  foreground  "#757575"
-  separator   "|"
-end
-
-# Style for focus window title
+# :title {{{ Style for focus window title
 style :title do
   foreground  "#ffffff"
   background  "#1a1a1a"
   padding     2, 8
   border      "#1a1a1a", 0
 end
+# }}}
 
-# Style for active/inactive windows
+# :clients {{{ Style for active/inactive windows
 style :clients do
   active    "#595959", 2
   inactive  "#202020", 2
   margin    0
   width     50
 end
+# }}}
 
-# Style for subtle
+# :sublets {{{ Style for sublets
+style :sublets do
+  foreground  "#757575"
+  icon        "#757575"
+  # nested
+  style :clock do
+    foreground "#5fd7ff"
+    icon       "#757575"
+  end
+  style :uptime do
+    foreground "#ff9800"
+    icon       "#757575"
+  end
+  style :maildir do
+    foreground "#5fd7ff"
+    icon       "#757575"
+  end
+end
+# }}}
+
+# :subtle {{{ Style for subtle
 style :subtle do
   background  "#3d3d3d"
   stipple     "#757575"
@@ -279,6 +298,14 @@ style :subtle do
   panel       "#202020"
   panel_bottom "#202020"
 end
+# }}}
+
+# :separator {{{ Style for separator
+style :separator do
+  foreground  "#757575"
+  separator   "|"
+end
+# }}}
 # }}}
 
 # [ Gravities ] {{{
@@ -670,25 +697,33 @@ grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
 # }}}
 
-# Scratchpad {{{
+# Scratchpad => W-y {{{
 grab "W-y" do
   if (c = Subtlext::Client.first("scratch"))
     c.toggle_stick
     c.focus
-  elsif (c = Subtlext::Subtle.spawn("urxvt -name scratch"))
+  elsif (c = Subtlext::Client.spawn("urxvt -name scratch"))
     c.tags  = []
     c.flags = [ :stick ]
   end
 end
 # }}}
 
-# contrib => W-[r/] {{{
+# sdcv+xsel => W-t {{{
 begin
-  grab "W-r" do
+  grab modkey + "-t" do
+    # code
+  end
+end
+# }}}
+
+# contrib => W-A-[r/s] {{{
+begin
+  grab modkey + "-A-r" do
     Subtle::Contrib::Launcher.run
   end
 
-  grab "W-t" do
+  grab modkey + "-A-s" do
     Subtle::Contrib::Selector.run
   end
 rescue Error
@@ -823,6 +858,7 @@ end
 #                window type though as the window sets the type itself. Following
 #                types are possible:
 #
+#                [*:normal*]   Treat as normal window
 #                [*:desktop*]  Treat as desktop window (_NET_WM_WINDOW_TYPE_DESKTOP)
 #                              Link: http://subforge.org/projects/subtle/wiki/Clients#Desktop
 #                [*:dock*]     Treat as dock window (_NET_WM_WINDOW_TYPE_DOCK)
@@ -1004,8 +1040,6 @@ end
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
 
-iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
-
 view "1. shape ideas into code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
@@ -1075,6 +1109,14 @@ end
 #
 #   Subtlext::Subtle.render
 # end
+# }}}
+
+# [ Stacking ] {{{
+# There are four stacking layers, ordered from top to bottom:
+#   - Fullscreen
+#   - Floating
+#   - Gravity
+#   - Desktop type
 # }}}
 
 # [ Sublets ] {{{
@@ -1305,6 +1347,8 @@ sublet :columns do
   border 2
 end
 
+# note: $ sudo modprobe snd_mixer_oss
+# you'd better add this line into a initial file.
 sublet :volume do
   interval 120
   style :volume
@@ -1339,7 +1383,7 @@ sublet :mpd do
 end
 
 sublet :maildir do
-  interval 600
+  interval 300
   style :maildir
   dir "#{ENV["HOME"]}/Mails/INBOX/new"
   label "Mail"
@@ -1406,10 +1450,10 @@ end
 
 # [ startup/autostart ] {{{
 on :start do
-  Subtlext::Subtle.spawn "mpd"
-  Subtlext::Subtle.spawn "nm-applet"
-  Subtlext::Subtle.spawn "mlnet"
-  Subtlext::Subtle.spawn "firefox"
+  Subtlext::Client.spawn "mpd"
+  Subtlext::Client.spawn "nm-applet"
+  Subtlext::Client.spawn "mlnet"
+  Subtlext::Client.spawn "firefox"
 end
 # }}}
 
