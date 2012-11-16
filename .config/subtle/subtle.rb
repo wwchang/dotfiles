@@ -288,6 +288,9 @@ style :sublets do
     foreground "#5fd7ff"
     icon       "#5fd7ff"
   end
+  style :mpd do
+    font        "xft:WenQuanYi Zen Hei Mono:pixelsize=14"
+  end
 end
 # }}}
 
