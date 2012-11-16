@@ -1955,7 +1955,7 @@ syntax on
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
             let g:neocomplcache_enable_smart_case = 1 " smartcase
             let g:neocomplcache_enable_wildcard = 1 " wildcard '*', '-' for input-saving
-            let g:neocomplcache_enable_cursor_hold_i = 0 " 'CursorHoldI' event
+            let g:neocomplcache_enable_cursor_hold_i = 1 " 'CursorHoldI' event
             let g:neocomplcache_cursor_hold_i_time = 300 " time of auto complete
             let g:neocomplcache_enable_insert_char_pre = 1 " 'InsertCharPre' event
             let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
