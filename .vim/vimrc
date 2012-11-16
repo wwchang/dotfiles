@@ -1950,7 +1950,7 @@ syntax on
             let g:neocomplcache_max_menu_width = 15 " popup menu width
             let g:neocomplcache_auto_completion_start_length = 3 " auto complete min length
             let g:neocomplcache_manual_completion_start_length = 2 " manually min length
-            let g:neocomplcache_min_keyword_length = 3 " keyword complete min length
+            let g:neocomplcache_min_keyword_length = 4 " keyword complete min length
             let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
             let g:neocomplcache_enable_ignore_case = 1 " ignorecase
             let g:neocomplcache_enable_smart_case = 1 " smartcase
