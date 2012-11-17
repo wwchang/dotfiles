@@ -1510,7 +1510,6 @@ endif
         " NeoBundle 'tpope/vim-rvm', {'external_commands': ['rvm']}
         " NeoBundle 'tpope/vim-bundler', {'external_commands': ['bundle']}
         " NeoBundle 'tpope/vim-rake', {'external_commands': ['rake']}
-        " NeoBundle 'ujihisa/neco-ruby'
         " NeoBundle 'ujihisa/neco-rubymf', {'build': {'unix': 'gem install methodfinder'}}
         " NeoBundle 'ujihisa/neco-rake', { 'external_commands': ['rake'] }
         " NeoBundle 'astashov/vim-ruby-debugger'
@@ -2157,6 +2156,7 @@ syntax on
                 let g:neocomplcache_source_completion_length = {}
             endif
             let g:neocomplcache_source_completion_length['include_complete'] = 2
+            let g:neocomplcache_source_completion_length['filename_include'] = 2
             let g:neocomplcache_source_completion_length['member_complete'] = 2
             let g:neocomplcache_source_completion_length['filename_complete'] = 3
             let g:neocomplcache_source_completion_length['buffer_complete'] = 3
@@ -2168,7 +2168,6 @@ syntax on
             let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
             let g:neocomplcache_source_completion_length['snippets_complete'] = 2
             let g:neocomplcache_source_completion_length['look'] = 4 " plugin neco-look
-            let g:neocomplcache_source_completion_length['ruby'] = 3 " plugin neco-ruby
             let g:neocomplcache_source_completion_length['rubymf'] = 3 " plugin neco-rubymf
             let g:neocomplcache_source_completion_length['js_complete'] = 3 " plugin jscomplete.vim
             let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
@@ -2264,6 +2263,7 @@ syntax on
                         \ 'buffer_complete' : 9,
                         \ 'member_complete' : 7,
                         \ 'include_complete' : 700,
+                        \ 'filename_include' : 700,
                         \ 'syntax_complete' : 150,
                         \ 'omni_complete' : 300,
                         \ 'tags_complete' : 350,
@@ -4350,9 +4350,6 @@ syntax on
             " " provide a list of completions.
 
             " autocmd FileType ruby compiler ruby
-        " }}}
-
-        " neco-ruby {{{ A neocomplcache source plugin for Ruby.
         " }}}
 
         " neco-rubymf {{{ A neocomplcache plugin to integrate methodfinder
