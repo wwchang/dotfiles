@@ -2322,9 +2322,14 @@ syntax on
                 " inoremap <expr><silent> <CR> <C-R>=neocomplcache#smart_close_popup()<CR><CR>
 
                 function! s:my_cr_function()
-                    return neocomplcache#smart_close_popup() . "\<CR>"
+                    " simple <CR> / <Return>
+                    " return neocomplcache#smart_close_popup() . "\<CR>"
                     " For no inserting <CR> key.
                     "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+                    " use end-wise plugin.
+                    if exists("<Plug>DiscretionaryEnd")
+                        return neocomplcache#smart_close_popup() . "\<CR>\<Plug>DiscretionaryEnd"
+                    endif
                 endfunction
                 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 
