@@ -2223,17 +2223,17 @@ syntax on
                         \ ]
             let g:neocomplcache_context_filetype_lists['markdown'] = [
                         \ { 'filetype':   'ruby',
-                        \   'start': '^\s*```ruby$', 'end': '^\s*```', },
+                        \   'start': '^\s*```\s*ruby$', 'end': '^\s*```', },
                         \ { 'filetype':   'python',
-                        \   'start': '^\s*```python$', 'end': '^\s*```', },
+                        \   'start': '^\s*```\s*python$', 'end': '^\s*```', },
                         \ { 'filetype':   'c',
-                        \   'start': '^\s*```c$', 'end': '^\s*```', },
+                        \   'start': '^\s*```\s*c$', 'end': '^\s*```', },
                         \ { 'filetype':   'go',
-                        \   'start': '^\s*```go$', 'end': '^\s*```', },
+                        \   'start': '^\s*```\s*go$', 'end': '^\s*```', },
                         \ { 'filetype':   'javascript',
-                        \   'start': '^\s*```javascript$', 'end': '^\s*```', },
+                        \   'start': '^\s*```\s*javascript$', 'end': '^\s*```', },
                         \ { 'filetype':   'html',
-                        \   'start': '^\s*```html$', 'end': '^\s*```', },
+                        \   'start': '^\s*```\s*html$', 'end': '^\s*```', },
                         \ ]
             " }}}
             " text mode filetypes {{{
