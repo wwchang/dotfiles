@@ -71,6 +71,8 @@ iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
 
 # [ Screen ] {{{
 #
+# comments {{{
+#
 # Generally subtle comes with two panels per screen, one on the top and one at
 # the bottom. Each panel can be configured with different panel items and
 # sublets screen wise. The default config uses top panel on the first screen
@@ -112,6 +114,7 @@ iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
 # http://subforge.org/projects/subtle/wiki/Multihead
 # http://subforge.org/projects/subtle/wiki/Panel
 #
+# }}}
 
 screen 1 do
   top    [
@@ -159,6 +162,9 @@ end
 # }}}
 
 # [ Styles ] {{{
+#
+# comments {{{
+#
 # Styles can be "nested".
 #
 # Styles define various properties of styleable items in a CSS-like syntax.
@@ -207,6 +213,8 @@ end
 #   - +   -- full screen mode
 #   - =   -- zaphod mode
 #   - !   -- fixed
+#
+# }}}
 
 # :all {{{ Style for all style elements
 style :all do
@@ -275,11 +283,13 @@ end
 style :sublets do
   foreground  "#757575"
   icon        "#757575"
+
   # nested
   style :clock do
     foreground "#afff00"
     icon       "#757575"
   end
+
   style :uptime do
     foreground "#ff9800"
     icon       "#ff9800"
@@ -314,6 +324,8 @@ end
 
 # [ Gravities ] {{{
 #
+# comments {{{
+#
 # Gravities are predefined sizes a window can be set to. There are several ways
 # to set a certain gravity, most convenient is to define a gravity via a tag or
 # change them during runtime via grab. Subtler and subtlext can also modify
@@ -333,6 +345,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Gravity
 #
+#  }}}
 
 # Top left
 gravity :top_left,       [   0,   0,  50,  50 ]
@@ -390,6 +403,8 @@ gravity :dia_diagram,    [  15,   0,  85, 100 ]
 # }}}
 
 # [ Grabs ] {{{
+#
+# comments {{{
 #
 # Grabs are keyboard and mouse actions within subtle, every grab can be
 # assigned either to a key and/or to a mouse button combination. A grab
@@ -479,6 +494,7 @@ gravity :dia_diagram,    [  15,   0,  85, 100 ]
 #
 # http://subforge.org/projects/subtle/wiki/Grabs
 #
+# }}}
 
 modkey = "W"
 
@@ -742,6 +758,8 @@ end
 
 # [ Tags ] {{{
 #
+# comments {{{
+#
 # Tags are generally used in subtle for placement of windows. This placement is
 # strict, that means that - aside from other tiling window managers - windows
 # must have a matching tag to be on a certain view. This also includes that
@@ -901,6 +919,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
+# }}}
 
 # Placement
 tag "fixed" do
@@ -991,6 +1010,8 @@ end
 
 # [ Views ] {{{
 #
+# comments {{{
+#
 # Views are the virtual desktops in subtle, they show all windows that share a
 # tag with them. Windows that have no tag will be visible on the default view
 # which is the view with the default tag or the first defined view when this
@@ -1048,6 +1069,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
+# }}}
 
 view "1. shape ideas into code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
@@ -1129,6 +1151,8 @@ end
 # }}}
 
 # [ Sublets ] {{{
+#
+# comments {{{
 #
 # Sublets are Ruby scripts that provide data for the panel and can be managed
 # with the sur script that comes with subtle.
@@ -1220,6 +1244,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Hooks
 #
+# }}}
 
 sublet :layout do
   style   :layout
