@@ -471,7 +471,7 @@ syntax on
                 " <CR>: close popup and save indent.
                 " inoremap <expr><silent> <CR> neocomplcache#smart_close_popup()
 
-                function! s:my_cr_function()
+                function! My_CR_function()
                     " simple <CR> / <Return>
                     return neocomplcache#smart_close_popup() . "\<CR>"
                     " For no inserting <CR> key.
@@ -480,8 +480,8 @@ syntax on
                     " if hasmapto("<Plug>DiscretionaryEnd")
                     " FIXME return neocomplcache#smart_close_popup() . "\<CR>\<Plug>DiscretionaryEnd"
                 endfunction
-                " inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-                inoremap <expr><silent> <CR> my_cr_function()
+                " inoremap <silent> <CR> <C-r>=<SID>My_CR_function()<CR>
+                inoremap <expr><silent> <CR> My_CR_function()
 
                 inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
                 inoremap <expr> <C-p> pumvisible() ? "\<C-p>"
