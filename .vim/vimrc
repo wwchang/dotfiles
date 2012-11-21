@@ -2153,6 +2153,9 @@ syntax on
             let g:neocomplcache_disabled_sources_list['c'] = ['clang_complete'] " avoid clang_complete error
             let g:neocomplcache_disabled_sources_list['ruby'] = ['dictionary_complete']
             let g:neocomplcache_disabled_sources_list['python'] = ['dictionary_complete']
+            let g:neocomplcache_disabled_sources_list['vimwiki'] = [
+                        \ 'member_complete', 'tags_complete', 'syntax_complete',
+                        \ ]
             if !exists('g:neocomplcache_source_completion_length')
                 let g:neocomplcache_source_completion_length = {}
             endif
