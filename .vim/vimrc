@@ -3087,6 +3087,7 @@ syntax on
             " <insert>  -- ...
             " <esc>,<c-c>,<c-g> -- cancel. exit CtrlP.
             " }}}
+
             let g:loaded_ctrlp = 0 " 1: disable plugin completely.
             let g:ctrl_map = '<c-p>' " for normal mode press Ctrl-P.
             let g:ctrlp_cmd = 'CtrlP' " default command to use when pressing mapping.
@@ -3117,6 +3118,7 @@ syntax on
             let g:ctrlp_mruf_relative = 1 " 1: show only MRU files in current working dir
             let g:ctrlp_mruf_default_order = 0 " 1: disable sorting when searching in MRU mode
             let g:ctrlp_mruf_case_sensitive = 1 " avoid duplicate MRU entries.
+            let g:ctrlp_mruf_save_on_update = 0 " save MRU list to disk.
             let g:ctrlp_max_files = 10000 " maximum number of files to scan, 0: no limit.
             let g:ctrlp_max_depth = 40 " maximum depth of a dir tree to recurse into.
             " specify external tool for listing files instead of Vim's globpath()
@@ -3845,7 +3847,7 @@ syntax on
         " }}}
 
         " fugitive {{{ Intuitive and Simple Git wrapper for Vim.
-            " Usage:
+            " Usage: {{{
             "   - :Git[!] [args]
             "   - :Gstatus
             "       - <C-n/p> -- next/previous file
@@ -3884,6 +3886,7 @@ syntax on
             "       - :Glog --
             "   - :[range]Gblame {flags}
             "   - :[range]Gbrowse {revision}
+            " }}}
 
             " auto open quickfix window for :Ggrep.
             autocmd QuickFixCmdPost grep cwindow
@@ -5874,7 +5877,7 @@ syntax on
 
     " [ bookmark & mark ] {{{
         " vim-signature {{{ toggle, display and navigate marks.
-            " Usage:
+            " Usage: {{{
             " mark
             "   - ma -- toggle the mark a.
             "   - m<Space> -- delete all marks.
@@ -5893,17 +5896,18 @@ syntax on
             "   - ]=    -- Jump to next line having same marker
             "   - ]-    -- Jump to prev line having same marker
             "   - m<Backspace> -- Remove all markers.
+            " }}}
             let g:SignatureDefaultMappings = 1
             " let g:SignatureIncludeMarks =
             let g:SignatureWrapJumps = 1
-            let g:SignatureMarkLeader = 'm'
-            let g:SignatureLcMarkStr = "\p\m"
-            let g:SignatureUcMarkStr = "\p\m"
-            let g:SignatureMarkerLeader = 'm'
-            " let g:SignatureIncludeMarkers =
-            let g:SignatureDisableMenu = 0
+            " '\m': latest marker, '\p': previous marker
+            let g:SignatureLcMarkStr = "\m." " manner of local (lowercase) marks display
+            let g:SignatureUcMarkStr = "\m" " manner of global (uppercase) marks display
+            let g:SignatureMarkLeader = 'm' " key used to toggle marks
+            let g:SignatureMarkerLeader = 'm' " key used to toggle markers
             let g:SignatureMenuStruct = "P&lugins.&Signature"
             let g:SignaturePurgeConfirmation = 1
+            let g:SignatureDisableMenu = 0
             let g:SignaturePeriodicRefresh = 1 " periodic auto refresh
         " }}}
 
@@ -6694,6 +6698,7 @@ syntax on
             else
                 let g:TagmaBufMgrLastLine = 0
             endif
+            " let g:TagmaBufMgrStatusLine = '' " default status line text
             let g:TagmaBufMgrMapCArrow = 0 " Ctrl-Arrow
             let g:TagmaBufMgrMapChjkl = 0 " Ctrl-[hjkl] to nav buffers.
             let g:TagmaBufMgrMapCTab = 0 " Ctrl-Tab, Ctrl-Shift-Tab
@@ -7740,7 +7745,8 @@ syntax on
         augroup END
         " }}}
 
-        " Bundle 'git://gitorious.org/vim-gnupg/vim-gnupg.git' {{{
+        " vim-gnupg {{{
+            " Bundle 'git://gitorious.org/vim-gnupg/vim-gnupg.git'
             " :GPGEditRecipients || :GPGViewRecipients
             " :GPGEditOptions || :GPGViewOptions
             " This script implements transparent editing of gpg encrypted files.
@@ -7792,4 +7798,4 @@ syntax on
     " }}}
 " }}}
 
-" vim: foldmethod=marker
+" vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
