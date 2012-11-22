@@ -3320,10 +3320,25 @@ syntax on
             " line, block, in-line, embed. (toggle)
             " Usage:
             " - tcomment#DefineType() to override and define file-type comment string.
-            "   - g[c/C]{motion}    :: toggle comments.
-            "   - gc<count>c{motion}        :: toggle comment text with count argument
-            "   - <C-_>i                    :: :TCommentInline
-            "   - <C-_><count>	            :: :TComment actions.
+            " * normal/visual mode:
+            "   - gc{motion}            :: toggle comments.
+            "   - gc<count>c{motion}    :: toggle comment text with count argument
+            "   - gC{motion}            :: comment region
+            " * normal/visual/insert mode primary key maps:
+            " <C-_> or <Leader>_
+            "   - <C-_><C-_>            :: :TComment
+            "   - <C-_><Space>          :: :TComment <QUERY COMMENT-BEGIN ? COMMENT-END>
+            "   - <C-_>i                :: :TCommentInline
+            "   - <C-_>b                :: :TCommentBlock
+            "   - <C-_>r                :: :TCommentRight
+            "   - <C-_>p                :: comment inner paragraph
+            "   - <C-_>a                :: :TCommentAs <QUERY COMMENT FILETYPE>
+            "   - <C-_>n                :: :TCommentAs &filetype <QUERY COMMENT FILETYPE>
+            "   - <C-_>s                :: :TCommentAs &filetype_ <QUERY COMMENT FILETYPE>
+            "   - <C-_><count>	        :: :TComment actions.
+            " * select mode:
+            "       - <Leader>__            :: :TComment
+            "       - <Leader>_i            :: :TCommentInline
             let g:tcommentMapLeader1 = '<c-_>'
             let g:tcommentMapLeader2 = '<Leader>_'
             let g:tcommentMapLeaderOp1 = 'gc'
