@@ -1386,6 +1386,8 @@ endif
         " NeoBundle 'joonty/vim-taggatron', {'external_commands': ['ctags']}
         " NeoBundle 'vim-scripts/gtags.vim'
         " NeoBundle 'daisuzu/unite-gtags'
+        " prototype
+        NeoBundle 'vim-scripts/assistant'
         " help
         NeoBundle 'thinca/vim-ref', {
                     \ 'external_commands': [
@@ -3046,6 +3048,22 @@ syntax on
                 " CCTreeMarkers -- include "|", "+--->"
                 " CCTreeHiSymbol
                 " CCTreeHiMarkers
+        " }}}
+    " }}}
+
+    " [ prototype ] {{{
+        " assistant {{{ show the prototype of function
+            " Usage:
+            "   <C-h>
+            "       -- display the definition (load from tags and dict) of
+            "       functions, variables, etc.
+            "   <C-x><C-u>
+            "       -- to complete words
+            " Supported dictionary list:
+            "   - php(en_US)
+            "   - vim(zh_CN)
+            "   - f90(zh_CN)
+            "   - JS (en_US)
         " }}}
     " }}}
 
