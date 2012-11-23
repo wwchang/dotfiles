@@ -485,12 +485,7 @@ endif
         " ------------------------------------------
     set fillchars=vert:│,fold:┄,diff:-
     set list
-    set listchars=tab:\ \ , " use whitespace to hide tab.
-                \trail:\·, " trailing line whitespaces
-                \extends:\◂,
-                \precedes:\▸,
-                \nbsp:\✖, " non-breakable space.
-                \conceal:≠ " conceal symbol.
+    set listchars=tab:\ \ ,trail:\·,extends:\◂,precedes:\▸,nbsp:\✖,conceal:≠
     set showbreak="↪ " " string at start of lines that have been wrapped.
 
     nnoremap <silent> <Leader>lc :set invlist<CR>
