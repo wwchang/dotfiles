@@ -1660,6 +1660,9 @@ endif
         " NeoBundle 'yodiaditya/vim-pydjango'
         " Mozilla
         " NeoBundle 'mozfr/mozilla.vim'
+        " cucumber
+        " NeoBundle 'tpope/vim-cucumber'
+        " NeoBundle 'cloud8421/vimux-cucumber'
         " }}}
 
         " [ tools ] {{{
@@ -5698,6 +5701,14 @@ syntax on
 
         " [ Mozilla ] {{{
             " mozilla.vim {{{ extend Vim syntax files for Mozilla contributors and web developers
+            " }}}
+        " }}}
+
+        " [ cucumber ] {{{ behaviour driven development with elegance and joy
+            " vim-cucumber {{{ Vim cucumber runtime files
+            " }}}
+
+            " vimux-cucumber {{{ Run cucumber features through Vimux.
             " }}}
         " }}}
     " }}}
