@@ -723,7 +723,7 @@ endif
         " set statusline+=\%#StatusSeparator#\|\%#StatusStop#
         set statusline+=\%#StatusReadOnly#\%r\%#StatusList#\%q
         set statusline+=\ \%#StatusFugitive#\%{fugitive#statusline()} " plugin fugitive
-        set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''} " plugin hgrev
+        " set statusline+=\%#StatusFugitive#\%{HGRev()?'[r'.HGRev().']':''} " plugin hgrev
         set statusline+=\ \%{virtualenv#statusline()}
         set statusline+=\%#StatusChar#\pain\»
         set statusline+=\ \%#StatusModFlag#\%{&modified?'✖':''}
@@ -1425,7 +1425,7 @@ endif
         NeoBundle 'gregsexton/gitv', {'external_commands': ['git']}
         " NeoBundle 'c9s/hypergit.vim', {'external_commands': ['git', 'hg', 'svn']}
         " NeoBundle 'nsmgr8/vitra'
-        NeoBundle 'vim-scripts/hgrev', {'external_commands': ['hg']}
+        " NeoBundle 'vim-scripts/hgrev', {'external_commands': ['hg']}
         " NeoBundle 'taq/vim-git-branch-info'
         " NeoBundle 'sjl/splice.vim'
         " NeoBundle 'ghewgill/vim-scmdiff'
