@@ -65,7 +65,13 @@ set :skip_urgent_warp, false
 # set :wmname, "LG3D"
 # }}}
 
+# Environment {{{
+iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
+# }}}
+
 # [ Screen ] {{{
+#
+# comments {{{
 #
 # Generally subtle comes with two panels per screen, one on the top and one at
 # the bottom. Each panel can be configured with different panel items and
@@ -108,6 +114,7 @@ set :skip_urgent_warp, false
 # http://subforge.org/projects/subtle/wiki/Multihead
 # http://subforge.org/projects/subtle/wiki/Panel
 #
+# }}}
 
 screen 1 do
   top    [
@@ -139,6 +146,7 @@ screen 1 do
           # :separator, :weather,
           # :separator, :tasks,
           # :separator, :notify,
+          # :separator, :betternotify,
           # :separator, :volume,
           # :separator, :tray,
           :separator
@@ -154,6 +162,10 @@ end
 # }}}
 
 # [ Styles ] {{{
+#
+# comments {{{
+#
+# Styles can be "nested".
 #
 # Styles define various properties of styleable items in a CSS-like syntax.
 #
@@ -195,12 +207,16 @@ end
 #
 #
 # [ title ]
-#   - ^   -- floating mode
+#   - ~   -- resize
 #   - *   -- sticky mode
+#   - ^   -- floating mode
 #   - +   -- full screen mode
 #   - =   -- zaphod mode
+#   - !   -- fixed
+#
+# }}}
 
-# Style for all style elements
+# :all {{{ Style for all style elements
 style :all do
   background  "#202020"
   icon        "#757575"
@@ -208,8 +224,9 @@ style :all do
   padding     0, 3
   font        "xft:DejaVu Sans Mono:pixelsize=14"
 end
+# }}}
 
-# Style for the all views
+# :views {{{ Style for the all views
 style :views do
   foreground  "#757575"
   font        "xft:DejaVu Sans Mono:pixelsize=15"
@@ -242,36 +259,52 @@ style :views do
     icon          "#595959"
   end
 end
+# }}}
 
-# Style for sublets
-style :sublets do
-  foreground  "#757575"
-  icon        "#757575"
-end
-
-# Style for separator
-style :separator do
-  foreground  "#757575"
-  separator   "|"
-end
-
-# Style for focus window title
+# :title {{{ Style for focus window title
 style :title do
   foreground  "#ffffff"
   background  "#1a1a1a"
   padding     2, 8
   border      "#1a1a1a", 0
 end
+# }}}
 
-# Style for active/inactive windows
+# :clients {{{ Style for active/inactive windows
 style :clients do
   active    "#595959", 2
   inactive  "#202020", 2
   margin    0
   width     50
 end
+# }}}
 
-# Style for subtle
+# :sublets {{{ Style for sublets
+style :sublets do
+  foreground  "#757575"
+  icon        "#757575"
+
+  # nested
+  style :clock do
+    foreground "#afff00"
+    icon       "#757575"
+  end
+
+  style :uptime do
+    foreground "#ff9800"
+    icon       "#ff9800"
+  end
+  style :maildir do
+    foreground "#5fd7ff"
+    icon       "#5fd7ff"
+  end
+  style :mpd do
+    font        "xft:WenQuanYi Zen Hei Mono:pixelsize=14"
+  end
+end
+# }}}
+
+# :subtle {{{ Style for subtle
 style :subtle do
   background  "#3d3d3d"
   stipple     "#757575"
@@ -281,7 +314,17 @@ style :subtle do
 end
 # }}}
 
+# :separator {{{ Style for separator
+style :separator do
+  foreground  "#757575"
+  separator   "|"
+end
+# }}}
+# }}}
+
 # [ Gravities ] {{{
+#
+# comments {{{
 #
 # Gravities are predefined sizes a window can be set to. There are several ways
 # to set a certain gravity, most convenient is to define a gravity via a tag or
@@ -302,6 +345,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Gravity
 #
+#  }}}
 
 # Top left
 gravity :top_left,       [   0,   0,  50,  50 ]
@@ -359,6 +403,8 @@ gravity :dia_diagram,    [  15,   0,  85, 100 ]
 # }}}
 
 # [ Grabs ] {{{
+#
+# comments {{{
 #
 # Grabs are keyboard and mouse actions within subtle, every grab can be
 # assigned either to a key and/or to a mouse button combination. A grab
@@ -448,10 +494,11 @@ gravity :dia_diagram,    [  15,   0,  85, 100 ]
 #
 # http://subforge.org/projects/subtle/wiki/Grabs
 #
+# }}}
 
 modkey = "W"
 
-# [ Views ]
+# [ Views/Screen ] {{{
 (1..9).each do |i|
   # Switch current view
   grab modkey + "-#{i}", "ViewSwitch#{i}".to_sym
@@ -461,7 +508,12 @@ modkey = "W"
   grab modkey + "-F#{i}", "ScreenJump#{i}".to_sym
 end
 
-# [ Windows ]
+# Select next and prev view */
+grab modkey + "-period",  :ViewNext
+grab modkey + "-comma",   :ViewPrev
+# }}}
+
+# [ Windows ] {{{
 # Move current window
 grab modkey + "-B1", :WindowMove
 # Resize current window
@@ -483,8 +535,9 @@ grab modkey + "-S-l", :WindowLower
 # Kill current window
 grab modkey + "-S-k", :WindowKill
 grab modkey + "-S-h", lambda { |c| c.retag }
+# }}}
 
-# Movement
+# Movement {{{
 {
  WindowLeft: [ "Left", "h" ], WindowDown:  [ "Down",  "j" ],
  WindowUp:   [ "Up",   "k" ], WindowRight: [ "Right", "l" ]
@@ -496,10 +549,7 @@ end
 grab modkey + "-Tab" do
   Subtlext::Client.recent[1].focus
 end
-
-# Select next and prev view */
-grab modkey + "-period",  :ViewNext
-grab modkey + "-comma",   :ViewPrev
+# }}}
 
 # Reload/Restart {{{
 # Force reload of config and sublets
@@ -561,12 +611,17 @@ grab "XF86AudioPrev",        :MpdPrevious
 # }}}
 
 # terminal
-# grab modkey + "-Return", "x-terminal-emulator"
-grab modkey + "-Return", "urxvt"
+# "x-terminal-emulator", "urxvt",
+terminal = "urxvt"
+grab modkey + "-Return", terminal
 # browser
-grab modkey + "-b", "uzbl"
+# "uzbl", "uzbl-tabbed", "luakit", "jumanji", "firefox", "chromium",
+browser = "uzbl-tabbed"
+grab modkey + "-b", browser
 # Email
-# grab modkey + "-m", "thunderbird"
+# "urxvt -name email -e sh -c 'mutt'", "thunderbird"
+email = "urxvt -name email -e sh -c 'mutt'"
+grab modkey + "-m", email
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -576,7 +631,6 @@ end
 grab "S-F3" do
   puts Subtlext::VERSION
 end
-
 
 # # move windows {{{ <W-S-Number>
 # # This snippet adds nine grabs to move windows on the fly to nine defined views.
@@ -668,25 +722,33 @@ grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
 # }}}
 
-# Scratchpad {{{
+# Scratchpad => W-y {{{
 grab "W-y" do
   if (c = Subtlext::Client.first("scratch"))
     c.toggle_stick
     c.focus
-  elsif (c = Subtlext::Subtle.spawn("urxvt -name scratch"))
+  elsif (c = Subtlext::Client.spawn("urxvt -name scratch"))
     c.tags  = []
     c.flags = [ :stick ]
   end
 end
 # }}}
 
-# contrib => W-[r/] {{{
+# sdcv+xsel => W-t {{{
 begin
-  grab "W-r" do
+  grab modkey + "-t" do
+    # code
+  end
+end
+# }}}
+
+# contrib => W-A-[r/s] {{{
+begin
+  grab modkey + "-A-r" do
     Subtle::Contrib::Launcher.run
   end
 
-  grab "W-t" do
+  grab modkey + "-A-s" do
     Subtle::Contrib::Selector.run
   end
 rescue Error
@@ -695,6 +757,8 @@ end
 # }}}
 
 # [ Tags ] {{{
+#
+# comments {{{
 #
 # Tags are generally used in subtle for placement of windows. This placement is
 # strict, that means that - aside from other tiling window managers - windows
@@ -821,6 +885,7 @@ end
 #                window type though as the window sets the type itself. Following
 #                types are possible:
 #
+#                [*:normal*]   Treat as normal window
 #                [*:desktop*]  Treat as desktop window (_NET_WM_WINDOW_TYPE_DESKTOP)
 #                              Link: http://subforge.org/projects/subtle/wiki/Clients#Desktop
 #                [*:dock*]     Treat as dock window (_NET_WM_WINDOW_TYPE_DOCK)
@@ -854,6 +919,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
+# }}}
 
 # Placement
 tag "fixed" do
@@ -891,12 +957,19 @@ end
 # Simple tags
 tag "terminal" do
   match "xterm|[u]?rxvt"
+  gravity :right
+  resize  false
+end
+
+tag "code" do
+  match "VIM:\ .*"
   gravity :center
   resize  true
 end
 
 tag "browser" do
   match "uzbl|luakit|jumanji|firefox|opera|navigator|(google\-)?chrom[e|ium]"
+  gravity :left
 end
 
 # Gimp
@@ -926,14 +999,18 @@ end
 
 tag "read" do
   match [:class, :instance] => "[Ee]vince|[Zz]athura"
+  gravity :left
 end
 
 tag "multimedia" do
   match :class  => "MPlayer"
+  gravity :right66
 end
 # }}}
 
 # [ Views ] {{{
+#
+# comments {{{
 #
 # Views are the virtual desktops in subtle, they show all windows that share a
 # tag with them. Windows that have no tag will be visible on the default view
@@ -992,42 +1069,41 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Tagging
 #
+# }}}
 
-iconpath = "#{ENV["HOME"]}/.config/subtle/icons"
-
-view "code" do
+view "1. shape ideas into code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
-  match "code|programming"
+  match "code|programming|terminal"
   dynamic false
 end
 
-view "read" do
+view "2. read" do
   icon Subtlext::Icon.new("#{iconpath}/pencil.xbm")
   dynamic false
   match "read"
 end
 
-view "design" do
+view "3. design" do
   icon Subtlext::Icon.new("#{iconpath}/paint.xbm")
   dynamic false
   match "design|Gimp|Darktable|Inkscape|Dia"
 end
 
-view "www" do
+view "4. www" do
   icon Subtlext::Icon.new("#{iconpath}/world.xbm")
   dynamic false
   match "www|browser"
 end
 
-view "Ruby" do
+view "5. Ruby" do
   icon Subtlext::Icon.new("#{iconpath}/ruby.xbm")
   dynamic false
   match "Ruby"
   gravity :center
 end
 
-view "default" do
+view "6. default" do
   icon Subtlext::Icon.new("#{iconpath}/quote.xbm")
   dynamic true
   match "default"
@@ -1066,7 +1142,17 @@ end
 # end
 # }}}
 
+# [ Stacking ] {{{
+# There are four stacking layers, ordered from top to bottom:
+#   - Fullscreen
+#   - Floating
+#   - Gravity
+#   - Desktop type
+# }}}
+
 # [ Sublets ] {{{
+#
+# comments {{{
 #
 # Sublets are Ruby scripts that provide data for the panel and can be managed
 # with the sur script that comes with subtle.
@@ -1097,6 +1183,8 @@ end
 #   - sur uninstall clock
 #   - sur notes clock
 #   - sur config clock
+#
+#   - sur template hello
 #
 # === Example
 #
@@ -1156,6 +1244,7 @@ end
 #
 # http://subforge.org/projects/subtle/wiki/Hooks
 #
+# }}}
 
 sublet :layout do
   style   :layout
@@ -1294,6 +1383,8 @@ sublet :columns do
   border 2
 end
 
+# note: $ sudo modprobe snd_mixer_oss
+# you'd better add this line into a initial file.
 sublet :volume do
   interval 120
   style :volume
@@ -1328,9 +1419,9 @@ sublet :mpd do
 end
 
 sublet :maildir do
-  interval 600
+  interval 300
   style :maildir
-  dir "#{ENV["HOME"]}/Mails"
+  dir "#{ENV["HOME"]}/Mails/INBOX/new"
   label "Mail"
 end
 
@@ -1341,6 +1432,15 @@ sublet :notify do
   foreground "sublets_fg"
   background "sublets_bg"
   highlight "focus_fg"
+end
+
+sublet :betternotify do
+  interval 60
+  style :betternotify
+  font "-*-fixed-*-*-*-*-10-*-*-*-*-*-*-*"
+  foreground "sublets_fg"
+  background "sublets_bg"
+  highlight  "focus_fg"
 end
 
 sublet :tasks do
@@ -1395,10 +1495,10 @@ end
 
 # [ startup/autostart ] {{{
 on :start do
-  # Subtlext::Subtle.spawn "mpd"
-  Subtlext::Subtle.spawn "nm-applet"
-  Subtlext::Subtle.spawn "mlnet"
-  Subtlext::Subtle.spawn "firefox"
+  Subtlext::Client.spawn "mpd"
+  Subtlext::Client.spawn "nm-applet"
+  Subtlext::Client.spawn "mlnet"
+  Subtlext::Client.spawn "firefox"
 end
 # }}}
 

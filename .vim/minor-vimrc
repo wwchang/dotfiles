@@ -1,0 +1,552 @@
+
+" before any other settings {{{
+    " [ key prefix -> Leader ] {{{ [ '\', ',']
+    " NOTICE: set this before any mappings.
+    let mapleader = ','
+    " <LocalLeader> is to be used for mappings which are local to a buffer. (filetypes)
+    let maplocalleader = '\'
+    " }}}
+" }}}
+
+set nocompatible " not vim compatible. must be first one, will affect other options
+
+" [ neobundle ] {{{ NeoBundle is Vim plugin manager based on Vundle .vim/bundle/
+    " check neobundle installed {{{
+    fun! InstallNeoBundle(path)
+        if isdirectory(expand(a:path))
+            return 1
+        elseif confirm("install neobundle into " . a:path . "?", "&Y\n&N") == 1
+            call mkdir(expand(a:path), 'p')
+            execute '!git clone git://github.com/Shougo/neobundle.vim '
+                        \ . expand(a:path)
+            exec 'helptags' . fnameescape(a:path . '/doc')
+            return 0
+        endif
+    endfun
+    let neobundle_path = "~/.vim/bundle/neobundle"
+    if !InstallNeoBundle(neobundle_path)
+        echohl ErrorMsg ; echomsg "No neobundle found!" ; echohl NONE
+    endif
+
+    filetype off " Required!
+    if has('vim_starting')
+        set runtimepath+=~/.vim/bundle/neobundle/
+    endif
+    call neobundle#rc(expand('~/.vim/bundle/'))
+    " }}}
+
+    " [ bundles ] {{{
+    " Let NeoBundle manage NeoBundle
+    NeoBundle 'Shougo/neobundle.vim', {
+                \ 'depends': [
+                    \ 'Shougo/unite.vim',
+                    \ 'Shougo/neobundle-vim-scripts',
+                    \ ],
+                \ 'directory': 'neobundle',
+                \ }
+
+    " ----------------------------------------------------------------
+    NeoBundle 'Shougo/neocomplcache', { 'depends': ['Shougo/vimproc'] }
+    NeoBundle 'Shougo/vimproc'
+    " }}}
+
+    " Installation check.
+    if neobundle#exists_not_installed_bundles()
+        echomsg 'Not installed bundles : ' .
+                    \ string(neobundle#get_not_installed_bundle_names())
+        echomsg 'Please execute ":NeoBundleInstall" command.'
+        "finish
+    endif
+" }}}
+
+filetype plugin indent on " required !
+syntax on
+
+        " neocomplcache {{{ Ultimate auto Completion system for Vim.
+            " Require: vimproc.vim $ make -f make_unix.mak (make proc.so)
+            " with vimproc, neocomplcache creates the cache asynchronously.
+            " comment out :set complete option.
+            " Usage: {{{ auto popup menu, <Tab>, <C-j/k/n/p>, <C-y>, <C-g>, <C-e>
+            " - Add other language completion:
+            "   :NeoComplCacheSetFileType [filetype]
+            "   neocomplcache#get_context_filetype()
+            "   unite#get_context_filetype()
+            "   this [filetype] only used inside of neocomplcache.
+            "   -- to use local composite filetype for neocomplcache
+            " - :set ft=html.python
+            "   -- to use global composite filetype.
+            "   so you can complete HTML and Python as same time.
+            "   -- but this will affect other plugins which use 'filetype' too.
+            " - :NeoComplCacheCachingTags command to make cache.
+            " }}}
+
+            " [ common options ] {{{
+            let g:neocomplcache_enable_debug = 0
+            let g:acp_enableAtStartup = 0 " Disable AutoComplPop
+            let g:neocomplcache_enable_at_startup = 1 " enable at startup time.
+            let g:neocomplcache_disable_auto_complete = 0 " 0: enable auto complete
+            let g:neocomplcache_skip_auto_completion_time = "0.3" " skip auto completion (+reltime)
+                " '' empty to disable
+                " if completion time is higher than it, neocomplcache will skip auto completion.
+            let g:neocomplcache_use_vimproc = 1
+            let g:neocomplcache_max_list = 100 " candidate number display in popup menu
+            let g:neocomplcache_max_keyword_width = 50 " popup menu candidate width
+            let g:neocomplcache_max_menu_width = 15 " popup menu width
+            let g:neocomplcache_force_overwrite_completefunc = 1 " override other completefunc
+            let g:neocomplcache_auto_completion_start_length = 2 " auto complete min length
+            let g:neocomplcache_manual_completion_start_length = 1 " manually min length
+            let g:neocomplcache_min_keyword_length = 4 " keyword complete min length
+            let g:neocomplcache_min_syntax_length = 2 " syntax complete min length
+            let g:neocomplcache_enable_ignore_case = 1 " ignorecase
+            let g:neocomplcache_enable_smart_case = 1 " smartcase
+            let g:neocomplcache_enable_wildcard = 1 " wildcard '*', '-' for input-saving
+            let g:neocomplcache_enable_cursor_hold_i = 1 " 'CursorHoldI' event
+            let g:neocomplcache_cursor_hold_i_time = 300 " time of auto complete
+            let g:neocomplcache_enable_insert_char_pre = 1 " 'InsertCharPre' event
+            let g:neocomplcache_enable_auto_select = 0 " select first candidate auto
+            let g:neocomplcache_enable_auto_delimiter = 1 " auto insert delimiter
+            let g:neocomplcache_enable_camel_case_completion = 0 " ArgumentExcep -> AE
+            let g:neocomplcache_enable_underbar_completion = 0 " public_html -> p_h
+            let g:neocomplcache_enable_fuzzy_completion = 0 " this match is too heavy
+            let g:neocomplcache_fuzzy_completion_start_length = 3 " fuzzy complete min length
+            let g:neocomplcache_enable_caching_message = 1 " display message in cmdline when cache
+            let g:neocomplcache_caching_limit_file_size = 500000 " set file size to make cache
+            let g:neocomplcache_tags_caching_limit_file_size = 500000 " tags file size
+            let g:neocomplcache_release_cache_time = 900
+            let g:neocomplcache_disable_caching_file_path_pattern = '' " buffer un-cache
+            let g:neocomplcache_lock_buffer_name_pattern = '' " buffer do not auto-complete
+            let g:neocomplcache_compare_function = 'neocomplcache#compare_rank' " sort candidates
+            let g:neocomplcache_enable_prefetch = 1
+            let g:neocomplcache_lock_iminsert = 0 " lock when 'iminsert' is non zero
+            let g:neocomplcache_temporary_dir = '~/.neocomplcache'
+            " }}}
+
+            " [ complex dictionary options ] {{{
+            " [ refers to: neocomplcache/autoload/neocomplcache/sources/ ]
+            " those g:neocomplcache_* options only are initialized in first
+            " completion, not in Vim's initialization.
+            " you can see neocomplcache default value of option by command:
+            " :echo g:neocomplcache_*
+            " if value/key is "_", means all buffers in neocomplcache.
+            " wildcard {{{
+            if !exists('g:neocomplcache_wildcard_characters')
+                let g:neocomplcache_wildcard_characters = {}
+            endif
+            " _ for all filetype, default is {'_': '*'}
+            let g:neocomplcache_wildcard_characters['_'] = '-'
+            " -> e.g. public-html -> p-h [B] -> p-h
+            " -> e.g. public_html -> p_h [B] -> p-h
+            " -> e.g. HellowWorld -> H-W [B] -> H-W
+            " }}}
+            " keyword patterns {{{
+            if !exists('g:neocomplcache_keyword_patterns')
+                let g:neocomplcache_keyword_patterns = {}
+            endif
+            " let g:neocomplcache_keyword_patterns['_'] = '\h\w*'
+            if !exists('g:neocomplcache_next_keyword_patterns')
+                let g:neocomplcache_next_keyword_patterns = {}
+            endif
+            " }}}
+            " vim completefunc {{{
+            if !exists('g:neocomplcache_vim_completefuncs')
+                let g:neocomplcache_vim_completefuncs = {}
+            endif
+            " }}}
+            " omni patterns {{{
+            " every filetype or 'omnifunc' need omni_patterns setted, if not
+            " setted, neocomplcache will not call omnifunc.
+            " - omni_patterns is neocomplcache calls omnifunc
+            " - force_omni_patterns is fallback to Vim calls omnifunc,
+            "   most neocomplcache features are disabled.
+            if !exists('g:neocomplcache_force_omni_patterns')
+                let g:neocomplcache_force_omni_patterns = {}
+            endif
+            " . -> methods, :: -> class method, # -> instance method.
+            " let g:neocomplcache_force_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
+            let g:neocomplcache_force_omni_patterns['python'] = '[^. \t]\.\w*'
+            if !exists('g:neocomplcache_omni_patterns')
+                let g:neocomplcache_omni_patterns = {}
+            endif
+            let g:neocomplcache_omni_patterns['ruby'] = '[^. *\t]\.\w*\|\h\w*::'
+            let g:neocomplcache_omni_patterns['python'] = '[^. \t]\.\w*'
+            " FIXME this 'go' pattern
+            " let g:neocomplcache_omni_patterns['go'] = '[^. \t]\.\w*' " gocode plugin
+            let g:neocomplcache_omni_patterns['c'] = '[^.[:digit:] *\t]\%(\.\|->\)'
+            let g:neocomplcache_omni_patterns['cpp'] = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+            let g:neocomplcache_omni_patterns['javascript'] = '[^. \t]\.\%(\h\w*\)\?'
+            " FIXME
+            " let g:neocomplcache_omni_patterns['haskell'] = ''
+            " FIXME
+            let g:neocomplcache_omni_patterns['clojure'] = '\w\|-\|\.\|+\|*\|/'
+            let g:neocomplcache_omni_patterns['sql'] = '[[:alpha:]_.][[:alnum:]_.]*'
+            let g:neocomplcache_omni_patterns['r'] = '[[:alnum:].\\]\+' " vim-R-plugin
+            let g:neocomplcache_omni_patterns['php'] = '[^. \t]->\h\w*\|\h\w*::' " default / plugin phpcomplete.vim
+            let g:neocomplcache_omni_patterns['xquery'] = '\k\|:\|\-\|&' " plugin XQuery-indentomnicompleteftplugin
+            " }}}
+            " omni functions {{{
+            if !exists('g:neocomplcache_omni_functions')
+                let g:neocomplcache_omni_functions = {}
+            endif
+            " if the key is '_', used for all filetypes.
+            let g:neocomplcache_omni_functions['_'] = 'syntaxcomplete#Complete' " default syntax omni
+            " vim-ruby/rubycomplete plugin  -> rubycomplete#Complete
+            " vim-rsense plugin             -> RSenseCompleteFunction
+            let g:neocomplcache_omni_functions['ruby'] = 'RSenseCompleteFunction'
+            " pythoncomplete#Complete   -- Python2 Vim default omni / plugin pythoncomplete.vim
+            " python3complete#Complete  -- Python3 Vim default omni
+            " jedi#complete             -- plugin jedi-vim omni use jedi python autocomplete
+            if has('python3/dyn') || has('python3')
+                let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
+            elseif has('python/dyn') || has('python')
+                let g:neocomplcache_omni_functions['python'] = 'jedi#complete'
+            endif
+            " clang compiler front / ctags / omni complete ==> C, cpp, Go
+            let g:neocomplcache_omni_functions['go'] = 'gocomplete#Complete' " plugin gocode
+            let g:neocomplcache_omni_functions['c'] = 'ccomplete#Complete' " default
+            let g:neocomplcache_omni_functions['cpp'] = 'omni#cpp#complete#Main' " plugin omnicppcomplete
+            let g:neocomplcache_omni_functions['hpp'] = 'omni#cpp#complete#Main' " plugin omnicppcomplete
+            " - 'javascriptcomplete#CompleteJS' -- default javascript omni
+            " - 'jscomplete#CompleteJS' -- jscomplete-vim plugin
+            let g:neocomplcache_omni_functions['javascript'] = 'jscomplete#CompleteJS' " jscomplete-vim plugin
+            let g:neocomplcache_omni_functions['haskell'] = 'necoghc#omnifunc' " neco-ghc plugin
+            let g:neocomplcache_omni_functions['clojure'] = 'vimclojure#OmniCompletion' " VimClojure plugin
+            " TODO compare which one is better.
+            " htmlcomplete#CompleteTags         -> html5 plugin
+            " zencoding#CompleteTag             -> ZenCoding plugin
+            let g:neocomplcache_omni_functions['html'] = 'htmlcomplete#CompleteTags'
+            let g:neocomplcache_omni_functions['sql'] = 'sqlcomplete#Complete' " default / plugin SQLComplete.vim
+            let g:neocomplcache_omni_functions['r'] = 'rcomplete#CompleteR' " vim-R-plugin
+            let g:neocomplcache_omni_functions['php'] = 'phpcomplete#CompletePHP' " default / phpcomplete plugin
+            let g:neocomplcache_omni_functions['xquery'] = 'xquerycomplete#CompleteXQuery' " plugin XQuery-indentomnicompleteftplugin
+            " }}}
+            " member patterns {{{
+            if !exists('g:neocomplcache_member_patterns')
+                let g:neocomplcache_member_patterns = {}
+            endif
+            " let g:neocomplcache_member_patterns['default'] = '\h\w*\%(()\|\[\h\w*\]\)\?'
+            if !exists('g:neocomplcache_member_prefix_patterns')
+                let g:neocomplcache_member_prefix_patterns = {}
+            endif
+            " }}}
+            " delimiter patterns {{{
+            if !exists('g:neocomplcache_delimiter_patterns')
+                let g:neocomplcache_delimiter_patterns = {}
+            endif
+            " }}}
+            " dictionary {{{
+            if !exists('g:neocomplcache_dictionary_filetype_lists')
+                let g:neocomplcache_dictionary_filetype_lists = {}
+            endif
+            " if empty, use Vim 'dictionary' option.
+            let g:neocomplcache_dictionary_filetype_lists['default'] = ''
+            let g:neocomplcache_dictionary_filetype_lists['text'] = '/usr/share/dict/words'
+            if !exists('g:neocomplcache_dictionary_patterns')
+                let g:neocomplcache_dictionary_patterns = {}
+            endif
+            " }}}
+            " ctags {{{
+            let g:neocomplcache_ctags_program = 'ctags'
+            if !exists('g:neocomplcache_ctags_arguments_list')
+                let g:neocomplcache_ctags_arguments_list = {}
+            endif
+            " let g:neocomplcache_ctags_arguments_list['_'] = ''
+            " let g:neocomplcache_ctags_arguments_list['c'] =
+            "     \ '-R --sort=1 --c-kinds=+p --fields=+iaS --extra=+q -I __wur'
+            " let g:neocomplcache_ctags_arguments_list['cpp'] =
+            "     \ '-R --sort=1 --c++-kinds=+p --fields=+iaS --extra=+q -I __wur' .
+            "     \ '--language-force=C++'
+            if !exists('g:neocomplcache_tags_filter_patterns')
+                let g:neocomplcache_tags_filter_patterns = {}
+            endif
+            " }}}
+            " include: paths, exprs, patterns, functions {{{
+            if !exists('g:neocomplcache_include_paths')
+                let g:neocomplcache_include_paths = {}
+            endif
+            let g:neocomplcache_include_paths['c'] = '/usr/include'
+            let g:neocomplcache_include_paths['cpp'] = '/usr/include/c++'
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            if !exists('g:neocomplcache_include_patterns')
+                let g:neocomplcache_include_patterns = {}
+            endif
+            if !exists('g:neocomplcache_include_functions')
+                let g:neocomplcache_include_functions = {}
+            endif
+            let g:neocomplcache_include_max_processes = 20
+            if !exists('g:neocomplcache_include_exprs')
+                let g:neocomplcache_include_exprs = {}
+            endif
+            if !exists('g:neocomplcache_filename_include_exts')
+                let g:neocomplcache_filename_include_exts = {}
+            endif
+            let g:neocomplcache_filename_include_exts['cpp'] = ['', 'h', 'hpp', 'hxx']
+            " let g:neocomplcache_filename_include_exts['python'] = ['py']
+            " TODO let g:neocomplcache_filename_include_exts['ruby'] = ['rb']
+            " }}}
+            " sources {{{
+            if !exists('g:neocomplcache_sources_list')
+                let g:neocomplcache_sources_list = {}
+            endif
+            " let g:neocomplcache_sources_list['_'] = ['buffer_complete']
+            " let g:neocomplcache_sources_list['cpp'] = ['buffer_complete', 'include_complete']
+            " buffer local source, In command-line window, only use 'vim_complete' source.
+            autocmd CmdwinEnter * let b:neocomplcache_sources_list = ['vim_complete']
+            if !exists('g:neocomplcache_disabled_sources_list')
+                let g:neocomplcache_disabled_sources_list = {}
+            endif
+            let g:neocomplcache_disabled_sources_list['c'] = ['clang_complete'] " avoid clang_complete error
+            let g:neocomplcache_disabled_sources_list['ruby'] = ['dictionary_complete']
+            let g:neocomplcache_disabled_sources_list['python'] = ['dictionary_complete']
+            let g:neocomplcache_disabled_sources_list['vimwiki'] = [
+                        \ 'member_complete', 'tags_complete', 'syntax_complete',
+                        \ ]
+            if !exists('g:neocomplcache_source_completion_length')
+                let g:neocomplcache_source_completion_length = {}
+            endif
+            let g:neocomplcache_source_completion_length['include_complete'] = 2
+            let g:neocomplcache_source_completion_length['filename_include'] = 2
+            let g:neocomplcache_source_completion_length['member_complete'] = 2
+            let g:neocomplcache_source_completion_length['filename_complete'] = 3
+            let g:neocomplcache_source_completion_length['buffer_complete'] = 3
+            let g:neocomplcache_source_completion_length['tags_complete'] = 3
+            let g:neocomplcache_source_completion_length['syntax_complete'] = 2
+            let g:neocomplcache_source_completion_length['omni_complete'] = 3
+            let g:neocomplcache_source_completion_length['vim_complete'] = 3
+            let g:neocomplcache_source_completion_length['abbrev_complete'] = 2
+            let g:neocomplcache_source_completion_length['dictionary_complete'] = 4
+            let g:neocomplcache_source_completion_length['snippets_complete'] = 2
+            let g:neocomplcache_source_completion_length['look'] = 4 " plugin neco-look
+            let g:neocomplcache_source_completion_length['rubymf'] = 3 " plugin neco-rubymf
+            let g:neocomplcache_source_completion_length['js_complete'] = 3 " plugin jscomplete.vim
+            let g:neocomplcache_source_completion_length['ghc'] = 3 " plugin neco-ghc
+            " }}}
+            " same filetypes {{{
+            " a dictionary to connect file type mutually.
+            if !exists('g:neocomplcache_same_filetype_lists')
+                let g:neocomplcache_same_filetype_lists = {}
+            endif
+            " The value are comma-separated filetypes.
+            " If value contains '_', neocomplcache completes from all buffers.
+            " If key is '_', the value will be used for default same filetypes.
+            " let g:neocomplcache_same_filetype_lists['_'] = '_'
+            "   -> default, complete from all buffers
+            let g:neocomplcache_same_filetype_lists['gitcommit'] = '_'
+            let g:neocomplcache_same_filetype_lists['c'] = 'cpp,d'
+            let g:neocomplcache_same_filetype_lists['cpp'] = 'c'
+            " }}}
+            " composite file type (only use one completion) {{{
+            if !exists('g:neocomplcache_ignore_composite_filetype_lists')
+                let g:neocomplcache_ignore_composite_filetype_lists = {}
+            endif
+            " let g:neocomplcache_ignore_composite_filetype_lists['python.unit'] = 'python'
+            " let g:neocomplcache_ignore_composite_filetype_lists['ruby.spec'] = 'ruby'
+            " }}}
+            " context filetypes (one filetype in another filetype) {{{
+            if !exists('g:neocomplcache_context_filetype_lists')
+                let g:neocomplcache_context_filetype_lists = {}
+            endif
+            let g:neocomplcache_context_filetype_lists['vimwiki'] = [
+                        \ { 'filetype': 'ruby',
+                        \   'start': '^\s*{{{ruby$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'python',
+                        \   'start': '^\s*{{{python$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'vim',
+                        \   'start': '^\s*{{{vim$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'javascript',
+                        \   'start': '^\s*{{{javascript$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'bash',
+                        \   'start': '^\s*{{{bash$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'zsh',
+                        \   'start': '^\s*{{{zsh$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'go',
+                        \   'start': '^\s*{{{go$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'c',
+                        \   'start': '^\s*{{{c$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'html',
+                        \   'start': '^\s*{{{html$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'css',
+                        \   'start': '^\s*{{{css$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'tex',
+                        \   'start': '^\s*{{{tex$', 'end': '^\s*}}}', },
+                        \ ]
+            let g:neocomplcache_context_filetype_lists['markdown'] = [
+                        \ { 'filetype':   'ruby',
+                        \   'start': '^\s*```\s*ruby$', 'end': '^\s*```', },
+                        \ { 'filetype':   'python',
+                        \   'start': '^\s*```\s*python$', 'end': '^\s*```', },
+                        \ { 'filetype':   'c',
+                        \   'start': '^\s*```\s*c$', 'end': '^\s*```', },
+                        \ { 'filetype':   'go',
+                        \   'start': '^\s*```\s*go$', 'end': '^\s*```', },
+                        \ { 'filetype':   'javascript',
+                        \   'start': '^\s*```\s*javascript$', 'end': '^\s*```', },
+                        \ { 'filetype':   'html',
+                        \   'start': '^\s*```\s*html$', 'end': '^\s*```', },
+                        \ ]
+            " }}}
+            " text mode filetypes {{{
+            " in text mode, neocomplcache supports word convertion to write English.
+            " For example, if you input 'Fo', neocomplcache will convert
+            " candidate 'foo' to 'Foo'. If you input 'foo', neocomplcache will
+            " convert candidate 'FooBar' to 'foobar'. If you input 'FO',
+            " neocomplcache will convert candidate 'foo' to 'FOO'.
+            if !exists('g:neocomplcache_text_mode_filetypes')
+                let g:neocomplcache_text_mode_filetypes = {}
+            endif
+            let g:neocomplcache_text_mode_filetypes['gitcommit'] = 1
+            let g:neocomplcache_text_mode_filetypes['markdown'] = 1
+            let g:neocomplcache_text_mode_filetypes['text'] = 1
+            let g:neocomplcache_text_mode_filetypes['vimwiki'] = 1
+            " }}}
+
+            " }}}
+
+            " [ complete candidates: priority/rank ] {{{
+            " control each source's completion candidate priority.
+            " The higher value is, the higher priority.
+            let g:neocomplcache_source_rank = {
+                        \ 'abbrev_complete' : 400,
+                        \ 'filename_complete' : 10,
+                        \ 'dictionary_complete' : 5,
+                        \ 'buffer_complete' : 9,
+                        \ 'member_complete' : 7,
+                        \ 'include_complete' : 700,
+                        \ 'filename_include' : 700,
+                        \ 'syntax_complete' : 150,
+                        \ 'omni_complete' : 300,
+                        \ 'tags_complete' : 350,
+                        \ 'vim_complete' : 300,
+                        \ 'snippets_complete' : 500,
+                        \ 'other plugin sources' : 15,
+                        \ 'other completefunc sources' : 25,
+                        \ 'other ftplugin sources' : 100,
+                        \ }
+                        " \ 'keyword_complete' : 8, " deleted
+            " }}}
+
+            " [ neocomplcache functions ] {{{
+            " inoremap <expr> <C-n>
+                " pumvisible() ? "\<C-n>" : "\<Tab>"
+                " pumvisible() ? "\<C-j>" : "\<C-n>"
+                " pumvisible() ? "\<C-j>" : neocomplcache#...()
+                " neocomplcache#manual_filename_complete()
+                " neocomplcache#manual_omni_complete()
+                " neocomplcache#smart_close_popup()
+                " neocomplcache#close_popup
+                " neocomplcache#complete_common_string()
+                " ----------------------------------------------
+                " function! s:check_back_space()
+                "     let col = col('.') - 1
+                "     return !col || getline('.')[col - 1] =~ '\s'
+                " endfunction
+                " ----------------------------------------------
+            " Awesome EXample.
+            "imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
+                    "\ ? "\<Plug>(neocomplcache_snippets_expand)"
+                    "\ : pumvisible() ? "\<C-n>"
+                    "\ : <SID>check_back_space() ? "\<TAB>"
+                    "\ : "\<C-x>\<C-u>"
+
+            "inoremap <expr> <Tab> pumvisible()
+                        "\ ? "\<C-n>"
+                        "\ : <SID>check_back_space() ? "\<TAB>"
+                        "\ : "\<C-x>\<C-u>"
+            " }}}
+
+            " [ key mappings ] {{{
+                inoremap <expr> <C-x><C-f> neocomplcache#manual_filename_complete()
+                inoremap <expr> <C-o> neocomplcache#manual_omni_complete()
+                inoremap <expr> <C-l> neocomplcache#complete_common_string()
+                inoremap <expr> <C-y> neocomplcache#smart_close_popup()
+                inoremap <expr> <C-e> neocomplcache#cancel_popup()
+                inoremap <expr> <C-g> neocomplcache#undo_completion()
+                " use close_popup for e.g. pythoncomplete.vim's subprocess.os.
+                " dot candidate can not auto popup in next string after dot.
+                " without ."\<C-h>"
+                inoremap <expr> <C-h> neocomplcache#smart_close_popup()
+                inoremap <expr> <BS>  neocomplcache#smart_close_popup() . "\<C-h>"
+
+                " <CR>: close popup and save indent.
+                " inoremap <expr><silent> <CR> neocomplcache#smart_close_popup()
+
+                function! My_CR_function()
+                    " simple <CR> / <Return>
+                    return neocomplcache#smart_close_popup() . "\<CR>"
+                    " For no inserting <CR> key.
+                    "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+                    " use end-wise plugin.
+                    " if hasmapto("<Plug>DiscretionaryEnd")
+                    " FIXME return neocomplcache#smart_close_popup() . "\<CR>\<Plug>DiscretionaryEnd"
+                endfunction
+                " inoremap <silent> <CR> <C-r>=<SID>My_CR_function()<CR>
+                inoremap <expr><silent> <CR> My_CR_function()
+
+                inoremap <expr> <C-n> pumvisible() ? "\<C-n>" : "\<Tab>"
+                inoremap <expr> <C-p> pumvisible() ? "\<C-p>"
+
+                " imap <expr> <Tab> neocomplcache#sources#snippets_complete#expandable()
+                "             \ ?  "\<Plug>(neocomplcache_snippets_expand)"
+                "             \ : <SID>check_back_space() ? "\<TAB>"
+                "             \ : "\<C-x>\<C-u>"
+
+                " ------------------------------------------------------------
+                " { neosnippet } {{{
+                " imap <expr> <Tab> neosnippet#expandable() ?
+                "             \ "\<Plug>(neosnippet_expand)"
+                "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " }}}
+
+                " { UltiSnips } {{{
+                " <C-j>/<C-k> is used by UltiSnips jump backwards and forwards.
+                " - UltiSnips_ExpandSnippet() -- expand snippet
+                " - UltiSnips_ExpandSnippetOrJump()
+                " - UltiSnips_JumpForwards()
+                " - UltiSnips_JumpBackwards()
+                " - UltiSnips_ListSnippets()
+                " ----------------------------------------------
+                if exists('did_UltiSnips_vim')
+                    " function! Ulti_ExpandOrJump_and_getRes()
+                    "     call UltiSnips_ExpandSnippetOrJump()
+                    "     return g:ulti_expand_or_jump_res
+                    " endfunction
+                    " inoremap <expr> <Tab> <C-R>=(UltiSnips_ExpandSnippetOrJump() > 0) ?
+                    "             \ UltiSnips_ExpandSnippet()
+                    "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+
+                    inoremap <expr> <Tab> UltiSnips_ListSnippets() ?
+                                \ UltiSnips_ExpandSnippet()
+                                \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                    inoremap <expr> <C-j> UltiSnips_JumpForwards()
+                    inoremap <expr> <C-k> UltiSnips_JumpBackwards()
+                endif
+                " }}}
+
+                " { snipMate } {{{
+                " snipMate#GetSnippets(), snipMate#ShowAvailableSnips(),
+                " "\<c-r>=snipMate#ShowAvailableSnips()\<cr>"
+                " ----------------------------------------------
+                " imap <expr> <Tab> snipMate#ShowAvailableSnips() ?
+                "             \ snipMate#
+                "             \ : pumvisible() ? "\<C-n>" : "\<Tab>"
+                " }}}
+
+                " [ unite ] {{{ TODO
+                " completion with unite.vim
+                " <Plug>(neocomplcache_start_unite_complete)
+                " <Plug>(neocomplcache_start_unite_quick_match)
+                " imap <C-k> <Plug>(neocomplcache_start_unite_complete)
+                " imap <C-q> <Plug>(neocomplcache_start_unite_quick_match)
+                " ----------------------------------------------------------
+                " inoremap <expr> - pumvisible()
+                "     \ ? "\<Plug>(neocomplcache_start_unite_quick_match)"
+                "     \ : '-'
+                " inoremap <expr> <C-Space> pumvisible()
+                "             \ ? "\<Plug>(neocomplcache_start_unite_complete)"
+                "             \ : "\<C-Space>"
+                " }}}
+            " }}}
+        " }}}
+
+" vim:ft=vim:et:ts=4:sw=4:fdm=marker:fmr={{{,}}}
