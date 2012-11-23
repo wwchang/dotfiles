@@ -1318,6 +1318,7 @@ endif
         " NeoBundle 'chrisbra/unicode.vim'
         " NeoBundle 'https://bitbucket.org/Fanael/vim-transliterate', { 'type': 'hg' }
         " Outline
+        " NeoBundle 'vim-voom/vim-voom.github.com', {'directory': 'VOoM'}
         NeoBundle 'h1mesuke/unite-outline'
         " NeoBundle 'insanum/votl'
         " Others
