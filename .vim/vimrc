@@ -1558,6 +1558,12 @@ endif
         " NeoBundle 'vim-scripts/sql.vim--Stinson'
         " NoSQL
         NeoBundle 'vim-scripts/nosql.vim'
+        " XML
+        " NeoBundle 'sukima/xmledit'
+        " NeoBundle 'vim-scripts/onsgmls.vim'
+        " NeoBundle 'vim-scripts/xmlwf.vim', {'external_commands': ['xmlwf']}
+        " CSV
+        " NeoBundle 'chrisbra/csv.vim.git'
         " HTML
         NeoBundle 'mattn/zencoding-vim'
         " NeoBundle 'rstacruz/sparkup', { 'rtp': 'vim/' }
@@ -1565,10 +1571,6 @@ endif
         NeoBundle 'othree/html5.vim'
         " NeoBundle 'othree/html5-syntax'
         " NeoBundle 'tpope/vim-ragtag'
-        " XML
-        " NeoBundle 'sukima/xmledit'
-        " NeoBundle 'vim-scripts/onsgmls.vim'
-        " NeoBundle 'vim-scripts/xmlwf.vim', {'external_commands': ['xmlwf']}
         " CSS
         " NeoBundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
         " NeoBundle 'hail2u/vim-css3-syntax'
@@ -5202,6 +5204,11 @@ syntax on
             " }}}
 
             " xmlwf : A compiler plugin for the xmlwf xml well-formedness checker
+        " }}}
+
+        " [ CSV ] {{{
+            " csv.vim {{{ a filetype plugin for csv files
+            " }}}
         " }}}
     " }}}
 
