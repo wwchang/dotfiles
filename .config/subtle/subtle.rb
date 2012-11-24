@@ -133,14 +133,15 @@ screen 1 do
   bottom [
           :separator, :mpd, :separator,
           :spacer,
-          # :separator, :arbi_net,
-          # :separator, :nettraffic,
-          # :separator, :netchart,
-          # :separator, :ipaddr,
           :separator, :cpu,
           # :separator, :cpuchart,
           :separator, :memory,
           # :separator, :membar,
+          :separator, :nettraffic,
+          # :separator, :netchart,
+          # :separator, :arbi_net,
+          # :separator, :arbi_eth0_wlan0,
+          # :separator, :ipaddr,
           :separator, :temp,
           # :separator, :freq,
           # :separator, :weather,
@@ -218,11 +219,12 @@ end
 
 # :all {{{ Style for all style elements
 style :all do
-  background  "#202020"
   icon        "#757575"
+  foreground  "#757575"
+  background  "#202020"
   border      "#303030", 0
   padding     0, 3
-  font        "xft:DejaVu Sans Mono:pixelsize=14"
+  font        "xft:DejaVu Sans Mono:pixelsize=15"
 end
 # }}}
 
@@ -233,30 +235,30 @@ style :views do
 
   # Style for the active views
   style :focus do
-    padding     1, 8, 0, 8
+    icon          "#5fd7ff"
     foreground  "#ffffff"
     background  "#1a1a1a"
+    padding     1, 8, 0, 8
     border_bottom "#5fd7ff", 3
-    icon          "#5fd7ff"
   end
 
   # Style for urgent window titles and views
   style :urgent do
-    padding     1, 8, 0, 8
-    border      0
+    icon          "#DF8787"
     foreground  "#a8a8a8"
     background  "#1a1a1a"
+    padding     1, 8, 0, 8
+    border      0
     border_bottom "#DF8787", 3
-    icon          "#DF8787"
   end
 
   # Style for occupied views (views with clients)
   style :occupied do
-    padding     1, 8, 0, 8
+    icon          "#595959"
     foreground  "#a8a8a8"
     background  "#1a1a1a"
+    padding     1, 8, 0, 8
     border_bottom "#595959", 3
-    icon          "#595959"
   end
 end
 # }}}
@@ -267,6 +269,7 @@ style :title do
   background  "#1a1a1a"
   padding     2, 8
   border      "#1a1a1a", 0
+  # font        "xft:DejaVu Sans Mono:pixelsize=14"
 end
 # }}}
 
@@ -281,25 +284,32 @@ end
 
 # :sublets {{{ Style for sublets
 style :sublets do
-  foreground  "#757575"
   icon        "#757575"
+  foreground  "#757575"
+  font        "xft:DejaVu Sans Mono:pixelsize=14"
 
-  # nested
   style :clock do
-    foreground "#afff00"
     icon       "#757575"
+    foreground "#afff00"
   end
 
   style :uptime do
-    foreground "#ff9800"
     icon       "#ff9800"
+    foreground "#ff9800"
   end
-  style :maildir do
-    foreground "#5fd7ff"
-    icon       "#5fd7ff"
+
+  maildir = "#{ENV["HOME"]}/Mails/INBOX/new"
+  if Dir.entries( maildir ).size - 2 > 0
+    style :maildir do
+      icon       "#5fd7ff"
+      foreground "#5fd7ff"
+    end
   end
+
   style :mpd do
-    font        "xft:WenQuanYi Zen Hei Mono:pixelsize=14"
+    icon       "#5fd7ff"
+    foreground "#5fd7ff"
+    # font      "xft:WenQuanYi Zen Hei Mono:pixelsize=15"
   end
 end
 # }}}
@@ -610,6 +620,7 @@ grab "XF86AudioNext",        :MpdNext
 grab "XF86AudioPrev",        :MpdPrevious
 # }}}
 
+# Functional grabs {{{
 # terminal
 # "x-terminal-emulator", "urxvt",
 terminal = "urxvt"
@@ -622,6 +633,7 @@ grab modkey + "-b", browser
 # "urxvt -name email -e sh -c 'mutt'", "thunderbird"
 email = "urxvt -name email -e sh -c 'mutt'"
 grab modkey + "-m", email
+# }}}
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -711,15 +723,11 @@ end
 
 # }}}
 
-# MPD ncmpcpp => W-p, W-[, W-] {{{
-grab modkey + "-p", "ncmpcpp toggle"
-grab modkey + "-bracketleft", "ncmpcpp prev"
-grab modkey + "-bracketright", "ncmpcpp next"
-# }}}
-
 # volume => W-[-/+] {{{
 grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
+# grab modkey + "-minus", "amixer -q sset 'Master' 5%+"
+# grab modkey + "-plus", "amixer -q sset 'Master' 5%-"
 # }}}
 
 # Scratchpad => W-y {{{
@@ -732,6 +740,12 @@ grab "W-y" do
     c.flags = [ :stick ]
   end
 end
+# }}}
+
+# MPD ncmpcpp => W-p, W-[, W-] {{{
+grab modkey + "-p", "ncmpcpp toggle"
+grab modkey + "-bracketleft", "ncmpcpp prev"
+grab modkey + "-bracketright", "ncmpcpp next"
 # }}}
 
 # sdcv+xsel => W-t {{{
@@ -921,7 +935,7 @@ end
 #
 # }}}
 
-# Placement
+# Placement {{{
 tag "fixed" do
   geometry [ 10, 10, 100, 100 ]
   stick    true
@@ -935,10 +949,10 @@ end
 tag "gravity" do
   gravity :center
 end
+# }}}
 
-# Modes
+# Modes {{{
 tag "stick" do
-  match "mplayer"
   float true
   stick true
 end
@@ -953,13 +967,23 @@ tag "stickandfloat" do
   stick  true
   float  true
 end
+# }}}
 
-# Simple tags
+# tags {{{
+# terminal & terminal multiplexer {{{
 tag "terminal" do
   match "xterm|[u]?rxvt"
   gravity :right
   resize  false
 end
+
+tag "TerminalMultiplexer" do
+  match   "Tmux:.*|^screen$"
+  gravity :right
+  stick   true
+  resize  false
+end
+# }}}
 
 tag "code" do
   match "VIM:\ .*"
@@ -972,6 +996,7 @@ tag "browser" do
   gravity :left
 end
 
+# Design {{{
 # Gimp
 tag "Gimp" do
   match role: "gimp.*"
@@ -996,6 +1021,7 @@ end
 tag "Inkscape" do
   match [:class, :instance] => "[Ii]nkscape"
 end
+# }}}
 
 tag "read" do
   match [:class, :instance] => "[Ee]vince|[Zz]athura"
@@ -1003,9 +1029,22 @@ tag "read" do
 end
 
 tag "multimedia" do
-  match :class  => "MPlayer"
-  gravity :right66
+  match :class  => "MPlayer|vlc"
+  gravity :float
+  resize  true
 end
+
+tag "image" do
+  match "feh|gpicview"
+  gravity :float
+  resize  true
+end
+
+tag "irc" do
+  match :instance => "weechat-curses|irssi", :class => "URxvt"
+  gravity :left66
+end
+# }}}
 # }}}
 
 # [ Views ] {{{
@@ -1341,6 +1380,7 @@ end
 sublet :nettraffic do
   interval 60
   style :nettraffic
+  iface_name  "ppp0"
 end
 
 sublet :netchart do
@@ -1358,7 +1398,7 @@ end
 sublet :arbi_net do
   interval 60
   style :arbi_net
-  interfaces ["eth0", "wlan0", "ppp0"]
+  interfaces ["ppp0", "wlan0"]
 end
 
 sublet :arbi_eth0_wlan0 do
@@ -1485,7 +1525,7 @@ sublet :weather_mod do
   forecast_length 3
   hide_current false
   current_label "Now"
-  temp_suffix ''
+  temp_suffix '°C'
   sep '/'
   day_color "#757575"
   temp_color "#B8B8B8"
