@@ -977,6 +977,14 @@ tag "terminal" do
   resize  false
 end
 
+tag "TerminalMultiplexer" do
+  match   "Tmux:.*|^screen$"
+  gravity :right
+  stick   true
+  resize  false
+end
+# }}}
+
 tag "code" do
   match "VIM:\ .*"
   gravity :center
@@ -1021,8 +1029,20 @@ tag "read" do
 end
 
 tag "multimedia" do
-  match :class  => "MPlayer"
-  gravity :right66
+  match :class  => "MPlayer|vlc"
+  gravity :float
+  resize  true
+end
+
+tag "image" do
+  match "feh|gpicview"
+  gravity :float
+  resize  true
+end
+
+tag "irc" do
+  match :instance => "weechat-curses|irssi", :class => "URxvt"
+  gravity :left66
 end
 # }}}
 # }}}
