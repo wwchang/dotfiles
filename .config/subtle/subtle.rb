@@ -218,11 +218,12 @@ end
 
 # :all {{{ Style for all style elements
 style :all do
-  background  "#202020"
   icon        "#757575"
+  foreground  "#757575"
+  background  "#202020"
   border      "#303030", 0
   padding     0, 3
-  font        "xft:DejaVu Sans Mono:pixelsize=14"
+  font        "xft:DejaVu Sans Mono:pixelsize=15"
 end
 # }}}
 
@@ -233,30 +234,30 @@ style :views do
 
   # Style for the active views
   style :focus do
-    padding     1, 8, 0, 8
+    icon          "#5fd7ff"
     foreground  "#ffffff"
     background  "#1a1a1a"
+    padding     1, 8, 0, 8
     border_bottom "#5fd7ff", 3
-    icon          "#5fd7ff"
   end
 
   # Style for urgent window titles and views
   style :urgent do
-    padding     1, 8, 0, 8
-    border      0
+    icon          "#DF8787"
     foreground  "#a8a8a8"
     background  "#1a1a1a"
+    padding     1, 8, 0, 8
+    border      0
     border_bottom "#DF8787", 3
-    icon          "#DF8787"
   end
 
   # Style for occupied views (views with clients)
   style :occupied do
-    padding     1, 8, 0, 8
+    icon          "#595959"
     foreground  "#a8a8a8"
     background  "#1a1a1a"
+    padding     1, 8, 0, 8
     border_bottom "#595959", 3
-    icon          "#595959"
   end
 end
 # }}}
@@ -267,6 +268,7 @@ style :title do
   background  "#1a1a1a"
   padding     2, 8
   border      "#1a1a1a", 0
+  # font        "xft:DejaVu Sans Mono:pixelsize=14"
 end
 # }}}
 
@@ -281,25 +283,32 @@ end
 
 # :sublets {{{ Style for sublets
 style :sublets do
-  foreground  "#757575"
   icon        "#757575"
+  foreground  "#757575"
+  font        "xft:DejaVu Sans Mono:pixelsize=14"
 
-  # nested
   style :clock do
-    foreground "#afff00"
     icon       "#757575"
+    foreground "#afff00"
   end
 
   style :uptime do
-    foreground "#ff9800"
     icon       "#ff9800"
+    foreground "#ff9800"
   end
-  style :maildir do
-    foreground "#5fd7ff"
-    icon       "#5fd7ff"
+
+  maildir = "#{ENV["HOME"]}/Mails/INBOX/new"
+  if Dir.entries( maildir ).size - 2 > 0
+    style :maildir do
+      icon       "#5fd7ff"
+      foreground "#5fd7ff"
+    end
   end
+
   style :mpd do
-    font        "xft:WenQuanYi Zen Hei Mono:pixelsize=14"
+    icon       "#5fd7ff"
+    foreground "#5fd7ff"
+    # font      "xft:WenQuanYi Zen Hei Mono:pixelsize=15"
   end
 end
 # }}}
