@@ -133,14 +133,15 @@ screen 1 do
   bottom [
           :separator, :mpd, :separator,
           :spacer,
-          # :separator, :arbi_net,
-          # :separator, :nettraffic,
-          # :separator, :netchart,
-          # :separator, :ipaddr,
           :separator, :cpu,
           # :separator, :cpuchart,
           :separator, :memory,
           # :separator, :membar,
+          :separator, :nettraffic,
+          # :separator, :netchart,
+          # :separator, :arbi_net,
+          # :separator, :arbi_eth0_wlan0,
+          # :separator, :ipaddr,
           :separator, :temp,
           # :separator, :freq,
           # :separator, :weather,
@@ -619,6 +620,7 @@ grab "XF86AudioNext",        :MpdNext
 grab "XF86AudioPrev",        :MpdPrevious
 # }}}
 
+# Functional grabs {{{
 # terminal
 # "x-terminal-emulator", "urxvt",
 terminal = "urxvt"
@@ -631,6 +633,7 @@ grab modkey + "-b", browser
 # "urxvt -name email -e sh -c 'mutt'", "thunderbird"
 email = "urxvt -name email -e sh -c 'mutt'"
 grab modkey + "-m", email
+# }}}
 
 # Run Ruby lambdas
 grab "S-F2" do |c|
@@ -720,15 +723,11 @@ end
 
 # }}}
 
-# MPD ncmpcpp => W-p, W-[, W-] {{{
-grab modkey + "-p", "ncmpcpp toggle"
-grab modkey + "-bracketleft", "ncmpcpp prev"
-grab modkey + "-bracketright", "ncmpcpp next"
-# }}}
-
 # volume => W-[-/+] {{{
 grab modkey + "-minus", "amixer set Master 2-"
 grab modkey + "-plus", "amixer set Master 2+"
+# grab modkey + "-minus", "amixer -q sset 'Master' 5%+"
+# grab modkey + "-plus", "amixer -q sset 'Master' 5%-"
 # }}}
 
 # Scratchpad => W-y {{{
@@ -741,6 +740,12 @@ grab "W-y" do
     c.flags = [ :stick ]
   end
 end
+# }}}
+
+# MPD ncmpcpp => W-p, W-[, W-] {{{
+grab modkey + "-p", "ncmpcpp toggle"
+grab modkey + "-bracketleft", "ncmpcpp prev"
+grab modkey + "-bracketright", "ncmpcpp next"
 # }}}
 
 # sdcv+xsel => W-t {{{
@@ -930,7 +935,7 @@ end
 #
 # }}}
 
-# Placement
+# Placement {{{
 tag "fixed" do
   geometry [ 10, 10, 100, 100 ]
   stick    true
@@ -944,10 +949,10 @@ end
 tag "gravity" do
   gravity :center
 end
+# }}}
 
-# Modes
+# Modes {{{
 tag "stick" do
-  match "mplayer"
   float true
   stick true
 end
@@ -962,8 +967,10 @@ tag "stickandfloat" do
   stick  true
   float  true
 end
+# }}}
 
-# Simple tags
+# tags {{{
+# terminal & terminal multiplexer {{{
 tag "terminal" do
   match "xterm|[u]?rxvt"
   gravity :right
@@ -981,6 +988,7 @@ tag "browser" do
   gravity :left
 end
 
+# Design {{{
 # Gimp
 tag "Gimp" do
   match role: "gimp.*"
@@ -1005,6 +1013,7 @@ end
 tag "Inkscape" do
   match [:class, :instance] => "[Ii]nkscape"
 end
+# }}}
 
 tag "read" do
   match [:class, :instance] => "[Ee]vince|[Zz]athura"
@@ -1015,6 +1024,7 @@ tag "multimedia" do
   match :class  => "MPlayer"
   gravity :right66
 end
+# }}}
 # }}}
 
 # [ Views ] {{{
@@ -1350,6 +1360,7 @@ end
 sublet :nettraffic do
   interval 60
   style :nettraffic
+  iface_name  "ppp0"
 end
 
 sublet :netchart do
@@ -1367,7 +1378,7 @@ end
 sublet :arbi_net do
   interval 60
   style :arbi_net
-  interfaces ["eth0", "wlan0", "ppp0"]
+  interfaces ["ppp0", "wlan0"]
 end
 
 sublet :arbi_eth0_wlan0 do
@@ -1494,7 +1505,7 @@ sublet :weather_mod do
   forecast_length 3
   hide_current false
   current_label "Now"
-  temp_suffix ''
+  temp_suffix '°C'
   sep '/'
   day_color "#757575"
   temp_color "#B8B8B8"
