@@ -7,7 +7,7 @@
 " by Hamish Stuart Macpherson
 " Vimhelp: :help group-name :help syntax.txt
 " term={attr-list}
-"   - bold, underline, undercurl, reverse, inverse, italic, bold, none.
+"   - bold, underline, undercurl, reverse, inverse, italic, standout, NONE.
 
 " checks whether an earlier file has defined a syntax already. If so, exits with finish.
 if exists("b:current_syntax")
@@ -64,7 +64,7 @@ hi Ignore          guifg=#808080 guibg=bg
 hi IncSearch       guifg=#C4BE89 guibg=#000000
 
 hi Keyword         guifg=#F92672               gui=bold
-hi Label           guifg=#E6DB74               gui=none
+hi Label           guifg=#E6DB74               gui=NONE
 hi Macro           guifg=#C4BE89               gui=italic
 
 hi MatchParen      guifg=#000000 guibg=#FD971F gui=bold
@@ -100,7 +100,7 @@ hi Title           guifg=#ef5939
 hi Todo            guifg=#127AFF guibg=bg      gui=bold
 
 hi Typedef         guifg=#66D9EF
-hi Type            guifg=#66D9EF               gui=none
+hi Type            guifg=#66D9EF               gui=NONE
 hi Underlined      guifg=#808080               gui=underline
 
 hi VertSplit       guifg=#808080 guibg=#080808 gui=bold
@@ -123,7 +123,7 @@ else
     hi CursorColumn                  guibg=#293739
     hi LineNr          guifg=#BCBCBC guibg=#232526
     hi NonText         guifg=#BCBCBC guibg=#232526
-    hi ColorColumn     guifg=none    guibg=#282828
+    hi ColorColumn     guifg=NONE    guibg=#282828
 
     if has("spell")
         hi SpellBad    guisp=#FF0000 gui=undercurl
@@ -152,20 +152,20 @@ if &t_Co > 255
     hi Define          ctermfg=081
     hi Delimiter       ctermfg=241
 
-    hi DiffAdd         ctermfg=none ctermbg=022 cterm=none
-    hi DiffDelete      ctermfg=none ctermbg=088 cterm=none
-    hi DiffChange      ctermfg=none ctermbg=233 cterm=bold
-    hi DiffText        ctermfg=none ctermbg=053 cterm=none
+    hi DiffAdd         ctermfg=NONE ctermbg=022 cterm=NONE
+    hi DiffDelete      ctermfg=NONE ctermbg=088 cterm=NONE
+    hi DiffChange      ctermfg=NONE ctermbg=233 cterm=bold
+    hi DiffText        ctermfg=NONE ctermbg=053 cterm=NONE
 
-    hi Directory       ctermfg=118   ctermbg=none    cterm=bold
-    hi Error           ctermfg=none  ctermbg=160     cterm=underline
+    hi Directory       ctermfg=118   ctermbg=NONE    cterm=bold
+    hi Error           ctermfg=NONE  ctermbg=160     cterm=underline
     hi ErrorMsg        ctermfg=196   ctermbg=232     cterm=bold
     hi Exception       ctermfg=118                   cterm=bold
     hi Float           ctermfg=135
 
     " fold
-    hi Folded          ctermfg=045   ctermbg=234 cterm=none
-    hi FoldColumn      ctermfg=148   ctermbg=016 cterm=none
+    hi Folded          ctermfg=045   ctermbg=234 cterm=NONE
+    hi FoldColumn      ctermfg=148   ctermbg=016 cterm=NONE
     " hi vimFold         ctermfg=081   ctermbg=016 cterm=bold
 
     hi Function        ctermfg=118               cterm=bold
@@ -173,8 +173,8 @@ if &t_Co > 255
     hi Ignore          ctermfg=244 ctermbg=232
 
     hi Keyword         ctermfg=161               cterm=bold
-    hi Label           ctermfg=229               cterm=none
-    hi Macro           ctermfg=193               cterm=none
+    hi Label           ctermfg=229               cterm=NONE
+    hi Macro           ctermfg=193               cterm=NONE
 
     " brackets match color
     hi MatchParen      ctermfg=233  ctermbg=046 cterm=bold
@@ -183,11 +183,11 @@ if &t_Co > 255
     hi Operator        ctermfg=161  ctermbg=232 cterm=bold
 
     " Pop complete menu   154 brightgreen  198 pink  038 light blue
-    hi Pmenu           ctermfg=016  ctermbg=255  cterm=none
-    hi PmenuSel        ctermfg=016  ctermbg=075  cterm=none
-    hi PmenuSbar       ctermfg=none ctermbg=238  cterm=none
+    hi Pmenu           ctermfg=016  ctermbg=255  cterm=NONE
+    hi PmenuSel        ctermfg=016  ctermbg=075  cterm=NONE
+    hi PmenuSbar       ctermfg=NONE ctermbg=238  cterm=NONE
     " scroll forward small bar
-    hi PmenuThumb      ctermfg=none ctermbg=111  cterm=none
+    hi PmenuThumb      ctermfg=NONE ctermbg=111  cterm=NONE
 
     hi PreCondit       ctermfg=118               cterm=bold
     hi PreProc         ctermfg=118
@@ -195,11 +195,11 @@ if &t_Co > 255
     hi Repeat          ctermfg=161               cterm=bold
 
     " search
-    hi Search          ctermfg=233 ctermbg=159   cterm=none
-    hi IncSearch       ctermfg=233 ctermbg=070	 cterm=none
+    hi Search          ctermfg=233 ctermbg=159   cterm=NONE
+    hi IncSearch       ctermfg=233 ctermbg=070	 cterm=NONE
 
     " marks column
-    hi SignColumn      ctermfg=161 ctermbg=none
+    hi SignColumn      ctermfg=161 ctermbg=NONE
     hi SpecialChar     ctermfg=161               cterm=bold
     hi SpecialComment  ctermfg=245               cterm=bold
     hi Special         ctermfg=081  ctermbg=232  cterm=bold
@@ -211,21 +211,21 @@ if &t_Co > 255
     hi StatusLineNC    ctermfg=016 ctermbg=076
 
     " add for vimrc statusline
-    hi StatusNormal       ctermfg=248 ctermbg=236 cterm=none
-    hi StatusStop         ctermfg=248 ctermbg=236 cterm=none
+    hi StatusNormal       ctermfg=248 ctermbg=236 cterm=NONE
+    hi StatusStop         ctermfg=248 ctermbg=236 cterm=NONE
     hi StatusSeparator    ctermfg=064 ctermbg=016 cterm=bold
     hi StatusBufferNumber ctermfg=250 ctermbg=236 cterm=bold
     hi StatusReadOnly     ctermfg=196 ctermbg=236 cterm=bold
     hi StatusModFlag      ctermfg=196 ctermbg=236 cterm=bold
-    hi StatusModFlag2     ctermfg=046 ctermbg=236 cterm=none
-    hi StatusList         ctermfg=106 ctermbg=236 cterm=none
+    hi StatusModFlag2     ctermfg=046 ctermbg=236 cterm=NONE
+    hi StatusList         ctermfg=106 ctermbg=236 cterm=NONE
     hi StatusChar         ctermfg=045 ctermbg=236 cterm=bold
     hi StatusFileType     ctermfg=204 ctermbg=236 cterm=bold
     hi StatusProgramInfo  ctermfg=076 ctermbg=236 cterm=bold
     hi StatusFugitive     ctermfg=190 ctermbg=236 cterm=bold
-    hi StatusHELP         ctermfg=249 ctermbg=236 cterm=none
-    hi StatusFilePath     ctermfg=248 ctermbg=236 cterm=none
-    hi StatusLineNumber   ctermfg=104 ctermbg=236 cterm=none
+    hi StatusHELP         ctermfg=249 ctermbg=236 cterm=NONE
+    hi StatusFilePath     ctermfg=248 ctermbg=236 cterm=NONE
+    hi StatusLineNumber   ctermfg=104 ctermbg=236 cterm=NONE
     hi StatusPercent      ctermfg=202 ctermbg=236 cterm=bold
 
     hi StorageClass    ctermfg=208
@@ -239,30 +239,30 @@ if &t_Co > 255
     hi Underlined      ctermfg=033                cterm=underline
 
     hi VertSplit       ctermfg=236 ctermbg=232   cterm=bold
-    hi VisualNOS       ctermfg=none ctermbg=238  cterm=none
-    hi Visual          ctermfg=none ctermbg=024  cterm=bold
+    hi VisualNOS       ctermfg=NONE ctermbg=238  cterm=NONE
+    hi Visual          ctermfg=NONE ctermbg=024  cterm=bold
     hi WarningMsg      ctermfg=197 ctermbg=232   cterm=bold
     hi WildMenu        ctermfg=045 ctermbg=016   cterm=bold
 
     hi Normal          ctermfg=252 ctermbg=232
-    hi Comment         ctermfg=240               cterm=none
+    hi Comment         ctermfg=240               cterm=NONE
     " (current line/column) cursor line & column
-    hi CursorLine      ctermfg=none ctermbg=234   cterm=none
-    hi CursorColumn    ctermfg=none ctermbg=233   cterm=none
+    hi CursorLine      ctermfg=NONE ctermbg=234   cterm=NONE
+    hi CursorColumn    ctermfg=NONE ctermbg=233   cterm=NONE
 
     " line number
     hi LineNr          ctermfg=235 ctermbg=232
 
     " listchars
-    hi NonText         ctermfg=087 ctermbg=none cterm=none
-    hi SpecialKey      ctermfg=051 ctermbg=none cterm=none
+    hi NonText         ctermfg=087 ctermbg=NONE cterm=NONE
+    hi SpecialKey      ctermfg=051 ctermbg=NONE cterm=NONE
 
     " tabs
-    hi TabLine         ctermfg=244 ctermbg=233   cterm=none
-    hi TabLineSel      ctermfg=233 ctermbg=118   cterm=none
-    hi TabLineFill     ctermfg=233 ctermbg=233   cterm=none
+    hi TabLine         ctermfg=244 ctermbg=233   cterm=NONE
+    hi TabLineSel      ctermfg=233 ctermbg=118   cterm=NONE
+    hi TabLineFill     ctermfg=233 ctermbg=233   cterm=NONE
 
-    hi ColorColumn     ctermfg=none ctermbg=233  cterm=none
+    hi ColorColumn     ctermfg=NONE ctermbg=233  cterm=NONE
 
     hi link htmlLink         Underlined
     hi link pythonFunction   Identifier
@@ -272,8 +272,8 @@ if &t_Co > 255
     " word should start with a capital.
     hi SpellCap       ctermfg=016  ctermbg=125 cterm=undercurl
     " word is recognized as one that is used in another region.
-    hi SpellLocal     ctermfg=none ctermbg=117
+    hi SpellLocal     ctermfg=NONE ctermbg=117
     " word is hardly ever used.
-    hi SpellRare      ctermfg=none ctermbg=105
+    hi SpellRare      ctermfg=NONE ctermbg=105
 
 end
