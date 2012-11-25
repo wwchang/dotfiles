@@ -953,7 +953,7 @@ end
 
 # Modes {{{
 tag "stick" do
-  float true
+  match "MPlayer"
   stick true
 end
 
