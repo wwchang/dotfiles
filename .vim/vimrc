@@ -1075,8 +1075,8 @@ endif
     " }}}
 
     " [ translate ] {{{
-    nnoremap <silent> <Leader>d :!sdcv <cword><CR>
-    vnoremap <silent> <Leader>d y:!sdcv <C-R>"<CR>
+    nnoremap <silent> <Leader>d :!sdcv -n <cword> \| less<CR>
+    vnoremap <silent> <Leader>d y:!sdcv -n <C-R>" \| less<CR>
     " nnoremap <silent> <Leader>d :!curl dict://dict.org/d:<cword><CR>
     " vnoremap <silent> <Leader>d :!curl dict://dict.org/d:<C-R>"<CR>
     " }}}
