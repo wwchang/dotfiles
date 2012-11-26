@@ -55,4 +55,17 @@ feh -q --bg-fill ~/Git/dotfiles/backgrounds/old_computer.jpg
 # "exec ck-launch-session awesome" can solve your problems. For this to work,
 # must have the "consolekit" package installed.
 
+# start D-Bus before Fcitx
+# eval "$(dbus-launch --sh-syntax --exit-with-session)"
+
+# XIM: fcitx {{{
+XIM=fcitx
+XIM_PROGRAM=fcitx
+XMODIFIERS="@im=fcitx"
+GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+
+fcitx &
+# }}}
+
 # vim: ft=sh
