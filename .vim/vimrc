@@ -423,7 +423,7 @@ if has('gui') && has('gui_running')
     set toolbariconsize=small
         " use command :set guifont=*  to select font, then use :set guifont?
     set guifont=Monaco:h9:cANSI
-    set lines=100 columns=165
+    " set lines=100 columns=165
     set antialias
 
     set t_Co=256
@@ -1105,7 +1105,6 @@ endif
 " }}}
 
 " [[ Misc ]] {{{
-
     " [ abbreviations ] {{{
     " Abbreviations are used in Insert, Replace and Command-line mode.
     " three types of abbreviations: full-id, end-id, non-id.
@@ -1113,23 +1112,8 @@ endif
     source ~/.vim/misc/abbreviations.vim
     " }}}
 
-    " [ large file ]
-
-    " for Awesome Mod4-d sdcv ( OR replace viw with "vaw" )
-
-    " for binary files (such as exe, bin, etc)
-        " vim -b : edit binary using xxd-format!
-        "augroup Binary
-          "au!
-          "au BufReadPre  *.bin let &bin=1
-          "au BufReadPost *.bin if &bin | %!xxd
-          "au BufReadPost *.bin set ft=xxd | endif
-          "au BufWritePre *.bin if &bin | %!xxd -r
-          "au BufWritePre *.bin endif
-          "au BufWritePost *.bin if &bin | %!xxd
-          "au BufWritePost *.bin set nomod | endif
-        "augroup END
-
+    " large file {{{
+    " }}}
 
 " }}}
 
@@ -2698,6 +2682,8 @@ syntax on
             let g:tagbar_indent = 1 " indent for compact view.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
+            " show visibility symbols (public/protected/private) to the left of the tag
+            let g:tagbar_show_visibility = 1
 
             " Ruby {{{
             let g:tagbar_type_ruby = {
@@ -3807,6 +3793,7 @@ syntax on
                             \ g:SingleCompile_common_run_command
                             \ )
 
+                call SingleCompile#ChooseCompiler('lisp', 'clisp')
                 call SingleCompile#ChooseCompiler('python', 'python3')
                 call SingleCompile#ChooseCompiler('sh', 'bash')
                 call SingleCompile#ChooseCompiler('bash', 'bash')
