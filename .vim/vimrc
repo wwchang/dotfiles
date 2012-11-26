@@ -2210,10 +2210,14 @@ syntax on
                         \   'start': '^\s*{{{html$', 'end': '^\s*}}}', },
                         \ { 'filetype': 'css',
                         \   'start': '^\s*{{{css$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'lisp',
+                        \   'start': '^\s*{{{lisp$', 'end': '^\s*}}}', },
                         \ { 'filetype': 'tex',
                         \   'start': '^\s*{{{tex$', 'end': '^\s*}}}', },
                         \ ]
             let g:neocomplcache_context_filetype_lists['markdown'] = [
+                        \ { 'filetype':   'lisp',
+                        \   'start': '^\s*```\s*lisp$', 'end': '^\s*```', },
                         \ { 'filetype':   'ruby',
                         \   'start': '^\s*```\s*ruby$', 'end': '^\s*```', },
                         \ { 'filetype':   'python',
@@ -2226,6 +2230,10 @@ syntax on
                         \   'start': '^\s*```\s*javascript$', 'end': '^\s*```', },
                         \ { 'filetype':   'html',
                         \   'start': '^\s*```\s*html$', 'end': '^\s*```', },
+                        \ ]
+            let g:neocomplcache_context_filetype_lists['snippet'] = [
+                        \ { 'filetype':   'vim',
+                        \   'start': '`\s*', 'end': '\s*`', },
                         \ ]
             " }}}
             " text mode filetypes {{{
