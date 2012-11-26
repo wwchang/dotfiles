@@ -2535,8 +2535,8 @@ syntax on
                 " \ . &filetype<CR>
 
             " for snippets_complete marker.
-            if has('conceal') && !exists('g:loaded_neosnippet')
-                set conceallevel=2 concealcursor=i
+            if has('conceal')
+                set conceallevel=1 concealcursor+=i
             endif
         " }}}
 
