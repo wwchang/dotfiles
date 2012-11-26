@@ -16,15 +16,12 @@
 # touch tmp/.gitignore
 # =============================
 
-# Vim {{{
+# backup {{{
 *~
-.*.sw[a-z]
-*.un~
-.netrwhist
+*.bak
 # }}}
 
 # Emacs {{{
-*~
 \#*\#
 /.emacs.desktop
 /.emacs.desktop.lock
@@ -35,6 +32,12 @@ tramp
 # Org-mode
 .org-id-locations
 *_archive
+# }}}
+
+# Vim {{{
+.*.sw[a-z]
+*.un~
+.netrwhist
 # }}}
 
 # Log {{{
@@ -50,6 +53,11 @@ tags
 TAGS
 !TAGS/
 !tags/
+# gtags
+GPATH
+GRTAGS
+GSYMS
+GTAGS
 # }}}
 
 # C {{{
