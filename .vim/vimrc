@@ -423,7 +423,7 @@ if has('gui') && has('gui_running')
     set toolbariconsize=small
         " use command :set guifont=*  to select font, then use :set guifont?
     set guifont=Monaco:h9:cANSI
-    set lines=100 columns=165
+    " set lines=100 columns=165
     set antialias
 
     set t_Co=256
@@ -662,8 +662,8 @@ endif
 
     " [ conceal ] {{{
     if has('conceal')
-        set conceallevel=2 " 0:, 1:, 2:completely hidden, 3
-        set concealcursor=nc " n: normal v: visual i: insert c: command line editing
+        set conceallevel=1 " 0: show, 1:show conceal char, 2:, 3:completely hidden
+        set concealcursor=nc " conceal in cursor line in which modes.
     endif
     " }}}
 
@@ -1075,8 +1075,8 @@ endif
     " }}}
 
     " [ translate ] {{{
-    nnoremap <silent> <Leader>d :!sdcv <cword><CR>
-    vnoremap <silent> <Leader>d y:!sdcv <C-R>"<CR>
+    nnoremap <silent> <Leader>d :!sdcv -n <cword> \| less<CR>
+    vnoremap <silent> <Leader>d y:!sdcv -n <C-R>" \| less<CR>
     " nnoremap <silent> <Leader>d :!curl dict://dict.org/d:<cword><CR>
     " vnoremap <silent> <Leader>d :!curl dict://dict.org/d:<C-R>"<CR>
     " }}}
@@ -1105,7 +1105,6 @@ endif
 " }}}
 
 " [[ Misc ]] {{{
-
     " [ abbreviations ] {{{
     " Abbreviations are used in Insert, Replace and Command-line mode.
     " three types of abbreviations: full-id, end-id, non-id.
@@ -1113,24 +1112,22 @@ endif
     source ~/.vim/misc/abbreviations.vim
     " }}}
 
-    " [ large file ]
+    " large file {{{
+    " }}}
 
-    " for Awesome Mod4-d sdcv ( OR replace viw with "vaw" )
-
-    " for binary files (such as exe, bin, etc)
-        " vim -b : edit binary using xxd-format!
-        "augroup Binary
-          "au!
-          "au BufReadPre  *.bin let &bin=1
-          "au BufReadPost *.bin if &bin | %!xxd
-          "au BufReadPost *.bin set ft=xxd | endif
-          "au BufWritePre *.bin if &bin | %!xxd -r
-          "au BufWritePre *.bin endif
-          "au BufWritePost *.bin if &bin | %!xxd
-          "au BufWritePost *.bin set nomod | endif
-        "augroup END
-
-
+    " binary files (such as exe, bin, etc) {{{
+    " vim -b : edit binary using xxd-format!
+    augroup Binary
+        au!
+        au BufReadPre  *.bin let &bin=1
+        au BufReadPost *.bin if &bin | %!xxd
+        au BufReadPost *.bin set ft=xxd | endif
+        au BufWritePre *.bin if &bin | %!xxd -r
+        au BufWritePre *.bin endif
+        au BufWritePost *.bin if &bin | %!xxd
+        au BufWritePost *.bin set nomod | endif
+    augroup END
+    " }}}
 " }}}
 
 " [ local/project specific vimrc ] {{{
@@ -1248,6 +1245,7 @@ endif
         " NeoBundle 'xolox/vim-shell'
         NeoBundle 'Lokaltog/vim-powerline', {'rev': 'develop'}
         NeoBundle 'tyru/current-func-info.vim'
+        NeoBundle 'vim-scripts/locator'
         " quickfix, marks, signatures, status
         NeoBundle 'tomtom/quickfixsigns_vim', {
                     \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
@@ -2225,10 +2223,14 @@ syntax on
                         \   'start': '^\s*{{{html$', 'end': '^\s*}}}', },
                         \ { 'filetype': 'css',
                         \   'start': '^\s*{{{css$', 'end': '^\s*}}}', },
+                        \ { 'filetype': 'lisp',
+                        \   'start': '^\s*{{{lisp$', 'end': '^\s*}}}', },
                         \ { 'filetype': 'tex',
                         \   'start': '^\s*{{{tex$', 'end': '^\s*}}}', },
                         \ ]
             let g:neocomplcache_context_filetype_lists['markdown'] = [
+                        \ { 'filetype':   'lisp',
+                        \   'start': '^\s*```\s*lisp$', 'end': '^\s*```', },
                         \ { 'filetype':   'ruby',
                         \   'start': '^\s*```\s*ruby$', 'end': '^\s*```', },
                         \ { 'filetype':   'python',
@@ -2241,6 +2243,10 @@ syntax on
                         \   'start': '^\s*```\s*javascript$', 'end': '^\s*```', },
                         \ { 'filetype':   'html',
                         \   'start': '^\s*```\s*html$', 'end': '^\s*```', },
+                        \ ]
+            let g:neocomplcache_context_filetype_lists['snippet'] = [
+                        \ { 'filetype':   'vim',
+                        \   'start': '`\s*', 'end': '\s*`', },
                         \ ]
             " }}}
             " text mode filetypes {{{
@@ -2542,8 +2548,8 @@ syntax on
                 " \ . &filetype<CR>
 
             " for snippets_complete marker.
-            if has('conceal') && !exists('g:loaded_neosnippet')
-                set conceallevel=2 concealcursor=i
+            if has('conceal')
+                set conceallevel=1 concealcursor+=i
             endif
         " }}}
 
@@ -2697,6 +2703,8 @@ syntax on
             let g:tagbar_indent = 1 " indent for compact view.
             let g:tagbar_updateonsave_maxlines = 10000 " update when file has fewer
             " let g:tagbar_systemenc = "utf-8" " value of 'encoding'.
+            " show visibility symbols (public/protected/private) to the left of the tag
+            let g:tagbar_show_visibility = 1
 
             " Ruby {{{
             let g:tagbar_type_ruby = {
@@ -3052,7 +3060,21 @@ syntax on
         " }}}
     " }}}
 
-    " [ prototype ] {{{
+    " [ prototype, locator, current func info ] {{{
+        " current-func-info
+
+        " locator {{{
+            " Usage:
+            "   - gl    -- 'get location'
+            let g:locator_disable_mappings = 0
+            let g:locator_hl_fold = "Folded"
+            let g:locator_hl_class = "NonText"
+            let g:locator_hl_func_name = "Directory"
+            let g:locator_hl_func_the_rest = "Normal"
+            let g:locator_hl_section = "ModeMsg"
+        " }}}
+
+        " FIXME plugin file in assistant/.vim , you need to create your own mapping
         " assistant {{{ show the prototype of function
             " Usage:
             "   <C-h>
@@ -3792,6 +3814,7 @@ syntax on
                             \ g:SingleCompile_common_run_command
                             \ )
 
+                call SingleCompile#ChooseCompiler('lisp', 'clisp')
                 call SingleCompile#ChooseCompiler('python', 'python3')
                 call SingleCompile#ChooseCompiler('sh', 'bash')
                 call SingleCompile#ChooseCompiler('bash', 'bash')
@@ -6073,6 +6096,8 @@ syntax on
             let g:hgrevNoRepoChar = '-'
         " }}}
         " current-func-info
+        " locator {{{
+        " }}}
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
