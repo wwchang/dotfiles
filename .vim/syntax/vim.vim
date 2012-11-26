@@ -1,8 +1,8 @@
 " Vim syntax file
 " Language:	Vim 7.3 script
-" Maintainer:	Dr. Charles E. Campbell, Jr. <NdrOchipS@PcampbellAfamily.Mbiz>
-" Last Change:	Mar 26, 2012
-" Version:	7.3-15	ASTRO-ONLY
+" Maintainer:	Charles E. Campbell, Ph.D. <NdrOchipS@PcampbellAfamily.Mbiz>
+" Last Change:	Nov 13, 2012
+" Version:	7.3-20	ASTRO-ONLY
 " Automatically generated keyword lists: {{{1
 
 " Quit when a syntax file was already loaded {{{2
@@ -14,7 +14,7 @@ set cpo&vim
 
 " vimTodo: contains common special-notices for comments {{{2
 " Use the vimCommentGroup cluster to add your own.
-syn keyword vimTodo contained	COMBAK FIXME TODO	XXX NOTE FEATURE
+syn keyword vimTodo contained	COMBAK	FIXME	TODO	XXX
 syn cluster vimCommentGroup	contains=vimTodo,@Spell
 
 " regular vim commands {{{2
@@ -149,11 +149,12 @@ syn keyword vimAugroupKey contained	aug[roup]
 
 " Operators: {{{2
 " =========
+" COMBAK: vimOperParen used to have "oneline"
 syn cluster	vimOperGroup	contains=vimFunc,vimFuncVar,vimOper,vimOperParen,vimNumber,vimString,vimRegister,vimContinue
 syn match	vimOper	"\(==\|!=\|>=\|<=\|=\~\|!\~\|>\|<\|=\)[?#]\{0,2}"	skipwhite nextgroup=vimString,vimSpecFile
 syn match	vimOper	"||\|&&\|[-+.]"	skipwhite nextgroup=vimString,vimSpecFile
-syn region	vimOperParen 	oneline matchgroup=vimParenSep	start="(" end=")" contains=@vimOperGroup
-syn region	vimOperParen	oneline matchgroup=vimSep	start="{" end="}" contains=@vimOperGroup nextgroup=vimVar,vimFuncVar
+syn region	vimOperParen 	matchgroup=vimParenSep	start="(" end=")" contains=@vimOperGroup
+syn region	vimOperParen	matchgroup=vimSep	start="{" end="}" contains=@vimOperGroup nextgroup=vimVar,vimFuncVar
 if !exists("g:vimsyn_noerror") && !exists("g:vimsyn_noopererror")
  syn match	vimOperError	")"
 endif
@@ -328,7 +329,7 @@ syn match	vimMapLhs	contained	"\S\+"			contains=vimNotation,vimCtrlChar skipwhit
 syn match	vimMapBang	contained	"!"			skipwhite nextgroup=vimMapMod,vimMapLhs
 syn match	vimMapMod	contained	"\c<\(buffer\|expr\|\(local\)\=leader\|plug\|script\|sid\|unique\|silent\)\+>" contains=vimMapModKey,vimMapModErr skipwhite nextgroup=vimMapMod,vimMapLhs
 syn match	vimMapRhs	contained	".*" contains=vimNotation,vimCtrlChar	skipnl nextgroup=vimMapRhsExtend
-syn match	vimMapRhsExtend	contained	"^\s*\\.*$"			contains=vimContinue
+syn match	vimMapRhsExtend	contained	"^\s*\\.*$"			contains=vimNotation,vimCtrlChar,vimContinue	skipnl nextgroup=vimMapRhsExtend
 syn case ignore
 syn keyword	vimMapModKey	contained	buffer	expr	leader	localleader	plug	script	sid	silent	unique
 syn case match
@@ -360,8 +361,8 @@ syn case match
 " User Function Highlighting {{{2
 " (following Gautam Iyer's suggestion)
 " ==========================
-syn match vimFunc		"\%(\%([sSgGbBwWtTlL]:\|<[sS][iI][dD]>\)\=\%([a-zA-Z0-9_.]\+\.\)*\I[a-zA-Z0-9_.]*\)\ze\s*("		contains=vimFuncName,vimUserFunc,vimExecute
-syn match vimUserFunc contained	"\%(\%([sSgGbBwWtTlL]:\|<[sS][iI][dD]>\)\=\%([a-zA-Z0-9_.]\+\.\)*\I[a-zA-Z0-9_.]*\)\|\<\u[a-zA-Z0-9.]*\>\|\<if\>"	contains=vimNotation
+syn match vimFunc		"\%(\%([sSgGbBwWtTlL]:\|<[sS][iI][dD]>\)\=\%([a-zA-Z0-9_]\+\.\)*\I[a-zA-Z0-9_.]*\)\ze\s*("		contains=vimFuncName,vimUserFunc,vimExecute
+syn match vimUserFunc contained	"\%(\%([sSgGbBwWtTlL]:\|<[sS][iI][dD]>\)\=\%([a-zA-Z0-9_]\+\.\)*\I[a-zA-Z0-9_.]*\)\|\<\u[a-zA-Z0-9.]*\>\|\<if\>"	contains=vimNotation
 syn match vimNotFunc	"\<if\>\|\<el\%[seif]\>\|\<return\>\|\<while\>"
 
 " Errors And Warnings: {{{2
@@ -429,7 +430,7 @@ syn keyword	vimSynType	contained	match	skipwhite nextgroup=vimSynMatchRegion
 syn region	vimSynMatchRegion	contained keepend	matchgroup=vimGroupName start="\k\+" matchgroup=vimSep end="|\|$" contains=@vimSynMtchGroup
 syn match	vimSynMtchOpt	contained	"\<\(conceal\|transparent\|contained\|excludenl\|skipempty\|skipwhite\|display\|extend\|skipnl\|fold\)\>"
 if has("conceal")
- syn match	vimSynMtchOpt	contained	"\<cchar="	nextgroup=VimSynMtchCchar
+ syn match	vimSynMtchOpt	contained	"\<cchar="	nextgroup=vimSynMtchCchar
  syn match	vimSynMtchCchar	contained	"\S"
 endif
 syn cluster vimFuncBodyList add=vimSynMtchGroup
@@ -510,17 +511,18 @@ endif
 syn match	vimHiTerm	contained	"\cterm="he=e-1		nextgroup=vimHiAttribList
 syn match	vimHiStartStop	contained	"\c\(start\|stop\)="he=e-1	nextgroup=vimHiTermcap,vimOption
 syn match	vimHiCTerm	contained	"\ccterm="he=e-1		nextgroup=vimHiAttribList
-syn match	vimHiCtermFgBg	contained	"\ccterm[fb]g="he=e-1	nextgroup=vimNumber,vimHiCtermColor,vimFgBgAttrib,vimHiCtermError
+syn match	vimHiCtermFgBg	contained	"\ccterm[fb]g="he=e-1	nextgroup=vimHiNmbr,vimHiCtermColor,vimFgBgAttrib,vimHiCtermError
 syn match	vimHiGui	contained	"\cgui="he=e-1		nextgroup=vimHiAttribList
 syn match	vimHiGuiFont	contained	"\cfont="he=e-1		nextgroup=vimHiFontname
 syn match	vimHiGuiFgBg	contained	"\cgui\%([fb]g\|sp\)="he=e-1	nextgroup=vimHiGroup,vimHiGuiFontname,vimHiGuiRgb,vimFgBgAttrib
 syn match	vimHiTermcap	contained	"\S\+"		contains=vimNotation
+syn match	vimHiNmbr	contained	'\d\+'
 
 " Highlight: clear {{{2
 syn keyword	vimHiClear	contained	clear	nextgroup=vimHiGroup
 
 " Highlight: link {{{2
-syn region	vimHiLink	contained oneline matchgroup=vimCommand start="\<\(def\%[ault]\s\+\)\=link\>\|\<def\>" end="$"	contains=vimHiGroup,vimGroup,vimHLGroup,vimNotation
+syn region	vimHiLink	contained oneline matchgroup=vimCommand start="\(\<hi\%[ghlight]\s\+\)\@<=\(\(def\%[ault]\s\+\)\=link\>\|\<def\>\)" end="$"	contains=vimHiGroup,vimGroup,vimHLGroup,vimNotation
 syn cluster vimFuncBodyList add=vimHiLink
 
 " Control Characters {{{2
@@ -562,7 +564,12 @@ endif
 " [-- lua --] {{{3
 let s:luapath= fnameescape(expand("<sfile>:p:h")."/lua.vim")
 if !filereadable(s:luapath)
- let s:luapath= fnameescape(globpath(&rtp,"syntax/lua.vim"))
+ for s:luapath in split(globpath(&rtp,"syntax/lua.vim"),"\n")
+  if filereadable(fnameescape(s:luapath))
+   let s:luapath= fnameescape(s:luapath)
+   break
+  endif
+ endfor
 endif
 if (g:vimsyn_embed =~ 'l' && has("lua")) && filereadable(s:luapath)
  unlet! b:current_syntax
@@ -584,7 +591,12 @@ unlet s:luapath
 " [-- perl --] {{{3
 let s:perlpath= fnameescape(expand("<sfile>:p:h")."/perl.vim")
 if !filereadable(s:perlpath)
- let s:perlpath= fnameescape(globpath(&rtp,"syntax/perl.vim"))
+ for s:perlpath in split(globpath(&rtp,"syntax/perl.vim"),"\n")
+  if filereadable(fnameescape(s:perlpath))
+   let s:perlpath= fnameescape(s:perlpath)
+   break
+  endif
+ endfor
 endif
 if (g:vimsyn_embed =~ 'p' && has("perl")) && filereadable(s:perlpath)
  unlet! b:current_syntax
@@ -606,7 +618,12 @@ unlet s:perlpath
 " [-- ruby --] {{{3
 let s:rubypath= fnameescape(expand("<sfile>:p:h")."/ruby.vim")
 if !filereadable(s:rubypath)
- let s:rubypath= fnameescape(globpath(&rtp,"syntax/ruby.vim"))
+ for s:rubypath in split(globpath(&rtp,"syntax/ruby.vim"),"\n")
+  if filereadable(fnameescape(s:rubypath))
+   let s:rubypath= fnameescape(s:rubypath)
+   break
+  endif
+ endfor
 endif
 if (g:vimsyn_embed =~ 'r' && has("ruby")) && filereadable(s:rubypath)
  unlet! b:current_syntax
@@ -627,9 +644,14 @@ unlet s:rubypath
 " [-- python --] {{{3
 let s:pythonpath= fnameescape(expand("<sfile>:p:h")."/python.vim")
 if !filereadable(s:pythonpath)
- let s:pythonpath= fnameescape(globpath(&rtp,"syntax/python.vim"))
+ for s:pythonpath in split(globpath(&rtp,"syntax/python.vim"),"\n")
+  if filereadable(fnameescape(s:pythonpath))
+   let s:pythonpath= fnameescape(s:pythonpath)
+   break
+  endif
+ endfor
 endif
-if (g:vimsyn_embed =~ 'P' && has("python")) && filereadable(s:pythonpath)
+if g:vimsyn_embed =~ 'P' && (has("python") || has("python3")) && filereadable(s:pythonpath)
  unlet! b:current_syntax
  exe "syn include @vimPythonScript ".s:pythonpath
  if exists("g:vimsyn_folding") && g:vimsyn_folding =~ 'P'
@@ -656,7 +678,12 @@ endif
 if s:trytcl
  let s:tclpath= fnameescape(expand("<sfile>:p:h")."/tcl.vim")
  if !filereadable(s:tclpath)
-  let s:tclpath= fnameescape(globpath(&rtp,"syntax/tcl.vim"))
+  for s:tclpath in split(globpath(&rtp,"syntax/tcl.vim"),"\n")
+   if filereadable(fnameescape(s:tclpath))
+    let s:tclpath= fnameescape(s:tclpath)
+    break
+   endif
+  endfor
  endif
  if (g:vimsyn_embed =~ 't' && has("tcl")) && filereadable(s:tclpath)
   unlet! b:current_syntax
@@ -683,7 +710,12 @@ unlet s:trytcl
 " [-- mzscheme --] {{{3
 let s:mzschemepath= fnameescape(expand("<sfile>:p:h")."/scheme.vim")
 if !filereadable(s:mzschemepath)
- let s:mzschemepath= fnameescape(globpath(&rtp,"syntax/scheme.vim"))
+ for s:mzschemepath in split(globpath(&rtp,"syntax/mzscheme.vim"),"\n")
+  if filereadable(fnameescape(s:mzschemepath))
+   let s:mzschemepath= fnameescape(s:mzschemepath)
+   break
+  endif
+ endfor
 endif
 if (g:vimsyn_embed =~ 'm' && has("mzscheme")) && filereadable(s:mzschemepath)
  unlet! b:current_syntax
@@ -879,6 +911,7 @@ hi def link vimUserCmdError	Error
 hi def link vimUserFunc	Normal
 hi def link vimVar	Identifier
 hi def link vimWarn	WarningMsg
+hi def link vimHiNmbr	Number
 
 " Current Syntax Variable: {{{2
 let b:current_syntax = "vim"
