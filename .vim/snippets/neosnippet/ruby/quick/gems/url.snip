@@ -1,0 +1,9 @@
+snippet     url.encode quick
+abbr        require 'erb' puts ERB::Util.url_encode 'URL'
+alias       urlencode
+options     head
+    # coding: utf-8
+    require 'erb'
+    puts ERB::Util.url_encode '${1:TARGET}'
+
+# vim:et:ts=2:sw=2:fdm=marker:fmr={{{,}}}

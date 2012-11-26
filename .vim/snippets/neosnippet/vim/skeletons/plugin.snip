@@ -1,3 +1,4 @@
+# header {{{
 snippet     plugin.skeleton.header
 abbr        File: Last Change: Author: License:
 options     head
@@ -8,19 +9,23 @@ options     head
     " License:      ${3:#:what license ?}
 
     ${0}
+# }}}
 
+# cpoptions {{{
 snippet     plugin.skeleton.cpoptions
 abbr        let s:save_cpo = &cpo .. set cpo&vim ...
-alias       save_cpo
+alias       save_cpo,cpoptions.store
 options     head
     let s:save_cpo = &cpo
     set cpo&vim
 
-    ${1:code}
+    ${1:TARGET:code}
 
     let &cpo = s:save_cpo
     unlet s:save_cpo
+# }}}
 
+# loaded {{{
 snippet     plugin.skeleton.loaded
 abbr        if exists("g:loaded_plugin") > finish > endif
 options     head
@@ -30,41 +35,9 @@ options     head
     let $1 = 1
 
     ${0}
+# }}}
 
-snippet     plugin.skeleton.store-cpoptions
-abbr        store cpoptions option value
-alias       cpoptions.store
-options     head
-    let s:save_cpo = &cpo
-    set cpo&vim
-
-    ${1:#:statements}
-
-    let &cpo = s:save_cpo
-
-snippet     plugin.skeleton.hasmapto
-abbr        if !hasmapto() .. endif
-alias       if.hasmapto
-options     head
-    if !hasmapto('${1:<Plug>Func}')
-        map <unique> ${2:<Leader>a} $1
-    endif
-
-# unload functions when source plugin again
-snippet     plugin.skeleton.unload-function
-abbr        unload function: if exists() > delfun Func
-alias       function.unload
-options     head
-    " This is the ${1:???} package
-    if exists("$1_loaded")
-        delfun ${2:#:first function name}
-        delfun ${3:#:second function name}
-    endif
-
-    ${4:functions}
-
-    let $1_loaded = 1
-
+# mappings {{{
 snippet     plugin.skeleton.noremap modes [n/v/i]
 abbr        [n/v/i]noremap <SID>Func statement
 alias       noremap.modes
@@ -88,23 +61,85 @@ options     head
         noremap <unique> <script> <Plug>$2 <SID>${3:Func: Add}
         noremap <SID>$3 :call <SID>$3(${4:func arguments})<CR>
     endif
+# }}}
+
+# if [exists, has, hasmapto, ] {{{
+snippet     plugin.skeleton.if.exists function
+abbr        if exists('*func') ... endif
+alias       if.exists.function
+options     head
+    if exists("*${1:#:function}")
+        ${2:#:statements}
+    endif
+
+snippet     plugin.skeleton.if.exists global option
+abbr        if !exists("g:option") > let g:option = > endif
+alias       option.global
+options     head
+    if !exists("g:${1:#:option}")
+        let g:$1 = ${2:#:value}
+    endif
+
+snippet     plugin.skeleton.if.hasmapto
+abbr        if !hasmapto() .. endif
+alias       if.hasmapto
+options     head
+    if !hasmapto('${1:#:<Plug>Func}')
+        map <unique> ${2:#:<Leader>a} $1
+    endif
+
+snippet     plugin.skeleton.if.has feature
+abbr        if !has('feature') .. endif
+alias       if.has
+options     head
+    if !has('${1:#:feature: ruby}')
+        ${2:TARGET}
+    endif
 
 snippet     plugin.skeleton.if.exists command
 abbr        if !exists() > command > endif
 alias       if.exists.command
 options     head
-    if !exists(":${1:Command}")
-        command${2:attr:!,",b} -nargs=${2:#:0,1,*,?,+} $1 ${3:call s:Add(<q-args>, 0)}
+    if !exists(":${1:#:Command}")
+        command${2:#:attr: !,",b} -nargs=${2:#:0,1,*,?,+} $1 ${3:#:call s:Add(<q-args>, 0)}
     endif
 
-snippet     plugin.skeleton.if.exists function
-abbr        if exists('*func') ... endif
-alias       if.exists.function
+snippet     plugin.skeleton.if.option default
+abbr        func! s:SetOptionDefault() .. endfunc > call s:SetOptionDefault()
+alias       option.set-default
 options     head
-    if exists("*${1:function}")
-        ${2:statements}
-    endif
+    function! s:SetOptionDefault(option, default)
+        if !exists(a:option)
+            execute 'let ' . a:option . '=' . string(a:default)
+        endif
+    endfunction
 
+    " ${1:#:comment for first global option}
+    call s:SetOptionDefault('g:${2:#:global option}', ${3:#:default value: 1, 'str'})
+    " ${4:#:comment for first global option}
+    call s:SetOptionDefault('g:${5:#:global option}', ${6:#:default value: 1, 'str'})
+# }}}
+
+# exists(), has(), {{{
+snippet     plugin.skeleton.exists command
+abbr        exists(":Command")
+alias       exists.command
+    exists(":${1:#:Command}")
+snippet     plugin.skeleton.exists function
+abbr        exists("*Function")
+alias       exists.function
+    exists("*${1:#:Function}")
+snippet     plugin.skeleton.exists globaloption
+abbr        exists("g:Option")
+alias       exists.option.global
+    exists("g:${1:#:Option}")
+snippet     plugin.skeleton.has feature
+abbr        has("feature")
+alias       has.feature
+    has("${1:#:Feature: ruby}")
+# }}}
+
+# operator {{{
 snippet     plugin.skeleton.operator
 abbr        operator motions
 alias       operator.motions
@@ -127,37 +162,9 @@ options     head
 
         let @@ = saved_unnamed_register
     endfun
+# }}}
 
-snippet     plugin.skeleton.commentchar
-abbr        get filetype comment char
-alias       commentchar
-options     head
-    substitute(&commentstring, '%s', '', "")${0}
-
-# global variable, default option.
-snippet     plugin.skeleton.option global g:
-abbr        if !exists("g:option") > let g:option = > endif
-alias       option.global
-options     head
-    if !exists("g:${1:option}")
-        let g:$1 = ${2:value}
-    endif
-
-snippet     plugin.skeleton.option default
-abbr        func! s:SetOptionDefault() .. endfunc > call s:SetOptionDefault()
-alias       option.set-default
-options     head
-    function! s:SetOptionDefault(option, default)
-        if !exists(a:option)
-            execute 'let ' . a:option . '=' . string(a:default)
-        endif
-    endfunction
-
-    " ${1:#:comment for first global option}
-    call s:SetOptionDefault('g:${2:global option}', ${3:default value: 1, 'str'})
-    " ${4:#:comment for first global option}
-    call s:SetOptionDefault('g:${5:global option}', ${6:default value: 1, 'str'})
-
+# redir {{{
 snippet     plugin.skeleton.redirection
 abbr        redir [>,>>,=>,==>] {var/file/reg}
 alias       redir,redirection
@@ -166,7 +173,9 @@ options     head
     ${3:#:statements: silent! iabbrev}
     redir END
     ${0}
+# }}}
 
+# global options {{{
 snippet     plugin.skeleton.options
 abbr        for [key, val] in s:options
     let s:options = {
@@ -182,8 +191,10 @@ abbr        for [key, val] in s:options
 snippet     plugin.skeleton.set-option-default
 abbr        let g:opt = get(g:, 'opt', {default})
     let g:${1:option name} = get(g:, '$1', ${2:default value})
+# }}}
 
 # TODO
+# command {{{
 snippet     plugin.skeleton.command range as args
 abbr        command! -nargs=* -range Cmd call s:func(<q-arg> <line1>, <line2>)
 options     head
@@ -198,5 +209,31 @@ options     head
     endfunc
 
     command! -complete=custom,s:Complete
+# }}}
+
+# function {{{
+# unload functions when source plugin again
+snippet     plugin.skeleton.unload-function
+abbr        unload function: if exists() > delfun Func
+alias       function.unload
+options     head
+    " This is the ${1:???} package
+    if exists("$1_loaded")
+        delfun ${2:#:first function name}
+        delfun ${3:#:second function name}
+    endif
+
+    ${4:functions}
+
+    let $1_loaded = 1
+# }}}
+
+# comment char {{{
+snippet     plugin.skeleton.commentchar
+abbr        get filetype comment char
+alias       commentchar
+options     head
+    substitute(&commentstring, '%s', '', "")${0}
+# }}}
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

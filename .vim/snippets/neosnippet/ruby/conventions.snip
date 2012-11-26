@@ -1,0 +1,37 @@
+# Ruby names conventions {{{
+# local variables
+
+# method parameters
+
+# method names
+# start with a "lowercase letter" or with an "underscore"
+
+# Class, Module, Constants names
+# must start with an "uppercase letter"
+
+# class method: Fred::new
+# instance/class method: Fred.new
+
+# Global variables
+snippet     variable global
+abbr        $global_var
+    $${1:#:global_variable}
+
+# Instance variables
+snippet     variable instance
+abbr        @instance_var
+    @${1:#:instance_variable}
+
+# Class variables
+snippet     variable class
+abbr        @@class_var
+    @@${1:#:class variable}
+# }}}
+
+# Symbols {{{
+snippet     symbol
+abbr        SYMBOL
+    ${1:SYMBOL} = ${2}
+# }}}
+
+# vim:et:ts=2:sw=2:fdm=marker:fmr={{{,}}}
