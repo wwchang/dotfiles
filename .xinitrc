@@ -46,8 +46,8 @@ case $1 in
         ;;
 esac
 
-# manually merge Xresource colros etc for Awesome.
-xrdb -merge ~/.Xresources
+# auto set background/wallpaper
+feh -q --bg-fill ~/Git/dotfiles/backgrounds/old_computer.jpg
 
 # if you have problems with some devices (like mounting usbkeys, reading dvds)
 # be sure to read documentation about HAL and PolicyKit. When you do not use a
