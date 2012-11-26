@@ -32,7 +32,7 @@ set highlight-transparency 0.5
 # Defines which auto adjustment mode should be used if a document is loaded.
 # Possible options are “best-fit” and “width”.
 # set adjust-open [best-fit|width|noadjust]
-set adjust-open best-fit
+set adjust-open noadjust
 
 # The page padding defines the gap in pixels between each rendered page.
 set page-padding 2
@@ -42,16 +42,16 @@ set page-padding 2
 set page-store-threshold 30
 
 # Defines the amount of seconds between the check to unload invisible pages.
-set page-store-interval 30
+set page-store-interval 600
 
 # Defines the number of pages that are rendered next to each other in a row.
 # set page-per-row 1
 
 # defines if the number of pages per row should be honored when advancing a page
-set advance-pages-per-row false
+# set advance-pages-per-row false
 
 # Defines if the search results should be cleared on abort.
-set abort-clear-search true
+# set abort-clear-search true
 
 # Defines if the “Loading…” text should be displayed if a page is rendered.
 set render-loading true

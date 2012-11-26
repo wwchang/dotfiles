@@ -3,32 +3,32 @@ snippet     docs for Module
 abbr        Docstring for Module
 options		head
 	'''
-	Help on module ${1:module name}
+	Help on module ${1:#:module name}
 
 	NAME
-		${2:module name - module description.}
+		${2:#:module name - module description.}
 
 	DESCRIPTION
 		Public module variables:
 
-		${3:whitespace -- a string containing all ASCII whitespace}
+		${3:#:whitespace -- a string containing all ASCII whitespace}
 	CLASSES
-		${4:builtins.object}
+		${4:#:builtins.object}
 
 	class Formatter(builtins.object)
 	 |  Methods defined here:
 	 |
-	 |  ${5:check_unused_args(self, used_args, args, kwargs)}
+	 |  ${5:#:check_unused_args(self, used_args, args, kwargs)}
 	 |  ----------------------------------------------------------------------
 	 |  Data descriptors defined here:
 
 	FUNCTIONS
-		${6:capwords(s, sep=None)}
+		${6:#:capwords(s, sep=None)}
 
 	DATA
 		${7}
 	FILE
-		${8:file location}
+		${8:#:file location}
 	'''
 	${0}
 

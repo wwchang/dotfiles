@@ -160,29 +160,32 @@ options     head
 # .........
 # ```
 
-# special escape characters
+# special escape characters {{{
 snippet     copyright
 abbr        © copyright
     &copy; `strftime('%Y')` stardiviner. All rights reserved.
-snippet     &
+snippet     literal ampersand
 abbr        &amp;
+options     word
     &amp;
-snippet     <
+snippet     literal lagerthan
 abbr        &lt;
+options     word
     &lt;
-snippet     \
+snippet     literal backslash
 abbr        \\
 alias       backslash
+options     word
     \\
-# snippet     <
-# abbr        \<
-#     \<
-# snippet     >
-# abbr        \>
-#     \>
-snippet     *
+snippet     literal star
 abbr        \*
+alias       star
 options     word
     \*
+snippet     literal backtick
+abbr        `` `literal backticks` ``
+alias       backtick
+    \`\` \`${1}\` \`\`
+# }}}
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

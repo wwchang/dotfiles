@@ -1,0 +1,8 @@
+snippet     file.skeleton.open do
+abbr        File.open(filename) do .. end
+alias       fileopen
+    File.open(${1:#:filename}, '${2:#:mode}') do |${3:io}|
+        ${0:TARGET}
+    end
+
+# vim:et:ts=2:sw=2:fdm=marker:fmr={{{,}}}

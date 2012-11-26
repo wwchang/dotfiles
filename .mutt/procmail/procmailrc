@@ -265,6 +265,79 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     spam/
 # }}}
 
+# Emacs {{{
+    :0
+    * ^List-Id: .*help-gnu-emacs\.gnu\.org
+    Emacs/help/
+    :0
+    * ^List-Id: .*emacs-devel\.gnu\.org
+    Emacs/devel/
+    :0
+    * ^List-Id: .*info-gnu-emacs\.gnu\.org
+    INBOX/
+    :0
+    * ^List-Id: .*implementations-list\.lists\.ourproject\.org
+    Emacs/Evil/
+    :0
+    * ^List-Id: .*smart-snippet\.googlegroups\.com
+    Emacs/smart-snippet/
+# }}}
+
+# Vim {{{
+    :0
+    * ^List-Id: .*vim\.vim\.org
+    Vim/help/
+    :0
+    * ^List-Id: .*vim_use\.googlegroups\.com
+    Vim/help/
+
+    :0
+    * ^List-Id: .*vim-dev\.vim\.org
+    Vim/dev/
+    :0
+    * ^List-Id: .*vim_dev\.googlegroups\.com
+    Vim/dev/
+    :0
+    * ^List-Id: .*vim-announce\.vim\.org
+    INBOX/
+    :0
+    * ^List-Id: .*vim_announce\.googlegroups\.com
+    INBOX/
+
+    # vim-ruby
+    :0
+    * ^List-Id: .*vim-ruby-devel\.rubyforge\.org
+    Vim/vim-ruby/
+
+    :0
+    * ^List-Id: .*vimwiki\.googlegroups\.com
+    Vim/vimwiki/
+    :0
+    * ^From: .*vimwiki@googlecode\.com
+    Vim/vimwiki/
+    #:0
+    #* ^List-Id: .*vimorganizer\.googlegroups\.com
+    #Vim/vimOrganizer
+    :0
+    * ^List-Id: .*eclim-user\.googlegroups\.com
+    Vim/eclim/
+    :0
+    * ^List-Id: .*vimtouch-general\.googlegroups\.com
+    Vim/vimtouch/
+
+    #:0
+    #* ^List-Id: .*vim_use\.googlegroups\.com
+    #{
+        #:0 c
+        #Vim/
+
+        #:0:
+        #* ^In-Reply-To: .*numbchild@gmail.com
+        #* ^References:  .*numbchild@gmail.com
+        #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox." ; echo "test procmail notify OK !" > /home/chris/test_procmail.txt
+    #}
+# }}}
+
 # Programming Languages {{{
     # [ Ruby ] {{{
     # Ruby-Talk
@@ -289,6 +362,9 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * ^List-Id: .*kde-bindings\.kde\.org
     Ruby/RubyQt/
+    :0
+    * ^List-Id: .*sinatrarb\.googlegroups\.com
+    Ruby/Sinatra/
     # }}}
 
     # [ Python ] {{{
@@ -454,76 +530,6 @@ PMSRC = ${HOME}/.mutt/procmail/lib
     :0
     * List-Id: .*security-news\.drupal\.org
     Drupal/security/
-# }}}
-
-# Emacs {{{
-    :0
-    * ^List-Id: .*help-gnu-emacs\.gnu\.org
-    Emacs/help/
-    :0
-    * ^List-Id: .*emacs-devel\.gnu\.org
-    Emacs/devel/
-    :0
-    * ^List-Id: .*info-gnu-emacs\.gnu\.org
-    INBOX/
-    :0
-    * ^List-Id: .*implementations-list\.lists\.ourproject\.org
-    Emacs/Evil/
-# }}}
-
-# Vim {{{
-    :0
-    * ^List-Id: .*vim\.vim\.org
-    Vim/help/
-    :0
-    * ^List-Id: .*vim_use\.googlegroups\.com
-    Vim/help/
-
-    :0
-    * ^List-Id: .*vim-dev\.vim\.org
-    Vim/dev/
-    :0
-    * ^List-Id: .*vim_dev\.googlegroups\.com
-    Vim/dev/
-    :0
-    * ^List-Id: .*vim-announce\.vim\.org
-    INBOX/
-    :0
-    * ^List-Id: .*vim_announce\.googlegroups\.com
-    INBOX/
-
-    # vim-ruby
-    :0
-    * ^List-Id: .*vim-ruby-devel\.rubyforge\.org
-    Vim/vim-ruby/
-
-    :0
-    * ^List-Id: .*vimwiki\.googlegroups\.com
-    Vim/vimwiki/
-    :0
-    * ^From: .*vimwiki@googlecode\.com
-    Vim/vimwiki/
-    #:0
-    #* ^List-Id: .*vimorganizer\.googlegroups\.com
-    #Vim/vimOrganizer
-    :0
-    * ^List-Id: .*eclim-user\.googlegroups\.com
-    Vim/eclim/
-    :0
-    * ^List-Id: .*vimtouch-general\.googlegroups\.com
-    Vim/vimtouch/
-
-    #:0
-    #* ^List-Id: .*vim_use\.googlegroups\.com
-    #{
-        #:0 c
-        #Vim/
-
-        #:0:
-        #* ^In-Reply-To: .*numbchild@gmail.com
-        #* ^References:  .*numbchild@gmail.com
-        #| /home/chris/bin/notify.sh "New_Mail" "Vim mailbox." ; echo "test procmail notify OK !" > /home/chris/test_procmail.txt
-    #}
 # }}}
 
 # Apps: Awesome, FVWM?, Mutt, WeeChat, Ranger, Conky ... {{{

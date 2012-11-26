@@ -208,9 +208,9 @@ options     head
 
 # structure : <h>, <p>, <br />, <hr />, comment, .... {{{
 snippet     h
-abbr        header <h1> .. </h1>
+abbr        header <hN> .. </hN>
 options     head
-    <h${1:1}>${2}</h$1>${3}
+    <h${1:1}>${2}</h$1>${0}
 snippet     hgroup
 abbr        <hgroup> > <h1> . <h2> > </hgroup>
 options     head

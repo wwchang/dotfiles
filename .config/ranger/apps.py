@@ -109,7 +109,7 @@ class CustomApplications(Applications):
 
         if f.extension is not None:
             if f.extension in ('pdf', ):
-                return self.either(c, 'evince', 'zathura', 'mupdf', 'llpp', 
+                return self.either(c, 'zathura', 'evince', 'mupdf', 'llpp', 
                                    'apvlv', 'okular', 'epdfview')
             if f.extension == 'djvu':
                 return self.either(c, 'evince')

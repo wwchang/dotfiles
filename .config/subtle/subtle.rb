@@ -1029,20 +1029,24 @@ tag "read" do
 end
 
 tag "multimedia" do
-  match :class  => "MPlayer|vlc"
+  match   :class  => "MPlayer|vlc"
   gravity :float
+  gravity :top_right33
   resize  true
+  stick   true
 end
 
 tag "image" do
   match "feh|gpicview"
   gravity :float
+  gravity :top_right
   resize  true
+  stick   true
 end
 
 tag "irc" do
   match :instance => "weechat-curses|irssi", :class => "URxvt"
-  gravity :left66
+  gravity :bottom_right
 end
 # }}}
 # }}}
@@ -1113,7 +1117,7 @@ end
 view "1. shape ideas into code" do
   icon Subtlext::Icon.new("#{iconpath}/terminal.xbm")
   icon_only false
-  match "code|programming|terminal"
+  match "code|programming|TerminalMultiplexer|terminal"
   dynamic false
 end
 

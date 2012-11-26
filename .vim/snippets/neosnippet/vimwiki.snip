@@ -1,29 +1,41 @@
 # Typefaces {{{
 snippet     bold
 abbr        *bold*
-alias       b
+alias       b,typeface.bold
     *${1:TARGET:text}*
 snippet     italic
 abbr        _italic_
-alias       i
+alias       i,typeface.italic
     _${1:TARGET:text}_
 snippet     code inline
 abbr        `code (no syntax) text`
-alias       c
+alias       c,typeface.inline_code
 options     word
     \` ${1:code text} \`
 snippet     strike
 abbr        ~~strike~~
-alias       s
+alias       s,typeface.strike
     ~~${1:TARGET:text}~~
 snippet     superscript
 abbr        6⁶
-alias       sup
+alias       sup,typeface.superscript
     ^${1:TARGET:superscript 6⁶}^
 snippet     subscript
 abbr        6₆
-alias       sub
+alias       sub,typeface.subscript
     ,,${1:TARGET:subscript 6₆},,
+# }}}
+
+# Wiki {{{
+snippet     wiki
+abbr        [[wiki]]
+    [[${1:TARGET:wiki}]]${0}
+snippet     wiki alttext
+abbr        [[wiki|alt text]]
+    [[${2:filename}|${1:TARGET:alt text}]]${0}
+snippet     wiki directory
+abbr        [[wiki_dir/wiki|alt text]]
+    [[${1:wiki_dir}/$1|${2:TARGET:alt text}]]${0}
 # }}}
 
 # Headers {{{
@@ -81,7 +93,8 @@ snippet     list ordered hash
 abbr        # list item
 options     head
     # ${1:item1}
-    # ${2:item2}
+        # ${2:sub list item 1}
+        ${0}
 snippet     list definition
 abbr        Term 1:: Definition 1
 options     head
@@ -93,43 +106,47 @@ options     head
 # Link {{{
 snippet     link
 abbr        [[URL|alternate text]]
-    [[${1:TARGET:URL/path}|${2:#:alternate text}]] ${0}
+    [[${1:TARGET:URL/path}|${2:$1}]]${0}
+
+snippet     link path
+abbr        [[path/file|alternate text]]
+    [[${1:TARGET:path}/$1|${2:$1}]]${0}
 
 snippet     thumbnail
 abbr        [[LINK|{thumbnail}]]
-    [[${1:TARGET:LINK}|${2:LINK(thumbnail)}]]
+    [[${1:TARGET:LINK}|${2:thumbnail link}]]${0}
 
 snippet     image
 abbr        {{local:path}}
-    {{local:${1:TARGET:path/to/file}}}
+    {{local:${1:TARGET:path/to/file}}}${0}
 
 # for utl.vim plugin
 snippet     utl
 abbr        utl link <url:URL>
 alias       url
-    <url:${1:TARGET:URL}>
+    <url:${1:TARGET:URL}>${0}
 # }}}
 
 # Schemes {{{
 snippet     scheme interwiki
 abbr        [[wiki#:TITLE]]
 alias       interwiki
-    [[wiki${1:wiki Number}:${2:TITLE}|${3:description}]]
+    [[wiki${1:wiki Number}:${2:TITLE}|${3:description}]]${0}
 
 snippet     scheme diary
 abbr        [[diary:2012-10-31]]
 alias       diary
-    [[diary:${1:`strftime("%Y-%m-%d")`}]]
+    [[diary:${1:`strftime("%Y-%m-%d")`}]]${0}
 
 snippet     scheme local
 abbr        [[local:path|desc]]
 alias       local
-    [[local:${1:path/to/file}|${2:TARGET:description}]]
+    [[local:${1:path/to/file}|${2:TARGET:description}]]${0}
 
 snippet     scheme file
 abbr        [[file:///path/to/file]]
 alias       file
-    [[file:///${1:TARGET:path/to/file}]]
+    [[file:///${1:TARGET:path/to/file}]]${0}
 # }}}
 
 # highlight: code, formula {{{
@@ -140,6 +157,7 @@ options     head
     {{{${1:#:language: ruby/python/lisp/c}
     ${2:TARGET:code here}
     }}}
+    ${0}
 
 snippet     code block attribute
 abbr        {{{class="" code > ... }}}
@@ -147,10 +165,11 @@ options     head
     {{{class="${1:brush: ruby}"
     ${2:TARGET:code here}
     }}}
+    ${0}
 
 snippet     formula inline
 abbr        $ formula $
-    $ ${1:TARGET:formula} $
+    $ ${1:TARGET:formula} $ ${0}
 
 snippet     formula long
 abbr        match formula
@@ -159,6 +178,7 @@ options     head
     {{$
     ${1:TARGET:math formula}
     }}
+    ${0}
 # }}}
 
 # comment {{{
@@ -171,7 +191,7 @@ snippet     line horizontal
 abbr        ---- <hr />
 alias       hr
 options     head
-    ----
+    `repeat("-", &columns)`
 # }}}
 
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

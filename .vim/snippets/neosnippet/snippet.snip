@@ -18,4 +18,9 @@ snippet     0
 abbr        ${0}
     ${${1:0}}${0}
 
+snippet     vim expr
+abbr        ` vim expr `
+alias       vim,expr
+    \` ${1:#:vim expr} \`
+
 # vim:fdm=marker:fmr={{{,}}}:expandtab:sw=4:sts=4

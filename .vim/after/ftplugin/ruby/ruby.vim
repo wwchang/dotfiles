@@ -10,3 +10,6 @@ setlocal keywordprg=ri
 
 " omni
 setlocal omnifunc=rubycomplete#Complete
+
+" others
+iabbrev elseif elsif

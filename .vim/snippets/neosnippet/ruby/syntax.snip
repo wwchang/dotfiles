@@ -9,28 +9,147 @@ options     head
   ${0}
 # }}}
 
-# method {{{
-snippet     method
-abbr        def func(args) .. end
-alias       def
-  def ${1:name}${2:#:(parameters)}
-    ${3:TARGET:statements}
+# module: module .. end {{{
+snippet     module
+abbr        module Module ... end
+options     head
+  module ${1:#:Module}
+    ${2:TARGET}
   end
+  ${0}
 # }}}
 
-# blocks {{{
+# class: class .. end {{{
+snippet     class
+abbr        class Class ... end
+options     head
+  class ${1:#:Uppercase_Name}
+    ${2:TARGET}
+  end
+  ${0}
+
+snippet     class initialize
+abbr        class Class .. def initialize(args) .. end .. end
+options     head
+  class ${1:#:Uppercase_Name}
+    def initialize(${2:#:args})
+      ${3:TARGET}
+    end
+  end
+  ${0}
+
+snippet     class inherit
+abbr        class Class < Inherit .. end
+options     head
+  class ${1:#:Uppercase_Name} < ${2:#:Inheritance}
+    ${3:TARGET}
+  end
+  ${0}
+# }}}
+
+# method: def .. end {{{
+# class method
+# call them like {Class}.new.method
+# (usually use this, send message to instances instead of classes or modules)
+# (so I alias def/method to class method)
+snippet     method class
+abbr        def self.method(args) .. end
+options     head
+alias       def_class,def,method
+  def self.${1:#:method_name}${2:#:(parameters)}
+    ${3:TARGET}
+  end
+  ${0}
+# instance method
+# call them like {Class}.method
+snippet     method instance
+abbr        def method(args) .. end
+options     head
+alias       def_instance
+  def ${1:#:method_name}${2:#:(parameters)}
+    ${3:TARGET}
+  end
+  ${0}
+
+# Ruby Method Visibility
+snippet     method private
+abbr        private def method(args) .. end
+options     head
+  private
+  def ${1:#:method}${2:#:(parameters)}
+    ${3:TARGET}
+  end
+snippet     method protected
+abbr        protected def method(args) .. end
+options     head
+  protected
+  def ${1:#:method}${2:#:(parameters)}
+    ${3:TARGET}
+  end
+snippet     method public
+abbr        def method(args) .. end
+alias       def,method
+options     head
+  def ${1:#:method_name}${2:#:(parameters)}
+    ${3:TARGET}
+  end
+  ${0}
+
+# method name conventions
+snippet     method predicate
+abbr        method?
+  ${1:#:method}?
+snippet     method setter
+abbr        method=
+  ${1:#:method}=
+snippet     method destructive
+abbr        method!
+  ${1:#:method}!
+
+snippet     method rescue
+abbr        def method(args) .. rescue .. end
+alias       defrescue
+  def ${1:#:method_name}${2:#:(parameters)}
+    ${3:TARGET}
+  rescue ${4:#:StandardError} => ${5:#:error}
+    ${6:#:puts "#{message\}: #{$5\}"}
+  end
+  ${0}
+# }}}
+
+# blocks: {}, do .. end {{{
 snippet     block inline
 abbr        { block }
-  { ${1:TARGET:blocks} }
+  { ${1:TARGET} }
 
-snippet     block do-end
+snippet     block
+abbr        { ... }
+  {
+    ${1:TARGET}
+  }
+
+snippet     block var
+abbr        {|var| ... }
+  {|${1:#:var}|
+    ${2:TARGET}
+  }
+
+snippet     do
 abbr        do .. end
   do
-    ${2:TARGET:code}
+    ${1:TARGET}
   end
+  ${0}
+
+snippet     do var
+abbr        do |var| .. end
+  do |${1:#:var}|
+    ${2:TARGET}
+  end
+  ${0}
 # }}}
 
-# data types {{{
+# data types: Array, Hash {{{
 # Array {{{
 snippet     array
 abbr        [ 1, 'a', 3.14 ]
@@ -44,24 +163,40 @@ abbr        %w{ elements }
 # Hash {{{
 snippet     hash
 abbr        { key => value }
-  { ${1:key} => ${2:value}${3:, ${4:key-value pairs\}} }${0}
+  { ${1:#:key} => ${2:#:value}${3:, ${4:#:key-value pairs\}} }${0}
 
 snippet     hash symbol
 abbr        { :symbol => value }
-  { :${1:symbol} => ${2:value}${3:, ${4:#::apple => 'Apple'\}} }
+  { :${1:#:symbol} => ${2:#:value}${3:, ${4:#::apple => 'Apple'\}} }
   ${0:#:hash[:symbol]}
 
 snippet     hash symbol pair-style
 abbr        { symbol: value }
-  { ${1:symbol}: ${2:value}${3:, ${4:#:apple: 'Apple'\}} }
+  { ${1:#:symbol}: ${2:#:value}${3:, ${4:#:apple: 'Apple'\}} }
   ${0:#:hash[:symbol]}
 # }}}
+# }}}
+
+# control flow: if, {{{
+snippet     if
+abbr        if .. end
+  if ${1:#:condition}
+    ${2:TARGET}
+  end
+
+# elsif
+snippet     elsif
+abbr        elsif ...
+alias       elseif
+options     head
+  elsif ${1:#:condition}
+    ${2:TARGET}
 # }}}
 
 # comment {{{
 snippet     comment oneline
 abbr        # comment
-  # ${1:comment}
+  # ${1:#:comment}
 # }}}
 
 

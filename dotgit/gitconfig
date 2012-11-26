@@ -113,7 +113,7 @@
     ; ignored = !git ls-files -v | grep ^[a-z] ; for bash
 
 [branch "master"]
-    mergeoptions = --no-ff ; default disable fast forwarding on branch master.
+    ; mergeoptions = --no-ff ; default disable fast forwarding on branch master.
 
 # for .gitattributes
 [diff "word"]

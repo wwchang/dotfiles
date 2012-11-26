@@ -50,9 +50,11 @@ mailboxes =Ruby
 mailboxes =Ruby/talk
 # mailboxes =Ruby/core
 # mailboxes =Ruby/cvs
+# projects
 mailboxes =Ruby/Rails
 mailboxes =Ruby/RubyQt
 mailboxes =Ruby/rvm
+mailboxes =Ruby/Sinatra
 
 mailboxes =Python
 mailboxes =Python/python

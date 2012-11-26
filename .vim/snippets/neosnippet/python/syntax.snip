@@ -48,10 +48,25 @@ options		head
 
 # control flow {{{
 # if
+snippet     if
+abbr        if {condition}: ...
+options     head
+	if ${1:#:condition}:
+		${2:TARGET:statements}
 
 # while
+snippet     while
+abbr        while {condition}: ...
+options     head
+	while ${1:#:condition}:
+		${2:TARGET:statements}
 
 # for
+snippet     for
+abbr        for {var} in {iterator}: ...
+options     head
+	for ${1:#:var} in ${2:#:iterator}:
+		${3:TARGET:statements}
 
 # with
 snippet     with
@@ -106,33 +121,33 @@ options		head
 # lambda
 snippet     lambda
 abbr        var = lambda vars : expr
-	${1:var} = lambda ${2:vars} : ${3:action}
+	${1:#:var} = lambda ${2:#:vars} : ${3:#:expr}
 	${0}
 
 # decorator
 snippet     decorator
 abbr        @decorator(args) > def func: ...
 options		head
-	@${1:decorator}${2:(${3:arguments\})}
+	@${1:#:decorator}${2:(${3:arguments\})}
 	${4:@${5:second decorator\}${6:(arguments)\}}
-	def ${7:function}(${8:arguments}):
+	def ${7:#:function}(${8:#:arguments}):
 		${9:TARGET:statements}
 # }}}
 
 # [ data types ] {{{
 snippet     list
 abbr        [1, 2, 3]
-	[${1:item1}${2:, ${3:item2\}}]
+	[${1:#:item1}${2:, ${3:item2\}}]
 snippet     tuple
 abbr        (1, 2, 3)
-	(${1:item1}${2:, ${3:item2\}})
+	(${1:#:item1}${2:, ${3:item2\}})
 snippet     dictionary
 abbr        {'one': 1, 'two': 2}
 alias       dict
-	{${1:key}: ${2:value}, ${3:key\}: ${4:value}}
+	{${1:#:key}: ${2:#:value}${3:, ${4:key\}: ${5:value\}}}
 snippet     set
 abbr        {1, 2, 3}
-	{${1:item1}, ${2:item2}}
+	{${1:#:item1}${2:#:, item2}}
 # }}}
 
 # vim:fdm=marker:fmr={{{,}}}:noexpandtab:sw=4:sts=4

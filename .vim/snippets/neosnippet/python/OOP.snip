@@ -3,10 +3,10 @@
 snippet     class OOP
 abbr        class Class(Class): """Docstring""" + def __init__(self, ):
 options		head
-	class ${1:Name}(${2:Classes}):
+	class ${1:Name}(${2:#:Classes}):
 		"""${3:#:class Docstring}"""
-		def __init__(self, ${4}):
-			"""${5:#:__init__ Docstring}"""
+		def __init__(self${4:#:, parameters}):
+			${5:#:"""__init__ Docstring"""}
 			${6:#:pass}
 
 		${0}
@@ -19,8 +19,7 @@ abbr        self.
 snippet     magic
 abbr        __magic__
 alias		_
-	__${1:#:init}__${2}
-	${0}
+	__${1:#:init}__${0}
 
 snippet     init
 abbr        def __init__(self, ..): ...
@@ -32,14 +31,14 @@ snippet     def	define method
 abbr        def method(self, ..): ...
 alias		method
 options		head
-	def ${1:name}(self${2:#:, *args, **kwargs}):
+	def ${1:#:name}(self${2:#:, *args, **kwargs}):
 		"""${3:#:method Docstring}"""
 		${4:#:pass}
 
 snippet     attribute internal
 abbr        def __attribute(args): ...
 options		head
-	def __${1:attribute}(self${2:#:, *args, **kwargs}):
+	def __${1:#:attribute}(self${2:#:, *args, **kwargs}):
 		"""${3:#:attribute Docstring}"""
 		${4:#:statements}
 
@@ -47,7 +46,7 @@ snippet     property
 abbr        @property > def Property(self, args): ...
 options		head
 	@property
-	def ${1:Property}(self${2:#:, *args, **kwargs}):
+	def ${1:#:Property}(self${2:#:, *args, **kwargs}):
 		${3:#:statements}
 
 # class property (setter, getter, deleter)
@@ -55,20 +54,20 @@ snippet		property Setter
 abbr        @property + @propertyName.setter
 options		head
 	@property
-	def ${1:attribute name}(self):
+	def ${1:#:attribute name}(self):
 		"""trun an attribute into property"""
-		return self.__${2:private attribute}
+		return self.__${2:#:private attribute}
 
-	@${3:property name}.setter
-	def ${4:property name}(self, ${5:parameter}):
-		${6:assert condition, "condition declaration"}
-		self.__${7:private attribute} = ${8:parameter}
+	@${3:#:property name}.setter
+	def ${4:#:property name}(self${5:#:, parameter}):
+		${6:#:assert condition, "condition declaration"}
+		self.__${7:#:private attribute} = ${8:#:parameter}
 
 # new property
 snippet     property define new property
 abbr        def Property(): ...
 options		head
-	def ${1:foo}():
+	def ${1:#:property}():
 		doc = "${2:The $1 property.}"
 		def fget(self):
 			${3:return self._$1}
