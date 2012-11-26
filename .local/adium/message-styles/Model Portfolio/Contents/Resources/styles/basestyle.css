@@ -1,0 +1,143 @@
+.buddyicon {
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    float: left;
+    z-index: -2;
+    padding-top: 10px;
+    padding-left: 10px;
+	
+}
+
+.buddyicon2 {
+    height: 80px;
+    width: 80px;
+    position: absolute;
+    z-index: -2;
+    padding-top: 10px;
+    padding-left: 13px;
+	
+}
+
+.photo {
+    height: 110px;
+    width: 100px;
+    position: absolute;
+    float: left;
+    z-index: 2;
+    margin-top: 2px;
+	
+}
+
+.photo2 {
+    height: 110px;
+    width: 100px;
+    position: absolute;
+    float: right;
+    z-index: 2;
+    margin-top: 2px;
+	
+}
+
+.top {
+    min-width: 350px;
+}
+
+.toprightcorner {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    padding-right: 5px;
+    padding-left: 97px;
+    font-family: Century Gothic;
+    font-size: 23px;
+	text-transform: uppercase;
+    background: url(../images/messagebordertop.png) no-repeat scroll;
+	
+}
+
+.margintimestamp {
+    padding-right: 25px;
+    float: right;
+    font-family: Century Gothic;
+    font-size: 9px;
+}
+
+.right {
+    padding-right: 70px;
+	padding-bottom: 5px;
+	text-indent: -10px;
+	padding-left: 8px;
+	margin-left: 110px;
+	
+}
+
+.msg1 {
+    min-width: 350px;
+}
+ 
+.msg2 { 
+    min-width: 350px;
+}
+
+.bottomrightcorner {
+	padding-top: 10px;
+    padding-bottom: 30px;
+    background: url(../images/messageborderbottom.png) no-repeat scroll;
+}
+
+.statusupdate {
+    width: 350px;
+    margin: 0px auto;
+	padding-top: 25px;
+	padding-bottom: 80px;
+    font-family: Century Gothic;
+	font-style: italic;
+    font-size: 12px;
+    background: url(../images/status.png) no-repeat scroll;
+	text-align: center;
+}
+
+.statusbottom {
+    width: 350px;
+    margin: 0px auto;
+    font-family: Century Gothic;
+    font-size: 8px;
+	text-align: center;
+}
+
+.statusbottomleft {
+    padding-left: 8px;
+	text-align: center;
+}
+
+.statusbottomright {
+    padding-top: 3px;
+    padding-bottom: 32px;
+    padding-right: 20px;
+    font-size: 8px;
+	text-align: center;
+}
+
+.context {
+    text-decoration: none;
+}
+
+.emoticon
+{
+white-space: nowrap;
+text-wrap: suppress;
+word-wrap: normal;
+}
+
+img.emoticon
+{
+vertical-align: top;
+max-height: 75px;
+width: auto;
+position: relative;
+top: 0px;
+}
+
+IMG {
+    position: inherit;
+}
