@@ -662,8 +662,8 @@ endif
 
     " [ conceal ] {{{
     if has('conceal')
-        set conceallevel=2 " 0:, 1:, 2:completely hidden, 3
-        set concealcursor=nc " n: normal v: visual i: insert c: command line editing
+        set conceallevel=1 " 0: show, 1:show conceal char, 2:, 3:completely hidden
+        set concealcursor=nc " conceal in cursor line in which modes.
     endif
     " }}}
 
