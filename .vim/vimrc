@@ -1248,6 +1248,7 @@ endif
         " NeoBundle 'xolox/vim-shell'
         NeoBundle 'Lokaltog/vim-powerline', {'rev': 'develop'}
         NeoBundle 'tyru/current-func-info.vim'
+        NeoBundle 'vim-scripts/locator'
         " quickfix, marks, signatures, status
         NeoBundle 'tomtom/quickfixsigns_vim', {
                     \ 'depends': ['tomtom/tlib_vim', 'tomtom/tinykeymap_vim'],
@@ -3052,7 +3053,21 @@ syntax on
         " }}}
     " }}}
 
-    " [ prototype ] {{{
+    " [ prototype, locator, current func info ] {{{
+        " current-func-info
+
+        " locator {{{
+            " Usage:
+            "   - gl    -- 'get location'
+            let g:locator_disable_mappings = 0
+            let g:locator_hl_fold = "Folded"
+            let g:locator_hl_class = "NonText"
+            let g:locator_hl_func_name = "Directory"
+            let g:locator_hl_func_the_rest = "Normal"
+            let g:locator_hl_section = "ModeMsg"
+        " }}}
+
+        " FIXME plugin file in assistant/.vim , you need to create your own mapping
         " assistant {{{ show the prototype of function
             " Usage:
             "   <C-h>
@@ -6073,6 +6088,8 @@ syntax on
             let g:hgrevNoRepoChar = '-'
         " }}}
         " current-func-info
+        " locator {{{
+        " }}}
         " syntastic.vim %{SyntasticStatuslineFlag()}
     " }}}
 
