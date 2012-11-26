@@ -13,6 +13,10 @@ fi
 DEFAULT_SESSION=awesome
 
 case $1 in
+    subtle)
+        # exec subtle
+        exec ck-launch-session subtle
+        ;;
     awesome)
         exec awesome
         # is you do not use display manager, use startx instead.
