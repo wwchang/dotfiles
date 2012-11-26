@@ -108,10 +108,10 @@ endfunction
 
 " initialization {{{
 " call Mail_Erase_Sig()
-call Mail_Del_Empty_Quoted()
-call Mail_Begining()
+" call Mail_Del_Empty_Quoted()
+" call Mail_Begining()
 
-au BufRead /tmp/mutt* normal :g/^> -- $/,/^$/-1d^M/^$^M^L
+" au BufRead /tmp/mutt* normal :g/^> -- $/,/^$/-1d^M/^$^M^L
 " }}}
 
 " fold {{{
