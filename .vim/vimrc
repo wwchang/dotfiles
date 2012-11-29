@@ -4305,11 +4305,18 @@ syntax on
                         \ ]
             let g:rbpt_max = 16
             let g:rbpt_loadcmd_toggle = 0
-            " always on
-            au VimEnter * RainbowParenthesesToggle
-            au Syntax * RainbowParenthesesLoadRound
-            au Syntax * RainbowParenthesesLoadSquare
-            au Syntax * RainbowParenthesesLoadBraces
+            " if !exists("*rainbow_parentheses#activate")
+                " au VimEnter * RainbowParenthesesToggleAll
+                " au VimEnter * RainbowParenthesesToggle
+                " ()
+                " au Syntax * RainbowParenthesesLoadRound
+                " []
+                " au Syntax * RainbowParenthesesLoadSquare
+                " {}
+                " au Syntax * RainbowParenthesesLoadBraces
+                " <>
+                " au Syntax * RainbowParenthesesLoadChevrons
+            " endif
         " }}}
 
         " AuthorInfo {{{ Insert Author Info with :AuthorInfoDetect
