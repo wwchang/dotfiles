@@ -1691,7 +1691,8 @@ endif
         " NeoBundle 'Shougo/vinarise'
         " NeoBundle 'tpope/vim-afterimage'
         " post/paste
-        NeoBundle 'tangledhelix/vim-octopress'
+        " NeoBundle 'tangledhelix/vim-octopress'
+        NeoBundle 'glidenote/octoeditor.vim'
         " time
         " NeoBundle 'mnick/vim-pomodoro'
         " others
@@ -7341,6 +7342,34 @@ syntax on
         " vim-octopress : syntax highlighting for Octopress post and page files
             " Usage:
             " :Octopress {task}<Tab>
+            "   * {task}
+            "       - generate
+            "       - deploy
+            "       - gen_deploy
+            "       - push
+            "       - rsync
+            "       - clean
+
+        " octoeditor.vim {{{ vim for Octopress
+            " Usage:
+            "   - :OctopressList    -- list posts
+            "   - :OctopressNew     -- create a new post
+            "   - :OctopressGrep    -- grep Octopress posts directory ([Vv]imgrep)
+            "   - :OctopressGenerate -- generate jekyll posts (rake generate)
+            "   - :OctopressDeploy  -- deploy posts (rake gen_deploy)
+            let g:octopress_path = "~/Git/websites/Blog/octopress"
+            let g:octopress_post_suffix = "markdown"
+            " let g:octopress_date = "%Y-%m-%d %H:%M"
+            " let g:octopress_date = "epoch"
+            " let g:octopress_date = "%D %T"
+            " let g:octopress_comments = 0
+            " let g:octopress_published = 0
+            let g:octopress_prompt_tags = 1
+            let g:octopress_prompt_categories = 1
+            " let g:octopress_qfixgrep = 1
+            " let g:octopress_vimfiler = 1
+            " let g:octopress_template_dir_path = "path/to/dir"
+        " }}}
 
         " wwwsearch {{{ Search WWW easily from Vim.
             " Usage:
